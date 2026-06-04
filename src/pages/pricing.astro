@@ -9,18 +9,18 @@ import IconPlus from "../assets/icons/plus.svg";
 import { hero, plans, compareTable, faq, finalCta } from "../data/pricing";
 ---
 <Layout
-  title="Lambda — Pricing"
-  description="Simple, transparent per-seat pricing. Free for hobby projects, $19/seat for Pro teams, custom for Enterprise. No quote-form ambushes."
+  title="Sténtor – Support"
+  description="Same Sténtor features for everyone, with suggested yearly support or donation levels based on scale, sensitivity and context of use."
   active="pricing"
 >
-  <!-- Pricing Hero -->
+  <!-- Support Hero -->
   <section class="relative pt-24 pb-12 text-center" x-data="{cycle:'annual'}">
     <div class="absolute inset-0 pointer-events-none [background-image:radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)]" aria-hidden="true"></div>
 
     <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
       <Eyebrow><span class="font-mono">{hero.eyebrow}</span></Eyebrow>
       <h1 class="mt-6 mb-4 mx-auto max-w-[920px] text-4xl sm:text-5xl lg:text-[64px] leading-[0.98] tracking-[-0.045em] font-semibold" set:html={hero.title}></h1>
-      <p class="text-lg leading-[1.55] text-text-2 max-w-[640px] mx-auto">{hero.description}</p>
+      <p class="text-lg leading-[1.55] text-text-2 max-w-[720px] mx-auto">{hero.description}</p>
 
       <!-- Toggle -->
       <div class="inline-flex items-center gap-2.5 mt-8 p-1 border border-hairline rounded-full bg-white/[0.02] font-mono text-[13px]" role="tablist">
@@ -84,7 +84,7 @@ import { hero, plans, compareTable, faq, finalCta } from "../data/pricing";
               <th class="px-5 py-4 text-left text-[13px] font-medium bg-white/[0.02] text-text-2 border-r border-b border-hairline" style="width:46%;">Feature</th>
               <th class="px-5 py-4 text-center text-[13px] font-medium bg-white/[0.02] text-text-2 border-r border-b border-hairline" style="width:18%;">Free</th>
               <th class="px-5 py-4 text-center text-[13px] font-medium bg-red-500/[0.06] text-red-500 border-r border-b border-hairline" style="width:18%;">Pro</th>
-              <th class="px-5 py-4 text-center text-[13px] font-medium bg-white/[0.02] text-text-2 border-b border-hairline" style="width:18%;">Enterprise</th>
+              <th class="px-5 py-4 text-center text-[13px] font-medium bg-white/[0.02] text-text-2 border-b border-hairline" style="width:18%;">Venues</th>
             </tr>
           </thead>
           <tbody>
