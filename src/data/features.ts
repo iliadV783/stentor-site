@@ -29,7 +29,7 @@ type ShowcaseRow = {
 export const showcase: ShowcaseRow[] = [
   {
     number: "01",
-    eyebrow: "01 — Copione",
+    eyebrow: "01 — Script",
     title: "One script, many layers of performance text.",
     description:
       "Prepare the original script, translations, surtitles, notes and project metadata in one place. Sténtor keeps the structure of the performance visible while letting each cue remain editable.",
@@ -43,10 +43,10 @@ export const showcase: ShowcaseRow[] = [
   },
   {
     number: "02",
-    eyebrow: "02 — Regia",
+    eyebrow: "02 — Operator view",
     title: "A clear operator view for the live moment.",
     description:
-      "During rehearsal or performance, Regia gives the operator a focused cueing interface: current cue, next cue, blackout, timing and the confidence to move through the show without visual noise.",
+      "During rehearsal or performance, the operator view gives the cue operator a focused interface: current cue, next cue, blackout, timing and the confidence to move through the show without visual noise.",
     bullets: [
       "Advance, rewind and blackout from one live view",
       "Keep timing, current cue and next cue visible",
@@ -73,7 +73,7 @@ export const showcase: ShowcaseRow[] = [
 
 // Demo data for the trace illustration (row 02 / Observability)
 export const traceRows = [
-  { name: "Current cue", lvl: "LIVE", lvlColor: "ok" as const, barColor: "amber" as const, left: 0, width: 100, ms: "Regia" },
+  { name: "Current cue", lvl: "LIVE", lvlColor: "ok" as const, barColor: "amber" as const, left: 0, width: 100, ms: "Operator" },
   { name: "└ surtitles on screen", barColor: "gray" as const, left: 2, width: 18, ms: "synced" },
   { name: "└ translation layer", barColor: "blue" as const, left: 22, width: 18, ms: "ready" },
   { name: "└ audio-description note", barColor: "green" as const, left: 44, width: 24, ms: "queued" },
@@ -83,7 +83,7 @@ export const traceRows = [
 
 // Region pins for the runtime illustration (row 03 / Runtime)
 export const regions = [
-  { code: "REGIA", left: "47%", top: "45%", lat: "live" },
+  { code: "OP", left: "47%", top: "45%", lat: "live" },
   { code: "SCREEN", left: "35%", top: "28%", lat: "synced" },
   { code: "PHONE", left: "58%", top: "34%", lat: "synced" },
   { code: "AD", left: "52%", top: "62%", lat: "ready" },
