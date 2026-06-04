@@ -41,8 +41,8 @@ export const sidebarGroups: DocsSidebarGroup[] = [
   {
     title: "Cue live",
     items: [
-      { label: "Regia", href: "#endpoints" },
-      { label: "Schermi", href: "#endpoints" },
+      { label: "Operator view", href: "#endpoints" },
+      { label: "Screens", href: "#endpoints" },
       { label: "Audience phones", href: "#deploy", badge: "Live Sync" },
       { label: "Blackout and timing", href: "#endpoints" },
     ],
