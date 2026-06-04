@@ -3,11 +3,13 @@ interface Props {
   href?: string;
 }
 
+import StentorLogo from "../assets/icons/logo.svg";
+
 const { href = "/" } = Astro.props;
 ---
 <a href={href} aria-label="Sténtor — home" class="inline-flex items-center gap-[10px] font-semibold tracking-[-0.02em]">
-  <span class="text-base flex items-baseline gap-2">
-    <span class="text-text font-semibold tracking-[-0.03em]">STÉNTOR</span>
+  <span class="text-base flex items-center gap-[8px]">
+    <StentorLogo class="h-3.5 w-auto" aria-hidden="true" />
     <span class="text-text-3 font-medium">Surtitles &amp; Audio Description</span>
   </span>
 </a>
