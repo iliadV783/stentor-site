@@ -6,7 +6,7 @@
 
 // ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
-  eyebrow: "v2.4 — Edge Functions, now GA",
+  eyebrow: "v. 0.1.64 – Live Sync",
   // Rich text rendered via set:html — keep <em>, <br/> etc. inline.
   title:
     'The backend platform <em class="not-italic text-text-3 font-medium">for teams who ship</em><br class="hidden sm:inline" /> without the on-call.',
