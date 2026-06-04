@@ -1,7 +1,7 @@
 /**
  * Docs navigation: sidebar groups + on-this-page TOC.
- * The body of the Quickstart page lives in docs.astro because it's example
- * content the client will replace wholesale when they write their own docs.
+ * The body of the Workflow page lives in docs.astro because the current
+ * Lambda template keeps article content inline.
  */
 
 export type DocsSidebarItem = {
@@ -20,91 +20,80 @@ export type DocsSidebarGroup = {
 
 export const sidebarGroups: DocsSidebarGroup[] = [
   {
-    title: "Get started",
+    title: "Start here",
     items: [
-      { label: "Introduction", href: "#" },
-      { label: "Quickstart", href: "#", active: true },
-      { label: "Project structure", href: "#" },
-      { label: "CLI reference", href: "#", badge: "beta" },
-      { label: "Migrating from v1", href: "#" },
+      { label: "Overview", href: "#quickstart", active: true },
+      { label: "What you need", href: "#prerequisites" },
+      { label: "Install and open", href: "#install" },
+      { label: "Create a project", href: "#init" },
     ],
   },
   {
-    title: "Core",
+    title: "Prepare",
     items: [
-      { label: "Schemas & models", href: "#" },
-      { label: "Generated clients", href: "#" },
-      { label: "Edge functions", href: "#", badge: "new", badgeNew: true },
-      { label: "Background jobs", href: "#" },
-      { label: "Cron triggers", href: "#" },
-      { label: "Webhooks", href: "#" },
+      { label: "Import a script", href: "#init" },
+      { label: "Project metadata", href: "#init", badge: "new", badgeNew: true },
+      { label: "Languages", href: "#define-model" },
+      { label: "Cues and markers", href: "#define-model" },
+      { label: "Audio descriptions", href: "#define-model" },
     ],
   },
   {
-    title: "Database",
+    title: "Cue live",
     items: [
-      { label: "Postgres on Lambda", href: "#" },
-      { label: "Migrations", href: "#" },
-      { label: "Row-level policies", href: "#" },
-      { label: "Backups & PITR", href: "#" },
-      { label: "Branching", href: "#" },
+      { label: "Regia", href: "#endpoints" },
+      { label: "Schermi", href: "#endpoints" },
+      { label: "Audience phones", href: "#deploy", badge: "Live Sync" },
+      { label: "Blackout and timing", href: "#endpoints" },
     ],
   },
   {
-    title: "Auth",
+    title: "Share and export",
     items: [
-      { label: "Identity providers", href: "#" },
-      { label: "SAML & OIDC", href: "#" },
-      { label: "Passkeys", href: "#" },
-      { label: "Session management", href: "#" },
-    ],
-  },
-  {
-    title: "Observability",
-    items: [
-      { label: "Traces", href: "#" },
-      { label: "Logs", href: "#" },
-      { label: "Metrics", href: "#" },
-      { label: "Alerts & SLOs", href: "#" },
+      { label: "Save projects", href: "#install" },
+      { label: "Export scripts", href: "#define-model" },
+      { label: "Offline show package", href: "#deploy" },
+      { label: "Research feedback", href: "#feedback" },
     ],
   },
   {
     title: "Reference",
     items: [
-      { label: "REST API", href: "#" },
-      { label: "TypeScript SDK", href: "#" },
-      { label: "Go SDK", href: "#" },
-      { label: "Python SDK", href: "#" },
-      { label: "Errors", href: "#" },
+      { label: "Keyboard shortcuts", href: "#endpoints" },
+      { label: "Supported imports", href: "#init" },
+      { label: "Local network setup", href: "#deploy" },
+      { label: "Desktop builds", href: "#install" },
     ],
   },
 ];
 
 export const tocItems = [
-  { label: "Prerequisites", href: "#prerequisites" },
-  { label: "1. Install the CLI", href: "#install", active: true },
-  { label: "2. Initialize a project", href: "#init" },
-  { label: "3. Define your first model", href: "#define-model" },
-  { label: "4. Endpoint reference", href: "#endpoints" },
-  { label: "POST /v1/orders", href: "#endpoints", sub: true },
-  { label: "5. Deploy to production", href: "#deploy" },
+  { label: "What you need", href: "#prerequisites" },
+  { label: "1. Install and open", href: "#install", active: true },
+  { label: "2. Create or import a project", href: "#init" },
+  { label: "3. Prepare cues and layers", href: "#define-model" },
+  { label: "4. Cue the show", href: "#endpoints" },
+  { label: "Operator view", href: "#endpoints", sub: true },
+  { label: "Screens and audience phones", href: "#endpoints", sub: true },
+  { label: "5. Run Live Sync in the room", href: "#deploy" },
+  { label: "6. Share feedback", href: "#feedback" },
 ];
 
 // Right-rail action links shown below the TOC.
 export const tocActions = [
-  { href: "#", label: "Edit this page", icon: "edit" as const },
-  { href: "#", label: "Open in playground", icon: "playground" as const },
-  { href: "#", label: "Ask in Discord", icon: "message-circle" as const },
+  { href: "#feedback", label: "Send feedback", icon: "message-circle" as const },
+  { href: "/features", label: "See features", icon: "playground" as const },
+  { href: "/about", label: "About the project", icon: "edit" as const },
 ];
 
 // Page metadata shown above the H1.
 export const pageMeta = {
   breadcrumb: [
     { href: "#", label: "Docs" },
-    { href: "#", label: "Get started" },
-    { label: "Quickstart" }, // last item: bold, no link
+    { href: "#", label: "Workflow" },
+    { label: "Quickstart" },
   ],
-  maintainer: "Maintained by the SDK team",
-  lastUpdated: "Last updated April 28, 2026",
-  readingTime: "Reading time: 6 min",
+  maintainer: "Maintained by Leonardo Mancini",
+  lastUpdated: "Based on Sténtor 0.3.6",
+  readingTime: "Reading time: 7 min",
 };
