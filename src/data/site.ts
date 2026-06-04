@@ -12,7 +12,6 @@ export const site = {
   url: "https://stentor.live",
   locale: "en",
   copyright: "© 2026 Sténtor.",
-  // Footer status: "<prefix> · ● <regions>"
   statusPrefix: "Built for live performance",
   statusRegions: "surtitles, translation, audio description",
   footerTagline:
@@ -30,7 +29,7 @@ export type NavId = "features" | "docs" | "customers";
 export const nav: { href: string; label: string; id: NavId }[] = [
   { href: "/features", label: "Features", id: "features" },
   { href: "/docs", label: "Workflow", id: "docs" },
-  { href: "/customers", label: "For theatres", id: "customers" },
+  { href: "/for-theatres", label: "For theatres", id: "customers" },
 ];
 
 export const navCta = {
@@ -49,7 +48,7 @@ export const footerGroups: FooterGroup[] = [
     links: [
       { href: "/features", label: "Features" },
       { href: "/docs", label: "Workflow" },
-      { href: "/customers", label: "For theatres" },
+      { href: "/for-theatres", label: "For theatres" },
       { href: "/contact", label: "Contact" },
     ],
   },
@@ -59,7 +58,7 @@ export const footerGroups: FooterGroup[] = [
       { href: "/features", label: "Surtitles" },
       { href: "/features", label: "Translation" },
       { href: "/features", label: "Audio description" },
-      { href: "/customers", label: "Festivals" },
+      { href: "/for-theatres", label: "Festivals" },
     ],
   },
   {
