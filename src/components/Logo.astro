@@ -4,13 +4,12 @@ interface Props {
 }
 
 import StentorLogo from "../assets/icons/logo.svg";
-import StentorMark from "../assets/icons/stentor-mark.svg";
 
 const { href = "/" } = Astro.props;
 ---
 <a href={href} aria-label="Sténtor — home" class="inline-flex items-center gap-[12px] font-semibold tracking-[-0.02em]">
   <span class="grid place-items-center w-7 h-7 rounded-full overflow-hidden ring-1 ring-white/10 shadow-[0_0_18px_rgba(198,83,64,0.18)]">
-    <StentorMark class="w-full h-full" aria-hidden="true" />
+    <img src="/favicon.svg" alt="" class="w-full h-full block" aria-hidden="true" />
   </span>
   <span class="text-base flex items-center gap-[12px]">
     <StentorLogo class="h-3.5 w-auto" aria-hidden="true" />
