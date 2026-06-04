@@ -112,28 +112,29 @@ export const bento = {
   },
 };
 
-// ─── Testimonials ─────────────────────────────────────────────────────────
+// ─── Research exchange ────────────────────────────────────────────────────
 export const testimonials = {
-  title: "Loved by engineers,<br/>tolerated by VPs of Finance.",
-  description: "What teams say after migrating from a homegrown stack of nine services.",
+  title: "A tool shaped by<br/>real performances.",
+  description:
+    "Sténtor is developed with the people who use it. We keep the software accessible, and ask in return for feedback, usage notes and audience responses that help the research grow.",
   quotes: [
     {
-      text: "We replaced four services and a fragile cron box with Lambda. Our P95 dropped 60% and we deleted 11,000 lines of glue code in a weekend.",
-      av: "MC",
-      name: "Maya Chen",
-      role: "Staff Engineer · Northwind",
+      text: "Tell us how Sténtor worked in rehearsals, during the show and in the relationship between operator, stage and audience.",
+      av: "01",
+      name: "Share your experience",
+      role: "Research input · creators",
     },
     {
-      text: "The typed SDKs alone saved us a quarter. Our mobile team consumes the same models the API does, so contract drift just isn't a category of bug anymore.",
-      av: "RT",
-      name: "Ravi Tandon",
-      role: "Head of Platform · Helio",
+      text: "Use spectators' responses to understand how surtitles, translations and audio descriptions are experienced on personal devices.",
+      av: "02",
+      name: "Collect audience feedback",
+      role: "Research input · audiences",
     },
     {
-      text: "I sleep through the night. The audit log and policy engine handled our SOC 2 evidence collection without a single Notion doc being written.",
-      av: "EM",
-      name: "Elena Marković",
-      role: "CTO · Constellate",
+      text: "Anonymous usage notes and statistics help us design better tools for live performance, without locking features behind higher tiers.",
+      av: "03",
+      name: "Improve the research",
+      role: "Research input · product",
     },
   ],
 };
