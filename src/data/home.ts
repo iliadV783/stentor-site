@@ -7,56 +7,61 @@
 // ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
   eyebrow: "v. 0.1.64 – Live Sync",
-  // Rich text rendered via set:html — keep <em>, <br/> etc. inline.
   title:
     'Surtitles, translation <em class="not-italic text-text-3 font-medium">and audio description.</em><br class="hidden sm:inline" /> Live.',
   description:
     "Sténtor offers theatres, artists and live-performance teams a simple way to prepare and share surtitles, translations and audio descriptions — with the same essential tools available to everyone.",
   ctas: [
-    { href: "/signup", label: "Start free trial", variant: "primary" as const },
-    { href: "#demo", label: "Watch 2-min demo", variant: "ghost" as const, icon: "play" as const },
+    { href: "/signup", label: "Request access", variant: "primary" as const },
+    { href: "/docs", label: "Read the workflow", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
     { label: "Cross-platform desktop", live: true },
     { label: "Audience web client" },
     { label: "Live Sync · EUPL license · Research-driven" },
   ],
-  // Mock dashboard preview shown under the hero.
   mock: {
-    workspace: { name: "Acme Corp", env: "Production · us-east-1" },
-    user: { name: "Maya Chen", email: "maya@acme.co" },
-    title: "Overview",
-    timeframe: { prefix: "production / ", value: "last 24h" },
+    workspace: { name: "Macbett", env: "Live rehearsal · local network" },
+    user: { name: "Operator", email: "18 audience phones synced" },
+    title: "Operator view",
+    timeframe: { prefix: "project / ", value: "Macbett" },
     stats: [
-      { label: "Requests", value: "4.21M", trend: "▲ 12.4%", trendColor: "green" as const },
-      { label: "P95 latency", value: "68", suffix: "ms", trend: "▼ 4.1%", trendColor: "red" as const },
-      { label: "Error rate", value: "0.04", suffix: "%", trend: "▲ stable", trendColor: "green" as const },
-      { label: "DB connections", value: "214", suffix: "/500", trend: "▲ 6.2%", trendColor: "green" as const },
+      { label: "Current cue", value: "024", trend: "live", trendColor: "green" as const },
+      { label: "Audience phones", value: "18", trend: "following", trendColor: "green" as const },
+      { label: "Screens", value: "2", trend: "synced", trendColor: "green" as const },
+      { label: "Languages", value: "IT · EN", trend: "ready", trendColor: "green" as const },
     ],
+    currentCue: {
+      label: "Current cue",
+      text: "O my country, poor country!",
+      meta: "English surtitles · screen 1",
+    },
+    nextCue: {
+      label: "Next cue",
+      text: "What hands are here?",
+      meta: "Italian source · operator preview",
+    },
     logs: [
-      { t: "12:04:21", lvl: "ok", code: "200", m: "POST /v1/checkout · ", s: "42ms" },
-      { t: "12:04:20", lvl: "ok", code: "200", m: "GET /v1/users/me · ", s: "11ms" },
-      { t: "12:04:18", lvl: "info", code: "fn", m: "invoice.send → resend.email · ", s: "312ms" },
-      { t: "12:04:16", lvl: "warn", code: "429", m: "retry GET /v1/exports · ", s: "backoff 800ms" },
-      { t: "12:04:13", lvl: "ok", code: "200", m: "POST /v1/webhooks/stripe · ", s: "28ms" },
-      { t: "12:04:09", lvl: "ok", code: "201", m: "db.subscriptions insert · ", s: "19ms" },
+      { t: "12:04:21", lvl: "ok", code: "cue", m: "024 sent to screens · ", s: "live" },
+      { t: "12:04:22", lvl: "ok", code: "web", m: "18 audience phones · ", s: "synced" },
+      { t: "12:04:24", lvl: "info", code: "AD", m: "audio description note · ", s: "ready" },
+      { t: "12:04:30", lvl: "ok", code: "fb", m: "feedback channel · ", s: "open" },
+      { t: "12:04:34", lvl: "warn", code: "next", m: "cue 025 preview · ", s: "standby" },
     ],
   },
 };
 
 // ─── Logo cloud ───────────────────────────────────────────────────────────
 export const logoCloud = {
-  label: "TRUSTED BY TEAMS AT",
+  label: "ONE TEXT, MANY WAYS TO RECEIVE IT",
   bigNumber: "10,000+",
-  // glyph: a Tailwind class string applied to a 5×5 zinc-300 square.
-  // Keep glyphs minimal — they are abstract logo placeholders.
   logos: [
-    { name: "Northwind", glyph: "rounded-full" },
-    { name: "Helio", glyph: "rotate-45" },
-    { name: "Constellate", glyph: "" },
-    { name: "Vector Labs", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
-    { name: "Kettlebrook", glyph: "rounded" },
-    { name: "Orbital", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
+    { name: "Surtitles", glyph: "rounded-full" },
+    { name: "Translation", glyph: "rotate-45" },
+    { name: "Audio description", glyph: "" },
+    { name: "Screens", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
+    { name: "Audience phones", glyph: "rounded" },
+    { name: "Feedback", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
   ],
 };
 
@@ -73,13 +78,10 @@ export const metrics = {
 };
 
 // ─── Bento (feature grid) ─────────────────────────────────────────────────
-// Header copy only — the per-card structure is laid out in Bento.astro
-// because each card has unique illustrations and demo content.
 export const bento = {
   title: "Everything for the text.<br/>Nothing in the way.",
   description:
     "Prepare scripts, translations, surtitles and audio-description notes in one focused workspace, then cue them live for screens and audience phones.",
-  // Card titles + descriptions are editable here. Visuals stay inline.
   cards: {
     types: {
       title: "Script-first workflow",
@@ -196,7 +198,7 @@ export const finalCta = {
   title: "Bring live words to every audience.",
   body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share. If you can, support the project; if you use it, share feedback that helps it grow.",
   ctas: [
-    { href: "/signup", label: "Start for free", variant: "primary" as const },
+    { href: "/signup", label: "Request access", variant: "primary" as const },
     { href: "/contact", label: "Share feedback", variant: "ghost" as const },
   ],
 };
