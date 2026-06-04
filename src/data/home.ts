@@ -145,14 +145,14 @@ export const pricingPreview = {
   plans: [
     {
       name: "Free",
-      tag: "Hobby",
-      price: "$0",
-      cycle: "/mo",
-      tagline: "Everything you need to ship a side project that nobody asked for.",
+      tag: "Independent",
+      price: "€0",
+      cycle: "/year",
+      tagline: "For independent artists and very small teams.",
       features: [
-        "1 project, 1 environment",
-        "500k requests / month",
-        "1 GB Postgres, 1 GB storage",
+        "1 project, 2 languages",
+        "1,000 cues",
+        "Surtitles, audio descriptions and notes",
         "Community support",
       ],
       cta: { href: "/signup", label: "Start for free", variant: "ghost" as const },
