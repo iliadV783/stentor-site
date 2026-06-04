@@ -116,10 +116,10 @@ export const about = {
   },
 
   team: {
-    eyebrow: "Created by",
-    title: "Created and developed by Leonardo Mancini",
+    eyebrow: "Research-driven software",
+    title: "Developed for theatre practice, shaped by research",
     description:
-      "Sténtor is a research-driven software project for live performance, developed at the intersection of theatre, translation, surtitling, audio description and audience devices.",
+      "Sténtor is built for people who work with live performance text: theatre makers, surtitlers, translators, audio describers, operators, venues and festivals.",
     members: [
       { name: "Leonardo Mancini", role: "Creator and developer", initial: "LM", bio: "Developer of Sténtor and author of the project vision, working on tools for surtitles, translation, audio description and audience devices in live performance." },
       { name: "Performance text", role: "Scripts · cues · notes", initial: "PT", bio: "A single project can hold original text, translations, surtitles, audio-description notes and production metadata." },
