@@ -1,66 +1,36 @@
 ---
-import { getCollection, render } from "astro:content";
+import { Fragment } from "astro/jsx-runtime";
 import Layout from "../layouts/Layout.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import Btn from "../components/Btn.astro";
 import IconRss from "../assets/icons/rss.svg";
 import IconMail from "../assets/icons/mail.svg";
 import IconDiscord from "../assets/icons/discord.svg";
-import IllusRegionMap from "../assets/illustrations/region-map.svg";
-import IllusPolicyHexagon from "../assets/illustrations/policy-hexagon.svg";
 import {
   hero,
   filters,
   versionTag,
   versionRange,
   years,
+  entries,
   sideStats,
   loadMore,
 } from "../data/changelog";
 
 const subscribeIconMap = { rss: IconRss, mail: IconMail, discord: IconDiscord } as const;
 
-// Illustration registry — maps frontmatter `illustration` value to component + visual config
-type IllustrationEntry = {
-  Component: typeof IllusRegionMap;
-  aspect: string;
-  bg: string;
-};
-const illustrationConfig: Record<string, IllustrationEntry> = {
-  "region-map": {
-    Component: IllusRegionMap,
-    aspect: "aspect-[16/6]",
-    bg: "radial-gradient(ellipse 60% 80% at 30% 50%, rgba(239,68,68,0.14), transparent 70%), radial-gradient(ellipse 50% 70% at 80% 60%, rgba(96,165,250,0.10), transparent 70%), var(--color-deep)",
-  },
-  "policy-hexagon": {
-    Component: IllusPolicyHexagon,
-    aspect: "aspect-[16/5]",
-    bg: "radial-gradient(ellipse 60% 80% at 30% 50%, rgba(239,68,68,0.14), transparent 70%), var(--color-deep)",
-  },
-};
-
-// Inline markdown helper — converts `code` backticks into <code class="cl-code">.
 function mdInline(s: string): string {
   return s.replace(/`([^`]+)`/g, '<code class="cl-code">$1</code>');
 }
 
-// Load entries, sort by date desc, pre-render MDX bodies
-const allEntries = await getCollection("changelog");
-const sortedEntries = allEntries.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
-const renderedEntries = await Promise.all(
-  sortedEntries.map(async (entry) => ({
-    entry,
-    Content: (await render(entry)).Content,
-  })),
+const sortedEntries = [...entries].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
 );
 
-// Group by month for the "— March 2026 —" dividers
-type Bucket = { label: string; items: typeof renderedEntries };
+type Bucket = { label: string; items: typeof sortedEntries };
 const monthBuckets: Bucket[] = [];
-for (const r of renderedEntries) {
-  const d = r.entry.data.date;
+for (const entry of sortedEntries) {
+  const d = new Date(entry.date);
   const label = d.toLocaleString("en-US", {
     month: "long",
     year: "numeric",
@@ -71,22 +41,21 @@ for (const r of renderedEntries) {
     bucket = { label, items: [] };
     monthBuckets.push(bucket);
   }
-  bucket.items.push(r);
+  bucket.items.push(entry);
 }
 
-const fmtMonthDay = (d: Date) =>
-  d.toLocaleString("en-US", {
+const fmtMonthDay = (d: string) =>
+  new Date(d).toLocaleString("en-US", {
     month: "short",
     day: "numeric",
     timeZone: "UTC",
   });
 ---
 <Layout
-  title="Changelog — Lambda"
-  description="Every shipped feature, fix, and improvement to the Lambda platform. Follow along by RSS or email."
+  title="Sténtor – Changelog"
+  description="A public log of Sténtor releases, prototype milestones, Live Sync, audience web client and research-facing improvements."
   active="changelog"
 >
-  <!-- Header -->
   <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
     <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
     <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
@@ -115,7 +84,6 @@ const fmtMonthDay = (d: Date) =>
     </div>
   </section>
 
-  <!-- Filter strip (sticky) -->
   <div class="sticky top-16 z-10 border-b border-hairline bg-bg/60 backdrop-blur-md" x-data="{f:'all'}">
     <div class="max-w-[1280px] mx-auto px-4 md:px-8 h-14 flex items-center justify-between gap-4 overflow-x-auto">
       <div class="flex gap-1">
@@ -134,9 +102,7 @@ const fmtMonthDay = (d: Date) =>
     </div>
   </div>
 
-  <!-- 2-column shell: jump-to-year + content / stats wraps below on smaller screens -->
   <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-16 grid gap-10 lg:[grid-template-columns:160px_minmax(0,1fr)] xl:[grid-template-columns:160px_minmax(0,1fr)_220px] xl:gap-14 items-start">
-    <!-- Years -->
     <aside class="hidden lg:block sticky top-32 text-[13px]" aria-label="Jump to year">
       <h2 class="text-[11px] tracking-[0.08em] uppercase text-text-3 font-medium mb-3.5">Jump to</h2>
       <ul class="grid gap-1 list-none p-0 m-0">
@@ -153,17 +119,14 @@ const fmtMonthDay = (d: Date) =>
       </ul>
     </aside>
 
-    <!-- Timeline -->
     <section class="relative min-w-0 max-w-[820px]">
       {monthBuckets.map((bucket, bi) => (
         <>
           {bi > 0 && (
             <div class="font-mono text-[11px] text-text-3 tracking-[0.06em] uppercase mb-6 mt-2">— {bucket.label} —</div>
           )}
-          {bucket.items.map(({ entry, Content }) => {
-            const { data } = entry;
+          {bucket.items.map((data) => {
             const isMajor = data.type === "major";
-            const illus = data.illustration ? illustrationConfig[data.illustration] : null;
             return (
               <article class:list={[
                 "cl-entry mb-14 relative pl-7",
@@ -176,36 +139,21 @@ const fmtMonthDay = (d: Date) =>
                     <span class="absolute -left-[25px] top-[7px] w-[11px] h-[11px] rounded-full bg-bg border-2 border-text-4"></span>
                   )}
                   <span class="font-mono text-xs text-text-2">
-                    <span class="text-text font-medium">{fmtMonthDay(data.date)}</span> · <span class="text-text-4">{data.date.getUTCFullYear()}</span>
+                    <span class="text-text font-medium">{fmtMonthDay(data.date)}</span> · <span class="text-text-4">{new Date(data.date).getUTCFullYear()}</span>
                   </span>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2.5 mb-2">
                   <span class:list={["cl-ver", !isMajor && "cl-ver--minor"]}>v{data.version}</span>
-                  {isMajor && <span class="tag tag--amber">Major release</span>}
+                  {isMajor && <span class="tag tag--amber">Milestone</span>}
                   {data.type === "patch" && <span class="tag">Patch</span>}
-                  {data.contributors && (
-                    <span class="tag">{data.contributors} contributors</span>
-                  )}
                 </div>
 
                 <h2 class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mb-3 mt-1.5">{data.title}</h2>
 
                 <div class="cl-prose mb-6">
-                  <Content />
+                  <p>{data.body}</p>
                 </div>
-
-                {illus && (
-                  <div class="border border-hairline rounded-xl bg-surface overflow-hidden mb-6">
-                    <div class:list={[
-                      illus.aspect,
-                      "relative bg-deep border-b border-hairline overflow-hidden",
-                    ]} style={`background: ${illus.bg};`}>
-                      <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:48px_48px] [-webkit-mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] pointer-events-none"></div>
-                      <illus.Component class="absolute inset-0 w-full h-full" />
-                    </div>
-                  </div>
-                )}
 
                 {data.changes && (
                   <div class="grid gap-5 mb-3">
@@ -217,7 +165,6 @@ const fmtMonthDay = (d: Date) =>
                             <li><div>
                               {c.title && <><b>{c.title}.</b>{" "}</>}
                               <Fragment set:html={mdInline(c.body)} />
-                              {c.pr && <span class="cl-pr">#{c.pr}</span>}
                             </div></li>
                           ))}
                         </ul>
@@ -231,7 +178,6 @@ const fmtMonthDay = (d: Date) =>
                             <li><div>
                               {c.title && <><b>{c.title}.</b>{" "}</>}
                               <Fragment set:html={mdInline(c.body)} />
-                              {c.pr && <span class="cl-pr">#{c.pr}</span>}
                             </div></li>
                           ))}
                         </ul>
@@ -245,30 +191,9 @@ const fmtMonthDay = (d: Date) =>
                             <li><div>
                               {c.title && <><b>{c.title}.</b>{" "}</>}
                               <Fragment set:html={mdInline(c.body)} />
-                              {c.pr && <span class="cl-pr">#{c.pr}</span>}
                             </div></li>
                           ))}
                         </ul>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {data.authors && data.authors.length > 0 && (
-                  <div class="cl-authors">
-                    <div class="flex">
-                      {data.authors.map((a) => (
-                        <div class:list={["cl-av", a.primary && "cl-av--amber"]}>{a.initials}</div>
-                      ))}
-                    </div>
-                    {data.authorsLine && (
-                      <span class="text-[13px] text-text-3">{data.authorsLine}</span>
-                    )}
-                    {data.links && (
-                      <div class="ml-auto inline-flex gap-3.5 text-text-2 text-[13px]">
-                        {data.links.map((l) => (
-                          <a href={l.href} class="inline-flex items-center gap-1.5 hover:text-text">{l.label}</a>
-                        ))}
                       </div>
                     )}
                   </div>
@@ -279,13 +204,11 @@ const fmtMonthDay = (d: Date) =>
         </>
       ))}
 
-      <!-- Load more -->
       <div class="pl-8">
-        <Btn href="#" variant="ghost">{loadMore} <span aria-hidden="true">↓</span></Btn>
+        <Btn href="/contact" variant="ghost">{loadMore} <span aria-hidden="true">↓</span></Btn>
       </div>
     </section>
 
-    <!-- Right rail — stats -->
     <aside class="grid gap-3.5 lg:col-span-2 xl:col-span-1 xl:sticky xl:top-32" aria-label="Release stats">
       <div class="border border-hairline rounded-[10px] bg-surface px-5 py-4">
         <h2 class="text-[11px] tracking-[0.06em] uppercase text-text-3 font-medium mb-3.5">{sideStats.thisYear.title}</h2>
@@ -321,12 +244,6 @@ const fmtMonthDay = (d: Date) =>
 </Layout>
 
 <style is:global>
-  /*
-    All `.cl-*` classes are global so they apply both to the .astro template
-    and to HTML rendered via <Content /> (MDX bodies) and set:html (inline
-    markdown helper). The classes are namespaced — no collision risk.
-  */
-
   .cl-entry { padding-left: 1.75rem; }
   .cl-entry::before {
     content: "";
@@ -338,166 +255,102 @@ const fmtMonthDay = (d: Date) =>
     background: var(--color-hairline);
   }
   .cl-entry:last-child::before { display: none; }
-
   .cl-ver {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 3px 0.5rem;
-    border-radius: 0.125rem;
-    background: rgba(239, 68, 68, 0.08);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.25);
-    font-weight: 500;
-  }
-  .cl-ver--minor {
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--color-text-2);
-    border-color: var(--color-hairline);
-  }
-
-  .cl-code {
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    padding: 1px 6px;
-    border-radius: 2px;
-    background: rgba(239, 68, 68, 0.08);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.18);
-  }
-
-  /* Description body rendered from MDX */
-  .cl-prose p {
-    font-size: 1rem;
-    line-height: 1.55;
-    color: var(--color-text-2);
-  }
-  .cl-prose p + p { margin-top: 0.75rem; }
-  .cl-prose code {
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    padding: 1px 6px;
-    border-radius: 2px;
-    background: rgba(239, 68, 68, 0.08);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.18);
-  }
-
-  .cl-group__hd {
     display: inline-flex;
     align-items: center;
+    height: 1.75rem;
+    padding: 0 0.65rem;
+    border-radius: 0.45rem;
+    border: 1px solid rgba(239,68,68,0.35);
+    background: rgba(239,68,68,0.08);
+    color: rgb(239,68,68);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .cl-ver--minor {
+    border-color: var(--color-hairline);
+    background: rgba(255,255,255,0.03);
+    color: rgb(var(--text-2));
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: 0.35rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.68rem;
+    color: rgb(var(--text-2));
+    background: rgba(255,255,255,0.04);
+  }
+  .tag--amber {
+    color: rgb(239,68,68);
+    border-color: rgba(239,68,68,0.25);
+    background: rgba(239,68,68,0.08);
+  }
+  .cl-prose {
+    color: rgb(var(--text-2));
+    line-height: 1.65;
+    font-size: 0.95rem;
+  }
+  .cl-group__hd {
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 11px;
+    margin-bottom: 0.65rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.7rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 9999px;
-    margin-bottom: 0.75rem;
-    border: 1px solid;
+    color: rgb(var(--text-3));
   }
-  .cl-group__hd--new {
-    background: rgba(239, 68, 68, 0.08);
-    color: #ef4444;
-    border-color: rgba(239, 68, 68, 0.22);
-  }
-  .cl-group__hd--imp {
-    background: rgba(96, 165, 250, 0.06);
-    color: #60a5fa;
-    border-color: rgba(96, 165, 250, 0.22);
-  }
-  .cl-group__hd--fix {
-    background: rgba(74, 222, 128, 0.06);
-    color: #4ade80;
-    border-color: rgba(74, 222, 128, 0.22);
-  }
-
   .cl-list {
+    display: grid;
+    gap: 0.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    gap: 0.625rem;
   }
   .cl-list li {
-    display: grid;
-    grid-template-columns: 16px 1fr;
-    gap: 0.625rem;
-    color: rgb(212 212 216);
-    font-size: 14.5px;
+    position: relative;
+    padding: 0.8rem 0.9rem 0.8rem 1.1rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: 0.6rem;
+    background: rgb(var(--surface));
+    color: rgb(var(--text-2));
+    font-size: 0.88rem;
     line-height: 1.55;
   }
   .cl-list li::before {
     content: "";
-    margin-top: 8px;
-    width: 5px;
-    height: 5px;
-    border-radius: 9999px;
-    background: var(--color-text-4);
-    align-self: start;
-    justify-self: center;
+    position: absolute;
+    left: 0.45rem;
+    top: 1.18rem;
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 999px;
+    background: rgb(239,68,68);
   }
-  .cl-list li b { font-weight: 500; color: var(--color-text); }
-
-  .cl-pr {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--color-text-3);
-    margin-left: 6px;
+  .cl-list b { color: rgb(var(--text)); font-weight: 600; }
+  .cl-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.84em;
+    padding: 0.12rem 0.28rem;
+    border-radius: 0.25rem;
+    background: rgba(239,68,68,0.08);
+    color: rgb(239,68,68);
+    border: 1px solid rgba(239,68,68,0.18);
   }
-
-  .cl-authors {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px dashed var(--color-hairline);
-    flex-wrap: wrap;
-  }
-  .cl-av {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 9999px;
-    border: 2px solid var(--color-bg);
-    margin-left: -6px;
-    display: grid;
-    place-items: center;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--color-text-2);
-    background: linear-gradient(135deg, var(--color-chrome), #131313);
-  }
-  .cl-av:first-child { margin-left: 0; }
-  .cl-av--amber {
-    background: linear-gradient(135deg, #ef4444, #b91c1c);
-    color: var(--color-bg);
-  }
-
   .cl-stat-row {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: baseline;
-    padding: 0.5rem 0;
-    border-bottom: 1px dashed var(--color-hairline);
-    font-size: 13px;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--color-hairline);
+    font-size: 0.82rem;
   }
   .cl-stat-row:last-child { border-bottom: 0; }
-
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 2px;
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--color-text-2);
-    border: 1px solid var(--color-hairline);
-  }
-  .tag--amber {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.1);
-    border-color: rgba(239, 68, 68, 0.25);
-  }
 </style>
