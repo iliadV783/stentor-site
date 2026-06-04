@@ -139,49 +139,49 @@ export const testimonials = {
   ],
 };
 
-// ─── Pricing preview (compact 3-plan card on home) ────────────────────────
+// ─── Support preview (compact 3-plan card on home) ─────────────────────────
 const fullFeatureSet = [
-  "Unlimited projects",
-  "Unlimited languages",
-  "Unlimited cues",
-  "Surtitles, audio descriptions and notes",
-  "Import from Word, TXT, SRT and JSON",
+  "Same core features for everyone",
+  "Unlimited projects, languages and cues",
+  "Surtitles, translations and audio-description notes",
+  "Import from Word, TXT, SRT, WebVTT, CSV and JSON",
   "Export-ready scripts",
+  "Feedback and research exchange welcome",
 ];
 
 export const pricingPreview = {
-  title: "Same features.<br/>Choose what fits your scale.",
-  comparisonLink: { href: "/pricing", label: "Compare every plan →" },
+  title: "Same features.<br/>Support what fits your scale.",
+  comparisonLink: { href: "/pricing", label: "See support model →" },
   plans: [
     {
       name: "Free",
       tag: "Independent",
       price: "€0",
       cycle: "/year",
-      tagline: "For independent artists and very small teams.",
+      tagline: "For independent artists, students and very small teams who need access first.",
       features: fullFeatureSet,
-      cta: { href: "/signup", label: "Start for free", variant: "ghost" as const },
+      cta: { href: "/signup", label: "Use for free", variant: "ghost" as const },
       highlighted: false,
     },
     {
       name: "Pro",
-      tag: "Companies",
+      tag: "Suggested",
       tagAccent: true,
       price: "€19",
-      cycle: "/year",
-      tagline: "For companies, collectives and touring productions.",
+      cycle: "/year · support",
+      tagline: "For companies, collectives and touring productions that can contribute a little more.",
       features: fullFeatureSet,
-      cta: { href: "/signup", label: "Choose Pro", variant: "primary" as const },
+      cta: { href: "/signup", label: "Support as Pro", variant: "primary" as const },
       highlighted: true,
     },
     {
       name: "Venues",
       tag: "Theatres",
       price: "€99",
-      cycle: "/year",
-      tagline: "For theatres, festivals and live-performance venues.",
+      cycle: "/year · support",
+      tagline: "For theatres, festivals, institutions and live-performance venues.",
       features: fullFeatureSet,
-      cta: { href: "#contact", label: "Choose Venues", variant: "ghost" as const },
+      cta: { href: "/contact", label: "Support as Venue", variant: "ghost" as const },
       highlighted: false,
     },
   ],
@@ -192,11 +192,11 @@ export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "Same tools · fair pricing",
+  eyebrow: "Same tools · shared responsibility",
   title: "Bring live words to every audience.",
-  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share — for independent artists, companies and venues alike.",
+  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share. If you can, support the project; if you use it, share feedback that helps it grow.",
   ctas: [
     { href: "/signup", label: "Start for free", variant: "primary" as const },
-    { href: "#contact", label: "Contact", variant: "ghost" as const },
+    { href: "/contact", label: "Share feedback", variant: "ghost" as const },
   ],
 };
