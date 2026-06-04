@@ -139,8 +139,17 @@ export const testimonials = {
 };
 
 // ─── Pricing preview (compact 3-plan card on home) ────────────────────────
+const fullFeatureSet = [
+  "Unlimited projects",
+  "Unlimited languages",
+  "Unlimited cues",
+  "Surtitles, audio descriptions and notes",
+  "Import from Word, TXT, SRT and JSON",
+  "Export-ready scripts",
+];
+
 export const pricingPreview = {
-  title: "Pricing that scales<br/>with your team, not your panic.",
+  title: "Same features.<br/>Choose what fits your scale.",
   comparisonLink: { href: "/pricing", label: "Compare every plan →" },
   plans: [
     {
@@ -149,44 +158,29 @@ export const pricingPreview = {
       price: "€0",
       cycle: "/year",
       tagline: "For independent artists and very small teams.",
-      features: [
-        "1 project, 2 languages",
-        "1,000 cues",
-        "Surtitles, audio descriptions and notes",
-        "Community support",
-      ],
+      features: fullFeatureSet,
       cta: { href: "/signup", label: "Start for free", variant: "ghost" as const },
       highlighted: false,
     },
     {
       name: "Pro",
-      tag: "Most popular",
+      tag: "Companies",
       tagAccent: true,
-      price: "$19",
-      cycle: "/mo · per seat",
-      tagline: "For teams shipping production workloads with real customers attached.",
-      features: [
-        "Unlimited projects & environments",
-        "10M requests included, then $1/M",
-        "Multi-region · 30-day log retention",
-        "SOC 2 reports · email support",
-      ],
-      cta: { href: "/signup", label: "Start 14-day Pro trial", variant: "primary" as const },
+      price: "€19",
+      cycle: "/year",
+      tagline: "For companies, collectives and touring productions.",
+      features: fullFeatureSet,
+      cta: { href: "/signup", label: "Choose Pro", variant: "primary" as const },
       highlighted: true,
     },
     {
-      name: "Enterprise",
-      tag: "Custom",
-      price: "$49",
-      cycle: "/mo · per seat, from",
-      tagline: "Single-tenant infra, custom contracts, and a real human who picks up.",
-      features: [
-        "Dedicated VPC, BYOC available",
-        "SSO, SCIM, audit log streaming",
-        "99.99% SLA · 24/7 on-call",
-        "Dedicated solutions engineer",
-      ],
-      cta: { href: "#contact", label: "Talk to sales", variant: "ghost" as const },
+      name: "Venues",
+      tag: "Theatres",
+      price: "€99",
+      cycle: "/year",
+      tagline: "For theatres, festivals and live-performance venues.",
+      features: fullFeatureSet,
+      cta: { href: "#contact", label: "Choose Venues", variant: "ghost" as const },
       highlighted: false,
     },
   ],
