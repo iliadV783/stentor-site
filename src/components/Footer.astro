@@ -4,6 +4,7 @@ import IconGithub from "../assets/icons/github.svg";
 import IconXTwitter from "../assets/icons/x-twitter.svg";
 import IconRss from "../assets/icons/rss.svg";
 import IconDiscord from "../assets/icons/discord.svg";
+import StentorMark from "../assets/icons/stentor-mark.svg";
 import { site, footerGroups } from "../data/site";
 
 const socialIcons = [
@@ -17,11 +18,18 @@ const socialIcons = [
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
     <div class="grid gap-12 grid-cols-2 lg:[grid-template-columns:1.4fr_repeat(4,1fr)]">
       <div class="col-span-2 lg:col-span-1">
-        <Logo />
-        <p class="text-text-3 text-sm mt-4 max-w-[320px]">
-          {site.footerTagline}
-        </p>
-        <div class="flex gap-1.5 mt-5">
+        <div class="flex items-start gap-4">
+          <span class="hidden sm:grid place-items-center w-14 h-14 rounded-full overflow-hidden ring-1 ring-white/10 shadow-[0_0_28px_rgba(198,83,64,0.22)] flex-none">
+            <StentorMark class="w-full h-full" aria-hidden="true" />
+          </span>
+          <div>
+            <Logo />
+            <p class="text-text-3 text-sm mt-4 max-w-[320px]">
+              {site.footerTagline}
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-1.5 mt-5 sm:ml-[72px]">
           {socialIcons.map(({ href, label, Icon }) => (
             <a href={href} aria-label={label} class="grid place-items-center w-8 h-8 border border-hairline rounded-md text-text-2 hover:text-text hover:border-hairline-strong transition-colors">
               <Icon class="w-4 h-4" />
