@@ -8,8 +8,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   // Canonical origin used by canonical URLs, OG tags, RSS, and the sitemap.
-  // Update this when you point a real domain at the site.
-  site: 'https://lambda-saas.netlify.app',
+  site: 'https://stentor.live',
   integrations: [
     alpinejs(),
     mdx(),
