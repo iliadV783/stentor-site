@@ -18,11 +18,11 @@ const tocActionIconMap = {
 } as const;
 ---
 <Layout
-  title="Docs — Lambda"
-  description="Lambda developer documentation: quickstart, SDK reference, edge functions, schemas, auth, and deployment guides."
+  title="Workflow — Sténtor"
+  description="A practical workflow for preparing, cueing and sharing surtitles, translations and audio descriptions with Sténtor."
   active="docs"
 >
-  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-10 pb-24 grid gap-10 lg:[grid-template-columns:240px_minmax(0,1fr)] xl:[grid-template-columns:260px_minmax(0,1fr)_240px] xl:gap-12 items-start" x-data="{tab:'npm', mobileOpen:false}">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-10 pb-24 grid gap-10 lg:[grid-template-columns:240px_minmax(0,1fr)] xl:[grid-template-columns:260px_minmax(0,1fr)_240px] xl:gap-12 items-start" x-data="{tab:'desktop', mobileOpen:false}">
 
     <!-- Mobile menu button -->
     <button @click="mobileOpen=!mobileOpen" class="w-fit lg:hidden inline-flex items-center gap-2 h-10 px-3 border border-hairline rounded-lg text-sm text-text-2 hover:text-text">
@@ -83,9 +83,9 @@ const tocActionIconMap = {
         ))}
       </div>
 
-      <h1 id="quickstart" class="text-4xl md:text-[44px] leading-[1.05] tracking-[-0.04em] font-semibold mb-3">Ship a typed API in five minutes.</h1>
+      <h1 id="quickstart" class="text-4xl md:text-[44px] leading-[1.05] tracking-[-0.04em] font-semibold mb-3">Prepare, cue and share a live performance text.</h1>
       <p class="text-lg leading-[1.55] text-text-2 max-w-[640px] mb-7">
-        This guide walks you from <code class="docs-code">npm i</code> to a deployed, observable backend with a real Postgres database, generated clients, and a function running at the edge. No Docker. No YAML.
+        This workflow follows the current Sténtor app: create or import a project, prepare cues and languages in <code class="docs-code">Copione</code>, operate the show from <code class="docs-code">Regia</code>, and let screens and audience phones follow through Live Sync.
       </p>
 
       <div class="flex items-center gap-3 flex-wrap mb-10 font-mono text-xs text-text-3">
@@ -98,29 +98,29 @@ const tocActionIconMap = {
       </div>
 
       <!-- Prerequisites -->
-      <h2 id="prerequisites" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">Prerequisites</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">You'll need a few things on your machine before you start. Lambda runs on every recent runtime; we test against the matrix below in CI.</p>
+      <h2 id="prerequisites" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">What you need</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Sténtor is designed to work in rehearsal rooms and theatres with a lightweight setup. For preparation you only need the desktop app or the web prototype. For a live room with audience phones, use a local network that the operator computer and smartphones can join.</p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Node.js <code class="docs-code">20.x</code> or later (Bun, Deno, and Node 22 are also supported).</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>A package manager — <code class="docs-code">npm</code>, <code class="docs-code">pnpm</code>, <code class="docs-code">yarn</code>, or <code class="docs-code">bun</code>.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>A Lambda account. The free tier includes one project, 1&nbsp;GB of Postgres, and 1M function invocations.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>A Sténtor project, either created from scratch or imported from <code class="docs-code">.docx</code>, <code class="docs-code">.txt</code>, <code class="docs-code">.srt</code>, <code class="docs-code">.vtt</code>, <code class="docs-code">.csv</code> or <code class="docs-code">.json</code>.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>One operator computer for <code class="docs-code">Regia</code>, plus optional projection screens and audience smartphones.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>For Live Sync in a venue, a stable local Wi-Fi network. Internet is not required for the room prototype; the devices only need to be on the same network.</span></li>
       </ul>
 
       <div class="callout callout--info">
         <div class="callout__icon"><IconInfo class="w-3.5 h-3.5" /></div>
         <div>
-          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Already have an account?</b> Skip ahead to <a href="#" class="text-red-500 underline underline-offset-2">Step&nbsp;2 — link your project</a> and the CLI will pick up your session automatically.</p>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Desktop-first, room-ready.</b> The current app can run as a web prototype and is structured for a Tauri desktop build. The live room mode uses a small local Node server to share project state, cue position and audience presence.</p>
         </div>
       </div>
 
       <!-- Install -->
-      <h2 id="install" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">1. Install the CLI</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">The Lambda CLI is a single static binary. Install it with your package manager of choice — it ships TypeScript types and the runtime SDK in the same package.</p>
+      <h2 id="install" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">1. Install and open Sténtor</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">For development or testing, install dependencies once and choose the mode you need. The desktop build is the long-term production direction; the web and room commands are useful for testing workflows quickly.</p>
 
       <div class="docs-codeblock">
         <div class="docs-codeblock__bar">
           <div class="inline-flex gap-0.5 p-0.5 border border-hairline rounded-md">
-            {["npm", "pnpm", "yarn", "bun"].map((t) => (
+            {["desktop", "web", "room", "build"].map((t) => (
               <button
                 @click={`tab='${t}'`}
                 :class={`tab==='${t}' ? 'bg-red-500/[0.12] text-red-500' : 'text-text-3'`}
@@ -133,29 +133,30 @@ const tocActionIconMap = {
             Copy
           </span>
         </div>
-        <pre class="docs-codeblock__body" x-show="tab==='npm'"><code><span class="tok-cm"><span class="tok-ln">1</span># installs the CLI &amp; runtime SDK</span>
-<span class="tok-ln">2</span><span class="tok-pn">$</span> npm install -g @lambda/cli
+        <pre class="docs-codeblock__body" x-show="tab==='desktop'"><code><span class="tok-cm"><span class="tok-ln">1</span># install dependencies</span>
+<span class="tok-ln">2</span><span class="tok-pn">$</span> npm install
 <span class="tok-ln">3</span>
-<span class="tok-cm"><span class="tok-ln">4</span># sign in — opens your browser</span>
-<span class="tok-ln">5</span><span class="tok-pn">$</span> lambda login
-<span class="tok-cm"><span class="tok-ln">6</span>{`→ Authorized as `}<span class="tok-str">maya@acme.co</span>{` (Acme Corp · production)`}</span></code></pre>
-        <pre class="docs-codeblock__body" x-show="tab==='pnpm'" x-cloak><code><span class="tok-pn">$</span> pnpm add -g @lambda/cli
-<span class="tok-pn">$</span> lambda login</code></pre>
-        <pre class="docs-codeblock__body" x-show="tab==='yarn'" x-cloak><code><span class="tok-pn">$</span> yarn global add @lambda/cli
-<span class="tok-pn">$</span> lambda login</code></pre>
-        <pre class="docs-codeblock__body" x-show="tab==='bun'" x-cloak><code><span class="tok-pn">$</span> bun install -g @lambda/cli
-<span class="tok-pn">$</span> lambda login</code></pre>
+<span class="tok-cm"><span class="tok-ln">4</span># open the desktop app during development</span>
+<span class="tok-ln">5</span><span class="tok-pn">$</span> npm run desktop:dev</code></pre>
+        <pre class="docs-codeblock__body" x-show="tab==='web'" x-cloak><code><span class="tok-pn">$</span> npm install
+<span class="tok-pn">$</span> npm run dev</code></pre>
+        <pre class="docs-codeblock__body" x-show="tab==='room'" x-cloak><code><span class="tok-pn">$</span> npm install
+<span class="tok-pn">$</span> npm run build
+<span class="tok-pn">$</span> npm run sala</code></pre>
+        <pre class="docs-codeblock__body" x-show="tab==='build'" x-cloak><code><span class="tok-pn">$</span> npm test
+<span class="tok-pn">$</span> npm run build
+<span class="tok-pn">$</span> npm run desktop:build</code></pre>
       </div>
 
       <!-- Init -->
-      <h2 id="init" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">2. Initialize a project</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Run <code class="docs-code">lambda init</code> in an empty directory. The CLI scaffolds a project, links it to a workspace on Lambda Cloud, and writes a <code class="docs-code">lambda.config.ts</code> you can commit.</p>
+      <h2 id="init" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">2. Create or import a project</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Start from <code class="docs-code">Progetti</code>. You can create a blank project, open an existing Sténtor file, or import a script. Word import recognises theatrical structure where possible: characters, speeches, stage directions and markers such as act, scene, tableau or interval.</p>
 
       <div class="grid gap-3 mb-8">
         {[
-          { n: 1, t: "Pick a workspace and region", d: "By default we'll deploy to the region closest to you. You can pin a primary region and add read replicas later from the dashboard." },
-          { n: 2, t: "Choose a starter", d: "Empty, REST API, GraphQL, or one of fourteen full-stack examples (Next.js, Remix, Astro, SvelteKit, Expo, etc.)." },
-          { n: 3, t: "Run the dev server", d: "lambda dev starts a local emulator with hot-reload, a real Postgres, and live trace inspection on :4321." },
+          { n: 1, t: "Add project metadata", d: "Set title, company or collective, main language and useful production notes. Keep fields empty when they are not needed." },
+          { n: 2, t: "Import or paste the script", d: "Use Word, TXT, SRT, WebVTT, CSV or JSON depending on where the material comes from. Imported scripts stay editable." },
+          { n: 3, t: "Check languages", d: "Add, rename, duplicate or remove languages from the language menu. Sténtor keeps at least one language active in every project." },
         ].map((s) => (
           <div class="grid [grid-template-columns:36px_1fr] gap-3.5 px-5 py-4 border border-hairline rounded-xl bg-surface">
             <div class="w-7 h-7 rounded-lg grid place-items-center border border-red-500/30 bg-red-500/10 text-red-500 font-mono text-[13px] font-medium">{s.n}</div>
@@ -167,75 +168,75 @@ const tocActionIconMap = {
         ))}
       </div>
 
-      <!-- Define a model -->
-      <h2 id="define-model" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">3. Define your first model</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Models are TypeScript files that compile to a typed REST API, a typed client, and a Postgres migration — automatically. Save the file and the CLI does the rest in under a second.</p>
+      <!-- Prepare -->
+      <h2 id="define-model" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">3. Prepare cues and layers</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">In <code class="docs-code">Copione</code>, each cue can hold original text, translations, notes and timing. Use markers for acts, scenes and intervals. Use the audio-description panel to connect descriptions to cue points and prepare a separate audio script when needed.</p>
 
       <div class="docs-codeblock">
         <div class="docs-codeblock__bar">
-          <span class="font-mono">schemas/order.lambda.ts</span>
-          <span class="font-mono text-text-3">15 lines</span>
+          <span class="font-mono">project.stentor.json</span>
+          <span class="font-mono text-text-3">conceptual structure</span>
         </div>
-        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-kw">import</span> {`{ model, id, ref, money, enumOf, timestamp }`} <span class="tok-kw">from</span> <span class="tok-str">"@lambda/schema"</span>;
-<span class="tok-ln">2</span><span class="tok-kw">import</span> {`{ Customer }`} <span class="tok-kw">from</span> <span class="tok-str">"./customer"</span>;
-<span class="tok-ln">3</span>
-<span class="tok-ln">4</span><span class="tok-kw">export const</span> <span class="tok-fn">Order</span> = <span class="tok-fn">model</span>({`({`}
-<span class="tok-ln">5</span>  id:        <span class="tok-fn">id</span>(<span class="tok-str">"ord_"</span>),
-<span class="tok-ln">6</span>  customer:  <span class="tok-fn">ref</span>(Customer),
-<span class="tok-ln">7</span>  total:     <span class="tok-fn">money</span>({`{`} currency: <span class="tok-str">"USD"</span> {`}`}),
-<span class="tok-ln">8</span>  status:    <span class="tok-fn">enumOf</span>(<span class="tok-str">"pending"</span>, <span class="tok-str">"paid"</span>, <span class="tok-str">"refunded"</span>),
-<span class="tok-ln">9</span>  createdAt: <span class="tok-fn">timestamp</span>({`{`} default: <span class="tok-str">"now()"</span> {`}`}),
-<span class="tok-ln">10</span>{`})`}.<span class="tok-fn">index</span>(<span class="tok-str">"customer"</span>, <span class="tok-str">"status"</span>);</code></pre>
+        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span>{`{`}
+<span class="tok-ln">2</span>  <span class="tok-str">"metadata"</span>: {`{`} <span class="tok-str">"title"</span>: <span class="tok-str">"Macbett"</span>, <span class="tok-str">"company"</span>: <span class="tok-str">"..."</span> {`}`},
+<span class="tok-ln">3</span>  <span class="tok-str">"languages"</span>: [<span class="tok-str">"it"</span>, <span class="tok-str">"en"</span>],
+<span class="tok-ln">4</span>  <span class="tok-str">"cues"</span>: [
+<span class="tok-ln">5</span>    {`{`} <span class="tok-str">"speaker"</span>: <span class="tok-str">""</span>, <span class="tok-str">"original"</span>: <span class="tok-str">"..."</span>, <span class="tok-str">"translations"</span>: {`{`} <span class="tok-str">"en"</span>: <span class="tok-str">"..."</span> {`}`} {`}`}
+<span class="tok-ln">6</span>  ],
+<span class="tok-ln">7</span>  <span class="tok-str">"audioDescriptions"</span>: [
+<span class="tok-ln">8</span>    {`{`} <span class="tok-str">"cueId"</span>: <span class="tok-str">"..."</span>, <span class="tok-str">"text"</span>: <span class="tok-str">"describe the visual action"</span> {`}`}
+<span class="tok-ln">9</span>  ]
+<span class="tok-ln">10</span>{`}`}</code></pre>
       </div>
 
       <div class="callout callout--warn">
         <div class="callout__icon"><IconWarningTriangle class="w-3.5 h-3.5" /></div>
         <div>
-          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Renames are migrations too.</b> If you rename a field, Lambda generates a backfill plan and asks you to confirm before destructive changes hit production. Read more in <a href="#" class="text-red-500 underline underline-offset-2">Zero-downtime migrations</a>.</p>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Keep the cue clean.</b> The speaker field can stay empty. Use it only when the speaking voice or character is useful in rehearsal or in the exported script.</p>
         </div>
       </div>
 
-      <!-- Endpoint reference -->
-      <h2 id="endpoints" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">4. Endpoint reference</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Every model gets the standard six endpoints. Below is the auto-generated reference for the <code class="docs-code">Order</code> model you just defined.</p>
+      <!-- Live -->
+      <h2 id="endpoints" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">4. Cue the show</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Move to <code class="docs-code">Regia</code> when the project is ready. The operator advances or rewinds cues, sends blackout, monitors timing and checks what screens and audience phones are receiving.</p>
 
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 border-b border-hairline font-mono text-[13px]">
           <div class="flex items-center gap-3">
-            <span class="px-2 py-0.5 rounded-sm font-medium text-xs text-blue-400 bg-blue-400/10">POST</span>
-            <span class="text-text">/v1/orders</span>
+            <span class="px-2 py-0.5 rounded-sm font-medium text-xs text-red-500 bg-red-500/10">LIVE</span>
+            <span class="text-text">Regia / cue state</span>
           </div>
-          <span class="sm:ml-auto text-text-3 text-xs">Idempotent · Rate-limited at 1,000/min</span>
+          <span class="sm:ml-auto text-text-3 text-xs">operator-led · manual first · semi-automatic optional</span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full border-collapse text-[13px] min-w-[480px]">
             <thead>
               <tr>
-                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline" style="width: 22%;">Field</th>
-                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline" style="width: 18%;">Type</th>
-                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Description</th>
+                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline" style="width: 24%;">Area</th>
+                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline" style="width: 22%;">Use</th>
+                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">What to check</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="font-mono text-text px-4 py-3 border-b border-hairline">customer<span class="text-red-500 ml-0.5">*</span></td>
-                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">string</td>
-                <td class="text-text-2 px-4 py-3 border-b border-hairline">ID of an existing <code class="docs-code">Customer</code> object. Must belong to the calling workspace.</td>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Regia<span class="text-red-500 ml-0.5">*</span></td>
+                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">operator view</td>
+                <td class="text-text-2 px-4 py-3 border-b border-hairline">Advance, go back, blackout, read the current and next cue, and add quick notes during the show.</td>
               </tr>
               <tr>
-                <td class="font-mono text-text px-4 py-3 border-b border-hairline">total<span class="text-red-500 ml-0.5">*</span></td>
-                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">money</td>
-                <td class="text-text-2 px-4 py-3 border-b border-hairline">An amount in the smallest unit of the currency. <span class="font-mono text-xs text-text-3">e.g. 4200 = $42.00</span></td>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Schermi</td>
+                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">projection targets</td>
+                <td class="text-text-2 px-4 py-3 border-b border-hairline">Configure each screen with language, aspect ratio and style. Open one screen or all configured screens.</td>
               </tr>
               <tr>
-                <td class="font-mono text-text px-4 py-3 border-b border-hairline">status</td>
-                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">enum</td>
-                <td class="text-text-2 px-4 py-3 border-b border-hairline">One of <code class="docs-code">pending</code>, <code class="docs-code">paid</code>, <code class="docs-code">refunded</code>. <span class="font-mono text-xs text-text-3">Defaults to "pending"</span></td>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Audiodescrizione</td>
+                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">notes and audio</td>
+                <td class="text-text-2 px-4 py-3 border-b border-hairline">Prepare descriptions, attach recorded audio when needed, and export TXT, CSV or VTT for revision and rehearsal.</td>
               </tr>
               <tr>
-                <td class="font-mono text-text px-4 py-3">metadata</td>
-                <td class="font-mono text-text-3 px-4 py-3">object</td>
-                <td class="text-text-2 px-4 py-3">Up to 50 key-value pairs of arbitrary string data. Indexed for queries.</td>
+                <td class="font-mono text-text px-4 py-3">Pubblico</td>
+                <td class="font-mono text-text-3 px-4 py-3">audience phones</td>
+                <td class="text-text-2 px-4 py-3">Show QR code or local address, monitor connected devices and check how many follow Regia or enable audio.</td>
               </tr>
             </tbody>
           </table>
@@ -243,48 +244,48 @@ const tocActionIconMap = {
       </div>
 
       <!-- Deploy -->
-      <h2 id="deploy" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">5. Deploy to production</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">When you're ready, <code class="docs-code">lambda deploy</code> ships your project to every region you've configured. Deploys are atomic — they either succeed everywhere or roll back instantly. There's no half-state.</p>
+      <h2 id="deploy" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">5. Run Live Sync in the room</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">For a theatre test, build the app and start the room server. Sténtor publishes the project and current cue to connected screens and audience phones on the same local network.</p>
 
       <div class="docs-codeblock">
         <div class="docs-codeblock__bar">
           <span class="font-mono">terminal</span>
-          <span class="font-mono text-text-3">elapsed 14.2s</span>
+          <span class="font-mono text-text-3">local network mode</span>
         </div>
-        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">$</span> lambda deploy <span class="tok-kw">--env</span> production
-<span class="tok-ln">2</span>
-<span class="tok-cm"><span class="tok-ln">3</span>  ✓ typecheck            <span class="tok-pn">0.3s</span></span>
-<span class="tok-cm"><span class="tok-ln">4</span>  ✓ generate clients     <span class="tok-pn">0.4s · 4 langs</span></span>
-<span class="tok-cm"><span class="tok-ln">5</span>  ✓ migrate database     <span class="tok-pn">2.1s · 1 plan applied</span></span>
-<span class="tok-cm"><span class="tok-ln">6</span>  ✓ build edge bundles   <span class="tok-pn">3.6s · 41 functions</span></span>
-<span class="tok-cm"><span class="tok-ln">7</span>  ✓ ship to 38 regions   <span class="tok-pn">7.8s</span></span>
-<span class="tok-ln">8</span>
-<span class="tok-ln">9</span><span class="tok-fn">→</span> <span class="tok-str">https://acme.lambda.app</span>  <span class="tok-cm">(commit a3f9c1d · build #1842)</span></code></pre>
+        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">$</span> npm install
+<span class="tok-ln">2</span><span class="tok-pn">$</span> npm run build
+<span class="tok-ln">3</span><span class="tok-pn">$</span> npm run sala
+<span class="tok-ln">4</span>
+<span class="tok-cm"><span class="tok-ln">5</span># open the operator app on the computer</span>
+<span class="tok-cm"><span class="tok-ln">6</span># show the QR code to audience phones on the same Wi-Fi</span></code></pre>
       </div>
 
-      <p class="text-zinc-300 leading-[1.65] mb-4">That's it. Your API is live, your clients are generated, your database is migrated, and every request is being traced end-to-end. Open the <a href="#" class="text-red-500 underline underline-offset-2">dashboard</a> to see logs streaming in real time.</p>
+      <p class="text-zinc-300 leading-[1.65] mb-4">On the audience page, spectators choose language and mode: surtitles, audio description or both. During the show they can follow Regia automatically, while the operator remains in control of cue position and blackout.</p>
 
-      <!-- Helpful -->
-      <div class="mt-14 px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border border-hairline rounded-xl bg-surface">
+      <!-- Feedback -->
+      <h2 id="feedback" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">6. Share feedback after use</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Sténtor is developed through real performances. After a rehearsal or show, collect notes from the operator, translators, audio describers and spectators. The most useful feedback is specific: where the workflow helped, where it slowed down, what audiences actually used, and what should be clearer next time.</p>
+
+      <div class="mt-8 px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border border-hairline rounded-xl bg-surface">
         <div>
-          <b class="font-medium">Was this page helpful?</b>
-          <p class="mt-1 text-[13px] text-text-3 m-0">If something felt off, tell us — every doc has a maintainer on call.</p>
+          <b class="font-medium">Was this workflow useful?</b>
+          <p class="mt-1 text-[13px] text-text-3 m-0">Feedback from real productions helps shape the software, the documentation and the research model.</p>
         </div>
         <div class="flex gap-2">
           <button class="h-8 px-3.5 rounded-md border border-hairline bg-transparent text-text-2 hover:text-text hover:border-hairline-strong text-[13px] whitespace-nowrap">👍 Yes</button>
-          <button class="h-8 px-3.5 rounded-md border border-hairline bg-transparent text-text-2 hover:text-text hover:border-hairline-strong text-[13px] whitespace-nowrap">👎 Not really</button>
+          <button class="h-8 px-3.5 rounded-md border border-hairline bg-transparent text-text-2 hover:text-text hover:border-hairline-strong text-[13px] whitespace-nowrap">Send notes</button>
         </div>
       </div>
 
       <!-- Pager -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-16">
-        <a href="#" class="grid gap-1 px-5 py-4 border border-hairline rounded-xl bg-surface hover:border-hairline-strong transition-colors">
+        <a href="/features" class="grid gap-1 px-5 py-4 border border-hairline rounded-xl bg-surface hover:border-hairline-strong transition-colors">
           <span class="font-mono text-xs tracking-[0.04em] uppercase text-text-3">Previous</span>
-          <span class="text-[15px] text-text font-medium before:content-['←_'] before:text-red-500">Introduction</span>
+          <span class="text-[15px] text-text font-medium before:content-['←_'] before:text-red-500">Features</span>
         </a>
-        <a href="#" class="grid gap-1 px-5 py-4 border border-hairline rounded-xl bg-surface hover:border-hairline-strong transition-colors text-right">
+        <a href="/customers" class="grid gap-1 px-5 py-4 border border-hairline rounded-xl bg-surface hover:border-hairline-strong transition-colors text-right">
           <span class="font-mono text-xs tracking-[0.04em] uppercase text-text-3">Next</span>
-          <span class="text-[15px] text-text font-medium after:content-['_→'] after:text-red-500">Project structure</span>
+          <span class="text-[15px] text-text font-medium after:content-['_→'] after:text-red-500">For theatres</span>
         </a>
       </div>
     </article>
@@ -350,7 +351,6 @@ const tocActionIconMap = {
       });
     }
 
-    // Track which sections have crossed the activation line (top 100px of viewport)
     const visible = new Set();
 
     const observer = new IntersectionObserver(
@@ -359,7 +359,6 @@ const tocActionIconMap = {
           if (entry.isIntersecting) visible.add(entry.target.id);
           else visible.delete(entry.target.id);
         });
-        // Pick the section closest to the top of viewport that is still visible
         let best = null;
         let bestTop = Infinity;
         sections.forEach((s) => {
