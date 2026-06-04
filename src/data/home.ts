@@ -191,11 +191,11 @@ export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "14-day trial · no card",
-  title: "Stop gluing services together.<br/>Start shipping the product.",
-  body: 'Lambda gets you from <span class="font-mono text-text">git init</span> to a typed, observable, multi-region backend in an afternoon. Your weekends are not a deployment strategy.',
+  eyebrow: "Same tools · fair pricing",
+  title: "Bring live words to every audience.",
+  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share — for independent artists, companies and venues alike.",
   ctas: [
-    { href: "/signup", label: "Start free trial", variant: "primary" as const },
-    { href: "#contact", label: "Book a 20-min call", variant: "ghost" as const },
+    { href: "/signup", label: "Start for free", variant: "primary" as const },
+    { href: "#contact", label: "Contact", variant: "ghost" as const },
   ],
 };
