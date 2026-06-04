@@ -49,8 +49,8 @@ const c = bento.cards;
             <IllusIsoBentoPulseArc />
           </div>
           <div class="grid gap-1.5 w-full font-mono text-xs mt-auto">
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span>P50</span><b class="text-text font-medium">22ms</b><span class="text-text-3">▼ 3%</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span>P99</span><b class="text-text font-medium">184ms</b><span class="text-text-3">▲ 1%</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span>phones</span><b class="text-text font-medium">18</b><span class="text-text-3">connected</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span>sync</span><b class="text-text font-medium">live</b><span class="text-text-3">operator</span></div>
           </div>
         </article>
       </div>
@@ -65,10 +65,10 @@ const c = bento.cards;
             </div>
           </div>
           <div class="grid gap-2 content-start">
-            <div class="api-row" data-animate="fade" style="transition-delay: 100ms"><span class="method method--get">GET</span><span class="text-text">/api/orders</span><span class="ml-auto text-text-3">iad · 18ms</span></div>
-            <div class="api-row" data-animate="fade" style="transition-delay: 200ms"><span class="method method--post">POST</span><span class="text-text">/api/checkout</span><span class="ml-auto text-text-3">syd · 42ms</span></div>
-            <div class="api-row" data-animate="fade" style="transition-delay: 300ms"><span class="method method--get">GET</span><span class="text-text">/api/me</span><span class="ml-auto text-text-3">cdg · 11ms</span></div>
-            <div class="api-row" data-animate="fade" style="transition-delay: 400ms"><span class="method method--del">DEL</span><span class="text-text">/api/sessions/:id</span><span class="ml-auto text-text-3">nrt · 24ms</span></div>
+            <div class="api-row" data-animate="fade" style="transition-delay: 100ms"><span class="method method--get">TXT</span><span class="text-text">script preparation</span><span class="ml-auto text-text-3">shared</span></div>
+            <div class="api-row" data-animate="fade" style="transition-delay: 200ms"><span class="method method--post">LIVE</span><span class="text-text">operator cueing</span><span class="ml-auto text-text-3">focused</span></div>
+            <div class="api-row" data-animate="fade" style="transition-delay: 300ms"><span class="method method--get">WEB</span><span class="text-text">audience phones</span><span class="ml-auto text-text-3">synced</span></div>
+            <div class="api-row" data-animate="fade" style="transition-delay: 400ms"><span class="method method--del">AD</span><span class="text-text">audio description</span><span class="ml-auto text-text-3">ready</span></div>
           </div>
         </article>
 
@@ -82,14 +82,14 @@ const c = bento.cards;
           </div>
           <div class="code-block h-full">
             <div class="code-block__bar">
-              <span class="font-mono">policies/orders.policy</span><span class="tag tag--green">enforced</span>
+              <span class="font-mono">project/macbett.stentor</span><span class="tag tag--green">open</span>
             </div>
-            <pre class="code-block__body"><code><span class="tok-ln">1</span><span class="tok-kw">policy</span> <span class="tok-fn">read_orders</span> {`{`}
-<span class="tok-ln">2</span>  <span class="tok-kw">on</span> Order
-<span class="tok-ln">3</span>  <span class="tok-kw">allow if</span> ctx.user.id == row.customer.owner
-<span class="tok-ln">4</span>  <span class="tok-kw">allow if</span> ctx.user.role <span class="tok-kw">in</span> [<span class="tok-str">"admin"</span>, <span class="tok-str">"support"</span>]
-<span class="tok-ln">5</span>  <span class="tok-kw">deny otherwise</span>
-<span class="tok-ln">6</span>{`}`}</code></pre>
+            <pre class="code-block__body"><code><span class="tok-ln">1</span><span class="tok-kw">title</span>: <span class="tok-str">"Macbett"</span>
+<span class="tok-ln">2</span><span class="tok-kw">languages</span>: it · en
+<span class="tok-ln">3</span><span class="tok-kw">layers</span>: surtitles · translation · AD
+<span class="tok-ln">4</span><span class="tok-kw">feedback</span>: operator notes · audience responses
+<span class="tok-ln">5</span><span class="tok-kw">license</span>: EUPL
+<span class="tok-ln">6</span><span class="tok-kw">knowledge</span>: shared practice</code></pre>
           </div>
         </article>
       </div>
@@ -107,10 +107,10 @@ const c = bento.cards;
             <IllusIsoBentoCron />
           </div>
           <div class="grid gap-1.5 font-mono text-xs">
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span class="text-red-500">@hourly</span><b class="text-text font-medium">reconcile_payments</b><span class="text-text-3">3,412 ok</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span class="text-red-500">@daily</span><b class="text-text font-medium">send_digest_emails</b><span class="text-text-3">14,209 ok</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 300ms"><span class="text-red-500">@5min</span><b class="text-text font-medium">refresh_search_index</b><span class="text-text-3">1 retry</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 400ms"><span class="text-red-500">@on push</span><b class="text-text font-medium">build_invoice_pdf</b><span class="text-text-3">queue 12</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span class="text-red-500">import</span><b class="text-text font-medium">script.docx</b><span class="text-text-3">cues</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span class="text-red-500">import</span><b class="text-text font-medium">captions.vtt</b><span class="text-text-3">ready</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 300ms"><span class="text-red-500">export</span><b class="text-text font-medium">show.en.srt</b><span class="text-text-3">share</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 400ms"><span class="text-red-500">archive</span><b class="text-text font-medium">research_notes</b><span class="text-text-3">study</span></div>
           </div>
         </article>
 
@@ -128,13 +128,13 @@ const c = bento.cards;
           <div>
             <div class="grid gap-1.5 font-mono text-xs">
               <div data-animate="fade" style="transition-delay: 100ms" class="grid [grid-template-columns:90px_1fr] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2">
-                <span class="text-green-400">▣ applied</span><b class="text-text font-medium">add_orders_index_status</b>
+                <span class="text-green-400">current</span><b class="text-text font-medium">cue 024</b>
               </div>
               <div data-animate="fade" style="transition-delay: 200ms" class="grid [grid-template-columns:90px_1fr_60px] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2">
-                <span class="text-red-500">◷ rolling</span><b class="text-text font-medium">backfill_customer_tier</b><span class="text-text-3">62%</span>
+                <span class="text-red-500">next</span><b class="text-text font-medium">cue 025</b><span class="text-text-3">ready</span>
               </div>
               <div data-animate="fade" style="transition-delay: 300ms" class="grid [grid-template-columns:90px_1fr] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2">
-                <span class="text-text-3">◌ planned</span><b class="text-text font-medium">drop_legacy_subscriptions</b>
+                <span class="text-text-3">feedback</span><b class="text-text font-medium">operator note saved</b>
               </div>
             </div>
             <div class="h-1.5 rounded bg-white/5 overflow-hidden mt-3">
@@ -156,34 +156,34 @@ const c = bento.cards;
           </div>
           <div class="grid gap-2.5 font-mono text-xs">
             <div data-animate="fade" style="transition-delay: 100ms" class="grid [grid-template-columns:70px_1fr_50px] gap-2.5 items-center px-2.5 py-1.5 rounded-md text-text-2 border border-red-500/40 bg-gradient-to-b from-red-500/[0.06] to-transparent">
-              <span class="text-red-500">a8f2c1d</span>
+              <span class="text-red-500">Free</span>
               <div>
-                <b class="block mb-1 text-text font-medium">main · rolling out</b>
+                <b class="block mb-1 text-text font-medium">artists · students</b>
                 <div class="relative h-1.5 rounded-sm bg-white/5 overflow-hidden">
                   <i class="absolute inset-y-0 left-0 bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)]" style="width:72%;"></i>
                 </div>
               </div>
-              <span class="text-text-3 text-[11px] text-right">72%</span>
+              <span class="text-text-3 text-[11px] text-right">share</span>
             </div>
             <div data-animate="fade" style="transition-delay: 200ms" class="grid [grid-template-columns:70px_1fr_50px] gap-2.5 items-center px-2.5 py-1.5 rounded-md text-text-2 border border-hairline bg-bg">
-              <span class="text-green-400">3e91b04</span>
+              <span class="text-green-400">Pro</span>
               <div>
-                <b class="block mb-1 text-text font-medium">main · live</b>
+                <b class="block mb-1 text-text font-medium">companies · touring</b>
                 <div class="relative h-1.5 rounded-sm bg-white/5 overflow-hidden">
                   <i class="absolute inset-y-0 left-0 right-0 bg-gradient-to-r from-green-400 to-green-500"></i>
                 </div>
               </div>
-              <span class="text-text-3 text-[11px] text-right">2h ago</span>
+              <span class="text-text-3 text-[11px] text-right">learn</span>
             </div>
             <div data-animate="fade" style="transition-delay: 300ms" class="grid [grid-template-columns:70px_1fr_50px] gap-2.5 items-center px-2.5 py-1.5 rounded-md text-text-2 border border-hairline bg-bg">
-              <span class="text-text-3">7c4d2fa</span>
+              <span class="text-text-3">Venues</span>
               <div>
-                <b class="block mb-1 text-text-2 font-medium">previous · idle</b>
+                <b class="block mb-1 text-text-2 font-medium">theatres · festivals</b>
                 <div class="relative h-1.5 rounded-sm bg-white/5 overflow-hidden">
                   <i class="absolute inset-0 bg-white/[0.18]"></i>
                 </div>
               </div>
-              <span class="text-text-3 text-[11px] text-right">↺ rollback</span>
+              <span class="text-text-3 text-[11px] text-right">research</span>
             </div>
           </div>
         </article>
