@@ -9,7 +9,7 @@ export const hero = {
   eyebrow: "v. 0.1.64 – Live Sync",
   // Rich text rendered via set:html — keep <em>, <br/> etc. inline.
   title:
-    'The backend platform <em class="not-italic text-text-3 font-medium">for teams who ship</em><br class="hidden sm:inline" /> without the on-call.',
+    'Surtitles, translation <em class="not-italic text-text-3 font-medium">and audio description.</em><br class="hidden sm:inline" /> Live.',
   description:
     "Lambda is a typed, observable backend with managed Postgres, edge functions, and built-in analytics. Deploy in seconds, scale without rewrites, sleep through the night.",
   ctas: [
