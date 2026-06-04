@@ -21,8 +21,8 @@ const iconMap = {
 ---
 
 <Layout
-  title="Contact — Lambda"
-  description="Talk to sales, get help from support, or join the developer Discord. We answer fast — usually under 8 business hours."
+  title="Sténtor – Contact"
+  description="Share questionnaires, research feedback and user experience notes from real use of Sténtor in rehearsal, theatres and live performance."
   active={null}
 >
 
@@ -65,7 +65,7 @@ const iconMap = {
     </div>
   </section>
 
-  <!-- Form + Enterprise -->
+  <!-- Form + Research sidebar -->
   <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-16 grid gap-12 lg:[grid-template-columns:minmax(0,1fr)_400px] lg:gap-14 items-start">
 
     <!-- Contact form -->
@@ -115,7 +115,7 @@ const iconMap = {
             />
           </div>
           <div>
-            <label class="c-label" for="c-email">Work email</label>
+            <label class="c-label" for="c-email">Email</label>
             <input
               id="c-email"
               type="email"
@@ -147,19 +147,19 @@ const iconMap = {
 
         <div class="flex items-center justify-between gap-4 pt-1">
           <p class="text-[12px] text-text-4 leading-[1.4]">
-            By submitting you agree to our <a href="/privacy" class="text-text-3 hover:text-text underline underline-offset-2">Privacy Policy</a>.
+            Please avoid sharing sensitive personal data unless it is necessary for your message.
           </p>
           <button type="submit" class="c-submit">
             {page.form.submitLabel}
-            <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
+            <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2] />
           </button>
         </div>
       </form>
     </div>
 
-    <!-- Enterprise sidebar -->
+    <!-- Research sidebar -->
     <aside class="grid gap-6">
-      <!-- Enterprise CTA -->
+      <!-- Research CTA -->
       <div class="relative overflow-hidden border border-hairline rounded-xl p-6 bg-surface">
         <div class="absolute right-0 top-0 w-48 h-48 pointer-events-none" style="background: radial-gradient(50% 50% at 100% 0%, rgba(239,68,68,0.14), transparent);" aria-hidden="true"></div>
         <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center mb-4">
@@ -181,22 +181,23 @@ const iconMap = {
 
         <Btn href={page.enterprise.cta.href} variant="primary" size="md" class="w-full justify-center">
           {page.enterprise.cta.label}
-          <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
+          <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2] />
         </Btn>
       </div>
 
       <!-- Office / address -->
       <div class="border border-hairline rounded-xl p-5 bg-surface text-[13.5px]">
-        <p class="font-medium mb-3">Lambda Systems, Inc.</p>
+        <p class="font-medium mb-3">Leonardo Mancini</p>
         <address class="not-italic text-text-3 leading-[1.65] grid gap-1">
-          <span>200 Berry Street, Suite 400</span>
-          <span>Brooklyn, NY 11217</span>
-          <span>United States</span>
+          <span>Department of Humanities</span>
+          <span>University of Turin</span>
+          <span>Via Sant'Ottavio 20</span>
+          <span>10124 – Turin</span>
+          <span>Italy</span>
         </address>
         <div class="mt-4 pt-4 border-t border-dashed border-hairline grid gap-2 text-text-3">
-          <a href="mailto:hello@lambda.dev" class="hover:text-text transition-colors">hello@lambda.dev</a>
-          <a href="mailto:legal@lambda.dev" class="hover:text-text transition-colors">legal@lambda.dev</a>
-          <a href="mailto:security@lambda.dev" class="hover:text-text transition-colors">security@lambda.dev</a>
+          <a href="mailto:leonardo.mancini@unito.it" class="hover:text-text transition-colors">leonardo.mancini@unito.it</a>
+          <a href="mailto:info@stentor.live" class="hover:text-text transition-colors">info@stentor.live</a>
         </div>
       </div>
     </aside>
@@ -218,15 +219,17 @@ const iconMap = {
     border-color: rgba(239, 68, 68, 0.5);
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
   }
-  .c-input::placeholder { color: var(--color-text-4); }
-  textarea.c-input { height: auto; padding-top: 10px; padding-bottom: 10px; }
-  select.c-input { padding-left: 14px; }
-  .c-submit {
-    @apply inline-flex items-center justify-center gap-2 h-10 px-5 rounded-lg bg-red-500 text-bg text-sm font-medium whitespace-nowrap transition-all;
-    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.28);
+  .c-input::placeholder { color: rgb(var(--text-4)); }
+  textarea.c-input { height: auto; padding-top: 12px; padding-bottom: 12px; }
+  .c-select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, rgb(var(--text-4)) 50%), linear-gradient(135deg, rgb(var(--text-4)) 50%, transparent 50%);
+    background-position: calc(100% - 18px) 19px, calc(100% - 12px) 19px;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
   }
-  .c-submit:hover { @apply bg-red-400; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.38); }
-  .c-submit:active { @apply translate-y-px; }
-
+  .c-submit {
+    @apply inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg bg-red-500 text-black font-medium text-sm transition-transform hover:-translate-y-px whitespace-nowrap;
+  }
   [x-cloak] { display: none !important; }
 </style>
