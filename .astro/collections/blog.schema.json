@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "engineering",
+        "product",
+        "company",
+        "tutorial"
+      ]
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "initials": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "role",
+        "initials"
+      ]
+    },
+    "readingTime": {
+      "type": "string"
+    },
+    "cover": {
+      "type": "string",
+      "enum": [
+        "region-map",
+        "policy-hexagon",
+        "p95-ring",
+        "traffic-line-chart",
+        "iso-postgres",
+        "iso-types",
+        "iso-pulse",
+        "iso-deploy"
+      ]
+    },
+    "featured": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "date",
+    "category",
+    "author",
+    "readingTime"
+  ]
+}

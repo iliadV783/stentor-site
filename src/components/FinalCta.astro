@@ -1,0 +1,39 @@
+---
+/**
+ * Shared final CTA section. Layered halo + dot pattern + centered content.
+ * Pages pass children: <Eyebrow>, <h2>, <p>, action buttons.
+ *
+ * variant:
+ *   "default"  → border-t with mt-24 (used after a normal section)
+ *   "borderY"  → border-y, no top margin (full-bleed on both edges)
+ */
+interface Props {
+  variant?: "default" | "borderY";
+  paddingY?: string;
+  gap?: string;
+}
+
+const {
+  variant = "default",
+  paddingY = "py-24",
+  gap = "gap-5",
+} = Astro.props;
+---
+<section class:list={[
+  "relative overflow-hidden border-hairline",
+  variant === "borderY" ? "border-y bg-bg" : "border-t mt-24",
+]}>
+  <div
+    class="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[102%] w-[500px] h-[500px] rounded-full pointer-events-none"
+    style="box-shadow: 0 0 36px 0 rgba(255,255,255,0.18), 0 0 41px 43px #ef44445e, 0 0 234px 42px rgba(239,68,68,0.10);"
+    aria-hidden="true"
+  ></div>
+  <div class="absolute inset-0 pointer-events-none [background-image:radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,#000_15%,transparent_72%)]" aria-hidden="true"></div>
+  <div class:list={[
+    "relative max-w-[1280px] mx-auto px-4 md:px-8 text-center grid justify-items-center",
+    paddingY,
+    gap,
+  ]}>
+    <slot />
+  </div>
+</section>

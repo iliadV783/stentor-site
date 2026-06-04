@@ -1,0 +1,232 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import Btn from "../components/Btn.astro";
+import { contact as page } from "../data/contact";
+
+import IconInfo from "../assets/icons/info.svg";
+import IconMail from "../assets/icons/mail.svg";
+import IconDiscord from "../assets/icons/discord.svg";
+import IconShieldCheck from "../assets/icons/shield-check.svg";
+import IconArrowRight from "../assets/icons/arrow-right.svg";
+import IconLightning from "../assets/icons/lightning.svg";
+import IconCheck from "../assets/icons/check.svg";
+
+const iconMap = {
+  info: IconInfo,
+  mail: IconMail,
+  discord: IconDiscord,
+  "shield-check": IconShieldCheck,
+} as const;
+---
+
+<Layout
+  title="Contact — Lambda"
+  description="Talk to sales, get help from support, or join the developer Discord. We answer fast — usually under 8 business hours."
+  active={null}
+>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[680px]">
+        <Eyebrow><span class="font-mono">{page.eyebrow}</span></Eyebrow>
+        <h1 class="text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-[-0.04em] font-semibold mt-5 mb-4">{page.title}</h1>
+        <p class="text-lg leading-[1.55] text-text-2 max-w-[560px] m-0">{page.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Channel cards -->
+  <section class="max-w-[1280px] mx-auto px-4 md:px-8 py-14 border-b border-hairline">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {page.channels.map((ch) => {
+        const Icon = iconMap[ch.icon];
+        return (
+          <a
+            href={ch.href}
+            class="group flex flex-col gap-4 p-5 border border-hairline rounded-xl bg-surface hover:border-hairline-strong hover:bg-elevated transition-colors"
+          >
+            <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center flex-none group-hover:border-red-500/30 group-hover:bg-red-500/[0.06] transition-colors">
+              <Icon class="w-4 h-4 text-text-2 group-hover:text-red-500 transition-colors" />
+            </span>
+            <div class="flex-1">
+              <p class="font-medium text-[15px] mb-1.5">{ch.label}</p>
+              <p class="text-text-3 text-[13.5px] leading-[1.5]">{ch.description}</p>
+            </div>
+            <span class="inline-flex items-center gap-1.5 text-[13px] text-red-500 font-medium">
+              {ch.cta}
+              <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2] transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Form + Enterprise -->
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-16 grid gap-12 lg:[grid-template-columns:minmax(0,1fr)_400px] lg:gap-14 items-start">
+
+    <!-- Contact form -->
+    <div
+      x-data="{ sent: false }"
+      class="border border-hairline rounded-xl bg-surface overflow-hidden"
+    >
+      <div class="px-6 py-5 border-b border-hairline">
+        <h2 class="text-[17px] font-semibold">{page.form.title}</h2>
+        <p class="text-[13.5px] text-text-3 mt-1">{page.form.description}</p>
+      </div>
+
+      <!-- Success state -->
+      <div x-show="sent" x-cloak class="px-6 py-12 flex flex-col items-center text-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-green-400/10 border border-green-400/25 flex items-center justify-center">
+          <IconCheck class="w-5 h-5 text-green-400" />
+        </span>
+        <div>
+          <p class="font-semibold text-[17px] mb-1.5">{page.form.successTitle}</p>
+          <p class="text-text-3 text-[14px] leading-[1.55] max-w-[340px]">{page.form.successBody}</p>
+        </div>
+        <button
+          type="button"
+          x-on:click="sent = false"
+          class="text-[13px] text-red-500 hover:underline mt-2"
+        >
+          Send another message
+        </button>
+      </div>
+
+      <!-- Form fields -->
+      <form
+        x-show="!sent"
+        x-on:submit.prevent="sent = true"
+        class="px-6 py-6 grid gap-5"
+        novalidate
+      >
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="c-label" for="c-name">Your name</label>
+            <input
+              id="c-name"
+              type="text"
+              placeholder={page.form.namePlaceholder}
+              class="c-input"
+              autocomplete="name"
+            />
+          </div>
+          <div>
+            <label class="c-label" for="c-email">Work email</label>
+            <input
+              id="c-email"
+              type="email"
+              placeholder={page.form.emailPlaceholder}
+              class="c-input"
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="c-label" for="c-dept">Topic</label>
+          <select id="c-dept" class="c-input c-select">
+            {page.form.departments.map((d) => (
+              <option value={d.value}>{d.label}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label class="c-label" for="c-message">Message</label>
+          <textarea
+            id="c-message"
+            rows="5"
+            placeholder={page.form.messagePlaceholder}
+            class="c-input resize-none"
+          ></textarea>
+        </div>
+
+        <div class="flex items-center justify-between gap-4 pt-1">
+          <p class="text-[12px] text-text-4 leading-[1.4]">
+            By submitting you agree to our <a href="/privacy" class="text-text-3 hover:text-text underline underline-offset-2">Privacy Policy</a>.
+          </p>
+          <button type="submit" class="c-submit">
+            {page.form.submitLabel}
+            <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Enterprise sidebar -->
+    <aside class="grid gap-6">
+      <!-- Enterprise CTA -->
+      <div class="relative overflow-hidden border border-hairline rounded-xl p-6 bg-surface">
+        <div class="absolute right-0 top-0 w-48 h-48 pointer-events-none" style="background: radial-gradient(50% 50% at 100% 0%, rgba(239,68,68,0.14), transparent);" aria-hidden="true"></div>
+        <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center mb-4">
+          <IconLightning class="w-4 h-4 text-text-2" />
+        </span>
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-2">{page.enterprise.eyebrow}</p>
+        <h2 class="text-[18px] font-semibold tracking-[-0.02em] mb-2">{page.enterprise.title}</h2>
+        <p class="text-[13.5px] text-text-3 leading-[1.55] mb-5">{page.enterprise.description}</p>
+
+        <!-- Mini stats -->
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          {page.enterprise.stats.map((s) => (
+            <div class="border border-hairline rounded-lg px-3 py-2.5 bg-elevated text-center">
+              <p class="font-semibold text-[15px] tracking-[-0.02em]">{s.value}</p>
+              <p class="text-text-4 text-[11px] mt-0.5">{s.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <Btn href={page.enterprise.cta.href} variant="primary" size="md" class="w-full justify-center">
+          {page.enterprise.cta.label}
+          <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
+        </Btn>
+      </div>
+
+      <!-- Office / address -->
+      <div class="border border-hairline rounded-xl p-5 bg-surface text-[13.5px]">
+        <p class="font-medium mb-3">Lambda Systems, Inc.</p>
+        <address class="not-italic text-text-3 leading-[1.65] grid gap-1">
+          <span>200 Berry Street, Suite 400</span>
+          <span>Brooklyn, NY 11217</span>
+          <span>United States</span>
+        </address>
+        <div class="mt-4 pt-4 border-t border-dashed border-hairline grid gap-2 text-text-3">
+          <a href="mailto:hello@lambda.dev" class="hover:text-text transition-colors">hello@lambda.dev</a>
+          <a href="mailto:legal@lambda.dev" class="hover:text-text transition-colors">legal@lambda.dev</a>
+          <a href="mailto:security@lambda.dev" class="hover:text-text transition-colors">security@lambda.dev</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+</Layout>
+
+<style>
+  @reference "../styles/global.css";
+
+  .c-label {
+    @apply block text-[13px] font-medium text-text-2 mb-2;
+  }
+  .c-input {
+    @apply w-full h-11 bg-elevated border border-hairline rounded-lg text-text text-sm outline-none transition-all;
+    padding: 0 14px;
+  }
+  .c-input:focus {
+    border-color: rgba(239, 68, 68, 0.5);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+  .c-input::placeholder { color: var(--color-text-4); }
+  textarea.c-input { height: auto; padding-top: 10px; padding-bottom: 10px; }
+  select.c-input { padding-left: 14px; }
+  .c-submit {
+    @apply inline-flex items-center justify-center gap-2 h-10 px-5 rounded-lg bg-red-500 text-bg text-sm font-medium whitespace-nowrap transition-all;
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.28);
+  }
+  .c-submit:hover { @apply bg-red-400; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.38); }
+  .c-submit:active { @apply translate-y-px; }
+
+  [x-cloak] { display: none !important; }
+</style>

@@ -1,0 +1,116 @@
+---
+import { codeTabs } from "../../../data/features";
+---
+<section class="py-24" x-data="{tab:'ts'}">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] leading-[1.1] font-semibold">{codeTabs.title}</h2>
+      <p class="text-text-2 max-w-[420px]">{codeTabs.description}</p>
+    </div>
+    <div class="bg-surface border border-hairline rounded-xl overflow-hidden">
+      <div class="flex items-center gap-1 px-3.5 pb-2 pt-3.5 border-b border-hairline overflow-x-auto overflow-y-hidden" role="tablist" aria-label="Code examples">
+        {codeTabs.tabs.map((t) => (
+          <button
+            role="tab"
+            id={`codetab-${t.id}`}
+            aria-controls={`codepanel-${t.id}`}
+            :aria-selected={`tab==='${t.id}' ? 'true' : 'false'`}
+            :tabindex={`tab==='${t.id}' ? '0' : '-1'`}
+            @click={`tab='${t.id}'`}
+            :class={`tab==='${t.id}' ? 'text-red-500 border-hairline border-b-surface bg-surface' : 'text-text-3 border-transparent'`}
+            class="appearance-none border border-transparent border-b-0 font-mono text-xs px-3.5 py-2.5 rounded-t-md cursor-pointer relative top-px whitespace-nowrap"
+          >{t.label}<span class="text-text-4 ml-1.5 text-[11px]">{t.count}</span></button>
+        ))}
+      </div>
+      <div class="p-7 min-h-[360px] font-mono text-[12.5px] leading-[1.65] text-zinc-200 overflow-x-auto">
+        <div x-show="tab==='ts'" role="tabpanel" id="codepanel-ts" aria-labelledby="codetab-ts">
+          <div class="text-text-4 mb-3.5">{`// Find every active Pro subscription that renews this week.`}</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-kw">import</span> {`{ lambda }`} <span class="tok-kw">from</span> <span class="tok-str">"@acme/lambda"</span>;
+
+<span class="tok-kw">const</span> renewals = <span class="tok-kw">await</span> lambda.<span class="tok-fn">subscriptions</span>.<span class="tok-fn">list</span>({`({`}
+  where: {`{`}
+    plan:      <span class="tok-str">"pro_monthly"</span>,
+    status:    <span class="tok-str">"active"</span>,
+    renews_at: {`{`} lte: lambda.<span class="tok-fn">days</span>(<span class="tok-num">7</span>) {`}`},
+  {`}`},
+  include: {`{`} customer: <span class="tok-kw">true</span> {`}`},
+  limit: <span class="tok-num">100</span>,
+{`});`}
+
+<span class="tok-kw">for</span> (<span class="tok-kw">const</span> sub <span class="tok-kw">of</span> renewals) {`{`}
+  <span class="tok-kw">await</span> lambda.<span class="tok-fn">queue</span>.<span class="tok-fn">send</span>(<span class="tok-str">"renewal_reminder"</span>, {`{`} id: sub.id {`}`});
+{`}`}</code></pre>
+        </div>
+        <div x-show="tab==='go'" role="tabpanel" id="codepanel-go" aria-labelledby="codetab-go" x-cloak>
+          <div class="text-text-4 mb-3.5">{`// Same query, idiomatic Go. Errors elided for brevity.`}</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-kw">import</span> <span class="tok-str">"github.com/acme/lambda-go"</span>
+
+renewals, _ := lambda.Subscriptions.<span class="tok-fn">List</span>(ctx, &lambda.SubscriptionListParams{`{`}
+    Plan:     <span class="tok-str">"pro_monthly"</span>,
+    Status:   <span class="tok-str">"active"</span>,
+    RenewsAt: lambda.LTE(time.Now().<span class="tok-fn">Add</span>(<span class="tok-num">7</span> * <span class="tok-num">24</span> * time.Hour)),
+    Include:  []<span class="tok-kw">string</span>{`{`}<span class="tok-str">"customer"</span>{`}`},
+    Limit:    <span class="tok-num">100</span>,
+{`}`})
+
+<span class="tok-kw">for</span> _, sub := <span class="tok-kw">range</span> renewals {`{`}
+    lambda.Queue.<span class="tok-fn">Send</span>(ctx, <span class="tok-str">"renewal_reminder"</span>, lambda.M{`{`}<span class="tok-str">"id"</span>: sub.ID{`}`})
+{`}`}</code></pre>
+        </div>
+        <div x-show="tab==='py'" role="tabpanel" id="codepanel-py" aria-labelledby="codetab-py" x-cloak>
+          <div class="text-text-4 mb-3.5"># Same query, Pythonic. Async by default.</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-kw">from</span> acme.lambda <span class="tok-kw">import</span> lambda_
+
+renewals = <span class="tok-kw">await</span> lambda_.subscriptions.<span class="tok-fn">list</span>(
+    where={`{`}
+        <span class="tok-str">"plan"</span>:      <span class="tok-str">"pro_monthly"</span>,
+        <span class="tok-str">"status"</span>:    <span class="tok-str">"active"</span>,
+        <span class="tok-str">"renews_at"</span>: {`{`} <span class="tok-str">"lte"</span>: lambda_.<span class="tok-fn">days</span>(<span class="tok-num">7</span>) {`}`},
+    {`}`},
+    include={`{`}<span class="tok-str">"customer"</span>: <span class="tok-kw">True</span>{`}`},
+    limit=<span class="tok-num">100</span>,
+)
+
+<span class="tok-kw">for</span> sub <span class="tok-kw">in</span> renewals:
+    <span class="tok-kw">await</span> lambda_.queue.<span class="tok-fn">send</span>(<span class="tok-str">"renewal_reminder"</span>, id=sub.id)</code></pre>
+        </div>
+        <div x-show="tab==='curl'" role="tabpanel" id="codepanel-curl" aria-labelledby="codetab-curl" x-cloak>
+          <div class="text-text-4 mb-3.5"># Bare HTTP — every SDK is built on this.</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-fn">curl</span> https://api.lambda.dev/v1/subscriptions \
+  -H <span class="tok-str">"Authorization: Bearer $LAMBDA_KEY"</span> \
+  -H <span class="tok-str">"Content-Type: application/json"</span> \
+  -G \
+  --data-urlencode <span class="tok-str">'where[plan]=pro_monthly'</span> \
+  --data-urlencode <span class="tok-str">'where[status]=active'</span> \
+  --data-urlencode <span class="tok-str">'where[renews_at][lte]=2026-05-05T00:00:00Z'</span> \
+  --data-urlencode <span class="tok-str">'include=customer'</span> \
+  --data-urlencode <span class="tok-str">'limit=100'</span></code></pre>
+        </div>
+        <div x-show="tab==='resp'" role="tabpanel" id="codepanel-resp" aria-labelledby="codetab-resp" x-cloak>
+          <div class="text-text-4 mb-3.5">{`// HTTP/1.1 200 OK · application/json · 24ms · iad`}</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code>{`{`}
+  <span class="tok-str">"data"</span>: [
+    {`{`}
+      <span class="tok-str">"id"</span>:        <span class="tok-str">"sub_01HF8Q3K2ZX"</span>,
+      <span class="tok-str">"plan"</span>:      <span class="tok-str">"pro_monthly"</span>,
+      <span class="tok-str">"status"</span>:    <span class="tok-str">"active"</span>,
+      <span class="tok-str">"renews_at"</span>: <span class="tok-str">"2026-05-03T14:21:00Z"</span>,
+      <span class="tok-str">"customer"</span>: {`{`}
+        <span class="tok-str">"id"</span>:    <span class="tok-str">"cus_01HF8Q1A0PQ"</span>,
+        <span class="tok-str">"email"</span>: <span class="tok-str">"maya@acme.co"</span>,
+        <span class="tok-str">"tier"</span>:  <span class="tok-str">"pro"</span>
+      {`}`}
+    {`}`}
+    <span class="tok-cm">{`// 99 more rows…`}</span>
+  ],
+  <span class="tok-str">"page"</span>: {`{`} <span class="tok-str">"limit"</span>: <span class="tok-num">100</span>, <span class="tok-str">"next"</span>: <span class="tok-str">"cur_..."</span> {`}`}
+{`}`}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  [x-cloak] { display: none !important; }
+</style>

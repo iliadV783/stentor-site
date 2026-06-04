@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Keep auth + utility pages out of search results.
+Disallow: /signin
+Disallow: /signup
+Disallow: /404
+
+Sitemap: https://lambda-saas.netlify.app/sitemap-index.xml

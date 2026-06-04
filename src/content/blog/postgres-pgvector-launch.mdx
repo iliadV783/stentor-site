@@ -1,0 +1,62 @@
+---
+title: "pgvector is now GA on Lambda Postgres"
+description: "Native vector search on every Postgres database, with a one-line enable. No separate index, no eventual consistency."
+date: 2026-04-15
+category: product
+author:
+  name: "Priya Reddy"
+  role: "Head of Engineering"
+  initials: "PR"
+readingTime: "6 min read"
+cover: iso-postgres
+tags: ["postgres", "ai", "search"]
+---
+
+Every Lambda Postgres database now supports `pgvector` out of the box. Enable it with a single line:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
+```
+
+That's it. No separate vector store, no nightly sync job, no "eventually consistent" caveats. Your embeddings sit next to your data and stay transactionally consistent with it.
+
+## Why bother
+
+We watched dozens of teams stand up a Postgres database for transactional data and then stand up a *second* system — Pinecone, Weaviate, a self-hosted Qdrant — for vectors. The result is a permanent two-database problem: drift between the two, double the failure modes, double the on-call surface, and a sync pipeline nobody wants to own.
+
+If your vectors describe rows in your Postgres database, they belong in your Postgres database. The only reason it wasn't reasonable before was performance, and pgvector 0.7 closed that gap.
+
+## What we tuned
+
+Out of the box, pgvector defaults are conservative. We bumped a few things:
+
+- **HNSW** is the default index, with `m=16` and `ef_construction=64`.
+- **`maintenance_work_mem`** is auto-sized per instance — index builds run 4–7× faster than upstream defaults.
+- **Parallel index builds** are on by default for instances with 4+ cores.
+
+For a 10M-row table with 1536-dim embeddings, full HNSW build takes around 4 minutes on a `db-medium`.
+
+## Hybrid search
+
+The most useful pattern we've seen is hybrid search: full-text + vector, scored together with `ts_rank` and cosine similarity. We've added a small helper to make this less awkward.
+
+```sql
+SELECT id, title,
+  ts_rank(search_tsv, query) AS lex,
+  1 - (embedding <=> $2) AS sem,
+  lambda.hybrid_score(lex, sem, weight => 0.6) AS score
+FROM articles
+WHERE search_tsv @@ query OR embedding <-> $2 < 0.4
+ORDER BY score DESC
+LIMIT 20;
+```
+
+`lambda.hybrid_score` is a simple weighted blend; you can also drop in your own scoring function.
+
+## Pricing
+
+Vector storage and queries are billed at standard Postgres rates. There's no separate vector-database SKU, no per-vector pricing, no minimums. If you're already paying for the Postgres instance, you're already paying for vectors.
+
+## Migration
+
+If you're moving from a managed vector DB, our import tool ingests Pinecone, Weaviate, and pgvector dumps directly. The CLI is `lambda vectors:import`. We'll write up a longer migration guide next week.

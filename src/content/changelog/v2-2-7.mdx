@@ -1,0 +1,16 @@
+---
+version: "2.2.7"
+date: 2026-03-17
+type: patch
+title: "Faster cold queries, calmer pagers."
+changes:
+  improvements:
+    - body: "Query plans cached across deploys for unchanged statements — first-request P95 down 38%."
+      pr: 2945
+    - body: "Connection pool acquire latency: 12ms → 7ms (P95)."
+      pr: 2952
+    - body: "Alerts now batch within a 60s window so you don't get paged 14 times for the same incident."
+      pr: 2961
+---
+
+A weekend's worth of perf work. The query planner now caches plans across deploys, and we shaved 40% off the connection-pool acquire time.

@@ -1,0 +1,61 @@
+---
+import Eyebrow from "../../Eyebrow.astro";
+import Btn from "../../Btn.astro";
+import IconCheck from "../../../assets/icons/check.svg";
+import { showcase } from "../../../data/features";
+
+import SchemasIllustration from "./illustrations/SchemasIllustration.astro";
+import TraceIllustration from "./illustrations/TraceIllustration.astro";
+import RegionsIllustration from "./illustrations/RegionsIllustration.astro";
+
+const [schemasRow, traceRow, runtimeRow] = showcase;
+---
+<section class="max-w-[1280px] mx-auto px-4 md:px-8 grid gap-24 py-16">
+  <!-- Row 1 — Schemas -->
+  <article class="grid lg:[grid-template-columns:1fr_1.15fr] gap-10 lg:gap-16 items-center">
+    <div class="max-w-[480px]" data-animate="left">
+      <Eyebrow class="mb-4.5"><span class="font-mono">{schemasRow.eyebrow}</span></Eyebrow>
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] leading-[1.05] mt-4 mb-4 font-semibold">{schemasRow.title}</h2>
+      <p class="text-text-2 text-base leading-[1.6] mb-5" set:html={schemasRow.description}></p>
+      <ul class="grid gap-2.5 list-none p-0 mb-7">
+        {schemasRow.bullets.map((b) => (
+          <li class="flex gap-2.5 text-sm text-zinc-300"><IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{b}</li>
+        ))}
+      </ul>
+      <Btn href={schemasRow.cta.href} variant="ghost">{schemasRow.cta.label} <span aria-hidden="true">→</span></Btn>
+    </div>
+    <SchemasIllustration />
+  </article>
+
+  <!-- Row 2 — Observability -->
+  <article class="grid lg:[grid-template-columns:1.15fr_1fr] gap-10 lg:gap-16 items-center">
+    <TraceIllustration />
+    <div class="max-w-[480px] order-1 lg:order-2" data-animate="right">
+      <Eyebrow class="mb-4.5"><span class="font-mono">{traceRow.eyebrow}</span></Eyebrow>
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] leading-[1.05] mt-4 mb-4 font-semibold">{traceRow.title}</h2>
+      <p class="text-text-2 text-base leading-[1.6] mb-5" set:html={traceRow.description}></p>
+      <ul class="grid gap-2.5 list-none p-0 mb-7">
+        {traceRow.bullets.map((b) => (
+          <li class="flex gap-2.5 text-sm text-zinc-300"><IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{b}</li>
+        ))}
+      </ul>
+      <Btn href={traceRow.cta.href} variant="ghost">{traceRow.cta.label} <span aria-hidden="true">→</span></Btn>
+    </div>
+  </article>
+
+  <!-- Row 3 — Edge runtime -->
+  <article class="grid lg:[grid-template-columns:1fr_1.15fr] gap-10 lg:gap-16 items-center">
+    <div class="max-w-[480px]" data-animate="left">
+      <Eyebrow class="mb-4.5"><span class="font-mono">{runtimeRow.eyebrow}</span></Eyebrow>
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] leading-[1.05] mt-4 mb-4 font-semibold">{runtimeRow.title}</h2>
+      <p class="text-text-2 text-base leading-[1.6] mb-5" set:html={runtimeRow.description}></p>
+      <ul class="grid gap-2.5 list-none p-0 mb-7">
+        {runtimeRow.bullets.map((b) => (
+          <li class="flex gap-2.5 text-sm text-zinc-300"><IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{b}</li>
+        ))}
+      </ul>
+      <Btn href={runtimeRow.cta.href} variant="ghost">{runtimeRow.cta.label} <span aria-hidden="true">→</span></Btn>
+    </div>
+    <RegionsIllustration />
+  </article>
+</section>

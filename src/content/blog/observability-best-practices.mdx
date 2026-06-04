@@ -1,0 +1,55 @@
+---
+title: "Five questions your dashboard should answer in five seconds"
+description: "A short checklist for production observability — what to put on the wall, what to bury two clicks deep, and what to delete."
+date: 2026-03-26
+category: tutorial
+author:
+  name: "Sara Lin"
+  role: "Head of DevRel"
+  initials: "SL"
+readingTime: "8 min read"
+cover: p95-ring
+tags: ["observability", "ops"]
+---
+
+Most dashboards are bad in the same way: too much data, no hierarchy, no clear question being answered. When something breaks at 2 a.m., you need a small number of charts that tell you *immediately* whether the system is healthy, and if not, where to look next.
+
+Here are the five questions a production dashboard should answer before you've finished your coffee.
+
+## 1. Are users seeing errors right now?
+
+Not "the error rate over the past hour" — *right now*, on the most recent data the dashboard has. A single big number, refreshed every 10 seconds, color-coded green/amber/red against your SLO.
+
+If this number is the only thing your dashboard shows for a full minute, the rest of the dashboard exists to answer the next four questions.
+
+## 2. Is the system slower than it should be?
+
+Pick one latency percentile and own it. We use P95 across the request graph. Plot it as a line over the last 60 minutes with a horizontal SLO line at the threshold you committed to.
+
+Do not show P50. P50 lies. The user experiencing the bad time isn't on P50.
+
+## 3. Where in the system is the slowness coming from?
+
+A small bar chart of P95 latency *by service* (or by endpoint, or by region — pick the dimension that matches how your team thinks). The bars are sorted by current latency, not alphabetically.
+
+The goal is that the worst offender is always the leftmost bar. You should be able to point at the screen during an incident and say "it's that one."
+
+## 4. Has anything changed recently?
+
+A timeline of deploys, feature flag flips, and config changes overlaid on the latency chart. Most outages are correlated with a change made in the last 30 minutes. If your dashboard shows you the change *and* the latency spike on the same axis, you've already cut MTTR in half.
+
+## 5. Is anyone awake?
+
+A status block showing on-call rotation, the most recently acknowledged alert, and any silenced alarms. This is the one that gets cut in design reviews and shouldn't be — it's how you avoid two engineers debugging the same thing in parallel without realizing it.
+
+## Things to delete
+
+- Raw count of requests per second, unless your business is request-count-per-second sensitive.
+- CPU utilization on every host. Roll it up to a service-level metric or hide it.
+- The list of every error type that occurred in the last 24 hours. Use a search interface for that. Dashboards are for known questions, not exploration.
+
+## A working example
+
+Lambda's dashboards default to this layout — single error number, P95 line, by-service bars, deploy timeline, on-call card. Five panels, no scrolling. The full configuration is open source and lives in [our examples repo](#).
+
+Treat this as a starting point, not gospel. The right question depends on the system. But "what does my dashboard answer in five seconds?" is a useful filter for everything else you're tempted to add.

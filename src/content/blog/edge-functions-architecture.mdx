@@ -1,0 +1,64 @@
+---
+title: "How we got cold starts under 30ms"
+description: "A deep dive into the V8 snapshot pipeline, isolate pooling, and the regional routing layer that made it possible."
+date: 2026-04-22
+category: engineering
+author:
+  name: "Mateo Ortiz"
+  role: "Co-founder & CTO"
+  initials: "MO"
+readingTime: "12 min read"
+cover: traffic-line-chart
+tags: ["edge", "v8", "performance"]
+---
+
+When we launched Edge Functions in 2024, our P95 cold start was 84ms. Respectable for a fresh isolate, but not the kind of number you build a homepage around. After eighteen months of work, P95 is now 28ms across all 38 regions.
+
+This post is about the three changes that got us there.
+
+## 1. V8 snapshot pipeline
+
+The biggest single win — about 40ms — came from snapshot reuse. Every Lambda Function gets a per-region snapshot of its module graph, frozen at deploy time. When a request hits a cold isolate, we restore the snapshot instead of parsing and compiling JavaScript from scratch.
+
+The trick was making snapshots small enough to ship to 38 regions in a few seconds.
+
+```ts
+const snapshot = await v8.compile(bundle, {
+  importMap: build.imports,
+  precompileNativeBindings: true,
+});
+await fleet.distribute(snapshot, { regions: ALL });
+```
+
+Snapshots are content-addressed. If two deploys produce the same bundle hash, the second one is a no-op everywhere except the routing layer.
+
+## 2. Isolate pooling
+
+The second win came from keeping warm isolates around longer than we used to. Our original heuristic was "evict after 60s idle." We replaced it with a per-tenant working-set estimator that keeps the top N isolates resident based on actual traffic patterns.
+
+This trades a bit of memory for a much better hit rate at the edge. For most tenants, idle isolates are now reused on the next request 92% of the time.
+
+## 3. Regional routing
+
+The third change isn't strictly a cold-start optimization — it's a way to *avoid* cold starts entirely. The new `routes.ts` primitive lets you pin endpoints to specific regions, fail over to fallbacks, and serve different bundles by geography.
+
+Pinning means a single warm pool serves a given route worldwide, instead of 38 independent pools each waiting for traffic to warm them up.
+
+```ts
+export default routes({
+  "/api/checkout": { regions: ["us-east", "eu-fra"], fallback: "us-east" },
+  "/api/health":   { regions: "all" },
+});
+```
+
+For a typical SaaS app with a handful of latency-sensitive endpoints, pinning brings cold-start exposure to near zero on the hot path.
+
+## What didn't work
+
+We spent two months trying to share isolates across tenants behind a capability sandbox. It worked. It was also a security and observability nightmare. We shelved it.
+
+We also tried ahead-of-time compilation to native code via a custom V8 fork. The wins didn't justify the maintenance cost, and the fork bit-rotted within a release cycle. Sometimes the right answer is "use the platform."
+
+## What's next
+
+We have ideas for getting P95 under 15ms, but they involve hardware: bare metal isolate hosts and DPDK on the network path. Our hunch is that the gains aren't worth the complexity for 99% of users. We'll keep watching the data.

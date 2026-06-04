@@ -1,0 +1,12 @@
+---
+interface Props {
+  href?: string;
+}
+
+import LambdaLogo from '../assets/icons/logo.svg'
+
+const { href = "/" } = Astro.props;
+---
+<a href={href} aria-label="Lambda SaaS — home" class="inline-flex items-center gap-[10px] font-semibold tracking-[-0.02em]">
+  <span class="text-base flex items-center"><LambdaLogo class="h-3" aria-hidden="true" /><span class="text-text-3 font-medium">SaaS</span></span>
+</a>

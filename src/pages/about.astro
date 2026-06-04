@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import Btn from "../components/Btn.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { about as page } from "../data/about";
+---
+<Layout
+  title="About — Lambda"
+  description="The team building Lambda — engineers from Vercel, Stripe, and Linear, building the typed, observable backend platform we always wished existed."
+  active={null}
+>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-20">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[820px]">
+        <Eyebrow><span class="font-mono">{page.hero.eyebrow}</span></Eyebrow>
+        <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mt-5 mb-5" set:html={page.hero.title}></h1>
+        <p class="text-lg leading-[1.55] text-text-2 max-w-[600px] m-0">{page.hero.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="py-20 lg:py-24 border-b border-hairline">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8 grid gap-10 lg:[grid-template-columns:minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
+      <div>
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-4">{page.story.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-6">{page.story.title}</h2>
+        <div class="grid gap-5 text-[15.5px] leading-[1.7] text-text-2 max-w-[640px]">
+          {page.story.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+      <aside class="lg:sticky lg:top-32 self-start">
+        <figure class="border border-hairline rounded-xl bg-surface p-7 lg:p-8 relative overflow-hidden">
+          <div class="absolute -top-8 -right-8 -translate-y-10 translate-x-10 w-40 h-40 pointer-events-none" style="background: radial-gradient(50% 50% at 50% 50%, rgba(239,68,68,0.16), transparent 70%);" aria-hidden="true"></div>
+          <span class="text-red-500 text-5xl leading-none font-serif select-none">“</span>
+          <blockquote class="text-[18px] leading-[1.5] tracking-[-0.01em] text-zinc-100 mt-2">
+            {page.story.pullQuote.text}
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-6 pt-5 border-t border-dashed border-hairline">
+            <div class="w-9 h-9 rounded-full grid place-items-center font-mono text-xs text-text border border-hairline-strong bg-gradient-to-br from-raised to-sunken">
+              {page.story.pullQuote.author.split(" ").map((n) => n[0]).join("")}
+            </div>
+            <div class="text-[13px]">
+              <b class="block font-medium">{page.story.pullQuote.author}</b>
+              <span class="text-text-3">{page.story.pullQuote.role}</span>
+            </div>
+          </figcaption>
+        </figure>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Numbers -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:[grid-template-columns:1.4fr_1fr_1fr_1fr_1fr] border border-hairline rounded-xl bg-surface overflow-hidden">
+        <div class="px-7 py-7 lg:px-9 md:col-span-2 lg:col-span-1 bg-gradient-to-b from-red-500/[0.05] to-transparent border-b md:border-b-0 md:border-r border-hairline flex flex-col justify-center gap-2.5">
+          <h3 class="text-[22px] tracking-[-0.025em] leading-[1.15] font-semibold max-w-[280px]">{page.numbers.title}</h3>
+          <p class="text-[13px] text-text-3 leading-[1.5] max-w-[320px] m-0">{page.numbers.description}</p>
+        </div>
+        {page.numbers.items.map((item, i) => (
+          <div class:list={[
+            "flex flex-col justify-center px-6 py-6 lg:px-7",
+            i < page.numbers.items.length - 1 && "border-b md:border-b-0 lg:border-r border-hairline",
+            i === 1 && "md:border-r-0 lg:border-r",
+          ]}>
+            <div class="text-[32px] tracking-[-0.035em] font-semibold leading-none">
+              {item.value}{item.suffix && <em class="not-italic font-medium text-red-500">{item.suffix}</em>}
+            </div>
+            <div class="text-xs text-text-2 mt-2 leading-[1.4]">{item.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20 border-t border-hairline">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[680px] mb-12">
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-3">{page.values.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-4">{page.values.title}</h2>
+        <p class="text-[15.5px] leading-[1.6] text-text-2 m-0">{page.values.description}</p>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {page.values.items.map((v) => (
+          <article class="border border-hairline rounded-xl bg-surface p-6 flex flex-col gap-3 hover:border-hairline-strong transition-colors">
+            <span class="font-mono text-[11px] tracking-[0.08em] text-red-500">{v.number}</span>
+            <h3 class="text-[17px] font-semibold tracking-[-0.02em] leading-[1.25]">{v.title}</h3>
+            <p class="text-[13.5px] leading-[1.6] text-text-3 m-0">{v.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section data-animate="fade" class="py-20 border-t border-hairline">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[680px] mb-12">
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-3">{page.timeline.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-4">{page.timeline.title}</h2>
+        <p class="text-[15.5px] leading-[1.6] text-text-2 m-0">{page.timeline.description}</p>
+      </div>
+
+      <ol class="relative grid gap-8 max-w-[820px] before:content-[''] before:absolute before:left-[7px] sm:before:left-[141px] before:top-2 before:bottom-2 before:w-px before:bg-hairline">
+        {page.timeline.items.map((item, i) => (
+          <li data-animate style={`transition-delay: ${i * 90}ms`} class="relative grid grid-cols-[28px_minmax(0,1fr)] sm:grid-cols-[110px_28px_minmax(0,1fr)] gap-x-4 sm:gap-x-6 items-start">
+            <div class="hidden sm:block font-mono text-[12px] text-text-3 pt-0.5">{item.year}</div>
+            <div class="relative pt-1.5">
+              <span class="block w-3.5 h-3.5 rounded-full bg-red-500 ring-4 ring-bg shadow-[0_0_12px_#ef4444]"></span>
+            </div>
+            <div>
+              <p class="sm:hidden font-mono text-[11px] text-red-500 mb-1.5">{item.year}</p>
+              <h3 class="text-[17px] font-semibold tracking-[-0.02em] leading-[1.3] mb-1.5">{item.title}</h3>
+              <p class="text-[14px] leading-[1.6] text-text-3 m-0 max-w-[560px]">{item.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-20 border-t border-hairline">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[680px] mb-12">
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-3">{page.team.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-4">{page.team.title}</h2>
+        <p class="text-[15.5px] leading-[1.6] text-text-2 m-0">{page.team.description}</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {page.team.members.map((m) => (
+          <article class="border border-hairline rounded-xl bg-surface p-5 flex gap-4 hover:border-hairline-strong transition-colors">
+            <div class="w-12 h-12 rounded-full grid place-items-center font-mono text-[13px] text-text border border-hairline-strong bg-gradient-to-br from-raised to-sunken flex-none">
+              {m.initial}
+            </div>
+            <div class="min-w-0">
+              <p class="font-semibold text-[15px] leading-[1.2]">{m.name}</p>
+              <p class="text-[12.5px] text-red-500 font-mono mt-0.5">{m.role}</p>
+              <p class="text-[13px] leading-[1.55] text-text-3 mt-2.5 m-0">{m.bio}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Investors -->
+  <section class="border-y border-hairline py-16 bg-bg/40">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-10 max-w-[600px] mx-auto">
+        <h2 class="text-2xl md:text-[28px] tracking-[-0.025em] font-semibold">{page.investors.title}</h2>
+        <p class="text-sm text-text-3 mt-2.5">{page.investors.description}</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border border-hairline rounded-xl overflow-hidden">
+        {page.investors.logos.map((l, i) => (
+          <div class:list={[
+            "h-[88px] grid place-items-center text-zinc-300 text-[13px] md:text-sm tracking-[-0.01em] font-medium opacity-70 border-hairline px-3 text-center",
+            (i + 1) % 6 !== 0 && "lg:border-r",
+            (i + 1) % 3 !== 0 && "md:border-r lg:border-r",
+            (i + 1) % 2 !== 0 && "border-r md:border-r-0 lg:border-r",
+            i < 3 && "border-b md:border-b-0",
+          ]}>
+            {l.name}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <FinalCta>
+    <Eyebrow><span class="font-mono">{page.finalCta.eyebrow}</span></Eyebrow>
+    <h2 class="text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-[-0.04em] font-semibold max-w-[820px]">{page.finalCta.title}</h2>
+    <p class="text-lg leading-[1.55] text-text-2 max-w-[600px]">{page.finalCta.body}</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      {page.finalCta.ctas.map((cta, i) => (
+        <Btn href={cta.href} variant={cta.variant} size="lg">
+          {cta.label}{i === 0 && <span aria-hidden="true">→</span>}
+        </Btn>
+      ))}
+    </div>
+  </FinalCta>
+
+</Layout>

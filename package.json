@@ -1,0 +1,33 @@
+{
+  "name": "lambda-saas",
+  "version": "1.0.0",
+  "description": "A modern, fast, production-ready Astro 6 template for SaaS and developer-tool products. Token-driven dark UI, accessibility-audited, built on Tailwind CSS v4.",
+  "author": "Lambda Studio (https://lambdastudio.io)",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://lambda-saas.netlify.app",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/alpinejs": "^0.5.0",
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "^4.2.4",
+    "@types/alpinejs": "^3.13.11",
+    "alpinejs": "^3.15.11",
+    "astro": "^6.2.1",
+    "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^5.9.3"
+  }
+}

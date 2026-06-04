@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet" fill="none">
+  <defs>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0"></stop>
+      <stop offset="40%" stop-color="#ef4444" stop-opacity="0.9"></stop>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.2"></stop>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.6"></stop>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+
+  <g stroke-linecap="round" stroke-linejoin="round">
+
+    
+    <path d="M0 220 Q 200 180 400 220 T 800 220" stroke="rgba(255,255,255,0.06)" stroke-width="1"></path>
+    <path d="M0 240 Q 200 200 400 240 T 800 240" stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+    <path d="M0 60 Q 200 100 400 60 T 800 60" stroke="rgba(255,255,255,0.06)" stroke-width="1"></path>
+    <path d="M0 40 Q 200 80 400 40 T 800 40" stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+
+    
+    <rect x="40" y="124" width="92" height="32" rx="16" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="#0a0a0a"></rect>
+    <text x="86" y="145" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#a1a1aa">request</text>
+
+    
+    
+    <path d="M132 140 C 180 140, 220 140, 260 140" stroke="url(#flow)" stroke-width="2"></path>
+
+    
+    <path d="M260 140 C 360 140, 420 60, 540 60" stroke="#ef4444" stroke-width="1.6"></path>
+    <path d="M260 140 C 360 140, 420 100, 540 100" stroke="#ef4444" stroke-width="1.4" opacity="0.85"></path>
+    <path d="M260 140 C 360 140, 460 140, 540 140" stroke="#ef4444" stroke-width="1.6"></path>
+    <path d="M260 140 C 360 140, 420 180, 540 180" stroke="#ef4444" stroke-width="1.4" opacity="0.85"></path>
+    <path d="M260 140 C 360 140, 420 220, 540 220" stroke="#ef4444" stroke-width="1.6"></path>
+
+    
+    <rect x="256" y="136" width="8" height="8" fill="#ef4444"></rect>
+
+    
+    <g>
+      
+      <rect x="540" y="48" width="80" height="24" rx="2" stroke="#ef4444" stroke-width="1" fill="rgba(239,68,68,0.06)"></rect>
+      <text x="552" y="64" font-family="ui-monospace, monospace" font-size="11" fill="#ef4444">sfo</text>
+      <text x="612" y="64" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">18ms</text>
+
+      
+      <rect x="540" y="88" width="80" height="24" rx="2" stroke="#ef4444" stroke-width="1" fill="rgba(239,68,68,0.04)"></rect>
+      <text x="552" y="104" font-family="ui-monospace, monospace" font-size="11" fill="#ef4444">cdg</text>
+      <text x="612" y="104" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">22ms</text>
+
+      
+      <rect x="540" y="128" width="80" height="24" rx="2" stroke="#ef4444" stroke-width="1.6" fill="rgba(239,68,68,0.14)"></rect>
+      <text x="552" y="144" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#ef4444">iad</text>
+      <text x="612" y="144" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#ef4444">11ms</text>
+
+      
+      <rect x="540" y="168" width="80" height="24" rx="2" stroke="#ef4444" stroke-width="1" fill="rgba(239,68,68,0.04)"></rect>
+      <text x="552" y="184" font-family="ui-monospace, monospace" font-size="11" fill="#ef4444">nrt</text>
+      <text x="612" y="184" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">26ms</text>
+
+      
+      <rect x="540" y="208" width="80" height="24" rx="2" stroke="#ef4444" stroke-width="1" fill="rgba(239,68,68,0.06)"></rect>
+      <text x="552" y="224" font-family="ui-monospace, monospace" font-size="11" fill="#ef4444">syd</text>
+      <text x="612" y="224" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">29ms</text>
+    </g>
+
+    
+    <path d="M620 60 C 680 60, 700 70, 760 50" stroke="url(#fade)" stroke-width="1" stroke-dasharray="2 4"></path>
+    <path d="M620 100 C 680 100, 700 110, 760 95" stroke="url(#fade)" stroke-width="1" stroke-dasharray="2 4"></path>
+    <path d="M620 140 C 680 140, 700 140, 760 140" stroke="url(#fade)" stroke-width="1" stroke-dasharray="2 4"></path>
+    <path d="M620 180 C 680 180, 700 170, 760 185" stroke="url(#fade)" stroke-width="1" stroke-dasharray="2 4"></path>
+    <path d="M620 220 C 680 220, 700 210, 760 230" stroke="url(#fade)" stroke-width="1" stroke-dasharray="2 4"></path>
+
+    
+    <rect x="700" y="128" width="60" height="24" rx="2" stroke="rgba(255,255,255,0.16)" stroke-width="1" fill="#0a0a0a"></rect>
+    <text x="730" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#a1a1aa">+33 more</text>
+
+    
+    <path d="M40 200 Q 70 196, 90 198 T 130 198" stroke="rgba(255,255,255,0.18)" stroke-width="1"></path>
+    <text x="40" y="220" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">cold start</text>
+    <text x="130" y="220" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#ef4444">28ms</text>
+
+    
+    <g stroke="#ef4444" stroke-width="1.4" opacity="0.9">
+      <line x1="160" y1="135" x2="160" y2="145"></line>
+      <line x1="180" y1="135" x2="180" y2="145"></line>
+      <line x1="200" y1="135" x2="200" y2="145"></line>
+      <line x1="220" y1="135" x2="220" y2="145"></line>
+      <line x1="240" y1="135" x2="240" y2="145"></line>
+    </g>
+    <text x="200" y="118" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">isolates</text>
+
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120" preserveAspectRatio="xMidYMid meet" fill="none">
+  <g stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="rgba(255,255,255,0.12)" d="M120 60 L200 30 L280 60 L360 30 L440 60"/>
+    <path stroke="rgba(255,255,255,0.12)" d="M120 60 L200 90 L280 60 L360 90 L440 60"/>
+    <path stroke="rgba(255,255,255,0.12)" d="M40 60 L120 60"/>
+    <path stroke="#ef4444" d="M40 60 L120 60 L200 30 L280 60 L360 30" stroke-width="1.5"/>
+    <g stroke="#ef4444" stroke-width="1.2">
+      <path d="M40 54 L46 60 L40 66 L34 60 Z" fill="#0a0a0a"/>
+      <path d="M120 54 L126 60 L120 66 L114 60 Z" fill="#0a0a0a"/>
+      <path d="M280 54 L286 60 L280 66 L274 60 Z" fill="#0a0a0a"/>
+      <path d="M440 54 L446 60 L440 66 L434 60 Z" fill="#0a0a0a"/>
+    </g>
+    <g stroke="rgba(255,255,255,0.2)" stroke-width="1">
+      <path d="M200 24 L206 30 L200 36 L194 30 Z" fill="#0a0a0a"/>
+      <path d="M200 84 L206 90 L200 96 L194 90 Z" fill="#0a0a0a"/>
+      <path d="M360 24 L366 30 L360 36 L354 30 Z" fill="#0a0a0a"/>
+      <path d="M360 84 L366 90 L360 96 L354 90 Z" fill="#0a0a0a"/>
+    </g>
+    <circle fill="#ef4444" cx="40" cy="60" r="2.5"/>
+    <circle fill="#ef4444" cx="280" cy="60" r="2.5"/>
+    <circle fill="#f87171" cx="360" cy="30" r="2.5"/>
+    <g font-family="ui-monospace, monospace" font-size="8" fill="#a1a1aa">
+      <text x="30" y="48">.ts</text>
+      <text x="272" y="48">.go</text>
+      <text x="432" y="48">.py</text>
+      <text x="192" y="22">.swift</text>
+    </g>
+  </g>
+</svg>

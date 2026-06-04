@@ -1,0 +1,50 @@
+---
+import Btn from "../../Btn.astro";
+import IconCheck from "../../../assets/icons/check.svg";
+import { pricingPreview } from "../../../data/home";
+---
+<section class="py-24" id="pricing">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6">
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] font-semibold" set:html={pricingPreview.title}></h2>
+      <p class="text-text-2 max-w-[420px]"><a href={pricingPreview.comparisonLink.href} class="text-red-500">{pricingPreview.comparisonLink.label}</a></p>
+    </div>
+    <div class="grid gap-5 md:grid-cols-3 items-start">
+      {pricingPreview.plans.map((plan) => (
+        <div class:list={["plan", plan.highlighted && "plan--hi"]}>
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-semibold">{plan.name}</h3>
+            <span class:list={["tag", plan.tagAccent && "tag--amber"]}>{plan.tag}</span>
+          </div>
+          <div class="text-[44px] leading-none font-semibold">{plan.price}<small class="text-sm text-text-3 font-normal ml-1">{plan.cycle}</small></div>
+          <p class="text-text-2 text-sm">{plan.tagline}</p>
+          <ul class="grid gap-2.5 list-none p-0 m-0">
+            {plan.features.map((f) => (
+              <li class="flex gap-2.5 text-sm text-zinc-300">
+                <IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{f}
+              </li>
+            ))}
+          </ul>
+          <Btn href={plan.cta.href} variant={plan.cta.variant}>{plan.cta.label}</Btn>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "../../../styles/global.css";
+  .tag {
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap;
+  }
+  .tag--amber { @apply text-red-400 bg-red-500/15 border-red-500/30; }
+
+  .plan {
+    @apply flex flex-col gap-[18px] bg-surface border border-hairline rounded-xl p-7;
+  }
+  .plan--hi {
+    @apply border-red-500/45;
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.25), 0 30px 60px -30px rgba(239, 68, 68, 0.35);
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0) 40%), #111111;
+  }
+</style>

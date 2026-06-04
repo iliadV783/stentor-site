@@ -1,0 +1,417 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IconMenu from "../assets/icons/menu.svg";
+import IconSearch from "../assets/icons/search.svg";
+import IconCopy from "../assets/icons/copy.svg";
+import IconInfo from "../assets/icons/info.svg";
+import IconWarningTriangle from "../assets/icons/warning-triangle.svg";
+import IconEdit from "../assets/icons/edit.svg";
+import IconPlayground from "../assets/icons/playground.svg";
+import IconMessageCircle from "../assets/icons/message-circle.svg";
+import IconX from "../assets/icons/x.svg";
+import { sidebarGroups, tocItems, tocActions, pageMeta } from "../data/docs";
+
+const tocActionIconMap = {
+  edit: IconEdit,
+  playground: IconPlayground,
+  "message-circle": IconMessageCircle,
+} as const;
+---
+<Layout
+  title="Docs — Lambda"
+  description="Lambda developer documentation: quickstart, SDK reference, edge functions, schemas, auth, and deployment guides."
+  active="docs"
+>
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-10 pb-24 grid gap-10 lg:[grid-template-columns:240px_minmax(0,1fr)] xl:[grid-template-columns:260px_minmax(0,1fr)_240px] xl:gap-12 items-start" x-data="{tab:'npm', mobileOpen:false}">
+
+    <!-- Mobile menu button -->
+    <button @click="mobileOpen=!mobileOpen" class="w-fit lg:hidden inline-flex items-center gap-2 h-10 px-3 border border-hairline rounded-lg text-sm text-text-2 hover:text-text">
+      <IconMenu class="w-4 h-4" />
+      Documentation
+    </button>
+
+    <!-- Left sidebar -->
+    <aside class:list={[
+      "lg:sticky lg:top-32 lg:max-h-[calc(100vh-152px)] lg:overflow-y-auto pr-2 text-sm",
+      "max-lg:fixed max-lg:inset-x-0 max-lg:top-16 max-lg:bottom-0 max-lg:bg-bg max-lg:border-b max-lg:border-hairline max-lg:p-6 max-lg:z-40 max-lg:overflow-y-auto max-lg:overscroll-contain",
+    ]} x-show="mobileOpen || window.matchMedia('(min-width: 1024px)').matches" x-cloak aria-label="Documentation">
+      <button @click="mobileOpen=false" class="lg:hidden flex items-center justify-between w-full mb-4 text-xs tracking-[0.08em] uppercase text-text-3 font-medium" aria-label="Close documentation menu">
+        <span>Documentation</span>
+        <span aria-hidden="true" class="text-base text-text-2"><IconX class="w-4 h-4" /></span>
+      </button>
+      <div class="docs-search">
+        <IconSearch class="w-4 h-4" />
+        <span class="flex-1">Search docs…</span>
+      </div>
+      {sidebarGroups.map((g) => (
+        <>
+          <h2 class="text-xs tracking-[0.08em] uppercase text-text-4 font-medium mt-6 first:mt-0 mb-2">{g.title}</h2>
+          <ul class="grid gap-px list-none p-0 m-0">
+            {g.items.map((item) => (
+              <li>
+                <a href={item.href} class:list={[
+                  "flex items-center gap-2.5 px-2.5 py-1.5 transition-colors border-l-2",
+                  item.active ? "bg-red-500/[0.08] text-red-500 font-medium border-red-500 rounded-r-md" : "text-text-2 hover:text-text hover:bg-white/[0.03] border-transparent rounded-md",
+                ]}>
+                  {item.label}
+                  {item.badge && (
+                    <span class:list={[
+                      "ml-auto font-mono text-xs px-1.5 py-px rounded-sm",
+                      item.badgeNew ? "text-red-500 bg-red-500/10" : "text-text-3 bg-white/[0.04]",
+                    ]}>{item.badge}</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      ))}
+    </aside>
+
+    <!-- Main content -->
+    <article class="min-w-0 max-w-[820px]">
+      <div class="flex items-center gap-2 font-mono text-xs text-text-3 mb-7">
+        {pageMeta.breadcrumb.map((b, i) => (
+          <>
+            {i > 0 && <span class="text-text-4">/</span>}
+            {b.href ? (
+              <a href={b.href} class="hover:text-text-2">{b.label}</a>
+            ) : (
+              <b class="text-text font-medium">{b.label}</b>
+            )}
+          </>
+        ))}
+      </div>
+
+      <h1 id="quickstart" class="text-4xl md:text-[44px] leading-[1.05] tracking-[-0.04em] font-semibold mb-3">Ship a typed API in five minutes.</h1>
+      <p class="text-lg leading-[1.55] text-text-2 max-w-[640px] mb-7">
+        This guide walks you from <code class="docs-code">npm i</code> to a deployed, observable backend with a real Postgres database, generated clients, and a function running at the edge. No Docker. No YAML.
+      </p>
+
+      <div class="flex items-center gap-3 flex-wrap mb-10 font-mono text-xs text-text-3">
+        <span class="w-[22px] h-[22px] rounded-full border border-hairline bg-gradient-to-br from-chrome to-[#161616]"></span>
+        <span>{pageMeta.maintainer}</span>
+        <span class="text-text-4">·</span>
+        <span>{pageMeta.lastUpdated}</span>
+        <span class="text-text-4">·</span>
+        <span>{pageMeta.readingTime}</span>
+      </div>
+
+      <!-- Prerequisites -->
+      <h2 id="prerequisites" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">Prerequisites</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">You'll need a few things on your machine before you start. Lambda runs on every recent runtime; we test against the matrix below in CI.</p>
+      <ul class="grid gap-2 mb-5 list-none">
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Node.js <code class="docs-code">20.x</code> or later (Bun, Deno, and Node 22 are also supported).</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>A package manager — <code class="docs-code">npm</code>, <code class="docs-code">pnpm</code>, <code class="docs-code">yarn</code>, or <code class="docs-code">bun</code>.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>A Lambda account. The free tier includes one project, 1&nbsp;GB of Postgres, and 1M function invocations.</span></li>
+      </ul>
+
+      <div class="callout callout--info">
+        <div class="callout__icon"><IconInfo class="w-3.5 h-3.5" /></div>
+        <div>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Already have an account?</b> Skip ahead to <a href="#" class="text-red-500 underline underline-offset-2">Step&nbsp;2 — link your project</a> and the CLI will pick up your session automatically.</p>
+        </div>
+      </div>
+
+      <!-- Install -->
+      <h2 id="install" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">1. Install the CLI</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">The Lambda CLI is a single static binary. Install it with your package manager of choice — it ships TypeScript types and the runtime SDK in the same package.</p>
+
+      <div class="docs-codeblock">
+        <div class="docs-codeblock__bar">
+          <div class="inline-flex gap-0.5 p-0.5 border border-hairline rounded-md">
+            {["npm", "pnpm", "yarn", "bun"].map((t) => (
+              <button
+                @click={`tab='${t}'`}
+                :class={`tab==='${t}' ? 'bg-red-500/[0.12] text-red-500' : 'text-text-3'`}
+                class="px-2 py-[3px] rounded-sm font-mono text-xs cursor-pointer"
+              >{t}</button>
+            ))}
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-2 py-[3px] rounded-md border border-hairline text-text-3">
+            <IconCopy class="w-4 h-4" />
+            Copy
+          </span>
+        </div>
+        <pre class="docs-codeblock__body" x-show="tab==='npm'"><code><span class="tok-cm"><span class="tok-ln">1</span># installs the CLI &amp; runtime SDK</span>
+<span class="tok-ln">2</span><span class="tok-pn">$</span> npm install -g @lambda/cli
+<span class="tok-ln">3</span>
+<span class="tok-cm"><span class="tok-ln">4</span># sign in — opens your browser</span>
+<span class="tok-ln">5</span><span class="tok-pn">$</span> lambda login
+<span class="tok-cm"><span class="tok-ln">6</span>{`→ Authorized as `}<span class="tok-str">maya@acme.co</span>{` (Acme Corp · production)`}</span></code></pre>
+        <pre class="docs-codeblock__body" x-show="tab==='pnpm'" x-cloak><code><span class="tok-pn">$</span> pnpm add -g @lambda/cli
+<span class="tok-pn">$</span> lambda login</code></pre>
+        <pre class="docs-codeblock__body" x-show="tab==='yarn'" x-cloak><code><span class="tok-pn">$</span> yarn global add @lambda/cli
+<span class="tok-pn">$</span> lambda login</code></pre>
+        <pre class="docs-codeblock__body" x-show="tab==='bun'" x-cloak><code><span class="tok-pn">$</span> bun install -g @lambda/cli
+<span class="tok-pn">$</span> lambda login</code></pre>
+      </div>
+
+      <!-- Init -->
+      <h2 id="init" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">2. Initialize a project</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Run <code class="docs-code">lambda init</code> in an empty directory. The CLI scaffolds a project, links it to a workspace on Lambda Cloud, and writes a <code class="docs-code">lambda.config.ts</code> you can commit.</p>
+
+      <div class="grid gap-3 mb-8">
+        {[
+          { n: 1, t: "Pick a workspace and region", d: "By default we'll deploy to the region closest to you. You can pin a primary region and add read replicas later from the dashboard." },
+          { n: 2, t: "Choose a starter", d: "Empty, REST API, GraphQL, or one of fourteen full-stack examples (Next.js, Remix, Astro, SvelteKit, Expo, etc.)." },
+          { n: 3, t: "Run the dev server", d: "lambda dev starts a local emulator with hot-reload, a real Postgres, and live trace inspection on :4321." },
+        ].map((s) => (
+          <div class="grid [grid-template-columns:36px_1fr] gap-3.5 px-5 py-4 border border-hairline rounded-xl bg-surface">
+            <div class="w-7 h-7 rounded-lg grid place-items-center border border-red-500/30 bg-red-500/10 text-red-500 font-mono text-[13px] font-medium">{s.n}</div>
+            <div>
+              <h3 class="text-[15px] mb-1.5 mt-1 tracking-[-0.015em] font-semibold">{s.t}</h3>
+              <p class="text-sm text-text-2 m-0">{s.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Define a model -->
+      <h2 id="define-model" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">3. Define your first model</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Models are TypeScript files that compile to a typed REST API, a typed client, and a Postgres migration — automatically. Save the file and the CLI does the rest in under a second.</p>
+
+      <div class="docs-codeblock">
+        <div class="docs-codeblock__bar">
+          <span class="font-mono">schemas/order.lambda.ts</span>
+          <span class="font-mono text-text-3">15 lines</span>
+        </div>
+        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-kw">import</span> {`{ model, id, ref, money, enumOf, timestamp }`} <span class="tok-kw">from</span> <span class="tok-str">"@lambda/schema"</span>;
+<span class="tok-ln">2</span><span class="tok-kw">import</span> {`{ Customer }`} <span class="tok-kw">from</span> <span class="tok-str">"./customer"</span>;
+<span class="tok-ln">3</span>
+<span class="tok-ln">4</span><span class="tok-kw">export const</span> <span class="tok-fn">Order</span> = <span class="tok-fn">model</span>({`({`}
+<span class="tok-ln">5</span>  id:        <span class="tok-fn">id</span>(<span class="tok-str">"ord_"</span>),
+<span class="tok-ln">6</span>  customer:  <span class="tok-fn">ref</span>(Customer),
+<span class="tok-ln">7</span>  total:     <span class="tok-fn">money</span>({`{`} currency: <span class="tok-str">"USD"</span> {`}`}),
+<span class="tok-ln">8</span>  status:    <span class="tok-fn">enumOf</span>(<span class="tok-str">"pending"</span>, <span class="tok-str">"paid"</span>, <span class="tok-str">"refunded"</span>),
+<span class="tok-ln">9</span>  createdAt: <span class="tok-fn">timestamp</span>({`{`} default: <span class="tok-str">"now()"</span> {`}`}),
+<span class="tok-ln">10</span>{`})`}.<span class="tok-fn">index</span>(<span class="tok-str">"customer"</span>, <span class="tok-str">"status"</span>);</code></pre>
+      </div>
+
+      <div class="callout callout--warn">
+        <div class="callout__icon"><IconWarningTriangle class="w-3.5 h-3.5" /></div>
+        <div>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Renames are migrations too.</b> If you rename a field, Lambda generates a backfill plan and asks you to confirm before destructive changes hit production. Read more in <a href="#" class="text-red-500 underline underline-offset-2">Zero-downtime migrations</a>.</p>
+        </div>
+      </div>
+
+      <!-- Endpoint reference -->
+      <h2 id="endpoints" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">4. Endpoint reference</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Every model gets the standard six endpoints. Below is the auto-generated reference for the <code class="docs-code">Order</code> model you just defined.</p>
+
+      <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 border-b border-hairline font-mono text-[13px]">
+          <div class="flex items-center gap-3">
+            <span class="px-2 py-0.5 rounded-sm font-medium text-xs text-blue-400 bg-blue-400/10">POST</span>
+            <span class="text-text">/v1/orders</span>
+          </div>
+          <span class="sm:ml-auto text-text-3 text-xs">Idempotent · Rate-limited at 1,000/min</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse text-[13px] min-w-[480px]">
+            <thead>
+              <tr>
+                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline" style="width: 22%;">Field</th>
+                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline" style="width: 18%;">Type</th>
+                <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">customer<span class="text-red-500 ml-0.5">*</span></td>
+                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">string</td>
+                <td class="text-text-2 px-4 py-3 border-b border-hairline">ID of an existing <code class="docs-code">Customer</code> object. Must belong to the calling workspace.</td>
+              </tr>
+              <tr>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">total<span class="text-red-500 ml-0.5">*</span></td>
+                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">money</td>
+                <td class="text-text-2 px-4 py-3 border-b border-hairline">An amount in the smallest unit of the currency. <span class="font-mono text-xs text-text-3">e.g. 4200 = $42.00</span></td>
+              </tr>
+              <tr>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">status</td>
+                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">enum</td>
+                <td class="text-text-2 px-4 py-3 border-b border-hairline">One of <code class="docs-code">pending</code>, <code class="docs-code">paid</code>, <code class="docs-code">refunded</code>. <span class="font-mono text-xs text-text-3">Defaults to "pending"</span></td>
+              </tr>
+              <tr>
+                <td class="font-mono text-text px-4 py-3">metadata</td>
+                <td class="font-mono text-text-3 px-4 py-3">object</td>
+                <td class="text-text-2 px-4 py-3">Up to 50 key-value pairs of arbitrary string data. Indexed for queries.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Deploy -->
+      <h2 id="deploy" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">5. Deploy to production</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">When you're ready, <code class="docs-code">lambda deploy</code> ships your project to every region you've configured. Deploys are atomic — they either succeed everywhere or roll back instantly. There's no half-state.</p>
+
+      <div class="docs-codeblock">
+        <div class="docs-codeblock__bar">
+          <span class="font-mono">terminal</span>
+          <span class="font-mono text-text-3">elapsed 14.2s</span>
+        </div>
+        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">$</span> lambda deploy <span class="tok-kw">--env</span> production
+<span class="tok-ln">2</span>
+<span class="tok-cm"><span class="tok-ln">3</span>  ✓ typecheck            <span class="tok-pn">0.3s</span></span>
+<span class="tok-cm"><span class="tok-ln">4</span>  ✓ generate clients     <span class="tok-pn">0.4s · 4 langs</span></span>
+<span class="tok-cm"><span class="tok-ln">5</span>  ✓ migrate database     <span class="tok-pn">2.1s · 1 plan applied</span></span>
+<span class="tok-cm"><span class="tok-ln">6</span>  ✓ build edge bundles   <span class="tok-pn">3.6s · 41 functions</span></span>
+<span class="tok-cm"><span class="tok-ln">7</span>  ✓ ship to 38 regions   <span class="tok-pn">7.8s</span></span>
+<span class="tok-ln">8</span>
+<span class="tok-ln">9</span><span class="tok-fn">→</span> <span class="tok-str">https://acme.lambda.app</span>  <span class="tok-cm">(commit a3f9c1d · build #1842)</span></code></pre>
+      </div>
+
+      <p class="text-zinc-300 leading-[1.65] mb-4">That's it. Your API is live, your clients are generated, your database is migrated, and every request is being traced end-to-end. Open the <a href="#" class="text-red-500 underline underline-offset-2">dashboard</a> to see logs streaming in real time.</p>
+
+      <!-- Helpful -->
+      <div class="mt-14 px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border border-hairline rounded-xl bg-surface">
+        <div>
+          <b class="font-medium">Was this page helpful?</b>
+          <p class="mt-1 text-[13px] text-text-3 m-0">If something felt off, tell us — every doc has a maintainer on call.</p>
+        </div>
+        <div class="flex gap-2">
+          <button class="h-8 px-3.5 rounded-md border border-hairline bg-transparent text-text-2 hover:text-text hover:border-hairline-strong text-[13px] whitespace-nowrap">👍 Yes</button>
+          <button class="h-8 px-3.5 rounded-md border border-hairline bg-transparent text-text-2 hover:text-text hover:border-hairline-strong text-[13px] whitespace-nowrap">👎 Not really</button>
+        </div>
+      </div>
+
+      <!-- Pager -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-16">
+        <a href="#" class="grid gap-1 px-5 py-4 border border-hairline rounded-xl bg-surface hover:border-hairline-strong transition-colors">
+          <span class="font-mono text-xs tracking-[0.04em] uppercase text-text-3">Previous</span>
+          <span class="text-[15px] text-text font-medium before:content-['←_'] before:text-red-500">Introduction</span>
+        </a>
+        <a href="#" class="grid gap-1 px-5 py-4 border border-hairline rounded-xl bg-surface hover:border-hairline-strong transition-colors text-right">
+          <span class="font-mono text-xs tracking-[0.04em] uppercase text-text-3">Next</span>
+          <span class="text-[15px] text-text font-medium after:content-['_→'] after:text-red-500">Project structure</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Right TOC -->
+    <aside class="hidden xl:block sticky top-32 max-h-[calc(100vh-152px)] overflow-y-auto pl-4 border-l border-hairline text-[13px]" aria-label="On this page">
+      <h2 class="text-xs tracking-[0.08em] uppercase text-text-3 font-medium mb-3">On this page</h2>
+      <ul class="grid gap-1.5 list-none p-0 m-0">
+        {tocItems.map((t, i) => (
+          <li class:list={[t.sub && "pl-3.5"]}>
+            <a
+              href={t.href}
+              data-toc-link
+              class:list={[
+                "block py-0.5 transition-colors duration-300 ease-out",
+                i === 0 ? "text-red-500" : "text-text-3 hover:text-text-2",
+                t.sub && "text-xs",
+              ]}
+            >{t.label}</a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-7 pt-4 border-t border-hairline grid gap-2 text-xs">
+        {tocActions.map((a) => {
+          const Icon = tocActionIconMap[a.icon];
+          return (
+            <a href={a.href} class="inline-flex items-center gap-2 text-text-3 hover:text-text-2">
+              <Icon class="w-4 h-4" />
+              {a.label}
+            </a>
+          );
+        })}
+      </div>
+    </aside>
+  </div>
+</Layout>
+
+<script is:inline>
+  function setupTocScrollSpy() {
+    const links = Array.from(document.querySelectorAll("[data-toc-link]"));
+    if (!links.length) return;
+
+    const sections = links
+      .map((link) => {
+        const href = link.getAttribute("href") || "";
+        if (!href.startsWith("#")) return null;
+        const el = document.getElementById(href.slice(1));
+        return el ? { id: el.id, el, link } : null;
+      })
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    function activate(id) {
+      sections.forEach((s) => {
+        const isActive = s.id === id;
+        if (isActive) {
+          s.link.classList.add("text-red-500");
+          s.link.classList.remove("text-text-3", "hover:text-text-2");
+        } else {
+          s.link.classList.remove("text-red-500");
+          s.link.classList.add("text-text-3", "hover:text-text-2");
+        }
+      });
+    }
+
+    // Track which sections have crossed the activation line (top 100px of viewport)
+    const visible = new Set();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visible.add(entry.target.id);
+          else visible.delete(entry.target.id);
+        });
+        // Pick the section closest to the top of viewport that is still visible
+        let best = null;
+        let bestTop = Infinity;
+        sections.forEach((s) => {
+          if (!visible.has(s.id)) return;
+          const top = s.el.getBoundingClientRect().top;
+          if (top < bestTop) {
+            bestTop = top;
+            best = s.id;
+          }
+        });
+        if (best) activate(best);
+      },
+      { rootMargin: "-100px 0px -55% 0px", threshold: 0 },
+    );
+
+    sections.forEach((s) => observer.observe(s.el));
+  }
+
+  setupTocScrollSpy();
+  document.addEventListener("astro:after-swap", setupTocScrollSpy);
+</script>
+
+<style>
+  @reference "../styles/global.css";
+
+  [x-cloak] { display: none !important; }
+
+  .docs-search {
+    @apply flex items-center gap-2 h-9 px-3 border border-hairline rounded-md bg-surface text-text-3 text-[13px] mb-4;
+  }
+  .docs-code {
+    @apply font-mono text-[13px] px-1.5 py-px rounded-sm bg-red-500/[0.08] text-red-500 border border-red-500/[0.18];
+  }
+  .docs-codeblock {
+    @apply font-mono text-[13px] leading-[1.6] bg-bg border border-hairline rounded-[10px] overflow-hidden mb-7;
+  }
+  .docs-codeblock__bar {
+    @apply flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-text-3 text-xs;
+  }
+  .docs-codeblock__body {
+    @apply px-4 py-4 m-0 overflow-x-auto text-zinc-200 whitespace-pre;
+  }
+  .callout {
+    @apply grid [grid-template-columns:22px_1fr] gap-3.5 px-4 py-4 border border-hairline rounded-[10px] bg-surface my-6;
+  }
+  .callout__icon {
+    @apply w-[22px] h-[22px] rounded-md grid place-items-center text-red-500 bg-red-500/[0.08] border border-red-500/[0.22];
+  }
+  .callout--info .callout__icon {
+    @apply text-blue-400 bg-blue-400/[0.08] border-blue-400/[0.22];
+  }
+  .callout--warn .callout__icon {
+    @apply text-yellow-300 bg-yellow-300/[0.08] border-yellow-300/[0.22];
+  }
+</style>

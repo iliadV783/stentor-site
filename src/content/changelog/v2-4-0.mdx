@@ -1,0 +1,44 @@
+---
+version: "2.4.0"
+date: 2026-04-28
+type: major
+title: "Edge Functions, generally available."
+illustration: region-map
+contributors: 12
+authors:
+  - { initials: "MC", primary: true }
+  - { initials: "JK" }
+  - { initials: "AR" }
+  - { initials: "TS" }
+  - { initials: "+8" }
+authorsLine: "Shipped by Maya, Jiro, Ana & 9 others."
+links:
+  - { label: "Source", href: "#" }
+  - { label: "Discuss", href: "#" }
+  - { label: "Share", href: "#" }
+changes:
+  new:
+    - title: "Edge Functions GA"
+      body: "Now generally available with 99.99% SLA. `lambda functions:deploy` ships to 38 regions in a single command."
+      pr: 3142
+    - title: "Per-region routing"
+      body: "A new `routes.ts` primitive lets you pin endpoints to regions, fail over to fallback regions, or serve different bundles by geo."
+      pr: 3098
+    - title: "Streaming responses"
+      body: "Functions can now return `ReadableStream` for SSE, AI tokens, or large CSV exports without buffering."
+      pr: 3127
+  improvements:
+    - body: "Cold starts dropped from 84ms to 28ms (P95) thanks to a new V8 snapshot pipeline."
+      pr: 3061
+    - body: "Function logs now stream live in the dashboard with sub-second latency, even at 10k req/s."
+      pr: 3119
+    - body: "Bundle size limit raised from 50MB to 250MB for paid plans. Compressed deltas are now diffed across deploys."
+      pr: 3145
+  fixes:
+    - body: "Fixed a race in `kv.atomic()` that caused intermittent transaction aborts under high contention."
+      pr: 3103
+    - body: "Resolved the dashboard crash when viewing functions deployed from a deleted git branch."
+      pr: 3110
+---
+
+After eight months in beta, Edge Functions are now GA across all 38 regions. Cold starts under 30ms, isolates instead of containers, and a new `lambda.routes()` API for per-region routing.

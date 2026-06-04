@@ -1,0 +1,56 @@
+---
+import Logo from "./Logo.astro";
+import IconGithub from "../assets/icons/github.svg";
+import IconXTwitter from "../assets/icons/x-twitter.svg";
+import IconRss from "../assets/icons/rss.svg";
+import IconDiscord from "../assets/icons/discord.svg";
+import { site, footerGroups } from "../data/site";
+
+const socialIcons = [
+  { id: "github", href: site.social.github, label: "GitHub", Icon: IconGithub },
+  { id: "x", href: site.social.x, label: "X", Icon: IconXTwitter },
+  { id: "discord", href: site.social.discord, label: "Discord", Icon: IconDiscord },
+  { id: "rss", href: site.social.rss, label: "RSS", Icon: IconRss },
+];
+---
+<footer class="border-t border-hairline pt-16 pb-10 text-text-3">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <div class="grid gap-12 grid-cols-2 lg:[grid-template-columns:1.4fr_repeat(4,1fr)]">
+      <div class="col-span-2 lg:col-span-1">
+        <Logo />
+        <p class="text-text-3 text-sm mt-4 max-w-[320px]">
+          {site.footerTagline}
+        </p>
+        <div class="flex gap-1.5 mt-5">
+          {socialIcons.map(({ href, label, Icon }) => (
+            <a href={href} aria-label={label} class="grid place-items-center w-8 h-8 border border-hairline rounded-md text-text-2 hover:text-text hover:border-hairline-strong transition-colors">
+              <Icon class="w-4 h-4" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {
+        footerGroups.map((g) => (
+          <div>
+            <h2 class="text-xs uppercase tracking-[0.06em] text-text-3 mb-3.5 font-medium">{g.title}</h2>
+            <ul class="grid gap-2.5 list-none p-0 m-0">
+              {g.links.map((l) => (
+                <li>
+                  <a href={l.href} class="text-sm text-text-2 hover:text-text transition-colors">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 pt-6 border-t border-hairline flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-[13px] text-text-3">
+      <span>{site.copyright}</span>
+      <span class="font-mono">{site.statusPrefix} · <span class="text-green-400">●</span> {site.statusRegions}</span>
+    </div>
+  </div>
+</footer>

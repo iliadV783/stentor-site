@@ -1,0 +1,32 @@
+---
+version: "2.3.0"
+date: 2026-03-31
+type: major
+title: "Row-level policies, written like English."
+illustration: policy-hexagon
+contributors: 9
+authors:
+  - { initials: "JK", primary: true }
+  - { initials: "MC" }
+  - { initials: "DV" }
+  - { initials: "+6" }
+authorsLine: "Shipped by Jiro & the Auth team."
+changes:
+  new:
+    - title: "Policy DSL"
+      body: "A new `.policy` file format lets you express row-level access in plain reading order. The compiler emits Postgres RLS under the hood."
+      pr: 2987
+    - title: "Policy preview"
+      body: "The dashboard shows you which existing rows a policy change would suddenly grant or revoke before you apply it."
+      pr: 3001
+    - title: "Audit logs API"
+      body: "Every policy decision is now queryable via `/v1/audit` with full request context attached."
+      pr: 3019
+  improvements:
+    - body: "JSON policies still work — the DSL is opt-in. Migration tool included."
+      pr: 3024
+    - body: "Test runner can now assert \"this policy denies access for this row + user\" with a one-liner."
+      pr: 3030
+---
+
+A new declarative policy DSL replaces the JSON-based access rules. Read your security model out loud — it's the same as the source code.

@@ -1,0 +1,210 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Logo from "../components/Logo.astro";
+import IconArrowLeft from "../assets/icons/arrow-left.svg";
+import IconGoogle from "../assets/icons/google.svg";
+import IconGithubFilled from "../assets/icons/github-filled.svg";
+import IconMicrosoft from "../assets/icons/microsoft.svg";
+import IconMail from "../assets/icons/mail.svg";
+import IconLock from "../assets/icons/lock.svg";
+import IconArrowRight from "../assets/icons/arrow-right.svg";
+import IconShield from "../assets/icons/shield.svg";
+import { form, ssoProviders, sidePanel, footer } from "../data/signin";
+
+const ssoIconMap = {
+  google: IconGoogle,
+  github: IconGithubFilled,
+  microsoft: IconMicrosoft,
+} as const;
+---
+<Layout title="Sign in — Lambda" showNav={false} showFooter={false} noindex>
+  <div class="signin grid lg:[grid-template-columns:minmax(0,1fr)_minmax(0,1.05fr)] min-h-screen">
+    <!-- LEFT — form column -->
+    <div class="relative flex flex-col px-6 py-8 sm:px-10 lg:px-16 lg:py-8 bg-bg overflow-hidden">
+      <div class="flex items-center justify-between">
+        <Logo />
+        <a class="inline-flex items-center gap-1.5 text-[13px] text-text-3 hover:text-text transition-colors" href="/">
+          <IconArrowLeft class="w-3.5 h-3.5 stroke-2" />
+          {form.backToSite}
+        </a>
+      </div>
+
+      <div class="flex-1 flex items-center justify-center py-10">
+        <form class="w-full max-w-[420px]" action="javascript:void(0)">
+          <h1 class="text-3xl sm:text-[36px] tracking-[-0.035em] font-semibold leading-[1.1] mb-2.5">{form.title}</h1>
+          <p class="text-[14.5px] text-text-2 mb-8">
+            {form.signupPrompt} <a href={form.signupLink.href} class="text-red-500 underline underline-offset-2">{form.signupLink.label}</a>
+          </p>
+
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            {ssoProviders.compact.map((p) => {
+              const Icon = ssoIconMap[p.id];
+              return (
+                <button type="button" class="sso-btn">
+                  <Icon class="w-4 h-4" />
+                  {p.label}
+                </button>
+              );
+            })}
+          </div>
+          {(() => {
+            const WideIcon = ssoIconMap[ssoProviders.wide.id];
+            return (
+              <button type="button" class="sso-btn w-full mb-6">
+                <WideIcon class="w-4 h-4" />
+                {ssoProviders.wide.label}
+              </button>
+            );
+          })()}
+
+          <div class="flex items-center gap-3.5 my-1 mb-6 font-mono text-[11px] tracking-[0.08em] uppercase text-text-4 before:content-[''] before:flex-1 before:h-px before:bg-hairline after:content-[''] after:flex-1 after:h-px after:bg-hairline">{form.divider}</div>
+
+          <div class="mb-4">
+            <label for="si-email" class="block text-[13px] text-text-2 font-medium mb-2">{form.emailLabel}</label>
+            <div class="relative">
+              <IconMail class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-3 stroke-2" />
+              <input id="si-email" type="email" placeholder={form.emailPlaceholder} value={form.emailPrefill} class="si-input" />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-2">
+              <label for="si-password" class="text-[13px] text-text-2 font-medium">{form.passwordLabel}</label>
+              <a class="text-[12.5px] text-red-500 hover:underline" href={form.forgotLink.href}>{form.forgotLink.label}</a>
+            </div>
+            <div class="relative">
+              <IconLock class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-3 stroke-2" />
+              <input id="si-password" type="password" placeholder={form.passwordPlaceholder} value={form.passwordPlaceholder} class="si-input" />
+              <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 px-1 py-1 text-text-3 hover:text-text-2 text-[11px] font-mono tracking-[0.06em] uppercase">show</button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between my-2 mb-6 text-[13px] text-text-2">
+            <label class="inline-flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="peer sr-only" />
+              <span class="relative w-4 h-4 border border-hairline-strong rounded-sm bg-surface grid place-items-center transition-all peer-checked:bg-red-500 peer-checked:border-red-500 peer-checked:after:content-[''] peer-checked:after:w-2 peer-checked:after:h-1 peer-checked:after:border-l-2 peer-checked:after:border-b-2 peer-checked:after:border-bg peer-checked:after:rotate-[-45deg] peer-checked:after:-translate-y-px"></span>
+              {form.rememberLabel}
+            </label>
+          </div>
+
+          <button type="submit" class="w-full h-11 bg-red-500 text-bg rounded-lg font-medium text-sm inline-flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(239,68,68,0.25)] hover:shadow-[0_10px_28px_rgba(239,68,68,0.35)] active:translate-y-px transition-all">
+            {form.submitLabel}
+            <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
+          </button>
+
+          <div class="mt-4.5 p-3 px-3.5 border border-dashed border-hairline rounded-lg flex items-center gap-3 text-[13px] text-text-2">
+            <IconShield class="w-4 h-4 text-text-3 stroke-2 flex-none" />
+            {form.ssoBlurb}
+            <a href={form.ssoLink.href} class="text-red-500 ml-auto font-medium hover:underline">{form.ssoLink.label}</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-text-4 flex-wrap gap-2">
+        <span>{footer.copyright}</span>
+        <div class="inline-flex gap-4">
+          {footer.links.map((l) => (
+            <a href={l.href} class="hover:text-text-2" set:html={l.label.replace(/^●/, '<span class="text-green-400">●</span>')}></a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — visual column -->
+    <div class="hidden lg:block relative bg-deep border-l border-hairline overflow-hidden" aria-hidden="true">
+      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[40%] w-[1100px] h-[700px] pointer-events-none blur-[20px]" style="background: radial-gradient(50% 50% at 50% 50%, rgba(239,68,68,0.32), transparent 70%);"></div>
+      <div class="absolute inset-0 pointer-events-none [background-image:linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:48px_48px] [-webkit-mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)]"></div>
+
+      <!-- Terminal -->
+      <div class="absolute left-[60px] top-20 w-[460px] border border-hairline rounded-xl bg-surface/85 backdrop-blur-md overflow-hidden -rotate-1 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),inset_0_0_0_1px_rgba(255,255,255,0.02)]">
+        <div class="flex items-center gap-2 px-3.5 py-2.5 border-b border-hairline bg-surface-2/60 font-mono text-[11px] text-text-3">
+          <span class="inline-flex gap-[5px] mr-2.5">
+            <i class="w-2 h-2 rounded-full bg-chrome"></i>
+            <i class="w-2 h-2 rounded-full bg-chrome"></i>
+            <i class="w-2 h-2 rounded-full bg-chrome"></i>
+          </span>
+          {sidePanel.terminal.breadcrumb}
+        </div>
+        <div class="px-4.5 py-4.5 px-[18px] py-[18px] pb-5 font-mono text-[12.5px] leading-[1.7] text-zinc-300">
+          {sidePanel.terminal.lines.map((line) => (
+            <div>
+              {line.kind === "cmd" && <><span class="text-red-500">$</span> <span set:html={line.text}></span></>}
+              {line.kind === "comment" && <span class="text-text-3" set:html={line.text}></span>}
+              {line.kind === "ok" && <><span class="text-green-400">✓</span> <span set:html={line.text}></span></>}
+            </div>
+          ))}
+          <div class="mt-1.5"><span class="text-red-500">$</span> <span class="signin-cursor">_</span></div>
+        </div>
+      </div>
+
+      <!-- Deploy card -->
+      <div class="absolute right-14 top-[220px] w-[360px] border border-hairline rounded-xl bg-surface/85 backdrop-blur-md overflow-hidden rotate-[1.5deg] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]">
+        <div class="flex items-center gap-2.5 px-4 py-3.5 border-b border-hairline text-[13px]">
+          <span class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_#4ade80]"></span>
+          <b class="font-medium">{sidePanel.deployCard.title}</b>
+          <span class="ml-auto font-mono text-[10px] tracking-[0.06em] px-2 py-0.5 rounded-full bg-green-400/[0.12] text-green-400 border border-green-400/25">{sidePanel.deployCard.badge}</span>
+        </div>
+        <div class="px-4 py-3.5">
+          {sidePanel.deployCard.rows.map((r, i) => (
+            <div class:list={[
+              "grid grid-cols-[100px_1fr] py-1.5 text-[12.5px]",
+              i < sidePanel.deployCard.rows.length - 1 && "border-b border-dashed border-hairline",
+            ]}>
+              <span class="text-text-3">{r.label}</span>
+              <span class:list={["font-mono", r.accent ? "text-red-500" : "text-text-2"]}>{r.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pulse -->
+      <div class="absolute left-[90px] bottom-32 w-80 border border-hairline rounded-xl bg-surface/85 backdrop-blur-md p-5 -rotate-1 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]">
+        <div class="flex justify-between items-center text-xs">
+          <b class="font-medium">{sidePanel.pulse.title}</b>
+          <span class="font-mono text-red-500">{sidePanel.pulse.rate}</span>
+        </div>
+        <div class="flex items-end gap-[3px] h-9 my-3.5 mb-1.5">
+          {sidePanel.pulse.bars.map((h) => (
+            <i class="flex-1 bg-red-500 opacity-55 rounded-[1px]" style={`height: ${h}%;${h === 100 ? " opacity: 1;" : ""}`}></i>
+          ))}
+        </div>
+        <div class="flex justify-between font-mono text-[10px] text-text-4">
+          <span>{sidePanel.pulse.leftLabel}</span><span>{sidePanel.pulse.rightLabel}</span>
+        </div>
+      </div>
+
+      <!-- Tagline -->
+      <div class="absolute left-16 right-16 bottom-14 z-10">
+        <h2 class="text-[28px] tracking-[-0.025em] leading-[1.15] font-semibold max-w-[460px] text-text" set:html={sidePanel.tagline}></h2>
+        <p class="text-[13.5px] text-text-3 mt-2.5 max-w-[380px] leading-[1.5]">{sidePanel.description}</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @reference "../styles/global.css";
+
+  .sso-btn {
+    @apply h-[42px] inline-flex items-center justify-center gap-2 border border-hairline bg-surface text-text rounded-lg text-[13.5px] font-medium transition-colors hover:border-hairline-strong hover:bg-surface-2;
+  }
+  .si-input {
+    @apply w-full h-11 bg-surface border border-hairline rounded-md text-text font-sans text-sm outline-none transition-all;
+    padding: 0 14px 0 40px;
+  }
+  .si-input::placeholder { color: var(--color-text-4); }
+  .si-input:focus {
+    border-color: rgba(239, 68, 68, 0.5);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+
+  .signin-cursor {
+    border-right: 1px solid #ef4444;
+    padding-right: 1px;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink {
+    0%, 49% { border-color: #ef4444; }
+    50%, 100% { border-color: transparent; }
+  }
+</style>

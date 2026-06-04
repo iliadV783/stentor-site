@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/* Design tokens (extends Tailwind theme) */
+@theme {
+  /* Surface scale — darkest to lightest. Generates bg-*, from-*, to-*, etc. */
+  --color-bg: #0a0a0a;          /* page background */
+  --color-deep: #0c0c0c;        /* viewport / visualization backdrop */
+  --color-sunken: #0e0e0e;      /* inset stat panels, avatar gradient end */
+  --color-surface: #111111;     /* cards */
+  --color-surface-2: #141414;   /* input areas */
+  --color-elevated: #171717;    /* raised cards */
+  --color-raised: #1f1f1f;      /* avatar gradient start */
+  --color-chrome: #2a2a2a;      /* decorative window dots */
+
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-strong: rgba(255, 255, 255, 0.14);
+
+  /* Text scale — every token meets WCAG AA (≥4.5:1) on bg/deep/surface. */
+  --color-text: #fafafa;     /* primary  — ~19:1 on bg */
+  --color-text-2: #a1a1aa;   /* secondary — ~8:1  on bg */
+  --color-text-3: #8b8b95;   /* tertiary  — ~5.7:1 on bg (was #71717a → 4.2:1, failed AA) */
+  --color-text-4: #828289;   /* quaternary — 5.1:1 on bg, 4.8:1 on surface (#111) */
+
+  /* Astro injects --font-geist / --font-geist-mono on :root via <Font />.
+     Each var() resolves to a chain that already includes a metric-adjusted
+     fallback face, so the swap from fallback to web font causes no CLS. */
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  html {
+    /* Anchor jumps account for the sticky nav (h-16 = 64px) + breathing room */
+    scroll-padding-top: 96px;
+  }
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    /* Clamp accidental horizontal overflow at the document root. `clip` (not
+       `hidden`) avoids creating a scroll container, so `position: sticky` and
+       `position: fixed` descendants behave normally. Without this, an isolated
+       overflowing child on one page causes the fixed nav to drift right and,
+       on iOS Safari, lose its containing block during scroll. */
+    overflow-x: clip;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  ::selection {
+    background: rgba(239, 68, 68, 0.35);
+    color: #fff;
+  }
+
+  /* Hide elements bound by Alpine.js until it has hydrated. */
+  [x-cloak] { display: none !important; }
+
+  /* Reveal-on-scroll. Elements opt in via [data-animate]; the global
+     IntersectionObserver in Layout.astro adds .is-in once. Entry-only —
+     no exit. Honors prefers-reduced-motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+      transition:
+        opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: 150ms;
+      will-change: opacity, transform;
+    }
+    [data-animate="fade"] { transform: none; }
+    /* Horizontal slide variants — content enters from its outer edge.
+       Used in the features Showcase to mirror text/illustration alternation. */
+    [data-animate="left"] { transform: translate3d(-28px, 0, 0); }
+    [data-animate="right"] { transform: translate3d(28px, 0, 0); }
+    [data-animate].is-in {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Custom scrollbar — dark theme, subtle */
+  * {
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+    scrollbar-width: thin;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.22);
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+/* Reusable patterns expressed in CSS where utilities aren't enough */
+@utility dotgrid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+@utility dotgrid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%);
+}
+@utility halo-red {
+  background:
+    radial-gradient(50% 50% at 50% 50%, rgba(239, 68, 68, 0.3), transparent 70%),
+    radial-gradient(30% 60% at 50% 50%, rgba(239, 68, 68, 0.18), transparent 70%);
+  filter: blur(8px);
+}
+/* Subtle vertical gradient used for small icon tiles inside bento panels. */
+@utility tile-grad {
+  background-image: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+}
+
+/* Code-block syntax classes (kept small) */
+.tok-kw { color: #c4b5fd; }
+.tok-fn { color: #ef4444; }
+.tok-str { color: #86efac; }
+.tok-num { color: #fcd34d; }
+.tok-cm { color: #828289; }   /* AA-safe dim gray for code comments */
+.tok-pn { color: #8b8b95; }   /* AA-safe dim gray for punctuation */
+.tok-ln {
+  color: #828289;
+  user-select: none;
+  display: inline-block;
+  width: 22px;
+  text-align: right;
+  margin-right: 14px;
+}
+
+/* Long-form legal/document prose. Used by /privacy and /terms — section
+   bodies arrive as raw HTML (<p>, <ul>, <a>, <strong>) and inherit these
+   styles without per-element class soup. */
+.legal-prose {
+  color: var(--color-text-2);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.legal-prose p { margin: 0 0 1rem; }
+.legal-prose p:last-child { margin-bottom: 0; }
+.legal-prose strong { color: var(--color-text); font-weight: 500; }
+.legal-prose a {
+  color: #ef4444;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.legal-prose a:hover { text-decoration-thickness: 2px; }
+.legal-prose ul,
+.legal-prose ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.legal-prose ul { list-style: none; padding-left: 0; }
+.legal-prose ul > li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+.legal-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--color-text-4);
+}
+.legal-prose ol { list-style: decimal; color: var(--color-text-2); }
+.legal-prose code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.18);
+}
+
+/* SVG illustration stroke/fill classes */
+.iso-amber { stroke: #ef4444; }
+.iso-amber-fill { fill: #ef4444; }
+.iso-red { stroke: #f87171; }
+.iso-red-fill { fill: #f87171; }
+.iso-line { stroke: rgba(255, 255, 255, 0.2); }
+.iso-dim { stroke: rgba(255, 255, 255, 0.12); }

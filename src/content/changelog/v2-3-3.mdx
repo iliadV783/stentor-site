@@ -1,0 +1,21 @@
+---
+version: "2.3.3"
+date: 2026-04-14
+type: patch
+title: "Better Postgres branching & a quieter dashboard."
+changes:
+  new:
+    - title: "Copy-on-write branches"
+      body: "Preview environments now share storage pages with their parent until divergence. Branches start in <3 seconds regardless of database size."
+      pr: 3052
+    - title: "Quiet hours"
+      body: "Dashboard alerts now respect a per-team quiet-hours schedule. Pages still fire; toasts hush."
+      pr: 3068
+  improvements:
+    - body: "Logs panel now supports filter chips (status, region, function, user) with keyboard navigation."
+      pr: 3070
+    - body: "API keys can now be scoped to a single resource type — finally."
+      pr: 3074
+---
+
+Database branches now support copy-on-write at the storage layer, so spinning up a 200GB preview environment costs you exactly nothing — until you write to it.

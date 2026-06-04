@@ -1,0 +1,170 @@
+---
+import Eyebrow from "../../Eyebrow.astro";
+import Btn from "../../Btn.astro";
+import IconPlay from "../../../assets/icons/play.svg";
+import IconGrid from "../../../assets/icons/grid.svg";
+import IconRows from "../../../assets/icons/rows.svg";
+import IconCode from "../../../assets/icons/code.svg";
+import IconChartUp from "../../../assets/icons/chart-up.svg";
+import IconBox from "../../../assets/icons/box.svg";
+import IconCrossAxis from "../../../assets/icons/cross-axis.svg";
+import IconClock from "../../../assets/icons/clock.svg";
+import IllusTrafficLineChart from "../../../assets/illustrations/traffic-line-chart.svg";
+import { hero } from "../../../data/home";
+---
+<section class="relative pt-24 lg:pt-[120px] pb-10 overflow-hidden">
+  <div class="absolute inset-0 dotgrid dotgrid-fade pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute left-1/2 -translate-x-1/2 top-[540px] w-[1100px] h-[460px] pointer-events-none halo-red opacity-90" aria-hidden="true"></div>
+
+  <div class="relative max-w-[1280px] mx-auto px-4 md:px-8 text-center">
+    <Eyebrow><span class="font-mono">{hero.eyebrow}</span></Eyebrow>
+
+    <h1 class="mt-6 mb-5 mx-auto max-w-[980px] text-5xl sm:text-6xl lg:text-[76px] leading-[0.98] tracking-[-0.045em] font-semibold" set:html={hero.title}></h1>
+
+    <p class="text-lg leading-[1.55] text-text-2 max-w-[640px] mx-auto">{hero.description}</p>
+
+    <div class="mt-8 inline-flex flex-wrap justify-center gap-3">
+      {hero.ctas.map((cta) => (
+        <Btn href={cta.href} variant={cta.variant} size="lg">
+          {"icon" in cta && cta.icon === "play" && <IconPlay class="w-5 h-5" />}
+          {cta.label}
+          {!("icon" in cta) && <span aria-hidden="true">→</span>}
+        </Btn>
+      ))}
+    </div>
+
+    <div class="mt-16 lg:mt-24 flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-[18px] gap-y-2 font-mono text-xs text-text-3">
+      {hero.trust.map((item, i) => (
+        <>
+          {i > 0 && <span class="hidden sm:block w-px h-3 bg-hairline-strong"></span>}
+          <span>{item.live && <><span class="text-green-400">●</span>{" "}</>}{item.label}</span>
+        </>
+      ))}
+    </div>
+
+    <!-- Product mockup -->
+    <div class="relative mt-16 mx-auto max-w-[1200px] border border-hairline bg-deep rounded-2xl overflow-hidden text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_80px_-20px_rgba(0,0,0,0.7),0_60px_120px_-20px_rgba(239,68,68,0.18)]" role="img" aria-label="Lambda dashboard preview">
+      <div class="flex items-center gap-2.5 h-10 px-3.5 border-b border-hairline bg-white/[0.02]">
+        <span class="inline-flex gap-[5px]">
+          <i class="w-2 h-2 rounded-full bg-chrome"></i>
+          <i class="w-2 h-2 rounded-full bg-chrome"></i>
+          <i class="w-2 h-2 rounded-full bg-chrome"></i>
+        </span>
+        <div class="flex-1 font-mono text-xs text-text-3 text-center"><span>app.lambda.dev/</span><b class="text-text-2 font-medium">acme/production</b></div>
+        <div class="flex gap-1.5">
+          <span class="w-[22px] h-[22px] border border-hairline rounded"></span>
+          <span class="w-[22px] h-[22px] border border-hairline rounded"></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:[grid-template-columns:220px_1fr] md:h-[560px]">
+        <aside class="hidden md:grid grid-rows-[auto_1fr_auto] gap-4 border-r border-hairline p-4 px-3 bg-bg">
+          <div class="flex items-center gap-2.5 p-2 border border-hairline rounded-lg">
+            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-red-500 to-red-700"></div>
+            <div class="text-xs">
+              <b class="block">{hero.mock.workspace.name}</b>
+              <span class="text-text-3 text-[11px]">{hero.mock.workspace.env}</span>
+            </div>
+          </div>
+          <nav class="grid gap-0.5 text-text-2 text-[13px]">
+            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Workspace</p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md bg-white/[0.04] text-text">
+              <IconGrid class="w-3.5 h-3.5" />
+              Overview
+            </p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconRows class="w-3.5 h-3.5" />
+              Database<span class="ml-auto font-mono text-[11px] text-text-3">23</span>
+            </p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconCode class="w-3.5 h-3.5" />
+              Functions<span class="ml-auto font-mono text-[11px] text-text-3">41</span>
+            </p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconChartUp class="w-3.5 h-3.5" />
+              Analytics
+            </p>
+            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Resources</p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconBox class="w-3.5 h-3.5" />
+              Storage
+            </p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconCrossAxis class="w-3.5 h-3.5" />
+              Webhooks<span class="ml-auto font-mono text-[11px] text-text-3">7</span>
+            </p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconClock class="w-3.5 h-3.5" />
+              Cron jobs
+            </p>
+          </nav>
+          <div class="flex items-center gap-2.5 p-2 -mx-3 -mb-4 border-t border-hairline">
+            <div class="w-6 h-6 rounded-full bg-chrome"></div>
+            <div>
+              <b class="text-xs font-medium">{hero.mock.user.name}</b>
+              <span class="block text-[11px] text-text-3">{hero.mock.user.email}</span>
+            </div>
+          </div>
+        </aside>
+
+        <main class="p-5">
+          <div class="flex items-center justify-between mb-[18px]">
+            <h2 class="text-lg tracking-[-0.02em]">{hero.mock.title}</h2>
+            <div class="font-mono text-[11px] text-text-3">{hero.mock.timeframe.prefix}<b class="text-text-2 font-medium">{hero.mock.timeframe.value}</b></div>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+            {hero.mock.stats.map((s) => (
+              <div class="border border-hairline rounded-[10px] py-3 px-3.5 bg-sunken">
+                <div class="font-mono text-[11px] text-text-3">{s.label}</div>
+                <div class="text-[22px] tracking-[-0.03em] mt-1.5">{s.value} {s.suffix && <small class="text-sm text-text-3">{s.suffix}</small>}</div>
+                <div class:list={[
+                  "font-mono text-[11px] mt-0.5",
+                  s.trendColor === "green" && "text-green-400",
+                  s.trendColor === "red" && "text-red-400",
+                ]}>{s.trend}</div>
+              </div>
+            ))}
+          </div>
+
+          <div class="grid grid-cols-1 lg:[grid-template-columns:1.4fr_1fr] gap-3">
+            <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
+              <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
+                <span>Requests over time</span>
+                <span class="inline-flex gap-0.5 p-0.5 border border-hairline rounded-md font-mono text-[11px]">
+                  <span class="px-2 py-[3px] rounded-sm bg-red-500/[0.14] text-red-500">24h</span>
+                  <span class="px-2 py-[3px] text-text-3">7d</span>
+                  <span class="px-2 py-[3px] text-text-3">30d</span>
+                </span>
+              </div>
+              <div class="p-3.5 h-[220px]">
+                <IllusTrafficLineChart class="w-full h-full" />
+              </div>
+            </div>
+            <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
+              <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
+                <span>Live logs</span>
+                <span class="font-mono text-[11px] text-text-3">streaming</span>
+              </div>
+              <div class="font-mono text-[11px] py-1.5">
+                {hero.mock.logs.map((row) => (
+                  <div class="grid [grid-template-columns:56px_60px_1fr] gap-2.5 px-3.5 py-1.5 border-b last:border-b-0 border-dashed border-white/5 text-text-2 items-start">
+                    <span class="text-text-4">{row.t}</span>
+                    <span class:list={[
+                      "px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit",
+                      row.lvl === "ok" && "text-green-400 bg-green-400/10",
+                      row.lvl === "info" && "text-blue-400 bg-blue-400/10",
+                      row.lvl === "warn" && "text-red-500 bg-red-500/10",
+                      row.lvl === "err" && "text-red-400 bg-red-400/10",
+                    ]}>{row.code}</span>
+                    <span class="text-text">{row.m}<span class="text-text-3">{row.s}</span></span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</section>

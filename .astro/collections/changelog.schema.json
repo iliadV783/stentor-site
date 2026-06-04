@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "major",
+        "minor",
+        "patch"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "illustration": {
+      "type": "string",
+      "enum": [
+        "region-map",
+        "policy-hexagon"
+      ]
+    },
+    "contributors": {
+      "type": "number"
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "initials": {
+            "type": "string"
+          },
+          "primary": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "initials"
+        ]
+      }
+    },
+    "authorsLine": {
+      "type": "string"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "href"
+        ]
+      }
+    },
+    "changes": {
+      "type": "object",
+      "properties": {
+        "new": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "pr": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "body"
+            ]
+          }
+        },
+        "improvements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "pr": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "body"
+            ]
+          }
+        },
+        "fixes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "pr": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "body"
+            ]
+          }
+        }
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "date",
+    "type",
+    "title"
+  ]
+}

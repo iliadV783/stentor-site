@@ -1,0 +1,99 @@
+---
+import IconShield from "../../../assets/icons/shield.svg";
+import IconClock from "../../../assets/icons/clock.svg";
+import IconRefreshCcw from "../../../assets/icons/refresh-ccw.svg";
+import IconChartUp from "../../../assets/icons/chart-up.svg";
+import IconBox from "../../../assets/icons/box.svg";
+import IconCrossAxis from "../../../assets/icons/cross-axis.svg";
+import { secondaryBento } from "../../../data/features";
+
+const iconMap = {
+  shield: IconShield,
+  clock: IconClock,
+  "refresh-ccw": IconRefreshCcw,
+  "chart-up": IconChartUp,
+  box: IconBox,
+  "cross-axis": IconCrossAxis,
+} as const;
+---
+<section class="py-24">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] leading-[1.1] font-semibold">{secondaryBento.title}</h2>
+      <p class="text-text-2 max-w-[420px]">{secondaryBento.description}</p>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {secondaryBento.cards.map((card) => {
+        const Icon = iconMap[card.icon];
+        return (
+          <div class="b2">
+            <div class="icon-tile"><Icon class="w-5 h-5" /></div>
+            <div class="b2__title">{card.title}</div>
+            <div class="b2__desc">{card.desc}</div>
+
+            {card.demo.type === "tags" && (
+              <div class="mt-auto flex flex-wrap gap-1.5">
+                {card.demo.items.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            )}
+
+            {card.demo.type === "cron-rows" && (
+              <div class="mt-auto grid gap-1.5">
+                {card.demo.items.map((row) => (
+                  <div class="border border-hairline rounded-md px-2.5 py-1.5 flex items-center gap-2.5 font-mono text-xs">
+                    <span class="px-1.5 py-px rounded-sm text-[10px] text-red-500 bg-red-500/10">{row.schedule}</span>
+                    <span class="text-text">{row.name}</span>
+                    <span class="ml-auto text-text-3">{row.status}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {card.demo.type === "progress" && (
+              <div class="mt-auto">
+                <div class="h-1.5 rounded bg-white/5 overflow-hidden"><i class="block h-full bg-red-500" style={`width: ${card.demo.percent}%;`}></i></div>
+                <div class="font-mono text-[11px] text-text-3 mt-2">{card.demo.label}</div>
+              </div>
+            )}
+
+            {card.demo.type === "bars" && (
+              <div class="mt-auto h-20 flex items-end gap-1">
+                {card.demo.heights.map((h) => (
+                  <i class="flex-1 rounded-t-sm bg-gradient-to-b from-red-500 to-red-500/20" style={`height: ${h}%;`}></i>
+                ))}
+              </div>
+            )}
+
+            {card.demo.type === "url-rows" && (
+              <div class="mt-auto grid gap-2.5">
+                {card.demo.items.map((row) => (
+                  <div class:list={[
+                    "h-8 rounded-md bg-deep px-2.5 flex items-center font-mono text-xs",
+                    row.highlighted
+                      ? "border border-red-500/50 text-text shadow-[0_0_0_3px_rgba(239,68,68,0.12)]"
+                      : "border border-hairline text-text-2",
+                  ]}>{row.text}</div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "../../../styles/global.css";
+  .b2 {
+    @apply bg-surface border border-hairline rounded-xl p-6 flex flex-col gap-3.5 min-h-[240px];
+  }
+  .b2__title { @apply text-[17px] font-semibold tracking-[-0.02em]; }
+  .b2__desc { @apply text-text-2 text-sm; }
+  .icon-tile {
+    @apply grid place-items-center w-9 h-9 rounded-lg border border-hairline text-red-500 tile-grad;
+  }
+  .tag {
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap;
+  }
+</style>

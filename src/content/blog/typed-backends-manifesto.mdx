@@ -1,0 +1,49 @@
+---
+title: "Boring backends, revisited"
+description: "Three years in, what we've learned about types, ergonomics, and the tax of \"just one more abstraction.\""
+date: 2026-02-18
+category: engineering
+author:
+  name: "Anya Voss"
+  role: "Co-founder & CEO"
+  initials: "AV"
+readingTime: "10 min read"
+cover: iso-types
+tags: ["philosophy", "types"]
+---
+
+When we wrote the original *Boring Backends Manifesto* in 2023, the thesis was simple: most backend complexity isn't load-bearing. It accumulates because every team makes locally reasonable decisions — pull in this library, add this caching layer, write this small abstraction — that compound into a system nobody understands six months later.
+
+Three years later, we still believe the thesis. But we've learned where it bends.
+
+## What types are good for
+
+Types catch a category of mistake — passing the wrong shape into the wrong function — that nothing else catches as cheaply. The discipline of writing types forces you to articulate contracts that would otherwise live in someone's head, and the compiler reminds the next person of those contracts every time they touch the code.
+
+Types are not, however, a substitute for thinking. The number of TypeScript projects we've seen with `as any` sprinkled like seasoning is not small.
+
+## Where ergonomics earn their keep
+
+A platform that types your database, your HTTP handler, and your background job — and lets the editor follow a value across all three — saves more developer-hours than any individual library can. Not because typing is novel, but because the *graph* of types stays consistent without anyone having to maintain it.
+
+This is the bet behind Lambda. Not "types are good" — everyone agrees with that. But "the platform should generate the types your code needs, end-to-end, without you having to glue them together."
+
+## The tax of one more abstraction
+
+The mistake we made in our first year was assuming that more abstractions were always better. We shipped a job runner, a cache layer, a feature-flag system, and an event bus, all in six months. Each one made sense in isolation.
+
+In aggregate, they made the platform harder to learn. New users hit the job runner before they had a stable Postgres connection. They asked us how the cache layer interacted with the event bus. They didn't need any of it on day one.
+
+We pulled most of it back. The platform now ships three primitives — Postgres, HTTP functions, and key-value — and lets users opt into the rest. It's a smaller surface, easier to teach, and easier to maintain.
+
+## What we'd say to a new team
+
+If we were starting again, we'd write the same manifesto. We'd just be more honest about the cost of getting it right:
+
+- Types are non-negotiable. They are also a maintenance burden. Plan for the burden.
+- Boring is hard. Building something that disappears requires more decisions than building something that flashes.
+- Surface area is a tax. Every primitive you ship is a primitive you have to support, document, debug, and never break. Choose them carefully.
+
+## A footnote
+
+The original manifesto ended with a line we still like: *"the best praise we hear is 'oh, we forgot Lambda was even there.'"* That line is still our north star, and we are still chasing it.

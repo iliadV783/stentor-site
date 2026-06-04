@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Btn from "../components/Btn.astro";
+---
+
+<Layout title="404 — Page not found · Lambda" active={null} noindex>
+  <section
+    class="relative overflow-hidden min-h-[calc(100vh-65px)] flex items-center py-24 md:py-32 lg:py-40"
+  >
+    <div
+      class="absolute inset-0 dotgrid dotgrid-fade pointer-events-none"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute left-1/2 -translate-x-1/2 bottom-[-440px] w-[1400px] h-[600px] pointer-events-none halo-red opacity-90"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div
+      class="relative w-full max-w-[1280px] mx-auto px-4 md:px-8 text-center grid justify-items-center gap-10"
+    >
+      <p class="text-lg text-text-3 font-medium">
+        <span class="text-text ">Page</span> not found.
+      </p>
+
+      <h1
+        class="leading-[0.85] font-medium text-text font-mono"
+        style="font-size: clamp(140px, 28vw, 280px);"
+      >
+        404
+      </h1>
+
+      <p class="text-lg leading-[1.55] text-text-2 max-w-[560px]">
+        The link you followed is broken, expired, or never existed in the first
+        place. No worries — happens to the best of routes. Let's get you back on
+        familiar ground.
+      </p>
+
+      <div class="inline-flex flex-wrap justify-center gap-3">
+        <Btn href="/" variant="primary" size="lg"
+          >Back to home <span aria-hidden="true">→</span></Btn
+        >
+        <Btn href="/docs" variant="ghost" size="lg">Browse docs</Btn>
+      </div>
+    </div>
+  </section>
+</Layout>

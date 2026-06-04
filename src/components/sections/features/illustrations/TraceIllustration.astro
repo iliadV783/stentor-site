@@ -1,0 +1,57 @@
+---
+/**
+ * Trace illustration — visual companion to the "Observability" showcase row.
+ * Reads `traceRows` from src/data/features.ts. Replace this file's content
+ * with your own markup to swap the visual without touching Showcase.astro.
+ */
+import { traceRows } from "../../../../data/features";
+---
+<div class="illus order-2 lg:order-1">
+  <div class="illus__bar">
+    <span><span class="font-mono">trace · req_01HF8Q3K2ZX</span> · <span class="tag tag--amber">312ms</span></span>
+    <span class="font-mono text-text-3">7 spans · 4 services</span>
+  </div>
+  <div class="px-6 py-5">
+    {traceRows.map((r) => (
+      <div class="grid [grid-template-columns:auto_1fr] md:[grid-template-columns:200px_1fr_70px] items-center gap-3.5 py-2 font-mono text-xs text-text-2 border-b last:border-b-0 border-dashed border-white/5">
+        <div class:list={[
+          "flex items-center gap-2 text-text font-medium",
+          r.name.startsWith("└") && "pl-3"
+        ]}>
+          {r.name}
+          {r.lvl && (
+            <span class:list={[
+              "text-[10px] px-1.5 py-px rounded-sm font-normal",
+              r.lvlColor === "ok" && "text-green-400 bg-green-400/10",
+              r.lvlColor === "amber" && "text-red-500 bg-red-500/10",
+            ]}>{r.lvl}</span>
+          )}
+        </div>
+        <div class="hidden md:block relative h-2 rounded-md bg-white/[0.04]">
+          <i class:list={[
+            "absolute top-0 bottom-0 rounded-md",
+            r.barColor === "amber" && "bg-red-500",
+            r.barColor === "green" && "bg-green-400",
+            r.barColor === "blue" && "bg-blue-400",
+            r.barColor === "gray" && "bg-text-3",
+          ]} style={`left: ${r.left}%; width: ${r.width}%;`}></i>
+        </div>
+        <span class="text-text-3 text-right">{r.ms}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  @reference "../../../../styles/global.css";
+  .illus {
+    @apply bg-surface border border-hairline rounded-xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)];
+  }
+  .illus__bar {
+    @apply flex items-center justify-between px-3.5 py-2.5 border-b border-hairline font-mono text-[11px] text-text-3 bg-white/[0.02];
+  }
+  .tag {
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap;
+  }
+  .tag--amber { @apply text-red-400 bg-red-500/15 border-red-500/30; }
+</style>

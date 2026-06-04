@@ -1,0 +1,263 @@
+---
+import IconCode from "../../../assets/icons/code.svg";
+import IconShieldCheck from "../../../assets/icons/shield-check.svg";
+import IconLightning from "../../../assets/icons/lightning.svg";
+import IconRefreshCcw from "../../../assets/icons/refresh-ccw.svg";
+import IconAtom from "../../../assets/icons/atom.svg";
+import IconClock from "../../../assets/icons/clock.svg";
+import IllusIsoBentoTypes from "../../../assets/illustrations/iso-bento-types.svg";
+import IllusIsoBentoPulseArc from "../../../assets/illustrations/iso-bento-pulse-arc.svg";
+import IllusIsoBentoCron from "../../../assets/illustrations/iso-bento-cron.svg";
+import IllusIsoBentoPostgres from "../../../assets/illustrations/iso-bento-postgres.svg";
+import IllusIsoBentoDeployBranch from "../../../assets/illustrations/iso-bento-deploy-branch.svg";
+import { bento } from "../../../data/home";
+
+const c = bento.cards;
+---
+
+<section class="py-24" id="features">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6">
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] font-semibold" set:html={bento.title}></h2>
+      <p class="text-text-2 max-w-[420px]">{bento.description}</p>
+    </div>
+
+    <div class="grid gap-5">
+      <div class="grid gap-5 lg:[grid-template-columns:4fr_2fr]">
+        <article class="bento">
+          <div class="bento__head">
+            <div class="bento__icon"><IconCode class="w-4 h-4" /></div>
+            <div>
+              <div class="bento__title">{c.types.title}</div>
+              <div class="bento__desc">{c.types.desc}</div>
+            </div>
+          </div>
+          <div class="bento__illus" style="aspect-ratio: 16/4; height: auto;" aria-hidden="true">
+            <IllusIsoBentoTypes />
+          </div>
+        </article>
+
+        <article class="bento">
+          <div class="bento__head">
+            <div class="bento__icon"><IconClock class="w-4 h-4" /></div>
+            <div>
+              <div class="bento__title">{c.p95.title}</div>
+              <div class="bento__desc">{c.p95.desc}</div>
+            </div>
+          </div>
+          <div class="bento__illus h-[110px]" style="aspect-ratio:auto;" aria-hidden="true">
+            <IllusIsoBentoPulseArc />
+          </div>
+          <div class="grid gap-1.5 w-full font-mono text-xs mt-auto">
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span>P50</span><b class="text-text font-medium">22ms</b><span class="text-text-3">▼ 3%</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span>P99</span><b class="text-text font-medium">184ms</b><span class="text-text-3">▲ 1%</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid gap-5 lg:grid-cols-2">
+        <article class="bento">
+          <div class="bento__head">
+            <div class="bento__icon"><IconLightning class="w-4 h-4" /></div>
+            <div>
+              <div class="bento__title">{c.edge.title}</div>
+              <div class="bento__desc">{c.edge.desc}</div>
+            </div>
+          </div>
+          <div class="grid gap-2 content-start">
+            <div class="api-row" data-animate="fade" style="transition-delay: 100ms"><span class="method method--get">GET</span><span class="text-text">/api/orders</span><span class="ml-auto text-text-3">iad · 18ms</span></div>
+            <div class="api-row" data-animate="fade" style="transition-delay: 200ms"><span class="method method--post">POST</span><span class="text-text">/api/checkout</span><span class="ml-auto text-text-3">syd · 42ms</span></div>
+            <div class="api-row" data-animate="fade" style="transition-delay: 300ms"><span class="method method--get">GET</span><span class="text-text">/api/me</span><span class="ml-auto text-text-3">cdg · 11ms</span></div>
+            <div class="api-row" data-animate="fade" style="transition-delay: 400ms"><span class="method method--del">DEL</span><span class="text-text">/api/sessions/:id</span><span class="ml-auto text-text-3">nrt · 24ms</span></div>
+          </div>
+        </article>
+
+        <article class="bento">
+          <div class="bento__head">
+            <div class="bento__icon"><IconShieldCheck class="w-4 h-4" /></div>
+            <div>
+              <div class="bento__title">{c.auth.title}</div>
+              <div class="bento__desc">{c.auth.desc}</div>
+            </div>
+          </div>
+          <div class="code-block h-full">
+            <div class="code-block__bar">
+              <span class="font-mono">policies/orders.policy</span><span class="tag tag--green">enforced</span>
+            </div>
+            <pre class="code-block__body"><code><span class="tok-ln">1</span><span class="tok-kw">policy</span> <span class="tok-fn">read_orders</span> {`{`}
+<span class="tok-ln">2</span>  <span class="tok-kw">on</span> Order
+<span class="tok-ln">3</span>  <span class="tok-kw">allow if</span> ctx.user.id == row.customer.owner
+<span class="tok-ln">4</span>  <span class="tok-kw">allow if</span> ctx.user.role <span class="tok-kw">in</span> [<span class="tok-str">"admin"</span>, <span class="tok-str">"support"</span>]
+<span class="tok-ln">5</span>  <span class="tok-kw">deny otherwise</span>
+<span class="tok-ln">6</span>{`}`}</code></pre>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid gap-5 lg:grid-cols-3">
+        <article class="bento">
+          <div class="bento__head">
+            <div class="bento__icon"><IconClock class="w-4 h-4" /></div>
+            <div>
+              <div class="bento__title">{c.cron.title}</div>
+              <div class="bento__desc">{c.cron.desc}</div>
+            </div>
+          </div>
+          <div class="bento__illus" style="aspect-ratio: 16/8;" aria-hidden="true">
+            <IllusIsoBentoCron />
+          </div>
+          <div class="grid gap-1.5 font-mono text-xs">
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span class="text-red-500">@hourly</span><b class="text-text font-medium">reconcile_payments</b><span class="text-text-3">3,412 ok</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span class="text-red-500">@daily</span><b class="text-text font-medium">send_digest_emails</b><span class="text-text-3">14,209 ok</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 300ms"><span class="text-red-500">@5min</span><b class="text-text font-medium">refresh_search_index</b><span class="text-text-3">1 retry</span></div>
+            <div class="row-list-item" data-animate="fade" style="transition-delay: 400ms"><span class="text-red-500">@on push</span><b class="text-text font-medium">build_invoice_pdf</b><span class="text-text-3">queue 12</span></div>
+          </div>
+        </article>
+
+        <article class="bento">
+          <div class="bento__head">
+            <div class="bento__icon"><IconRefreshCcw class="w-4 h-4" /></div>
+            <div>
+              <div class="bento__title">{c.migrations.title}</div>
+              <div class="bento__desc">{c.migrations.desc}</div>
+            </div>
+          </div>
+          <div class="bento__illus" style="aspect-ratio: 16/8;" aria-hidden="true">
+            <IllusIsoBentoPostgres />
+          </div>
+          <div>
+            <div class="grid gap-1.5 font-mono text-xs">
+              <div data-animate="fade" style="transition-delay: 100ms" class="grid [grid-template-columns:90px_1fr] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2">
+                <span class="text-green-400">▣ applied</span><b class="text-text font-medium">add_orders_index_status</b>
+              </div>
+              <div data-animate="fade" style="transition-delay: 200ms" class="grid [grid-template-columns:90px_1fr_60px] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2">
+                <span class="text-red-500">◷ rolling</span><b class="text-text font-medium">backfill_customer_tier</b><span class="text-text-3">62%</span>
+              </div>
+              <div data-animate="fade" style="transition-delay: 300ms" class="grid [grid-template-columns:90px_1fr] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2">
+                <span class="text-text-3">◌ planned</span><b class="text-text font-medium">drop_legacy_subscriptions</b>
+              </div>
+            </div>
+            <div class="h-1.5 rounded bg-white/5 overflow-hidden mt-3">
+              <i class="block h-full bg-red-500" style="width: 62%;"></i>
+            </div>
+          </div>
+        </article>
+
+        <article class="bento">
+          <div class="bento__head">
+            <div class="bento__icon"><IconAtom class="w-4 h-4" /></div>
+            <div>
+              <div class="bento__title">{c.deploys.title}</div>
+              <div class="bento__desc">{c.deploys.desc}</div>
+            </div>
+          </div>
+          <div class="bento__illus" style="aspect-ratio: 16/8;" aria-hidden="true">
+            <IllusIsoBentoDeployBranch />
+          </div>
+          <div class="grid gap-2.5 font-mono text-xs">
+            <div data-animate="fade" style="transition-delay: 100ms" class="grid [grid-template-columns:70px_1fr_50px] gap-2.5 items-center px-2.5 py-1.5 rounded-md text-text-2 border border-red-500/40 bg-gradient-to-b from-red-500/[0.06] to-transparent">
+              <span class="text-red-500">a8f2c1d</span>
+              <div>
+                <b class="block mb-1 text-text font-medium">main · rolling out</b>
+                <div class="relative h-1.5 rounded-sm bg-white/5 overflow-hidden">
+                  <i class="absolute inset-y-0 left-0 bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)]" style="width:72%;"></i>
+                </div>
+              </div>
+              <span class="text-text-3 text-[11px] text-right">72%</span>
+            </div>
+            <div data-animate="fade" style="transition-delay: 200ms" class="grid [grid-template-columns:70px_1fr_50px] gap-2.5 items-center px-2.5 py-1.5 rounded-md text-text-2 border border-hairline bg-bg">
+              <span class="text-green-400">3e91b04</span>
+              <div>
+                <b class="block mb-1 text-text font-medium">main · live</b>
+                <div class="relative h-1.5 rounded-sm bg-white/5 overflow-hidden">
+                  <i class="absolute inset-y-0 left-0 right-0 bg-gradient-to-r from-green-400 to-green-500"></i>
+                </div>
+              </div>
+              <span class="text-text-3 text-[11px] text-right">2h ago</span>
+            </div>
+            <div data-animate="fade" style="transition-delay: 300ms" class="grid [grid-template-columns:70px_1fr_50px] gap-2.5 items-center px-2.5 py-1.5 rounded-md text-text-2 border border-hairline bg-bg">
+              <span class="text-text-3">7c4d2fa</span>
+              <div>
+                <b class="block mb-1 text-text-2 font-medium">previous · idle</b>
+                <div class="relative h-1.5 rounded-sm bg-white/5 overflow-hidden">
+                  <i class="absolute inset-0 bg-white/[0.18]"></i>
+                </div>
+              </div>
+              <span class="text-text-3 text-[11px] text-right">↺ rollback</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "../../../styles/global.css";
+  .bento {
+    @apply relative flex flex-col gap-4 overflow-hidden bg-surface border border-hairline rounded-xl p-6 min-h-[280px];
+  }
+  .bento__head {
+    @apply flex items-center gap-3;
+  }
+  .bento__icon {
+    @apply grid place-items-center w-9 h-9 rounded-lg border border-hairline text-red-500 tile-grad;
+  }
+  .bento__title {
+    @apply text-[17px] tracking-[-0.02em] font-semibold;
+  }
+  .bento__desc {
+    @apply text-text-2 text-sm max-w-[380px];
+  }
+  .bento__illus {
+    @apply relative border border-hairline rounded-[10px] overflow-hidden;
+    aspect-ratio: 16 / 7;
+    background:
+      radial-gradient(
+        ellipse 80% 70% at 50% 50%,
+        rgba(239, 68, 68, 0.08),
+        transparent 70%
+      ),
+      #0a0a0a;
+  }
+  .bento__illus > svg {
+    @apply w-full h-full block;
+  }
+
+  .code-block {
+    @apply font-mono text-xs leading-[1.55] text-zinc-200 bg-bg border border-hairline rounded-lg overflow-hidden;
+  }
+  .code-block__bar {
+    @apply flex items-center justify-between px-3 py-2 border-b border-hairline text-text-3 text-[11px];
+  }
+  .code-block__body {
+    @apply px-4 py-3.5 m-0 whitespace-pre-wrap;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap;
+  }
+  .tag--green {
+    @apply text-green-400 bg-green-400/10 border-green-400/20;
+  }
+
+  .api-row {
+    @apply flex items-center gap-2.5 font-mono text-xs px-2.5 py-2 border-b last:border-b-0 border-hairline;
+  }
+  .method {
+    @apply px-1.5 py-px rounded-sm text-[10px];
+  }
+  .method--get {
+    @apply text-green-400 bg-green-400/10;
+  }
+  .method--post {
+    @apply text-blue-400 bg-blue-400/10;
+  }
+  .method--del {
+    @apply text-red-400 bg-red-400/10;
+  }
+
+  .row-list-item {
+    @apply grid [grid-template-columns:80px_1fr_auto] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2;
+  }
+</style>

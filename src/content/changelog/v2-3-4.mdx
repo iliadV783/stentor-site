@@ -1,0 +1,28 @@
+---
+version: "2.3.4"
+date: 2026-04-21
+type: patch
+title: "Migration safety net & faster CLI startup."
+authors:
+  - { initials: "RB" }
+  - { initials: "EM" }
+  - { initials: "SP" }
+authorsLine: "Shipped by Renata, Eli & Sam."
+changes:
+  improvements:
+    - body: "CLI startup dropped from 240ms to 98ms thanks to lazy-loaded subcommand modules."
+      pr: 3088
+    - body: "Migration plans now show estimated lock duration, row-count impact, and a backfill ETA before applying."
+      pr: 3079
+    - body: "Trace viewer now surfaces N+1 query patterns inline with a \"fix this\" suggestion."
+      pr: 3084
+  fixes:
+    - body: "Fixed a regression where `lambda dev` would hang if port 4321 was already in use."
+      pr: 3091
+    - body: "SAML logout redirects now respect the `RelayState` parameter on all configured IdPs."
+      pr: 3094
+    - body: "Webhooks no longer retry indefinitely on `410 Gone` responses — they now permanently fail-open."
+      pr: 3096
+---
+
+A small but mighty release. `lambda migrate` now warns before destructive changes hit production, and the CLI is 2.4× faster to boot on first run.

@@ -1,0 +1,223 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+import type { NavId } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  active?: NavId | null;
+  showNav?: boolean;
+  showFooter?: boolean;
+  /** Path or absolute URL to the social/OG image. Defaults to /og-default.png. */
+  image?: string;
+  /** OG type. "website" for marketing pages, "article" for blog posts. */
+  ogType?: "website" | "article";
+  /** Tell crawlers not to index this page (e.g. signin/signup). */
+  noindex?: boolean;
+  /** ISO date string for article pages (blog posts). */
+  publishedTime?: string;
+  /** Author name for article pages. */
+  author?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  active = null,
+  showNav = true,
+  showFooter = true,
+  image = "/og-default.png",
+  ogType = "website",
+  noindex = false,
+  publishedTime,
+  author,
+} = Astro.props;
+
+// Canonical URL: `Astro.site` is set in astro.config.mjs.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+// OG image needs to be an absolute URL — resolve relative paths against the site origin.
+const ogImage = image.startsWith("http") ? image : new URL(image, Astro.site).toString();
+const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "";
+
+// JSON-LD: emit Organization on every page (helps search engines understand the brand),
+// add WebSite on the home page (enables sitelinks), and Article on blog posts (enables
+// rich results with publish date + author). Social URLs marked "#" in site.ts are
+// filtered out so we don't ship junk references.
+const isHome = Astro.url.pathname === "/";
+const isArticle = ogType === "article";
+const socialUrls = (Object.values(site.social) as string[]).filter(
+  (s) => s && !s.startsWith("#"),
+);
+
+const orgSchema: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: siteOrigin || undefined,
+  logo: ogImage,
+  ...(socialUrls.length ? { sameAs: socialUrls } : {}),
+};
+
+const websiteSchema = isHome
+  ? {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: site.title,
+      url: siteOrigin || undefined,
+      description: site.description,
+    }
+  : null;
+
+const articleSchema =
+  isArticle && publishedTime
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title,
+        description,
+        image: ogImage,
+        datePublished: publishedTime,
+        ...(author
+          ? { author: { "@type": "Person", name: author } }
+          : {}),
+        publisher: {
+          "@type": "Organization",
+          name: site.name,
+          logo: { "@type": "ImageObject", url: ogImage },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": canonicalURL },
+      }
+    : null;
+---
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    {/* Title + description */}
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    {/* Favicon */}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+
+    {/* Open Graph */}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={site.locale} />
+    {ogType === "article" && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
+    {ogType === "article" && author && (
+      <meta property="article:author" content={author} />
+    )}
+
+    {/* Twitter */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {/* Sitemap discoverability */}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {/* JSON-LD structured data — Organization always, WebSite on home, Article on blog posts */}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {websiteSchema && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    )}
+    {articleSchema && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    )}
+
+    {/* Fonts — self-hosted by Astro with metric-adjusted CLS-safe fallbacks */}
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-geist-mono" preload />
+
+    <ClientRouter />
+  </head>
+  <body>
+    {showNav && <Nav active={active} />}
+    <main>
+      <slot />
+    </main>
+    {showFooter && <Footer />}
+
+    {/* Re-init Alpine on each ClientRouter swap so x-data on the new page mounts. */}
+    <script is:inline>
+      document.addEventListener("astro:after-swap", () => {
+        if (window.Alpine) window.Alpine.initTree(document.body);
+      });
+    </script>
+
+    {/* Silence the InvalidStateError thrown by the ViewTransitions API when a
+        navigation is interrupted by a faster one (e.g. user clicks two links
+        in quick succession). It's harmless — the new transition still runs —
+        but it pollutes the buyer's console. */}
+    <script is:inline>
+      window.addEventListener("unhandledrejection", (e) => {
+        const r = e.reason;
+        if (
+          r &&
+          r.name === "InvalidStateError" &&
+          typeof r.message === "string" &&
+          /transition was aborted/i.test(r.message)
+        ) {
+          e.preventDefault();
+        }
+      });
+    </script>
+
+    {/* Reveal-on-scroll: elements with [data-animate] get .is-in once they
+        intersect the viewport. Runs as early as possible (astro:after-swap)
+        to avoid a flash of opacity:0 between view-transition end and IO setup.
+        No-ops under prefers-reduced-motion. */}
+    <script is:inline>
+      (() => {
+        function init() {
+          const els = document.querySelectorAll("[data-animate]:not(.is-in)");
+          if (!els.length) return;
+          const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (reduce || !("IntersectionObserver" in window)) {
+            els.forEach((el) => el.classList.add("is-in"));
+            return;
+          }
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const e of entries) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("is-in");
+                  io.unobserve(e.target);
+                }
+              }
+            },
+            { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
+          );
+          els.forEach((el) => io.observe(el));
+        }
+        // Fires on first load and after every ClientRouter swap.
+        document.addEventListener("astro:page-load", init);
+        // Fires earlier than page-load on swaps — catches elements before
+        // the new page paints, eliminating the brief opacity:0 flicker.
+        document.addEventListener("astro:after-swap", init);
+      })();
+    </script>
+  </body>
+</html>
