@@ -26,9 +26,9 @@ export const about = {
       "The project is developed by Leonardo Mancini as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.",
     ],
     pullQuote: {
-      text: "A performance text should be easy to prepare, precise to cue and simple to share — whether it reaches a screen, a phone or a listener.",
-      author: "Leonardo Mancini",
-      role: "Creator and developer of Sténtor",
+      text: "Live performance text should travel clearly: from the script to the operator, from the stage to screens, from the room to each audience device.",
+      author: "Sténtor",
+      role: "Project principle",
     },
   },
 
