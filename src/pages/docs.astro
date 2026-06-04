@@ -85,7 +85,7 @@ const tocActionIconMap = {
 
       <h1 id="quickstart" class="text-4xl md:text-[44px] leading-[1.05] tracking-[-0.04em] font-semibold mb-3">Prepare, cue and share a live performance text.</h1>
       <p class="text-lg leading-[1.55] text-text-2 max-w-[640px] mb-7">
-        This workflow follows the current Sténtor app: create or import a project, prepare cues and languages in <code class="docs-code">Copione</code>, operate the show from <code class="docs-code">Regia</code>, and let screens and audience phones follow through Live Sync.
+        This workflow follows the current Sténtor app: create or import a project, prepare cues and languages in <code class="docs-code">Script</code>, operate the show from the <code class="docs-code">Operator view</code>, and let screens and audience phones follow through Live Sync.
       </p>
 
       <div class="flex items-center gap-3 flex-wrap mb-10 font-mono text-xs text-text-3">
@@ -102,7 +102,7 @@ const tocActionIconMap = {
       <p class="text-zinc-300 leading-[1.65] mb-4">Sténtor is designed to work in rehearsal rooms and theatres with a lightweight setup. For preparation you only need the desktop app or the web prototype. For a live room with audience phones, use a local network that the operator computer and smartphones can join.</p>
       <ul class="grid gap-2 mb-5 list-none">
         <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>A Sténtor project, either created from scratch or imported from <code class="docs-code">.docx</code>, <code class="docs-code">.txt</code>, <code class="docs-code">.srt</code>, <code class="docs-code">.vtt</code>, <code class="docs-code">.csv</code> or <code class="docs-code">.json</code>.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>One operator computer for <code class="docs-code">Regia</code>, plus optional projection screens and audience smartphones.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>One operator computer for the <code class="docs-code">Operator view</code>, plus optional projection screens and audience smartphones.</span></li>
         <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>For Live Sync in a venue, a stable local Wi-Fi network. Internet is not required for the room prototype; the devices only need to be on the same network.</span></li>
       </ul>
 
@@ -142,7 +142,7 @@ const tocActionIconMap = {
 <span class="tok-pn">$</span> npm run dev</code></pre>
         <pre class="docs-codeblock__body" x-show="tab==='room'" x-cloak><code><span class="tok-pn">$</span> npm install
 <span class="tok-pn">$</span> npm run build
-<span class="tok-pn">$</span> npm run sala</code></pre>
+<span class="tok-pn">$</span> npm run room</code></pre>
         <pre class="docs-codeblock__body" x-show="tab==='build'" x-cloak><code><span class="tok-pn">$</span> npm test
 <span class="tok-pn">$</span> npm run build
 <span class="tok-pn">$</span> npm run desktop:build</code></pre>
@@ -150,7 +150,7 @@ const tocActionIconMap = {
 
       <!-- Init -->
       <h2 id="init" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">2. Create or import a project</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Start from <code class="docs-code">Progetti</code>. You can create a blank project, open an existing Sténtor file, or import a script. Word import recognises theatrical structure where possible: characters, speeches, stage directions and markers such as act, scene, tableau or interval.</p>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Start from <code class="docs-code">Projects</code>. You can create a blank project, open an existing Sténtor file, or import a script. Word import recognises theatrical structure where possible: characters, speeches, stage directions and markers such as act, scene, tableau or interval.</p>
 
       <div class="grid gap-3 mb-8">
         {[
@@ -170,7 +170,7 @@ const tocActionIconMap = {
 
       <!-- Prepare -->
       <h2 id="define-model" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">3. Prepare cues and layers</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">In <code class="docs-code">Copione</code>, each cue can hold original text, translations, notes and timing. Use markers for acts, scenes and intervals. Use the audio-description panel to connect descriptions to cue points and prepare a separate audio script when needed.</p>
+      <p class="text-zinc-300 leading-[1.65] mb-4">In <code class="docs-code">Script</code>, each cue can hold original text, translations, notes and timing. Use markers for acts, scenes and intervals. Use the audio-description panel to connect descriptions to cue points and prepare a separate audio script when needed.</p>
 
       <div class="docs-codeblock">
         <div class="docs-codeblock__bar">
@@ -198,13 +198,13 @@ const tocActionIconMap = {
 
       <!-- Live -->
       <h2 id="endpoints" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">4. Cue the show</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Move to <code class="docs-code">Regia</code> when the project is ready. The operator advances or rewinds cues, sends blackout, monitors timing and checks what screens and audience phones are receiving.</p>
+      <p class="text-zinc-300 leading-[1.65] mb-4">Move to the <code class="docs-code">Operator view</code> when the project is ready. The operator advances or rewinds cues, sends blackout, monitors timing and checks what screens and audience phones are receiving.</p>
 
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 border-b border-hairline font-mono text-[13px]">
           <div class="flex items-center gap-3">
             <span class="px-2 py-0.5 rounded-sm font-medium text-xs text-red-500 bg-red-500/10">LIVE</span>
-            <span class="text-text">Regia / cue state</span>
+            <span class="text-text">Operator view / cue state</span>
           </div>
           <span class="sm:ml-auto text-text-3 text-xs">operator-led · manual first · semi-automatic optional</span>
         </div>
@@ -219,24 +219,24 @@ const tocActionIconMap = {
             </thead>
             <tbody>
               <tr>
-                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Regia<span class="text-red-500 ml-0.5">*</span></td>
-                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">operator view</td>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Operator view<span class="text-red-500 ml-0.5">*</span></td>
+                <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">live cueing</td>
                 <td class="text-text-2 px-4 py-3 border-b border-hairline">Advance, go back, blackout, read the current and next cue, and add quick notes during the show.</td>
               </tr>
               <tr>
-                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Schermi</td>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Screens</td>
                 <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">projection targets</td>
                 <td class="text-text-2 px-4 py-3 border-b border-hairline">Configure each screen with language, aspect ratio and style. Open one screen or all configured screens.</td>
               </tr>
               <tr>
-                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Audiodescrizione</td>
+                <td class="font-mono text-text px-4 py-3 border-b border-hairline">Audio description</td>
                 <td class="font-mono text-text-3 px-4 py-3 border-b border-hairline">notes and audio</td>
                 <td class="text-text-2 px-4 py-3 border-b border-hairline">Prepare descriptions, attach recorded audio when needed, and export TXT, CSV or VTT for revision and rehearsal.</td>
               </tr>
               <tr>
-                <td class="font-mono text-text px-4 py-3">Pubblico</td>
+                <td class="font-mono text-text px-4 py-3">Audience</td>
                 <td class="font-mono text-text-3 px-4 py-3">audience phones</td>
-                <td class="text-text-2 px-4 py-3">Show QR code or local address, monitor connected devices and check how many follow Regia or enable audio.</td>
+                <td class="text-text-2 px-4 py-3">Show QR code or local address, monitor connected devices and check how many follow the operator view or enable audio.</td>
               </tr>
             </tbody>
           </table>
@@ -254,13 +254,13 @@ const tocActionIconMap = {
         </div>
         <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">$</span> npm install
 <span class="tok-ln">2</span><span class="tok-pn">$</span> npm run build
-<span class="tok-ln">3</span><span class="tok-pn">$</span> npm run sala
+<span class="tok-ln">3</span><span class="tok-pn">$</span> npm run room
 <span class="tok-ln">4</span>
 <span class="tok-cm"><span class="tok-ln">5</span># open the operator app on the computer</span>
 <span class="tok-cm"><span class="tok-ln">6</span># show the QR code to audience phones on the same Wi-Fi</span></code></pre>
       </div>
 
-      <p class="text-zinc-300 leading-[1.65] mb-4">On the audience page, spectators choose language and mode: surtitles, audio description or both. During the show they can follow Regia automatically, while the operator remains in control of cue position and blackout.</p>
+      <p class="text-zinc-300 leading-[1.65] mb-4">On the audience page, spectators choose language and mode: surtitles, audio description or both. During the show they can follow the operator view automatically, while the operator remains in control of cue position and blackout.</p>
 
       <!-- Feedback -->
       <h2 id="feedback" class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mt-14 mb-4 pt-4">6. Share feedback after use</h2>
