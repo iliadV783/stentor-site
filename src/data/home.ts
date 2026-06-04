@@ -11,7 +11,7 @@ export const hero = {
   title:
     'Surtitles, translation <em class="not-italic text-text-3 font-medium">and audio description.</em><br class="hidden sm:inline" /> Live.',
   description:
-    "Lambda is a typed, observable backend with managed Postgres, edge functions, and built-in analytics. Deploy in seconds, scale without rewrites, sleep through the night.",
+    "Sténtor offers theatres, artists and live-performance teams a simple way to prepare and share surtitles, translations and audio descriptions — with the same essential tools available to everyone.",
   ctas: [
     { href: "/signup", label: "Start free trial", variant: "primary" as const },
     { href: "#demo", label: "Watch 2-min demo", variant: "ghost" as const, icon: "play" as const },
