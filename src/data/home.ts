@@ -17,9 +17,9 @@ export const hero = {
     { href: "#demo", label: "Watch 2-min demo", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "99.99% uptime · last 90 days", live: true },
-    { label: "SOC 2 Type II" },
-    { label: "No credit card required" },
+    { label: "Cross-platform desktop", live: true },
+    { label: "Audience web client" },
+    { label: "Live Sync · EUPL license · Research-driven" },
   ],
   // Mock dashboard preview shown under the hero.
   mock: {
