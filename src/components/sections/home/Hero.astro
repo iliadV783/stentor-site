@@ -9,7 +9,6 @@ import IconChartUp from "../../../assets/icons/chart-up.svg";
 import IconBox from "../../../assets/icons/box.svg";
 import IconCrossAxis from "../../../assets/icons/cross-axis.svg";
 import IconClock from "../../../assets/icons/clock.svg";
-import IllusTrafficLineChart from "../../../assets/illustrations/traffic-line-chart.svg";
 import { hero } from "../../../data/home";
 ---
 <section class="relative pt-24 lg:pt-[120px] pb-10 overflow-hidden">
@@ -43,14 +42,14 @@ import { hero } from "../../../data/home";
     </div>
 
     <!-- Product mockup -->
-    <div class="relative mt-16 mx-auto max-w-[1200px] border border-hairline bg-deep rounded-2xl overflow-hidden text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_80px_-20px_rgba(0,0,0,0.7),0_60px_120px_-20px_rgba(239,68,68,0.18)]" role="img" aria-label="Lambda dashboard preview">
+    <div class="relative mt-16 mx-auto max-w-[1200px] border border-hairline bg-deep rounded-2xl overflow-hidden text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_80px_-20px_rgba(0,0,0,0.7),0_60px_120px_-20px_rgba(239,68,68,0.18)]" role="img" aria-label="Sténtor operator view preview">
       <div class="flex items-center gap-2.5 h-10 px-3.5 border-b border-hairline bg-white/[0.02]">
         <span class="inline-flex gap-[5px]">
           <i class="w-2 h-2 rounded-full bg-chrome"></i>
           <i class="w-2 h-2 rounded-full bg-chrome"></i>
           <i class="w-2 h-2 rounded-full bg-chrome"></i>
         </span>
-        <div class="flex-1 font-mono text-xs text-text-3 text-center"><span>app.lambda.dev/</span><b class="text-text-2 font-medium">acme/production</b></div>
+        <div class="flex-1 font-mono text-xs text-text-3 text-center"><span>stentor.local/</span><b class="text-text-2 font-medium">macbett/live</b></div>
         <div class="flex gap-1.5">
           <span class="w-[22px] h-[22px] border border-hairline rounded"></span>
           <span class="w-[22px] h-[22px] border border-hairline rounded"></span>
@@ -67,35 +66,35 @@ import { hero } from "../../../data/home";
             </div>
           </div>
           <nav class="grid gap-0.5 text-text-2 text-[13px]">
-            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Workspace</p>
-            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md bg-white/[0.04] text-text">
-              <IconGrid class="w-3.5 h-3.5" />
-              Overview
-            </p>
+            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Project</p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconRows class="w-3.5 h-3.5" />
-              Database<span class="ml-auto font-mono text-[11px] text-text-3">23</span>
+              Script
             </p>
-            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
-              <IconCode class="w-3.5 h-3.5" />
-              Functions<span class="ml-auto font-mono text-[11px] text-text-3">41</span>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md bg-white/[0.04] text-text">
+              <IconGrid class="w-3.5 h-3.5" />
+              Operator view
             </p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconChartUp class="w-3.5 h-3.5" />
-              Analytics
-            </p>
-            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Resources</p>
-            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
-              <IconBox class="w-3.5 h-3.5" />
-              Storage
-            </p>
-            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
-              <IconCrossAxis class="w-3.5 h-3.5" />
-              Webhooks<span class="ml-auto font-mono text-[11px] text-text-3">7</span>
+              Screens<span class="ml-auto font-mono text-[11px] text-text-3">2</span>
             </p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconClock class="w-3.5 h-3.5" />
-              Cron jobs
+              Audio description
+            </p>
+            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Live Sync</p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconBox class="w-3.5 h-3.5" />
+              Audience<span class="ml-auto font-mono text-[11px] text-text-3">18</span>
+            </p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconCode class="w-3.5 h-3.5" />
+              Languages<span class="ml-auto font-mono text-[11px] text-text-3">IT · EN</span>
+            </p>
+            <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
+              <IconCrossAxis class="w-3.5 h-3.5" />
+              Feedback
             </p>
           </nav>
           <div class="flex items-center gap-2.5 p-2 -mx-3 -mb-4 border-t border-hairline">
@@ -127,28 +126,38 @@ import { hero } from "../../../data/home";
             ))}
           </div>
 
-          <div class="grid grid-cols-1 lg:[grid-template-columns:1.4fr_1fr] gap-3">
-            <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
-              <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
-                <span>Requests over time</span>
-                <span class="inline-flex gap-0.5 p-0.5 border border-hairline rounded-md font-mono text-[11px]">
-                  <span class="px-2 py-[3px] rounded-sm bg-red-500/[0.14] text-red-500">24h</span>
-                  <span class="px-2 py-[3px] text-text-3">7d</span>
-                  <span class="px-2 py-[3px] text-text-3">30d</span>
-                </span>
+          <div class="grid grid-cols-1 lg:[grid-template-columns:1.35fr_1fr] gap-3">
+            <div class="grid gap-3">
+              <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
+                <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
+                  <span>{hero.mock.currentCue.label}</span>
+                  <span class="font-mono text-[11px] text-green-400">live</span>
+                </div>
+                <div class="p-6 min-h-[140px] flex flex-col justify-center">
+                  <p class="text-3xl lg:text-[38px] leading-[1.12] tracking-[-0.04em] font-semibold text-text">“{hero.mock.currentCue.text}”</p>
+                  <p class="mt-4 font-mono text-xs text-text-3">{hero.mock.currentCue.meta}</p>
+                </div>
               </div>
-              <div class="p-3.5 h-[220px]">
-                <IllusTrafficLineChart class="w-full h-full" />
+              <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
+                <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
+                  <span>{hero.mock.nextCue.label}</span>
+                  <span class="font-mono text-[11px] text-text-3">standby</span>
+                </div>
+                <div class="p-5 min-h-[110px] flex flex-col justify-center">
+                  <p class="text-2xl lg:text-[28px] leading-[1.14] tracking-[-0.035em] text-text-2">“{hero.mock.nextCue.text}”</p>
+                  <p class="mt-3 font-mono text-xs text-text-3">{hero.mock.nextCue.meta}</p>
+                </div>
               </div>
             </div>
+
             <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
               <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
-                <span>Live logs</span>
-                <span class="font-mono text-[11px] text-text-3">streaming</span>
+                <span>Room logs</span>
+                <span class="font-mono text-[11px] text-text-3">local sync</span>
               </div>
               <div class="font-mono text-[11px] py-1.5">
                 {hero.mock.logs.map((row) => (
-                  <div class="grid [grid-template-columns:56px_60px_1fr] gap-2.5 px-3.5 py-1.5 border-b last:border-b-0 border-dashed border-white/5 text-text-2 items-start">
+                  <div class="grid [grid-template-columns:56px_44px_1fr] gap-2.5 px-3.5 py-1.5 border-b last:border-b-0 border-dashed border-white/5 text-text-2 items-start">
                     <span class="text-text-4">{row.t}</span>
                     <span class:list={[
                       "px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit",
