@@ -14,7 +14,7 @@ export const about = {
     title:
       'Live performance needs <em class="not-italic text-red-500">live words</em>.<br/>For every audience.',
     description:
-      "Sténtor is a cross-platform tool for surtitles, translation and audio description in live performance, created and developed by Leonardo Mancini.",
+      "Sténtor is a cross-platform tool for surtitles, translation and audio description in live performance, created and developed by Leonardo Mancini (University of Turin, Italy).",
   },
 
   story: {
@@ -23,7 +23,7 @@ export const about = {
     paragraphs: [
       "Sténtor starts from a practical problem: live performance often needs more than one layer of text. A production may need surtitles, translations, audio-description notes, operator cues, venue screens and audience phones — all while the show is happening in real time.",
       "The name refers to Στέντωρ, Stentor from Greek mythology, remembered for a voice powerful enough to carry across a battlefield. Sténtor takes that image and turns it into a tool for theatre: not louder sound, but clearer transmission of words, languages and descriptions.",
-      "The project is developed by Leonardo Mancini as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.",
+      "The project is developed by Leonardo Mancini (University of Turin, Italy) as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.",
     ],
     pullQuote: {
       text: "Live performance text should travel clearly: from the script to the operator, from the stage to screens, from the room to each audience device.",
@@ -121,9 +121,9 @@ export const about = {
     description:
       "Sténtor is built for people who work with live performance text: theatre makers, surtitlers, translators, audio describers, operators, venues and festivals.",
     members: [
-      { name: "Leonardo Mancini", role: "Creator and developer", initial: "LM", bio: "Developer of Sténtor and author of the project vision, working on tools for surtitles, translation, audio description and audience devices in live performance." },
+      { name: "Leonardo Mancini", role: "Creator and developer · University of Turin, Italy", initial: "LM", bio: "Developer of Sténtor and author of the project vision, working on tools for surtitles, translation, audio description and audience devices in live performance." },
       { name: "Performance text", role: "Scripts · cues · notes", initial: "PT", bio: "A single project can hold original text, translations, surtitles, audio-description notes and production metadata." },
-      { name: "Live operation", role: "Regia · Live Sync", initial: "LO", bio: "The operator advances cues during rehearsal or performance while screens and phones stay aligned with the live event." },
+      { name: "Live operation", role: "Operator view · Live Sync", initial: "LO", bio: "The operator advances cues during rehearsal or performance while screens and phones stay aligned with the live event." },
       { name: "Audience experience", role: "Phones · screens", initial: "AE", bio: "Spectators can connect with personal devices and choose the layer of text or description they need during the show." },
       { name: "Research feedback", role: "Usage · responses", initial: "RF", bio: "Feedback from creators and audiences helps improve the tool and understand how live-performance text is experienced." },
       { name: "Open licensing", role: "EUPL model", initial: "OL", bio: "The project is built around a European open-source licensing model and an accessible approach to software distribution." },
@@ -150,7 +150,7 @@ export const about = {
     body: "Download the software, try it in rehearsal or in front of an audience, and share the feedback that helps turn practical theatre work into better tools.",
     ctas: [
       { label: "Start for free", href: "/signup", variant: "primary" as const },
-      { label: "Contact", href: "#contact", variant: "ghost" as const },
+      { label: "Contact", href: "/contact", variant: "ghost" as const },
     ],
   },
 } as const;
