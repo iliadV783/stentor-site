@@ -62,13 +62,13 @@ export const logoCloud = {
 
 // ─── Metrics strip ────────────────────────────────────────────────────────
 export const metrics = {
-  title: "Numbers that speak<br/>for themselves.",
+  title: "Built for<br/>live performance.",
   description:
-    "Three years in production with the teams shipping the most demanding workloads on the internet.",
+    "From script preparation to live cueing, Sténtor keeps every layer of the performance text in one place.",
   items: [
-    { value: "10,000", suffix: "+", label: "Engineering teams in production" },
-    { value: "99.99", suffix: "%", label: "Multi-region uptime, last 12 months" },
-    { value: "150", suffix: "+", label: "First-party integrations & SDKs" },
+    { value: "Unlimited", suffix: "", label: "Projects, languages and cues" },
+    { value: "3", suffix: " layers", label: "Surtitles, translation, audio description" },
+    { value: "Live Sync", suffix: "", label: "For screens and audience phones" },
   ],
 };
 
