@@ -91,23 +91,23 @@ export const bento = {
     },
     edge: {
       title: "Built for live rooms",
-      desc: "A focused workflow for rehearsal rooms, theatres and festivals, without turning a performance into an IT project.",
+      desc: "A focused workflow for rehearsal rooms, theatres and festivals — from script preparation to live cueing and audience devices.",
     },
     auth: {
-      title: "One project, many layers",
-      desc: "Keep original text, translations, surtitles, audio-description notes and project metadata together.",
+      title: "One project, shared knowledge",
+      desc: "Keep original text, translations, surtitles, audio-description notes, project metadata and research feedback together.",
     },
     cron: {
-      title: "Import and export",
-      desc: "Bring in Word, TXT, SRT and JSON files, then prepare scripts that are ready to share, archive or tour.",
+      title: "Import, export, circulate",
+      desc: "Bring in Word, TXT, SRT, WebVTT, CSV or JSON files, then share scripts for rehearsal, archive, touring and study.",
     },
     migrations: {
       title: "Clear operator view",
       desc: "Move through cues during the show with a clean interface designed for timing, focus and confidence.",
     },
     deploys: {
-      title: "Same tools for everyone",
-      desc: "Essential live-performance tools stay available across Free, Pro and Venues plans.",
+      title: "Same tools, shared practice",
+      desc: "Core live-performance tools stay available across plans. Pricing reflects context, while feedback helps the whole project grow.",
     },
   },
 };
