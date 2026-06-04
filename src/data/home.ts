@@ -76,38 +76,38 @@ export const metrics = {
 // Header copy only — the per-card structure is laid out in Bento.astro
 // because each card has unique illustrations and demo content.
 export const bento = {
-  title: "Everything you need.<br/>Nothing you don't.",
+  title: "Everything for the text.<br/>Nothing in the way.",
   description:
-    "A focused set of primitives — typed, observable, and composable — so your team can move fast without trading away reliability.",
+    "Prepare scripts, translations, surtitles and audio-description notes in one focused workspace, then cue them live for screens and audience phones.",
   // Card titles + descriptions are editable here. Visuals stay inline.
   cards: {
     types: {
-      title: "Type-safe by default",
-      desc: "Schemas become clients. Generate fully-typed SDKs for TypeScript, Go, Python, and Swift the moment you save your model.",
+      title: "Script-first workflow",
+      desc: "Import a script, split it into cues, add translations and keep notes together without losing the structure of the performance text.",
     },
     p95: {
-      title: "P95 you can prove",
-      desc: "Traces, logs, and metrics on every request — out of the box, no agent to install.",
+      title: "Audience phones, live in sync",
+      desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
     },
     edge: {
-      title: "Edge functions, <30ms cold start",
-      desc: "Isolates instead of containers, deployed to 38 regions. Routes auto-pick the closest healthy node.",
+      title: "Built for live rooms",
+      desc: "A focused workflow for rehearsal rooms, theatres and festivals, without turning a performance into an IT project.",
     },
     auth: {
-      title: "Auth, roles, and audit logs",
-      desc: "SAML, OIDC, magic links, passkeys — and a row-level policy engine you can read.",
+      title: "One project, many layers",
+      desc: "Keep original text, translations, surtitles, audio-description notes and project metadata together.",
     },
     cron: {
-      title: "Cron, queues, and retries",
-      desc: "Durable jobs with backoff and dead-letter queues.",
+      title: "Import and export",
+      desc: "Bring in Word, TXT, SRT and JSON files, then prepare scripts that are ready to share, archive or tour.",
     },
     migrations: {
-      title: "Zero-downtime migrations",
-      desc: "Backfills that throttle themselves under load.",
+      title: "Clear operator view",
+      desc: "Move through cues during the show with a clean interface designed for timing, focus and confidence.",
     },
     deploys: {
-      title: "Zero-downtime deploys",
-      desc: "Atomic releases. Instant rollback to any prior revision.",
+      title: "Same tools for everyone",
+      desc: "Essential live-performance tools stay available across Free, Pro and Venues plans.",
     },
   },
 };
