@@ -1,84 +1,59 @@
-/**
- * Sign-up page copy. Mirrors signin.ts so the two pages stay visually
- * consistent — change SSO providers in signin.ts and import them here.
- */
-
-import { ssoProviders } from "./signin";
-
-// Re-export so signup.astro can import from a single module.
-export { ssoProviders };
-
-// ─── Left column (form) ───────────────────────────────────────────────────
 export const form = {
-  title: "Start shipping in 60 seconds.",
-  signinPrompt: "Already have an account?",
-  signinLink: { href: "/signin", label: "Sign in →" },
+  title: "Request access to Sténtor.",
+  intro: "Sténtor is a research-driven prototype. Leave your email and context of use: we will send updates, download information and feedback questionnaires when they are ready.",
   nameLabel: "Full name",
-  namePlaceholder: "Ada Lovelace",
-  emailLabel: "Work email",
-  emailPlaceholder: "you@company.com",
-  passwordLabel: "Password",
-  passwordPlaceholder: "At least 12 characters",
-  termsLabel:
-    'I agree to the <a href="/terms" class="text-text underline underline-offset-2">Terms</a> and <a href="/privacy" class="text-text underline underline-offset-2">Privacy Policy</a>.',
-  submitLabel: "Create account",
-  ssoBlurb: "Your team uses SAML SSO?",
-  ssoLink: { href: "#sso", label: "Sign up with SSO →" },
-  divider: "or with email",
+  namePlaceholder: "Your name",
+  emailLabel: "Email",
+  emailPlaceholder: "you@example.com",
+  roleLabel: "How would you use Sténtor?",
+  roleOptions: ["Independent artist or researcher", "Company or collective", "Theatre, festival or venue", "Translator or surtitler", "Audio describer", "Technician or operator", "Other"],
+  messageLabel: "Context or message",
+  messagePlaceholder: "Tell us if you want to test Sténtor in rehearsal, with an audience, in a theatre, in a workshop or in a research context.",
+  consentLabel: 'I agree to be contacted about Sténtor updates, feedback questionnaires and research-related communication. See the <a href="/privacy" class="text-text underline underline-offset-2">Privacy Policy</a>.',
+  submitLabel: "Request access",
   backToSite: "Back to site",
-  // Reassurance row, shown above the submit button.
-  bullets: [
-    "Free forever, no credit card required",
-    "Up to 3 projects on the Free plan",
-    "Cancel or upgrade any time",
-  ],
+  note: "This page is for access requests and research communication. It does not create a user account.",
+  bullets: ["No account setup here", "Same core features for everyone", "Feedback and field notes help the project grow"]
 };
 
-// ─── Right column (visual) ────────────────────────────────────────────────
-// Same layered cards as signin, but the copy targets a brand-new user.
 export const sidePanel = {
-  tagline: 'Ship in <em class="text-red-500 not-italic">60 seconds</em>, not 60 days.',
-  description:
-    "Postgres, edge functions, and observability — wired up before your coffee finishes brewing.",
-  // Terminal mockup. Walks through the very first deploy.
+  tagline: 'From <em class="text-red-500 not-italic">real rooms</em> to better tools.',
+  description: "Sténtor grows through rehearsals, theatre tests, audience responses and shared knowledge about live-performance text.",
   terminal: {
-    breadcrumb: "~/hello-lambda  ·  main",
+    breadcrumb: "~/stentor · research",
     lines: [
-      { kind: "cmd" as const, text: "lambda init" },
-      { kind: "comment" as const, text: "# scaffolding · postgres + 1 function" },
-      { kind: "ok" as const, text: 'wrote <span class="text-blue-400">lambda.config.ts</span>' },
-      { kind: "cmd" as const, text: "lambda deploy" },
-      { kind: "ok" as const, text: "live in 38 regions · 41s" },
-    ],
+      { kind: "cmd", text: "prepare script" },
+      { kind: "comment", text: "# surtitles · translation · audio description" },
+      { kind: "ok", text: "operator view ready" },
+      { kind: "cmd", text: "start live sync" },
+      { kind: "ok", text: "screens and audience phones connected" }
+    ]
   },
-  // Welcome card — "your first project" instead of an active production deploy.
   deployCard: {
-    title: "Your first project",
-    badge: "ready",
+    title: "Research exchange",
+    badge: "open",
     rows: [
-      { label: "Plan", value: "Free · forever", accent: true },
-      { label: "Postgres", value: "1 GB included" },
-      { label: "Functions", value: "100k req/mo" },
-      { label: "Regions", value: "all 38" },
-      { label: "Setup time", value: "~ 60s" },
-    ],
+      { label: "Access", value: "same tools", accent: true },
+      { label: "Use", value: "rehearsal · live" },
+      { label: "Devices", value: "screens · phones" },
+      { label: "Feedback", value: "questionnaires" },
+      { label: "License", value: "EUPL direction" }
+    ]
   },
-  // Progress / "first request" pulse.
   pulse: {
-    title: "First requests",
-    rate: "✓ live",
-    bars: [10, 18, 14, 28, 22, 40, 30, 52, 36, 64, 48, 78, 60, 88, 100],
-    leftLabel: "deploy",
-    rightLabel: "now",
-  },
+    title: "Field notes",
+    rate: "✓ useful",
+    bars: [16, 28, 22, 38, 32, 48, 40, 60, 52, 72, 58, 82, 70, 90, 100],
+    leftLabel: "test",
+    rightLabel: "learn"
+  }
 };
 
-// ─── Footer ────────────────────────────────────────────────────────────────
 export const footer = {
-  copyright: "© 2026 Lambda Systems, Inc.",
+  copyright: "© 2026 Sténtor",
   links: [
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
-    { href: "#status", label: "● All systems normal" },
-  ],
+    { href: "/contact", label: "● Feedback welcome" }
+  ]
 };
