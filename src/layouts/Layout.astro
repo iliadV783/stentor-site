@@ -13,7 +13,7 @@ interface Props {
   active?: NavId | null;
   showNav?: boolean;
   showFooter?: boolean;
-  /** Path or absolute URL to the social/OG image. Defaults to /og-default.png. */
+  /** Path or absolute URL to the social/OG image. Defaults to /og-default.svg. */
   image?: string;
   /** OG type. "website" for marketing pages, "article" for blog posts. */
   ogType?: "website" | "article";
@@ -31,7 +31,7 @@ const {
   active = null,
   showNav = true,
   showFooter = true,
-  image = "/og-default.png",
+  image = "/og-default.svg",
   ogType = "website",
   noindex = false,
   publishedTime,
@@ -119,6 +119,8 @@ const articleSchema =
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/svg+xml" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={site.locale} />
@@ -212,10 +214,7 @@ const articleSchema =
           );
           els.forEach((el) => io.observe(el));
         }
-        // Fires on first load and after every ClientRouter swap.
         document.addEventListener("astro:page-load", init);
-        // Fires earlier than page-load on swaps — catches elements before
-        // the new page paints, eliminating the brief opacity:0 flicker.
         document.addEventListener("astro:after-swap", init);
       })();
     </script>
