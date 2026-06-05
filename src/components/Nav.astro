@@ -22,19 +22,19 @@ const { active = null } = Astro.props;
   x-bind:class="open ? 'bg-bg' : 'bg-bg/70'"
   class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md backdrop-saturate-150 border-b border-hairline transition-colors"
 >
-  <div class="max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between h-16">
+  <div class="relative max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between h-16">
     <!-- Logo -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 min-w-0">
       <Logo />
     </div>
 
-    <!-- Desktop nav -->
-    <nav aria-label="Primary" class="hidden md:flex gap-1">
+    <!-- Desktop nav: centered against the page, independent from logo/CTA widths -->
+    <nav aria-label="Primary" class="hidden md:flex gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       {nav.map((l) => (
         <a
           href={l.href}
           class:list={[
-            "px-3 py-2 text-sm rounded-md transition-colors hover:bg-white/5",
+            "px-3 py-2 text-sm rounded-md transition-colors hover:bg-white/5 whitespace-nowrap",
             active === l.id ? "text-text" : "text-text-2 hover:text-text",
           ]}
         >
@@ -44,7 +44,7 @@ const { active = null } = Astro.props;
     </nav>
 
     <!-- Right cluster: CTAs + hamburger -->
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-1 ml-auto">
       <a
         href={navCta.secondary.href}
         class="hidden md:inline-flex items-center justify-center h-10 px-4 rounded-lg text-sm font-medium text-text-2 hover:text-text transition-colors"
@@ -72,9 +72,6 @@ const { active = null } = Astro.props;
       </button>
     </div>
   </div>
-
-
-
 </header>
 
 <!-- In-flow spacer to compensate for the fixed header (since fixed takes the header out of flow) -->
@@ -122,7 +119,6 @@ const { active = null } = Astro.props;
               ]}
               aria-hidden="true"
             >
-              {/* → */}
               <IconArrowRight class="w-4 h-4"/>
               </span>
           </div>
@@ -144,7 +140,7 @@ const { active = null } = Astro.props;
         x-on:click="open = false"
         class="h-12 inline-flex items-center justify-center gap-1.5 bg-red-500 hover:bg-red-400 text-bg rounded-xl text-[14px] font-semibold shadow-[0_4px_20px_-4px_rgba(239,68,68,0.55)] transition-colors"
       >
-        Try free <span aria-hidden="true">→</span>
+        Contact <span aria-hidden="true">→</span>
       </a>
     </div>
 
@@ -154,7 +150,7 @@ const { active = null } = Astro.props;
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" aria-hidden="true"></span>
         <span class="text-[12px] text-text-3 font-mono">{site.statusPrefix}</span>
       </div>
-      <span class="text-[11px] text-text-4 font-mono">v2.4.0</span>
+      <span class="text-[11px] text-text-4 font-mono">v0.1.64</span>
     </div>
 </div>
 
