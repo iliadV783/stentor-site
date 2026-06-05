@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   // Canonical origin used by canonical URLs, OG tags, RSS, and the sitemap.
-  site: 'https://stentor.live',
+  site: 'https://www.stentor.live',
   integrations: [
     alpinejs(),
     mdx(),
