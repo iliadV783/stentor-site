@@ -38,16 +38,11 @@ const {
   author,
 } = Astro.props;
 
-// Canonical URL: `Astro.site` is set in astro.config.mjs.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
-// OG image needs to be an absolute URL — resolve relative paths against the site origin.
 const ogImage = image.startsWith("http") ? image : new URL(image, Astro.site).toString();
 const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "";
+const faviconURL = "/favicon.svg?v=stentor-original-2";
 
-// JSON-LD: emit Organization on every page (helps search engines understand the brand),
-// add WebSite on the home page (enables sitelinks), and Article on blog posts (enables
-// rich results with publish date + author). Social URLs marked "#" in site.ts are
-// filtered out so we don't ship junk references.
 const isHome = Astro.url.pathname === "/";
 const isArticle = ogType === "article";
 const socialUrls = (Object.values(site.social) as string[]).filter(
@@ -102,17 +97,14 @@ const articleSchema =
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0a0a0a" />
 
-    {/* Title + description */}
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    {/* Favicon */}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={faviconURL} />
+    <link rel="shortcut icon" type="image/svg+xml" href={faviconURL} />
 
-    {/* Open Graph */}
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
@@ -131,16 +123,13 @@ const articleSchema =
       <meta property="article:author" content={author} />
     )}
 
-    {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    {/* Sitemap discoverability */}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    {/* JSON-LD structured data — Organization always, WebSite on home, Article on blog posts */}
     <script is:inline type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
     {websiteSchema && (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
@@ -149,7 +138,6 @@ const articleSchema =
       <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
     )}
 
-    {/* Fonts — self-hosted by Astro with metric-adjusted CLS-safe fallbacks */}
     <Font cssVariable="--font-geist" preload />
     <Font cssVariable="--font-geist-mono" preload />
 
@@ -162,17 +150,12 @@ const articleSchema =
     </main>
     {showFooter && <Footer />}
 
-    {/* Re-init Alpine on each ClientRouter swap so x-data on the new page mounts. */}
     <script is:inline>
       document.addEventListener("astro:after-swap", () => {
         if (window.Alpine) window.Alpine.initTree(document.body);
       });
     </script>
 
-    {/* Silence the InvalidStateError thrown by the ViewTransitions API when a
-        navigation is interrupted by a faster one (e.g. user clicks two links
-        in quick succession). It's harmless — the new transition still runs —
-        but it pollutes the buyer's console. */}
     <script is:inline>
       window.addEventListener("unhandledrejection", (e) => {
         const r = e.reason;
@@ -187,10 +170,6 @@ const articleSchema =
       });
     </script>
 
-    {/* Reveal-on-scroll: elements with [data-animate] get .is-in once they
-        intersect the viewport. Runs as early as possible (astro:after-swap)
-        to avoid a flash of opacity:0 between view-transition end and IO setup.
-        No-ops under prefers-reduced-motion. */}
     <script is:inline>
       (() => {
         function init() {
