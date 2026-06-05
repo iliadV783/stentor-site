@@ -13,15 +13,10 @@ interface Props {
   active?: NavId | null;
   showNav?: boolean;
   showFooter?: boolean;
-  /** Path or absolute URL to the social/OG image. Defaults to /og-default.svg. */
   image?: string;
-  /** OG type. "website" for marketing pages, "article" for blog posts. */
   ogType?: "website" | "article";
-  /** Tell crawlers not to index this page (e.g. signin/signup). */
   noindex?: boolean;
-  /** ISO date string for article pages (blog posts). */
   publishedTime?: string;
-  /** Author name for article pages. */
   author?: string;
 }
 
@@ -41,7 +36,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = image.startsWith("http") ? image : new URL(image, Astro.site).toString();
 const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "";
-const faviconURL = "/favicon.svg?v=stentor-original-2";
+const faviconURL = "/stentor-icon.png?v=original-1";
 
 const isHome = Astro.url.pathname === "/";
 const isArticle = ogType === "article";
@@ -102,8 +97,9 @@ const articleSchema =
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <link rel="icon" type="image/svg+xml" href={faviconURL} />
-    <link rel="shortcut icon" type="image/svg+xml" href={faviconURL} />
+    <link rel="icon" type="image/png" href={faviconURL} />
+    <link rel="shortcut icon" type="image/png" href={faviconURL} />
+    <link rel="apple-touch-icon" href={faviconURL} />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
