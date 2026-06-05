@@ -1,0 +1,23 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050505"/>
+  <defs>
+    <radialGradient id="g" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 330) rotate(24) scale(640 420)">
+      <stop stop-color="#C65340" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="white" fill-opacity="0.12"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect width="1200" height="630" fill="url(#dots)" opacity="0.45"/>
+  <circle cx="248" cy="315" r="140" fill="#C65340"/>
+  <path d="M170 276C170 226 217 190 280 190C333 190 373 218 383 262C360 255 332 261 306 280L251 320C218 344 193 363 193 394C193 427 224 448 269 448C305 448 333 436 351 414L394 445C365 481 322 498 267 498C187 498 133 458 133 397C133 350 166 319 218 281L273 242C262 237 250 235 238 235C208 235 189 252 189 279C189 291 193 303 200 312L151 339C141 322 135 302 135 281L170 276Z" fill="#050505"/>
+  <path d="M170 276C162 267 153 262 142 260C159 239 181 223 207 216" stroke="#050505" stroke-width="23" stroke-linecap="round"/>
+  <path d="M321 280C340 259 362 250 388 254C374 227 350 208 320 200" stroke="#050505" stroke-width="23" stroke-linecap="round"/>
+  <path d="M306 370C334 377 361 390 386 408" stroke="#050505" stroke-width="44" stroke-linecap="round"/>
+  <text x="455" y="270" fill="#F5F5F5" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-3">Sténtor</text>
+  <text x="458" y="334" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500">Surtitles, translation and audio description</text>
+  <text x="458" y="382" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500">for live performance.</text>
+  <text x="458" y="458" fill="#C65340" font-family="Menlo, Consolas, monospace" font-size="22" font-weight="500">www.stentor.live</text>
+</svg>
