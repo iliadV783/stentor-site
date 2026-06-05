@@ -8,8 +8,8 @@ export const site = {
   legalName: "Sténtor",
   title: "Sténtor — Surtitles, translation and audio description for live performance",
   description:
-    "Sténtor brings surtitles, translation and audio description to live performance, with a focused workflow for rehearsal rooms, theatres and festivals.",
-  url: "https://stentor.live",
+    "Surtitles, translation and audio description for live performance. Prepare scripts, cue live and share with screens and audience phones.",
+  url: "https://www.stentor.live",
   locale: "en",
   copyright: "© 2026 Sténtor.",
   statusPrefix: "Built for live performance",
