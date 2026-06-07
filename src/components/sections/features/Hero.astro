@@ -1,6 +1,12 @@
 ---
 import Eyebrow from "../../Eyebrow.astro";
-import { hero } from "../../../data/features";
+import { hero as defaultHero } from "../../../data/features";
+
+interface Props {
+  hero?: typeof defaultHero;
+}
+
+const { hero = defaultHero } = Astro.props;
 ---
 <section class="relative pt-24 pb-16 text-center">
   <div class="absolute inset-0 pointer-events-none [background-image:radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)]" aria-hidden="true"></div>
