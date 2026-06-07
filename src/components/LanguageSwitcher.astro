@@ -1,8 +1,11 @@
 ---
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.startsWith("/fr") ? "fr" : "en";
+
 const languages = [
-  { code: "en", label: "English", href: "/", active: true, note: "current" },
-  { code: "it", label: "Italiano", href: "#", active: false, note: "coming soon" },
-  { code: "fr", label: "Français", href: "#", active: false, note: "coming soon" },
+  { code: "en", label: "English", href: "/", available: true },
+  { code: "it", label: "Italiano", href: "#", available: false, note: "coming soon" },
+  { code: "fr", label: "Français", href: "/fr/", available: true },
 ];
 ---
 
@@ -25,7 +28,7 @@ const languages = [
       <path d="M12 3a15 15 0 0 1 0 18"></path>
       <path d="M12 3a15 15 0 0 0 0 18"></path>
     </svg>
-    <span class="font-mono text-xs uppercase">EN</span>
+    <span class="font-mono text-xs uppercase">{currentLang}</span>
     <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-text-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M6 9l6 6 6-6"></path>
     </svg>
@@ -46,16 +49,16 @@ const languages = [
     aria-label="Language options"
   >
     {languages.map((lang) => (
-      lang.active ? (
+      lang.available ? (
         <a
           href={lang.href}
-          x-on:click="localStorage.setItem('stentor-lang-choice', 'en'); open = false"
+          x-on:click={`localStorage.setItem('stentor-lang-choice', '${lang.code}'); open = false`}
           class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
           role="menuitem"
         >
-          <span class="font-mono text-[11px] uppercase text-red-500 w-6">{lang.code}</span>
+          <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-red-500" : "text-text-3"]}>{lang.code}</span>
           <span class="flex-1">{lang.label}</span>
-          <span class="font-mono text-[10px] uppercase text-text-4">{lang.note}</span>
+          <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? "current" : ""}</span>
         </a>
       ) : (
         <button
