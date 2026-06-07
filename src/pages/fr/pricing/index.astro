@@ -1,0 +1,179 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Eyebrow from "../../../components/Eyebrow.astro";
+import Btn from "../../../components/Btn.astro";
+import FinalCta from "../../../components/FinalCta.astro";
+import IconCheck from "../../../assets/icons/check.svg";
+import IconPlus from "../../../assets/icons/plus.svg";
+import { hero, plans, compareTable, faq, finalCta } from "../../../data/pricing.fr";
+---
+<Layout
+  title="Sténtor – Soutien"
+  description="Les mêmes fonctions Sténtor pour tout le monde, avec des niveaux de soutien ou de don annuel suggérés selon l’échelle et le contexte d’usage."
+  active="pricing"
+>
+  <section class="relative pt-24 pb-12 text-center" x-data="{cycle:'annual'}">
+    <div class="absolute inset-0 pointer-events-none [background-image:radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)]" aria-hidden="true"></div>
+
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <Eyebrow><span class="font-mono">{hero.eyebrow}</span></Eyebrow>
+      <h1 class="mt-6 mb-4 mx-auto max-w-[920px] text-4xl sm:text-5xl lg:text-[64px] leading-[0.98] tracking-[-0.045em] font-semibold" set:html={hero.title}></h1>
+      <p class="text-lg leading-[1.55] text-text-2 max-w-[720px] mx-auto">{hero.description}</p>
+
+      <div class="inline-flex items-center gap-2.5 mt-8 p-1 border border-hairline rounded-full bg-white/[0.02] font-mono text-[13px]" role="tablist">
+        <button
+          role="tab"
+          @click="cycle='monthly'"
+          :class="cycle==='monthly' ? 'bg-red-500 text-bg font-medium shadow-[0_4px_18px_-6px_rgba(239,68,68,0.55)]' : 'text-text-2'"
+          class="px-4 py-2 rounded-full inline-flex items-center gap-2 transition-colors"
+        >{hero.toggle.monthlyLabel}</button>
+        <button
+          role="tab"
+          @click="cycle='annual'"
+          :class="cycle==='annual' ? 'bg-red-500 text-bg font-medium shadow-[0_4px_18px_-6px_rgba(239,68,68,0.55)]' : 'text-text-2'"
+          class="px-4 py-2 rounded-full inline-flex items-center gap-2 transition-colors"
+        >{hero.toggle.annualLabel}<span :class="cycle==='annual' ? 'text-bg/75' : 'text-red-500'" class="ml-1 text-[11px]">{hero.toggle.annualBadge}</span></button>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-3 items-start max-w-[1200px] mx-auto mt-14 text-left">
+        {plans.map((plan) => (
+          <div class:list={["plan", plan.highlighted && "plan--hi"]}>
+            <div class="flex items-center justify-between">
+              <h2 class="text-[17px] font-semibold">{plan.name}</h2>
+              <span class:list={["tag", plan.tagAccent && "tag--amber"]}>{plan.tag}</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span
+                class="text-[56px] tracking-[-0.045em] leading-none font-semibold"
+                x-text={`cycle==='monthly' ? '${plan.price.monthly}' : '${plan.price.annual}'`}
+              >{plan.price.annual}</span>
+              <span
+                class="text-sm text-text-3"
+                x-text={`cycle==='monthly' ? '${plan.cycle.monthly}' : '${plan.cycle.annual}'`}
+              >{plan.cycle.annual}</span>
+            </div>
+            <p class="text-text-2 text-sm">{plan.tagline}</p>
+            <Btn href={plan.cta.href} variant={plan.cta.variant}>{plan.cta.label}</Btn>
+            <hr class="border-0 border-t border-hairline my-1"/>
+            <div class="text-xs font-mono text-text-3">{plan.featuresHeader}</div>
+            <ul class="grid gap-2.5 list-none p-0 m-0">
+              {plan.features.map((f) => (
+                <li class="flex gap-2.5 text-sm text-zinc-300">
+                  <IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 mt-12">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] text-center mb-8 font-semibold">{compareTable.title}</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-hairline rounded-xl overflow-hidden bg-surface min-w-[480px]">
+          <thead>
+            <tr>
+              <th class="px-5 py-4 text-left text-[13px] font-medium bg-white/[0.02] text-text-2 border-r border-b border-hairline" style="width:46%;">Fonction</th>
+              <th class="px-5 py-4 text-center text-[13px] font-medium bg-white/[0.02] text-text-2 border-r border-b border-hairline" style="width:18%;">Free</th>
+              <th class="px-5 py-4 text-center text-[13px] font-medium bg-red-500/[0.06] text-red-500 border-r border-b border-hairline" style="width:18%;">Pro</th>
+              <th class="px-5 py-4 text-center text-[13px] font-medium bg-white/[0.02] text-text-2 border-b border-hairline" style="width:18%;">Venues</th>
+            </tr>
+          </thead>
+          <tbody>
+            {compareTable.groups.map((g) => (
+              <>
+                <tr>
+                  <td colspan={4} class="font-mono text-xs tracking-[0.06em] uppercase text-text-3 bg-white/[0.02] pt-[18px] pb-3.5 px-5 border-b border-hairline">{g.title}</td>
+                </tr>
+                {g.rows.map((row) => (
+                  <tr>
+                    <td class="px-5 py-4 text-sm text-zinc-200 border-r border-b border-hairline">{row[0]}</td>
+                    <td class="px-5 py-4 text-center font-mono text-[13px] text-text-2 border-r border-b border-hairline">
+                      {row[1] === "—" ? <span class="text-text-4">—</span> : row[1].startsWith("●") ? <span class="inline-flex items-center justify-center gap-1.5 text-red-500"><span class="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0"></span>{row[1] === "●" ? "Oui" : row[1].slice(1).trim()}</span> : row[1]}
+                    </td>
+                    <td class="px-5 py-4 text-center font-mono text-[13px] text-text bg-red-500/[0.04] border-r border-b border-hairline">
+                      {row[2] === "—" ? <span class="text-text-4">—</span> : row[2].startsWith("●") ? <span class="inline-flex items-center justify-center gap-1.5 text-red-500"><span class="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0"></span>{row[2] === "●" ? "Oui" : row[2].slice(1).trim()}</span> : row[2]}
+                    </td>
+                    <td class="px-5 py-4 text-center font-mono text-[13px] text-text-2 border-b border-hairline">
+                      {row[3] === "—" ? <span class="text-text-4">—</span> : row[3].startsWith("●") ? <span class="inline-flex items-center justify-center gap-1.5 text-red-500"><span class="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0"></span>{row[3] === "●" ? "Oui" : row[3].slice(1).trim()}</span> : row[3]}
+                    </td>
+                  </tr>
+                ))}
+              </>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[880px] mx-auto">
+        <h2 class="text-3xl md:text-4xl tracking-[-0.035em] text-center mb-8 font-semibold">{faq.title}</h2>
+        {faq.items.map((item, i) => (
+          <div x-data={`{ open: ${i === 0} }`} class="border border-hairline rounded-[10px] bg-surface mb-3 overflow-hidden">
+            <button
+              type="button"
+              @click="open = !open"
+              class="w-full cursor-pointer px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between gap-4 text-base text-left"
+            >
+              <span>{item.q}</span>
+              <span
+                class="w-6 h-6 border border-hairline rounded-md grid place-items-center text-text-2 transition-colors flex-none"
+                :class="open ? 'text-red-500 border-red-500/40' : ''"
+              >
+                <IconPlus
+                  class="w-4 h-4 transition-all duration-300"
+                  :class="open ? 'rotate-45 stroke-red-500' : ''"
+                />
+              </span>
+            </button>
+            <div class="faq-body" :class="open ? 'is-open' : ''">
+              <div>
+                <div class="faq-content px-5 pb-5 sm:px-6 sm:pb-6 text-text-2 text-sm leading-[1.6] max-w-[720px]" :class="open ? 'is-open' : ''">{item.a}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FinalCta>
+    <Eyebrow><span class="font-mono">{finalCta.eyebrow}</span></Eyebrow>
+    <h2 class="text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-[-0.04em] font-semibold max-w-[800px]" set:html={finalCta.title}></h2>
+    <p class="text-lg leading-[1.55] text-text-2 max-w-[640px]" set:html={finalCta.body}></p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      {finalCta.ctas.map((cta, i) => (
+        <Btn href={cta.href} variant={cta.variant} size="lg">
+          {cta.label}{i === 0 && <span aria-hidden="true">→</span>}
+        </Btn>
+      ))}
+    </div>
+  </FinalCta>
+</Layout>
+
+<style>
+  @reference "../../../styles/global.css";
+
+  .plan {
+    @apply flex flex-col gap-5 bg-surface border border-hairline rounded-xl p-8;
+  }
+  .plan--hi {
+    @apply border-red-500/45;
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.25), 0 30px 60px -30px rgba(239, 68, 68, 0.35);
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0) 40%), #111111;
+  }
+  .tag {
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap;
+  }
+  .tag--amber { @apply text-red-500 bg-red-500/10 border-red-500/25; }
+  [x-cloak] { display: none !important; }
+  .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.2s ease; }
+  .faq-body.is-open { grid-template-rows: 1fr; }
+  .faq-body > div { overflow: hidden; }
+</style>
