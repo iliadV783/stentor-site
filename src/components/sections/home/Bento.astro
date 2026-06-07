@@ -10,8 +10,13 @@ import IllusIsoBentoPulseArc from "../../../assets/illustrations/iso-bento-pulse
 import IllusIsoBentoCron from "../../../assets/illustrations/iso-bento-cron.svg";
 import IllusIsoBentoPostgres from "../../../assets/illustrations/iso-bento-postgres.svg";
 import IllusIsoBentoDeployBranch from "../../../assets/illustrations/iso-bento-deploy-branch.svg";
-import { bento } from "../../../data/home";
+import { bento as defaultBento } from "../../../data/home";
 
+interface Props {
+  bento?: typeof defaultBento;
+}
+
+const { bento = defaultBento } = Astro.props;
 const c = bento.cards;
 ---
 
