@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Btn from "../../components/Btn.astro";
+---
+
+<Layout title="Sténtor — Multilingual live text" description="Surtitles, translation and audio description for live performance." active={null}>
+  <section class="max-w-[1120px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-5">English · multilingual by design</p>
+    <h1 class="text-5xl md:text-[80px] tracking-[-0.065em] leading-[0.96] font-semibold max-w-[920px] mb-6">
+      Surtitles, translation and audio description. Live.
+    </h1>
+    <p class="text-xl text-text-2 leading-[1.6] max-w-[760px] mb-8">
+      Sténtor is a desktop-first tool for live performance text: prepare multilingual projects, cue surtitles and translations, manage audio description, send text to venue screens and let audience phones follow through a local network.
+    </p>
+    <div class="flex flex-wrap gap-3 mb-10">
+      <Btn href="/download" variant="primary" size="lg">Download Sténtor →</Btn>
+      <Btn href="/docs" variant="ghost" size="lg">Read the workflow</Btn>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl border border-hairline bg-surface p-5"><h2 class="font-semibold mb-2">Multilingual projects</h2><p class="text-sm text-text-2 leading-[1.55]">Original text, translations, surtitles and project languages stay in one editable workspace.</p></div>
+      <div class="rounded-2xl border border-hairline bg-surface p-5"><h2 class="font-semibold mb-2">Stage desk / Regia</h2><p class="text-sm text-text-2 leading-[1.55]">The operator controls cues, blackout, screens, audience phones and audio-description state.</p></div>
+      <div class="rounded-2xl border border-hairline bg-surface p-5"><h2 class="font-semibold mb-2">Screens and audience phones</h2><p class="text-sm text-text-2 leading-[1.55]">Use venue screens, foyer QR pages and personal devices on a local network.</p></div>
+    </div>
+  </section>
+</Layout>
