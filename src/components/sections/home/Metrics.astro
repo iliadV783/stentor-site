@@ -1,5 +1,11 @@
 ---
-import { metrics } from "../../../data/home";
+import { metrics as defaultMetrics } from "../../../data/home";
+
+interface Props {
+  metrics?: typeof defaultMetrics;
+}
+
+const { metrics = defaultMetrics } = Astro.props;
 ---
 <section class="py-16">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
