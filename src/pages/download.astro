@@ -5,39 +5,55 @@ import Btn from "../components/Btn.astro";
 
 <Layout
   title="Download Sténtor"
-  description="Download Sténtor after sharing your use context."
-  noindex
+  description="Download Sténtor. Free to try, no account required."
 >
-  <section class="max-w-[920px] mx-auto px-4 md:px-8 py-24 md:py-32">
-    <div class="border border-hairline rounded-2xl bg-surface p-6 md:p-10 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.65)]">
-      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Thank you</p>
-      <h1 class="text-4xl md:text-[56px] tracking-[-0.05em] leading-[1.02] font-semibold mb-5">Your download request has been received.</h1>
-      <p class="text-lg text-text-2 leading-[1.6] max-w-[720px] mb-8">
-        Thank you for telling us how you plan to use Sténtor. This page will host the current macOS, Windows and Linux builds as soon as public downloads are ready.
+  <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[760px] mb-12">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Download</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Download Sténtor.</h1>
+      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">
+        Free to try. No account required. Use Sténtor to prepare, cue and share surtitles, translations and audio descriptions for live performance.
       </p>
+    </div>
 
-      <div class="grid md:grid-cols-3 gap-3 mb-8">
-        <div class="rounded-xl border border-hairline bg-sunken p-4">
-          <h2 class="font-medium mb-1">macOS</h2>
-          <p class="text-sm text-text-3 leading-[1.5]">Apple Silicon build coming here.</p>
-        </div>
-        <div class="rounded-xl border border-hairline bg-sunken p-4">
-          <h2 class="font-medium mb-1">Windows</h2>
-          <p class="text-sm text-text-3 leading-[1.5]">Windows build coming here.</p>
-        </div>
-        <div class="rounded-xl border border-hairline bg-sunken p-4">
-          <h2 class="font-medium mb-1">Linux</h2>
-          <p class="text-sm text-text-3 leading-[1.5]">Linux build coming here.</p>
-        </div>
+    <div class="grid md:grid-cols-3 gap-4 mb-10">
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <p class="font-mono text-xs text-text-3 mb-3">macOS</p>
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Apple Silicon</h2>
+        <p class="text-sm text-text-3 leading-[1.55] mb-5">The first public desktop build will appear here.</p>
+        <Btn href="/contact" variant="ghost">Ask for current build</Btn>
+      </article>
+
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <p class="font-mono text-xs text-text-3 mb-3">Windows</p>
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Windows</h2>
+        <p class="text-sm text-text-3 leading-[1.55] mb-5">Windows builds are planned after the macOS release.</p>
+        <Btn href="/contact" variant="ghost">Stay informed</Btn>
+      </article>
+
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <p class="font-mono text-xs text-text-3 mb-3">Linux</p>
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Linux</h2>
+        <p class="text-sm text-text-3 leading-[1.55] mb-5">Linux builds are planned after the desktop release stabilises.</p>
+        <Btn href="/contact" variant="ghost">Stay informed</Btn>
+      </article>
+    </div>
+
+    <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-4">
+      <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
+        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Using Sténtor in rehearsal or performance?</h2>
+        <p class="text-sm text-text-3 leading-[1.6] mb-5">
+          We would love to hear how it worked for you. Field notes, operator comments and audience responses help improve the tool, but they are not required to download or try Sténtor.
+        </p>
+        <Btn href="/contact" variant="primary">Share field notes</Btn>
       </div>
 
-      <p class="text-sm text-text-3 leading-[1.55] mb-6">
-        For now, we will use the information you submitted to understand the download context and to contact you with the appropriate build or follow-up instructions when needed.
-      </p>
-
-      <div class="flex flex-wrap gap-3">
-        <Btn href="/docs" variant="primary">Read the workflow</Btn>
-        <Btn href="/contact" variant="ghost">Contact Sténtor</Btn>
+      <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
+        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Need the workflow?</h2>
+        <p class="text-sm text-text-3 leading-[1.6] mb-5">
+          Read how Sténtor moves from script preparation to live cueing, screens and audience phones.
+        </p>
+        <Btn href="/docs" variant="ghost">Read the workflow</Btn>
       </div>
     </div>
   </section>
