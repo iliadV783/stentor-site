@@ -1,28 +1,29 @@
 /**
- * Sign-in page copy: form labels, SSO providers, side panel demo content.
+ * Sign-in page copy.
+ * Sténtor does not currently use public accounts; this page redirects users
+ * toward access requests and project contact while keeping the route coherent.
  */
 
 // ─── Left column (form) ───────────────────────────────────────────────────
 export const form = {
-  title: "Welcome back.",
-  signupPrompt: "Don't have an account yet?",
-  signupLink: { href: "/signup", label: "Start a free trial →" },
-  emailLabel: "Work email",
-  emailPlaceholder: "you@company.com",
-  emailPrefill: "priya@northwind.io",
-  passwordLabel: "Password",
+  title: "Sténtor access.",
+  signupPrompt: "Need to test Sténtor?",
+  signupLink: { href: "/signup", label: "Request access →" },
+  emailLabel: "Email",
+  emailPlaceholder: "you@example.com",
+  emailPrefill: "operator@theatre.example",
+  passwordLabel: "Access code",
   passwordPlaceholder: "••••••••••••",
-  forgotLink: { href: "#forgot", label: "Forgot password?" },
-  rememberLabel: "Keep me signed in for 30 days",
-  submitLabel: "Sign in",
-  ssoBlurb: "Your team uses SAML SSO?",
-  ssoLink: { href: "#sso", label: "Sign in with SSO →" },
-  divider: "or with email",
+  forgotLink: { href: "/contact", label: "Contact the project" },
+  rememberLabel: "Remember this device for future rehearsals",
+  submitLabel: "Continue",
+  ssoBlurb: "No public account yet?",
+  ssoLink: { href: "/signup", label: "Request access instead →" },
+  divider: "or continue with project access",
   backToSite: "Back to site",
 };
 
-// ─── SSO providers ────────────────────────────────────────────────────────
-// Two compact buttons in a 2-col grid, plus one wide button below.
+// ─── Access providers ─────────────────────────────────────────────────────
 type SsoProvider = { id: "google" | "github" | "microsoft"; label: string };
 
 export const ssoProviders: { compact: SsoProvider[]; wide: SsoProvider } = {
@@ -35,48 +36,45 @@ export const ssoProviders: { compact: SsoProvider[]; wide: SsoProvider } = {
 
 // ─── Right column (visual) ────────────────────────────────────────────────
 export const sidePanel = {
-  tagline: 'One sign-in. <em class="text-red-500 not-italic">Every region.</em>',
+  tagline: 'One project. <em class="text-red-500 not-italic">Many live outputs.</em>',
   description:
-    "Pick up where your last deploy left off — across 38 regions, 12 environments, and the entire team.",
-  // Terminal mockup. `text` is rendered with set:html so inline accents work.
+    "Prepare a performance text once, then cue it for screens, audience phones, translations and audio-description notes.",
   terminal: {
-    breadcrumb: "~/northwind  ·  main",
+    breadcrumb: "~/stentor · macbett",
     lines: [
-      { kind: "cmd" as const, text: "lambda deploy --prod" },
-      { kind: "comment" as const, text: "# building isolates · 12 functions" },
-      { kind: "ok" as const, text: "bundled in 2.4s" },
-      { kind: "ok" as const, text: "uploaded 38 regions" },
-      { kind: "ok" as const, text: 'live at <span class="text-blue-400">api.northwind.io</span>' },
+      { kind: "cmd" as const, text: "open project Macbett" },
+      { kind: "comment" as const, text: "# surtitles · translation · audio description" },
+      { kind: "ok" as const, text: "operator view ready" },
+      { kind: "ok" as const, text: "2 screens connected" },
+      { kind: "ok" as const, text: "18 audience phones following" },
     ],
   },
-  // Deploy card
   deployCard: {
-    title: "Production deploy",
-    badge: "live",
+    title: "Live room",
+    badge: "ready",
     rows: [
-      { label: "Build", value: "v2.4.0 · a3f8c1", accent: true },
-      { label: "Regions", value: "38 / 38" },
-      { label: "P95 latency", value: "22ms" },
-      { label: "Cold start", value: "28ms" },
-      { label: "Deployed by", value: "priya@" },
+      { label: "Project", value: "Macbett", accent: true },
+      { label: "Cue", value: "024 / live" },
+      { label: "Languages", value: "IT · EN" },
+      { label: "Screens", value: "2 synced" },
+      { label: "Audience", value: "18 phones" },
     ],
   },
-  // Pulse / requests-per-second mini chart
   pulse: {
-    title: "Requests · last 60s",
-    rate: "2,418/s",
+    title: "Cue rhythm",
+    rate: "live",
     bars: [32, 58, 22, 78, 44, 90, 28, 64, 38, 72, 50, 86, 42, 68, 100],
-    leftLabel: "−60s",
+    leftLabel: "start",
     rightLabel: "now",
   },
 };
 
 // ─── Footer ────────────────────────────────────────────────────────────────
 export const footer = {
-  copyright: "© 2026 Lambda Systems, Inc.",
+  copyright: "© 2026 Sténtor",
   links: [
-    { href: "#privacy", label: "Privacy" },
-    { href: "#terms", label: "Terms" },
-    { href: "#status", label: "● All systems normal" },
+    { href: "/privacy", label: "Privacy" },
+    { href: "/terms", label: "Terms" },
+    { href: "/contact", label: "● Feedback welcome" },
   ],
 };
