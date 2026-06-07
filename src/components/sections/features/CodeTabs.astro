@@ -1,5 +1,11 @@
 ---
-import { codeTabs } from "../../../data/features";
+import { codeTabs as defaultCodeTabs } from "../../../data/features";
+
+interface Props {
+  codeTabs?: typeof defaultCodeTabs;
+}
+
+const { codeTabs = defaultCodeTabs } = Astro.props;
 ---
 <section class="py-24" x-data="{tab:'ts'}">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
@@ -24,86 +30,52 @@ import { codeTabs } from "../../../data/features";
       </div>
       <div class="p-7 min-h-[360px] font-mono text-[12.5px] leading-[1.65] text-zinc-200 overflow-x-auto">
         <div x-show="tab==='ts'" role="tabpanel" id="codepanel-ts" aria-labelledby="codetab-ts">
-          <div class="text-text-4 mb-3.5">{`// Find every active Pro subscription that renews this week.`}</div>
-          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-kw">import</span> {`{ lambda }`} <span class="tok-kw">from</span> <span class="tok-str">"@acme/lambda"</span>;
-
-<span class="tok-kw">const</span> renewals = <span class="tok-kw">await</span> lambda.<span class="tok-fn">subscriptions</span>.<span class="tok-fn">list</span>({`({`}
-  where: {`{`}
-    plan:      <span class="tok-str">"pro_monthly"</span>,
-    status:    <span class="tok-str">"active"</span>,
-    renews_at: {`{`} lte: lambda.<span class="tok-fn">days</span>(<span class="tok-num">7</span>) {`}`},
-  {`}`},
-  include: {`{`} customer: <span class="tok-kw">true</span> {`}`},
-  limit: <span class="tok-num">100</span>,
-{`});`}
-
-<span class="tok-kw">for</span> (<span class="tok-kw">const</span> sub <span class="tok-kw">of</span> renewals) {`{`}
-  <span class="tok-kw">await</span> lambda.<span class="tok-fn">queue</span>.<span class="tok-fn">send</span>(<span class="tok-str">"renewal_reminder"</span>, {`{`} id: sub.id {`}`});
+          <div class="text-text-4 mb-3.5">{`// Structured project file: metadata, languages, cues and outputs.`}</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code>{`{`}
+  <span class="tok-str">"title"</span>: <span class="tok-str">"Macbett"</span>,
+  <span class="tok-str">"languages"</span>: [<span class="tok-str">"it"</span>, <span class="tok-str">"en"</span>, <span class="tok-str">"fr"</span>],
+  <span class="tok-str">"layers"</span>: [<span class="tok-str">"surtitles"</span>, <span class="tok-str">"translation"</span>, <span class="tok-str">"audio_description"</span>],
+  <span class="tok-str">"screens"</span>: <span class="tok-num">2</span>,
+  <span class="tok-str">"audience"</span>: <span class="tok-str">"local_network"</span>
 {`}`}</code></pre>
         </div>
         <div x-show="tab==='go'" role="tabpanel" id="codepanel-go" aria-labelledby="codetab-go" x-cloak>
-          <div class="text-text-4 mb-3.5">{`// Same query, idiomatic Go. Errors elided for brevity.`}</div>
-          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-kw">import</span> <span class="tok-str">"github.com/acme/lambda-go"</span>
-
-renewals, _ := lambda.Subscriptions.<span class="tok-fn">List</span>(ctx, &lambda.SubscriptionListParams{`{`}
-    Plan:     <span class="tok-str">"pro_monthly"</span>,
-    Status:   <span class="tok-str">"active"</span>,
-    RenewsAt: lambda.LTE(time.Now().<span class="tok-fn">Add</span>(<span class="tok-num">7</span> * <span class="tok-num">24</span> * time.Hour)),
-    Include:  []<span class="tok-kw">string</span>{`{`}<span class="tok-str">"customer"</span>{`}`},
-    Limit:    <span class="tok-num">100</span>,
-{`}`})
-
-<span class="tok-kw">for</span> _, sub := <span class="tok-kw">range</span> renewals {`{`}
-    lambda.Queue.<span class="tok-fn">Send</span>(ctx, <span class="tok-str">"renewal_reminder"</span>, lambda.M{`{`}<span class="tok-str">"id"</span>: sub.ID{`}`})
+          <div class="text-text-4 mb-3.5">{`// A cue keeps source text, translation and operator context together.`}</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code>{`{`}
+  <span class="tok-str">"cue"</span>: <span class="tok-num">24</span>,
+  <span class="tok-str">"speaker"</span>: <span class="tok-str">""</span>,
+  <span class="tok-str">"source"</span>: <span class="tok-str">"O patria mia..."</span>,
+  <span class="tok-str">"translation"</span>: <span class="tok-str">"O my country, poor country!"</span>,
+  <span class="tok-str">"operator_note"</span>: <span class="tok-str">"hold until light change"</span>
 {`}`}</code></pre>
         </div>
         <div x-show="tab==='py'" role="tabpanel" id="codepanel-py" aria-labelledby="codetab-py" x-cloak>
-          <div class="text-text-4 mb-3.5"># Same query, Pythonic. Async by default.</div>
-          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-kw">from</span> acme.lambda <span class="tok-kw">import</span> lambda_
-
-renewals = <span class="tok-kw">await</span> lambda_.subscriptions.<span class="tok-fn">list</span>(
-    where={`{`}
-        <span class="tok-str">"plan"</span>:      <span class="tok-str">"pro_monthly"</span>,
-        <span class="tok-str">"status"</span>:    <span class="tok-str">"active"</span>,
-        <span class="tok-str">"renews_at"</span>: {`{`} <span class="tok-str">"lte"</span>: lambda_.<span class="tok-fn">days</span>(<span class="tok-num">7</span>) {`}`},
-    {`}`},
-    include={`{`}<span class="tok-str">"customer"</span>: <span class="tok-kw">True</span>{`}`},
-    limit=<span class="tok-num">100</span>,
-)
-
-<span class="tok-kw">for</span> sub <span class="tok-kw">in</span> renewals:
-    <span class="tok-kw">await</span> lambda_.queue.<span class="tok-fn">send</span>(<span class="tok-str">"renewal_reminder"</span>, id=sub.id)</code></pre>
+          <div class="text-text-4 mb-3.5"># Audio-description notes stay linked to the live text.</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code>{`{`}
+  <span class="tok-str">"audio_description"</span>: {`{`}
+    <span class="tok-str">"cue"</span>: <span class="tok-num">24</span>,
+    <span class="tok-str">"note"</span>: <span class="tok-str">"Macbett crosses slowly toward the table."</span>,
+    <span class="tok-str">"audio_file"</span>: <span class="tok-str">"ad_024.m4a"</span>
+  {`}`}
+{`}`}</code></pre>
         </div>
         <div x-show="tab==='curl'" role="tabpanel" id="codepanel-curl" aria-labelledby="codetab-curl" x-cloak>
-          <div class="text-text-4 mb-3.5"># Bare HTTP — every SDK is built on this.</div>
-          <pre class="m-0 p-0 whitespace-pre-wrap"><code><span class="tok-fn">curl</span> https://api.lambda.dev/v1/subscriptions \
-  -H <span class="tok-str">"Authorization: Bearer $LAMBDA_KEY"</span> \
-  -H <span class="tok-str">"Content-Type: application/json"</span> \
-  -G \
-  --data-urlencode <span class="tok-str">'where[plan]=pro_monthly'</span> \
-  --data-urlencode <span class="tok-str">'where[status]=active'</span> \
-  --data-urlencode <span class="tok-str">'where[renews_at][lte]=2026-05-05T00:00:00Z'</span> \
-  --data-urlencode <span class="tok-str">'include=customer'</span> \
-  --data-urlencode <span class="tok-str">'limit=100'</span></code></pre>
+          <div class="text-text-4 mb-3.5"># Live state sent by the operator desk.</div>
+          <pre class="m-0 p-0 whitespace-pre-wrap"><code>{`{`}
+  <span class="tok-str">"state"</span>: <span class="tok-str">"live"</span>,
+  <span class="tok-str">"currentCue"</span>: <span class="tok-num">24</span>,
+  <span class="tok-str">"blackout"</span>: <span class="tok-kw">false</span>,
+  <span class="tok-str">"screens"</span>: [<span class="tok-str">"screen-1"</span>, <span class="tok-str">"screen-2"</span>],
+  <span class="tok-str">"audiencePhones"</span>: <span class="tok-num">18</span>
+{`}`}</code></pre>
         </div>
         <div x-show="tab==='resp'" role="tabpanel" id="codepanel-resp" aria-labelledby="codetab-resp" x-cloak>
-          <div class="text-text-4 mb-3.5">{`// HTTP/1.1 200 OK · application/json · 24ms · iad`}</div>
+          <div class="text-text-4 mb-3.5">{`// Audience view receives the selected language and mode.`}</div>
           <pre class="m-0 p-0 whitespace-pre-wrap"><code>{`{`}
-  <span class="tok-str">"data"</span>: [
-    {`{`}
-      <span class="tok-str">"id"</span>:        <span class="tok-str">"sub_01HF8Q3K2ZX"</span>,
-      <span class="tok-str">"plan"</span>:      <span class="tok-str">"pro_monthly"</span>,
-      <span class="tok-str">"status"</span>:    <span class="tok-str">"active"</span>,
-      <span class="tok-str">"renews_at"</span>: <span class="tok-str">"2026-05-03T14:21:00Z"</span>,
-      <span class="tok-str">"customer"</span>: {`{`}
-        <span class="tok-str">"id"</span>:    <span class="tok-str">"cus_01HF8Q1A0PQ"</span>,
-        <span class="tok-str">"email"</span>: <span class="tok-str">"maya@acme.co"</span>,
-        <span class="tok-str">"tier"</span>:  <span class="tok-str">"pro"</span>
-      {`}`}
-    {`}`}
-    <span class="tok-cm">{`// 99 more rows…`}</span>
-  ],
-  <span class="tok-str">"page"</span>: {`{`} <span class="tok-str">"limit"</span>: <span class="tok-num">100</span>, <span class="tok-str">"next"</span>: <span class="tok-str">"cur_..."</span> {`}`}
+  <span class="tok-str">"device"</span>: <span class="tok-str">"audience-phone"</span>,
+  <span class="tok-str">"language"</span>: <span class="tok-str">"fr"</span>,
+  <span class="tok-str">"mode"</span>: <span class="tok-str">"surtitles_and_audio_description"</span>,
+  <span class="tok-str">"text"</span>: <span class="tok-str">"Ô mon pays, pauvre pays !"</span>
 {`}`}</code></pre>
         </div>
       </div>
