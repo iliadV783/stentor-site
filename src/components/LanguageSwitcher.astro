@@ -2,10 +2,32 @@
 const currentPath = Astro.url.pathname;
 const currentLang = currentPath.startsWith("/it") ? "it" : currentPath.startsWith("/fr") ? "fr" : "en";
 
+const stripLang = (path: string) => {
+  if (path === "/fr" || path === "/fr/") return "/";
+  if (path.startsWith("/fr/")) return path.slice(3) || "/";
+  if (path === "/it" || path === "/it/") return "/";
+  if (path.startsWith("/it/")) return path.slice(3) || "/";
+  return path || "/";
+};
+
+const basePath = stripLang(currentPath).replace(/\/$/, "") || "/";
+const pathMap: Record<string, { en: string; fr: string; it: string }> = {
+  "/": { en: "/", fr: "/fr/", it: "/it/" },
+  "/features": { en: "/features", fr: "/fr/features/", it: "/it/features/" },
+  "/docs": { en: "/docs", fr: "/fr/docs/", it: "/it/docs/" },
+  "/for-theatres": { en: "/for-theatres", fr: "/fr/for-theatres/", it: "/it/for-theatres/" },
+  "/customers": { en: "/customers", fr: "/fr/customers", it: "/it/customers/" },
+  "/download": { en: "/download", fr: "/fr/download/", it: "/it/download/" },
+  "/contact": { en: "/contact", fr: "/fr/contact/", it: "/it/contact/" },
+  "/pricing": { en: "/pricing", fr: "/fr/pricing/", it: "/it/pricing/" },
+  "/about": { en: "/about", fr: "/fr/about/", it: "/it/about/" },
+};
+
+const currentMap = pathMap[basePath] ?? pathMap["/"];
 const languages = [
-  { code: "en", label: "English", href: "/", available: true },
-  { code: "it", label: "Italiano", href: "/it/", available: true },
-  { code: "fr", label: "Français", href: "/fr/", available: true },
+  { code: "en", label: "English", href: currentMap.en, available: true },
+  { code: "it", label: "Italiano", href: currentMap.it, available: false, note: "coming soon" },
+  { code: "fr", label: "Français", href: currentMap.fr, available: true },
 ];
 ---
 
@@ -49,16 +71,29 @@ const languages = [
     aria-label="Language options"
   >
     {languages.map((lang) => (
-      <a
-        href={lang.href}
-        x-on:click={`localStorage.setItem('stentor-lang-choice', '${lang.code}'); open = false`}
-        class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
-        role="menuitem"
-      >
-        <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-red-500" : "text-text-3"]}>{lang.code}</span>
-        <span class="flex-1">{lang.label}</span>
-        <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? "current" : ""}</span>
-      </a>
+      lang.available ? (
+        <a
+          href={lang.href}
+          x-on:click={`localStorage.setItem('stentor-lang-choice', '${lang.code}'); open = false`}
+          class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
+          role="menuitem"
+        >
+          <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-red-500" : "text-text-3"]}>{lang.code}</span>
+          <span class="flex-1">{lang.label}</span>
+          <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? "current" : ""}</span>
+        </a>
+      ) : (
+        <button
+          type="button"
+          disabled
+          class="w-full flex items-center gap-3 px-4 py-3 text-sm text-text-4 cursor-not-allowed bg-transparent"
+          role="menuitem"
+        >
+          <span class="font-mono text-[11px] uppercase w-6">{lang.code}</span>
+          <span class="flex-1 text-left">{lang.label}</span>
+          <span class="font-mono text-[10px] uppercase">{lang.note}</span>
+        </button>
+      )
     ))}
   </div>
 </div>
