@@ -5,7 +5,7 @@ import IconRefreshCcw from "../../../assets/icons/refresh-ccw.svg";
 import IconChartUp from "../../../assets/icons/chart-up.svg";
 import IconBox from "../../../assets/icons/box.svg";
 import IconCrossAxis from "../../../assets/icons/cross-axis.svg";
-import { secondaryBento } from "../../../data/features";
+import { secondaryBento as defaultSecondaryBento } from "../../../data/features";
 
 const iconMap = {
   shield: IconShield,
@@ -15,6 +15,12 @@ const iconMap = {
   box: IconBox,
   "cross-axis": IconCrossAxis,
 } as const;
+
+interface Props {
+  secondaryBento?: typeof defaultSecondaryBento;
+}
+
+const { secondaryBento = defaultSecondaryBento } = Astro.props;
 ---
 <section class="py-24">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
