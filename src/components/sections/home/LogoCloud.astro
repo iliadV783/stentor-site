@@ -1,5 +1,11 @@
 ---
-import { logoCloud } from "../../../data/home";
+import { logoCloud as defaultLogoCloud } from "../../../data/home";
+
+interface Props {
+  logoCloud?: typeof defaultLogoCloud;
+}
+
+const { logoCloud = defaultLogoCloud } = Astro.props;
 ---
 <section class="relative overflow-hidden border-y border-hairline py-9">
   <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-[120px] sm:text-[180px] leading-[0.85] tracking-[-0.06em] text-black opacity-55 pointer-events-none whitespace-nowrap select-none z-0" aria-hidden="true">{logoCloud.bigNumber}</div>
