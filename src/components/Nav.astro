@@ -11,6 +11,21 @@ interface Props {
   active?: NavId | null;
 }
 const { active = null } = Astro.props;
+const isFr = Astro.url.pathname.startsWith("/fr");
+const navItems = isFr
+  ? [
+      { href: "/fr/features", label: "Fonctionnalités", id: "features" as const },
+      { href: "/fr/docs", label: "Workflow", id: "docs" as const },
+      { href: "/fr/for-theatres", label: "Pour les théâtres", id: "customers" as const },
+    ]
+  : nav;
+const cta = isFr
+  ? {
+      primary: { href: "/fr/contact", label: "Contact" },
+      secondary: { href: "/fr/about", label: "À propos" },
+      statusPrefix: "Conçu pour le spectacle vivant",
+    }
+  : { ...navCta, statusPrefix: site.statusPrefix };
 ---
 <div
   class="contents"
@@ -24,14 +39,12 @@ const { active = null } = Astro.props;
   class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md backdrop-saturate-150 border-b border-hairline transition-colors"
 >
   <div class="relative max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between h-16">
-    <!-- Logo -->
     <div class="flex items-center gap-2 min-w-0">
       <Logo />
     </div>
 
-    <!-- Desktop nav: centered against the page, independent from logo/CTA widths -->
     <nav aria-label="Primary" class="hidden md:flex gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      {nav.map((l) => (
+      {navItems.map((l) => (
         <a
           href={l.href}
           class:list={[
@@ -44,26 +57,24 @@ const { active = null } = Astro.props;
       ))}
     </nav>
 
-    <!-- Right cluster: language + CTAs + hamburger -->
     <div class="flex items-center gap-1 ml-auto">
       <div class="hidden md:block">
         <LanguageSwitcher />
       </div>
 
       <a
-        href={navCta.secondary.href}
+        href={cta.secondary.href}
         class="hidden md:inline-flex items-center justify-center h-10 px-4 rounded-lg text-sm font-medium text-text-2 hover:text-text transition-colors"
       >
-        {navCta.secondary.label}
+        {cta.secondary.label}
       </a>
       <a
-        href={navCta.primary.href}
+        href={cta.primary.href}
         class="hidden md:inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-sm font-medium bg-red-500 text-bg hover:bg-red-400 transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_6px_24px_-8px_rgba(239,68,68,0.5)] whitespace-nowrap"
       >
-        {navCta.primary.label} <span aria-hidden="true">→</span>
+        {cta.primary.label} <span aria-hidden="true">→</span>
       </a>
 
-      <!-- Hamburger / close toggle -->
       <button
         type="button"
         x-on:click="open = !open"
@@ -79,10 +90,8 @@ const { active = null } = Astro.props;
   </div>
 </header>
 
-<!-- In-flow spacer to compensate for the fixed header (since fixed takes the header out of flow) -->
 <div class="h-16" aria-hidden="true"></div>
 
-<!-- Mobile floating card (fixed to viewport, outside header to escape its backdrop-filter containing block) -->
 <div
   id="mobile-nav"
   x-show="open"
@@ -97,9 +106,8 @@ const { active = null } = Astro.props;
   role="dialog"
   aria-label="Navigation menu"
 >
-    <!-- Nav links -->
     <nav class="px-3 pt-3 pb-3 flex flex-col gap-1" aria-label="Mobile">
-      {nav.map((l) => (
+      {navItems.map((l) => (
         <a
           href={l.href}
           x-on:click="open = false"
@@ -112,11 +120,6 @@ const { active = null } = Astro.props;
         >
           <span>{l.label}</span>
           <div class="flex items-center gap-2">
-            {l.id === "changelog" && (
-              <span class="font-mono text-xs px-1.5 py-px rounded-sm text-red-500 bg-red-500/10">
-                new
-              </span>
-            )}
             <span
               class:list={[
                 "text-sm transition-colors",
@@ -135,35 +138,32 @@ const { active = null } = Astro.props;
       <LanguageSwitcher />
     </div>
 
-    <!-- CTA buttons -->
     <div class="px-3 pb-3 grid grid-cols-2 gap-2 border-t border-hairline pt-3">
       <a
-        href={navCta.secondary.href}
+        href={cta.secondary.href}
         x-on:click="open = false"
         class="h-12 inline-flex items-center justify-center border border-hairline-strong rounded-xl text-[14px] font-medium text-text-2 hover:text-text transition-colors"
       >
-        {navCta.secondary.label}
+        {cta.secondary.label}
       </a>
       <a
-        href={navCta.primary.href}
+        href={cta.primary.href}
         x-on:click="open = false"
         class="h-12 inline-flex items-center justify-center gap-1.5 bg-red-500 hover:bg-red-400 text-bg rounded-xl text-[14px] font-semibold shadow-[0_4px_20px_-4px_rgba(239,68,68,0.55)] transition-colors"
       >
-        Contact <span aria-hidden="true">→</span>
+        {cta.primary.label} <span aria-hidden="true">→</span>
       </a>
     </div>
 
-    <!-- Status bar -->
     <div class="px-4 py-2.5 flex items-center justify-between border-t border-hairline bg-black/20 rounded-b-2xl">
       <div class="flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" aria-hidden="true"></span>
-        <span class="text-[12px] text-text-3 font-mono">{site.statusPrefix}</span>
+        <span class="text-[12px] text-text-3 font-mono">{cta.statusPrefix}</span>
       </div>
       <span class="text-[11px] text-text-4 font-mono">v0.1.64</span>
     </div>
 </div>
 
-<!-- Backdrop (sibling of header to escape its backdrop-filter containing block) -->
 <div
   x-show="open"
   x-cloak
