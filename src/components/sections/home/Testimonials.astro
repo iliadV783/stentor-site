@@ -1,5 +1,11 @@
 ---
-import { testimonials } from "../../../data/home";
+import { testimonials as defaultTestimonials } from "../../../data/home";
+
+interface Props {
+  testimonials?: typeof defaultTestimonials;
+}
+
+const { testimonials = defaultTestimonials } = Astro.props;
 ---
 <section class="py-24" id="customers">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
