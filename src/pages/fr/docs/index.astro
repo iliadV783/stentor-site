@@ -1,0 +1,93 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Btn from "../../../components/Btn.astro";
+---
+
+<Layout
+  title="Workflow — Sténtor"
+  description="Workflow français pour Sténtor Desktop 0.3.40 : projets, texte multilingue, audiodescription, écrans, téléphones du public et synchronisation locale."
+  active="docs"
+>
+  <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[820px] mb-14">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Documentation · Workflow</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">
+        Préparer le texte live. Piloter la salle. Rejoindre le public.
+      </h1>
+      <p class="text-xl text-text-2 leading-[1.55] max-w-[760px]">
+        Sténtor 0.3.40 est un espace desktop-first pour le texte du spectacle vivant : projets, scripts multilingues, surtitres, audiodescription, écrans, téléphones du public et page foyer QR restent dans un même workflow piloté par l’opérateur.
+      </p>
+    </div>
+
+    <div class="grid gap-5 mb-16">
+      {[
+        {
+          id: "projects",
+          title: "1. Projets",
+          body: "Un projet Sténtor rassemble titre, compagnie, langues, cues, traductions, notes d’audiodescription, configuration des écrans et métadonnées de production. L’objectif est de garder tout le matériau de représentation dans un espace lisible et exportable."
+        },
+        {
+          id: "text",
+          title: "2. Texte et langues",
+          body: "La vue texte sert à préparer le script original, les traductions, les surtitres et les informations de personnage ou de voix. Les langues du projet sont réutilisées dans les écrans, les téléphones du public et la page foyer."
+        },
+        {
+          id: "audio-description",
+          title: "3. Audiodescription",
+          body: "L’audiodescription est une couche du projet. Les notes peuvent rester liées aux cues, être révisées en contexte et être accompagnées de fichiers audio pour des tests en répétition ou en salle."
+        },
+        {
+          id: "screens",
+          title: "4. Écrans",
+          body: "La section écrans configure les sorties de projection : langue, aspect, style et aperçu. Plusieurs écrans peuvent être actifs selon les besoins de la salle ou du festival."
+        },
+        {
+          id: "stage-desk",
+          title: "5. Régie / Stage desk",
+          body: "La régie est la vue live. Elle permet d’avancer ou revenir dans les cues, passer au noir, suivre le cue actuel et le cue suivant, contrôler les écrans, surveiller les appareils connectés et garder l’opérateur concentré."
+        },
+        {
+          id: "audience",
+          title: "6. Téléphones du public",
+          body: "Les spectateurs peuvent accéder au spectacle via QR code ou adresse locale. Ils choisissent langue et mode : surtitres, audiodescription ou les deux. La page suit ensuite la régie en direct."
+        },
+        {
+          id: "foyer",
+          title: "7. Foyer QR",
+          body: "La page foyer affiche le titre du spectacle et un QR code pour les surtitres et l’audiodescription. Elle sert de point d’entrée simple avant la représentation."
+        },
+        {
+          id: "network",
+          title: "8. Réseau local",
+          body: "Pour un test en salle, l’ordinateur de régie, les écrans et les téléphones du public doivent être sur le même réseau local. Internet n’est pas nécessaire si les appareils peuvent atteindre la machine opérateur."
+        },
+        {
+          id: "files",
+          title: "9. Import et export",
+          body: "Sténtor peut importer JSON, TXT, SRT, WebVTT, CSV et Word. Les projets et scripts structurés peuvent ensuite être exportés pour répétition, archive, tournée, traduction ou recherche."
+        },
+        {
+          id: "desktop",
+          title: "10. Builds desktop",
+          body: "Sténtor utilise Tauri avec React/Vite. La priorité actuelle est macOS Apple Silicon, avec Windows et Linux prévus ensuite. Les builds signées et notarées seront traitées séparément."
+        }
+      ].map((section) => (
+        <article id={section.id} class="rounded-2xl border border-hairline bg-surface p-5 md:p-6 scroll-mt-24">
+          <h2 class="text-2xl tracking-[-0.03em] font-semibold mb-3">{section.title}</h2>
+          <p class="text-text-2 leading-[1.65] m-0">{section.body}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-1">Tester Sténtor en salle ?</h2>
+        <p class="text-sm text-text-3 leading-[1.6] m-0">Téléchargez d’abord, utilisez-le en répétition ou représentation, puis partagez vos notes de terrain si elles peuvent aider le projet.</p>
+      </div>
+      <div class="flex gap-2">
+        <Btn href="/fr/download" variant="primary">Télécharger</Btn>
+        <Btn href="/fr/contact" variant="ghost">Partager un retour</Btn>
+      </div>
+    </div>
+  </section>
+</Layout>
