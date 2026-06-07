@@ -6,15 +6,13 @@
 
 // ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
-  eyebrow: "Sténtor features",
-  title: "Everything live performance text needs,<br/>from script to audience.",
+  eyebrow: "Sténtor 0.3.40 features",
+  title: "Multilingual live text,<br/>from script to room.",
   description:
-    "Sténtor brings surtitles, translations, audio-description notes, live cueing, screens and audience phones into one focused workflow for theatre, festivals and live performance.",
+    "Sténtor brings surtitles, translation, audio description, screens, audience phones and foyer QR access into one local-first workflow for theatres, festivals and performance spaces worldwide.",
 };
 
 // ─── Showcase rows (alternating side-by-side) ─────────────────────────────
-// Each row pairs a copy block with a custom illustration. Visuals stay in
-// the .astro template; this file holds copy + the trace/region demo data.
 type ShowcaseRow = {
   number: string;
   eyebrow: string;
@@ -22,91 +20,89 @@ type ShowcaseRow = {
   description: string;
   bullets: string[];
   cta: { href: string; label: string };
-  // Used by Showcase.astro to pick which illustration to render on the right
   illustration: "schemas" | "trace" | "regions";
 };
 
 export const showcase: ShowcaseRow[] = [
   {
     number: "01",
-    eyebrow: "01 — Script",
-    title: "One script, many layers of performance text.",
+    eyebrow: "01 — Project workspace",
+    title: "One project for every layer of live text.",
     description:
-      "Prepare the original script, translations, surtitles, notes and project metadata in one place. Sténtor keeps the structure of the performance visible while letting each cue remain editable.",
+      "Prepare the original script, translations, surtitles, audio-description notes, project metadata, languages and screen setup in one editable project. Sténtor is designed to keep the structure of a performance visible while each cue remains flexible.",
     bullets: [
-      "Import from Word, TXT, SRT, WebVTT, CSV or JSON",
-      "Keep title, company, languages and production notes together",
-      "Leave speaker or character fields empty when they are not needed",
+      "Import Word, TXT, SRT, WebVTT, CSV or JSON",
+      "Configure project languages once and reuse them across screens, audience phones and foyer QR",
+      "Keep title, company, notes, cues, translations and audio-description material together",
     ],
-    cta: { href: "/docs", label: "Read the workflow" },
+    cta: { href: "/docs#projects", label: "See project workflow" },
     illustration: "schemas",
   },
   {
     number: "02",
-    eyebrow: "02 — Operator view",
-    title: "A clear operator view for the live moment.",
+    eyebrow: "02 — Stage desk / Regia",
+    title: "A live desk for the operator, not a generic slide tool.",
     description:
-      "During rehearsal or performance, the operator view gives the cue operator a focused interface: current cue, next cue, blackout, timing and the confidence to move through the show without visual noise.",
+      "During rehearsal or performance, the Stage desk keeps the operator focused on current cue, next cue, blackout, timing, screen distribution, connected audience devices and audio-description state.",
     bullets: [
-      "Advance, rewind and blackout from one live view",
-      "Keep timing, current cue and next cue visible",
-      "Use the same project from rehearsal to performance",
+      "Advance, rewind and blackout from a focused live view",
+      "Monitor current cue, next cue, timers, notes and connected devices",
+      "Use manual control first, with rehearsed timing and recorded cue data where useful",
     ],
-    cta: { href: "/docs", label: "Cue a show" },
+    cta: { href: "/docs#stage-desk", label: "Cue a show" },
     illustration: "trace",
   },
   {
     number: "03",
-    eyebrow: "03 — Live Sync",
-    title: "Screens and audience phones follow the operator.",
+    eyebrow: "03 — Room and audience",
+    title: "Screens, foyer and audience phones follow the same live state.",
     description:
-      'Sténtor can send the live cue state to venue screens and to spectators connected with their own smartphones. The operator stays in control while each device follows the performance text in sync.',
+      "Sténtor can send the live cue to venue screens, a foyer welcome page with QR code, and spectators connected with their own smartphones. The operator stays in control while each device receives the right language and mode.",
     bullets: [
-      "Audience web client for personal devices",
-      "Screen output for surtitles and translations",
-      "Local-network mode for rehearsal rooms and venues",
+      "Multiple configured screens with previews, language and style settings",
+      "Audience web client for surtitles, translations, audio description or both",
+      "Local-network mode for theatre tests without relying on internet access",
     ],
-    cta: { href: "/customers", label: "See theatre use cases" },
+    cta: { href: "/docs#audience", label: "See audience workflow" },
     illustration: "regions",
   },
 ];
 
-// Demo data for the trace illustration (row 02 / Observability)
+// Demo data for the trace illustration
 export const traceRows = [
-  { name: "Current cue", lvl: "LIVE", lvlColor: "ok" as const, barColor: "amber" as const, left: 0, width: 100, ms: "Operator" },
-  { name: "└ surtitles on screen", barColor: "gray" as const, left: 2, width: 18, ms: "synced" },
-  { name: "└ translation layer", barColor: "blue" as const, left: 22, width: 18, ms: "ready" },
-  { name: "└ audio-description note", barColor: "green" as const, left: 44, width: 24, ms: "queued" },
-  { name: "└ audience phones", lvl: "sync", lvlColor: "amber" as const, barColor: "amber" as const, left: 70, width: 25, ms: "connected" },
+  { name: "Stage desk", lvl: "LIVE", lvlColor: "ok" as const, barColor: "amber" as const, left: 0, width: 100, ms: "operator" },
+  { name: "└ current cue", barColor: "gray" as const, left: 2, width: 18, ms: "024" },
+  { name: "└ screen outputs", barColor: "blue" as const, left: 22, width: 18, ms: "synced" },
+  { name: "└ audio-description note", barColor: "green" as const, left: 44, width: 24, ms: "ready" },
+  { name: "└ audience phones", lvl: "sync", lvlColor: "amber" as const, barColor: "amber" as const, left: 70, width: 25, ms: "following" },
   { name: "└ next cue preview", barColor: "blue" as const, left: 96, width: 4, ms: "next" },
 ];
 
-// Region pins for the runtime illustration (row 03 / Runtime)
+// Region pins for the runtime illustration
 export const regions = [
-  { code: "OP", left: "47%", top: "45%", lat: "live" },
+  { code: "REGIA", left: "47%", top: "45%", lat: "live" },
   { code: "SCREEN", left: "35%", top: "28%", lat: "synced" },
   { code: "PHONE", left: "58%", top: "34%", lat: "synced" },
-  { code: "AD", left: "52%", top: "62%", lat: "ready" },
+  { code: "FOYER", left: "52%", top: "62%", lat: "QR" },
   { code: "IT", left: "41%", top: "58%", lat: "text" },
   { code: "EN", left: "62%", top: "55%", lat: "translation" },
 ];
 
 // ─── Secondary bento (six smaller cards) ──────────────────────────────────
 export const secondaryBento = {
-  title: "Built for the work around the performance.",
-  description: "Practical tools for people preparing, cueing, translating, describing and sharing live performance text.",
+  title: "Built for the real theatre workflow.",
+  description: "Practical tools for people preparing, operating, projecting, describing and sharing multilingual live performance text.",
   cards: [
     {
       icon: "shield" as const,
-      title: "Audio description beside the script",
-      desc: "Prepare description notes with their cue context, then revise, rehearse and export them without separating them from the performance text.",
-      // demo type: a list of pill tags
-      demo: { type: "tags" as const, items: ["AD notes", "Cue links", "TXT", "CSV", "VTT", "Audio"] },
+      title: "Audio description as a project layer",
+      desc: "Prepare description notes beside the script, link them to cue context, attach audio for tests and export material for rehearsal or revision.",
+      demo: { type: "tags" as const, items: ["AD notes", "Cue links", "Audio files", "TXT", "CSV", "VTT"] },
     },
     {
       icon: "clock" as const,
       title: "Import and export",
-      desc: "Bring in scripts and subtitle files, then export structured material for revision, rehearsal, archiving or touring.",
+      desc: "Bring in scripts and subtitle files, then export structured material for rehearsal, archive, touring, translation review or study.",
       demo: {
         type: "cron-rows" as const,
         items: [
@@ -117,66 +113,64 @@ export const secondaryBento = {
     },
     {
       icon: "refresh-ccw" as const,
-      title: "Project metadata",
-      desc: "Keep title, company or collective, languages, notes and production context inside the same project file.",
+      title: "Multilingual project setup",
+      desc: "Configure the languages of each project once, then reuse them across text preparation, screens, audience phones and foyer QR pages.",
       demo: {
         type: "progress" as const,
-        percent: 72,
-        label: "metadata · languages · notes · cue layers",
+        percent: 86,
+        label: "metadata · languages · cue layers · outputs",
       },
     },
     {
       icon: "chart-up" as const,
-      title: "Audience devices",
-      desc: "Spectators can use their own smartphones to follow surtitles, translations or audio descriptions during the show.",
+      title: "Audience phones",
+      desc: "Spectators can connect through a QR code and follow surtitles, translations, audio description or both on their own devices during the show.",
       demo: { type: "bars" as const, heights: [20, 45, 35, 55, 70, 65, 80, 76, 90, 84] },
     },
     {
       icon: "box" as const,
-      title: "Cross-platform desktop",
-      desc: "Sténtor is designed as a desktop-first tool for macOS, Windows and Linux, with web views for audience and screens.",
+      title: "Desktop-first, local-first",
+      desc: "Sténtor is moving toward a native desktop app, starting with macOS Apple Silicon, while audience and screen views remain lightweight web clients on the local network.",
       demo: {
         type: "url-rows" as const,
         items: [
-          { text: "macOS · Windows · Linux", highlighted: false },
-          { text: "desktop app + audience web client", highlighted: true },
+          { text: "macOS Apple Silicon first", highlighted: false },
+          { text: "desktop app + local audience client", highlighted: true },
         ],
       },
     },
     {
       icon: "cross-axis" as const,
-      title: "Research feedback",
-      desc: "After rehearsals or performances, usage notes and audience responses can help improve the tool and the research around live text.",
+      title: "Field notes after use",
+      desc: "Sténtor does not require a tracking questionnaire before download. Field notes and audience responses are invited only after real rehearsal or performance use.",
       demo: {
         type: "tags" as const,
-        items: ["Operators", "Audiences", "Venues", "Usage notes", "Feedback", "Research"],
+        items: ["Operators", "Audiences", "Venues", "Field notes", "Feedback", "Research"],
       },
     },
   ],
 };
 
-// ─── Code tabs (multi-language SDK demo) ──────────────────────────────────
-// Tabs metadata only. The actual code samples remain inline in CodeTabs.astro
-// because they contain heavy syntax-highlighting markup.
+// ─── Code tabs (project structure demo) ────────────────────────────────────
 export const codeTabs = {
-  title: "A project file, not a black box.",
-  description: "Sténtor keeps performance text structured: metadata, languages, cues, translations, audio-description notes and live state can all remain understandable and portable.",
+  title: "A readable project file, not a black box.",
+  description: "Sténtor keeps performance text structured: metadata, languages, cues, translations, audio-description notes, screen settings and live state can remain understandable and portable.",
   tabs: [
     { id: "ts", label: "Project", count: ".json" },
     { id: "go", label: "Cue", count: "text" },
-    { id: "py", label: "AD", count: "notes" },
-    { id: "curl", label: "Live", count: "sync" },
+    { id: "py", label: "AD", count: "audio" },
+    { id: "curl", label: "Regia", count: "live" },
     { id: "resp", label: "Audience", count: "view" },
   ],
 };
 
 // ─── Final CTA ─────────────────────────────────────────────────────────────
 export const finalCta = {
-  eyebrow: "Ready for rehearsal",
-  title: "Prepare the text.<br/>Cue the show. Share it live.",
-  body: 'Use Sténtor to bring surtitles, translations and audio descriptions from the script to the room, the screen and the audience device.',
+  eyebrow: "Free to try · no account required",
+  title: "Download first.<br/>Share field notes later.",
+  body: "Use Sténtor to bring multilingual surtitles, translations and audio descriptions from the script to the room, the screen, the foyer and the audience device.",
   ctas: [
-    { href: "/signup", label: "Start for free", variant: "primary" as const },
+    { href: "/download", label: "Download Sténtor", variant: "primary" as const },
     { href: "/docs", label: "Read the workflow", variant: "ghost" as const },
   ],
 };
