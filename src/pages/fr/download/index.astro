@@ -1,0 +1,60 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Btn from "../../../components/Btn.astro";
+---
+
+<Layout
+  title="Télécharger Sténtor"
+  description="Télécharger Sténtor. Gratuit à essayer, aucun compte requis."
+>
+  <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[760px] mb-12">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Téléchargement</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Télécharger Sténtor.</h1>
+      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">
+        Gratuit à essayer. Aucun compte requis. Utilisez Sténtor pour préparer, piloter et partager surtitres, traductions et audiodescriptions pour le spectacle vivant.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-10">
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <p class="font-mono text-xs text-text-3 mb-3">macOS</p>
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Apple Silicon</h2>
+        <p class="text-sm text-text-3 leading-[1.55] mb-5">La première build desktop publique apparaîtra ici.</p>
+        <Btn href="/fr/contact" variant="ghost">Demander la build actuelle</Btn>
+      </article>
+
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <p class="font-mono text-xs text-text-3 mb-3">Windows</p>
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Windows</h2>
+        <p class="text-sm text-text-3 leading-[1.55] mb-5">Les builds Windows sont prévues après la sortie macOS.</p>
+        <Btn href="/fr/contact" variant="ghost">Rester informé</Btn>
+      </article>
+
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <p class="font-mono text-xs text-text-3 mb-3">Linux</p>
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Linux</h2>
+        <p class="text-sm text-text-3 leading-[1.55] mb-5">Les builds Linux sont prévues lorsque la version desktop sera stabilisée.</p>
+        <Btn href="/fr/contact" variant="ghost">Rester informé</Btn>
+      </article>
+    </div>
+
+    <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-4">
+      <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
+        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Vous utilisez Sténtor en répétition ou en représentation ?</h2>
+        <p class="text-sm text-text-3 leading-[1.6] mb-5">
+          Nous aimerions savoir comment cela a fonctionné pour vous. Notes de terrain, commentaires de régie et retours du public aident à améliorer l’outil, mais ne sont pas nécessaires pour télécharger ou essayer Sténtor.
+        </p>
+        <Btn href="/fr/contact" variant="primary">Partager des notes de terrain</Btn>
+      </div>
+
+      <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
+        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Besoin du workflow ?</h2>
+        <p class="text-sm text-text-3 leading-[1.6] mb-5">
+          Découvrez comment Sténtor va de la préparation du script au pilotage live, aux écrans et aux téléphones du public.
+        </p>
+        <Btn href="/fr/docs" variant="ghost">Lire le workflow</Btn>
+      </div>
+    </div>
+  </section>
+</Layout>
