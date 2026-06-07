@@ -1,0 +1,74 @@
+---
+const languages = [
+  { code: "en", label: "English", href: "/", active: true, note: "current" },
+  { code: "it", label: "Italiano", href: "#", active: false, note: "coming soon" },
+  { code: "fr", label: "Français", href: "#", active: false, note: "coming soon" },
+];
+---
+
+<div
+  class="relative"
+  x-data="{ open: false }"
+  x-on:keydown.escape.window="open = false"
+>
+  <button
+    type="button"
+    x-on:click="open = !open"
+    x-bind:aria-expanded="open.toString()"
+    aria-haspopup="menu"
+    aria-label="Select language"
+    class="inline-flex items-center gap-2 h-10 px-3 rounded-lg border border-hairline text-sm text-text-2 hover:text-text hover:bg-white/[0.04] transition-colors"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M3 12h18"></path>
+      <path d="M12 3a15 15 0 0 1 0 18"></path>
+      <path d="M12 3a15 15 0 0 0 0 18"></path>
+    </svg>
+    <span class="font-mono text-xs uppercase">EN</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-text-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6"></path>
+    </svg>
+  </button>
+
+  <div
+    x-show="open"
+    x-cloak
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0 -translate-y-1 scale-[0.98]"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+    x-transition:leave-end="opacity-0 -translate-y-1 scale-[0.98]"
+    x-on:click.outside="open = false"
+    class="absolute right-0 mt-2 w-56 rounded-xl border border-hairline-strong bg-surface/98 backdrop-blur-xl shadow-[0_18px_50px_-22px_rgba(0,0,0,0.85)] overflow-hidden z-[60]"
+    role="menu"
+    aria-label="Language options"
+  >
+    {languages.map((lang) => (
+      lang.active ? (
+        <a
+          href={lang.href}
+          x-on:click="localStorage.setItem('stentor-lang-choice', 'en'); open = false"
+          class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
+          role="menuitem"
+        >
+          <span class="font-mono text-[11px] uppercase text-red-500 w-6">{lang.code}</span>
+          <span class="flex-1">{lang.label}</span>
+          <span class="font-mono text-[10px] uppercase text-text-4">{lang.note}</span>
+        </a>
+      ) : (
+        <button
+          type="button"
+          disabled
+          class="w-full flex items-center gap-3 px-4 py-3 text-sm text-text-4 cursor-not-allowed bg-transparent"
+          role="menuitem"
+        >
+          <span class="font-mono text-[11px] uppercase w-6">{lang.code}</span>
+          <span class="flex-1 text-left">{lang.label}</span>
+          <span class="font-mono text-[10px] uppercase">{lang.note}</span>
+        </button>
+      )
+    ))}
+  </div>
+</div>
