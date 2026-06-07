@@ -1,135 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Logo from "../components/Logo.astro";
-import IconArrowLeft from "../assets/icons/arrow-left.svg";
-import IconArrowRight from "../assets/icons/arrow-right.svg";
-import IconCheck from "../assets/icons/check.svg";
-import { form, sidePanel, footer } from "../data/signup";
+import Btn from "../components/Btn.astro";
 ---
 
-<Layout title="Download Sténtor" showNav={false} showFooter={false} noindex>
-  <main class="min-h-screen grid lg:[grid-template-columns:minmax(0,1fr)_minmax(0,1.05fr)] bg-bg">
-    <section class="flex flex-col px-6 py-8 sm:px-10 lg:px-16">
-      <div class="flex items-center justify-between">
-        <Logo />
-        <a class="inline-flex items-center gap-1.5 text-[13px] text-text-3 hover:text-text transition-colors" href="/">
-          <IconArrowLeft class="w-3.5 h-3.5 stroke-2" />
-          {form.backToSite}
-        </a>
-      </div>
-
-      <div class="flex-1 flex items-center py-12">
-        <div class="w-full max-w-[560px]">
-          <h1 class="text-3xl sm:text-[42px] tracking-[-0.04em] font-semibold leading-[1.05] mb-4">{form.title}</h1>
-          <p class="text-[16px] text-text-2 leading-[1.6] mb-6">{form.intro}</p>
-
-          <form
-            name="stentor-download"
-            method="POST"
-            action="/download/"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            class="border border-hairline rounded-xl bg-surface p-5 mb-6 grid gap-4"
-          >
-            <input type="hidden" name="form-name" value="stentor-download" />
-            <p class="hidden">
-              <label>Do not fill this out: <input name="bot-field" /></label>
-            </p>
-
-            <p class="text-sm text-text-2 leading-[1.55] m-0">{form.note}</p>
-
-            <label class="grid gap-1.5">
-              <span class="text-[13px] text-text-2">{form.nameLabel}</span>
-              <input class="h-11 rounded-lg border border-hairline bg-surface-2 px-3 text-sm text-text outline-none focus:border-red-500/70" type="text" name="name" placeholder={form.namePlaceholder} required />
-            </label>
-
-            <label class="grid gap-1.5">
-              <span class="text-[13px] text-text-2">{form.emailLabel}</span>
-              <input class="h-11 rounded-lg border border-hairline bg-surface-2 px-3 text-sm text-text outline-none focus:border-red-500/70" type="email" name="email" placeholder={form.emailPlaceholder} required />
-            </label>
-
-            <label class="grid gap-1.5">
-              <span class="text-[13px] text-text-2">{form.roleLabel}</span>
-              <select class="h-11 rounded-lg border border-hairline bg-surface-2 px-3 text-sm text-text outline-none focus:border-red-500/70" name="role" required>
-                <option value="">Select one</option>
-                {form.roleOptions.map((option) => (
-                  <option value={option}>{option}</option>
-                ))}
-              </select>
-            </label>
-
-            <label class="grid gap-1.5">
-              <span class="text-[13px] text-text-2">{form.messageLabel}</span>
-              <textarea class="min-h-[104px] rounded-lg border border-hairline bg-surface-2 px-3 py-2.5 text-sm text-text outline-none focus:border-red-500/70 resize-y" name="context" placeholder={form.messagePlaceholder} required></textarea>
-            </label>
-
-            <label class="flex gap-2.5 items-start text-[12.5px] leading-[1.45] text-text-3">
-              <input class="mt-1 accent-red-500" type="checkbox" name="consent" value="yes" required />
-              <span set:html={form.consentLabel}></span>
-            </label>
-
-            <button type="submit" class="w-full h-11 bg-red-500 text-bg rounded-lg font-medium text-sm inline-flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(239,68,68,0.25)] hover:shadow-[0_10px_28px_rgba(239,68,68,0.35)] active:translate-y-px transition-all">
-              {form.submitLabel}
-              <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
-            </button>
-          </form>
-
-          <ul class="grid gap-2 text-[13px] text-text-3">
-            {form.bullets.map((b) => (
-              <li class="inline-flex items-center gap-2">
-                <IconCheck class="w-3.5 h-3.5 text-green-400 flex-none" />
-                {b}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-between text-xs text-text-4 flex-wrap gap-2">
-        <span>{footer.copyright}</span>
-        <div class="inline-flex gap-4">
-          {footer.links.map((l) => (
-            <a href={l.href} class="hover:text-text-2" set:html={l.label.replace(/^●/, '<span class="text-green-400">●</span>')}></a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="hidden lg:block relative bg-deep border-l border-hairline overflow-hidden" aria-hidden="true">
-      <div class="absolute inset-0 pointer-events-none [background-image:linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:48px_48px]"></div>
-      <div class="absolute left-[60px] top-20 w-[460px] border border-hairline rounded-xl bg-surface/85 backdrop-blur-md overflow-hidden -rotate-1 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]">
-        <div class="px-4 py-3 border-b border-hairline font-mono text-[11px] text-text-3">{sidePanel.terminal.breadcrumb}</div>
-        <div class="px-5 py-5 font-mono text-[12.5px] leading-[1.8] text-zinc-300">
-          {sidePanel.terminal.lines.map((line) => (
-            <div>
-              {line.kind === "cmd" && <><span class="text-red-500">$</span> <span set:html={line.text}></span></>}
-              {line.kind === "comment" && <span class="text-text-3" set:html={line.text}></span>}
-              {line.kind === "ok" && <><span class="text-green-400">✓</span> <span set:html={line.text}></span></>}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div class="absolute right-14 top-[220px] w-[360px] border border-hairline rounded-xl bg-surface/85 backdrop-blur-md overflow-hidden rotate-[1.5deg] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]">
-        <div class="flex items-center gap-2.5 px-4 py-3.5 border-b border-hairline text-[13px]">
-          <span class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_#4ade80]"></span>
-          <b class="font-medium">{sidePanel.deployCard.title}</b>
-          <span class="ml-auto font-mono text-[10px] px-2 py-0.5 rounded-full bg-green-400/[0.12] text-green-400 border border-green-400/25">{sidePanel.deployCard.badge}</span>
-        </div>
-        <div class="px-4 py-3.5">
-          {sidePanel.deployCard.rows.map((r, i) => (
-            <div class:list={["grid grid-cols-[100px_1fr] py-1.5 text-[12.5px]", i < sidePanel.deployCard.rows.length - 1 && "border-b border-dashed border-hairline"]}>
-              <span class="text-text-3">{r.label}</span>
-              <span class:list={["font-mono", r.accent ? "text-red-500" : "text-text-2"]}>{r.value}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div class="absolute left-16 right-16 bottom-14 z-10">
-        <h2 class="text-[28px] tracking-[-0.025em] leading-[1.15] font-semibold max-w-[460px] text-text" set:html={sidePanel.tagline}></h2>
-        <p class="text-[13.5px] text-text-3 mt-2.5 max-w-[380px] leading-[1.5]">{sidePanel.description}</p>
-      </div>
-    </section>
-  </main>
+<Layout title="Download Sténtor" description="Download Sténtor. Free to try, no account required." noindex>
+  <section class="max-w-[760px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Download</p>
+    <h1 class="text-5xl md:text-[64px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Download Sténtor freely.</h1>
+    <p class="text-lg text-text-2 leading-[1.6] mb-8">
+      Sténtor no longer asks you to fill in a form before downloading. Go straight to the download page, try the software, and share field notes only if you use it in rehearsal or performance.
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <Btn href="/download" variant="primary">Go to download</Btn>
+      <Btn href="/contact" variant="ghost">Share field notes</Btn>
+    </div>
+  </section>
 </Layout>
