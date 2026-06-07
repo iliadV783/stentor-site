@@ -1,10 +1,10 @@
 ---
 const currentPath = Astro.url.pathname;
-const currentLang = currentPath.startsWith("/fr") ? "fr" : "en";
+const currentLang = currentPath.startsWith("/it") ? "it" : currentPath.startsWith("/fr") ? "fr" : "en";
 
 const languages = [
   { code: "en", label: "English", href: "/", available: true },
-  { code: "it", label: "Italiano", href: "#", available: false, note: "coming soon" },
+  { code: "it", label: "Italiano", href: "/it/", available: true },
   { code: "fr", label: "Français", href: "/fr/", available: true },
 ];
 ---
@@ -49,29 +49,16 @@ const languages = [
     aria-label="Language options"
   >
     {languages.map((lang) => (
-      lang.available ? (
-        <a
-          href={lang.href}
-          x-on:click={`localStorage.setItem('stentor-lang-choice', '${lang.code}'); open = false`}
-          class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
-          role="menuitem"
-        >
-          <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-red-500" : "text-text-3"]}>{lang.code}</span>
-          <span class="flex-1">{lang.label}</span>
-          <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? "current" : ""}</span>
-        </a>
-      ) : (
-        <button
-          type="button"
-          disabled
-          class="w-full flex items-center gap-3 px-4 py-3 text-sm text-text-4 cursor-not-allowed bg-transparent"
-          role="menuitem"
-        >
-          <span class="font-mono text-[11px] uppercase w-6">{lang.code}</span>
-          <span class="flex-1 text-left">{lang.label}</span>
-          <span class="font-mono text-[10px] uppercase">{lang.note}</span>
-        </button>
-      )
+      <a
+        href={lang.href}
+        x-on:click={`localStorage.setItem('stentor-lang-choice', '${lang.code}'); open = false`}
+        class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
+        role="menuitem"
+      >
+        <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-red-500" : "text-text-3"]}>{lang.code}</span>
+        <span class="flex-1">{lang.label}</span>
+        <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? "current" : ""}</span>
+      </a>
     ))}
   </div>
 </div>
