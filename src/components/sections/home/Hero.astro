@@ -9,7 +9,13 @@ import IconChartUp from "../../../assets/icons/chart-up.svg";
 import IconBox from "../../../assets/icons/box.svg";
 import IconCrossAxis from "../../../assets/icons/cross-axis.svg";
 import IconClock from "../../../assets/icons/clock.svg";
-import { hero } from "../../../data/home";
+import { hero as defaultHero } from "../../../data/home";
+
+interface Props {
+  hero?: typeof defaultHero;
+}
+
+const { hero = defaultHero } = Astro.props;
 ---
 <section class="relative pt-24 lg:pt-[120px] pb-10 overflow-hidden">
   <div class="absolute inset-0 dotgrid dotgrid-fade pointer-events-none" aria-hidden="true"></div>
