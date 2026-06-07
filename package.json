@@ -1,10 +1,10 @@
 {
-  "name": "lambda-saas",
-  "version": "1.0.0",
-  "description": "A modern, fast, production-ready Astro 6 template for SaaS and developer-tool products. Token-driven dark UI, accessibility-audited, built on Tailwind CSS v4.",
-  "author": "Lambda Studio (https://lambdastudio.io)",
+  "name": "stentor-site",
+  "version": "0.1.0",
+  "description": "Public marketing site for Sténtor, a live-performance tool for surtitles, translation and audio description.",
+  "author": "Sténtor",
   "license": "SEE LICENSE IN LICENSE",
-  "homepage": "https://lambda-saas.netlify.app",
+  "homepage": "https://www.stentor.live",
   "type": "module",
   "private": true,
   "engines": {
