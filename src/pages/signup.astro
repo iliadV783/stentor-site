@@ -7,7 +7,7 @@ import IconCheck from "../assets/icons/check.svg";
 import { form, sidePanel, footer } from "../data/signup";
 ---
 
-<Layout title="Sténtor – Request access" showNav={false} showFooter={false} noindex>
+<Layout title="Download Sténtor" showNav={false} showFooter={false} noindex>
   <main class="min-h-screen grid lg:[grid-template-columns:minmax(0,1fr)_minmax(0,1.05fr)] bg-bg">
     <section class="flex flex-col px-6 py-8 sm:px-10 lg:px-16">
       <div class="flex items-center justify-between">
@@ -19,17 +19,60 @@ import { form, sidePanel, footer } from "../data/signup";
       </div>
 
       <div class="flex-1 flex items-center py-12">
-        <div class="w-full max-w-[520px]">
+        <div class="w-full max-w-[560px]">
           <h1 class="text-3xl sm:text-[42px] tracking-[-0.04em] font-semibold leading-[1.05] mb-4">{form.title}</h1>
           <p class="text-[16px] text-text-2 leading-[1.6] mb-6">{form.intro}</p>
 
-          <div class="border border-hairline rounded-xl bg-surface p-5 mb-6">
-            <p class="text-sm text-text-2 leading-[1.55] mb-4">{form.note}</p>
-            <a href="mailto:info@stentor.live?subject=Sténtor access request" class="w-full h-11 bg-red-500 text-bg rounded-lg font-medium text-sm inline-flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(239,68,68,0.25)] hover:shadow-[0_10px_28px_rgba(239,68,68,0.35)] active:translate-y-px transition-all">
+          <form
+            name="stentor-download"
+            method="POST"
+            action="/download/"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            class="border border-hairline rounded-xl bg-surface p-5 mb-6 grid gap-4"
+          >
+            <input type="hidden" name="form-name" value="stentor-download" />
+            <p class="hidden">
+              <label>Do not fill this out: <input name="bot-field" /></label>
+            </p>
+
+            <p class="text-sm text-text-2 leading-[1.55] m-0">{form.note}</p>
+
+            <label class="grid gap-1.5">
+              <span class="text-[13px] text-text-2">{form.nameLabel}</span>
+              <input class="h-11 rounded-lg border border-hairline bg-surface-2 px-3 text-sm text-text outline-none focus:border-red-500/70" type="text" name="name" placeholder={form.namePlaceholder} required />
+            </label>
+
+            <label class="grid gap-1.5">
+              <span class="text-[13px] text-text-2">{form.emailLabel}</span>
+              <input class="h-11 rounded-lg border border-hairline bg-surface-2 px-3 text-sm text-text outline-none focus:border-red-500/70" type="email" name="email" placeholder={form.emailPlaceholder} required />
+            </label>
+
+            <label class="grid gap-1.5">
+              <span class="text-[13px] text-text-2">{form.roleLabel}</span>
+              <select class="h-11 rounded-lg border border-hairline bg-surface-2 px-3 text-sm text-text outline-none focus:border-red-500/70" name="role" required>
+                <option value="">Select one</option>
+                {form.roleOptions.map((option) => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+
+            <label class="grid gap-1.5">
+              <span class="text-[13px] text-text-2">{form.messageLabel}</span>
+              <textarea class="min-h-[104px] rounded-lg border border-hairline bg-surface-2 px-3 py-2.5 text-sm text-text outline-none focus:border-red-500/70 resize-y" name="context" placeholder={form.messagePlaceholder} required></textarea>
+            </label>
+
+            <label class="flex gap-2.5 items-start text-[12.5px] leading-[1.45] text-text-3">
+              <input class="mt-1 accent-red-500" type="checkbox" name="consent" value="yes" required />
+              <span set:html={form.consentLabel}></span>
+            </label>
+
+            <button type="submit" class="w-full h-11 bg-red-500 text-bg rounded-lg font-medium text-sm inline-flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(239,68,68,0.25)] hover:shadow-[0_10px_28px_rgba(239,68,68,0.35)] active:translate-y-px transition-all">
               {form.submitLabel}
               <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
-            </a>
-          </div>
+            </button>
+          </form>
 
           <ul class="grid gap-2 text-[13px] text-text-3">
             {form.bullets.map((b) => (
