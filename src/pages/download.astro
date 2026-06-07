@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Btn from "../components/Btn.astro";
+---
+
+<Layout
+  title="Download Sténtor"
+  description="Download Sténtor after sharing your use context."
+  noindex
+>
+  <section class="max-w-[920px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="border border-hairline rounded-2xl bg-surface p-6 md:p-10 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.65)]">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Thank you</p>
+      <h1 class="text-4xl md:text-[56px] tracking-[-0.05em] leading-[1.02] font-semibold mb-5">Your download request has been received.</h1>
+      <p class="text-lg text-text-2 leading-[1.6] max-w-[720px] mb-8">
+        Thank you for telling us how you plan to use Sténtor. This page will host the current macOS, Windows and Linux builds as soon as public downloads are ready.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-3 mb-8">
+        <div class="rounded-xl border border-hairline bg-sunken p-4">
+          <h2 class="font-medium mb-1">macOS</h2>
+          <p class="text-sm text-text-3 leading-[1.5]">Apple Silicon build coming here.</p>
+        </div>
+        <div class="rounded-xl border border-hairline bg-sunken p-4">
+          <h2 class="font-medium mb-1">Windows</h2>
+          <p class="text-sm text-text-3 leading-[1.5]">Windows build coming here.</p>
+        </div>
+        <div class="rounded-xl border border-hairline bg-sunken p-4">
+          <h2 class="font-medium mb-1">Linux</h2>
+          <p class="text-sm text-text-3 leading-[1.5]">Linux build coming here.</p>
+        </div>
+      </div>
+
+      <p class="text-sm text-text-3 leading-[1.55] mb-6">
+        For now, we will use the information you submitted to understand the download context and to contact you with the appropriate build or follow-up instructions when needed.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <Btn href="/docs" variant="primary">Read the workflow</Btn>
+        <Btn href="/contact" variant="ghost">Contact Sténtor</Btn>
+      </div>
+    </div>
+  </section>
+</Layout>
