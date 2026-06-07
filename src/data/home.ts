@@ -12,7 +12,7 @@ export const hero = {
   description:
     "Sténtor offers theatres, artists and live-performance teams a simple way to prepare and share surtitles, translations and audio descriptions — with the same essential tools available to everyone.",
   ctas: [
-    { href: "/signup", label: "Request access", variant: "primary" as const },
+    { href: "/signup", label: "Download Sténtor", variant: "primary" as const },
     { href: "/docs", label: "Read the workflow", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
@@ -162,7 +162,7 @@ export const pricingPreview = {
       cycle: "/year",
       tagline: "For independent artists, students and very small teams who need access first.",
       features: fullFeatureSet,
-      cta: { href: "/signup", label: "Use for free", variant: "ghost" as const },
+      cta: { href: "/signup", label: "Download for free", variant: "ghost" as const },
       highlighted: false,
     },
     {
@@ -173,7 +173,7 @@ export const pricingPreview = {
       cycle: "/year · support",
       tagline: "For companies, collectives and touring productions that can contribute a little more.",
       features: fullFeatureSet,
-      cta: { href: "/signup", label: "Support as Pro", variant: "primary" as const },
+      cta: { href: "/signup", label: "Download and support", variant: "primary" as const },
       highlighted: true,
     },
     {
@@ -196,9 +196,9 @@ export const finalCta = {
   gap: "gap-6",
   eyebrow: "Same tools · shared responsibility",
   title: "Bring live words to every audience.",
-  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share. If you can, support the project; if you use it, share feedback that helps it grow.",
+  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share. Download it, tell us how you plan to use it, and share feedback when the tool helps you in rehearsal or performance.",
   ctas: [
-    { href: "/signup", label: "Request access", variant: "primary" as const },
+    { href: "/signup", label: "Download Sténtor", variant: "primary" as const },
     { href: "/contact", label: "Share feedback", variant: "ghost" as const },
   ],
 };
