@@ -1,7 +1,13 @@
 ---
 import Btn from "../../Btn.astro";
 import IconCheck from "../../../assets/icons/check.svg";
-import { pricingPreview } from "../../../data/home";
+import { pricingPreview as defaultPricingPreview } from "../../../data/home";
+
+interface Props {
+  pricingPreview?: typeof defaultPricingPreview;
+}
+
+const { pricingPreview = defaultPricingPreview } = Astro.props;
 ---
 <section class="py-24" id="pricing">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
