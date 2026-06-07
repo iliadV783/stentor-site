@@ -2,16 +2,20 @@
 import Eyebrow from "../../Eyebrow.astro";
 import Btn from "../../Btn.astro";
 import IconCheck from "../../../assets/icons/check.svg";
-import { showcase } from "../../../data/features";
+import { showcase as defaultShowcase } from "../../../data/features";
 
 import SchemasIllustration from "./illustrations/SchemasIllustration.astro";
 import TraceIllustration from "./illustrations/TraceIllustration.astro";
 import RegionsIllustration from "./illustrations/RegionsIllustration.astro";
 
+interface Props {
+  showcase?: typeof defaultShowcase;
+}
+
+const { showcase = defaultShowcase } = Astro.props;
 const [schemasRow, traceRow, runtimeRow] = showcase;
 ---
 <section class="max-w-[1280px] mx-auto px-4 md:px-8 grid gap-24 py-16">
-  <!-- Row 1 — Schemas -->
   <article class="grid lg:[grid-template-columns:1fr_1.15fr] gap-10 lg:gap-16 items-center">
     <div class="max-w-[480px]" data-animate="left">
       <Eyebrow class="mb-4.5"><span class="font-mono">{schemasRow.eyebrow}</span></Eyebrow>
@@ -27,7 +31,6 @@ const [schemasRow, traceRow, runtimeRow] = showcase;
     <SchemasIllustration />
   </article>
 
-  <!-- Row 2 — Observability -->
   <article class="grid lg:[grid-template-columns:1.15fr_1fr] gap-10 lg:gap-16 items-center">
     <TraceIllustration />
     <div class="max-w-[480px] order-1 lg:order-2" data-animate="right">
@@ -43,7 +46,6 @@ const [schemasRow, traceRow, runtimeRow] = showcase;
     </div>
   </article>
 
-  <!-- Row 3 — Edge runtime -->
   <article class="grid lg:[grid-template-columns:1fr_1.15fr] gap-10 lg:gap-16 items-center">
     <div class="max-w-[480px]" data-animate="left">
       <Eyebrow class="mb-4.5"><span class="font-mono">{runtimeRow.eyebrow}</span></Eyebrow>
