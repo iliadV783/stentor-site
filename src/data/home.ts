@@ -12,13 +12,13 @@ export const hero = {
   description:
     "Sténtor offers theatres, artists and live-performance teams a simple way to prepare and share surtitles, translations and audio descriptions — with the same essential tools available to everyone.",
   ctas: [
-    { href: "/signup", label: "Download Sténtor", variant: "primary" as const },
+    { href: "/download", label: "Download Sténtor", variant: "primary" as const },
     { href: "/docs", label: "Read the workflow", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Cross-platform desktop", live: true },
-    { label: "Audience web client" },
-    { label: "Live Sync · EUPL license · Research-driven" },
+    { label: "Free to try · no account required", live: true },
+    { label: "Cross-platform desktop" },
+    { label: "Audience web client · Live Sync · Research-driven" },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Live rehearsal · local network" },
@@ -162,7 +162,7 @@ export const pricingPreview = {
       cycle: "/year",
       tagline: "For independent artists, students and very small teams who need access first.",
       features: fullFeatureSet,
-      cta: { href: "/signup", label: "Download for free", variant: "ghost" as const },
+      cta: { href: "/download", label: "Download for free", variant: "ghost" as const },
       highlighted: false,
     },
     {
@@ -173,7 +173,7 @@ export const pricingPreview = {
       cycle: "/year · support",
       tagline: "For companies, collectives and touring productions that can contribute a little more.",
       features: fullFeatureSet,
-      cta: { href: "/signup", label: "Download and support", variant: "primary" as const },
+      cta: { href: "/download", label: "Download and support", variant: "primary" as const },
       highlighted: true,
     },
     {
@@ -196,9 +196,9 @@ export const finalCta = {
   gap: "gap-6",
   eyebrow: "Same tools · shared responsibility",
   title: "Bring live words to every audience.",
-  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share. Download it, tell us how you plan to use it, and share feedback when the tool helps you in rehearsal or performance.",
+  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share. Download it freely, use it in rehearsal or performance, and share feedback only when you have something useful to tell us.",
   ctas: [
-    { href: "/signup", label: "Download Sténtor", variant: "primary" as const },
-    { href: "/contact", label: "Share feedback", variant: "ghost" as const },
+    { href: "/download", label: "Download Sténtor", variant: "primary" as const },
+    { href: "/contact", label: "Share field notes", variant: "ghost" as const },
   ],
 };
