@@ -1,7 +1,7 @@
 /**
- * Docs navigation: sidebar groups + on-this-page TOC.
- * The body of the Workflow page lives in docs.astro because the current
- * Lambda template keeps article content inline.
+ * Workflow navigation: sidebar groups + on-this-page TOC.
+ * The body of the Workflow page currently lives in docs.astro;
+ * this file keeps the page navigation and metadata in one place.
  */
 
 export type DocsSidebarItem = {
