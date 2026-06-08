@@ -12,20 +12,33 @@ interface Props {
 }
 const { active = null } = Astro.props;
 const isFr = Astro.url.pathname.startsWith("/fr");
+const isIt = Astro.url.pathname.startsWith("/it");
 const navItems = isFr
   ? [
       { href: "/fr/features", label: "Fonctionnalités", id: "features" as const },
       { href: "/fr/docs", label: "Workflow", id: "docs" as const },
       { href: "/fr/for-theatres", label: "Pour les théâtres", id: "customers" as const },
     ]
-  : nav;
+  : isIt
+    ? [
+        { href: "/it/features", label: "Funzioni", id: "features" as const },
+        { href: "/it/docs", label: "Workflow", id: "docs" as const },
+        { href: "/it/for-theatres", label: "Per i teatri", id: "customers" as const },
+      ]
+    : nav;
 const cta = isFr
   ? {
       primary: { href: "/fr/contact", label: "Contact" },
       secondary: { href: "/fr/about", label: "À propos" },
       statusPrefix: "Conçu pour le spectacle vivant",
     }
-  : { ...navCta, statusPrefix: site.statusPrefix };
+  : isIt
+    ? {
+        primary: { href: "/it/contact", label: "Contatto" },
+        secondary: { href: "/it/about", label: "Chi siamo" },
+        statusPrefix: "Pensato per lo spettacolo dal vivo",
+      }
+    : { ...navCta, statusPrefix: site.statusPrefix };
 ---
 <div
   class="contents"
