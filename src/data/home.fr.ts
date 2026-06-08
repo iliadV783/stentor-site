@@ -10,8 +10,8 @@ export const hero = {
   description:
     "Sténtor offre aux théâtres, aux artistes et aux équipes du spectacle vivant une manière simple de préparer et partager surtitres, traductions et audiodescriptions — avec les mêmes outils essentiels pour tout le monde.",
   ctas: [
-    { href: "/download", label: "Télécharger Sténtor", variant: "primary" as const },
-    { href: "/docs", label: "Lire le workflow", variant: "ghost" as const, icon: "play" as const },
+    { href: "/fr/download", label: "Télécharger Sténtor", variant: "primary" as const },
+    { href: "/fr/docs", label: "Lire le workflow", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
     { label: "Gratuit à essayer · aucun compte requis", live: true },
@@ -146,7 +146,7 @@ const fullFeatureSet = [
 
 export const pricingPreview = {
   title: "Mêmes fonctions.<br/>Soutenez selon votre échelle.",
-  comparisonLink: { href: "/pricing", label: "Voir le modèle de soutien →" },
+  comparisonLink: { href: "/fr/pricing", label: "Voir le modèle de soutien →" },
   plans: [
     {
       name: "Free",
@@ -155,7 +155,7 @@ export const pricingPreview = {
       cycle: "/an",
       tagline: "Pour artistes indépendants, étudiant·es et très petites équipes qui ont d’abord besoin d’accès.",
       features: fullFeatureSet,
-      cta: { href: "/download", label: "Télécharger gratuitement", variant: "ghost" as const },
+      cta: { href: "/fr/download", label: "Télécharger gratuitement", variant: "ghost" as const },
       highlighted: false,
     },
     {
@@ -166,7 +166,7 @@ export const pricingPreview = {
       cycle: "/an · soutien",
       tagline: "Pour compagnies, collectifs et productions en tournée qui peuvent contribuer un peu plus.",
       features: fullFeatureSet,
-      cta: { href: "/download", label: "Télécharger et soutenir", variant: "primary" as const },
+      cta: { href: "/fr/download", label: "Télécharger et soutenir", variant: "primary" as const },
       highlighted: true,
     },
     {
@@ -176,7 +176,7 @@ export const pricingPreview = {
       cycle: "/an · soutien",
       tagline: "Pour théâtres, festivals, institutions et lieux du spectacle vivant.",
       features: fullFeatureSet,
-      cta: { href: "/contact", label: "Soutenir comme lieu", variant: "ghost" as const },
+      cta: { href: "/fr/contact", label: "Soutenir comme lieu", variant: "ghost" as const },
       highlighted: false,
     },
   ],
@@ -190,7 +190,7 @@ export const finalCta = {
   title: "Faire parvenir les mots vivants à chaque public.",
   body: "Sténtor rend les surtitres, traductions et audiodescriptions simples à préparer, piloter et partager. Téléchargez-le librement, utilisez-le en répétition ou en représentation, puis partagez vos retours seulement lorsque vous avez quelque chose d’utile à nous dire.",
   ctas: [
-    { href: "/download", label: "Télécharger Sténtor", variant: "primary" as const },
-    { href: "/contact", label: "Partager des notes de terrain", variant: "ghost" as const },
+    { href: "/fr/download", label: "Télécharger Sténtor", variant: "primary" as const },
+    { href: "/fr/contact", label: "Partager des notes de terrain", variant: "ghost" as const },
   ],
 };
