@@ -6,6 +6,7 @@ import IconDiscord from "../assets/icons/discord.svg";
 import { site, footerGroups } from "../data/site";
 
 const isFr = Astro.url.pathname.startsWith("/fr");
+const isIt = Astro.url.pathname.startsWith("/it");
 const groups = isFr
   ? [
       { title: "Produit", links: [
@@ -30,10 +31,47 @@ const groups = isFr
         { href: "/terms", label: "Conditions" },
       ] },
     ]
-  : footerGroups;
-const footerTagline = isFr ? "Surtitres, traduction et audiodescription pour le spectacle vivant." : site.footerTagline;
-const statusPrefix = isFr ? "Concu pour le spectacle vivant" : site.statusPrefix;
-const statusRegions = isFr ? "surtitres, traduction, audiodescription" : site.statusRegions;
+  : isIt
+    ? [
+        { title: "Prodotto", links: [
+          { href: "/it/features", label: "Funzioni" },
+          { href: "/it/docs", label: "Workflow" },
+          { href: "/it/for-theatres", label: "Per i teatri" },
+          { href: "/it/contact", label: "Contatto" },
+        ] },
+        { title: "Usi", links: [
+          { href: "/it/features", label: "Sopratitoli" },
+          { href: "/it/features", label: "Traduzione" },
+          { href: "/it/features", label: "Audio descrizione" },
+          { href: "/it/for-theatres", label: "Festival" },
+        ] },
+        { title: "Progetto", links: [
+          { href: "/it/about", label: "Chi siamo" },
+          { href: "/blog", label: "Note" },
+          { href: "/changelog", label: "Aggiornamenti" },
+        ] },
+        { title: "Legale", links: [
+          { href: "/privacy", label: "Privacy" },
+          { href: "/terms", label: "Termini" },
+        ] },
+      ]
+    : footerGroups;
+const footerTagline = isFr
+  ? "Surtitres, traduction et audiodescription pour le spectacle vivant."
+  : isIt
+    ? "Sopratitoli, traduzione e audio descrizione per lo spettacolo dal vivo."
+    : site.footerTagline;
+const statusPrefix = isFr
+  ? "Concu pour le spectacle vivant"
+  : isIt
+    ? "Pensato per lo spettacolo dal vivo"
+    : site.statusPrefix;
+const statusRegions = isFr
+  ? "surtitres, traduction, audiodescription"
+  : isIt
+    ? "sopratitoli, traduzione, audio descrizione"
+    : site.statusRegions;
+const homeHref = isFr ? "/fr/" : isIt ? "/it/" : "/";
 
 const socialIcons = [
   { id: "github", href: site.social.github, label: "GitHub", Icon: IconGithub },
@@ -51,7 +89,7 @@ const socialIcons = [
             <img src="/stentor-icon.png" alt="" class="w-full h-full block" aria-hidden="true" />
           </span>
           <div>
-            <a href={isFr ? "/fr/" : "/"} aria-label="Stentor home" class="inline-flex text-2xl sm:text-3xl leading-none tracking-[-0.04em] font-semibold text-text hover:text-text transition-colors">
+            <a href={homeHref} aria-label="Stentor home" class="inline-flex text-2xl sm:text-3xl leading-none tracking-[-0.04em] font-semibold text-text hover:text-text transition-colors">
               Sténtor
             </a>
             <p class="text-text-3 text-sm mt-4 max-w-[320px]">
