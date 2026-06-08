@@ -1,0 +1,42 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Btn from "../../../components/Btn.astro";
+---
+
+<Layout
+  title="Sténtor – Contatto"
+  description="Condividi questionari, note di ricerca e feedback d’uso su Sténtor in prova, in sala o nello spettacolo dal vivo."
+  active={null}
+>
+  <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[760px] mb-12">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Contatto</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Raccontaci come usi Sténtor.</h1>
+      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">
+        Sténtor cresce grazie agli usi reali. Se lo provi in sala, in prova, con il pubblico o in un contesto di ricerca, note pratiche, questionari e risposte degli spettatori sono preziosi.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 mb-10">
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Feedback e questionari</h2>
+        <p class="text-sm text-text-3 leading-[1.6] mb-5">Condividi un ritorno strutturato dopo una prova, un test pubblico, un laboratorio o una rappresentazione.</p>
+        <Btn href="mailto:info@stentor.live?subject=Stentor feedback questionnaire" variant="primary">Richiedi un questionario</Btn>
+      </article>
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
+        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Note di ricerca</h2>
+        <p class="text-sm text-text-3 leading-[1.6] mb-5">Racconta cosa è successo in sala: cosa ha funzionato, cosa era poco chiaro, cosa ha usato il pubblico e cosa migliorare.</p>
+        <Btn href="mailto:leonardo.mancini@unito.it?subject=Stentor research feedback" variant="ghost">leonardo.mancini@unito.it</Btn>
+      </article>
+    </div>
+
+    <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
+      <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Leonardo Mancini</h2>
+      <p class="text-sm text-text-3 leading-[1.6] mb-4">Department of Humanities · University of Turin · Via Sant'Ottavio 20 · 10124 Torino · Italia</p>
+      <div class="flex flex-wrap gap-2">
+        <Btn href="mailto:leonardo.mancini@unito.it" variant="ghost">leonardo.mancini@unito.it</Btn>
+        <Btn href="mailto:info@stentor.live" variant="ghost">info@stentor.live</Btn>
+      </div>
+    </div>
+  </section>
+</Layout>
