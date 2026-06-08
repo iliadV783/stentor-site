@@ -1,0 +1,51 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Btn from "../../../components/Btn.astro";
+---
+
+<Layout
+  title="Sténtor – Supporto"
+  description="Le stesse funzioni Sténtor per tutti, con livelli di sostegno annuale suggeriti in base alla scala e al contesto d’uso."
+  active="pricing"
+>
+  <section class="max-w-[1120px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[840px] mb-12 text-center mx-auto">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Supporto · donazione · stesse funzioni</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Gli stessi strumenti per tutti.<br/>Sostieni in base alla tua scala.</h1>
+      <p class="text-xl text-text-2 leading-[1.55] max-w-[760px] mx-auto">
+        Sténtor non blocca le funzioni essenziali dietro piani superiori. Free, Pro e Venues includono gli stessi strumenti di base. Il contributo suggerito riflette solo chi usa il software, con quali mezzi e in quale contesto.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 mb-16">
+      {[
+        { name: "Free", tag: "Indipendente", price: "€0", cycle: "/anno", text: "Per artiste e artisti indipendenti, studenti, piccole sperimentazioni e chi ha bisogno di accesso senza chiedere permesso.", cta: "Usa gratis", href: "/it/download", hi: false },
+        { name: "Pro", tag: "Suggerito", price: "€19", cycle: "/anno · supporto", text: "Per compagnie, collettivi, progetti professionali e produzioni in tournée che possono contribuire un po’ di più.", cta: "Sostieni come Pro", href: "/it/download", hi: true },
+        { name: "Venues", tag: "Teatri", price: "€99", cycle: "/anno · supporto", text: "Per teatri, festival, istituzioni e luoghi che usano Sténtor in contesti pubblici più ampi.", cta: "Sostieni come luogo", href: "/it/contact", hi: false },
+      ].map((plan) => (
+        <article class:list={["rounded-2xl border bg-surface p-6 md:p-7 flex flex-col gap-5", plan.hi ? "border-red-500/45 shadow-[0_30px_60px_-30px_rgba(239,68,68,0.35)]" : "border-hairline"]}>
+          <div class="flex items-center justify-between gap-3"><h2 class="text-xl font-semibold tracking-[-0.02em]">{plan.name}</h2><span class="font-mono text-xs text-text-3 border border-hairline rounded px-2 py-1">{plan.tag}</span></div>
+          <div><span class="text-5xl tracking-[-0.05em] font-semibold">{plan.price}</span><span class="text-sm text-text-3 ml-2">{plan.cycle}</span></div>
+          <p class="text-sm text-text-2 leading-[1.6]">{plan.text}</p>
+          <ul class="grid gap-2 text-sm text-zinc-300 list-none p-0 m-0 flex-1">
+            <li>✓ Stesse funzioni essenziali per tutti</li>
+            <li>✓ Progetti, lingue e cue illimitati</li>
+            <li>✓ Sopratitoli, traduzioni e audio descrizione</li>
+            <li>✓ Import Word, TXT, SRT, WebVTT, CSV e JSON</li>
+            <li>✓ Feedback e scambio di ricerca benvenuti</li>
+          </ul>
+          <Btn href={plan.href} variant={plan.hi ? "primary" : "ghost"}>{plan.cta}</Btn>
+        </article>
+      ))}
+    </div>
+
+    <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
+      <h2 class="text-2xl tracking-[-0.03em] font-semibold mb-4">Domande frequenti</h2>
+      <div class="grid gap-5 text-sm text-text-2 leading-[1.65]">
+        <p><b class="text-text">Free, Pro e Venues sono versioni diverse?</b><br/>No. Le funzioni essenziali sono le stesse. I livelli indicano modi diversi di contribuire, non accessi diversi agli strumenti.</p>
+        <p><b class="text-text">Perché chiedere un sostegno?</b><br/>Sténtor richiede sviluppo, test, documentazione e manutenzione. I contributi aiutano a mantenere il progetto disponibile.</p>
+        <p><b class="text-text">Cosa posso dare se non posso contribuire economicamente?</b><br/>Feedback, note di campo, risposte del pubblico e osservazioni tecniche sono molto utili alla ricerca e allo sviluppo.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
