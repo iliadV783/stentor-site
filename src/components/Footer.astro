@@ -5,6 +5,36 @@ import IconRss from "../assets/icons/rss.svg";
 import IconDiscord from "../assets/icons/discord.svg";
 import { site, footerGroups } from "../data/site";
 
+const isFr = Astro.url.pathname.startsWith("/fr");
+const groups = isFr
+  ? [
+      { title: "Produit", links: [
+        { href: "/fr/features", label: "Fonctionnalites" },
+        { href: "/fr/docs", label: "Workflow" },
+        { href: "/fr/for-theatres", label: "Pour les theatres" },
+        { href: "/fr/contact", label: "Contact" },
+      ] },
+      { title: "Usages", links: [
+        { href: "/fr/features", label: "Surtitres" },
+        { href: "/fr/features", label: "Traduction" },
+        { href: "/fr/features", label: "Audiodescription" },
+        { href: "/fr/for-theatres", label: "Festivals" },
+      ] },
+      { title: "Projet", links: [
+        { href: "/fr/about", label: "A propos" },
+        { href: "/blog", label: "Notes" },
+        { href: "/changelog", label: "Mises a jour" },
+      ] },
+      { title: "Legal", links: [
+        { href: "/privacy", label: "Confidentialite" },
+        { href: "/terms", label: "Conditions" },
+      ] },
+    ]
+  : footerGroups;
+const footerTagline = isFr ? "Surtitres, traduction et audiodescription pour le spectacle vivant." : site.footerTagline;
+const statusPrefix = isFr ? "Concu pour le spectacle vivant" : site.statusPrefix;
+const statusRegions = isFr ? "surtitres, traduction, audiodescription" : site.statusRegions;
+
 const socialIcons = [
   { id: "github", href: site.social.github, label: "GitHub", Icon: IconGithub },
   { id: "x", href: site.social.x, label: "X", Icon: IconXTwitter },
@@ -21,11 +51,11 @@ const socialIcons = [
             <img src="/stentor-icon.png" alt="" class="w-full h-full block" aria-hidden="true" />
           </span>
           <div>
-            <a href="/" aria-label="Sténtor — home" class="inline-flex text-2xl sm:text-3xl leading-none tracking-[-0.04em] font-semibold text-text hover:text-text transition-colors">
+            <a href={isFr ? "/fr/" : "/"} aria-label="Stentor home" class="inline-flex text-2xl sm:text-3xl leading-none tracking-[-0.04em] font-semibold text-text hover:text-text transition-colors">
               Sténtor
             </a>
             <p class="text-text-3 text-sm mt-4 max-w-[320px]">
-              {site.footerTagline}
+              {footerTagline}
             </p>
           </div>
         </div>
@@ -39,7 +69,7 @@ const socialIcons = [
       </div>
 
       {
-        footerGroups.map((g) => (
+        groups.map((g) => (
           <div>
             <h2 class="text-xs uppercase tracking-[0.06em] text-text-3 mb-3.5 font-medium">{g.title}</h2>
             <ul class="grid gap-2.5 list-none p-0 m-0">
@@ -58,7 +88,7 @@ const socialIcons = [
 
     <div class="mt-14 pt-6 border-t border-hairline flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-[13px] text-text-3">
       <span>{site.copyright}</span>
-      <span class="font-mono">{site.statusPrefix} · <span class="text-green-400">●</span> {site.statusRegions}</span>
+      <span class="font-mono">{statusPrefix} · <span class="text-green-400">●</span> {statusRegions}</span>
     </div>
   </div>
 </footer>
