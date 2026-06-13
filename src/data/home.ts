@@ -4,21 +4,20 @@
  * touching the layout or the SVG illustrations.
  */
 
-// ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
-  eyebrow: "v. 0.1.64 – Live Sync",
+  eyebrow: "Stentor ecosystem - Lite and Pro",
   title:
-    'Surtitles, translation <em class="not-italic text-text-3 font-medium">and audio description.</em><br class="hidden sm:inline" /> Live.',
+    'Surtitles, translation <em class="not-italic text-text-3 font-medium">and accessibility.</em><br class="hidden sm:inline" /> Live.',
   description:
-    "Sténtor offers theatres, artists and live-performance teams a simple way to prepare and share surtitles, translations and audio descriptions — with the same essential tools available to everyone.",
+    "Stentor is an ecosystem for live-performance text: a free cross-platform Lite app to start working on scripts, and a native macOS Pro app for professional live operation.",
   ctas: [
-    { href: "/download", label: "Download Sténtor", variant: "primary" as const },
-    { href: "/docs", label: "Read the workflow", variant: "ghost" as const, icon: "play" as const },
+    { href: "/download", label: "Download Stentor", variant: "primary" as const },
+    { href: "/request-pro", label: "Join the Pro beta", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Free to try · no account required", live: true },
-    { label: "Cross-platform desktop" },
-    { label: "Audience web client · Live Sync · Research-driven" },
+    { label: "Lite: macOS, Windows and Linux", live: true },
+    { label: "Pro: native macOS for live production" },
+    { label: "Surtitles · translation · audio description · audience devices" },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Live rehearsal · local network" },
@@ -51,49 +50,46 @@ export const hero = {
   },
 };
 
-// ─── Logo cloud ───────────────────────────────────────────────────────────
 export const logoCloud = {
-  label: "ONE TEXT, MANY WAYS TO RECEIVE IT",
-  bigNumber: "10,000+",
+  label: "ONE PLATFORM, TWO DESKTOP APPS",
+  bigNumber: "3 OS",
   logos: [
-    { name: "Surtitles", glyph: "rounded-full" },
-    { name: "Translation", glyph: "rotate-45" },
-    { name: "Audio description", glyph: "" },
-    { name: "Screens", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
-    { name: "Audience phones", glyph: "rounded" },
-    { name: "Feedback", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
+    { name: "Stentor Lite", glyph: "rounded-full" },
+    { name: "Stentor Pro", glyph: "rotate-45" },
+    { name: "macOS", glyph: "" },
+    { name: "Windows", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
+    { name: "Linux", glyph: "rounded" },
+    { name: "Audience web", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
   ],
 };
 
-// ─── Metrics strip ────────────────────────────────────────────────────────
 export const metrics = {
   title: "Built for<br/>live performance.",
   description:
-    "From script preparation to live cueing, Sténtor keeps every layer of the performance text in one place.",
+    "Stentor keeps the performance text organized from preparation to live cueing, while separating a free cross-platform entry point from a professional native macOS control room.",
   items: [
-    { value: "Unlimited", suffix: "", label: "Projects, languages and cues" },
-    { value: "3", suffix: " layers", label: "Surtitles, translation, audio description" },
+    { value: "Lite", suffix: "", label: "Free Tauri app for macOS, Windows and Linux" },
+    { value: "Pro", suffix: "", label: "Native macOS app for professional live production" },
     { value: "Live Sync", suffix: "", label: "For screens and audience phones" },
   ],
 };
 
-// ─── Bento (feature grid) ─────────────────────────────────────────────────
 export const bento = {
-  title: "Everything for the text.<br/>Nothing in the way.",
+  title: "One Stentor.<br/>Two ways to work.",
   description:
-    "Prepare scripts, translations, surtitles and audio-description notes in one focused workspace, then cue them live for screens and audience phones.",
+    "Start with the lightweight cross-platform app, then move to the native professional environment when rehearsals, screens, timeline, audience access and audio description need a dedicated live workflow.",
   cards: {
     types: {
-      title: "Script-first workflow",
-      desc: "Import a script, split it into cues, add translations and keep notes together without losing the structure of the performance text.",
+      title: "Stentor Lite: start anywhere",
+      desc: "A free Tauri app for macOS, Windows and Linux, designed to make script preparation, surtitles and translations accessible without a license barrier.",
     },
     p95: {
-      title: "Audience phones, live in sync",
-      desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
+      title: "Stentor Pro: live control room",
+      desc: "A native macOS app for rehearsals and performances, with cueing, timeline, screens, audience devices and audio-description workflows.",
     },
     edge: {
-      title: "Built for live rooms",
-      desc: "A focused workflow for rehearsal rooms, theatres and festivals — from script preparation to live cueing and audience devices.",
+      title: "Audience phones, live in sync",
+      desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
     },
     auth: {
       title: "One project, shared knowledge",
@@ -108,97 +104,109 @@ export const bento = {
       desc: "Move through cues during the show with a clean interface designed for timing, focus and confidence.",
     },
     deploys: {
-      title: "Same tools, shared practice",
-      desc: "Core live-performance tools stay available across plans. Pricing reflects context, while feedback helps the whole project grow.",
+      title: "Private beta for Pro",
+      desc: "During testing, Pro access is controlled so theatres and companies can receive support, licenses and activation instructions safely.",
     },
   },
 };
 
-// ─── Research exchange ────────────────────────────────────────────────────
 export const testimonials = {
   title: "A tool shaped by<br/>real performances.",
   description:
-    "Sténtor is developed with the people who use it. We keep the software accessible, and ask in return for feedback, usage notes and audience responses that help the research grow.",
+    "Stentor is developed with the people who use it: artists, operators, translators, theatres and audiences. The Lite app keeps access open; Pro grows through beta testing in real rooms.",
   quotes: [
     {
-      text: "Tell us how Sténtor worked in rehearsals, during the show and in the relationship between operator, stage and audience.",
+      text: "Use Lite to start preparing materials and understand the workflow before bringing Stentor into a production environment.",
       av: "01",
-      name: "Share your experience",
-      role: "Research input · creators",
+      name: "Start with Lite",
+      role: "Free app · macOS, Windows, Linux",
     },
     {
-      text: "Use spectators' responses to understand how surtitles, translations and audio descriptions are experienced on personal devices.",
+      text: "Use Pro when the show needs a focused operator view, timeline, screens, audience devices and a professional live setup.",
       av: "02",
-      name: "Collect audience feedback",
-      role: "Research input · audiences",
+      name: "Move to Pro",
+      role: "Native macOS · beta access",
     },
     {
-      text: "Anonymous usage notes and statistics help us design better tools for live performance, without locking features behind higher tiers.",
+      text: "Field notes from rehearsals, audiences and operators help us design better tools for live performance.",
       av: "03",
       name: "Improve the research",
-      role: "Research input · product",
+      role: "Feedback · product",
     },
   ],
 };
 
-// ─── Support preview (compact 3-plan card on home) ─────────────────────────
-const fullFeatureSet = [
-  "Same core features for everyone",
-  "Unlimited projects, languages and cues",
-  "Surtitles, translations and audio-description notes",
-  "Import from Word, TXT, SRT, WebVTT, CSV and JSON",
-  "Export-ready scripts",
-  "Feedback and research exchange welcome",
+const liteFeatures = [
+  "Free cross-platform desktop app",
+  "Built with Tauri",
+  "For macOS, Windows and Linux",
+  "Script preparation, surtitles and translations",
+  "Download without a Pro license",
+];
+
+const proFeatures = [
+  "Native macOS app built with SwiftUI",
+  "Timeline, cueing and live operator view",
+  "Screens and audience-phone workflows",
+  "Audio description and accessibility tools",
+  "Private beta license and activation",
+];
+
+const institutionFeatures = [
+  "For theatres, festivals and schools",
+  "Trial licenses and multi-seat activation",
+  "Support during testing and rehearsals",
+  "Deployment guidance for real venues",
+  "Future purchase flow prepared for account area",
 ];
 
 export const pricingPreview = {
-  title: "Same features.<br/>Support what fits your scale.",
-  comparisonLink: { href: "/pricing", label: "See support model →" },
+  title: "Choose the right<br/>Stentor path.",
+  comparisonLink: { href: "/download", label: "Compare Lite and Pro →" },
   plans: [
     {
-      name: "Free",
-      tag: "Independent",
-      price: "€0",
-      cycle: "/year",
-      tagline: "For independent artists, students and very small teams who need access first.",
-      features: fullFeatureSet,
-      cta: { href: "/download", label: "Download for free", variant: "ghost" as const },
+      name: "Stentor Lite",
+      tag: "Free",
+      price: "Lite",
+      cycle: "/cross-platform",
+      tagline: "For starting, preparing and experimenting without a license barrier.",
+      features: liteFeatures,
+      cta: { href: "/download", label: "Download Lite", variant: "ghost" as const },
       highlighted: false,
     },
     {
-      name: "Pro",
-      tag: "Suggested",
+      name: "Stentor Pro",
+      tag: "Beta",
       tagAccent: true,
-      price: "€19",
-      cycle: "/year · support",
-      tagline: "For companies, collectives and touring productions that can contribute a little more.",
-      features: fullFeatureSet,
-      cta: { href: "/download", label: "Download and support", variant: "primary" as const },
+      price: "Pro",
+      cycle: "/macOS",
+      tagline: "For professional live production, currently available in controlled beta.",
+      features: proFeatures,
+      cta: { href: "/request-pro", label: "Request Pro access", variant: "primary" as const },
       highlighted: true,
     },
     {
-      name: "Venues",
-      tag: "Theatres",
-      price: "€99",
-      cycle: "/year · support",
-      tagline: "For theatres, festivals, institutions and live-performance venues.",
-      features: fullFeatureSet,
-      cta: { href: "/contact", label: "Support as Venue", variant: "ghost" as const },
+      name: "Institutions",
+      tag: "Teams",
+      price: "Teams",
+      cycle: "/venues",
+      tagline: "For theatres, festivals, schools and organizations preparing a real deployment.",
+      features: institutionFeatures,
+      cta: { href: "/contact", label: "Talk to us", variant: "ghost" as const },
       highlighted: false,
     },
   ],
 };
 
-// ─── Final CTA at the bottom of the homepage ──────────────────────────────
 export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "Same tools · shared responsibility",
-  title: "Bring live words to every audience.",
-  body: "Sténtor keeps surtitles, translations and audio descriptions simple to prepare, cue and share. Download it freely, use it in rehearsal or performance, and share feedback only when you have something useful to tell us.",
+  eyebrow: "Stentor Lite · Stentor Pro",
+  title: "Start freely. Go live professionally.",
+  body: "Download Stentor Lite to begin on macOS, Windows or Linux. Request Stentor Pro access when you need the native macOS control room for rehearsal and performance.",
   ctas: [
-    { href: "/download", label: "Download Sténtor", variant: "primary" as const },
-    { href: "/contact", label: "Share field notes", variant: "ghost" as const },
+    { href: "/download", label: "Download Stentor", variant: "primary" as const },
+    { href: "/request-pro", label: "Join the Pro beta", variant: "ghost" as const },
   ],
 };
