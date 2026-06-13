@@ -47,8 +47,8 @@ import Layout from "../layouts/Layout.astro";
           <aside class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p>
             <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Available builds</h2>
-            <p class="text-white/50 leading-[1.6] mb-5">Lite can be public. Pro downloads will appear here when build artifacts are connected to active licenses.</p>
-            <div class="grid gap-2"><span class="download-chip">Stentor Lite - coming soon</span><span class="download-chip">Stentor Pro macOS - beta</span><span class="download-chip">Windows / Linux - planned</span></div>
+            <p class="text-white/50 leading-[1.6] mb-5">Lite can be public. Pro downloads appear when a build is active and your license enables the platform.</p>
+            <div data-account-downloads class="grid gap-2"><span class="download-chip">Loading downloads...</span></div>
           </aside>
         </div>
       </section>
@@ -70,6 +70,7 @@ import Layout from "../layouts/Layout.astro";
   const magicButton = document.querySelector('[data-account-magic-link]');
   const refreshButton = document.querySelector('[data-account-refresh]');
   const licensesTarget = document.querySelector('[data-account-licenses]');
+  const downloadsTarget = document.querySelector('[data-account-downloads]');
 
   function getTokenFromHash() {
     const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
@@ -142,6 +143,17 @@ import Layout from "../layouts/Layout.astro";
     return 'account-status-pending';
   }
 
+  function productLabel(product) {
+    return product === 'pro' ? 'Stentor Pro' : 'Stentor Lite';
+  }
+
+  function platformLabel(platform) {
+    if (platform === 'macos') return 'macOS';
+    if (platform === 'windows') return 'Windows';
+    if (platform === 'linux') return 'Linux';
+    return platform;
+  }
+
   function renderLicenses(licenses) {
     if (!licensesTarget) return;
     if (!licenses.length) {
@@ -169,11 +181,30 @@ import Layout from "../layouts/Layout.astro";
     }).join('');
   }
 
+  function renderDownloads(downloads) {
+    if (!downloadsTarget) return;
+    if (!downloads.length) {
+      downloadsTarget.innerHTML = '<div class="download-card"><strong>No builds yet</strong><span>Downloads will appear here after the first build artifact is configured.</span></div>';
+      return;
+    }
+
+    downloadsTarget.innerHTML = downloads.map((item) => {
+      const title = `${productLabel(item.product)} ${platformLabel(item.platform)}`;
+      const subtitle = `${item.channel} · v${item.version}`;
+      if (item.is_available && item.file_url) {
+        return `<a class="download-card download-card-active" href="${item.file_url}" target="_blank" rel="noreferrer"><strong>${title}</strong><span>${subtitle}</span><em>Download →</em></a>`;
+      }
+      return `<div class="download-card"><strong>${title}</strong><span>${subtitle}</span><em>Coming soon</em></div>`;
+    }).join('');
+  }
+
   async function loadAccount(token) {
     const user = await apiFetch('/auth/v1/user', token);
     if (emailBadge) emailBadge.textContent = user.email || 'Account';
     const licenses = await apiFetch('/rest/v1/rpc/current_user_licenses', token, { method: 'POST', body: JSON.stringify({}) });
+    const downloads = await apiFetch('/rest/v1/rpc/current_user_downloads', token, { method: 'POST', body: JSON.stringify({}) });
     renderLicenses(licenses);
+    renderDownloads(downloads);
     if (loginPanel) loginPanel.hidden = true;
     if (appPanel) appPanel.hidden = false;
     if (logoutButton) logoutButton.hidden = false;
@@ -253,5 +284,10 @@ import Layout from "../layouts/Layout.astro";
   .account-status-active { @apply inline-flex px-2.5 py-1 rounded-full bg-green-400/10 border border-green-400/20 text-green-200 text-xs font-mono uppercase tracking-[0.08em]; }
   .account-status-revoked { @apply inline-flex px-2.5 py-1 rounded-full bg-red-400/10 border border-red-400/20 text-red-200 text-xs font-mono uppercase tracking-[0.08em]; }
   .account-status-pending { @apply inline-flex px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-200 text-xs font-mono uppercase tracking-[0.08em]; }
-  .download-chip { @apply h-11 rounded-xl border border-white/10 bg-black/25 inline-flex items-center px-4 text-white/55 text-sm; }
+  .download-card { @apply rounded-xl border border-white/10 bg-black/25 p-4 flex items-center justify-between gap-4 text-white/52 text-sm; }
+  .download-card strong { @apply text-white/72 font-medium; }
+  .download-card span { @apply text-white/36 text-xs; }
+  .download-card em { @apply not-italic text-white/42 text-xs; }
+  .download-card-active { @apply hover:bg-white/[0.06] hover:border-white/20 transition-colors cursor-pointer; }
+  .download-card-active em { @apply text-red-300; }
 </style>
