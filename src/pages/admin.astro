@@ -10,80 +10,54 @@ import Layout from "../layouts/Layout.astro";
     <header class="relative border-b border-white/10">
       <div class="max-w-[1440px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
         <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors" aria-label="Stentor home"><span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span><span class="text-white/45 text-sm">Admin</span></a>
-        <div class="flex items-center gap-3"><span class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-amber-400/25 bg-amber-400/10 text-amber-200 text-xs font-mono uppercase tracking-[0.12em]">Private beta</span><a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
+        <div class="flex items-center gap-3"><span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-amber-400/25 bg-amber-400/10 text-amber-200 text-xs font-mono uppercase tracking-[0.12em]">Private beta</span><button data-admin-logout class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button><a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
       </div>
     </header>
 
     <main class="relative max-w-[1440px] mx-auto px-5 md:px-8 py-10">
-      <div class="grid lg:grid-cols-[260px_1fr] gap-6">
+      <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
+        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accesso riservato.</h1>
+        <p class="text-white/50 leading-[1.6] mb-7">Inserisci la tua email admin. Supabase inviera un magic link; dopo il click tornerai qui e vedrai le richieste beta reali.</p>
+        <form data-admin-login-form class="grid gap-4">
+          <input name="email" type="email" autocomplete="email" placeholder="nome@dominio.it" class="admin-input" required />
+          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Invia magic link</button>
+        </form>
+        <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+      </section>
+
+      <div data-admin-app hidden class="grid lg:grid-cols-[260px_1fr] gap-6">
         <aside class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-4 h-fit">
           <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/35 px-3 mb-3">Console</p>
-          <nav class="grid gap-1 text-sm">
-            <a href="#requests" class="admin-nav-active">Beta requests</a>
-            <a href="#licenses" class="admin-nav">Licenses</a>
-            <a href="#downloads" class="admin-nav">Downloads</a>
-            <a href="#notes" class="admin-nav">Setup notes</a>
-          </nav>
+          <nav class="grid gap-1 text-sm"><a href="#requests" class="admin-nav-active">Beta requests</a><a href="#licenses" class="admin-nav">Licenses</a><a href="#downloads" class="admin-nav">Downloads</a><a href="#notes" class="admin-nav">Setup notes</a></nav>
         </aside>
 
         <div class="grid gap-6">
           <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-              <div>
-                <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin console</p>
-                <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold">Beta management.</h1>
-                <p class="text-white/50 leading-[1.6] mt-4 max-w-[760px]">This is the first private console for Stentor beta operations. The visual layer is ready; the next slice connects secure admin authentication and live Supabase data.</p>
-              </div>
-              <div class="grid grid-cols-3 gap-2 min-w-[300px]">
-                <div class="admin-stat"><span>Pending</span><strong>--</strong></div>
-                <div class="admin-stat"><span>Approved</span><strong>--</strong></div>
-                <div class="admin-stat"><span>Licenses</span><strong>--</strong></div>
-              </div>
+              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin console</p><h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold">Beta management.</h1><p class="text-white/50 leading-[1.6] mt-4 max-w-[760px]">Richieste beta lette da Supabase con account admin. Per ora puoi approvare o rifiutare; nel prossimo step creeremo la licenza.</p></div>
+              <div class="grid grid-cols-3 gap-2 min-w-[300px]"><div class="admin-stat"><span>Pending</span><strong data-stat-pending>--</strong></div><div class="admin-stat"><span>Approved</span><strong data-stat-approved>--</strong></div><div class="admin-stat"><span>Licenses</span><strong data-stat-licenses>--</strong></div></div>
             </div>
           </section>
 
           <section id="requests" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden">
-            <div class="p-6 md:p-7 border-b border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Beta requests</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Incoming requests</h2></div>
-              <div class="flex flex-wrap gap-2"><span class="admin-pill">pending</span><span class="admin-pill-muted">approved</span><span class="admin-pill-muted">rejected</span></div>
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full min-w-[880px] text-left text-sm">
-                <thead class="text-white/38 font-mono text-[11px] uppercase tracking-[0.12em] border-b border-white/10">
-                  <tr><th class="admin-th">Name</th><th class="admin-th">Email</th><th class="admin-th">Organization</th><th class="admin-th">Platforms</th><th class="admin-th">Seats</th><th class="admin-th">Status</th><th class="admin-th">Action</th></tr>
-                </thead>
-                <tbody class="divide-y divide-white/8">
-                  <tr><td class="admin-td text-white/85">Live data soon</td><td class="admin-td text-white/45">Connect admin auth</td><td class="admin-td text-white/45">Supabase</td><td class="admin-td"><span class="admin-platform">macOS</span><span class="admin-platform">Windows</span><span class="admin-platform">Linux</span></td><td class="admin-td text-white/55">--</td><td class="admin-td"><span class="status-pending">pending</span></td><td class="admin-td"><button class="admin-button" disabled>Approve</button></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="p-5 border-t border-white/10 bg-black/20 text-white/42 text-sm leading-[1.6]">Until admin authentication is connected, view real rows in Supabase -> Table Editor -> beta_requests.</div>
+            <div class="p-6 md:p-7 border-b border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"><div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Beta requests</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Incoming requests</h2></div><div class="flex flex-wrap gap-2"><span class="admin-pill">pending</span><span class="admin-pill-muted">approved</span><span class="admin-pill-muted">rejected</span></div></div>
+            <div class="overflow-x-auto"><table class="w-full min-w-[880px] text-left text-sm"><thead class="text-white/38 font-mono text-[11px] uppercase tracking-[0.12em] border-b border-white/10"><tr><th class="admin-th">Name</th><th class="admin-th">Email</th><th class="admin-th">Organization</th><th class="admin-th">Platforms</th><th class="admin-th">Seats</th><th class="admin-th">Status</th><th class="admin-th">Action</th></tr></thead><tbody data-admin-requests class="divide-y divide-white/8"><tr><td class="admin-td text-white/45" colspan="7">Loading...</td></tr></tbody></table></div>
+            <div class="p-5 border-t border-white/10 bg-black/20 text-white/42 text-sm leading-[1.6]">Le righe arrivano da Supabase -> beta_requests. Le azioni aggiornano lo status.</div>
           </section>
 
-          <div class="grid xl:grid-cols-2 gap-6">
-            <section id="licenses" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-              <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Licenses</p>
-              <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Manual license creation</h2>
-              <div class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Next step: approve a beta request, create a license key, set expiration, seats and enabled platforms.</p><div class="rounded-xl border border-white/10 bg-black/25 p-4 font-mono text-xs text-white/45">status: planned<br/>source: licenses<br/>actions: create / revoke / extend</div></div>
-            </section>
-
-            <section id="downloads" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-              <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p>
-              <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Build artifacts</h2>
-              <div class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Lite can become public. Pro downloads remain linked to approved licenses and platform availability.</p><div class="grid grid-cols-3 gap-2"><span class="download-chip">macOS</span><span class="download-chip">Windows</span><span class="download-chip">Linux</span></div></div>
-            </section>
-          </div>
-
-          <section id="notes" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Next slice</p>
-            <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Secure connection plan</h2>
-            <ol class="grid md:grid-cols-4 gap-3 text-sm text-white/58 leading-[1.55]"><li class="admin-step"><strong>1</strong><span>Enable Supabase Auth for admin login.</span></li><li class="admin-step"><strong>2</strong><span>Create your profile row as is_admin.</span></li><li class="admin-step"><strong>3</strong><span>Read beta_requests securely.</span></li><li class="admin-step"><strong>4</strong><span>Add approve and license actions.</span></li></ol>
-          </section>
+          <div class="grid xl:grid-cols-2 gap-6"><section id="licenses" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Licenses</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Manual license creation</h2><div class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Next step: approve a beta request, create a license key, set expiration, seats and enabled platforms.</p><div class="rounded-xl border border-white/10 bg-black/25 p-4 font-mono text-xs text-white/45">status: planned<br/>source: licenses<br/>actions: create / revoke / extend</div></div></section><section id="downloads" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Build artifacts</h2><div class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Lite can become public. Pro downloads remain linked to approved licenses and platform availability.</p><div class="grid grid-cols-3 gap-2"><span class="download-chip">macOS</span><span class="download-chip">Windows</span><span class="download-chip">Linux</span></div></div></section></div>
+          <section id="notes" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Next slice</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Secure connection plan</h2><ol class="grid md:grid-cols-4 gap-3 text-sm text-white/58 leading-[1.55]"><li class="admin-step"><strong>1</strong><span>Create license on approval.</span></li><li class="admin-step"><strong>2</strong><span>Connect account area.</span></li><li class="admin-step"><strong>3</strong><span>Add protected downloads.</span></li><li class="admin-step"><strong>4</strong><span>Add email notifications.</span></li></ol></section>
         </div>
       </div>
     </main>
   </section>
 </Layout>
+
+<script>
+  import { setupAdminConsole } from '../lib/adminConsole';
+  setupAdminConsole();
+</script>
 
 <style>
   @reference "../styles/global.css";
@@ -94,11 +68,16 @@ import Layout from "../layouts/Layout.astro";
   .admin-stat strong { @apply text-2xl font-semibold tracking-[-0.04em]; }
   .admin-pill { @apply inline-flex h-8 items-center px-3 rounded-full bg-red-500/15 border border-red-500/25 text-red-200 text-xs font-mono uppercase tracking-[0.1em]; }
   .admin-pill-muted { @apply inline-flex h-8 items-center px-3 rounded-full bg-white/[0.04] border border-white/10 text-white/38 text-xs font-mono uppercase tracking-[0.1em]; }
+  .admin-input { @apply w-full h-13 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
+  .admin-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
   .admin-th { @apply px-5 py-4 font-medium; }
   .admin-td { @apply px-5 py-5 align-top; }
   .admin-platform { @apply inline-flex mr-1 mb-1 px-2 py-1 rounded-md bg-white/[0.06] border border-white/10 text-white/50 text-xs; }
   .status-pending { @apply inline-flex px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-200 text-xs font-mono uppercase tracking-[0.08em]; }
-  .admin-button { @apply h-9 px-3 rounded-lg border border-white/10 text-white/35 text-sm cursor-not-allowed; }
+  .status-approved { @apply inline-flex px-2.5 py-1 rounded-full bg-green-400/10 border border-green-400/20 text-green-200 text-xs font-mono uppercase tracking-[0.08em]; }
+  .status-rejected { @apply inline-flex px-2.5 py-1 rounded-full bg-red-400/10 border border-red-400/20 text-red-200 text-xs font-mono uppercase tracking-[0.08em]; }
+  .admin-button-live { @apply h-9 px-3 rounded-lg border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] text-sm transition-colors; }
+  .admin-button-live.secondary { @apply text-white/40; }
   .download-chip { @apply h-10 rounded-xl border border-white/10 bg-black/25 inline-flex items-center justify-center text-white/55 text-sm; }
   .admin-step { @apply rounded-xl border border-white/10 bg-black/25 p-4; }
   .admin-step strong { @apply block text-red-400 font-mono mb-2; }
