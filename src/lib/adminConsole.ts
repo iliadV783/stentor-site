@@ -24,6 +24,8 @@ const approveButtonClass = 'h-9 px-3 rounded-lg border border-green-400/25 bg-gr
 const rejectButtonClass = 'h-9 px-3 rounded-lg border border-red-400/25 bg-red-400/10 text-red-100 hover:bg-red-400/20 hover:border-red-400/45 cursor-pointer text-sm font-medium transition-colors disabled:opacity-45 disabled:cursor-wait';
 const licenseButtonClass = 'h-9 px-3 rounded-lg border border-red-400/30 bg-red-500/15 text-red-100 hover:bg-red-500/25 hover:border-red-400/50 cursor-pointer text-sm font-semibold transition-colors disabled:opacity-45 disabled:cursor-wait';
 const mutedButtonClass = 'h-9 px-3 rounded-lg border border-white/10 bg-white/[0.04] text-white/35 text-sm cursor-default';
+const leftCellStyle = 'padding: 18px 24px; text-align: left; vertical-align: middle;';
+const centerCellStyle = 'padding: 18px 24px; text-align: center; vertical-align: middle;';
 
 function qs<T extends HTMLElement>(selector: string) {
   return document.querySelector<T>(selector);
@@ -96,20 +98,20 @@ function renderRequests(requests: AdminRequest[], licenses: AdminLicense[]) {
   if (!tbody) return;
 
   if (!requests.length) {
-    tbody.innerHTML = '<tr><td class="admin-td text-white/45" colspan="7">No beta requests yet.</td></tr>';
+    tbody.innerHTML = `<tr><td style="${leftCellStyle}" colspan="7" class="text-white/45">No beta requests yet.</td></tr>`;
     return;
   }
 
   tbody.innerHTML = requests.map((request) => {
     const platforms = (request.requested_platforms || []).map((platform) => `<span class="admin-platform">${platform}</span>`).join('');
     return `<tr>
-      <td class="admin-td text-white/85"><strong>${request.full_name || '—'}</strong><div class="text-white/35 text-xs mt-1">${new Date(request.created_at).toLocaleDateString()}</div></td>
-      <td class="admin-td text-white/55">${request.email}</td>
-      <td class="admin-td text-white/55">${request.organization_name || '—'}<div class="text-white/30 text-xs mt-1">${request.role || ''}</div></td>
-      <td class="admin-td text-center">${platforms || '<span class="text-white/30">—</span>'}</td>
-      <td class="admin-td text-center text-white/55">${request.requested_seats || 1}</td>
-      <td class="admin-td text-center"><span class="${statusClass(request.status)}">${request.status}</span></td>
-      <td class="admin-td text-center">${renderAction(request, licenses)}</td>
+      <td style="${leftCellStyle}" class="text-white/85"><strong style="display:block;line-height:1.1;">${request.full_name || '—'}</strong><div class="text-white/35 text-xs mt-1">${new Date(request.created_at).toLocaleDateString()}</div></td>
+      <td style="${leftCellStyle}" class="text-white/55">${request.email}</td>
+      <td style="${leftCellStyle}" class="text-white/55">${request.organization_name || '—'}<div class="text-white/30 text-xs mt-1">${request.role || ''}</div></td>
+      <td style="${centerCellStyle}">${platforms || '<span class="text-white/30">—</span>'}</td>
+      <td style="${centerCellStyle}" class="text-white/55">${request.requested_seats || 1}</td>
+      <td style="${centerCellStyle}"><span class="${statusClass(request.status)}">${request.status}</span></td>
+      <td style="${centerCellStyle}">${renderAction(request, licenses)}</td>
     </tr>`;
   }).join('');
 }
