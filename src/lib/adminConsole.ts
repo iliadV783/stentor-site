@@ -34,6 +34,15 @@ function getStoredToken() {
   return getTokenFromHash() || localStorage.getItem(storageKey) || '';
 }
 
+async function readError(response: Response, fallback: string) {
+  try {
+    const body = await response.json();
+    return body.msg || body.message || body.error_description || body.error || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 async function apiFetch(path: string, token: string, options: RequestInit = {}) {
   const response = await fetch(`${supabaseUrl}${path}`, {
     ...options,
@@ -46,12 +55,7 @@ async function apiFetch(path: string, token: string, options: RequestInit = {}) 
   });
 
   if (!response.ok) {
-    let message = response.statusText || 'Request failed';
-    try {
-      const body = await response.json();
-      message = body.message || body.error || message;
-    } catch {}
-    throw new Error(message);
+    throw new Error(await readError(response, response.statusText || 'Request failed'));
   }
 
   if (response.status === 204) return null;
@@ -120,7 +124,9 @@ async function ensureAdmin(token: string) {
 }
 
 async function sendMagicLink(email: string) {
-  const response = await fetch(`${supabaseUrl}/auth/v1/otp`, {
+  const redirectTo = `${window.location.origin}/auth/confirm?next=/admin`;
+  const url = `${supabaseUrl}/auth/v1/otp?redirect_to=${encodeURIComponent(redirectTo)}`;
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       apikey: supabaseAnonKey,
@@ -129,11 +135,12 @@ async function sendMagicLink(email: string) {
     body: JSON.stringify({
       email,
       create_user: true,
-      options: { email_redirect_to: `${window.location.origin}/auth/confirm?next=/admin` },
     }),
   });
 
-  if (!response.ok) throw new Error('Magic link could not be sent.');
+  if (!response.ok) {
+    throw new Error(await readError(response, 'Magic link could not be sent.'));
+  }
 }
 
 export function setupAdminConsole() {
