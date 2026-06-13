@@ -88,7 +88,7 @@ function renderAction(request: AdminRequest, licenses: AdminLicense[]) {
     return `<button type="button" class="${licenseButtonClass}" data-create-license="${request.id}">Create license</button>`;
   }
 
-  return `<div class="flex gap-2"><button type="button" class="${approveButtonClass}" data-approve="${request.id}">Approve</button><button type="button" class="${rejectButtonClass}" data-reject="${request.id}">Reject</button></div>`;
+  return `<div class="flex justify-center gap-2"><button type="button" class="${approveButtonClass}" data-approve="${request.id}">Approve</button><button type="button" class="${rejectButtonClass}" data-reject="${request.id}">Reject</button></div>`;
 }
 
 function renderRequests(requests: AdminRequest[], licenses: AdminLicense[]) {
@@ -106,10 +106,10 @@ function renderRequests(requests: AdminRequest[], licenses: AdminLicense[]) {
       <td class="admin-td text-white/85"><strong>${request.full_name || '—'}</strong><div class="text-white/35 text-xs mt-1">${new Date(request.created_at).toLocaleDateString()}</div></td>
       <td class="admin-td text-white/55">${request.email}</td>
       <td class="admin-td text-white/55">${request.organization_name || '—'}<div class="text-white/30 text-xs mt-1">${request.role || ''}</div></td>
-      <td class="admin-td">${platforms || '<span class="text-white/30">—</span>'}</td>
-      <td class="admin-td text-white/55">${request.requested_seats || 1}</td>
-      <td class="admin-td"><span class="${statusClass(request.status)}">${request.status}</span></td>
-      <td class="admin-td">${renderAction(request, licenses)}</td>
+      <td class="admin-td text-center">${platforms || '<span class="text-white/30">—</span>'}</td>
+      <td class="admin-td text-center text-white/55">${request.requested_seats || 1}</td>
+      <td class="admin-td text-center"><span class="${statusClass(request.status)}">${request.status}</span></td>
+      <td class="admin-td text-center">${renderAction(request, licenses)}</td>
     </tr>`;
   }).join('');
 }
