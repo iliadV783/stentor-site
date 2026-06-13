@@ -18,10 +18,12 @@ import Layout from "../layouts/Layout.astro";
       <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accesso riservato.</h1>
-        <p class="text-white/50 leading-[1.6] mb-7">Inserisci la tua email admin. Supabase inviera un magic link; dopo il click tornerai qui e vedrai le richieste beta reali.</p>
+        <p class="text-white/50 leading-[1.6] mb-7">Accedi con email e password Supabase. Il magic link resta disponibile come alternativa, ma durante i test puo essere limitato.</p>
         <form data-admin-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="nome@dominio.it" class="admin-input" required />
-          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Invia magic link</button>
+          <input name="password" type="password" autocomplete="current-password" placeholder="Password admin" class="admin-input" />
+          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Accedi</button>
+          <button type="button" data-admin-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Invia magic link</button>
         </form>
         <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
       </section>
