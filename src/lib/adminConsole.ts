@@ -15,6 +15,8 @@ type AdminRequest = {
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 const storageKey = 'stentor_admin_access_token';
+const approveButtonClass = 'h-9 px-3 rounded-lg border border-green-400/25 bg-green-400/10 text-green-100 hover:bg-green-400/20 hover:border-green-400/45 cursor-pointer text-sm font-medium transition-colors disabled:opacity-45 disabled:cursor-wait';
+const rejectButtonClass = 'h-9 px-3 rounded-lg border border-red-400/25 bg-red-400/10 text-red-100 hover:bg-red-400/20 hover:border-red-400/45 cursor-pointer text-sm font-medium transition-colors disabled:opacity-45 disabled:cursor-wait';
 
 function qs<T extends HTMLElement>(selector: string) {
   return document.querySelector<T>(selector);
@@ -86,7 +88,7 @@ function renderRequests(requests: AdminRequest[]) {
       <td class="admin-td">${platforms || '<span class="text-white/30">—</span>'}</td>
       <td class="admin-td text-white/55">${request.requested_seats || 1}</td>
       <td class="admin-td"><span class="${statusClass(request.status)}">${request.status}</span></td>
-      <td class="admin-td"><div class="flex gap-2"><button class="admin-button-live" data-approve="${request.id}">Approve</button><button class="admin-button-live secondary" data-reject="${request.id}">Reject</button></div></td>
+      <td class="admin-td"><div class="flex gap-2"><button type="button" class="${approveButtonClass}" data-approve="${request.id}">Approve</button><button type="button" class="${rejectButtonClass}" data-reject="${request.id}">Reject</button></div></td>
     </tr>`;
   }).join('');
 }
@@ -224,11 +226,22 @@ export function setupAdminConsole() {
 
   document.addEventListener('click', async (event) => {
     const target = event.target as HTMLElement;
-    const approveId = target.getAttribute('data-approve');
-    const rejectId = target.getAttribute('data-reject');
+    const button = target.closest<HTMLButtonElement>('[data-approve], [data-reject]');
+    if (!button) return;
+
+    const approveId = button.getAttribute('data-approve');
+    const rejectId = button.getAttribute('data-reject');
     const activeToken = getStoredToken();
-    if (approveId) await updateRequestStatus(activeToken, approveId, 'approved');
-    if (rejectId) await updateRequestStatus(activeToken, rejectId, 'rejected');
+    const nextStatus = approveId ? 'approved' : 'rejected';
+    const id = approveId || rejectId;
+    if (!id) return;
+
+    button.disabled = true;
+    try {
+      await updateRequestStatus(activeToken, id, nextStatus);
+    } finally {
+      button.disabled = false;
+    }
   });
 
   if (!token) {
