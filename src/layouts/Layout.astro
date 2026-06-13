@@ -36,7 +36,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = image.startsWith("http") ? image : new URL(image, Astro.site).toString();
 const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "";
-const faviconURL = "/stentor-icon.png?v=original-1";
+const faviconURL = "/favicon.svg?v=brand-2026-06-13";
 
 const isHome = Astro.url.pathname === "/";
 const isArticle = ogType === "article";
@@ -90,15 +90,15 @@ const articleSchema =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#050505" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <link rel="icon" type="image/png" href={faviconURL} />
-    <link rel="shortcut icon" type="image/png" href={faviconURL} />
+    <link rel="icon" type="image/svg+xml" href={faviconURL} />
+    <link rel="shortcut icon" type="image/svg+xml" href={faviconURL} />
     <link rel="apple-touch-icon" href={faviconURL} />
 
     <meta property="og:type" content={ogType} />
