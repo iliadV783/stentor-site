@@ -12,11 +12,18 @@ type AdminRequest = {
   created_at: string;
 };
 
+type AdminLicense = {
+  id: string;
+  beta_request_id: string | null;
+};
+
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 const storageKey = 'stentor_admin_access_token';
 const approveButtonClass = 'h-9 px-3 rounded-lg border border-green-400/25 bg-green-400/10 text-green-100 hover:bg-green-400/20 hover:border-green-400/45 cursor-pointer text-sm font-medium transition-colors disabled:opacity-45 disabled:cursor-wait';
 const rejectButtonClass = 'h-9 px-3 rounded-lg border border-red-400/25 bg-red-400/10 text-red-100 hover:bg-red-400/20 hover:border-red-400/45 cursor-pointer text-sm font-medium transition-colors disabled:opacity-45 disabled:cursor-wait';
+const licenseButtonClass = 'h-9 px-3 rounded-lg border border-red-400/30 bg-red-500/15 text-red-100 hover:bg-red-500/25 hover:border-red-400/50 cursor-pointer text-sm font-semibold transition-colors disabled:opacity-45 disabled:cursor-wait';
+const mutedButtonClass = 'h-9 px-3 rounded-lg border border-white/10 bg-white/[0.04] text-white/35 text-sm cursor-default';
 
 function qs<T extends HTMLElement>(selector: string) {
   return document.querySelector<T>(selector);
@@ -70,7 +77,21 @@ function statusClass(status: AdminRequest['status']) {
   return 'status-pending';
 }
 
-function renderRequests(requests: AdminRequest[]) {
+function renderAction(request: AdminRequest, licenses: AdminLicense[]) {
+  const hasLicense = licenses.some((license) => license.beta_request_id === request.id);
+
+  if (hasLicense) {
+    return `<button type="button" class="${mutedButtonClass}" disabled>License created</button>`;
+  }
+
+  if (request.status === 'approved') {
+    return `<button type="button" class="${licenseButtonClass}" data-create-license="${request.id}">Create license</button>`;
+  }
+
+  return `<div class="flex gap-2"><button type="button" class="${approveButtonClass}" data-approve="${request.id}">Approve</button><button type="button" class="${rejectButtonClass}" data-reject="${request.id}">Reject</button></div>`;
+}
+
+function renderRequests(requests: AdminRequest[], licenses: AdminLicense[]) {
   const tbody = qs<HTMLTableSectionElement>('[data-admin-requests]');
   if (!tbody) return;
 
@@ -88,23 +109,28 @@ function renderRequests(requests: AdminRequest[]) {
       <td class="admin-td">${platforms || '<span class="text-white/30">—</span>'}</td>
       <td class="admin-td text-white/55">${request.requested_seats || 1}</td>
       <td class="admin-td"><span class="${statusClass(request.status)}">${request.status}</span></td>
-      <td class="admin-td"><div class="flex gap-2"><button type="button" class="${approveButtonClass}" data-approve="${request.id}">Approve</button><button type="button" class="${rejectButtonClass}" data-reject="${request.id}">Reject</button></div></td>
+      <td class="admin-td">${renderAction(request, licenses)}</td>
     </tr>`;
   }).join('');
 }
 
-function renderStats(requests: AdminRequest[]) {
+function renderStats(requests: AdminRequest[], licenses: AdminLicense[]) {
   const pending = requests.filter((item) => item.status === 'pending').length;
   const approved = requests.filter((item) => item.status === 'approved').length;
   qs<HTMLElement>('[data-stat-pending]')!.textContent = String(pending);
   qs<HTMLElement>('[data-stat-approved]')!.textContent = String(approved);
-  qs<HTMLElement>('[data-stat-licenses]')!.textContent = '--';
+  qs<HTMLElement>('[data-stat-licenses]')!.textContent = String(licenses.length);
+}
+
+async function loadLicenses(token: string) {
+  return apiFetch('/rest/v1/licenses?select=id,beta_request_id&order=created_at.desc', token) as Promise<AdminLicense[]>;
 }
 
 async function loadRequests(token: string) {
   const requests = await apiFetch('/rest/v1/beta_requests?select=id,full_name,email,organization_name,role,country,requested_platforms,requested_seats,message,status,created_at&order=created_at.desc', token) as AdminRequest[];
-  renderRequests(requests);
-  renderStats(requests);
+  const licenses = await loadLicenses(token);
+  renderRequests(requests, licenses);
+  renderStats(requests, licenses);
 }
 
 async function updateRequestStatus(token: string, id: string, status: string) {
@@ -113,6 +139,32 @@ async function updateRequestStatus(token: string, id: string, status: string) {
     headers: { Prefer: 'return=minimal' },
     body: JSON.stringify({ status }),
   });
+  await loadRequests(token);
+}
+
+async function createLicense(token: string, requestId: string) {
+  const rows = await apiFetch(`/rest/v1/beta_requests?select=id,requested_platforms,requested_seats,status&id=eq.${requestId}&limit=1`, token) as AdminRequest[];
+  const request = rows[0];
+  if (!request) throw new Error('Request not found.');
+  if (request.status !== 'approved') throw new Error('Approve the request before creating a license.');
+
+  const existing = await apiFetch(`/rest/v1/licenses?select=id&beta_request_id=eq.${requestId}&limit=1`, token) as AdminLicense[];
+  if (existing.length) throw new Error('A license already exists for this request.');
+
+  const platforms = request.requested_platforms?.length ? request.requested_platforms : ['macos', 'windows', 'linux'];
+  await apiFetch('/rest/v1/licenses', token, {
+    method: 'POST',
+    headers: { Prefer: 'return=minimal' },
+    body: JSON.stringify({
+      beta_request_id: requestId,
+      plan: 'beta',
+      status: 'active',
+      max_activations: request.requested_seats || 1,
+      enabled_platforms: platforms,
+      internal_note: 'Created from admin beta request.',
+    }),
+  });
+
   await loadRequests(token);
 }
 
@@ -163,6 +215,11 @@ async function signInWithPassword(email: string, password: string) {
   if (!body.access_token) throw new Error('Login succeeded but no access token was returned.');
   localStorage.setItem(storageKey, body.access_token);
   return body.access_token as string;
+}
+
+function showActionMessage(message: string) {
+  const target = qs<HTMLElement>('[data-stat-licenses]');
+  if (target) target.title = message;
 }
 
 export function setupAdminConsole() {
@@ -226,19 +283,26 @@ export function setupAdminConsole() {
 
   document.addEventListener('click', async (event) => {
     const target = event.target as HTMLElement;
-    const button = target.closest<HTMLButtonElement>('[data-approve], [data-reject]');
+    const button = target.closest<HTMLButtonElement>('[data-approve], [data-reject], [data-create-license]');
     if (!button) return;
 
     const approveId = button.getAttribute('data-approve');
     const rejectId = button.getAttribute('data-reject');
+    const licenseId = button.getAttribute('data-create-license');
     const activeToken = getStoredToken();
-    const nextStatus = approveId ? 'approved' : 'rejected';
-    const id = approveId || rejectId;
+    const id = approveId || rejectId || licenseId;
     if (!id) return;
 
     button.disabled = true;
     try {
-      await updateRequestStatus(activeToken, id, nextStatus);
+      if (licenseId) {
+        await createLicense(activeToken, licenseId);
+        showActionMessage('License created.');
+      } else {
+        await updateRequestStatus(activeToken, id, approveId ? 'approved' : 'rejected');
+      }
+    } catch (error) {
+      alert(error instanceof Error ? error.message : 'Action failed.');
     } finally {
       button.disabled = false;
     }
