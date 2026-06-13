@@ -143,28 +143,10 @@ async function updateRequestStatus(token: string, id: string, status: string) {
 }
 
 async function createLicense(token: string, requestId: string) {
-  const rows = await apiFetch(`/rest/v1/beta_requests?select=id,requested_platforms,requested_seats,status&id=eq.${requestId}&limit=1`, token) as AdminRequest[];
-  const request = rows[0];
-  if (!request) throw new Error('Request not found.');
-  if (request.status !== 'approved') throw new Error('Approve the request before creating a license.');
-
-  const existing = await apiFetch(`/rest/v1/licenses?select=id&beta_request_id=eq.${requestId}&limit=1`, token) as AdminLicense[];
-  if (existing.length) throw new Error('A license already exists for this request.');
-
-  const platforms = request.requested_platforms?.length ? request.requested_platforms : ['macos', 'windows', 'linux'];
-  await apiFetch('/rest/v1/licenses', token, {
+  await apiFetch('/rest/v1/rpc/create_beta_license', token, {
     method: 'POST',
-    headers: { Prefer: 'return=minimal' },
-    body: JSON.stringify({
-      beta_request_id: requestId,
-      plan: 'beta',
-      status: 'active',
-      max_activations: request.requested_seats || 1,
-      enabled_platforms: platforms,
-      internal_note: 'Created from admin beta request.',
-    }),
+    body: JSON.stringify({ request_id: requestId }),
   });
-
   await loadRequests(token);
 }
 
