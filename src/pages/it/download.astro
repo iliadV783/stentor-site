@@ -1,6 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Btn from "../../components/Btn.astro";
 ---
-<Layout title="Download" description="Download" active={null}>
-  <p>Scarica Stentor.</p>
+
+<Layout title="Download Sténtor – Sténtor" description="Scarica Sténtor Lite o richiedi accesso a Sténtor Pro per macOS." active={null}>
+  <section class="max-w-[980px] mx-auto px-4 md:px-8 py-24">
+    <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Download</p>
+    <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Scarica Sténtor.</h1>
+    <p class="text-xl text-text-2 leading-[1.55] max-w-[720px] mb-8">Sténtor Lite sarà disponibile liberamente. Sténtor Pro sarà distribuito con licenza professionale per teatri, compagnie, festival, scuole e istituzioni.</p>
+    <div class="grid md:grid-cols-2 gap-4">
+      <article class="rounded-2xl border border-hairline bg-surface p-6"><p class="font-mono text-xs text-text-3 mb-3">Gratis</p><h2 class="text-2xl font-semibold mb-2">Sténtor Lite</h2><p class="text-text-3 mb-5">Download in preparazione.</p><button class="inline-flex items-center justify-center h-10 px-4 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>In preparazione</button></article>
+      <article class="rounded-2xl border border-red-500/25 bg-surface p-6"><p class="font-mono text-xs text-red-500 mb-3">Licenza professionale</p><h2 class="text-2xl font-semibold mb-2">Sténtor Pro</h2><p class="text-text-3 mb-5">Per sopratitoli, traduzione, audiodescrizione e distribuzione verso schermi o telefoni del pubblico.</p><Btn href="/it/richiedi-prova" variant="primary">Richiedi Pro <span aria-hidden="true">→</span></Btn></article>
+    </div>
+  </section>
 </Layout>
