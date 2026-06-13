@@ -28,14 +28,14 @@ const navItems = isFr
     : nav;
 const cta = isFr
   ? {
-      primary: { href: "/fr/contact", label: "Contact" },
-      secondary: { href: "/fr/about", label: "À propos" },
+      primary: { href: "/fr/demander-essai", label: "Demander Pro" },
+      secondary: { href: "/fr/download", label: "Download" },
       statusPrefix: "Conçu pour le spectacle vivant",
     }
   : isIt
     ? {
-        primary: { href: "/it/contact", label: "Contatto" },
-        secondary: { href: "/it/about", label: "Chi siamo" },
+        primary: { href: "/it/richiedi-prova", label: "Richiedi Pro" },
+        secondary: { href: "/it/download", label: "Download" },
         statusPrefix: "Pensato per lo spettacolo dal vivo",
       }
     : { ...navCta, statusPrefix: site.statusPrefix };
