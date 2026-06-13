@@ -17,6 +17,9 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/signin') &&
         !page.includes('/signup') &&
+        !page.includes('/accesso') &&
+        !page.includes('/account') &&
+        !page.includes('/admin') &&
         !page.includes('/404'),
     }),
   ],
