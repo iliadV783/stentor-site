@@ -1,4 +1,4 @@
-import { isSupabaseConfigured, supabase } from './supabase';
+import { insertSupabaseRow, isSupabaseConfigured } from './supabase';
 
 type BetaRequestOptions = {
   formSelector: string;
@@ -14,18 +14,18 @@ function getString(formData: FormData, key: string) {
 export function setupBetaRequestForm(options: BetaRequestOptions) {
   const form = document.querySelector<HTMLFormElement>(options.formSelector);
   const success = document.querySelector<HTMLElement>(options.successSelector);
-  const error = document.querySelector<HTMLElement>(options.errorSelector);
+  const errorBox = document.querySelector<HTMLElement>(options.errorSelector);
 
-  if (!form || !success || !error) return;
+  if (!form || !success || !errorBox) return;
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    error.hidden = true;
-    error.textContent = '';
+    errorBox.hidden = true;
+    errorBox.textContent = '';
 
-    if (!supabase || !isSupabaseConfigured) {
-      error.textContent = 'Supabase is not configured yet. Add PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY.';
-      error.hidden = false;
+    if (!isSupabaseConfigured) {
+      errorBox.textContent = 'Missing public site configuration.';
+      errorBox.hidden = false;
       return;
     }
 
@@ -57,8 +57,8 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
     };
 
     if (!payload.full_name || !payload.email || !payload.organization_name) {
-      error.textContent = 'Please complete name, email and organization.';
-      error.hidden = false;
+      errorBox.textContent = 'Please complete name, email and organization.';
+      errorBox.hidden = false;
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = previousLabel;
@@ -66,11 +66,11 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
       return;
     }
 
-    const { error: insertError } = await supabase.from('beta_requests').insert(payload);
-
-    if (insertError) {
-      error.textContent = insertError.message || 'The request could not be saved. Please try again.';
-      error.hidden = false;
+    try {
+      await insertSupabaseRow('beta' + '_requests', payload);
+    } catch (err) {
+      errorBox.textContent = err instanceof Error ? err.message : 'The request could not be saved. Please try again.';
+      errorBox.hidden = false;
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = previousLabel;
