@@ -61,7 +61,7 @@ import Layout from "../layouts/Layout.astro";
   setupAdminConsole();
 </script>
 
-<style>
+<style is:global>
   @reference "../styles/global.css";
   .admin-nav { @apply h-10 px-3 rounded-xl inline-flex items-center text-white/48 hover:text-white hover:bg-white/[0.06] transition-colors; }
   .admin-nav-active { @apply h-10 px-3 rounded-xl inline-flex items-center text-white bg-white/[0.08] border border-white/10; }
