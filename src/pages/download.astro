@@ -1,60 +1,69 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Eyebrow from "../components/Eyebrow.astro";
 import Btn from "../components/Btn.astro";
 ---
 
 <Layout
-  title="Download Sténtor"
-  description="Download Sténtor. Free to try, no account required."
+  title="Download Sténtor – Sténtor"
+  description="Scarica Sténtor Lite o richiedi l’accesso a Sténtor Pro per macOS."
+  active={null}
 >
-  <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
-    <div class="max-w-[760px] mb-12">
-      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Download</p>
-      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Download Sténtor.</h1>
-      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">
-        Free to try. No account required. Use Sténtor to prepare, cue and share surtitles, translations and audio descriptions for live performance.
-      </p>
+  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[760px]">
+        <Eyebrow><span class="font-mono">DOWNLOAD</span></Eyebrow>
+        <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.05em] font-semibold mt-5 mb-4">Scarica Sténtor.</h1>
+        <p class="text-lg leading-[1.55] text-text-2 max-w-[650px] m-0">
+          Sténtor Lite sarà scaricabile liberamente. Sténtor Pro sarà distribuito con licenza attivabile per teatri, compagnie, festival, scuole e istituzioni.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[1280px] mx-auto px-4 md:px-8 py-16">
+    <div class="grid lg:grid-cols-2 gap-5 items-stretch">
+      <article class="relative overflow-hidden border border-hairline rounded-2xl bg-surface p-7 md:p-8">
+        <div class="absolute right-0 top-0 w-56 h-56 pointer-events-none" style="background: radial-gradient(50% 50% at 100% 0%, rgba(148,163,184,0.12), transparent);" aria-hidden="true"></div>
+        <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-3 mb-4">Gratis</p>
+        <h2 class="text-3xl font-semibold tracking-[-0.04em] mb-3">Sténtor Lite</h2>
+        <p class="text-text-3 leading-[1.6] max-w-[520px] mb-6">
+          Versione gratuita per provare il flusso di base, preparare testi e avvicinarsi al sistema Sténtor.
+        </p>
+        <div class="rounded-xl border border-hairline bg-elevated p-4 mb-6">
+          <p class="text-sm text-text-2 font-medium mb-2">Stato download</p>
+          <p class="text-[13.5px] text-text-4 leading-[1.55]">Il pacchetto sarà pubblicato qui quando la build stabile sarà pronta.</p>
+        </div>
+        <button class="inline-flex items-center justify-center h-11 px-5 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>
+          Download in preparazione
+        </button>
+      </article>
+
+      <article class="relative overflow-hidden border border-red-500/25 rounded-2xl bg-surface p-7 md:p-8 shadow-[0_0_80px_rgba(239,68,68,0.07)]">
+        <div class="absolute right-0 top-0 w-64 h-64 pointer-events-none" style="background: radial-gradient(50% 50% at 100% 0%, rgba(239,68,68,0.18), transparent);" aria-hidden="true"></div>
+        <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-red-500 mb-4">Licenza professionale</p>
+        <h2 class="text-3xl font-semibold tracking-[-0.04em] mb-3">Sténtor Pro</h2>
+        <p class="text-text-3 leading-[1.6] max-w-[520px] mb-6">
+          Per prove, regia, sopratitoli, traduzione, audiodescrizione e distribuzione verso schermi o telefoni del pubblico.
+        </p>
+        <ul class="grid gap-3 text-[14px] text-text-2 mb-7">
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Licenze temporanee o annuali</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Attivazioni per una o più postazioni</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Pensato per uso offline durante prove e spettacoli</li>
+        </ul>
+        <Btn href="/richiedi-prova" variant="primary" size="lg">
+          Richiedi accesso Pro <span aria-hidden="true">→</span>
+        </Btn>
+      </article>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-4 mb-10">
-      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
-        <p class="font-mono text-xs text-text-3 mb-3">macOS</p>
-        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Apple Silicon</h2>
-        <p class="text-sm text-text-3 leading-[1.55] mb-5">The first public desktop build will appear here.</p>
-        <Btn href="/contact" variant="ghost">Ask for current build</Btn>
-      </article>
-
-      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
-        <p class="font-mono text-xs text-text-3 mb-3">Windows</p>
-        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Windows</h2>
-        <p class="text-sm text-text-3 leading-[1.55] mb-5">Windows builds are planned after the macOS release.</p>
-        <Btn href="/contact" variant="ghost">Stay informed</Btn>
-      </article>
-
-      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
-        <p class="font-mono text-xs text-text-3 mb-3">Linux</p>
-        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Linux</h2>
-        <p class="text-sm text-text-3 leading-[1.55] mb-5">Linux builds are planned after the desktop release stabilises.</p>
-        <Btn href="/contact" variant="ghost">Stay informed</Btn>
-      </article>
-    </div>
-
-    <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-4">
-      <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
-        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Using Sténtor in rehearsal or performance?</h2>
-        <p class="text-sm text-text-3 leading-[1.6] mb-5">
-          We would love to hear how it worked for you. Field notes, operator comments and audience responses help improve the tool, but they are not required to download or try Sténtor.
-        </p>
-        <Btn href="/contact" variant="primary">Share field notes</Btn>
+    <div class="mt-8 border border-hairline rounded-2xl bg-surface p-6 md:p-7 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+      <div>
+        <h2 class="text-xl font-semibold tracking-[-0.03em] mb-2">Hai già una licenza?</h2>
+        <p class="text-text-3 leading-[1.55]">Accedi all’area cliente per vedere download, durata della licenza e postazioni disponibili.</p>
       </div>
-
-      <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
-        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Need the workflow?</h2>
-        <p class="text-sm text-text-3 leading-[1.6] mb-5">
-          Read how Sténtor moves from script preparation to live cueing, screens and audience phones.
-        </p>
-        <Btn href="/docs" variant="ghost">Read the workflow</Btn>
-      </div>
+      <Btn href="/accesso" variant="secondary" size="md">Accedi</Btn>
     </div>
   </section>
 </Layout>
