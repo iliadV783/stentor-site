@@ -143,11 +143,32 @@ async function sendMagicLink(email: string) {
   }
 }
 
+async function signInWithPassword(email: string, password: string) {
+  const response = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
+    method: 'POST',
+    headers: {
+      apikey: supabaseAnonKey,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!response.ok) {
+    throw new Error(await readError(response, 'Login failed.'));
+  }
+
+  const body = await response.json();
+  if (!body.access_token) throw new Error('Login succeeded but no access token was returned.');
+  localStorage.setItem(storageKey, body.access_token);
+  return body.access_token as string;
+}
+
 export function setupAdminConsole() {
   const loginPanel = qs<HTMLElement>('[data-admin-login]');
   const appPanel = qs<HTMLElement>('[data-admin-app]');
   const errorBox = qs<HTMLElement>('[data-admin-error]');
   const loginForm = qs<HTMLFormElement>('[data-admin-login-form]');
+  const magicButton = qs<HTMLButtonElement>('[data-admin-magic-link]');
   const logoutButton = qs<HTMLButtonElement>('[data-admin-logout]');
   const token = getStoredToken();
 
@@ -158,8 +179,31 @@ export function setupAdminConsole() {
     errorBox.hidden = false;
   };
 
+  const showApp = async (activeToken: string) => {
+    await ensureAdmin(activeToken);
+    await loadRequests(activeToken);
+    loginPanel.hidden = true;
+    appPanel.hidden = false;
+  };
+
   loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    errorBox.hidden = true;
+    const formData = new FormData(loginForm);
+    const email = String(formData.get('email') || '').trim();
+    const password = String(formData.get('password') || '');
+    if (!email) return showError('Enter your email.');
+    if (!password) return showError('Enter your password, or use the magic link button.');
+
+    try {
+      const activeToken = await signInWithPassword(email, password);
+      await showApp(activeToken);
+    } catch (error) {
+      showError(error instanceof Error ? error.message : 'Login failed.');
+    }
+  });
+
+  magicButton?.addEventListener('click', async () => {
     errorBox.hidden = true;
     const formData = new FormData(loginForm);
     const email = String(formData.get('email') || '').trim();
@@ -193,16 +237,10 @@ export function setupAdminConsole() {
     return;
   }
 
-  ensureAdmin(token)
-    .then(() => loadRequests(token))
-    .then(() => {
-      loginPanel.hidden = true;
-      appPanel.hidden = false;
-    })
-    .catch((error) => {
-      localStorage.removeItem(storageKey);
-      loginPanel.hidden = false;
-      appPanel.hidden = true;
-      showError(error instanceof Error ? error.message : 'Admin check failed.');
-    });
+  showApp(token).catch((error) => {
+    localStorage.removeItem(storageKey);
+    loginPanel.hidden = false;
+    appPanel.hidden = true;
+    showError(error instanceof Error ? error.message : 'Admin check failed.');
+  });
 }
