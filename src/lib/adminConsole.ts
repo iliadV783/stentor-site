@@ -14,7 +14,14 @@ type AdminRequest = {
 
 type AdminLicense = {
   id: string;
+  license_key: string;
   beta_request_id: string | null;
+  plan: string;
+  status: 'active' | 'expired' | 'revoked';
+  max_activations: number;
+  enabled_platforms: string[] | null;
+  expires_at: string | null;
+  created_at: string;
 };
 
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
@@ -24,6 +31,7 @@ const approveButtonClass = 'h-9 px-3 rounded-lg border border-green-400/25 bg-gr
 const rejectButtonClass = 'h-9 px-3 rounded-lg border border-red-400/25 bg-red-400/10 text-red-100 hover:bg-red-400/20 hover:border-red-400/45 cursor-pointer text-sm font-medium transition-colors disabled:opacity-45 disabled:cursor-wait';
 const licenseButtonClass = 'h-9 px-3 rounded-lg border border-red-400/30 bg-red-500/15 text-red-100 hover:bg-red-500/25 hover:border-red-400/50 cursor-pointer text-sm font-semibold transition-colors disabled:opacity-45 disabled:cursor-wait';
 const mutedButtonClass = 'h-9 px-3 rounded-lg border border-white/10 bg-white/[0.04] text-white/35 text-sm cursor-default';
+const copyButtonClass = 'h-8 px-3 rounded-lg border border-white/10 bg-white/[0.04] text-white/50 hover:text-white hover:bg-white/[0.08] cursor-pointer text-xs transition-colors';
 const leftCellStyle = 'padding: 18px 24px; text-align: left; vertical-align: middle;';
 const centerCellStyle = 'padding: 18px 24px; text-align: center; vertical-align: middle;';
 
@@ -73,9 +81,9 @@ async function apiFetch(path: string, token: string, options: RequestInit = {}) 
   return response.json();
 }
 
-function statusClass(status: AdminRequest['status']) {
-  if (status === 'approved') return 'status-approved';
-  if (status === 'rejected') return 'status-rejected';
+function statusClass(status: AdminRequest['status'] | AdminLicense['status']) {
+  if (status === 'approved' || status === 'active') return 'status-approved';
+  if (status === 'rejected' || status === 'revoked') return 'status-rejected';
   return 'status-pending';
 }
 
@@ -116,6 +124,37 @@ function renderRequests(requests: AdminRequest[], licenses: AdminLicense[]) {
   }).join('');
 }
 
+function renderLicenses(licenses: AdminLicense[], requests: AdminRequest[]) {
+  const target = qs<HTMLElement>('[data-admin-licenses]');
+  if (!target) return;
+
+  if (!licenses.length) {
+    target.innerHTML = '<p class="text-white/45">No licenses created yet.</p>';
+    return;
+  }
+
+  target.innerHTML = licenses.map((license) => {
+    const request = requests.find((item) => item.id === license.beta_request_id);
+    const platforms = (license.enabled_platforms || []).join(', ') || '—';
+    const expires = license.expires_at ? new Date(license.expires_at).toLocaleDateString() : 'No expiration';
+    return `<div class="license-card">
+      <div class="flex items-start justify-between gap-3 mb-4">
+        <div><span class="license-label">License key</span><div class="license-key">${license.license_key}</div></div>
+        <button type="button" class="${copyButtonClass}" data-copy-license="${license.license_key}">Copy</button>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-3 text-sm">
+        <div><span class="license-label">Owner</span><div class="text-white/65">${request?.email || '—'}</div></div>
+        <div><span class="license-label">Organization</span><div class="text-white/65">${request?.organization_name || '—'}</div></div>
+        <div><span class="license-label">Status</span><span class="${statusClass(license.status)}">${license.status}</span></div>
+        <div><span class="license-label">Plan</span><div class="text-white/65">${license.plan}</div></div>
+        <div><span class="license-label">Platforms</span><div class="text-white/65">${platforms}</div></div>
+        <div><span class="license-label">Activations</span><div class="text-white/65">${license.max_activations}</div></div>
+        <div class="sm:col-span-2"><span class="license-label">Expires</span><div class="text-white/65">${expires}</div></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function renderStats(requests: AdminRequest[], licenses: AdminLicense[]) {
   const pending = requests.filter((item) => item.status === 'pending').length;
   const approved = requests.filter((item) => item.status === 'approved').length;
@@ -125,13 +164,14 @@ function renderStats(requests: AdminRequest[], licenses: AdminLicense[]) {
 }
 
 async function loadLicenses(token: string) {
-  return apiFetch('/rest/v1/licenses?select=id,beta_request_id&order=created_at.desc', token) as Promise<AdminLicense[]>;
+  return apiFetch('/rest/v1/licenses?select=id,license_key,beta_request_id,plan,status,max_activations,enabled_platforms,expires_at,created_at&order=created_at.desc', token) as Promise<AdminLicense[]>;
 }
 
 async function loadRequests(token: string) {
   const requests = await apiFetch('/rest/v1/beta_requests?select=id,full_name,email,organization_name,role,country,requested_platforms,requested_seats,message,status,created_at&order=created_at.desc', token) as AdminRequest[];
   const licenses = await loadLicenses(token);
   renderRequests(requests, licenses);
+  renderLicenses(licenses, requests);
   renderStats(requests, licenses);
 }
 
@@ -267,6 +307,15 @@ export function setupAdminConsole() {
 
   document.addEventListener('click', async (event) => {
     const target = event.target as HTMLElement;
+    const copyButton = target.closest<HTMLButtonElement>('[data-copy-license]');
+    if (copyButton) {
+      const key = copyButton.getAttribute('data-copy-license') || '';
+      await navigator.clipboard.writeText(key);
+      copyButton.textContent = 'Copied';
+      window.setTimeout(() => { copyButton.textContent = 'Copy'; }, 1400);
+      return;
+    }
+
     const button = target.closest<HTMLButtonElement>('[data-approve], [data-reject], [data-create-license]');
     if (!button) return;
 
