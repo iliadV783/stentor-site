@@ -1,59 +1,257 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Btn from "../components/Btn.astro";
 ---
 
-<Layout
-  title="Account Sténtor – Sténtor"
-  description="Area cliente Sténtor per licenze, download e attivazioni."
-  active={null}
-  noindex={true}
->
-  <section class="max-w-[1180px] mx-auto px-4 md:px-8 py-24 md:py-32">
-    <div class="max-w-[760px] mb-10">
-      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Area cliente</p>
-      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Account Sténtor.</h1>
-      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">
-        Questa area ospiterà licenze, download, scadenze e postazioni attivate per teatri, compagnie, festival, scuole e istituzioni.
-      </p>
-    </div>
+<Layout title="Account Stentor - Stentor" description="Stentor client area for licenses, downloads and activations." active={null} showNav={false} showFooter={false} noindex={true}>
+  <section class="min-h-screen bg-black text-white relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.18)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-    <div class="grid lg:grid-cols-[1fr_0.72fr] gap-5 items-start">
-      <article class="rounded-2xl border border-hairline bg-surface p-6 md:p-7">
-        <div class="flex items-start justify-between gap-4 border-b border-hairline pb-5 mb-5">
-          <div>
-            <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-4 mb-2">Licenza</p>
-            <h2 class="text-2xl font-semibold tracking-[-0.04em]">Nessuna licenza collegata</h2>
-          </div>
-          <span class="rounded-full border border-hairline px-3 py-1 text-xs text-text-3">in preparazione</span>
-        </div>
-        <p class="text-text-3 leading-[1.6] mb-6">
-          Dopo l’attivazione, qui compariranno piano, scadenza, numero di postazioni e link per scaricare Sténtor Pro.
-        </p>
-        <div class="grid sm:grid-cols-3 gap-3 mb-6">
-          <div class="rounded-xl border border-hairline bg-elevated p-4">
-            <p class="text-text-4 text-xs mb-1">Piano</p>
-            <p class="font-medium">—</p>
-          </div>
-          <div class="rounded-xl border border-hairline bg-elevated p-4">
-            <p class="text-text-4 text-xs mb-1">Scadenza</p>
-            <p class="font-medium">—</p>
-          </div>
-          <div class="rounded-xl border border-hairline bg-elevated p-4">
-            <p class="text-text-4 text-xs mb-1">Postazioni</p>
-            <p class="font-medium">—</p>
-          </div>
-        </div>
-        <Btn href="/richiedi-prova" variant="primary" size="md">Richiedi accesso Pro</Btn>
-      </article>
+    <header class="relative border-b border-white/10">
+      <div class="max-w-[1180px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
+        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span><span class="text-white/45 text-sm">Account</span></a>
+        <div class="flex items-center gap-3"><span data-account-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Client area</span><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button><a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
+      </div>
+    </header>
 
-      <aside class="rounded-2xl border border-hairline bg-sunken p-6 md:p-7">
-        <h2 class="text-xl font-semibold tracking-[-0.03em] mb-3">Hai già ricevuto una licenza?</h2>
-        <p class="text-text-3 leading-[1.6] mb-6">
-          Accedi con Google, Microsoft o link email. Nella versione definitiva l’account verrà associato alla licenza assegnata alla tua organizzazione.
-        </p>
-        <Btn href="/accesso" variant="ghost" size="md">Accedi</Btn>
-      </aside>
-    </div>
+    <main class="relative max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
+      <section data-account-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Client login</p>
+        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Stentor.</h1>
+        <p class="text-white/50 leading-[1.6] mb-7">Access your license, downloads and activation information. During beta, use the same email used for your request.</p>
+        <form data-account-login-form class="grid gap-4">
+          <input name="email" type="email" autocomplete="email" placeholder="name@theatre.org" class="account-input" required />
+          <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="account-input" />
+          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Sign in</button>
+          <button type="button" data-account-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Send email link</button>
+        </form>
+        <p data-account-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+      </section>
+
+      <section data-account-app hidden class="grid gap-6">
+        <div class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Client area</p>
+          <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Your Stentor license.</h1>
+          <p class="text-white/50 leading-[1.6] max-w-[760px]">This area shows the licenses, enabled platforms and activation limits associated with your account.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-[1fr_0.72fr] gap-6 items-start">
+          <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Licenses</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Active licenses</h2></div>
+              <button data-account-refresh class="h-10 px-4 rounded-xl border border-white/10 text-sm text-white/55 hover:text-white hover:bg-white/[0.06] transition-colors">Refresh</button>
+            </div>
+            <div data-account-licenses class="grid gap-3"><p class="text-white/45">Loading licenses...</p></div>
+          </section>
+
+          <aside class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
+            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p>
+            <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Available builds</h2>
+            <p class="text-white/50 leading-[1.6] mb-5">Lite can be public. Pro downloads will appear here when build artifacts are connected to active licenses.</p>
+            <div class="grid gap-2"><span class="download-chip">Stentor Lite - coming soon</span><span class="download-chip">Stentor Pro macOS - beta</span><span class="download-chip">Windows / Linux - planned</span></div>
+          </aside>
+        </div>
+      </section>
+    </main>
   </section>
 </Layout>
+
+<script>
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const storageKey = 'stentor_account_access_token';
+
+  const loginPanel = document.querySelector('[data-account-login]');
+  const appPanel = document.querySelector('[data-account-app]');
+  const loginForm = document.querySelector('[data-account-login-form]');
+  const errorBox = document.querySelector('[data-account-error]');
+  const emailBadge = document.querySelector('[data-account-email]');
+  const logoutButton = document.querySelector('[data-account-logout]');
+  const magicButton = document.querySelector('[data-account-magic-link]');
+  const refreshButton = document.querySelector('[data-account-refresh]');
+  const licensesTarget = document.querySelector('[data-account-licenses]');
+
+  function getTokenFromHash() {
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const token = hash.get('access_token');
+    if (token) {
+      localStorage.setItem(storageKey, token);
+      history.replaceState(null, '', window.location.pathname);
+    }
+    return token;
+  }
+
+  function getStoredToken() {
+    return getTokenFromHash() || localStorage.getItem(storageKey) || '';
+  }
+
+  async function readError(response, fallback) {
+    try {
+      const body = await response.json();
+      return body.msg || body.message || body.error_description || body.error || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function showError(message) {
+    if (!errorBox) return;
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+  }
+
+  async function apiFetch(path, token, options = {}) {
+    const response = await fetch(`${supabaseUrl}${path}`, {
+      ...options,
+      headers: {
+        apikey: supabaseAnonKey,
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      },
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Request failed.'));
+    return response.json();
+  }
+
+  async function signInWithPassword(email, password) {
+    const response = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
+      method: 'POST',
+      headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Login failed.'));
+    const body = await response.json();
+    localStorage.setItem(storageKey, body.access_token);
+    return body.access_token;
+  }
+
+  async function sendMagicLink(email) {
+    const redirectTo = `${window.location.origin}/auth/confirm?next=/account`;
+    const response = await fetch(`${supabaseUrl}/auth/v1/otp?redirect_to=${encodeURIComponent(redirectTo)}`, {
+      method: 'POST',
+      headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, create_user: true }),
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Email link could not be sent.'));
+  }
+
+  function statusClass(status) {
+    if (status === 'active') return 'account-status-active';
+    if (status === 'revoked') return 'account-status-revoked';
+    return 'account-status-pending';
+  }
+
+  function renderLicenses(licenses) {
+    if (!licensesTarget) return;
+    if (!licenses.length) {
+      licensesTarget.innerHTML = '<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">No license yet</h3><p class="text-white/50 leading-[1.6]">When your beta request is approved, your license will appear here automatically.</p><a href="/request-pro" class="inline-flex mt-5 h-11 px-4 rounded-xl bg-red-500 text-black font-semibold items-center justify-center hover:bg-red-400 transition-colors">Request access</a></div>';
+      return;
+    }
+
+    licensesTarget.innerHTML = licenses.map((license) => {
+      const platforms = (license.enabled_platforms || []).join(', ') || '—';
+      const expires = license.expires_at ? new Date(license.expires_at).toLocaleDateString() : 'No expiration';
+      return `<article class="account-card">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
+          <div><span class="account-label">License key</span><div class="account-license-key">${license.license_key}</div></div>
+          <button type="button" class="account-copy" data-copy-license="${license.license_key}">Copy</button>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-3">
+          <div><span class="account-label">Status</span><span class="${statusClass(license.status)}">${license.status}</span></div>
+          <div><span class="account-label">Plan</span><div class="text-white/70">${license.plan}</div></div>
+          <div><span class="account-label">Activations</span><div class="text-white/70">${license.max_activations}</div></div>
+          <div><span class="account-label">Platforms</span><div class="text-white/70">${platforms}</div></div>
+          <div><span class="account-label">Expires</span><div class="text-white/70">${expires}</div></div>
+          <div><span class="account-label">Organization</span><div class="text-white/70">${license.organization_name || '—'}</div></div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  async function loadAccount(token) {
+    const user = await apiFetch('/auth/v1/user', token);
+    if (emailBadge) emailBadge.textContent = user.email || 'Account';
+    const licenses = await apiFetch('/rest/v1/rpc/current_user_licenses', token, { method: 'POST', body: JSON.stringify({}) });
+    renderLicenses(licenses);
+    if (loginPanel) loginPanel.hidden = true;
+    if (appPanel) appPanel.hidden = false;
+    if (logoutButton) logoutButton.hidden = false;
+  }
+
+  loginForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (errorBox) errorBox.hidden = true;
+    const formData = new FormData(loginForm);
+    const email = String(formData.get('email') || '').trim();
+    const password = String(formData.get('password') || '');
+    if (!email) return showError('Enter your email.');
+    if (!password) return showError('Enter your password, or use the email link button.');
+    try {
+      const token = await signInWithPassword(email, password);
+      await loadAccount(token);
+    } catch (error) {
+      showError(error instanceof Error ? error.message : 'Login failed.');
+    }
+  });
+
+  magicButton?.addEventListener('click', async () => {
+    if (errorBox) errorBox.hidden = true;
+    const formData = new FormData(loginForm);
+    const email = String(formData.get('email') || '').trim();
+    if (!email) return showError('Enter your email.');
+    try {
+      await sendMagicLink(email);
+      showError('Email link sent. Check your inbox, then return here.');
+    } catch (error) {
+      showError(error instanceof Error ? error.message : 'Email link failed.');
+    }
+  });
+
+  logoutButton?.addEventListener('click', () => {
+    localStorage.removeItem(storageKey);
+    window.location.reload();
+  });
+
+  refreshButton?.addEventListener('click', async () => {
+    const token = getStoredToken();
+    if (token) await loadAccount(token);
+  });
+
+  document.addEventListener('click', async (event) => {
+    const button = event.target.closest?.('[data-copy-license]');
+    if (!button) return;
+    const key = button.getAttribute('data-copy-license') || '';
+    await navigator.clipboard.writeText(key);
+    button.textContent = 'Copied';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
+  });
+
+  const token = getStoredToken();
+  if (token) {
+    loadAccount(token).catch((error) => {
+      localStorage.removeItem(storageKey);
+      if (loginPanel) loginPanel.hidden = false;
+      if (appPanel) appPanel.hidden = true;
+      showError(error instanceof Error ? error.message : 'Session expired. Please sign in again.');
+    });
+  } else {
+    if (loginPanel) loginPanel.hidden = false;
+    if (appPanel) appPanel.hidden = true;
+  }
+</script>
+
+<style is:global>
+  @reference "../styles/global.css";
+  .account-input { @apply w-full h-13 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
+  .account-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
+  .account-input::placeholder { color: rgba(255,255,255,0.34); }
+  .account-card { @apply rounded-xl border border-white/10 bg-black/25 p-5; }
+  .account-label { @apply block text-[10px] font-mono uppercase tracking-[0.12em] text-white/35 mb-1; }
+  .account-license-key { @apply font-mono text-[13px] text-white/78 break-all; }
+  .account-copy { @apply h-9 px-3 rounded-lg border border-white/10 bg-white/[0.04] text-white/55 hover:text-white hover:bg-white/[0.08] cursor-pointer text-sm transition-colors; }
+  .account-status-active { @apply inline-flex px-2.5 py-1 rounded-full bg-green-400/10 border border-green-400/20 text-green-200 text-xs font-mono uppercase tracking-[0.08em]; }
+  .account-status-revoked { @apply inline-flex px-2.5 py-1 rounded-full bg-red-400/10 border border-red-400/20 text-red-200 text-xs font-mono uppercase tracking-[0.08em]; }
+  .account-status-pending { @apply inline-flex px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-200 text-xs font-mono uppercase tracking-[0.08em]; }
+  .download-chip { @apply h-11 rounded-xl border border-white/10 bg-black/25 inline-flex items-center px-4 text-white/55 text-sm; }
+</style>
