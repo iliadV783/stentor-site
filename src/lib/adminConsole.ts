@@ -129,7 +129,7 @@ async function sendMagicLink(email: string) {
     body: JSON.stringify({
       email,
       create_user: true,
-      options: { email_redirect_to: `${window.location.origin}/admin` },
+      options: { email_redirect_to: `${window.location.origin}/auth/confirm?next=/admin` },
     }),
   });
 
