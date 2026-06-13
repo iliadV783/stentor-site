@@ -36,7 +36,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = image.startsWith("http") ? image : new URL(image, Astro.site).toString();
 const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "";
-const faviconURL = "/favicon.svg?v=bronze-2026-06-13";
+const faviconURL = "/favicon.svg?v=bronze-96-2026-06-13-v2";
 
 const isHome = Astro.url.pathname === "/";
 const isArticle = ogType === "article";
