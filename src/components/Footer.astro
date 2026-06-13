@@ -72,6 +72,7 @@ const statusRegions = isFr
     ? "sopratitoli, traduzione, audio descrizione"
     : site.statusRegions;
 const homeHref = isFr ? "/fr/" : isIt ? "/it/" : "/";
+const brandMark = "/stentor-icon.png?v=brand-2026-06-13";
 
 const socialIcons = [
   { id: "github", href: site.social.github, label: "GitHub", Icon: IconGithub },
@@ -86,7 +87,7 @@ const socialIcons = [
       <div class="col-span-2 lg:col-span-1">
         <div class="flex items-start gap-4">
           <span class="grid place-items-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden ring-1 ring-white/10 shadow-[0_0_28px_rgba(198,83,64,0.22)] bg-black flex-none">
-            <img src="/favicon.svg?v=brand-2026-06-13" alt="" class="w-full h-full block" aria-hidden="true" />
+            <img src={brandMark} alt="" class="w-full h-full block" aria-hidden="true" />
           </span>
           <div>
             <a href={homeHref} aria-label="Stentor home" class="inline-flex text-2xl sm:text-3xl leading-none tracking-[-0.04em] font-semibold text-text hover:text-text transition-colors">
