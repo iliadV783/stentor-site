@@ -45,9 +45,13 @@ import Layout from "../../layouts/Layout.astro";
   @reference "../../styles/global.css";
   .auth-provider { @apply h-14 rounded-xl border border-white/10 bg-white/[0.045] hover:bg-white/[0.075] hover:border-white/20 transition-colors inline-flex items-center justify-center gap-3 text-[15px] font-medium text-white/90; }
   .provider-mark { @apply w-5 h-5 flex-none inline-flex items-center justify-center; }
-  .google-mark { font-weight: 700; color: #fff; }
+  .google-mark { font-weight: 800; font-size: 20px; line-height: 1; background: linear-gradient(90deg, #4285f4 0 28%, #34a853 28% 52%, #fbbc05 52% 74%, #ea4335 74%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .microsoft-mark { display: grid; grid-template-columns: repeat(2, 8px); grid-template-rows: repeat(2, 8px); gap: 2px; }
-  .microsoft-mark span { display: block; background: rgba(255,255,255,0.88); }
+  .microsoft-mark span { display: block; }
+  .microsoft-mark span:nth-child(1) { background: #f25022; }
+  .microsoft-mark span:nth-child(2) { background: #7fba00; }
+  .microsoft-mark span:nth-child(3) { background: #00a4ef; }
+  .microsoft-mark span:nth-child(4) { background: #ffb900; }
   .auth-label { @apply block text-[13px] font-medium text-white/62 mb-2; }
   .auth-input { @apply w-full h-12 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
   .auth-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
