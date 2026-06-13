@@ -7,14 +7,14 @@ export const hero = {
   title:
     'Surtitres, traduction <em class="not-italic text-text-3 font-medium">et accessibilite.</em><br class="hidden sm:inline" /> En direct.',
   description:
-    "Stentor est un ecosysteme pour le texte du spectacle vivant : une app Lite gratuite et multiplateforme pour commencer, et une app Pro native macOS pour la regie professionnelle.",
+    "Stentor est un ecosysteme pour le texte du spectacle vivant : une app Lite gratuite et multiplateforme pour commencer, et une app Pro professionnelle pensee pour macOS, Windows et Linux.",
   ctas: [
     { href: "/fr/download", label: "Telecharger Stentor", variant: "primary" as const },
     { href: "/fr/demander-essai", label: "Acceder a la beta Pro", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Lite : macOS, Windows et Linux", live: true },
-    { label: "Pro : macOS natif pour production live" },
+    { label: "Lite : app gratuite multiplateforme", live: true },
+    { label: "Pro : app professionnelle pour macOS, Windows et Linux" },
     { label: "Surtitres · traduction · audiodescription · public" },
   ],
   mock: {
@@ -56,10 +56,10 @@ export const logoCloud = {
 export const metrics = {
   title: "Concu pour<br/>le spectacle vivant.",
   description:
-    "Stentor organise le texte de scene de la preparation a la regie live, en separant une entree gratuite multiplateforme et une cabine de regie professionnelle native macOS.",
+    "Stentor organise le texte de scene de la preparation a la regie live, en separant une entree gratuite multiplateforme et un workflow professionnel destine aux principales plateformes desktop.",
   items: [
     { value: "Lite", suffix: "", label: "App gratuite Tauri pour macOS, Windows et Linux" },
-    { value: "Pro", suffix: "", label: "App macOS native pour production professionnelle" },
+    { value: "Pro", suffix: "", label: "App professionnelle live pour macOS, Windows et Linux" },
     { value: "Live Sync", suffix: "", label: "Pour ecrans et telephones du public" },
   ],
 };
@@ -67,10 +67,10 @@ export const metrics = {
 export const bento = {
   title: "Un seul Stentor.<br/>Deux facons de travailler.",
   description:
-    "Commencez avec l app legere multiplateforme, puis passez a l environnement professionnel natif lorsque repetitions, ecrans, timeline, public et audiodescription demandent un workflow live dedie.",
+    "Commencez avec l app legere multiplateforme, puis passez a l environnement professionnel lorsque repetitions, ecrans, timeline, public et audiodescription demandent un workflow live dedie.",
   cards: {
     types: { title: "Stentor Lite : commencer partout", desc: "App gratuite Tauri pour macOS, Windows et Linux, pensee pour rendre preparation du texte, surtitres et traductions accessibles sans barriere de licence." },
-    p95: { title: "Stentor Pro : cabine de regie", desc: "App macOS native pour repetitions et spectacles, avec cueing, timeline, ecrans, dispositifs du public et audiodescription." },
+    p95: { title: "Stentor Pro : cabine de regie", desc: "App professionnelle pour repetitions et spectacles, avec cueing, timeline, ecrans, dispositifs du public et audiodescription sur plateformes desktop." },
     edge: { title: "Telephones du public synchronises", desc: "Les spectateurs peuvent se connecter avec leur smartphone et suivre surtitres, traductions ou audiodescriptions en synchronisation avec la regie." },
     auth: { title: "Un projet, une connaissance partagee", desc: "Gardez ensemble texte original, traductions, surtitres, notes d audiodescription, metadonnees et retours de recherche." },
     cron: { title: "Importer, exporter, faire circuler", desc: "Importez Word, TXT, SRT, WebVTT, CSV ou JSON, puis partagez les scripts pour repetition, archive, tournee et etude." },
@@ -82,16 +82,16 @@ export const bento = {
 export const testimonials = {
   title: "Un outil faconne par<br/>des spectacles reels.",
   description:
-    "Stentor se developpe avec celles et ceux qui l utilisent : artistes, operateurs, traductrices, theatres et publics. Lite garde l acces ouvert ; Pro grandit par beta test dans de vrais lieux.",
+    "Stentor se developpe avec celles et ceux qui l utilisent : artistes, operateurs, traductrices, theatres et publics. Lite garde l acces ouvert ; Pro grandit par beta test dans de vrais lieux et ne sera pas limite a un seul systeme.",
   quotes: [
     { text: "Utilisez Lite pour commencer a preparer les materiaux et comprendre le workflow avant de porter Stentor en production.", av: "01", name: "Commencer avec Lite", role: "App gratuite · macOS, Windows, Linux" },
-    { text: "Utilisez Pro lorsque le spectacle demande vue regie, timeline, ecrans, dispositifs du public et setup live professionnel.", av: "02", name: "Passer a Pro", role: "macOS natif · acces beta" },
+    { text: "Utilisez Pro lorsque le spectacle demande vue regie, timeline, ecrans, dispositifs du public et setup live professionnel.", av: "02", name: "Passer a Pro", role: "App professionnelle · acces beta" },
     { text: "Les notes de repetition, les retours du public et des operateurs aident a concevoir de meilleurs outils pour le spectacle vivant.", av: "03", name: "Ameliorer la recherche", role: "Feedback · produit" },
   ],
 };
 
 const liteFeatures = ["App desktop gratuite", "Developpee avec Tauri", "Pour macOS, Windows et Linux", "Preparation textes, surtitres et traductions", "Telechargement sans licence Pro"];
-const proFeatures = ["App macOS native developpee en SwiftUI", "Timeline, cueing et vue regie live", "Ecrans et telephones du public", "Audiodescription et outils d accessibilite", "Licence beta privee et activation"];
+const proFeatures = ["App desktop professionnelle", "Prevue pour macOS, Windows et Linux", "Timeline, cueing et vue regie live", "Ecrans et telephones du public", "Audiodescription et outils d accessibilite", "Licence beta privee et activation"];
 const institutionFeatures = ["Pour theatres, festivals et ecoles", "Licences d essai et multi-postes", "Support pendant testing et repetitions", "Aide a la configuration dans de vrais lieux", "Espace compte pret pour l achat en ligne futur"];
 
 export const pricingPreview = {
@@ -99,7 +99,7 @@ export const pricingPreview = {
   comparisonLink: { href: "/fr/download", label: "Comparer Lite et Pro →" },
   plans: [
     { name: "Stentor Lite", tag: "Gratuit", price: "Lite", cycle: "/multiplateforme", tagline: "Pour commencer, preparer et experimenter sans barriere de licence.", features: liteFeatures, cta: { href: "/fr/download", label: "Telecharger Lite", variant: "ghost" as const }, highlighted: false },
-    { name: "Stentor Pro", tag: "Beta", tagAccent: true, price: "Pro", cycle: "/macOS", tagline: "Pour production live professionnelle, actuellement disponible en beta controlee.", features: proFeatures, cta: { href: "/fr/demander-essai", label: "Demander l acces Pro", variant: "primary" as const }, highlighted: true },
+    { name: "Stentor Pro", tag: "Beta", tagAccent: true, price: "Pro", cycle: "/multiplateforme", tagline: "Pour production live professionnelle, actuellement disponible en beta controlee.", features: proFeatures, cta: { href: "/fr/demander-essai", label: "Demander l acces Pro", variant: "primary" as const }, highlighted: true },
     { name: "Institutions", tag: "Equipes", price: "Team", cycle: "/lieux", tagline: "Pour theatres, festivals, ecoles et organisations preparant un usage reel.", features: institutionFeatures, cta: { href: "/fr/contact", label: "Parlons-en", variant: "ghost" as const }, highlighted: false },
   ],
 };
@@ -110,7 +110,7 @@ export const finalCta = {
   gap: "gap-6",
   eyebrow: "Stentor Lite · Stentor Pro",
   title: "Commencer librement. Passer en scene professionnellement.",
-  body: "Telechargez Stentor Lite pour commencer sur macOS, Windows ou Linux. Demandez l acces a Stentor Pro quand il faut la cabine de regie native macOS pour repetitions et spectacles.",
+  body: "Telechargez Stentor Lite pour commencer sur macOS, Windows ou Linux. Demandez l acces a Stentor Pro quand il faut un environnement professionnel pour repetitions et spectacles.",
   ctas: [
     { href: "/fr/download", label: "Telecharger Stentor", variant: "primary" as const },
     { href: "/fr/demander-essai", label: "Acceder a la beta Pro", variant: "ghost" as const },
