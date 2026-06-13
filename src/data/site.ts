@@ -33,8 +33,8 @@ export const nav: { href: string; label: string; id: NavId }[] = [
 ];
 
 export const navCta = {
-  primary: { href: "/contact", label: "Contact" },
-  secondary: { href: "/about", label: "About" },
+  primary: { href: "/richiedi-prova", label: "Request Pro" },
+  secondary: { href: "/download", label: "Download" },
 };
 
 export type FooterGroup = {
@@ -49,7 +49,8 @@ export const footerGroups: FooterGroup[] = [
       { href: "/features", label: "Features" },
       { href: "/docs", label: "Workflow" },
       { href: "/for-theatres", label: "For theatres" },
-      { href: "/contact", label: "Contact" },
+      { href: "/download", label: "Download" },
+      { href: "/richiedi-prova", label: "Request Pro" },
     ],
   },
   {
