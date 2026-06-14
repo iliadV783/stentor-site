@@ -2,15 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Account Stentor - Stentor" description="Stentor client area for licenses, downloads and activations." active={null} showNav={false} showFooter={false} noindex={true}>
+<Layout title="Account Sténtor - Sténtor" description="Access your Sténtor account, downloads and access code." active={null} showNav={false} showFooter={false} noindex={true}>
   <section class="min-h-screen bg-black text-white relative overflow-hidden">
     <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.18)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] pointer-events-none" aria-hidden="true"></div>
     <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
     <header class="relative border-b border-white/10">
       <div class="max-w-[1180px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span><span class="text-white/45 text-sm">Account</span></a>
-        <div class="flex items-center gap-3"><span data-account-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Account</span><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button>
+        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-white/45 text-sm">Account</span></a>
+        <div class="flex items-center gap-3"><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button>
         <a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
       </div>
     </header>
@@ -18,7 +18,7 @@ import Layout from "../layouts/Layout.astro";
     <main class="relative max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
       <section data-account-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
-        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Stentor.</h1>
+        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Sténtor.</h1>
         <p class="text-white/50 leading-[1.6] mb-7">Use your email to access downloads, activation details and your Sténtor access code.</p>
         <form data-account-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@theatre.org" class="account-input" required />
@@ -32,23 +32,23 @@ import Layout from "../layouts/Layout.astro";
       <section data-account-app hidden class="grid gap-6">
         <div class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
           <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
-          <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Your Stentor license.</h1>
-          <p class="text-white/50 leading-[1.6] max-w-[760px]">This area shows the licenses, enabled platforms and activation limits associated with your account.</p>
+          <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Your Sténtor account.</h1>
+          <p class="text-white/50 leading-[1.6] max-w-[760px]">This area shows your Sténtor access code, enabled platforms and available downloads.</p>
         </div>
 
         <div class="grid lg:grid-cols-[1fr_0.72fr] gap-6 items-start">
           <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <div class="flex items-start justify-between gap-4 mb-6">
-              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Licenses</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Active licenses</h2></div>
+              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Access</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Access code</h2></div>
               <button data-account-refresh class="h-10 px-4 rounded-xl border border-white/10 text-sm text-white/55 hover:text-white hover:bg-white/[0.06] transition-colors">Refresh</button>
             </div>
-            <div data-account-licenses class="grid gap-3"><p class="text-white/45">Loading licenses...</p></div>
+            <div data-account-licenses class="grid gap-3"><p class="text-white/45">Loading access code...</p></div>
           </section>
 
           <aside class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p>
             <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Available builds</h2>
-            <p class="text-white/50 leading-[1.6] mb-5">Lite can be public. Pro downloads appear when a build is active and your license enables the platform.</p>
+            <p class="text-white/50 leading-[1.6] mb-5">Downloads appear here when a Sténtor build is available for your account.</p>
             <div data-account-downloads class="grid gap-2"><span class="download-chip">Loading downloads...</span></div>
           </aside>
         </div>
@@ -66,7 +66,6 @@ import Layout from "../layouts/Layout.astro";
   const appPanel = document.querySelector('[data-account-app]');
   const loginForm = document.querySelector('[data-account-login-form]');
   const errorBox = document.querySelector('[data-account-error]');
-  const emailBadge = document.querySelector('[data-account-email]');
   const logoutButton = document.querySelector('[data-account-logout]');
   const magicButton = document.querySelector('[data-account-magic-link]');
   const refreshButton = document.querySelector('[data-account-refresh]');
@@ -144,8 +143,8 @@ import Layout from "../layouts/Layout.astro";
     return 'account-status-pending';
   }
 
-  function productLabel(product) {
-    return product === 'pro' ? 'Sténtor' : 'Stentor Lite';
+  function productLabel() {
+    return 'Sténtor';
   }
 
   function platformLabel(platform) {
@@ -158,7 +157,7 @@ import Layout from "../layouts/Layout.astro";
   function renderLicenses(licenses) {
     if (!licensesTarget) return;
     if (!licenses.length) {
-      licensesTarget.innerHTML = '<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">No license yet</h3><p class="text-white/50 leading-[1.6]">When your beta request is approved, your license will appear here automatically.</p><a href="/request-pro" class="inline-flex mt-5 h-11 px-4 rounded-xl bg-red-500 text-black font-semibold items-center justify-center hover:bg-red-400 transition-colors">Request access</a></div>';
+      licensesTarget.innerHTML = '<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">No access code yet</h3><p class="text-white/50 leading-[1.6]">When your Sténtor account is enabled, your access code will appear here automatically.</p><a href="/account" class="inline-flex mt-5 h-11 px-4 rounded-xl bg-red-500 text-black font-semibold items-center justify-center hover:bg-red-400 transition-colors">Refresh account</a></div>';
       return;
     }
 
@@ -167,13 +166,13 @@ import Layout from "../layouts/Layout.astro";
       const expires = license.expires_at ? new Date(license.expires_at).toLocaleDateString() : 'No expiration';
       return `<article class="account-card">
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
-          <div><span class="account-label">License key</span><div class="account-license-key">${license.license_key}</div></div>
-          <button type="button" class="account-copy" data-copy-license="${license.license_key}">Copy</button>
+          <div><span class="account-label">Access code</span><div class="account-access-code">${license.license_key}</div></div>
+          <button type="button" class="account-copy" data-copy-access-code="${license.license_key}">Copy</button>
         </div>
         <div class="grid sm:grid-cols-3 gap-3">
           <div><span class="account-label">Status</span><span class="${statusClass(license.status)}">${license.status}</span></div>
-          <div><span class="account-label">Plan</span><div class="text-white/70">${license.plan}</div></div>
-          <div><span class="account-label">Activations</span><div class="text-white/70">${license.max_activations}</div></div>
+          <div><span class="account-label">Access</span><div class="text-white/70">${license.plan}</div></div>
+          <div><span class="account-label">Devices</span><div class="text-white/70">${license.max_activations}</div></div>
           <div><span class="account-label">Platforms</span><div class="text-white/70">${platforms}</div></div>
           <div><span class="account-label">Expires</span><div class="text-white/70">${expires}</div></div>
           <div><span class="account-label">Organization</span><div class="text-white/70">${license.organization_name || '—'}</div></div>
@@ -200,8 +199,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   async function loadAccount(token) {
-    const user = await apiFetch('/auth/v1/user', token);
-    if (emailBadge) emailBadge.textContent = user.email || 'Account';
+    await apiFetch('/auth/v1/user', token);
     const licenses = await apiFetch('/rest/v1/rpc/current_user_licenses', token, { method: 'POST', body: JSON.stringify({}) });
     const downloads = await apiFetch('/rest/v1/rpc/current_user_downloads', token, { method: 'POST', body: JSON.stringify({}) });
     renderLicenses(licenses);
@@ -251,9 +249,9 @@ import Layout from "../layouts/Layout.astro";
   });
 
   document.addEventListener('click', async (event) => {
-    const button = event.target.closest?.('[data-copy-license]');
+    const button = event.target.closest?.('[data-copy-access-code]');
     if (!button) return;
-    const key = button.getAttribute('data-copy-license') || '';
+    const key = button.getAttribute('data-copy-access-code') || '';
     await navigator.clipboard.writeText(key);
     button.textContent = 'Copied';
     window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
@@ -280,7 +278,7 @@ import Layout from "../layouts/Layout.astro";
   .account-input::placeholder { color: rgba(255,255,255,0.34); }
   .account-card { @apply rounded-xl border border-white/10 bg-black/25 p-5; }
   .account-label { @apply block text-[10px] font-mono uppercase tracking-[0.12em] text-white/35 mb-1; }
-  .account-license-key { @apply font-mono text-[13px] text-white/78 break-all; }
+  .account-access-code { @apply font-mono text-[13px] text-white/78 break-all; }
   .account-copy { @apply h-9 px-3 rounded-lg border border-white/10 bg-white/[0.04] text-white/55 hover:text-white hover:bg-white/[0.08] cursor-pointer text-sm transition-colors; }
   .account-status-active { @apply inline-flex px-2.5 py-1 rounded-full bg-green-400/10 border border-green-400/20 text-green-200 text-xs font-mono uppercase tracking-[0.08em]; }
   .account-status-revoked { @apply inline-flex px-2.5 py-1 rounded-full bg-red-400/10 border border-red-400/20 text-red-200 text-xs font-mono uppercase tracking-[0.08em]; }
