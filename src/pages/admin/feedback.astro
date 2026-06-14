@@ -69,9 +69,9 @@ import Layout from "../../layouts/Layout.astro";
 
         <div data-admin-message hidden class="rounded-2xl border border-red-500/25 bg-red-500/10 text-red-100 p-5 leading-[1.6]"></div>
 
-        <div class="grid lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_360px] gap-5 items-start">
-          <section class="min-w-0 rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden">
-            <div class="p-5 md:p-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="grid lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_360px] gap-5 items-start min-h-0">
+          <section class="min-w-0 rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden max-h-[680px] flex flex-col">
+            <div class="shrink-0 p-5 md:p-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Invii ricevuti</p>
                 <h2 class="text-2xl font-semibold tracking-[-0.04em]">Feedback compagnie</h2>
@@ -80,10 +80,10 @@ import Layout from "../../layouts/Layout.astro";
               <input data-admin-search type="search" placeholder="Cerca spettacolo, versione, testo..." class="h-11 min-w-0 sm:w-[320px] rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50" />
             </div>
 
-            <div data-admin-table class="overflow-x-auto"></div>
+            <div data-admin-table class="overflow-auto min-h-0 flex-1"></div>
           </section>
 
-          <aside data-admin-detail class="lg:sticky lg:top-24 rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7 min-h-[420px]">
+          <aside data-admin-detail class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7 min-h-[420px] max-h-[680px] overflow-auto">
             <p class="text-white/45 leading-[1.6]">Seleziona un feedback dalla tabella per vedere il dettaglio completo.</p>
           </aside>
         </div>
@@ -335,7 +335,7 @@ import Layout from "../../layouts/Layout.astro";
 
     tableTarget.innerHTML = `
       <table class="w-full table-fixed text-left text-sm">
-        <thead class="text-white/35 border-b border-white/10">
+        <thead class="sticky top-0 z-10 bg-[#080808] text-white/35 border-b border-white/10">
           <tr>
             <th class="font-medium px-5 py-3 whitespace-nowrap w-[190px]">Data</th>
             <th class="font-medium px-5 py-3 whitespace-nowrap">Spettacolo</th>
