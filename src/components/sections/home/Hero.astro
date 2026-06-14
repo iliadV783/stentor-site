@@ -47,15 +47,15 @@ const { hero = defaultHero } = Astro.props;
       ))}
     </div>
 
-    <!-- Product mockup -->
-    <div class="relative mt-16 mx-auto max-w-[1200px] border border-hairline bg-deep rounded-2xl overflow-hidden text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_80px_-20px_rgba(0,0,0,0.7),0_60px_120px_-20px_rgba(239,68,68,0.18)]" role="img" aria-label="Sténtor operator view preview">
+    <!-- Illustrative workflow preview -->
+    <div class="relative mt-16 mx-auto max-w-[1200px] border border-hairline bg-deep rounded-2xl overflow-hidden text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_80px_-20px_rgba(0,0,0,0.7),0_60px_120px_-20px_rgba(239,68,68,0.18)]" role="img" aria-label="Illustrative Sténtor workflow preview">
       <div class="flex items-center gap-2.5 h-10 px-3.5 border-b border-hairline bg-white/[0.02]">
         <span class="inline-flex gap-[5px]">
           <i class="w-2 h-2 rounded-full bg-chrome"></i>
           <i class="w-2 h-2 rounded-full bg-chrome"></i>
           <i class="w-2 h-2 rounded-full bg-chrome"></i>
         </span>
-        <div class="flex-1 font-mono text-xs text-text-3 text-center"><span>stentor.local/</span><b class="text-text-2 font-medium">macbett/live</b></div>
+        <div class="flex-1 font-mono text-xs text-text-3 text-center"><span class="text-text-4">Illustrative workflow preview</span></div>
         <div class="flex gap-1.5">
           <span class="w-[22px] h-[22px] border border-hairline rounded"></span>
           <span class="w-[22px] h-[22px] border border-hairline rounded"></span>
@@ -67,8 +67,8 @@ const { hero = defaultHero } = Astro.props;
           <div class="flex items-center gap-2.5 p-2 border border-hairline rounded-lg">
             <div class="w-6 h-6 rounded-md bg-gradient-to-br from-red-500 to-red-700"></div>
             <div class="text-xs">
-              <b class="block">{hero.mock.workspace.name}</b>
-              <span class="text-text-3 text-[11px]">{hero.mock.workspace.env}</span>
+              <b class="block">Live workspace</b>
+              <span class="text-text-3 text-[11px]">rehearsal · local room</span>
             </div>
           </div>
           <nav class="grid gap-0.5 text-text-2 text-[13px]">
@@ -83,16 +83,16 @@ const { hero = defaultHero } = Astro.props;
             </p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconChartUp class="w-3.5 h-3.5" />
-              Screens<span class="ml-auto font-mono text-[11px] text-text-3">2</span>
+              Screens<span class="ml-auto font-mono text-[11px] text-text-3">ready</span>
             </p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconClock class="w-3.5 h-3.5" />
               Audio description
             </p>
-            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Live Sync</p>
+            <p class="mx-2 my-1 mt-3 text-[10px] tracking-[0.08em] uppercase text-text-4 font-medium">Live</p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconBox class="w-3.5 h-3.5" />
-              Audience<span class="ml-auto font-mono text-[11px] text-text-3">18</span>
+              Viewer phones<span class="ml-auto font-mono text-[11px] text-text-3">synced</span>
             </p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconCode class="w-3.5 h-3.5" />
@@ -100,81 +100,97 @@ const { hero = defaultHero } = Astro.props;
             </p>
             <p class="flex items-center gap-2.5 px-2 py-1.5 rounded-md">
               <IconCrossAxis class="w-3.5 h-3.5" />
-              Feedback
+              Operator notes
             </p>
           </nav>
           <div class="flex items-center gap-2.5 p-2 -mx-3 -mb-4 border-t border-hairline">
             <div class="w-6 h-6 rounded-full bg-chrome"></div>
             <div>
-              <b class="text-xs font-medium">{hero.mock.user.name}</b>
-              <span class="block text-[11px] text-text-3">{hero.mock.user.email}</span>
+              <b class="text-xs font-medium">Operator</b>
+              <span class="block text-[11px] text-text-3">workflow preview</span>
             </div>
           </div>
         </aside>
 
         <main class="p-5">
           <div class="flex items-center justify-between mb-[18px]">
-            <h2 class="text-lg tracking-[-0.02em]">{hero.mock.title}</h2>
-            <div class="font-mono text-[11px] text-text-3">{hero.mock.timeframe.prefix}<b class="text-text-2 font-medium">{hero.mock.timeframe.value}</b></div>
+            <h2 class="text-lg tracking-[-0.02em]">Operator workflow</h2>
+            <div class="font-mono text-[11px] text-text-3">example project</div>
           </div>
 
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-            {hero.mock.stats.map((s) => (
-              <div class="border border-hairline rounded-[10px] py-3 px-3.5 bg-sunken">
-                <div class="font-mono text-[11px] text-text-3">{s.label}</div>
-                <div class="text-[22px] tracking-[-0.03em] mt-1.5">{s.value} {s.suffix && <small class="text-sm text-text-3">{s.suffix}</small>}</div>
-                <div class:list={[
-                  "font-mono text-[11px] mt-0.5",
-                  s.trendColor === "green" && "text-green-400",
-                  s.trendColor === "red" && "text-red-400",
-                ]}>{s.trend}</div>
-              </div>
-            ))}
+            <div class="border border-hairline rounded-[10px] py-3 px-3.5 bg-sunken">
+              <div class="font-mono text-[11px] text-text-3">Current cue</div>
+              <div class="text-[22px] tracking-[-0.03em] mt-1.5">Cue</div>
+              <div class="font-mono text-[11px] mt-0.5 text-green-400">live</div>
+            </div>
+            <div class="border border-hairline rounded-[10px] py-3 px-3.5 bg-sunken">
+              <div class="font-mono text-[11px] text-text-3">Viewer phones</div>
+              <div class="text-[22px] tracking-[-0.03em] mt-1.5">Synced</div>
+              <div class="font-mono text-[11px] mt-0.5 text-green-400">following</div>
+            </div>
+            <div class="border border-hairline rounded-[10px] py-3 px-3.5 bg-sunken">
+              <div class="font-mono text-[11px] text-text-3">Screens</div>
+              <div class="text-[22px] tracking-[-0.03em] mt-1.5">Ready</div>
+              <div class="font-mono text-[11px] mt-0.5 text-green-400">connected</div>
+            </div>
+            <div class="border border-hairline rounded-[10px] py-3 px-3.5 bg-sunken">
+              <div class="font-mono text-[11px] text-text-3">Languages</div>
+              <div class="text-[22px] tracking-[-0.03em] mt-1.5">IT · EN</div>
+              <div class="font-mono text-[11px] mt-0.5 text-green-400">ready</div>
+            </div>
           </div>
 
           <div class="grid grid-cols-1 lg:[grid-template-columns:1.35fr_1fr] gap-3">
             <div class="grid gap-3">
               <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
                 <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
-                  <span>{hero.mock.currentCue.label}</span>
+                  <span>Current cue</span>
                   <span class="font-mono text-[11px] text-green-400">live</span>
                 </div>
                 <div class="p-6 min-h-[140px] flex flex-col justify-center">
                   <p class="text-3xl lg:text-[38px] leading-[1.12] tracking-[-0.04em] font-semibold text-text">“{hero.mock.currentCue.text}”</p>
-                  <p class="mt-4 font-mono text-xs text-text-3">{hero.mock.currentCue.meta}</p>
+                  <p class="mt-4 font-mono text-xs text-text-3">surtitles · screen preview</p>
                 </div>
               </div>
               <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
                 <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
-                  <span>{hero.mock.nextCue.label}</span>
+                  <span>Next cue</span>
                   <span class="font-mono text-[11px] text-text-3">standby</span>
                 </div>
                 <div class="p-5 min-h-[110px] flex flex-col justify-center">
                   <p class="text-2xl lg:text-[28px] leading-[1.14] tracking-[-0.035em] text-text-2">“{hero.mock.nextCue.text}”</p>
-                  <p class="mt-3 font-mono text-xs text-text-3">{hero.mock.nextCue.meta}</p>
+                  <p class="mt-3 font-mono text-xs text-text-3">operator preview</p>
                 </div>
               </div>
             </div>
 
             <div class="border border-hairline rounded-[10px] bg-sunken overflow-hidden">
               <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hairline text-xs text-text-2">
-                <span>Room logs</span>
-                <span class="font-mono text-[11px] text-text-3">local sync</span>
+                <span>Live notes</span>
+                <span class="font-mono text-[11px] text-text-3">synced</span>
               </div>
               <div class="font-mono text-[11px] py-1.5">
-                {hero.mock.logs.map((row) => (
-                  <div class="grid [grid-template-columns:56px_44px_1fr] gap-2.5 px-3.5 py-1.5 border-b last:border-b-0 border-dashed border-white/5 text-text-2 items-start">
-                    <span class="text-text-4">{row.t}</span>
-                    <span class:list={[
-                      "px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit",
-                      row.lvl === "ok" && "text-green-400 bg-green-400/10",
-                      row.lvl === "info" && "text-blue-400 bg-blue-400/10",
-                      row.lvl === "warn" && "text-red-500 bg-red-500/10",
-                      row.lvl === "err" && "text-red-400 bg-red-400/10",
-                    ]}>{row.code}</span>
-                    <span class="text-text">{row.m}<span class="text-text-3">{row.s}</span></span>
-                  </div>
-                ))}
+                <div class="grid [grid-template-columns:44px_1fr] gap-2.5 px-3.5 py-1.5 border-b border-dashed border-white/5 text-text-2 items-start">
+                  <span class="px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit text-green-400 bg-green-400/10">cue</span>
+                  <span class="text-text">cue sent to screens <span class="text-text-3">· live</span></span>
+                </div>
+                <div class="grid [grid-template-columns:44px_1fr] gap-2.5 px-3.5 py-1.5 border-b border-dashed border-white/5 text-text-2 items-start">
+                  <span class="px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit text-green-400 bg-green-400/10">web</span>
+                  <span class="text-text">viewer phones <span class="text-text-3">· synced</span></span>
+                </div>
+                <div class="grid [grid-template-columns:44px_1fr] gap-2.5 px-3.5 py-1.5 border-b border-dashed border-white/5 text-text-2 items-start">
+                  <span class="px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit text-blue-400 bg-blue-400/10">AD</span>
+                  <span class="text-text">audio description note <span class="text-text-3">· ready</span></span>
+                </div>
+                <div class="grid [grid-template-columns:44px_1fr] gap-2.5 px-3.5 py-1.5 border-b border-dashed border-white/5 text-text-2 items-start">
+                  <span class="px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit text-green-400 bg-green-400/10">note</span>
+                  <span class="text-text">operator note <span class="text-text-3">· saved</span></span>
+                </div>
+                <div class="grid [grid-template-columns:44px_1fr] gap-2.5 px-3.5 py-1.5 text-text-2 items-start">
+                  <span class="px-1.5 py-px rounded-sm text-[10px] tracking-[0.04em] inline-block w-fit text-red-500 bg-red-500/10">next</span>
+                  <span class="text-text">next cue preview <span class="text-text-3">· standby</span></span>
+                </div>
               </div>
             </div>
           </div>
