@@ -10,15 +10,16 @@ import Layout from "../layouts/Layout.astro";
     <header class="relative border-b border-white/10">
       <div class="max-w-[1180px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
         <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span><span class="text-white/45 text-sm">Account</span></a>
-        <div class="flex items-center gap-3"><span data-account-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Account</span><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button><a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
+        <div class="flex items-center gap-3"><span data-account-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Account</span><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button>
+        <a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
       </div>
     </header>
 
     <main class="relative max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
       <section data-account-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Account</p>
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Stentor.</h1>
-        <p class="text-white/50 leading-[1.6] mb-7">Access your code, downloads and activation information. During beta, use the same email used for your request.</p>
+        <p class="text-white/50 leading-[1.6] mb-7">Use your email to access downloads, activation details and your Sténtor access code.</p>
         <form data-account-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@theatre.org" class="account-input" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="account-input" />
@@ -30,7 +31,7 @@ import Layout from "../layouts/Layout.astro";
 
       <section data-account-app hidden class="grid gap-6">
         <div class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Account</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
           <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Your Stentor license.</h1>
           <p class="text-white/50 leading-[1.6] max-w-[760px]">This area shows the licenses, enabled platforms and activation limits associated with your account.</p>
         </div>
