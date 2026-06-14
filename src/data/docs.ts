@@ -1,6 +1,6 @@
 /**
- * Workflow navigation: sidebar groups + on-this-page TOC.
- * The body of the Workflow page lives in docs.astro.
+ * Documentation navigation: sidebar groups + on-this-page TOC.
+ * The body of the documentation page lives in docs.astro.
  */
 
 export type DocsSidebarItem = {
@@ -22,32 +22,32 @@ export const sidebarGroups: DocsSidebarGroup[] = [
     items: [
       { label: "Overview", href: "#overview", active: true },
       { label: "What Sténtor is", href: "#what-it-is" },
-      { label: "Current version", href: "#version", badge: "0.3.40", badgeNew: true },
+      { label: "Beta status", href: "#version", badge: "macOS", badgeNew: true },
     ],
   },
   {
     title: "Prepare",
     items: [
       { label: "Projects", href: "#projects" },
+      { label: "Import text", href: "#import", badge: "New" },
       { label: "Text and languages", href: "#text" },
       { label: "Audio description", href: "#audio" },
-      { label: "Screens", href: "#screens" },
     ],
   },
   {
-    title: "Live room",
+    title: "Operate",
     items: [
-      { label: "Stage desk", href: "#stage-desk" },
-      { label: "Audience phones", href: "#audience", badge: "Live Sync" },
-      { label: "Foyer QR", href: "#foyer" },
-      { label: "Local network", href: "#network" },
+      { label: "Timeline", href: "#timeline" },
+      { label: "Regia", href: "#stage-desk" },
+      { label: "Screens", href: "#screens" },
+      { label: "Audience views", href: "#audience" },
     ],
   },
   {
-    title: "Files and builds",
+    title: "Files and release",
     items: [
       { label: "Import and export", href: "#files" },
-      { label: "Desktop builds", href: "#desktop" },
+      { label: "macOS app", href: "#desktop" },
       { label: "What is still planned", href: "#planned" },
     ],
   },
@@ -56,17 +56,17 @@ export const sidebarGroups: DocsSidebarGroup[] = [
 export const tocItems = [
   { label: "Overview", href: "#overview", active: true },
   { label: "What Sténtor is", href: "#what-it-is" },
-  { label: "Current version", href: "#version" },
+  { label: "Beta status", href: "#version" },
   { label: "Projects", href: "#projects" },
+  { label: "Import text", href: "#import" },
   { label: "Text and languages", href: "#text" },
   { label: "Audio description", href: "#audio" },
+  { label: "Timeline", href: "#timeline" },
+  { label: "Regia", href: "#stage-desk" },
   { label: "Screens", href: "#screens" },
-  { label: "Stage desk", href: "#stage-desk" },
-  { label: "Audience phones", href: "#audience" },
-  { label: "Foyer QR", href: "#foyer" },
-  { label: "Local network", href: "#network" },
+  { label: "Audience views", href: "#audience" },
   { label: "Import and export", href: "#files" },
-  { label: "Desktop builds", href: "#desktop" },
+  { label: "macOS app", href: "#desktop" },
   { label: "Planned", href: "#planned" },
 ];
 
@@ -79,10 +79,10 @@ export const tocActions = [
 export const pageMeta = {
   breadcrumb: [
     { href: "#", label: "Docs" },
-    { href: "#", label: "Workflow" },
-    { label: "Sténtor 0.3.40" },
+    { href: "#", label: "Product" },
+    { label: "Sténtor" },
   ],
-  maintainer: "Maintained by Leonardo Mancini",
-  lastUpdated: "Based on Sténtor Desktop 0.3.40",
-  readingTime: "Reading time: 8 min",
+  maintainer: "Sténtor documentation",
+  lastUpdated: "Updated for the desktop beta",
+  readingTime: "Reading time: 7 min",
 };
