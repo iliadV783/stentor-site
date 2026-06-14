@@ -8,9 +8,9 @@ import StentorLogo from "../assets/icons/logo.svg";
 const { href = "/" } = Astro.props;
 const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
 ---
-<a href={href} aria-label="Sténtor — home" class="inline-flex items-center gap-[12px] font-semibold tracking-[-0.02em]">
-  <span class="grid place-items-center w-8 h-8 rounded-[8px] overflow-hidden ring-1 ring-white/10 shadow-[0_0_18px_rgba(198,83,64,0.18)] bg-black">
-    <img src={brandMark} alt="" class="w-full h-full block" aria-hidden="true" />
+<a href={href} aria-label="Sténtor — home" class="inline-flex items-center gap-[10px] font-semibold tracking-[-0.02em]">
+  <span class="grid place-items-center w-9 h-9 rounded-full overflow-hidden ring-1 ring-[#d19a4a]/35 shadow-[0_0_16px_rgba(209,154,74,0.16)] bg-transparent flex-none">
+    <img src={brandMark} alt="" class="w-full h-full block rounded-full object-cover" aria-hidden="true" />
   </span>
   <span class="text-base flex items-center gap-[12px]">
     <StentorLogo class="h-4 w-auto" aria-hidden="true" />
