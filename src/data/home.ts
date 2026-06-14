@@ -15,9 +15,9 @@ export const hero = {
     { href: "/account", label: "Account", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Cross-platform desktop app", live: true },
+    { label: "Desktop app for macOS, Windows and Linux", live: true },
     { label: "Account area" },
-    { label: "Surtitles · translation · audio description · audience access" },
+    { label: "Surtitles · translation · audio description · viewers on phones" },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Live rehearsal · local network" },
