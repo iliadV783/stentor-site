@@ -20,6 +20,7 @@ import Layout from "../../layouts/Layout.astro";
           <span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span>
           <span class="text-white/45 text-sm">Admin</span>
         </a>
+
         <div class="flex items-center gap-3">
           <span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Admin area</span>
           <a href="/admin" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Admin console</a>
@@ -35,23 +36,27 @@ import Layout from "../../layouts/Layout.astro";
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accedi ai dati condivisi.</h1>
         <p class="text-white/50 leading-[1.6] mb-7">Usa il tuo account autorizzato per consultare feedback, soddisfazione e dati aggregati inviati da Stentor.</p>
+
         <form data-admin-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@stentor.live" class="h-12 rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="h-12 rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50" />
           <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Accedi</button>
           <button type="button" data-admin-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Invia link via email</button>
         </form>
+
         <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
       </section>
 
       <section data-admin-app hidden class="grid gap-6">
         <div class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
           <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Ricerca e feedback</p>
+
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
               <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Dati condivisi dalle compagnie.</h1>
               <p class="text-white/50 leading-[1.6] max-w-[820px]">Consulta feedback sull’esperienza, problemi tecnici, suggerimenti e dati aggregati raccolti da Stentor durante l’uso reale.</p>
             </div>
+
             <div class="flex flex-wrap gap-2">
               <button data-filter="all" class="admin-filter is-active">Tutti</button>
               <button data-filter="issues" class="admin-filter">Con problemi</button>
@@ -71,8 +76,10 @@ import Layout from "../../layouts/Layout.astro";
                 <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Invii ricevuti</p>
                 <h2 class="text-2xl font-semibold tracking-[-0.04em]">Feedback compagnie</h2>
               </div>
+
               <input data-admin-search type="search" placeholder="Cerca spettacolo, versione, testo..." class="h-11 min-w-0 sm:w-[320px] rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50" />
             </div>
+
             <div data-admin-table class="overflow-x-auto"></div>
           </section>
 
@@ -86,8 +93,22 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 
 <style>
-  .admin-filter { height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.55); background: rgba(255,255,255,.04); transition: .2s ease; }
-  .admin-filter:hover, .admin-filter.is-active { color: #fff; background: rgba(239,68,68,.16); border-color: rgba(239,68,68,.32); }
+  .admin-filter {
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.1);
+    color: rgba(255,255,255,.55);
+    background: rgba(255,255,255,.04);
+    transition: .2s ease;
+  }
+
+  .admin-filter:hover,
+  .admin-filter.is-active {
+    color: #fff;
+    background: rgba(239,68,68,.16);
+    border-color: rgba(239,68,68,.32);
+  }
 </style>
 
 <script>
@@ -117,10 +138,12 @@ import Layout from "../../layouts/Layout.astro";
   function getTokenFromHash() {
     const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
     const token = hash.get('access_token');
+
     if (token) {
       localStorage.setItem(storageKey, token);
       history.replaceState(null, '', window.location.pathname);
     }
+
     return token;
   }
 
@@ -159,17 +182,28 @@ import Layout from "../../layouts/Layout.astro";
         ...(options.headers || {}),
       },
     });
-    if (!response.ok) throw new Error(await readError(response, 'Request failed.'));
+
+    if (!response.ok) {
+      throw new Error(await readError(response, 'Request failed.'));
+    }
+
     return response.json();
   }
 
   async function signInWithPassword(email, password) {
     const response = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
       method: 'POST',
-      headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
+      headers: {
+        apikey: supabaseAnonKey,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ email, password }),
     });
-    if (!response.ok) throw new Error(await readError(response, 'Login failed.'));
+
+    if (!response.ok) {
+      throw new Error(await readError(response, 'Login failed.'));
+    }
+
     const body = await response.json();
     localStorage.setItem(storageKey, body.access_token);
     return body.access_token;
@@ -177,22 +211,42 @@ import Layout from "../../layouts/Layout.astro";
 
   async function sendMagicLink(email) {
     const redirectTo = `${window.location.origin}/auth/confirm?next=/admin/feedback`;
+
     const response = await fetch(`${supabaseUrl}/auth/v1/otp?redirect_to=${encodeURIComponent(redirectTo)}`, {
       method: 'POST',
-      headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, create_user: false }),
+      headers: {
+        apikey: supabaseAnonKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        create_user: false,
+      }),
     });
-    if (!response.ok) throw new Error(await readError(response, 'Email link could not be sent.'));
+
+    if (!response.ok) {
+      throw new Error(await readError(response, 'Email link could not be sent.'));
+    }
   }
 
   function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
+    return String(value ?? '').replace(/[&<>'"]/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;',
+    }[char]));
   }
 
   function formatDate(value) {
     if (!value) return '—';
+
     try {
-      return new Intl.DateTimeFormat('it-IT', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
+      return new Intl.DateTimeFormat('it-IT', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }).format(new Date(value));
     } catch {
       return value;
     }
@@ -204,12 +258,6 @@ import Layout from "../../layouts/Layout.astro";
 
   function hasText(value) {
     return typeof value === 'string' && value.trim().length > 0;
-  }
-
-  function short(value, max = 78) {
-    const text = String(value || '').trim();
-    if (!text) return '—';
-    return text.length > max ? `${text.slice(0, max - 1)}…` : text;
   }
 
   function languagesLabel(value) {
@@ -228,10 +276,12 @@ import Layout from "../../layouts/Layout.astro";
 
   function filteredRows() {
     const query = String(searchInput?.value || '').trim().toLowerCase();
+
     return allRows.filter((row) => {
       if (currentFilter === 'issues' && !technicalIssueFlag(row)) return false;
       if (currentFilter === 'contact' && !contactFlag(row)) return false;
       if (!query) return true;
+
       const haystack = [
         row.show_title,
         row.company_name,
@@ -243,107 +293,194 @@ import Layout from "../../layouts/Layout.astro";
         row.contact_name,
         row.contact_email,
       ].join(' ').toLowerCase();
+
       return haystack.includes(query);
     });
   }
 
   function renderStats(rows) {
     if (!statsTarget) return;
+
     const total = rows.length;
     const ratings = rows.map((r) => Number(r.operator_rating)).filter((n) => Number.isFinite(n) && n > 0);
     const average = ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1) : '—';
     const issues = rows.filter(technicalIssueFlag).length;
     const contacts = rows.filter(contactFlag).length;
+
     const cards = [
       ['Feedback ricevuti', total],
       ['Valutazione media', average === '—' ? '—' : `${average}/5`],
       ['Con problemi tecnici', issues],
       ['Ricontatti disponibili', contacts],
     ];
-    statsTarget.innerHTML = cards.map(([label, value]) => `<article class="rounded-2xl border border-white/10 bg-white/[0.045] p-5"><div class="text-3xl font-semibold tracking-[-0.05em] mb-1">${escapeHTML(value)}</div><div class="text-white/45 text-sm">${escapeHTML(label)}</div></article>`).join('');
+
+    statsTarget.innerHTML = cards.map(([label, value]) => `
+      <article class="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
+        <div class="text-3xl font-semibold tracking-[-0.05em] mb-1">${escapeHTML(value)}</div>
+        <div class="text-white/45 text-sm">${escapeHTML(label)}</div>
+      </article>
+    `).join('');
   }
 
   function renderTable() {
     const rows = filteredRows();
     renderStats(allRows);
+
     if (!tableTarget) return;
+
     if (!rows.length) {
       tableTarget.innerHTML = '<div class="p-6 text-white/45">Nessun feedback corrisponde ai filtri attuali.</div>';
       return;
     }
 
-    tableTarget.innerHTML = `<table class="w-full text-left text-sm">
-      <thead class="text-white/35 border-b border-white/10"><tr>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Data</th>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Spettacolo</th>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Rating</th>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Cue</th>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Schermi</th>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Lingue</th>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Problemi</th>
-        <th class="font-medium px-5 py-3 whitespace-nowrap">Ricontatto</th>
-      </tr></thead>
-      <tbody>${rows.map((row) => `<tr data-row-id="${escapeHTML(row.id)}" class="border-b border-white/10 cursor-pointer hover:bg-white/[0.04] ${row.id === selectedId ? 'bg-red-500/10' : ''}">
-        <td class="px-5 py-4 text-white/55 whitespace-nowrap">${escapeHTML(formatDate(row.created_at))}</td>
-        <td class="px-5 py-4 min-w-[180px]"><div class="text-white font-medium">${escapeHTML(row.show_title || 'Senza titolo')}</div><div class="text-white/35 text-xs">v${escapeHTML(row.app_version || '—')}</div></td>
-        <td class="px-5 py-4 whitespace-nowrap">${row.operator_rating ? `${escapeHTML(row.operator_rating)}/5` : '—'}</td>
-        <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(row.cue_count ?? '—')}</td>
-        <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(row.screen_count ?? '—')}</td>
-        <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(languagesLabel(row.languages))}</td>
-        <td class="px-5 py-4 whitespace-nowrap">${technicalIssueFlag(row) ? '<span class="text-red-300">Sì</span>' : '<span class="text-white/35">No</span>'}</td>
-        <td class="px-5 py-4 whitespace-nowrap">${contactFlag(row) ? '<span class="text-emerald-300">Sì</span>' : '<span class="text-white/35">No</span>'}</td>
-      </tr>`).join('')}</tbody>
-    </table>`;
+    tableTarget.innerHTML = `
+      <table class="w-full text-left text-sm">
+        <thead class="text-white/35 border-b border-white/10">
+          <tr>
+            <th class="font-medium px-5 py-3 whitespace-nowrap">Data</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap">Spettacolo</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap">Rating</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap">Cue</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap">Schermi</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap">Lingue</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr data-row-id="${escapeHTML(row.id)}" class="border-b border-white/10 cursor-pointer hover:bg-white/[0.04] ${row.id === selectedId ? 'bg-red-500/10' : ''}">
+              <td class="px-5 py-4 text-white/55 whitespace-nowrap">${escapeHTML(formatDate(row.created_at))}</td>
+              <td class="px-5 py-4 min-w-[180px]">
+                <div class="text-white font-medium">${escapeHTML(row.show_title || 'Senza titolo')}</div>
+                <div class="text-white/35 text-xs">v${escapeHTML(row.app_version || '—')}</div>
+              </td>
+              <td class="px-5 py-4 whitespace-nowrap">${row.operator_rating ? `${escapeHTML(row.operator_rating)}/5` : '—'}</td>
+              <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(row.cue_count ?? '—')}</td>
+              <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(row.screen_count ?? '—')}</td>
+              <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(languagesLabel(row.languages))}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
   }
 
   function section(title, body) {
-    return `<section class="rounded-xl border border-white/10 bg-white/[0.035] p-4"><h3 class="font-semibold tracking-[-0.03em] mb-3">${escapeHTML(title)}</h3>${body}</section>`;
+    return `
+      <section class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+        <h3 class="font-semibold tracking-[-0.03em] mb-3">${escapeHTML(title)}</h3>
+        ${body}
+      </section>
+    `;
   }
 
   function detailRow(label, value) {
-    return `<div class="grid grid-cols-[150px_1fr] gap-3 py-2 border-b border-white/10 last:border-b-0"><span class="text-white/35">${escapeHTML(label)}</span><span class="text-white/75 break-words">${escapeHTML(value ?? '—')}</span></div>`;
+    return `
+      <div class="grid grid-cols-[130px_1fr] gap-3 py-2 border-b border-white/10 last:border-b-0">
+        <span class="text-white/35">${escapeHTML(label)}</span>
+        <span class="text-white/75 break-words">${escapeHTML(value ?? '—')}</span>
+      </div>
+    `;
   }
 
   function renderDetail(row) {
     if (!detailTarget) return;
+
     if (!row) {
       detailTarget.innerHTML = '<p class="text-white/45 leading-[1.6]">Seleziona un feedback dalla tabella per vedere il dettaglio completo.</p>';
       return;
     }
 
     const raw = JSON.stringify(row.raw_payload || {}, null, 2);
-    detailTarget.innerHTML = `<div class="flex items-start justify-between gap-4 mb-6">
-      <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-2">Dettaglio feedback</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">${escapeHTML(row.show_title || 'Senza titolo')}</h2><p class="text-white/40 text-sm mt-1">${escapeHTML(formatDate(row.created_at))}</p></div>
-      <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/55">${row.operator_rating ? `${escapeHTML(row.operator_rating)}/5` : 'No rating'}</span>
-    </div>
-    <div class="grid gap-4">
-      ${section('Progetto', `${detailRow('Versione app', row.app_version)}${detailRow('Piano licenza', row.license_plan)}${detailRow('Cue', row.cue_count)}${detailRow('Schermi', row.screen_count)}${detailRow('Lingue', languagesLabel(row.languages))}${detailRow('Sopratitoli', yesNo(row.has_surtitles))}${detailRow('Traduzioni', yesNo(row.has_translations))}${detailRow('Audiodescrizione', yesNo(row.has_audio_description))}`)}
-      ${section('Feedback operatore', `${detailRow('Valutazione', row.operator_rating ? `${row.operator_rating}/5` : '—')}${detailRow('Ha funzionato', row.what_worked_well || '—')}${detailRow('Problemi tecnici', row.technical_issues || '—')}${detailRow('Suggerimenti', row.suggestions || '—')}`)}
-      ${section('Ricontatto', `${detailRow('Consentito', yesNo(row.can_contact))}${detailRow('Nome', row.contact_name || '—')}${detailRow('Email', row.contact_email || '—')}`)}
-      ${section('Questionario pubblico', `${detailRow('Risposte', row.survey_responses_count)}${detailRow('Medie', JSON.stringify(row.survey_averages || {}))}${detailRow('Conteggi', JSON.stringify(row.survey_counts || {}))}${detailRow('Commenti anonimi', JSON.stringify(row.anonymous_comments || []))}`)}
-      <details class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
-        <summary class="cursor-pointer font-semibold tracking-[-0.03em]">JSON tecnico</summary>
-        <pre class="mt-4 max-h-[360px] overflow-auto rounded-xl bg-black/40 border border-white/10 p-4 text-xs text-white/60">${escapeHTML(raw)}</pre>
-      </details>
-    </div>`;
+
+    detailTarget.innerHTML = `
+      <div class="flex items-start justify-between gap-4 mb-6">
+        <div>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-2">Dettaglio feedback</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.04em]">${escapeHTML(row.show_title || 'Senza titolo')}</h2>
+          <p class="text-white/40 text-sm mt-1">${escapeHTML(formatDate(row.created_at))}</p>
+        </div>
+
+        <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/55 whitespace-nowrap">${row.operator_rating ? `${escapeHTML(row.operator_rating)}/5` : 'No rating'}</span>
+      </div>
+
+      <div class="grid gap-4">
+        ${section('Progetto', `
+          ${detailRow('Versione app', row.app_version)}
+          ${detailRow('Piano licenza', row.license_plan)}
+          ${detailRow('Cue', row.cue_count)}
+          ${detailRow('Schermi', row.screen_count)}
+          ${detailRow('Lingue', languagesLabel(row.languages))}
+          ${detailRow('Sopratitoli', yesNo(row.has_surtitles))}
+          ${detailRow('Traduzioni', yesNo(row.has_translations))}
+          ${detailRow('Audiodescrizione', yesNo(row.has_audio_description))}
+        `)}
+
+        ${section('Feedback operatore', `
+          ${detailRow('Valutazione', row.operator_rating ? `${row.operator_rating}/5` : '—')}
+          ${detailRow('Ha funzionato', row.what_worked_well || '—')}
+          ${detailRow('Problemi tecnici', row.technical_issues || '—')}
+          ${detailRow('Suggerimenti', row.suggestions || '—')}
+        `)}
+
+        ${section('Ricontatto', `
+          ${detailRow('Consentito', yesNo(row.can_contact))}
+          ${detailRow('Nome', row.contact_name || '—')}
+          ${detailRow('Email', row.contact_email || '—')}
+        `)}
+
+        ${section('Questionario pubblico', `
+          ${detailRow('Risposte', row.survey_responses_count)}
+          ${detailRow('Medie', JSON.stringify(row.survey_averages || {}))}
+          ${detailRow('Conteggi', JSON.stringify(row.survey_counts || {}))}
+          ${detailRow('Commenti anonimi', JSON.stringify(row.anonymous_comments || []))}
+        `)}
+
+        <details class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+          <summary class="cursor-pointer font-semibold tracking-[-0.03em]">JSON tecnico</summary>
+          <pre class="mt-4 max-h-[360px] overflow-auto rounded-xl bg-black/40 border border-white/10 p-4 text-xs text-white/60">${escapeHTML(raw)}</pre>
+        </details>
+      </div>
+    `;
   }
 
   async function loadFeedback(token) {
     showMessage('');
+
     const user = await apiFetch('/auth/v1/user', token);
     if (emailBadge) emailBadge.textContent = user.email || 'Admin';
 
     const select = [
-      'id', 'created_at', 'app_version', 'license_plan', 'show_title', 'company_name',
-      'country', 'languages', 'cue_count', 'screen_count', 'project_language_count',
-      'has_surtitles', 'has_translations', 'has_audio_description',
-      'survey_responses_count', 'survey_averages', 'survey_counts', 'anonymous_comments',
-      'operator_rating', 'what_worked_well', 'technical_issues', 'suggestions',
-      'can_contact', 'contact_name', 'contact_email', 'raw_payload'
+      'id',
+      'created_at',
+      'app_version',
+      'license_plan',
+      'show_title',
+      'company_name',
+      'country',
+      'languages',
+      'cue_count',
+      'screen_count',
+      'project_language_count',
+      'has_surtitles',
+      'has_translations',
+      'has_audio_description',
+      'survey_responses_count',
+      'survey_averages',
+      'survey_counts',
+      'anonymous_comments',
+      'operator_rating',
+      'what_worked_well',
+      'technical_issues',
+      'suggestions',
+      'can_contact',
+      'contact_name',
+      'contact_email',
+      'raw_payload',
     ].join(',');
 
     allRows = await apiFetch(`/rest/v1/stentor_feedback_overview?select=${encodeURIComponent(select)}&order=created_at.desc&limit=200`, token);
     selectedId = allRows[0]?.id || null;
+
     renderTable();
     renderDetail(allRows.find((row) => row.id === selectedId));
 
@@ -355,12 +492,16 @@ import Layout from "../../layouts/Layout.astro";
 
   loginForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
+
     if (errorBox) errorBox.hidden = true;
+
     const formData = new FormData(loginForm);
     const email = String(formData.get('email') || '').trim();
     const password = String(formData.get('password') || '');
+
     if (!email) return showError('Inserisci la tua email.');
     if (!password) return showError('Inserisci la password, oppure usa il link via email.');
+
     try {
       const token = await signInWithPassword(email, password);
       await loadFeedback(token);
@@ -371,9 +512,12 @@ import Layout from "../../layouts/Layout.astro";
 
   magicButton?.addEventListener('click', async () => {
     if (errorBox) errorBox.hidden = true;
+
     const formData = new FormData(loginForm);
     const email = String(formData.get('email') || '').trim();
+
     if (!email) return showError('Inserisci la tua email.');
+
     try {
       await sendMagicLink(email);
       showError('Link inviato. Controlla la posta e torna qui.');
@@ -407,7 +551,9 @@ import Layout from "../../layouts/Layout.astro";
   document.addEventListener('click', (event) => {
     const row = event.target.closest?.('[data-row-id]');
     if (!row) return;
+
     selectedId = row.getAttribute('data-row-id');
+
     renderTable();
     renderDetail(allRows.find((item) => item.id === selectedId));
   });
@@ -420,6 +566,7 @@ import Layout from "../../layouts/Layout.astro";
     }
 
     const token = getStoredToken();
+
     if (!token) {
       if (loginPanel) loginPanel.hidden = false;
       return;
