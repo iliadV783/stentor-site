@@ -45,7 +45,7 @@ export const logoCloud = {
   bigNumber: "3 OS",
   logos: [
     { name: "Stentor Lite", glyph: "rounded-full" },
-    { name: "Stentor Pro", glyph: "rotate-45" },
+    { name: "Sténtor", glyph: "rotate-45" },
     { name: "macOS", glyph: "" },
     { name: "Windows", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
     { name: "Linux", glyph: "rounded" },
@@ -70,7 +70,7 @@ export const bento = {
     "Commencez avec l app legere multiplateforme, puis passez a l environnement professionnel lorsque repetitions, ecrans, timeline, public et audiodescription demandent un workflow live dedie.",
   cards: {
     types: { title: "Stentor Lite : commencer partout", desc: "App gratuite Tauri pour macOS, Windows et Linux, pensee pour rendre preparation du texte, surtitres et traductions accessibles sans barriere de licence." },
-    p95: { title: "Stentor Pro : cabine de regie", desc: "App professionnelle pour repetitions et spectacles, avec cueing, timeline, ecrans, dispositifs du public et audiodescription sur plateformes desktop." },
+    p95: { title: "Sténtor : cabine de regie", desc: "App professionnelle pour repetitions et spectacles, avec cueing, timeline, ecrans, dispositifs du public et audiodescription sur plateformes desktop." },
     edge: { title: "Telephones du public synchronises", desc: "Les spectateurs peuvent se connecter avec leur smartphone et suivre surtitres, traductions ou audiodescriptions en synchronisation avec la regie." },
     auth: { title: "Un projet, une connaissance partagee", desc: "Gardez ensemble texte original, traductions, surtitres, notes d audiodescription, metadonnees et retours de recherche." },
     cron: { title: "Importer, exporter, faire circuler", desc: "Importez Word, TXT, SRT, WebVTT, CSV ou JSON, puis partagez les scripts pour repetition, archive, tournee et etude." },
@@ -99,7 +99,7 @@ export const pricingPreview = {
   comparisonLink: { href: "/fr/download", label: "Comparer Lite et Pro →" },
   plans: [
     { name: "Stentor Lite", tag: "Gratuit", price: "Lite", cycle: "/multiplateforme", tagline: "Pour commencer, preparer et experimenter sans barriere de licence.", features: liteFeatures, cta: { href: "/fr/download", label: "Telecharger Lite", variant: "ghost" as const }, highlighted: false },
-    { name: "Stentor Pro", tag: "Beta", tagAccent: true, price: "Pro", cycle: "/multiplateforme", tagline: "Pour production live professionnelle, actuellement disponible en beta controlee.", features: proFeatures, cta: { href: "/fr/demander-essai", label: "Demander l acces Pro", variant: "primary" as const }, highlighted: true },
+    { name: "Sténtor", tag: "Beta", tagAccent: true, price: "Pro", cycle: "/multiplateforme", tagline: "Pour production live professionnelle, actuellement disponible en beta controlee.", features: proFeatures, cta: { href: "/fr/demander-essai", label: "Demander l acces Pro", variant: "primary" as const }, highlighted: true },
     { name: "Institutions", tag: "Equipes", price: "Team", cycle: "/lieux", tagline: "Pour theatres, festivals, ecoles et organisations preparant un usage reel.", features: institutionFeatures, cta: { href: "/fr/contact", label: "Parlons-en", variant: "ghost" as const }, highlighted: false },
   ],
 };
@@ -108,9 +108,9 @@ export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "Stentor Lite · Stentor Pro",
+  eyebrow: "Stentor Lite · Sténtor",
   title: "Commencer librement. Passer en scene professionnellement.",
-  body: "Telechargez Stentor Lite pour commencer sur macOS, Windows ou Linux. Demandez l acces a Stentor Pro quand il faut un environnement professionnel pour repetitions et spectacles.",
+  body: "Telechargez Stentor Lite pour commencer sur macOS, Windows ou Linux. Demandez l acces a Sténtor quand il faut un environnement professionnel pour repetitions et spectacles.",
   ctas: [
     { href: "/fr/download", label: "Telecharger Stentor", variant: "primary" as const },
     { href: "/fr/demander-essai", label: "Acceder a la beta Pro", variant: "ghost" as const },

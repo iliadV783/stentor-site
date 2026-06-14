@@ -8,7 +8,7 @@
 export const form = {
   title: "Sténtor access.",
   signupPrompt: "Need to test Sténtor?",
-  signupLink: { href: "/signup", label: "Request access →" },
+  signupLink: { href: "/signup", label: "Request a code →" },
   emailLabel: "Email",
   emailPlaceholder: "you@example.com",
   emailPrefill: "operator@theatre.example",

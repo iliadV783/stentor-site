@@ -43,7 +43,7 @@ const sharedFeatures = [
   "Surtitles, translations and audio-description notes",
   "Import from Word, TXT, SRT, WebVTT, CSV and JSON",
   "Export-ready scripts for rehearsal, archive, touring and study",
-  "Audience web client and Live Sync workflow",
+  "Audience web app and Live Sync workflow",
   "Feedback and research exchange encouraged",
 ];
 
@@ -118,7 +118,7 @@ export const compareTable = {
       rows: [
         ["Import Word, TXT, SRT, WebVTT, CSV and JSON", "●", "●", "●"],
         ["Export-ready scripts", "●", "●", "●"],
-        ["Audience web client", "●", "●", "●"],
+        ["Audience web app", "●", "●", "●"],
         ["Live Sync workflow", "●", "●", "●"],
         ["Cross-platform desktop direction", "●", "●", "●"],
       ],

@@ -60,7 +60,7 @@ export const showcase: ShowcaseRow[] = [
       "Sténtor can send the live cue to venue screens, a foyer welcome page with QR code, and spectators connected with their own smartphones. The operator stays in control while each device receives the right language and mode.",
     bullets: [
       "Multiple configured screens with previews, language and style settings",
-      "Audience web client for surtitles, translations, audio description or both",
+      "Audience web app for surtitles, translations, audio description or both",
       "Local-network mode for theatre tests without relying on internet access",
     ],
     cta: { href: "/docs#audience", label: "See audience workflow" },

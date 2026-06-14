@@ -169,7 +169,7 @@ export const logoWall = {
 export const stats = {
   title: "One setup can serve different theatrical needs.",
   description:
-    "Use Sténtor as a preparation tool, a live Stage desk, a screen output system, a foyer QR page, an audience-phone client and an optional field-notes channel.",
+    "Use Sténtor as a preparation tool, a live Stage desk, a screen output system, a foyer QR page, an audience-phone web app and an optional field-notes channel.",
   items: [
     { value: "3", suffix: " layers", label: "Surtitles, translation and audio description in one project" },
     { value: "∞", suffix: " languages", label: "Multilingual by design, not limited to one bilingual pair" },

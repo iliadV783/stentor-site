@@ -6,7 +6,7 @@ export const hero = {
   eyebrow: "Project log",
   title: "What changed in Sténtor.",
   description:
-    "A public log of the software as it grows: desktop app work, Live Sync, audience web client, import/export, audio-description tools and research-facing improvements.",
+    "A public log of the software as it grows: desktop app work, Live Sync, audience web app, import/export, audio-description tools and research-facing improvements.",
   emailPlaceholder: "you@example.com",
   subscribeLabel: "Follow updates",
   subscribeLinks: [
@@ -53,7 +53,7 @@ export const entries = [
     version: "0.1.61",
     date: "2026-06-02",
     type: "minor",
-    title: "Audience web client refined for performance use",
+    title: "Audience web app refined for performance use",
     body: "The audience page moves toward a cleaner live view, especially on mobile devices and in landscape orientation.",
     changes: {
       improvements: [
@@ -129,7 +129,7 @@ export const sideStats = {
     rows: [
       { label: "Prototype", value: "0.1.64", accent: true },
       { label: "Live Sync", value: "active" },
-      { label: "Audience client", value: "testing" },
+      { label: "Audience web app", value: "testing" },
       { label: "Feedback loop", value: "open" },
     ],
   },
@@ -143,7 +143,7 @@ export const sideStats = {
     title: "Status",
     rows: [
       { label: "Desktop app", value: "● prototype", color: "green" as const },
-      { label: "Audience web client", value: "testing" },
+      { label: "Audience web app", value: "testing" },
       { label: "Next priority", value: "field feedback" },
     ],
   },

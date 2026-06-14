@@ -45,7 +45,7 @@ export const logoCloud = {
   bigNumber: "3 OS",
   logos: [
     { name: "Stentor Lite", glyph: "rounded-full" },
-    { name: "Stentor Pro", glyph: "rotate-45" },
+    { name: "Sténtor", glyph: "rotate-45" },
     { name: "macOS", glyph: "" },
     { name: "Windows", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
     { name: "Linux", glyph: "rounded" },
@@ -70,7 +70,7 @@ export const bento = {
     "Inizia con l'app leggera multipiattaforma, poi passa all'ambiente professionale quando prove, schermi, timeline, pubblico e audio descrizione richiedono un flusso live dedicato.",
   cards: {
     types: { title: "Stentor Lite: inizia ovunque", desc: "App gratuita Tauri per macOS, Windows e Linux, pensata per rendere accessibili preparazione del testo, sopratitoli e traduzioni senza barriera di licenza." },
-    p95: { title: "Stentor Pro: cabina di regia", desc: "App professionale per prove e spettacoli, con cueing, timeline, schermi, dispositivi del pubblico e audio descrizione su piattaforme desktop." },
+    p95: { title: "Sténtor: cabina di regia", desc: "App professionale per prove e spettacoli, con cueing, timeline, schermi, dispositivi del pubblico e audio descrizione su piattaforme desktop." },
     edge: { title: "Telefoni del pubblico sincronizzati", desc: "Le persone in sala possono collegarsi con il proprio smartphone e seguire sopratitoli, traduzioni o audio descrizioni in sincronia con la regia." },
     auth: { title: "Un progetto, conoscenza condivisa", desc: "Tieni insieme testo originale, traduzioni, sopratitoli, note di audio descrizione, metadati di progetto e feedback di ricerca." },
     cron: { title: "Importare, esportare, far circolare", desc: "Importa file Word, TXT, SRT, WebVTT, CSV o JSON, poi condividi i materiali per prove, archivio, tournee e studio." },
@@ -99,7 +99,7 @@ export const pricingPreview = {
   comparisonLink: { href: "/it/download", label: "Confronta Lite e Pro →" },
   plans: [
     { name: "Stentor Lite", tag: "Gratis", price: "Lite", cycle: "/multipiattaforma", tagline: "Per iniziare, preparare e sperimentare senza barriera di licenza.", features: liteFeatures, cta: { href: "/it/download", label: "Scarica Lite", variant: "ghost" as const }, highlighted: false },
-    { name: "Stentor Pro", tag: "Beta", tagAccent: true, price: "Pro", cycle: "/multipiattaforma", tagline: "Per produzione live professionale, ora disponibile in beta controllata.", features: proFeatures, cta: { href: "/it/richiedi-prova", label: "Richiedi accesso Pro", variant: "primary" as const }, highlighted: true },
+    { name: "Sténtor", tag: "Beta", tagAccent: true, price: "Pro", cycle: "/multipiattaforma", tagline: "Per produzione live professionale, ora disponibile in beta controllata.", features: proFeatures, cta: { href: "/it/richiedi-prova", label: "Richiedi accesso Pro", variant: "primary" as const }, highlighted: true },
     { name: "Istituzioni", tag: "Team", price: "Team", cycle: "/spazi", tagline: "Per teatri, festival, scuole e organizzazioni che preparano un uso reale.", features: institutionFeatures, cta: { href: "/it/contact", label: "Parliamone", variant: "ghost" as const }, highlighted: false },
   ],
 };
@@ -108,9 +108,9 @@ export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "Stentor Lite · Stentor Pro",
+  eyebrow: "Stentor Lite · Sténtor",
   title: "Inizia liberamente. Vai in scena professionalmente.",
-  body: "Scarica Stentor Lite per iniziare su macOS, Windows o Linux. Richiedi accesso a Stentor Pro quando serve un ambiente professionale per prove e spettacoli.",
+  body: "Scarica Stentor Lite per iniziare su macOS, Windows o Linux. Richiedi accesso a Sténtor quando serve un ambiente professionale per prove e spettacoli.",
   ctas: [
     { href: "/it/download", label: "Scarica Stentor", variant: "primary" as const },
     { href: "/it/richiedi-prova", label: "Accedi alla beta Pro", variant: "ghost" as const },
