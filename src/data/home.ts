@@ -9,7 +9,7 @@ export const hero = {
   title:
     'Surtitles, translation <em class="not-italic text-text-3 font-medium">and accessibility.</em><br class="hidden sm:inline" /> Live.',
   description:
-    "Sténtor is a live-performance text environment for preparing scripts, operating surtitles, managing translations, audio description and audience access during rehearsals and performances.",
+    "Sténtor is a live-performance text environment for preparing scripts, operating surtitles, managing translations, audio description and viewer access during rehearsals and performances.",
   ctas: [
     { href: "/download", label: "Download Sténtor", variant: "primary" as const },
     { href: "/account", label: "Account", variant: "ghost" as const, icon: "play" as const },
@@ -21,12 +21,12 @@ export const hero = {
   ],
   mock: {
     workspace: { name: "Macbett", env: "Live rehearsal · local network" },
-    user: { name: "Operator", email: "18 audience phones synced" },
+    user: { name: "Operator", email: "18 viewer phones synced" },
     title: "Operator view",
     timeframe: { prefix: "project / ", value: "Macbett" },
     stats: [
       { label: "Current cue", value: "024", trend: "live", trendColor: "green" as const },
-      { label: "Audience phones", value: "18", trend: "following", trendColor: "green" as const },
+      { label: "Viewer phones", value: "18", trend: "following", trendColor: "green" as const },
       { label: "Screens", value: "2", trend: "synced", trendColor: "green" as const },
       { label: "Languages", value: "IT · EN", trend: "ready", trendColor: "green" as const },
     ],
@@ -42,9 +42,9 @@ export const hero = {
     },
     logs: [
       { t: "12:04:21", lvl: "ok", code: "cue", m: "024 sent to screens · ", s: "live" },
-      { t: "12:04:22", lvl: "ok", code: "web", m: "18 audience phones · ", s: "synced" },
+      { t: "12:04:22", lvl: "ok", code: "web", m: "18 viewer phones · ", s: "synced" },
       { t: "12:04:24", lvl: "info", code: "AD", m: "audio description note · ", s: "ready" },
-      { t: "12:04:30", lvl: "ok", code: "fb", m: "feedback channel · ", s: "open" },
+      { t: "12:04:30", lvl: "ok", code: "note", m: "operator note · ", s: "saved" },
       { t: "12:04:34", lvl: "warn", code: "next", m: "cue 025 preview · ", s: "standby" },
     ],
   },
@@ -59,25 +59,25 @@ export const logoCloud = {
     { name: "macOS", glyph: "" },
     { name: "Windows", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
     { name: "Linux", glyph: "rounded" },
-    { name: "Audience web", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
+    { name: "Viewer phones", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
   ],
 };
 
 export const metrics = {
   title: "Built for<br/>live performance.",
   description:
-    "Sténtor keeps the performance text organized from preparation to live cueing, with a focused workflow for screens, audience devices, timelines and accessibility materials.",
+    "Sténtor keeps the performance text organized from preparation to live cueing, with a focused workflow for screens, viewer phones, timelines and accessibility materials.",
   items: [
     { value: "Desktop", suffix: "", label: "For macOS, Windows and Linux" },
     { value: "Account", suffix: "", label: "Downloads and access code in one place" },
-    { value: "Live Sync", suffix: "", label: "For screens and audience phones" },
+    { value: "Live Sync", suffix: "", label: "For screens and viewer phones" },
   ],
 };
 
 export const bento = {
   title: "One Sténtor.<br/>One live workflow.",
   description:
-    "Prepare scripts, structure translations, operate surtitles, control audience access and keep accessibility materials together in a dedicated live-performance environment.",
+    "Prepare scripts, structure translations, operate surtitles, control viewer access and keep accessibility materials together in a dedicated live-performance environment.",
   cards: {
     types: {
       title: "Start from the script",
@@ -85,10 +85,10 @@ export const bento = {
     },
     p95: {
       title: "Sténtor: live control room",
-      desc: "A focused app for cueing, timeline, screens, audience devices and audio-description workflows across desktop platforms.",
+      desc: "A focused app for cueing, timeline, screens, viewer phones and audio-description workflows across desktop platforms.",
     },
     edge: {
-      title: "Audience phones, live in sync",
+      title: "Viewers on phones",
       desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
     },
     auth: {
@@ -116,13 +116,13 @@ export const testimonials = {
     "Sténtor is developed with the people who use it: artists, operators, translators, theatres and audiences. Feedback from rehearsal rooms and performances guides each design decision.",
   quotes: [
     {
-      text: "Use Sténtor to start preparing materials and understand the workflow before bringing them into the performance space.",
+      text: "Use Sténtor to prepare materials and understand the workflow before bringing them into the performance space.",
       av: "01",
       name: "Prepare the work",
       role: "Scripts · surtitles · translations",
     },
     {
-      text: "Use the live operator view when the show needs timing, timeline, screens, audience devices and a focused performance setup.",
+      text: "Use the live operator view when the show needs timing, timeline, screens, viewer phones and a focused performance setup.",
       av: "02",
       name: "Go live",
       role: "Operator view · access code",
@@ -140,7 +140,7 @@ const downloadFeatures = [
   "Desktop app for macOS, Windows and Linux",
   "Script preparation, surtitles and translations",
   "Timeline, cueing and live operator view",
-  "Screens and audience-phone workflows",
+  "Screens and viewer-phone workflows",
   "Audio description and accessibility tools",
 ];
 
@@ -148,8 +148,8 @@ const accountFeatures = [
   "Account area for enabled users",
   "Access code and activation details",
   "Available builds by platform",
-  "Support during testing and rehearsals",
-  "Deployment guidance for real venues",
+  "Downloads collected in one place",
+  "Setup details for rehearsal and performance",
 ];
 
 const institutionFeatures = [
@@ -161,15 +161,15 @@ const institutionFeatures = [
 ];
 
 export const pricingPreview = {
-  title: "Download Sténtor<br/>and manage access.",
+  title: "Download Sténtor.<br/>Open your Account.",
   comparisonLink: { href: "/download", label: "Open downloads →" },
   plans: [
     {
       name: "Sténtor",
       tag: "Download",
-      price: "App",
-      cycle: "/desktop",
-      tagline: "For preparing scripts, translations, surtitles and accessibility materials.",
+      price: "Desktop",
+      cycle: "/app",
+      tagline: "Install the app for preparing scripts, translations, surtitles and accessibility materials.",
       features: downloadFeatures,
       cta: { href: "/download", label: "Download Sténtor", variant: "ghost" as const },
       highlighted: false,
@@ -178,19 +178,19 @@ export const pricingPreview = {
       name: "Account",
       tag: "Access",
       tagAccent: true,
-      price: "Code",
-      cycle: "/enabled users",
-      tagline: "For retrieving your Sténtor access code, activation details and available builds.",
+      price: "Access",
+      cycle: "/code",
+      tagline: "Find your Sténtor access code, activation details and available builds.",
       features: accountFeatures,
       cta: { href: "/account", label: "Open Account", variant: "primary" as const },
       highlighted: true,
     },
     {
       name: "Institutions",
-      tag: "Venues",
-      price: "Support",
-      cycle: "/teams",
-      tagline: "For theatres, festivals, schools and organizations preparing a real deployment.",
+      tag: "Setup",
+      price: "Live",
+      cycle: "/venues",
+      tagline: "Prepare screens, phones and accessibility workflows for real rehearsal rooms.",
       features: institutionFeatures,
       cta: { href: "/contact", label: "Talk to us", variant: "ghost" as const },
       highlighted: false,
