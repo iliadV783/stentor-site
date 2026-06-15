@@ -69,7 +69,7 @@ export const metrics = {
     "Sténtor keeps the performance text organized from preparation to live cueing, with a focused workflow for screens, viewer phones, timelines and accessibility materials.",
   items: [
     { value: "Desktop", suffix: "", label: "For macOS, Windows and Linux" },
-    { value: "Account", suffix: "", label: "Downloads and access code in one place" },
+    { value: "60", suffix: "+", label: "Interface languages already available" },
     { value: "Live Sync", suffix: "", label: "For screens and viewer phones" },
   ],
 };
@@ -92,8 +92,8 @@ export const bento = {
       desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
     },
     auth: {
-      title: "One project, shared knowledge",
-      desc: "Keep original text, translations, surtitles, audio-description notes, project metadata and research feedback together.",
+      title: "Interface in 60+ languages",
+      desc: "The Sténtor interface is already localized in more than 60 languages, helping international teams test, train and work in their own language.",
     },
     cron: {
       title: "Import, export, circulate",
