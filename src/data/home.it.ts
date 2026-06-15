@@ -56,10 +56,10 @@ export const logoCloud = {
 export const metrics = {
   title: "Pensato per<br/>lo spettacolo dal vivo.",
   description:
-    "Sténtor organizza il testo di scena dalla preparazione alla regia live, distinguendo un ingresso gratuito multipiattaforma da un flusso professionale destinato alle principali piattaforme desktop.",
+    "Sténtor organizza il testo di scena dalla preparazione alla regia live, con strumenti per schermi, telefoni del pubblico, accessibilità e lavoro in più lingue.",
   items: [
-    { value: "Lite", suffix: "", label: "App gratuita Tauri per macOS, Windows e Linux" },
-    { value: "Pro", suffix: "", label: "App professionale live per macOS, Windows e Linux" },
+    { value: "Lite", suffix: "", label: "App gratuita per macOS, Windows e Linux" },
+    { value: "60", suffix: "+", label: "lingue disponibili nell’interfaccia" },
     { value: "Live Sync", suffix: "", label: "Per schermi e telefoni del pubblico" },
   ],
 };
@@ -72,10 +72,10 @@ export const bento = {
     types: { title: "Sténtor Lite: inizia ovunque", desc: "App gratuita Tauri per macOS, Windows e Linux, pensata per rendere accessibili preparazione del testo, soprattitoli e traduzioni senza barriera di licenza." },
     p95: { title: "Sténtor: cabina di regia", desc: "App professionale per prove e spettacoli, con cueing, timeline, schermi, dispositivi del pubblico e audio-descrizione su piattaforme desktop." },
     edge: { title: "Telefoni del pubblico sincronizzati", desc: "Le persone in sala possono collegarsi con il proprio smartphone e seguire soprattitoli, traduzioni o audio-descrizioni in sincronia con la regia." },
-    auth: { title: "Un progetto, conoscenza condivisa", desc: "Tieni insieme testo originale, traduzioni, soprattitoli, note di audio-descrizione, metadati di progetto e feedback di ricerca." },
+    auth: { title: "Interfaccia in oltre 60 lingue", desc: "L’interfaccia di Sténtor è già localizzata in più di 60 lingue, per facilitare test, formazione e uso in contesti internazionali." },
     cron: { title: "Importare, esportare, far circolare", desc: "Importa file Word, TXT, SRT, WebVTT, CSV o JSON, poi condividi i materiali per prove, archivio, tournée e studio." },
     migrations: { title: "Vista regia chiara", desc: "Avanza tra i cue durante lo spettacolo con un’interfaccia progettata per timing, concentrazione e sicurezza." },
-    deploys: { title: "Beta privata per Pro", desc: "Durante il testing, l’accesso Pro resta controllato per offrire supporto, licenze e istruzioni di attivazione in modo sicuro." },
+    deploys: { title: "Beta per Pro", desc: "Durante il testing, l’accesso Pro resta organizzato per offrire supporto, istruzioni e attivazione in modo sicuro." },
   },
 };
 
