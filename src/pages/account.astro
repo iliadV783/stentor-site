@@ -16,16 +16,17 @@ import Layout from "../layouts/Layout.astro";
     </header>
 
     <main class="relative max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
-      <section data-account-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
+      <section data-account-login class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Sténtor.</h1>
         <p class="text-white/50 leading-[1.6] mb-7">Use your email to access downloads, activation details and your Sténtor access code.</p>
         <form data-account-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@theatre.org" class="account-input" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="account-input" />
-          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Sign in</button>
+          <button type="submit" class="h-12 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Sign in</button>
           <button type="button" data-account-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Send email link</button>
         </form>
+        <p class="mt-5 text-sm text-white/38 leading-[1.5]">No account yet? <a href="/request-pro" class="text-red-300 underline underline-offset-4 hover:text-red-200">Request free beta access</a>.</p>
         <p data-account-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
       </section>
 
@@ -72,6 +73,18 @@ import Layout from "../layouts/Layout.astro";
   const licensesTarget = document.querySelector('[data-account-licenses]');
   const downloadsTarget = document.querySelector('[data-account-downloads]');
 
+  function showLogin() {
+    if (loginPanel) loginPanel.hidden = false;
+    if (appPanel) appPanel.hidden = true;
+    if (logoutButton) logoutButton.hidden = true;
+  }
+
+  function showApp() {
+    if (loginPanel) loginPanel.hidden = true;
+    if (appPanel) appPanel.hidden = false;
+    if (logoutButton) logoutButton.hidden = false;
+  }
+
   function getTokenFromHash() {
     const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
     const token = hash.get('access_token');
@@ -101,7 +114,14 @@ import Layout from "../layouts/Layout.astro";
     errorBox.hidden = false;
   }
 
+  function ensureConfig() {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error('Account access is not configured yet. Check Supabase public environment variables.');
+    }
+  }
+
   async function apiFetch(path, token, options = {}) {
+    ensureConfig();
     const response = await fetch(`${supabaseUrl}${path}`, {
       ...options,
       headers: {
@@ -116,6 +136,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   async function signInWithPassword(email, password) {
+    ensureConfig();
     const response = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
       method: 'POST',
       headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
@@ -128,6 +149,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   async function sendMagicLink(email) {
+    ensureConfig();
     const redirectTo = `${window.location.origin}/auth/confirm?next=/account`;
     const response = await fetch(`${supabaseUrl}/auth/v1/otp?redirect_to=${encodeURIComponent(redirectTo)}`, {
       method: 'POST',
@@ -204,9 +226,7 @@ import Layout from "../layouts/Layout.astro";
     const downloads = await apiFetch('/rest/v1/rpc/current_user_downloads', token, { method: 'POST', body: JSON.stringify({}) });
     renderLicenses(licenses);
     renderDownloads(downloads);
-    if (loginPanel) loginPanel.hidden = true;
-    if (appPanel) appPanel.hidden = false;
-    if (logoutButton) logoutButton.hidden = false;
+    showApp();
   }
 
   loginForm?.addEventListener('submit', async (event) => {
@@ -221,6 +241,7 @@ import Layout from "../layouts/Layout.astro";
       const token = await signInWithPassword(email, password);
       await loadAccount(token);
     } catch (error) {
+      showLogin();
       showError(error instanceof Error ? error.message : 'Login failed.');
     }
   });
@@ -245,7 +266,7 @@ import Layout from "../layouts/Layout.astro";
 
   refreshButton?.addEventListener('click', async () => {
     const token = getStoredToken();
-    if (token) await loadAccount(token);
+    if (token) await loadAccount(token).catch((error) => showError(error instanceof Error ? error.message : 'Refresh failed.'));
   });
 
   document.addEventListener('click', async (event) => {
@@ -257,23 +278,20 @@ import Layout from "../layouts/Layout.astro";
     window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
   });
 
+  showLogin();
   const token = getStoredToken();
   if (token) {
     loadAccount(token).catch((error) => {
       localStorage.removeItem(storageKey);
-      if (loginPanel) loginPanel.hidden = false;
-      if (appPanel) appPanel.hidden = true;
+      showLogin();
       showError(error instanceof Error ? error.message : 'Session expired. Please sign in again.');
     });
-  } else {
-    if (loginPanel) loginPanel.hidden = false;
-    if (appPanel) appPanel.hidden = true;
   }
 </script>
 
 <style is:global>
   @reference "../styles/global.css";
-  .account-input { @apply w-full h-13 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
+  .account-input { @apply w-full h-12 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
   .account-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
   .account-input::placeholder { color: rgba(255,255,255,0.34); }
   .account-card { @apply rounded-xl border border-white/10 bg-black/25 p-5; }
