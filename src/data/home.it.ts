@@ -3,7 +3,7 @@
  */
 
 export const hero = {
-  eyebrow: "Ecosistema Sténtor · Lite e Pro",
+  eyebrow: "Build v0.1.64 · 16 giugno 2026",
   title:
     'Soprattitoli, traduzione <em class="not-italic text-text-3 font-medium">e accessibilità.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
