@@ -35,14 +35,14 @@ const groups = isFr
     ? [
         { title: "Prodotto", links: [
           { href: "/it/features", label: "Funzioni" },
-          { href: "/it/docs", label: "Workflow" },
+          { href: "/it/docs", label: "Documentazione" },
           { href: "/it/for-theatres", label: "Per i teatri" },
-          { href: "/it/contact", label: "Contatto" },
+          { href: "/it/contact", label: "Contatti" },
         ] },
         { title: "Usi", links: [
-          { href: "/it/features", label: "Sopratitoli" },
+          { href: "/it/features", label: "Soprattitoli" },
           { href: "/it/features", label: "Traduzione" },
-          { href: "/it/features", label: "Audio descrizione" },
+          { href: "/it/features", label: "Audio-descrizione" },
           { href: "/it/for-theatres", label: "Festival" },
         ] },
         { title: "Progetto", links: [
@@ -59,7 +59,7 @@ const groups = isFr
 const footerTagline = isFr
   ? "Surtitres, traduction et audiodescription pour le spectacle vivant."
   : isIt
-    ? "Sopratitoli, traduzione e audio descrizione per lo spettacolo dal vivo."
+    ? "Soprattitoli, traduzione e audio-descrizione per lo spettacolo dal vivo."
     : site.footerTagline;
 const statusPrefix = isFr
   ? "Concu pour le spectacle vivant"
@@ -69,7 +69,7 @@ const statusPrefix = isFr
 const statusRegions = isFr
   ? "surtitres, traduction, audiodescription"
   : isIt
-    ? "sopratitoli, traduzione, audio descrizione"
+    ? "soprattitoli, traduzione, audio-descrizione"
     : site.statusRegions;
 const homeHref = isFr ? "/fr/" : isIt ? "/it/" : "/";
 const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
