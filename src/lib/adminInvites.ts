@@ -53,6 +53,12 @@ function saveInviteLink(inviteId: string, inviteUrl: string) {
   localStorage.setItem(inviteLinksStorageKey, JSON.stringify(links));
 }
 
+function removeStoredInviteLink(inviteId: string) {
+  const links = getStoredInviteLinks();
+  delete links[inviteId];
+  localStorage.setItem(inviteLinksStorageKey, JSON.stringify(links));
+}
+
 function formatDate(value: string | null) {
   if (!value) return '—';
   return new Date(value).toLocaleDateString('it-IT', {
@@ -81,9 +87,10 @@ function renderInviteRows(invites: any[]) {
 
   target.innerHTML = invites.map((invite) => {
     const savedLink = savedLinks[invite.id];
-    const action = savedLink
+    const copyAction = savedLink
       ? `<button type="button" class="admin-button-live" data-copy-invite-url="${savedLink}">Copia link</button>`
       : '<span class="text-white/30 text-xs leading-[1.45]">Link non conservato.<br />Crea un nuovo invito se serve.</span>';
+    const removeLabel = invite.status === 'pending' ? 'Revoca' : 'Nascondi';
 
     return `
       <div class="invite-card">
@@ -102,7 +109,10 @@ function renderInviteRows(invites: any[]) {
         </div>
         <div>
           <span class="license-label">Azione</span>
-          ${action}
+          <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+            ${copyAction}
+            <button type="button" class="admin-button-live secondary" data-remove-invite-id="${invite.id}" data-remove-invite-status="${invite.status}">${removeLabel}</button>
+          </div>
         </div>
       </div>
     `;
@@ -110,7 +120,7 @@ function renderInviteRows(invites: any[]) {
 }
 
 async function loadInvites(token: string) {
-  const invites = await apiFetch('/rest/v1/invites?select=id,email,name,status,expires_at,created_at&order=created_at.desc&limit=20', token) as any[];
+  const invites = await apiFetch('/rest/v1/invites?select=id,email,name,status,expires_at,created_at&status=neq.revoked&order=created_at.desc&limit=20', token) as any[];
   renderInviteRows(invites);
 }
 
@@ -135,6 +145,15 @@ async function createInvite(token: string, email: string, name: string) {
   const body = await response.json();
   if (!body.ok) throw new Error(body.error || 'Invite could not be created.');
   return body as { invite: { id: string }; invite_url: string };
+}
+
+async function removeInvite(token: string, inviteId: string) {
+  await apiFetch(`/rest/v1/invites?id=eq.${inviteId}`, token, {
+    method: 'PATCH',
+    headers: { Prefer: 'return=minimal' },
+    body: JSON.stringify({ status: 'revoked' }),
+  });
+  removeStoredInviteLink(inviteId);
 }
 
 export function setupAdminInvites() {
@@ -191,7 +210,7 @@ export function setupAdminInvites() {
       message.innerHTML = `<p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">${error instanceof Error ? error.message : 'Invito non creato.'}</p>`;
     } finally {
       button.disabled = false;
-      button.textContent = 'Crea invito demo';
+      button.textContent = 'Crea invito';
     }
   });
 
@@ -204,5 +223,36 @@ export function setupAdminInvites() {
     await navigator.clipboard.writeText(url);
     copyButton.textContent = 'Copiato';
     window.setTimeout(() => { copyButton.textContent = copyButton.closest('[data-admin-invites-list]') ? 'Copia link' : 'Copia'; }, 1400);
+  });
+
+  document.addEventListener('click', async (event) => {
+    const target = event.target as HTMLElement;
+    const removeButton = target.closest<HTMLButtonElement>('[data-remove-invite-id]');
+    if (!removeButton) return;
+
+    const activeToken = getStoredToken();
+    const inviteId = removeButton.getAttribute('data-remove-invite-id') || '';
+    const status = removeButton.getAttribute('data-remove-invite-status') || '';
+    if (!activeToken || !inviteId) return;
+
+    const prompt = status === 'pending'
+      ? 'Revocare questo invito? Il link non potrà più essere accettato.'
+      : 'Nascondere questo invito dalla lista? L’eventuale accesso già attivato non viene modificato.';
+
+    if (!window.confirm(prompt)) return;
+
+    removeButton.disabled = true;
+    removeButton.textContent = status === 'pending' ? 'Revoca...' : 'Nascondo...';
+    message.innerHTML = '';
+
+    try {
+      await removeInvite(activeToken, inviteId);
+      await loadInvites(activeToken);
+      message.innerHTML = `<p class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">Invito rimosso dalla lista.</p>`;
+    } catch (error) {
+      message.innerHTML = `<p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">${error instanceof Error ? error.message : 'Invito non rimosso.'}</p>`;
+      removeButton.disabled = false;
+      removeButton.textContent = status === 'pending' ? 'Revoca' : 'Nascondi';
+    }
   });
 }
