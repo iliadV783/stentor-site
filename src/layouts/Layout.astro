@@ -39,6 +39,13 @@ const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "";
 const faviconIco = "/favicon.ico?v=gold-2026-06-14-v4";
 const faviconSvg = "/favicon.svg?v=gold-2026-06-14-v4";
 const brandIcon = "/stentor-brand-mark.png?v=gold-2026-06-14-v4";
+const pageLang = Astro.url.pathname.startsWith("/it")
+  ? "it"
+  : Astro.url.pathname.startsWith("/fr")
+    ? "fr"
+    : Astro.url.pathname.startsWith("/es")
+      ? "es"
+      : site.locale;
 
 const isHome = Astro.url.pathname === "/";
 const isArticle = ogType === "article";
@@ -87,7 +94,7 @@ const articleSchema =
     : null;
 ---
 <!doctype html>
-<html lang={site.locale}>
+<html lang={pageLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -114,12 +121,9 @@ const articleSchema =
     <meta property="og:image:type" content="image/svg+xml" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content={site.locale} />
+    <meta property="og:locale" content={pageLang} />
     {ogType === "article" && publishedTime && (
       <meta property="article:published_time" content={publishedTime} />
-    )}
-    {ogType === "article" && author && (
-      <meta property="article:author" content={author} />
     )}
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -127,74 +131,16 @@ const articleSchema =
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
-    {websiteSchema && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-    )}
-    {articleSchema && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-    )}
-
-    <Font cssVariable="--font-geist" preload />
-    <Font cssVariable="--font-geist-mono" preload />
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {websiteSchema && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />}
+    {articleSchema && <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />}
 
     <ClientRouter />
   </head>
   <body>
+    <Font cssVariable="--font-inter" />
     {showNav && <Nav active={active} />}
-    <main>
-      <slot />
-    </main>
+    <slot />
     {showFooter && <Footer />}
-
-    <script is:inline>
-      document.addEventListener("astro:after-swap", () => {
-        if (window.Alpine) window.Alpine.initTree(document.body);
-      });
-    </script>
-
-    <script is:inline>
-      window.addEventListener("unhandledrejection", (e) => {
-        const r = e.reason;
-        if (
-          r &&
-          r.name === "InvalidStateError" &&
-          typeof r.message === "string" &&
-          /transition was aborted/i.test(r.message)
-        ) {
-          e.preventDefault();
-        }
-      });
-    </script>
-
-    <script is:inline>
-      (() => {
-        function init() {
-          const els = document.querySelectorAll("[data-animate]:not(.is-in)");
-          if (!els.length) return;
-          const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-          if (reduce || !("IntersectionObserver" in window)) {
-            els.forEach((el) => el.classList.add("is-in"));
-            return;
-          }
-          const io = new IntersectionObserver(
-            (entries) => {
-              for (const e of entries) {
-                if (e.isIntersecting) {
-                  e.target.classList.add("is-in");
-                  io.unobserve(e.target);
-                }
-              }
-            },
-            { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
-          );
-          els.forEach((el) => io.observe(el));
-        }
-        document.addEventListener("astro:page-load", init);
-        document.addEventListener("astro:after-swap", init);
-      })();
-    </script>
   </body>
 </html>
