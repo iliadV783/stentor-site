@@ -4,33 +4,33 @@ import Btn from "../../../components/Btn.astro";
 ---
 
 <Layout
-  title="Workflow — Sténtor"
-  description="Workflow italiano per Sténtor Desktop 0.3.40: progetti, testo multilingue, audio descrizione, schermi, telefoni del pubblico e sincronizzazione locale."
+  title="Documentazione — Sténtor"
+  description="Documentazione italiana per Sténtor 0.3.40: progetti, testo multilingue, audio-descrizione, schermi, telefoni del pubblico e sincronizzazione locale."
   active="docs"
 >
   <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
     <div class="max-w-[820px] mb-14">
-      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Documentazione · Workflow</p>
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Documentazione · Flusso di lavoro</p>
       <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">
-        Prepara il testo live. Pilota la sala. Raggiungi il pubblico.
+        Prepara il testo dal vivo. Guida la sala. Raggiungi il pubblico.
       </h1>
       <p class="text-xl text-text-2 leading-[1.55] max-w-[760px]">
-        Sténtor 0.3.40 è uno spazio desktop-first per il testo dello spettacolo dal vivo: progetti, copioni multilingue, sopratitoli, audio descrizione, schermi, telefoni del pubblico e pagina foyer con QR restano nello stesso workflow controllato dall’operatore.
+        Sténtor 0.3.40 è uno spazio pensato per il computer e per il testo dello spettacolo dal vivo: progetti, copioni multilingue, soprattitoli, audio-descrizione, schermi, telefoni del pubblico e pagina del foyer con codice QR restano nello stesso flusso controllato dall’operatore.
       </p>
     </div>
 
     <div class="grid gap-5 mb-16">
       {[
-        ["1. Progetti", "Un progetto Sténtor raccoglie titolo, compagnia, lingue, cue, traduzioni, note di audio descrizione, configurazione degli schermi e metadati di produzione. L’obiettivo è mantenere tutto il materiale della rappresentazione in uno spazio leggibile ed esportabile."],
-        ["2. Testo e lingue", "La vista Testo serve a preparare copione originale, traduzioni, sopratitoli e informazioni di voce o personaggio. Le lingue del progetto vengono riusate negli schermi, nei telefoni del pubblico e nella pagina foyer."],
-        ["3. Audio descrizione", "L’audio descrizione è un livello del progetto. Le note possono restare collegate ai cue, essere riviste in contesto e accompagnate da file audio per test in prova o in sala."],
+        ["1. Progetti", "Un progetto Sténtor raccoglie titolo, compagnia, lingue, battute, traduzioni, note di audio-descrizione, configurazione degli schermi e metadati di produzione. L’obiettivo è mantenere tutto il materiale della rappresentazione in uno spazio leggibile ed esportabile."],
+        ["2. Testo e lingue", "La vista Testo serve a preparare copione originale, traduzioni, soprattitoli e informazioni di voce o personaggio. Le lingue del progetto vengono riusate negli schermi, nei telefoni del pubblico e nella pagina del foyer."],
+        ["3. Audio-descrizione", "L’audio-descrizione è un livello del progetto. Le note possono restare collegate alle battute, essere riviste in contesto e accompagnate da file audio per prove tecniche in sala."],
         ["4. Schermi", "La sezione Schermi configura le uscite di proiezione: lingua, aspetto, stile e anteprima. Più schermi possono essere attivi secondo i bisogni della sala o del festival."],
-        ["5. Regia / Stage desk", "La Regia è la vista live. Permette di avanzare o tornare indietro tra i cue, passare al nero, seguire cue attuale e successivo, controllare gli schermi, monitorare i dispositivi connessi e mantenere l’operatore concentrato."],
-        ["6. Telefoni del pubblico", "Gli spettatori possono accedere tramite QR code o indirizzo locale. Scelgono lingua e modalità: sopratitoli, audio descrizione o entrambe. La pagina segue poi la Regia in diretta."],
-        ["7. Foyer QR", "La pagina foyer mostra il titolo dello spettacolo e un QR code per sopratitoli e audio descrizione. È il punto d’accesso semplice prima della rappresentazione."],
-        ["8. Rete locale", "Per un test in sala, computer di regia, schermi e telefoni devono trovarsi sulla stessa rete locale. Internet non è necessario se i dispositivi raggiungono la macchina operatore."],
-        ["9. Import ed export", "Sténtor può importare JSON, TXT, SRT, WebVTT, CSV e Word. Progetti e copioni strutturati possono poi essere esportati per prova, archivio, tournée, traduzione o ricerca."],
-        ["10. Build desktop", "Sténtor usa Tauri con React/Vite. La priorità attuale è macOS Apple Silicon, con Windows e Linux previsti in seguito. Firma e notarizzazione delle build saranno trattate separatamente."],
+        ["5. Regia", "La Regia è la vista dal vivo. Permette di avanzare o tornare indietro tra le battute, passare al nero, seguire battuta attuale e successiva, controllare gli schermi, monitorare i dispositivi connessi e mantenere l’operatore concentrato."],
+        ["6. Telefoni del pubblico", "Gli spettatori possono accedere tramite codice QR o indirizzo locale. Scelgono lingua e modalità: soprattitoli, audio-descrizione o entrambe. La pagina segue poi la Regia in diretta."],
+        ["7. QR nel foyer", "La pagina del foyer mostra il titolo dello spettacolo e un codice QR per soprattitoli e audio-descrizione. È il punto d’accesso semplice prima della rappresentazione."],
+        ["8. Rete locale", "Per una prova in sala, computer di regia, schermi e telefoni devono trovarsi sulla stessa rete locale. Internet non è necessario se i dispositivi raggiungono la macchina dell’operatore."],
+        ["9. Importazione ed esportazione", "Sténtor può importare JSON, TXT, SRT, WebVTT, CSV e documenti Word. Progetti e copioni strutturati possono poi essere esportati per prova, archivio, tournée, traduzione o ricerca."],
+        ["10. Versioni per computer", "Sténtor usa Tauri con React/Vite. La priorità attuale è macOS Apple Silicon, con Windows e Linux previsti in seguito. Firma e notarizzazione delle versioni saranno trattate separatamente."],
       ].map((section) => (
         <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6 scroll-mt-24">
           <h2 class="text-2xl tracking-[-0.03em] font-semibold mb-3">{section[0]}</h2>
@@ -41,7 +41,7 @@ import Btn from "../../../components/Btn.astro";
 
     <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
-        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-1">Vuoi testare Sténtor in sala?</h2>
+        <h2 class="text-lg font-semibold tracking-[-0.02em] mb-1">Vuoi provare Sténtor in sala?</h2>
         <p class="text-sm text-text-3 leading-[1.6] m-0">Scaricalo prima. Usalo in prova o in spettacolo. Condividi le tue note quando hai qualcosa di concreto da raccontarci.</p>
       </div>
       <div class="flex gap-2">
