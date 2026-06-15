@@ -2,6 +2,7 @@ const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 const storageKey = 'stentor_admin_access_token';
 const inviteLinksStorageKey = 'stentor_admin_recent_invite_links';
+const hiddenInvitesStorageKey = 'stentor_admin_hidden_invites';
 
 function qs<T extends HTMLElement>(selector: string) {
   return document.querySelector<T>(selector);
@@ -59,6 +60,21 @@ function removeStoredInviteLink(inviteId: string) {
   localStorage.setItem(inviteLinksStorageKey, JSON.stringify(links));
 }
 
+function getHiddenInviteIds() {
+  try {
+    const ids = JSON.parse(localStorage.getItem(hiddenInvitesStorageKey) || '[]');
+    return Array.isArray(ids) ? ids.map(String) : [];
+  } catch {
+    return [];
+  }
+}
+
+function hideInviteLocally(inviteId: string) {
+  const ids = new Set(getHiddenInviteIds());
+  ids.add(inviteId);
+  localStorage.setItem(hiddenInvitesStorageKey, JSON.stringify([...ids]));
+}
+
 function formatDate(value: string | null) {
   if (!value) return '—';
   return new Date(value).toLocaleDateString('it-IT', {
@@ -78,14 +94,17 @@ function renderInviteRows(invites: any[]) {
   const target = qs<HTMLElement>('[data-admin-invites-list]');
   if (!target) return;
 
-  if (!invites.length) {
+  const hiddenIds = new Set(getHiddenInviteIds());
+  const visibleInvites = invites.filter((invite) => !hiddenIds.has(String(invite.id)));
+
+  if (!visibleInvites.length) {
     target.innerHTML = '<p class="text-white/45">Nessun invito creato.</p>';
     return;
   }
 
   const savedLinks = getStoredInviteLinks();
 
-  target.innerHTML = invites.map((invite) => {
+  target.innerHTML = visibleInvites.map((invite) => {
     const savedLink = savedLinks[invite.id];
     const copyAction = savedLink
       ? `<button type="button" class="admin-button-live" data-copy-invite-url="${savedLink}">Copia link</button>`
@@ -147,12 +166,19 @@ async function createInvite(token: string, email: string, name: string) {
   return body as { invite: { id: string }; invite_url: string };
 }
 
-async function removeInvite(token: string, inviteId: string) {
+async function removeInvite(token: string, inviteId: string, status: string) {
+  if (status !== 'pending') {
+    hideInviteLocally(inviteId);
+    removeStoredInviteLink(inviteId);
+    return;
+  }
+
   await apiFetch(`/rest/v1/invites?id=eq.${inviteId}`, token, {
     method: 'PATCH',
     headers: { Prefer: 'return=minimal' },
     body: JSON.stringify({ status: 'revoked' }),
   });
+  hideInviteLocally(inviteId);
   removeStoredInviteLink(inviteId);
 }
 
@@ -246,9 +272,9 @@ export function setupAdminInvites() {
     message.innerHTML = '';
 
     try {
-      await removeInvite(activeToken, inviteId);
+      await removeInvite(activeToken, inviteId, status);
       await loadInvites(activeToken);
-      message.innerHTML = `<p class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">Invito rimosso dalla lista.</p>`;
+      message.innerHTML = `<p class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">${status === 'pending' ? 'Invito revocato.' : 'Invito nascosto dalla lista.'}</p>`;
     } catch (error) {
       message.innerHTML = `<p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">${error instanceof Error ? error.message : 'Invito non rimosso.'}</p>`;
       removeButton.disabled = false;
