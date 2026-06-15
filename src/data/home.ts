@@ -32,8 +32,8 @@ export const hero = {
     ],
     currentCue: {
       label: "Current cue",
-      text: "O my country, poor country!",
-      meta: "English surtitles · screen 1",
+      text: "La tragedia è qui, Belcredi! Aver qua, fissa, la commedia!",
+      meta: "Italian surtitles · screen 1",
     },
     nextCue: {
       label: "Next cue",
