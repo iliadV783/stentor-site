@@ -32,7 +32,7 @@ export const hero = {
     ],
     currentCue: {
       label: "Current cue",
-      text: "La tragedia è qui, Belcredi! Aver qua, fissa, la commedia!",
+      text: "La cantatrice calva si pettina sempre allo stesso modo.",
       meta: "Italian surtitles · screen 1",
     },
     nextCue: {
