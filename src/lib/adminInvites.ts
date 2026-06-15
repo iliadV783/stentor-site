@@ -1,6 +1,7 @@
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 const storageKey = 'stentor_admin_access_token';
+const inviteLinksStorageKey = 'stentor_admin_recent_invite_links';
 
 function qs<T extends HTMLElement>(selector: string) {
   return document.querySelector<T>(selector);
@@ -38,6 +39,20 @@ function getStoredToken() {
   return localStorage.getItem(storageKey) || '';
 }
 
+function getStoredInviteLinks() {
+  try {
+    return JSON.parse(localStorage.getItem(inviteLinksStorageKey) || '{}') as Record<string, string>;
+  } catch {
+    return {};
+  }
+}
+
+function saveInviteLink(inviteId: string, inviteUrl: string) {
+  const links = getStoredInviteLinks();
+  links[inviteId] = inviteUrl;
+  localStorage.setItem(inviteLinksStorageKey, JSON.stringify(links));
+}
+
 function formatDate(value: string | null) {
   if (!value) return '—';
   return new Date(value).toLocaleDateString('it-IT', {
@@ -62,27 +77,36 @@ function renderInviteRows(invites: any[]) {
     return;
   }
 
-  target.innerHTML = invites.map((invite) => `
-    <div class="invite-card">
-      <div>
-        <span class="license-label">Destinatario</span>
-        <div class="text-white/80 font-medium">${invite.email}</div>
-        ${invite.name ? `<div class="text-white/35 text-xs mt-1">${invite.name}</div>` : ''}
+  const savedLinks = getStoredInviteLinks();
+
+  target.innerHTML = invites.map((invite) => {
+    const savedLink = savedLinks[invite.id];
+    const action = savedLink
+      ? `<button type="button" class="admin-button-live" data-copy-invite-url="${savedLink}">Copia link</button>`
+      : '<span class="text-white/30 text-xs leading-[1.45]">Link non conservato.<br />Crea un nuovo invito se serve.</span>';
+
+    return `
+      <div class="invite-card">
+        <div>
+          <span class="license-label">Destinatario</span>
+          <div class="text-white/80 font-medium">${invite.email}</div>
+          ${invite.name ? `<div class="text-white/35 text-xs mt-1">${invite.name}</div>` : ''}
+        </div>
+        <div>
+          <span class="license-label">Stato</span>
+          <span class="${statusClass(invite.status)}">${invite.status}</span>
+        </div>
+        <div>
+          <span class="license-label">Scadenza link</span>
+          <div class="text-white/55">${formatDate(invite.expires_at)}</div>
+        </div>
+        <div>
+          <span class="license-label">Azione</span>
+          ${action}
+        </div>
       </div>
-      <div>
-        <span class="license-label">Stato</span>
-        <span class="${statusClass(invite.status)}">${invite.status}</span>
-      </div>
-      <div>
-        <span class="license-label">Scadenza link</span>
-        <div class="text-white/55">${formatDate(invite.expires_at)}</div>
-      </div>
-      <div>
-        <span class="license-label">Creato</span>
-        <div class="text-white/55">${formatDate(invite.created_at)}</div>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 async function loadInvites(token: string) {
@@ -110,7 +134,7 @@ async function createInvite(token: string, email: string, name: string) {
 
   const body = await response.json();
   if (!body.ok) throw new Error(body.error || 'Invite could not be created.');
-  return body as { invite_url: string };
+  return body as { invite: { id: string }; invite_url: string };
 }
 
 export function setupAdminInvites() {
@@ -148,10 +172,13 @@ export function setupAdminInvites() {
 
     try {
       const result = await createInvite(activeToken, email, name);
+      if (result.invite?.id && result.invite_url) {
+        saveInviteLink(result.invite.id, result.invite_url);
+      }
       message.innerHTML = `
         <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
           <strong class="block mb-2">Invito creato.</strong>
-          <span class="text-white/55">Copia questo link per il test:</span>
+          <span class="text-white/55">Copia questo link ora. Per sicurezza il token non viene salvato su Supabase in chiaro.</span>
           <div class="mt-2 flex flex-col sm:flex-row gap-2 sm:items-center">
             <code class="flex-1 text-xs text-white/75 break-all rounded-lg bg-black/30 border border-white/10 px-3 py-2">${result.invite_url}</code>
             <button type="button" class="admin-button-live" data-copy-invite-url="${result.invite_url}">Copia</button>
@@ -176,6 +203,6 @@ export function setupAdminInvites() {
     const url = copyButton.getAttribute('data-copy-invite-url') || '';
     await navigator.clipboard.writeText(url);
     copyButton.textContent = 'Copiato';
-    window.setTimeout(() => { copyButton.textContent = 'Copia'; }, 1400);
+    window.setTimeout(() => { copyButton.textContent = copyButton.closest('[data-admin-invites-list]') ? 'Copia link' : 'Copia'; }, 1400);
   });
 }
