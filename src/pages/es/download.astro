@@ -1,0 +1,18 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Btn from "../../components/Btn.astro";
+---
+<Layout title="Descargar Sténtor - Sténtor" description="Descarga Sténtor Lite o solicita acceso a la beta Pro para macOS, Windows y Linux." active={null}>
+  <section class="max-w-[1180px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[760px] mb-10">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Download</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Descarga Sténtor.</h1>
+      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">Empieza con Sténtor Lite y solicita acceso a Sténtor Pro cuando necesites un entorno profesional para ensayos, pantallas, teléfonos del público y audio descripción.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6"><p class="font-mono text-xs text-text-3 mb-3">macOS</p><h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">macOS</h2><p class="text-sm text-text-3 leading-[1.55] mb-5">La build para macOS se publica desde el área de descargas y cuenta.</p><Btn href="/es/account" variant="ghost">Abrir cuenta</Btn></article>
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6"><p class="font-mono text-xs text-text-3 mb-3">Windows</p><h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Windows</h2><p class="text-sm text-text-3 leading-[1.55] mb-5">La versión para Windows está prevista dentro del flujo multiplataforma.</p><Btn href="/es/solicitar-prueba" variant="ghost">Solicitar acceso</Btn></article>
+      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6"><p class="font-mono text-xs text-text-3 mb-3">Linux</p><h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Linux</h2><p class="text-sm text-text-3 leading-[1.55] mb-5">Linux forma parte del desarrollo multiplataforma de Sténtor.</p><Btn href="/es/contact" variant="ghost">Mantenerme informado</Btn></article>
+    </div>
+  </section>
+</Layout>
