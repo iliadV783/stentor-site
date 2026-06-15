@@ -3,14 +3,48 @@ import Layout from "../../layouts/Layout.astro";
 import Btn from "../../components/Btn.astro";
 ---
 
-<Layout title="Download Stentor - Stentor" description="Telechargez Stentor Lite ou demandez l acces a la beta Pro pour macOS, Windows et Linux." active={null}>
+<Layout
+  title="Télécharger Sténtor - Sténtor"
+  description="Téléchargez librement Sténtor. L'utilisation de l'application nécessite une clé de licence personnelle délivrée par le projet Sténtor."
+  active={null}
+>
   <section class="max-w-[1100px] mx-auto px-4 md:px-8 py-24">
     <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Download</p>
-    <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Choisir votre Stentor.</h1>
-    <p class="text-xl text-text-2 leading-[1.55] max-w-[760px] mb-8">Stentor Lite est l'app gratuite multiplateforme developpee avec Tauri. Sténtor est l'app professionnelle pour la production live, prevue pour macOS, Windows et Linux, disponible en beta controlee.</p>
+    <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Télécharger Sténtor.</h1>
+    <p class="text-xl text-text-2 leading-[1.55] max-w-[820px] mb-8">Sténtor peut être téléchargé librement. L'utilisation de l'application nécessite une clé de licence personnelle délivrée par le projet Sténtor.</p>
+
     <div class="grid md:grid-cols-2 gap-4">
-      <article class="rounded-2xl border border-hairline bg-surface p-6"><p class="font-mono text-xs text-text-3 mb-3">Gratuit · Tauri · Multiplateforme</p><h2 class="text-2xl font-semibold mb-2">Stentor Lite</h2><p class="text-text-3 mb-5">App desktop legere pour preparer textes, surtitres et traductions sur macOS, Windows et Linux.</p><div class="grid sm:grid-cols-3 gap-2 mb-5"><button class="h-10 px-3 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>macOS bientot</button><button class="h-10 px-3 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>Windows bientot</button><button class="h-10 px-3 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>Linux bientot</button></div><p class="text-[13.5px] text-text-4">Les builds publiques apparaitront ici quand les paquets Lite seront stables.</p></article>
-      <article class="rounded-2xl border border-red-500/25 bg-surface p-6"><p class="font-mono text-xs text-red-500 mb-3">Professionnel · Multiplateforme · Beta privee</p><h2 class="text-2xl font-semibold mb-2">Sténtor</h2><p class="text-text-3 mb-5">Pour repetitions et spectacles : timeline, cueing, ecrans, telephones du public, traduction et audiodescription.</p><ul class="grid gap-2 text-sm text-text-2 mb-6"><li class="flex gap-2"><span class="text-green-400">✓</span> Prevue pour macOS, Windows et Linux</li><li class="flex gap-2"><span class="text-green-400">✓</span> Acces controle pendant le testing</li><li class="flex gap-2"><span class="text-green-400">✓</span> Licences d essai pour theatres et compagnies</li></ul><Btn href="/fr/demander-essai" variant="primary">Demander la beta Pro <span aria-hidden="true">→</span></Btn></article>
+      <article class="rounded-2xl border border-hairline bg-surface p-6">
+        <p class="font-mono text-xs text-text-3 mb-3">Desktop · Utilisation sous licence</p>
+        <h2 class="text-2xl font-semibold mb-2">Sténtor bêta</h2>
+        <p class="text-text-3 mb-5">La bêta actuelle est disponible pour macOS. Les versions Windows et Linux sont prévues dans l'évolution du projet vers une prise en charge desktop plus large.</p>
+        <div class="grid sm:grid-cols-3 gap-2 mb-5">
+          <button class="h-10 px-3 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>macOS bêta bientôt</button>
+          <button class="h-10 px-3 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>Windows prévu</button>
+          <button class="h-10 px-3 rounded-lg border border-hairline text-text-3 text-sm cursor-not-allowed" disabled>Linux prévu</button>
+        </div>
+        <p class="text-[13.5px] text-text-4">Les paquets publics de téléchargement apparaîtront ici lorsque la première build bêta signée sera prête.</p>
+      </article>
+
+      <article class="rounded-2xl border border-red-500/25 bg-surface p-6">
+        <p class="font-mono text-xs text-red-500 mb-3">Licence · Clé d'activation</p>
+        <h2 class="text-2xl font-semibold mb-2">Activation requise</h2>
+        <p class="text-text-3 mb-5">Après l'installation, Sténtor demande une clé de licence personnelle. Cette clé active l'application, associe l'appareil à votre accès et peut être limitée ou révoquée par le projet Sténtor.</p>
+        <ul class="grid gap-2 text-sm text-text-2 mb-6">
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Téléchargement libre, utilisation sous licence</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Clé personnelle d'activation</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Accès contrôlé pour théâtres, festivals et collaborateurs</li>
+        </ul>
+        <Btn href="/fr/account" variant="primary">Ouvrir le compte <span aria-hidden="true">→</span></Btn>
+      </article>
+    </div>
+
+    <div class="mt-8 border border-hairline rounded-2xl bg-surface p-6 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+      <div>
+        <h2 class="text-xl font-semibold tracking-[-0.03em] mb-2">Vous avez déjà une clé de licence ?</h2>
+        <p class="text-text-3 leading-[1.55]">Ouvrez votre compte pour consulter votre clé, les détails d'activation et les builds disponibles pour votre espace de travail.</p>
+      </div>
+      <Btn href="/fr/account" variant="ghost">Ouvrir le compte</Btn>
     </div>
   </section>
 </Layout>
