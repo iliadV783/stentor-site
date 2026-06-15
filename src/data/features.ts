@@ -6,10 +6,10 @@
 
 // ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
-  eyebrow: "Sténtor 0.3.40 features",
+  eyebrow: "Sténtor features",
   title: "Multilingual live text,<br/>from script to room.",
   description:
-    "Sténtor brings surtitles, translation, audio description, screens, audience phones and foyer QR access into one local-first workflow for theatres, festivals and performance spaces worldwide.",
+    "Sténtor brings scripts, translations, surtitles, audio description, timelines, screens, audience phones and foyer QR access into one local-first workflow for theatres, festivals and performance spaces.",
 };
 
 // ─── Showcase rows (alternating side-by-side) ─────────────────────────────
@@ -130,12 +130,12 @@ export const secondaryBento = {
     {
       icon: "box" as const,
       title: "Desktop-first, local-first",
-      desc: "Sténtor is moving toward a native desktop app, starting with macOS Apple Silicon, while audience and screen views remain lightweight web clients on the local network.",
+      desc: "Sténtor is designed as a desktop workspace for live performance text. The current beta is available for macOS, while the project is being shaped with a broader cross-platform direction in mind.",
       demo: {
         type: "url-rows" as const,
         items: [
-          { text: "macOS Apple Silicon first", highlighted: false },
-          { text: "desktop app + local audience client", highlighted: true },
+          { text: "current beta: macOS", highlighted: false },
+          { text: "desktop workspace + local clients", highlighted: true },
         ],
       },
     },
@@ -168,7 +168,7 @@ export const codeTabs = {
 export const finalCta = {
   eyebrow: "Free to try · no account required",
   title: "Download first.<br/>Share field notes later.",
-  body: "Use Sténtor to bring multilingual surtitles, translations and audio descriptions from the script to the room, the screen, the foyer and the audience device.",
+  body: "Use Sténtor to bring scripts, translations, surtitles and audio descriptions from the script to the room, the screen, the foyer and the audience device.",
   ctas: [
     { href: "/download", label: "Download Sténtor", variant: "primary" as const },
     { href: "/docs", label: "Read the workflow", variant: "ghost" as const },

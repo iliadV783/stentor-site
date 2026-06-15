@@ -1,10 +1,10 @@
 import { secondaryBento as baseSecondaryBento, codeTabs as baseCodeTabs } from "./features";
 
 export const hero = {
-  eyebrow: "Funzioni Sténtor 0.3.40",
+  eyebrow: "Funzioni Sténtor",
   title: "Testo live multilingue,<br/>dal copione alla sala.",
   description:
-    "Sténtor riunisce sopratitoli, traduzione, audio descrizione, schermi, telefoni del pubblico e accesso foyer con QR in un unico flusso local-first per teatri, festival e luoghi dello spettacolo dal vivo.",
+    "Sténtor riunisce copioni, traduzioni, sopratitoli, audio descrizione, timeline, schermi, telefoni del pubblico e accesso foyer con QR in un unico flusso local-first per teatri, festival e luoghi dello spettacolo dal vivo.",
 };
 
 export const showcase = [
@@ -62,7 +62,7 @@ export const secondaryBento = {
     { ...baseSecondaryBento.cards[1], title: "Import ed export", desc: "Importa copioni e file di sottotitoli, poi esporta materiali strutturati per prova, archivio, tournée o revisione." },
     { ...baseSecondaryBento.cards[2], title: "Configurazione multilingue", desc: "Configura le lingue del progetto una sola volta, poi riusale nel testo, negli schermi, nei telefoni e nel foyer QR." },
     { ...baseSecondaryBento.cards[3], title: "Telefoni del pubblico", desc: "Gli spettatori scansionano un QR code e seguono sopratitoli, traduzioni, audio descrizione o entrambe durante lo spettacolo." },
-    { ...baseSecondaryBento.cards[4], title: "Desktop-first, local-first", desc: "Sténtor evolve verso un’app desktop nativa, con viste web leggere per schermi e pubblico su rete locale." },
+    { ...baseSecondaryBento.cards[4], title: "Desktop-first, local-first", desc: "Sténtor è progettato come workspace desktop per il testo dello spettacolo dal vivo. La beta attuale è disponibile per macOS, mentre il progetto guarda a una direzione più ampia e multipiattaforma." },
     { ...baseSecondaryBento.cards[5], title: "Note di campo dopo l’uso", desc: "Sténtor non chiede questionari prima del download. I feedback sono invitati dopo prove o spettacoli reali." },
   ],
 };
@@ -77,7 +77,7 @@ export const codeTabs = {
 export const finalCta = {
   eyebrow: "Gratis da provare · nessun account richiesto",
   title: "Scarica prima.<br/>Condividi il feedback dopo.",
-  body: "Usa Sténtor per portare sopratitoli, traduzioni e audio descrizioni dal copione alla sala, agli schermi, al foyer e ai telefoni del pubblico.",
+  body: "Usa Sténtor per portare copioni, traduzioni, sopratitoli e audio descrizioni dal copione alla sala, agli schermi, al foyer e ai telefoni del pubblico.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
     { href: "/it/docs", label: "Leggi il workflow", variant: "ghost" as const },

@@ -29,7 +29,7 @@ export type NavId = "features" | "docs" | "customers";
 export const nav: { href: string; label: string; id: NavId }[] = [
   { href: "/features", label: "Features", id: "features" },
   { href: "/docs", label: "Workflow", id: "docs" },
-  { href: "/for-theatres", label: "For theatres", id: "customers" },
+  { href: "/for-theatres", label: "For Theatres", id: "customers" },
 ];
 
 export const navCta = {
@@ -48,7 +48,7 @@ export const footerGroups: FooterGroup[] = [
     links: [
       { href: "/features", label: "Features" },
       { href: "/docs", label: "Workflow" },
-      { href: "/for-theatres", label: "For theatres" },
+      { href: "/for-theatres", label: "For Theatres" },
       { href: "/download", label: "Download" },
       { href: "/account", label: "Account" },
     ],

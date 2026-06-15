@@ -1,10 +1,10 @@
 import { secondaryBento as baseSecondaryBento, codeTabs as baseCodeTabs } from "./features";
 
 export const hero = {
-  eyebrow: "Fonctionnalités Sténtor 0.3.40",
+  eyebrow: "Fonctionnalités Sténtor",
   title: "Texte live multilingue,<br/>du script à la salle.",
   description:
-    "Sténtor réunit surtitres, traduction, audiodescription, écrans, téléphones du public et accès QR foyer dans un même workflow local-first pour théâtres, festivals et lieux du spectacle vivant.",
+    "Sténtor réunit scripts, traductions, surtitres, audiodescription, timelines, écrans, téléphones du public et accès QR foyer dans un même workflow local-first pour théâtres, festivals et lieux du spectacle vivant.",
 };
 
 export const showcase = [
@@ -62,7 +62,7 @@ export const secondaryBento = {
     { ...baseSecondaryBento.cards[1], title: "Import et export", desc: "Importez scripts et fichiers de sous-titres, puis exportez du matériel structuré pour répétition, archive, tournée ou relecture." },
     { ...baseSecondaryBento.cards[2], title: "Configuration multilingue", desc: "Configurez les langues du projet une seule fois, puis réutilisez-les dans le texte, les écrans, les téléphones et le foyer QR." },
     { ...baseSecondaryBento.cards[3], title: "Téléphones du public", desc: "Les spectateurs scannent un QR code et suivent surtitres, traductions, audiodescription ou les deux pendant le spectacle." },
-    { ...baseSecondaryBento.cards[4], title: "Desktop-first, local-first", desc: "Sténtor évolue vers une application desktop native, avec des vues web légères pour les écrans et le public sur réseau local." },
+    { ...baseSecondaryBento.cards[4], title: "Desktop-first, local-first", desc: "Sténtor est conçu comme un workspace desktop pour le texte du spectacle vivant. La bêta actuelle est disponible pour macOS, tandis que le projet s’oriente vers une direction plus large et multiplateforme." },
     { ...baseSecondaryBento.cards[5], title: "Notes de terrain après usage", desc: "Sténtor ne demande pas de questionnaire avant téléchargement. Les retours sont invités après répétition ou représentation." },
   ],
 };
@@ -77,7 +77,7 @@ export const codeTabs = {
 export const finalCta = {
   eyebrow: "Gratuit à essayer · aucun compte requis",
   title: "Téléchargez d’abord.<br/>Partagez vos retours ensuite.",
-  body: "Utilisez Sténtor pour porter surtitres, traductions et audiodescriptions du script à la salle, aux écrans, au foyer et aux téléphones du public.",
+  body: "Utilisez Sténtor pour porter scripts, traductions, surtitres et audiodescriptions du script à la salle, aux écrans, au foyer et aux téléphones du public.",
   ctas: [
     { href: "/fr/download", label: "Télécharger Sténtor", variant: "primary" as const },
     { href: "/fr/docs", label: "Lire le workflow", variant: "ghost" as const },

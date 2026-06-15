@@ -1,24 +1,24 @@
 /**
- * For theatres page content: hero, featured use case, venue cards,
- * filter chips, logo wall, aggregate stats, quotes, and final CTA.
+ * For Theatres page content: venue use cases, live workflow,
+ * preparation, screens, audience phones, audio description and field notes.
  */
 
 // ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
-  eyebrow: "For theatres, festivals and venues",
+  eyebrow: "For Theatres, Festivals and Venues",
   title:
-    'Run multilingual live text <em class="not-italic text-text-3 font-medium">without turning the show into a technical project.</em>',
+    'Live text for the whole room, <em class="not-italic text-text-3 font-medium">without turning access into a technical burden.</em>',
   description:
-    "Sténtor helps venues prepare, cue and share surtitles, translations and audio description through a local-first workflow: one operator desk, multiple screens, a foyer QR page and audience phones when needed.",
+    "Sténtor helps theatres prepare, cue and share surtitles, translations and audio description from one controlled project: the operator desk, venue screens, foyer QR access and audience phones can all follow the same live text workflow.",
 };
 
 // ─── Featured case study ──────────────────────────────────────────────────
 export const featured = {
   brand: { initial: "S", name: "Sténtor in the venue" },
   title:
-    'One room workflow for <em class="text-red-500 not-italic">regia, screens, foyer and phones.</em>',
+    'One performance workflow for <em class="text-red-500 not-italic">regia, screens, foyer and phones.</em>',
   description:
-    "A theatre can prepare the text before the show, operate cues from the Stage desk, send surtitles to configured screens, show a foyer QR code before the performance, and let spectators follow translation or audio description from their own smartphones.",
+    "Prepare the script before the show, align translations and descriptions, cue the performance from the Stage desk, send text to configured screens, display a foyer QR page and let spectators follow selected languages or audio description from their own devices.",
   stats: [
     { value: "1", label: "operator-led Stage desk" },
     { value: "3", label: "surtitles · translation · audio description" },
@@ -34,7 +34,7 @@ export const featured = {
   ],
   pullQuote: {
     text:
-      "The same project can support the people preparing the text, the operator cueing it live, the screens in the room, the foyer QR and the spectators following on their own devices.",
+      "The same project can support the person preparing the text, the operator cueing it live, the screens in the room, the foyer QR page and spectators following on their own devices.",
     author: "Sténtor",
     role: "Venue workflow",
   },
@@ -59,28 +59,28 @@ type CustomerCard = {
 
 export const cards: CustomerCard[] = [
   {
-    brand: "International hosting",
+    brand: "International productions",
     industry: "Translation",
     glyph: "rounded-full",
     tint: "rgba(239,68,68,0.18)",
     illustration: "helio",
-    title: "Host a foreign-language production with multilingual surtitles.",
+    title: "Host work in another language without multiplying systems.",
     description:
-      "Prepare the original text and one or more translations in the same project, then cue the right language to the right screen or audience device during the performance.",
+      "Keep the original script and translations in the same project, then decide what appears on venue screens and what remains available on audience phones.",
     stats: [
       { k: "2+", l: "Languages per project" },
       { k: "Live", l: "Operator cueing" },
     ],
   },
   {
-    brand: "Festivals",
+    brand: "Festivals and seasons",
     industry: "Surtitles",
     glyph: "",
     tint: "rgba(96,165,250,0.10)",
     illustration: "constellate",
     title: "Move between productions without rebuilding the setup every night.",
     description:
-      "Keep each show as a separate project while reusing the same Stage desk logic, screen configuration approach and audience-phone workflow across rooms and dates.",
+      "Each show stays separate, but the live logic remains familiar: projects, cues, screens and audience access follow the same structure across rooms and dates.",
     stats: [
       { k: "∞", l: "Projects and cues" },
       { k: "1", l: "Reusable live workflow" },
@@ -92,9 +92,9 @@ export const cards: CustomerCard[] = [
     glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]",
     tint: "rgba(239,68,68,0.14)",
     illustration: "vector",
-    title: "Prepare audio description in the same project as the text.",
+    title: "Prepare audio description next to the script, not in a separate island.",
     description:
-      "Keep descriptions, cue references and optional audio files close to the script, so audio description can be prepared, revised, tested and shared without a separate workflow.",
+      "Descriptions, cue references and optional audio files stay close to the text, so access work can be drafted, revised and tested inside the same production file.",
     stats: [
       { k: "AD", l: "Notes and audio" },
       { k: "Cue", l: "Context preserved" },
@@ -106,9 +106,9 @@ export const cards: CustomerCard[] = [
     glyph: "rounded",
     tint: "rgba(239,68,68,0.14)",
     illustration: "kettlebrook",
-    title: "Offer personal-device text without installing a complex system.",
+    title: "Give spectators personal-device text when projection is not enough.",
     description:
-      "Spectators can scan a QR code and follow surtitles, translations, audio description or both from their own smartphones, in sync with the operator's cues.",
+      "A QR code can open a local audience page where spectators follow the selected language, surtitles or audio-description text in sync with the operator’s cues.",
     stats: [
       { k: "QR", l: "Audience access" },
       { k: "Sync", l: "With Regia" },
@@ -120,9 +120,9 @@ export const cards: CustomerCard[] = [
     glyph: "rounded-full bg-transparent border-2 border-zinc-300",
     tint: "rgba(96,165,250,0.10)",
     illustration: "orbital",
-    title: "Carry the same text project from venue to venue.",
+    title: "Carry one structured text project from venue to venue.",
     description:
-      "A production can travel with its script, translations, surtitles, audio-description notes and metadata already structured, then adapt outputs to each venue's screens and audience needs.",
+      "The production can travel with script, translations, surtitles, audio-description notes and metadata already prepared, then adapt outputs to each venue’s screens and audience needs.",
     stats: [
       { k: "Export", l: "Ready scripts" },
       { k: "Local", l: "Room network" },
@@ -134,9 +134,9 @@ export const cards: CustomerCard[] = [
     glyph: "rounded",
     tint: "rgba(239,68,68,0.16)",
     illustration: "tessera",
-    title: "Invite feedback after use, not before download.",
+    title: "Collect practical feedback after real use, not before download.",
     description:
-      "After a rehearsal or show, operators, companies and venues can share practical notes or audience responses. Sténtor stays free to try without a tracking questionnaire before download.",
+      "After a rehearsal or performance, operators, companies and venues can share practical notes. Sténtor stays easy to try and learns from actual theatre conditions.",
     stats: [
       { k: "After", l: "Feedback after use" },
       { k: "Open", l: "No account required" },
@@ -148,7 +148,7 @@ export const cards: CustomerCard[] = [
 export const logoWall = {
   title: "Designed around theatre work, not generic software categories.",
   description:
-    "Sténtor supports different people and moments in a production: preparation, live operation, projection, foyer communication, audience devices and post-use field notes.",
+    "Sténtor follows the real sequence of a production: preparation, live operation, screen output, foyer communication, audience devices and post-use field notes.",
   logos: [
     { name: "Theatres", glyph: "rounded-full" },
     { name: "Festivals", glyph: "rotate-45" },
@@ -182,7 +182,7 @@ export const quotes = [
   {
     stars: 5,
     text:
-      "A theatre can start with a simple surtitling need and later add translation, audio description, foyer QR or audience phones without changing the whole workflow.",
+      "Start with a simple surtitling need; add translation, audio description, foyer QR or audience phones later without changing the entire workflow.",
     av: "01",
     name: "Start simple",
     role: "Surtitles and screens",
@@ -190,7 +190,7 @@ export const quotes = [
   {
     stars: 5,
     text:
-      "A festival can keep projects separated by production while using the same live cueing logic for different rooms, languages and technical setups.",
+      "Keep festival projects separated by production while using the same live cueing logic for different rooms, languages and technical setups.",
     av: "02",
     name: "Scale across events",
     role: "Festivals and seasons",
@@ -198,7 +198,7 @@ export const quotes = [
   {
     stars: 5,
     text:
-      "A venue can invite operators, companies and spectators to share field notes after use, turning real performances into better tools without making download feel monitored.",
+      "Use field notes after rehearsals and performances to improve the tool from real theatre work, not from abstract onboarding questionnaires.",
     av: "03",
     name: "Learn from use",
     role: "Field notes and research",
