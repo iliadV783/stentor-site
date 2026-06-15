@@ -9,7 +9,30 @@ interface Props {
 }
 
 const { hero = defaultHero } = Astro.props;
-const isIt = Astro.url.pathname.startsWith("/it");
+const pathLang = Astro.url.pathname.split("/").filter(Boolean)[0];
+const currentLang = pathLang || "en";
+const isIt = currentLang === "it";
+
+type DemoLine = {
+  code: string;
+  text: string;
+};
+
+const demoLines: Record<string, DemoLine> = {
+  it: { code: "IT", text: "Vogliono vivere in noi!" },
+  en: { code: "EN", text: "They want to live in us!" },
+  fr: { code: "FR", text: "Ils veulent vivre en nous !" },
+  es: { code: "ES", text: "¡Quieren vivir en nosotros!" },
+  de: { code: "DE", text: "Sie wollen in uns leben!" },
+  pt: { code: "PT", text: "Querem viver em nós!" },
+  zh: { code: "ZH", text: "他们想活在我们之中！" },
+  ja: { code: "JA", text: "彼らは私たちの中で生きたがっている！" },
+  ar: { code: "AR", text: "يريدون أن يعيشوا فينا!" },
+};
+
+const currentDemoLine = demoLines[currentLang] ?? demoLines.en;
+const comparisonDemoLine = currentLang === "it" ? demoLines.en : demoLines.it;
+const demoLanguagePair = `${currentDemoLine.code} · ${comparisonDemoLine.code}`;
 
 const labels = isIt
   ? {
@@ -102,7 +125,7 @@ const labels = isIt
               <div class="rounded-2xl border border-white/10 bg-black/45 p-5 md:p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                 <div class="aspect-[16/8.5] rounded-xl border border-white/10 bg-black flex items-center justify-center p-6 text-center relative overflow-hidden">
                   <div class="absolute inset-x-10 top-0 h-px bg-red-500/70 shadow-[0_0_28px_rgba(239,68,68,0.9)]" aria-hidden="true"></div>
-                  <p class="text-3xl md:text-4xl lg:text-[44px] leading-[1.08] tracking-[-0.055em] font-semibold text-white">“{hero.mock.currentCue.text}”</p>
+                  <p class="text-3xl md:text-4xl lg:text-[44px] leading-[1.08] tracking-[-0.055em] font-semibold text-white">“{currentDemoLine.text}”</p>
                 </div>
                 <div class="mt-4 flex items-center justify-between gap-4 text-sm text-text-3">
                   <span>{labels.screenCaption}</span>
@@ -140,8 +163,8 @@ const labels = isIt
                 <div class="mx-auto max-w-[190px] rounded-[26px] border border-white/15 bg-black p-2 shadow-[0_20px_50px_-28px_rgba(0,0,0,0.9)]">
                   <div class="rounded-[20px] bg-sunken border border-white/8 min-h-[250px] p-4 flex flex-col">
                     <div class="h-1 w-10 rounded-full bg-white/20 mx-auto mb-6"></div>
-                    <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-green-400 mb-3">IT · EN</p>
-                    <p class="text-xl leading-[1.18] tracking-[-0.035em] text-white">Very curious! A bizarre coincidence!</p>
+                    <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-green-400 mb-3">{demoLanguagePair}</p>
+                    <p class="text-xl leading-[1.18] tracking-[-0.035em] text-white">{comparisonDemoLine.text}</p>
                     <p class="mt-auto text-[12px] text-text-3 leading-[1.4]">{labels.phoneSync}</p>
                   </div>
                 </div>
