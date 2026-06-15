@@ -7,7 +7,7 @@ export const hero = {
   title:
     'Soprattitoli, traduzione <em class="not-italic text-text-3 font-medium">e accessibilità.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
-    "Sténtor è un ecosistema per il testo nello spettacolo dal vivo: un’app Lite gratuita e multipiattaforma per iniziare, e un’app Pro professionale pensata per macOS, Windows e Linux.",
+    "Sténtor è un ambiente testuale per lo spettacolo dal vivo: permette di preparare copioni, mandare in scena soprattitoli, gestire traduzioni, audio-descrizione e accesso del pubblico durante prove e spettacoli.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
     { href: "/it/richiedi-prova", label: "Accedi alla beta Pro", variant: "ghost" as const, icon: "play" as const },
