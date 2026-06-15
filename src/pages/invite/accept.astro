@@ -2,24 +2,23 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="Accetta invito - Sténtor" description="Attiva un accesso di sperimentazione Sténtor da un invito." active={null} showNav={false} showFooter={false} noindex={true}>
+<Layout title="Accetta invito - Sténtor" description="Accetta un invito alla sperimentazione di Sténtor." active={null} showNav={false} showFooter={false} noindex={true}>
   <section class="min-h-screen bg-black text-white relative overflow-hidden">
     <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.20)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] pointer-events-none" aria-hidden="true"></div>
     <div class="absolute right-[-18%] top-[-18%] w-[560px] h-[560px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
     <main class="relative min-h-screen flex items-center justify-center px-5 py-16">
       <div class="w-full max-w-[760px] rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-8 sm:p-10 shadow-2xl shadow-red-950/10">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-4">Sténtor invite</p>
-        <h1 class="text-4xl sm:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-5">Attiva il tuo accesso.</h1>
-        <div class="space-y-4 text-white/55 leading-[1.65] max-w-[650px]">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-4">Invito Sténtor</p>
+        <h1 data-invite-title class="text-4xl sm:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-5">Attiva il tuo accesso.</h1>
+        <div data-invite-message class="space-y-4 text-white/55 leading-[1.65] max-w-[650px]">
           <p>Hai ricevuto un invito a provare Sténtor. Stiamo conducendo una fase di sperimentazione con teatri, festival e professionisti dello spettacolo dal vivo per capire come il software possa adattarsi meglio al lavoro reale di produzione, regia, accessibilità e soprattitolazione.</p>
           <p>L’attivazione crea un accesso di sperimentazione valido per 6 mesi. In questo periodo ti chiediamo semplicemente di usare Sténtor, esplorarlo nel tuo contesto e, se vorrai, condividere impressioni, necessità o difficoltà incontrate.</p>
           <p>La scadenza serve solo a dare un perimetro alla fase di prova. L’uso di Sténtor è gratuito: anche dopo la sperimentazione potrai continuare a usare il software liberamente.</p>
         </div>
-        <div class="mt-8 rounded-xl border border-white/10 bg-black/25 p-5">
-          <p class="text-white/50 text-sm leading-[1.6]">Attiva l’accesso di sperimentazione. Il tuo uso del software ci aiuterà a rendere Sténtor più utile, chiaro e vicino alle esigenze concrete di chi lavora in teatro.</p>
-        </div>
+        <div data-invite-result class="mt-6"></div>
         <div class="flex flex-col sm:flex-row items-center gap-3 mt-8">
+          <button data-invite-accept type="button" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors disabled:opacity-50 disabled:cursor-wait">Accetta invito</button>
           <a href="/admin" class="h-12 px-5 rounded-xl border border-white/10 text-white/65 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors">Vai ad admin</a>
           <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/40 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors">Torna al sito</a>
         </div>
@@ -27,3 +26,106 @@ import Layout from "../../layouts/Layout.astro";
     </main>
   </section>
 </Layout>
+
+<script>
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const sessionStorageKey = "stentor_admin_access_token";
+  const inviteToken = new URLSearchParams(window.location.search).get("token") || "";
+
+  const title = document.querySelector("[data-invite-title]");
+  const message = document.querySelector("[data-invite-message]");
+  const button = document.querySelector("[data-invite-accept]");
+  const result = document.querySelector("[data-invite-result]");
+
+  function showResult(html) {
+    if (result) result.innerHTML = html;
+  }
+
+  async function readError(response, fallback) {
+    try {
+      const body = await response.json();
+      return body.msg || body.message || body.error_description || body.error || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  async function acceptInvite(sessionToken) {
+    const response = await fetch(`${supabaseUrl}/functions/v1/accept-invite`, {
+      method: "POST",
+      headers: {
+        apikey: supabaseAnonKey,
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: inviteToken }),
+    });
+
+    if (!response.ok) {
+      throw new Error(await readError(response, "Invito non accettato."));
+    }
+
+    const body = await response.json();
+
+    if (!body.ok) {
+      throw new Error(body.error || "Invito non accettato.");
+    }
+
+    return body;
+  }
+
+  if (!inviteToken) {
+    if (title) title.textContent = "Invito mancante.";
+    if (message) {
+      message.innerHTML = `<p>Il link non contiene un token valido. Chiedi un nuovo invito a chi ti ha invitato a provare Sténtor.</p>`;
+    }
+    if (button) button.hidden = true;
+  }
+
+  button?.addEventListener("click", async () => {
+    const sessionToken = localStorage.getItem(sessionStorageKey) || "";
+
+    if (!sessionToken) {
+      showResult(`
+        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
+          Sessione non trovata. Accedi prima da /admin, poi torna a questo link.
+        </p>
+      `);
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Attivazione...";
+    showResult("");
+
+    try {
+      const body = await acceptInvite(sessionToken);
+      const expiresAt = body.license?.expires_at
+        ? new Date(body.license.expires_at).toLocaleDateString("it-IT")
+        : "tra 6 mesi";
+
+      if (title) title.textContent = "Invito accettato.";
+      if (message) {
+        message.innerHTML = `<p>L’accesso di sperimentazione a Sténtor è attivo fino al ${expiresAt}. Potrai continuare a usare il software liberamente anche dopo la sperimentazione.</p>`;
+      }
+      if (button) button.hidden = true;
+
+      showResult(`
+        <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
+          <strong class="block mb-2">Accesso attivato.</strong>
+          <span class="text-white/60">Grazie: il tuo uso di Sténtor ci aiuterà a migliorare questa fase di sperimentazione.</span>
+        </div>
+      `);
+    } catch (error) {
+      showResult(`
+        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
+          ${error instanceof Error ? error.message : "Attivazione non riuscita."}
+        </p>
+      `);
+    } finally {
+      button.disabled = false;
+      button.textContent = "Accetta invito";
+    }
+  });
+</script>
