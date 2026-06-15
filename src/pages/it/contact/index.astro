@@ -1,6 +1,61 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import Eyebrow from "../../../components/Eyebrow.astro";
 import Btn from "../../../components/Btn.astro";
+
+import IconInfo from "../../../assets/icons/info.svg";
+import IconMail from "../../../assets/icons/mail.svg";
+import IconDiscord from "../../../assets/icons/discord.svg";
+import IconShieldCheck from "../../../assets/icons/shield-check.svg";
+import IconArrowRight from "../../../assets/icons/arrow-right.svg";
+import IconLightning from "../../../assets/icons/lightning.svg";
+import IconCheck from "../../../assets/icons/check.svg";
+
+const channels = [
+  {
+    icon: IconInfo,
+    label: "Questionari",
+    description: "Usa questo canale per condividere un feedback strutturato dopo una prova, un test pubblico, un laboratorio o una rappresentazione.",
+    href: "mailto:info@stentor.live?subject=Questionario feedback Sténtor",
+    cta: "Richiedi un questionario",
+  },
+  {
+    icon: IconMail,
+    label: "Feedback di ricerca",
+    description: "Racconta cosa è successo in sala: cosa ha funzionato, cosa era poco chiaro, cosa ha usato il pubblico e cosa migliorare.",
+    href: "mailto:leonardo.mancini@unito.it?subject=Feedback ricerca Sténtor",
+    cta: "leonardo.mancini@unito.it",
+  },
+  {
+    icon: IconDiscord,
+    label: "Esperienza d’uso",
+    description: "Condividi osservazioni da operatori, soprattitolatori, traduttrici, audio-descrittori, tecnici, personale di sala o spettatori.",
+    href: "mailto:info@stentor.live?subject=Esperienza d’uso Sténtor",
+    cta: "info@stentor.live",
+  },
+  {
+    icon: IconShieldCheck,
+    label: "Note tecniche",
+    description: "Segnala problemi di installazione, comportamento di Live Sync, import/export, compatibilità dei dispositivi e test su rete locale.",
+    href: "mailto:info@stentor.live?subject=Note tecniche Sténtor",
+    cta: "Invia note tecniche",
+  },
+];
+
+const departments = [
+  { value: "questionario", label: "Questionario / feedback strutturato" },
+  { value: "spettacolo", label: "Prova o test in spettacolo dal vivo" },
+  { value: "pubblico", label: "Feedback del pubblico" },
+  { value: "operatore", label: "Note operative / tecniche" },
+  { value: "ricerca", label: "Collaborazione di ricerca" },
+  { value: "altro", label: "Altro" },
+];
+
+const stats = [
+  { value: "Usa", label: "prova in contesto" },
+  { value: "Condividi", label: "manda feedback" },
+  { value: "Cresci", label: "migliora lo strumento" },
+];
 ---
 
 <Layout
@@ -8,35 +63,198 @@ import Btn from "../../../components/Btn.astro";
   description="Condividi questionari, note di ricerca e feedback d’uso su Sténtor in prova, in sala o nello spettacolo dal vivo."
   active={null}
 >
-  <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
-    <div class="max-w-[760px] mb-12">
-      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Contatto</p>
-      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Raccontaci come usi Sténtor.</h1>
-      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">
-        Sténtor cresce grazie agli usi reali. Se lo provi in sala, in prova, con il pubblico o in un contesto di ricerca, note pratiche, questionari e risposte degli spettatori sono preziosi.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-4 mb-10">
-      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
-        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Feedback e questionari</h2>
-        <p class="text-sm text-text-3 leading-[1.6] mb-5">Condividi un ritorno strutturato dopo una prova, un test pubblico, un laboratorio o una rappresentazione.</p>
-        <Btn href="mailto:info@stentor.live?subject=Stentor feedback questionnaire" variant="primary">Richiedi un questionario</Btn>
-      </article>
-      <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
-        <h2 class="text-xl font-semibold tracking-[-0.02em] mb-2">Note di ricerca</h2>
-        <p class="text-sm text-text-3 leading-[1.6] mb-5">Racconta cosa è successo in sala: cosa ha funzionato, cosa era poco chiaro, cosa ha usato il pubblico e cosa migliorare.</p>
-        <Btn href="mailto:leonardo.mancini@unito.it?subject=Stentor research feedback" variant="ghost">leonardo.mancini@unito.it</Btn>
-      </article>
-    </div>
-
-    <div class="rounded-2xl border border-hairline bg-sunken p-5 md:p-6">
-      <h2 class="text-lg font-semibold tracking-[-0.02em] mb-2">Leonardo Mancini</h2>
-      <p class="text-sm text-text-3 leading-[1.6] mb-4">Dipartimento di Studi Umanistici · Università di Torino · Via Sant'Ottavio 20 · 10124 Torino · Italia</p>
-      <div class="flex flex-wrap gap-2">
-        <Btn href="mailto:leonardo.mancini@unito.it" variant="ghost">leonardo.mancini@unito.it</Btn>
-        <Btn href="mailto:info@stentor.live" variant="ghost">info@stentor.live</Btn>
+  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[680px]">
+        <Eyebrow><span class="font-mono">Contatto</span></Eyebrow>
+        <h1 class="text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-[-0.04em] font-semibold mt-5 mb-4">Condividi la tua esperienza con Sténtor.</h1>
+        <p class="text-lg leading-[1.55] text-text-2 max-w-[560px] m-0">Sténtor cresce grazie agli usi reali. Se provi il software in prova, in teatro, con il pubblico o in un contesto di ricerca, feedback, questionari e note pratiche sono estremamente preziosi.</p>
       </div>
     </div>
   </section>
+
+  <section class="max-w-[1280px] mx-auto px-4 md:px-8 py-14 border-b border-hairline">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {channels.map((ch) => {
+        const Icon = ch.icon;
+        return (
+          <a
+            href={ch.href}
+            class="group flex flex-col gap-4 p-5 border border-hairline rounded-xl bg-surface hover:border-hairline-strong hover:bg-elevated transition-colors"
+          >
+            <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center flex-none group-hover:border-red-500/30 group-hover:bg-red-500/[0.06] transition-colors">
+              <Icon class="w-4 h-4 text-text-2 group-hover:text-red-500 transition-colors" />
+            </span>
+            <div class="flex-1">
+              <p class="font-medium text-[15px] mb-1.5">{ch.label}</p>
+              <p class="text-text-3 text-[13.5px] leading-[1.5]">{ch.description}</p>
+            </div>
+            <span class="inline-flex items-center gap-1.5 text-[13px] text-red-500 font-medium">
+              {ch.cta}
+              <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2] transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-16 grid gap-12 lg:[grid-template-columns:minmax(0,1fr)_400px] lg:gap-14 items-start">
+    <div
+      x-data="{ sent: false }"
+      class="border border-hairline rounded-xl bg-surface overflow-hidden"
+    >
+      <div class="px-6 py-5 border-b border-hairline">
+        <h2 class="text-[17px] font-semibold">Invia feedback</h2>
+        <p class="text-[13.5px] text-text-3 mt-1">Usa questo modulo per commenti, note di test o approfondimenti dopo un questionario.</p>
+      </div>
+
+      <div x-show="sent" x-cloak class="px-6 py-12 flex flex-col items-center text-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-green-400/10 border border-green-400/25 flex items-center justify-center">
+          <IconCheck class="w-5 h-5 text-green-400" />
+        </span>
+        <div>
+          <p class="font-semibold text-[17px] mb-1.5">Feedback ricevuto</p>
+          <p class="text-text-3 text-[14px] leading-[1.55] max-w-[340px]">Grazie. La tua esperienza ci aiuta a migliorare Sténtor e a capire come il testo nello spettacolo dal vivo viene usato in contesti reali.</p>
+        </div>
+        <button
+          type="button"
+          x-on:click="sent = false"
+          class="text-[13px] text-red-500 hover:underline mt-2"
+        >
+          Invia un altro messaggio
+        </button>
+      </div>
+
+      <form
+        x-show="!sent"
+        x-on:submit.prevent="sent = true"
+        class="px-6 py-6 grid gap-5"
+        novalidate
+      >
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="c-label" for="c-name">Nome</label>
+            <input
+              id="c-name"
+              type="text"
+              placeholder="Il tuo nome"
+              class="c-input"
+              autocomplete="name"
+            />
+          </div>
+          <div>
+            <label class="c-label" for="c-email">Email</label>
+            <input
+              id="c-email"
+              type="email"
+              placeholder="nome@example.com"
+              class="c-input"
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="c-label" for="c-dept">Argomento</label>
+          <select id="c-dept" class="c-input c-select">
+            {departments.map((d) => (
+              <option value={d.value}>{d.label}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label class="c-label" for="c-message">Messaggio</label>
+          <textarea
+            id="c-message"
+            rows="5"
+            placeholder="Raccontaci come hai usato Sténtor, chi era coinvolto, cosa ha funzionato, cosa non ha funzionato e quali osservazioni sono arrivate da operatori o pubblico."
+            class="c-input resize-none"
+          ></textarea>
+        </div>
+
+        <div class="flex items-center justify-between gap-4 pt-1">
+          <p class="text-[12px] text-text-4 leading-[1.4]">
+            Evita di condividere dati personali sensibili, salvo quando sono necessari per il messaggio.
+          </p>
+          <button type="submit" class="c-submit">
+            Invia feedback
+            <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <aside class="grid gap-6">
+      <div class="relative overflow-hidden border border-hairline rounded-xl p-6 bg-surface">
+        <div class="absolute right-0 top-0 w-48 h-48 pointer-events-none" style="background: radial-gradient(50% 50% at 100% 0%, rgba(239,68,68,0.14), transparent);" aria-hidden="true"></div>
+        <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center mb-4">
+          <IconLightning class="w-4 h-4 text-text-2" />
+        </span>
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-2">Scambio di ricerca</p>
+        <h2 class="text-[18px] font-semibold tracking-[-0.02em] mb-2">Usa il software, condividi l’esperienza.</h2>
+        <p class="text-[13.5px] text-text-3 leading-[1.55] mb-5">Invece di un processo commerciale, Sténtor chiede a chi lo usa di contribuire con osservazioni, questionari e feedback da contesti reali. Ogni risposta aiuta a migliorare lo strumento e la ricerca che lo accompagna.</p>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          {stats.map((s) => (
+            <div class="border border-hairline rounded-lg px-3 py-2.5 bg-elevated text-center">
+              <p class="font-semibold text-[15px] tracking-[-0.02em]">{s.value}</p>
+              <p class="text-text-4 text-[11px] mt-0.5">{s.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <Btn href="mailto:info@stentor.live?subject=Feedback Sténtor" variant="primary" size="md" class="w-full justify-center">
+          Invia feedback
+          <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2]" />
+        </Btn>
+      </div>
+
+      <div class="border border-hairline rounded-xl p-5 bg-surface text-[13.5px]">
+        <p class="font-medium mb-3">Leonardo Mancini</p>
+        <address class="not-italic text-text-3 leading-[1.65] grid gap-1">
+          <span>Dipartimento di Studi Umanistici</span>
+          <span>Università di Torino</span>
+          <span>Via Sant'Ottavio 20</span>
+          <span>10124 – Torino</span>
+          <span>Italia</span>
+        </address>
+        <div class="mt-4 pt-4 border-t border-dashed border-hairline grid gap-2 text-text-3">
+          <a href="mailto:leonardo.mancini@unito.it" class="hover:text-text transition-colors">leonardo.mancini@unito.it</a>
+          <a href="mailto:info@stentor.live" class="hover:text-text transition-colors">info@stentor.live</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 </Layout>
+
+<style>
+  @reference "../../../styles/global.css";
+
+  .c-label {
+    @apply block text-[13px] font-medium text-text-2 mb-2;
+  }
+  .c-input {
+    @apply w-full h-11 bg-elevated border border-hairline rounded-lg text-text text-sm outline-none transition-all;
+    padding: 0 14px;
+  }
+  .c-input:focus {
+    border-color: rgba(239, 68, 68, 0.5);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+  .c-input::placeholder { color: rgb(var(--text-4)); }
+  textarea.c-input { height: auto; padding-top: 12px; padding-bottom: 12px; }
+  .c-select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, rgb(var(--text-4)) 50%), linear-gradient(135deg, rgb(var(--text-4)) 50%, transparent 50%);
+    background-position: calc(100% - 18px) 19px, calc(100% - 12px) 19px;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+  }
+  .c-submit {
+    @apply inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg bg-red-500 text-black font-medium text-sm transition-transform hover:-translate-y-px whitespace-nowrap;
+  }
+  [x-cloak] { display: none !important; }
+</style>
