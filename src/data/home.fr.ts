@@ -56,10 +56,10 @@ export const logoCloud = {
 export const metrics = {
   title: "Concu pour<br/>le spectacle vivant.",
   description:
-    "Stentor organise le texte de scene de la preparation a la regie live, en separant une entree gratuite multiplateforme et un workflow professionnel destine aux principales plateformes desktop.",
+    "Stentor organise le texte de scene de la preparation a la regie live, avec des outils pour ecrans, telephones du public, accessibilite et travail multilingue.",
   items: [
-    { value: "Lite", suffix: "", label: "App gratuite Tauri pour macOS, Windows et Linux" },
-    { value: "Pro", suffix: "", label: "App professionnelle live pour macOS, Windows et Linux" },
+    { value: "Lite", suffix: "", label: "App gratuite pour macOS, Windows et Linux" },
+    { value: "60", suffix: "+", label: "langues disponibles dans l interface" },
     { value: "Live Sync", suffix: "", label: "Pour ecrans et telephones du public" },
   ],
 };
@@ -72,7 +72,7 @@ export const bento = {
     types: { title: "Stentor Lite : commencer partout", desc: "App gratuite Tauri pour macOS, Windows et Linux, pensee pour rendre preparation du texte, surtitres et traductions accessibles sans barriere de licence." },
     p95: { title: "Sténtor : cabine de regie", desc: "App professionnelle pour repetitions et spectacles, avec cueing, timeline, ecrans, dispositifs du public et audiodescription sur plateformes desktop." },
     edge: { title: "Telephones du public synchronises", desc: "Les spectateurs peuvent se connecter avec leur smartphone et suivre surtitres, traductions ou audiodescriptions en synchronisation avec la regie." },
-    auth: { title: "Un projet, une connaissance partagee", desc: "Gardez ensemble texte original, traductions, surtitres, notes d audiodescription, metadonnees et retours de recherche." },
+    auth: { title: "Interface en plus de 60 langues", desc: "L interface de Stentor est deja localisee dans plus de 60 langues, pour faciliter tests, formation et usage dans des contextes internationaux." },
     cron: { title: "Importer, exporter, faire circuler", desc: "Importez Word, TXT, SRT, WebVTT, CSV ou JSON, puis partagez les scripts pour repetition, archive, tournee et etude." },
     migrations: { title: "Vue regie claire", desc: "Avancez dans les cues pendant le spectacle avec une interface concue pour le timing, la concentration et la confiance." },
     deploys: { title: "Beta privee pour Pro", desc: "Pendant le testing, l acces Pro reste controle afin de fournir support, licences et instructions d activation en securite." },
