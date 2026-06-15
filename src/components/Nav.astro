@@ -16,26 +16,26 @@ const isIt = Astro.url.pathname.startsWith("/it");
 const navItems = isFr
   ? [
       { href: "/fr/features", label: "Fonctionnalités", id: "features" as const },
-      { href: "/fr/docs", label: "Workflow", id: "docs" as const },
+      { href: "/fr/docs", label: "Parcours", id: "docs" as const },
       { href: "/fr/for-theatres", label: "Pour les théâtres", id: "customers" as const },
     ]
   : isIt
     ? [
         { href: "/it/features", label: "Funzioni", id: "features" as const },
-        { href: "/it/docs", label: "Workflow", id: "docs" as const },
+        { href: "/it/docs", label: "Documentazione", id: "docs" as const },
         { href: "/it/for-theatres", label: "Per i teatri", id: "customers" as const },
       ]
     : nav;
 const cta = isFr
   ? {
       primary: { href: "/fr/account", label: "Compte" },
-      secondary: { href: "/fr/download", label: "Download" },
+      secondary: { href: "/fr/download", label: "Télécharger" },
       statusPrefix: "Conçu pour le spectacle vivant",
     }
   : isIt
     ? {
-        primary: { href: "/it/account", label: "Account" },
-        secondary: { href: "/it/download", label: "Download" },
+        primary: { href: "/it/account", label: "Area personale" },
+        secondary: { href: "/it/download", label: "Scarica" },
         statusPrefix: "Pensato per lo spettacolo dal vivo",
       }
     : { ...navCta, statusPrefix: site.statusPrefix };
@@ -56,7 +56,7 @@ const cta = isFr
       <Logo />
     </div>
 
-    <nav aria-label="Primary" class="hidden md:flex gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <nav aria-label="Navigazione principale" class="hidden md:flex gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       {navItems.map((l) => (
         <a
           href={l.href}
@@ -93,7 +93,7 @@ const cta = isFr
         x-on:click="open = !open"
         x-bind:aria-expanded="open.toString()"
         aria-controls="mobile-nav"
-        aria-label="Toggle menu"
+        aria-label="Apri o chiudi il menu"
         class="md:hidden ml-1 inline-flex items-center justify-center w-10 h-10 rounded-md text-text-2 hover:text-text hover:bg-white/5 transition-colors"
       >
         <IconMenu class="w-5 h-5 stroke-2" x-show="!open" />
@@ -117,7 +117,7 @@ const cta = isFr
   x-transition:leave-end="opacity-0 -translate-y-2 scale-[0.97]"
   class="md:hidden fixed left-3 right-3 top-[70px] z-50 origin-top rounded-2xl border border-hairline-strong bg-surface/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,255,255,0.04)]"
   role="dialog"
-  aria-label="Navigation menu"
+  aria-label="Menu di navigazione"
 >
     <nav class="px-3 pt-3 pb-3 flex flex-col gap-1" aria-label="Mobile">
       {navItems.map((l) => (
