@@ -23,7 +23,7 @@ import Layout from "../../layouts/Layout.astro";
         </div>
 
         <div data-invite-result class="mt-6"></div>
-        <div class="flex flex-col sm:flex-row items-center gap-3 mt-8">
+        <div data-invite-actions class="flex flex-col sm:flex-row items-center gap-3 mt-8">
           <button data-invite-accept type="button" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Accetta invito</button>
           <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/40 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a>
         </div>
@@ -42,6 +42,7 @@ import Layout from "../../layouts/Layout.astro";
   const title = document.querySelector("[data-invite-title]");
   const message = document.querySelector("[data-invite-message]");
   const button = document.querySelector("[data-invite-accept]");
+  const actions = document.querySelector("[data-invite-actions]");
   const confirmPanel = document.querySelector("[data-invite-confirm-panel]");
   const confirmSubmit = document.querySelector("[data-invite-confirm-submit]");
   const result = document.querySelector("[data-invite-result]");
@@ -52,11 +53,13 @@ import Layout from "../../layouts/Layout.astro";
 
   function showSignedOutState() {
     if (button) button.hidden = true;
+    if (actions instanceof HTMLElement) actions.hidden = false;
     if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = false;
   }
 
   function showSignedInState() {
     if (button) button.hidden = false;
+    if (actions instanceof HTMLElement) actions.hidden = false;
     if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
   }
 
@@ -122,7 +125,7 @@ import Layout from "../../layouts/Layout.astro";
     if (message) {
       message.innerHTML = `<p>Il link non contiene un token valido. Chiedi un nuovo invito a chi ti ha invitato a provare Sténtor.</p>`;
     }
-    if (button) button.hidden = true;
+    if (actions instanceof HTMLElement) actions.hidden = true;
     if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
   } else if (localStorage.getItem(sessionStorageKey)) {
     showSignedInState();
@@ -180,17 +183,19 @@ import Layout from "../../layouts/Layout.astro";
 
       if (title) title.textContent = "Invito accettato.";
       if (message) {
-        message.innerHTML = `<p>L’accesso di sperimentazione a Sténtor è attivo fino al ${expiresAt}. Potrai continuare a usare il software liberamente anche dopo la sperimentazione.</p>`;
+        message.innerHTML = `<p>L’accesso di sperimentazione è attivo fino al ${expiresAt}. Potrai continuare a usare il software liberamente anche dopo la sperimentazione.</p>`;
       }
-      if (button) button.hidden = true;
+      if (actions instanceof HTMLElement) actions.hidden = true;
       if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
 
       showResult(`
-        <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
-          <strong class="block mb-2">Accesso attivato.</strong>
-          <span class="text-white/60">Grazie: il tuo uso di Sténtor ci aiuterà a migliorare questa fase di sperimentazione.</span>
-          <div class="mt-4 flex flex-col sm:flex-row gap-3">
-            <a href="${downloadUrl}" class="h-12 px-5 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer">Scarica Sténtor</a>
+        <div class="grid gap-5 max-w-[620px]">
+          <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] px-4 py-3">
+            <strong class="block mb-1">Accesso attivato.</strong>
+            <span class="text-white/60">Grazie: il tuo uso ci aiuterà a migliorare questa fase di sperimentazione.</span>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="${downloadUrl}" class="h-12 px-6 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer">Scarica Sténtor</a>
             <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/65 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a>
           </div>
         </div>
