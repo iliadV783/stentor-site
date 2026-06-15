@@ -16,7 +16,7 @@ const { testimonials = defaultTestimonials } = Astro.props;
     <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {testimonials.quotes.map((q) => (
         <div class="flex flex-col gap-6 bg-surface border border-hairline rounded-xl p-7">
-          <p class="text-base leading-[1.55] text-zinc-200 m-0 before:content-['“'] before:text-red-500 before:mr-0.5 after:content-['”'] after:text-red-500 after:ml-0.5">{q.text}</p>
+          <p class="text-base leading-[1.55] text-zinc-200 m-0">{q.text}</p>
           <div class="flex items-center gap-3 mt-auto">
             <div class="w-10 h-10 rounded-full border border-hairline-strong grid place-items-center font-mono text-[13px] text-text-2 bg-gradient-to-br from-raised to-sunken">{q.av}</div>
             <div>
