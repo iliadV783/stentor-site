@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Accetta invito - Stentor" description="Attiva una licenza demo Stentor da un invito." active={null} showNav={false} showFooter={false} noindex={true}>
+  <section class="min-h-screen bg-black text-white relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.20)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[560px] h-[560px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <main class="relative min-h-screen flex items-center justify-center px-5 py-16">
+      <div class="w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-8 sm:p-10 shadow-2xl shadow-red-950/10">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-4">Stentor invite</p>
+        <h1 class="text-4xl sm:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-5">Attiva la tua demo.</h1>
+        <p class="text-white/55 leading-[1.65] max-w-[540px]">Hai ricevuto un invito a provare Stentor. L'attivazione crea una licenza demo valida 1 mese.</p>
+        <div class="mt-8 rounded-xl border border-white/10 bg-black/25 p-5">
+          <p class="text-white/50 text-sm leading-[1.6]">Pagina di accettazione pronta. Nel prossimo commit collegheremo questa schermata alla funzione accept-invite.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center gap-3 mt-8">
+          <a href="/admin" class="h-12 px-5 rounded-xl border border-white/10 text-white/65 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors">Vai ad admin</a>
+          <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/40 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors">Torna al sito</a>
+        </div>
+      </div>
+    </main>
+  </section>
+</Layout>
