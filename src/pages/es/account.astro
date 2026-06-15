@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Btn from "../../components/Btn.astro";
+---
+<Layout title="Cuenta Sténtor - Sténtor" description="Cuenta Sténtor para licencias, descargas y activaciones." active={null} noindex={true}>
+  <section class="max-w-[1180px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[760px] mb-10">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Cuenta</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Cuenta Sténtor.</h1>
+      <p class="text-xl text-text-2 leading-[1.55] max-w-[720px]">Este espacio reunirá licencias, descargas, vencimientos y puestos activados para teatros, compañías, festivales, escuelas e instituciones.</p>
+    </div>
+    <div class="grid lg:grid-cols-[1fr_0.72fr] gap-5 items-start">
+      <article class="rounded-2xl border border-hairline bg-surface p-6 md:p-7">
+        <div class="flex items-start justify-between gap-4 border-b border-hairline pb-5 mb-5"><div><p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-4 mb-2">Licencia</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Ninguna licencia asociada</h2></div><span class="rounded-full border border-hairline px-3 py-1 text-xs text-text-3">en preparación</span></div>
+        <p class="text-text-3 leading-[1.6] mb-6">Después de la activación, verás aquí el plan, el vencimiento, el número de puestos y el enlace de descarga de Sténtor.</p>
+        <Btn href="/es/solicitar-prueba" variant="primary" size="md">Solicitar Pro</Btn>
+      </article>
+      <aside class="rounded-2xl border border-hairline bg-sunken p-6 md:p-7"><h2 class="text-xl font-semibold tracking-[-0.03em] mb-3">¿Ya tienes una licencia?</h2><p class="text-text-3 leading-[1.6] mb-6">Inicia sesión con Google, Microsoft o un enlace por e-mail. La cuenta se asociará a la licencia de tu organización.</p><Btn href="/es/acceso" variant="ghost" size="md">Iniciar sesión</Btn></aside>
+    </div>
+  </section>
+</Layout>
