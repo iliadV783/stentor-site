@@ -1,32 +1,36 @@
 ---
 const currentPath = Astro.url.pathname;
-const currentLang = currentPath.startsWith("/it") ? "it" : currentPath.startsWith("/fr") ? "fr" : "en";
+const currentLang = currentPath.startsWith("/it") ? "it" : currentPath.startsWith("/fr") ? "fr" : currentPath.startsWith("/es") ? "es" : "en";
 
 const stripLang = (path: string) => {
   if (path === "/fr" || path === "/fr/") return "/";
   if (path.startsWith("/fr/")) return path.slice(3) || "/";
   if (path === "/it" || path === "/it/") return "/";
   if (path.startsWith("/it/")) return path.slice(3) || "/";
+  if (path === "/es" || path === "/es/") return "/";
+  if (path.startsWith("/es/")) return path.slice(3) || "/";
   return path || "/";
 };
 
 const basePath = stripLang(currentPath).replace(/\/$/, "") || "/";
-const pathMap: Record<string, { en: string; fr: string; it: string }> = {
-  "/": { en: "/", fr: "/fr/", it: "/it/" },
-  "/features": { en: "/features", fr: "/fr/features/", it: "/it/features/" },
-  "/docs": { en: "/docs", fr: "/fr/docs/", it: "/it/docs/" },
-  "/for-theatres": { en: "/for-theatres", fr: "/fr/for-theatres/", it: "/it/for-theatres/" },
-  "/customers": { en: "/customers", fr: "/fr/customers", it: "/it/customers/" },
-  "/download": { en: "/download", fr: "/fr/download/", it: "/it/download/" },
-  "/request-pro": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/" },
-  "/richiedi-prova": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/" },
-  "/demander-essai": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/" },
-  "/accesso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/" },
-  "/acces": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/" },
-  "/account": { en: "/account", fr: "/fr/account/", it: "/it/account/" },
-  "/contact": { en: "/contact", fr: "/fr/contact/", it: "/it/contact/" },
-  "/pricing": { en: "/pricing", fr: "/fr/pricing/", it: "/it/pricing/" },
-  "/about": { en: "/about", fr: "/fr/about/", it: "/it/about/" },
+const pathMap: Record<string, { en: string; fr: string; it: string; es: string }> = {
+  "/": { en: "/", fr: "/fr/", it: "/it/", es: "/es/" },
+  "/features": { en: "/features", fr: "/fr/features/", it: "/it/features/", es: "/es/features/" },
+  "/docs": { en: "/docs", fr: "/fr/docs/", it: "/it/docs/", es: "/es/docs/" },
+  "/for-theatres": { en: "/for-theatres", fr: "/fr/for-theatres/", it: "/it/for-theatres/", es: "/es/for-theatres/" },
+  "/customers": { en: "/customers", fr: "/fr/customers", it: "/it/customers/", es: "/es/for-theatres/" },
+  "/download": { en: "/download", fr: "/fr/download/", it: "/it/download/", es: "/es/download/" },
+  "/request-pro": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
+  "/richiedi-prova": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
+  "/demander-essai": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
+  "/solicitar-prueba": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
+  "/accesso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/" },
+  "/acces": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/" },
+  "/acceso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/" },
+  "/account": { en: "/account", fr: "/fr/account/", it: "/it/account/", es: "/es/account/" },
+  "/contact": { en: "/contact", fr: "/fr/contact/", it: "/it/contact/", es: "/es/contact/" },
+  "/pricing": { en: "/pricing", fr: "/fr/pricing/", it: "/it/pricing/", es: "/es/pricing/" },
+  "/about": { en: "/about", fr: "/fr/about/", it: "/it/about/", es: "/es/about/" },
 };
 
 const currentMap = pathMap[basePath] ?? pathMap["/"];
@@ -34,6 +38,7 @@ const languages = [
   { code: "en", label: "English", href: currentMap.en, available: true },
   { code: "it", label: "Italiano", href: currentMap.it, available: true },
   { code: "fr", label: "Français", href: currentMap.fr, available: true },
+  { code: "es", label: "Español", href: currentMap.es, available: true },
 ];
 ---
 
