@@ -32,7 +32,7 @@ export const hero = {
     ],
     currentCue: {
       label: "Current cue",
-      text: "La cantatrice calva si pettina sempre allo stesso modo.",
+      text: "Veramente curioso! Bizzarra coincidenza!",
       meta: "Italian surtitles · screen 1",
     },
     nextCue: {
