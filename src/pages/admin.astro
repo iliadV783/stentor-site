@@ -2,28 +2,28 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Admin - Stentor" description="Private Stentor beta administration console." active={null} showNav={false} showFooter={false} noindex={true}>
+<Layout title="Admin - Sténtor" description="Console riservata di amministrazione Sténtor." active={null} showNav={false} showFooter={false} noindex={true}>
   <section class="min-h-screen bg-black text-white relative overflow-hidden">
     <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.18)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_64%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_64%)] pointer-events-none" aria-hidden="true"></div>
     <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
     <header class="relative border-b border-white/10">
       <div class="max-w-[1440px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors" aria-label="Stentor home"><span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span><span class="text-white/45 text-sm">Admin</span></a>
-        <div class="flex items-center gap-3"><span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-amber-400/25 bg-amber-400/10 text-amber-200 text-xs font-mono uppercase tracking-[0.12em]">Private beta</span><button data-admin-logout class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button><a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
+        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors cursor-pointer" aria-label="Home Sténtor"><span class="font-semibold tracking-[-0.04em] text-xl">STÉNTOR</span><span class="text-white/45 text-sm">Admin</span></a>
+        <div class="flex items-center gap-3"><span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-amber-400/25 bg-amber-400/10 text-amber-200 text-xs font-mono uppercase tracking-[0.12em]">Area riservata</span><button data-admin-logout class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Esci</button><a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a></div>
       </div>
     </header>
 
     <main class="relative max-w-[1440px] mx-auto px-5 md:px-8 py-10">
       <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Accesso admin</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accesso riservato.</h1>
-        <p class="text-white/50 leading-[1.6] mb-7">Accedi con email e password Supabase. Il magic link resta disponibile come alternativa, ma durante i test puo essere limitato.</p>
+        <p class="text-white/50 leading-[1.6] mb-7">Accedi con email e password Supabase. Il magic link resta disponibile come alternativa, ma durante i test può essere limitato.</p>
         <form data-admin-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="nome@dominio.it" class="admin-input" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password admin" class="admin-input" />
-          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Accedi</button>
-          <button type="button" data-admin-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Invia magic link</button>
+          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors cursor-pointer">Accedi</button>
+          <button type="button" data-admin-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Invia magic link</button>
         </form>
         <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
       </section>
@@ -31,48 +31,48 @@ import Layout from "../layouts/Layout.astro";
       <div data-admin-app hidden class="grid lg:grid-cols-[260px_1fr] gap-6">
         <aside class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-4 h-fit">
           <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/35 px-3 mb-3">Console</p>
-          <nav class="grid gap-1 text-sm"><a href="#requests" class="admin-nav-active">Beta requests</a><a href="#invites" class="admin-nav">Invites</a><a href="#licenses" class="admin-nav">Licenses</a><a href="/admin/feedback/" class="admin-nav">Data &amp; Feedback</a><a href="#downloads" class="admin-nav">Downloads</a><a href="#notes" class="admin-nav">Setup notes</a></nav>
+          <nav class="grid gap-1 text-sm"><a href="#requests" class="admin-nav-active">Richieste beta</a><a href="#invites" class="admin-nav">Inviti</a><a href="#licenses" class="admin-nav">Licenze</a><a href="/admin/feedback/" class="admin-nav">Dati e feedback</a><a href="#downloads" class="admin-nav">Download</a><a href="#notes" class="admin-nav">Note tecniche</a></nav>
         </aside>
 
         <div class="grid gap-6 min-w-0">
           <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin console</p><h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold">Beta management.</h1><p class="text-white/50 leading-[1.6] mt-4 max-w-[760px]">Richieste beta lette da Supabase con account admin. Puoi approvare richieste, creare licenze e generare inviti demo temporanei.</p></div>
-              <div class="grid grid-cols-3 gap-2 min-w-[300px]"><div class="admin-stat"><span>Pending</span><strong data-stat-pending>--</strong></div><div class="admin-stat"><span>Approved</span><strong data-stat-approved>--</strong></div><div class="admin-stat"><span>Licenses</span><strong data-stat-licenses>--</strong></div></div>
+              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Console admin</p><h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold">Gestione beta.</h1><p class="text-white/50 leading-[1.6] mt-4 max-w-[760px]">Richieste lette da Supabase con account admin. Puoi approvare richieste, creare licenze e generare inviti temporanei alla sperimentazione.</p></div>
+              <div class="grid grid-cols-3 gap-2 min-w-[300px]"><div class="admin-stat"><span>In attesa</span><strong data-stat-pending>--</strong></div><div class="admin-stat"><span>Approvate</span><strong data-stat-approved>--</strong></div><div class="admin-stat"><span>Licenze</span><strong data-stat-licenses>--</strong></div></div>
             </div>
           </section>
 
           <section id="requests" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden">
-            <div class="p-6 md:p-7 border-b border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"><div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Beta requests</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Incoming requests</h2></div><div class="flex flex-wrap gap-2"><span class="admin-pill">pending</span><span class="admin-pill-muted">approved</span><span class="admin-pill-muted">rejected</span></div></div>
-            <div class="overflow-x-auto"><table class="admin-table"><thead class="admin-thead"><tr><th class="admin-th w-[220px]">Name</th><th class="admin-th w-[250px]">Email</th><th class="admin-th w-[230px]">Organization</th><th class="admin-th w-[150px] text-center">Platforms</th><th class="admin-th w-[110px] text-center">Seats</th><th class="admin-th w-[150px] text-center">Status</th><th class="admin-th w-[190px] text-center">Action</th></tr></thead><tbody data-admin-requests class="divide-y divide-white/8"><tr><td class="admin-td text-white/45" colspan="7">Loading...</td></tr></tbody></table></div>
-            <div class="p-5 border-t border-white/10 bg-black/20 text-white/42 text-sm leading-[1.6]">Le righe arrivano da Supabase -> beta_requests. Le azioni aggiornano lo status.</div>
+            <div class="p-6 md:p-7 border-b border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"><div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Richieste beta</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Richieste ricevute</h2></div><div class="flex flex-wrap gap-2"><span class="admin-pill">pending</span><span class="admin-pill-muted">approved</span><span class="admin-pill-muted">rejected</span></div></div>
+            <div class="overflow-x-auto"><table class="admin-table"><thead class="admin-thead"><tr><th class="admin-th w-[220px]">Nome</th><th class="admin-th w-[250px]">Email</th><th class="admin-th w-[230px]">Organizzazione</th><th class="admin-th w-[150px] text-center">Piattaforme</th><th class="admin-th w-[110px] text-center">Posti</th><th class="admin-th w-[150px] text-center">Stato</th><th class="admin-th w-[190px] text-center">Azione</th></tr></thead><tbody data-admin-requests class="divide-y divide-white/8"><tr><td class="admin-td text-white/45" colspan="7">Caricamento...</td></tr></tbody></table></div>
+            <div class="p-5 border-t border-white/10 bg-black/20 text-white/42 text-sm leading-[1.6]">Le righe arrivano da Supabase -> beta_requests. Le azioni aggiornano lo stato.</div>
           </section>
 
           <section id="invites" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <div class="flex flex-col xl:flex-row xl:items-start gap-6">
               <div class="xl:w-[360px] shrink-0">
-                <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Invites</p>
-                <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">Invita a provare Stentor</h2>
-                <p class="text-white/50 text-sm leading-[1.6] mb-5">Crea un link demo. Il link resta valido 14 giorni; quando viene accettato, attiva una licenza demo di 1 mese per macOS.</p>
+                <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Inviti</p>
+                <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">Invita a provare Sténtor</h2>
+                <p class="text-white/50 text-sm leading-[1.6] mb-5">Crea un link di invito alla sperimentazione. Il link resta valido 14 giorni; quando viene accettato, attiva un accesso di 6 mesi per macOS.</p>
                 <form data-admin-invite-form class="grid gap-3">
                   <input data-admin-invite-email type="email" autocomplete="email" placeholder="email@dominio.it" class="admin-input" required />
                   <input data-admin-invite-name type="text" autocomplete="name" placeholder="Nome opzionale" class="admin-input" />
-                  <button data-admin-invite-submit type="submit" class="h-12 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors disabled:opacity-45 disabled:cursor-wait">Crea invito demo</button>
+                  <button data-admin-invite-submit type="submit" class="h-12 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-45 disabled:cursor-wait">Crea invito</button>
                 </form>
                 <div data-admin-invite-message class="mt-4"></div>
               </div>
               <div class="min-w-0 flex-1">
                 <div class="flex items-center justify-between gap-3 mb-4">
                   <h3 class="text-lg font-semibold tracking-[-0.03em]">Inviti recenti</h3>
-                  <span class="admin-pill-muted">demo</span>
+                  <span class="admin-pill-muted">sperimentazione</span>
                 </div>
-                <div data-admin-invites-list class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Loading invites...</p></div>
+                <div data-admin-invites-list class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Caricamento inviti...</p></div>
               </div>
             </div>
           </section>
 
-          <div class="grid xl:grid-cols-2 gap-6"><section id="licenses" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Licenses</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Active licenses</h2><div data-admin-licenses class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Loading licenses...</p></div></section><section id="downloads" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Build artifacts</h2><div class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Lite can become public. Pro downloads remain linked to approved licenses and platform availability.</p><div class="grid grid-cols-3 gap-2"><span class="download-chip">macOS</span><span class="download-chip">Windows</span><span class="download-chip">Linux</span></div></div></section></div>
-          <section id="notes" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Next slice</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Secure connection plan</h2><ol class="grid md:grid-cols-4 gap-3 text-sm text-white/58 leading-[1.55]"><li class="admin-step"><strong>1</strong><span>Create license on approval.</span></li><li class="admin-step"><strong>2</strong><span>Connect account area.</span></li><li class="admin-step"><strong>3</strong><span>Add protected downloads.</span></li><li class="admin-step"><strong>4</strong><span>Add email notifications.</span></li></ol></section>
+          <div class="grid xl:grid-cols-2 gap-6"><section id="licenses" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Licenze</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Licenze attive</h2><div data-admin-licenses class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Caricamento licenze...</p></div></section><section id="downloads" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Download</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Build disponibili</h2><div class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>La versione Lite potrà diventare pubblica. I download Pro restano collegati alle licenze approvate e alle piattaforme abilitate.</p><div class="grid grid-cols-3 gap-2"><span class="download-chip">macOS</span><span class="download-chip">Windows</span><span class="download-chip">Linux</span></div></div></section></div>
+          <section id="notes" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Prossimi passi</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Piano di connessione sicura</h2><ol class="grid md:grid-cols-4 gap-3 text-sm text-white/58 leading-[1.55]"><li class="admin-step"><strong>1</strong><span>Creare licenza su approvazione.</span></li><li class="admin-step"><strong>2</strong><span>Collegare area account.</span></li><li class="admin-step"><strong>3</strong><span>Aggiungere download protetti.</span></li><li class="admin-step"><strong>4</strong><span>Aggiungere notifiche email.</span></li></ol></section>
         </div>
       </div>
     </main>
@@ -88,8 +88,8 @@ import Layout from "../layouts/Layout.astro";
 
 <style is:global>
   @reference "../styles/global.css";
-  .admin-nav { @apply h-10 px-3 rounded-xl inline-flex items-center text-white/48 hover:text-white hover:bg-white/[0.06] transition-colors; }
-  .admin-nav-active { @apply h-10 px-3 rounded-xl inline-flex items-center text-white bg-white/[0.08] border border-white/10; }
+  .admin-nav { @apply h-10 px-3 rounded-xl inline-flex items-center text-white/48 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer; }
+  .admin-nav-active { @apply h-10 px-3 rounded-xl inline-flex items-center text-white bg-white/[0.08] border border-white/10 cursor-pointer; }
   .admin-stat { @apply rounded-xl border border-white/10 bg-black/25 p-3; }
   .admin-stat span { @apply block text-[11px] font-mono uppercase tracking-[0.12em] text-white/35 mb-2; }
   .admin-stat strong { @apply text-2xl font-semibold tracking-[-0.04em]; }
@@ -106,7 +106,7 @@ import Layout from "../layouts/Layout.astro";
   .status-pending { @apply inline-flex px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-200 text-xs font-mono uppercase tracking-[0.08em]; }
   .status-approved { @apply inline-flex px-2.5 py-1 rounded-full bg-green-400/10 border border-green-400/20 text-green-200 text-xs font-mono uppercase tracking-[0.08em]; }
   .status-rejected { @apply inline-flex px-2.5 py-1 rounded-full bg-red-400/10 border border-red-400/20 text-red-200 text-xs font-mono uppercase tracking-[0.08em]; }
-  .admin-button-live { @apply h-9 px-3 rounded-lg border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] text-sm transition-colors; }
+  .admin-button-live { @apply h-9 px-3 rounded-lg border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] text-sm transition-colors cursor-pointer; }
   .admin-button-live.secondary { @apply text-white/40; }
   .license-card { @apply rounded-xl border border-white/10 bg-black/25 p-4; }
   .license-label { @apply block text-[10px] font-mono uppercase tracking-[0.12em] text-white/35 mb-1; }
