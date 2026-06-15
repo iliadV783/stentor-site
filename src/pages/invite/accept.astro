@@ -16,10 +16,16 @@ import Layout from "../../layouts/Layout.astro";
           <p>L’attivazione crea un accesso di sperimentazione valido per 6 mesi. In questo periodo ti chiediamo semplicemente di usare Sténtor, esplorarlo nel tuo contesto e, se vorrai, condividere impressioni, necessità o difficoltà incontrate.</p>
           <p>La scadenza serve solo a dare un perimetro alla fase di prova. L’uso di Sténtor è gratuito: anche dopo la sperimentazione potrai continuare a usare il software liberamente.</p>
         </div>
+
+        <form data-invite-email-form hidden class="mt-8 grid gap-3 max-w-[520px]">
+          <p class="text-white/48 text-sm leading-[1.55]">Per accettare l’invito, inserisci la tua email. Ti invieremo un link di accesso: dopo averlo aperto tornerai qui per completare l’attivazione.</p>
+          <input data-invite-email type="email" autocomplete="email" placeholder="email@dominio.it" class="h-13 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px] px-4 focus:border-red-500/55 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.12)]" required />
+          <button data-invite-email-submit type="submit" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Ricevi link di accesso</button>
+        </form>
+
         <div data-invite-result class="mt-6"></div>
         <div class="flex flex-col sm:flex-row items-center gap-3 mt-8">
           <button data-invite-accept type="button" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Accetta invito</button>
-          <a href="/admin" class="h-12 px-5 rounded-xl border border-white/10 text-white/65 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Vai ad admin</a>
           <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/40 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a>
         </div>
       </div>
@@ -36,10 +42,23 @@ import Layout from "../../layouts/Layout.astro";
   const title = document.querySelector("[data-invite-title]");
   const message = document.querySelector("[data-invite-message]");
   const button = document.querySelector("[data-invite-accept]");
+  const emailForm = document.querySelector("[data-invite-email-form]");
+  const emailInput = document.querySelector("[data-invite-email]");
+  const emailSubmit = document.querySelector("[data-invite-email-submit]");
   const result = document.querySelector("[data-invite-result]");
 
   function showResult(html) {
     if (result) result.innerHTML = html;
+  }
+
+  function showSignedOutState() {
+    if (button) button.hidden = true;
+    if (emailForm instanceof HTMLFormElement) emailForm.hidden = false;
+  }
+
+  function showSignedInState() {
+    if (button) button.hidden = false;
+    if (emailForm instanceof HTMLFormElement) emailForm.hidden = true;
   }
 
   async function readError(response, fallback) {
@@ -48,6 +67,26 @@ import Layout from "../../layouts/Layout.astro";
       return body.msg || body.message || body.error_description || body.error || fallback;
     } catch {
       return fallback;
+    }
+  }
+
+  async function sendAccessLink(email) {
+    const nextPath = `${window.location.pathname}${window.location.search}`;
+    const redirectTo = `${window.location.origin}/auth/confirm?next=${encodeURIComponent(nextPath)}`;
+    const response = await fetch(`${supabaseUrl}/auth/v1/otp?redirect_to=${encodeURIComponent(redirectTo)}`, {
+      method: "POST",
+      headers: {
+        apikey: supabaseAnonKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        create_user: true,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(await readError(response, "Non è stato possibile inviare il link di accesso."));
     }
   }
 
@@ -81,17 +120,52 @@ import Layout from "../../layouts/Layout.astro";
       message.innerHTML = `<p>Il link non contiene un token valido. Chiedi un nuovo invito a chi ti ha invitato a provare Sténtor.</p>`;
     }
     if (button) button.hidden = true;
+    if (emailForm instanceof HTMLFormElement) emailForm.hidden = true;
+  } else if (localStorage.getItem(sessionStorageKey)) {
+    showSignedInState();
+  } else {
+    showSignedOutState();
   }
+
+  emailForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = emailInput instanceof HTMLInputElement ? emailInput.value.trim().toLowerCase() : "";
+    if (!email) return;
+
+    if (emailSubmit instanceof HTMLButtonElement) {
+      emailSubmit.disabled = true;
+      emailSubmit.textContent = "Invio...";
+    }
+    showResult("");
+
+    try {
+      await sendAccessLink(email);
+      showResult(`
+        <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
+          <strong class="block mb-2">Link inviato.</strong>
+          <span class="text-white/60">Controlla la posta e apri il link ricevuto. Tornerai qui per completare l’attivazione.</span>
+        </div>
+      `);
+    } catch (error) {
+      showResult(`
+        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
+          ${error instanceof Error ? error.message : "Non è stato possibile inviare il link di accesso."}
+        </p>
+      `);
+    } finally {
+      if (emailSubmit instanceof HTMLButtonElement) {
+        emailSubmit.disabled = false;
+        emailSubmit.textContent = "Ricevi link di accesso";
+      }
+    }
+  });
 
   button?.addEventListener("click", async () => {
     const sessionToken = localStorage.getItem(sessionStorageKey) || "";
 
     if (!sessionToken) {
-      showResult(`
-        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
-          Sessione non trovata. Accedi prima da /admin, poi torna a questo link.
-        </p>
-      `);
+      showSignedOutState();
+      showResult("");
       return;
     }
 
@@ -110,6 +184,7 @@ import Layout from "../../layouts/Layout.astro";
         message.innerHTML = `<p>L’accesso di sperimentazione a Sténtor è attivo fino al ${expiresAt}. Potrai continuare a usare il software liberamente anche dopo la sperimentazione.</p>`;
       }
       if (button) button.hidden = true;
+      if (emailForm instanceof HTMLFormElement) emailForm.hidden = true;
 
       showResult(`
         <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
