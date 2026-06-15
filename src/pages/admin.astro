@@ -31,13 +31,13 @@ import Layout from "../layouts/Layout.astro";
       <div data-admin-app hidden class="grid lg:grid-cols-[260px_1fr] gap-6">
         <aside class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-4 h-fit">
           <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/35 px-3 mb-3">Console</p>
-          <nav class="grid gap-1 text-sm"><a href="#requests" class="admin-nav-active">Beta requests</a><a href="#licenses" class="admin-nav">Licenses</a><a href="/admin/feedback/" class="admin-nav">Data &amp; Feedback</a><a href="#downloads" class="admin-nav">Downloads</a><a href="#notes" class="admin-nav">Setup notes</a></nav>
+          <nav class="grid gap-1 text-sm"><a href="#requests" class="admin-nav-active">Beta requests</a><a href="#invites" class="admin-nav">Invites</a><a href="#licenses" class="admin-nav">Licenses</a><a href="/admin/feedback/" class="admin-nav">Data &amp; Feedback</a><a href="#downloads" class="admin-nav">Downloads</a><a href="#notes" class="admin-nav">Setup notes</a></nav>
         </aside>
 
         <div class="grid gap-6 min-w-0">
           <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin console</p><h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold">Beta management.</h1><p class="text-white/50 leading-[1.6] mt-4 max-w-[760px]">Richieste beta lette da Supabase con account admin. Per ora puoi approvare o rifiutare; nel prossimo step creeremo la licenza.</p></div>
+              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin console</p><h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold">Beta management.</h1><p class="text-white/50 leading-[1.6] mt-4 max-w-[760px]">Richieste beta lette da Supabase con account admin. Puoi approvare richieste, creare licenze e generare inviti demo temporanei.</p></div>
               <div class="grid grid-cols-3 gap-2 min-w-[300px]"><div class="admin-stat"><span>Pending</span><strong data-stat-pending>--</strong></div><div class="admin-stat"><span>Approved</span><strong data-stat-approved>--</strong></div><div class="admin-stat"><span>Licenses</span><strong data-stat-licenses>--</strong></div></div>
             </div>
           </section>
@@ -46,6 +46,29 @@ import Layout from "../layouts/Layout.astro";
             <div class="p-6 md:p-7 border-b border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"><div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Beta requests</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Incoming requests</h2></div><div class="flex flex-wrap gap-2"><span class="admin-pill">pending</span><span class="admin-pill-muted">approved</span><span class="admin-pill-muted">rejected</span></div></div>
             <div class="overflow-x-auto"><table class="admin-table"><thead class="admin-thead"><tr><th class="admin-th w-[220px]">Name</th><th class="admin-th w-[250px]">Email</th><th class="admin-th w-[230px]">Organization</th><th class="admin-th w-[150px] text-center">Platforms</th><th class="admin-th w-[110px] text-center">Seats</th><th class="admin-th w-[150px] text-center">Status</th><th class="admin-th w-[190px] text-center">Action</th></tr></thead><tbody data-admin-requests class="divide-y divide-white/8"><tr><td class="admin-td text-white/45" colspan="7">Loading...</td></tr></tbody></table></div>
             <div class="p-5 border-t border-white/10 bg-black/20 text-white/42 text-sm leading-[1.6]">Le righe arrivano da Supabase -> beta_requests. Le azioni aggiornano lo status.</div>
+          </section>
+
+          <section id="invites" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
+            <div class="flex flex-col xl:flex-row xl:items-start gap-6">
+              <div class="xl:w-[360px] shrink-0">
+                <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Invites</p>
+                <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">Invita a provare Stentor</h2>
+                <p class="text-white/50 text-sm leading-[1.6] mb-5">Crea un link demo. Il link resta valido 14 giorni; quando viene accettato, attiva una licenza demo di 1 mese per macOS.</p>
+                <form data-admin-invite-form class="grid gap-3">
+                  <input data-admin-invite-email type="email" autocomplete="email" placeholder="email@dominio.it" class="admin-input" required />
+                  <input data-admin-invite-name type="text" autocomplete="name" placeholder="Nome opzionale" class="admin-input" />
+                  <button data-admin-invite-submit type="submit" class="h-12 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors disabled:opacity-45 disabled:cursor-wait">Crea invito demo</button>
+                </form>
+                <div data-admin-invite-message class="mt-4"></div>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between gap-3 mb-4">
+                  <h3 class="text-lg font-semibold tracking-[-0.03em]">Inviti recenti</h3>
+                  <span class="admin-pill-muted">demo</span>
+                </div>
+                <div data-admin-invites-list class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Loading invites...</p></div>
+              </div>
+            </div>
           </section>
 
           <div class="grid xl:grid-cols-2 gap-6"><section id="licenses" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Licenses</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Active licenses</h2><div data-admin-licenses class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Loading licenses...</p></div></section><section id="downloads" class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p><h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Build artifacts</h2><div class="grid gap-3 text-sm text-white/55 leading-[1.6]"><p>Lite can become public. Pro downloads remain linked to approved licenses and platform availability.</p><div class="grid grid-cols-3 gap-2"><span class="download-chip">macOS</span><span class="download-chip">Windows</span><span class="download-chip">Linux</span></div></div></section></div>
@@ -58,7 +81,9 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   import { setupAdminConsole } from '../lib/adminConsole';
+  import { setupAdminInvites } from '../lib/adminInvites';
   setupAdminConsole();
+  setupAdminInvites();
 </script>
 
 <style is:global>
@@ -89,4 +114,5 @@ import Layout from "../layouts/Layout.astro";
   .download-chip { @apply h-10 rounded-xl border border-white/10 bg-black/25 inline-flex items-center justify-center text-white/55 text-sm; }
   .admin-step { @apply rounded-xl border border-white/10 bg-black/25 p-4; }
   .admin-step strong { @apply block text-red-400 font-mono mb-2; }
+  .invite-card { @apply rounded-xl border border-white/10 bg-black/25 p-4 grid md:grid-cols-[1.4fr_0.8fr_0.9fr_0.9fr] gap-4 items-start; }
 </style>
