@@ -1,47 +1,47 @@
 /**
- * For Theatres page content: venue use cases, live workflow,
- * preparation, screens, audience phones, audio description and field notes.
+ * Contenuti della pagina Per i teatri: casi d'uso, regia dal vivo,
+ * preparazione, schermi, telefoni del pubblico, audio-descrizione e note sul campo.
  */
 
 // ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
-  eyebrow: "For Theatres, Festivals and Venues",
+  eyebrow: "Per teatri, festival e spazi di spettacolo",
   title:
-    'Live text for the whole room, <em class="not-italic text-text-3 font-medium">without turning access into a technical burden.</em>',
+    'Testo dal vivo per tutta la sala, <em class="not-italic text-text-3 font-medium">senza trasformare l’accessibilità in un peso tecnico.</em>',
   description:
-    "Sténtor helps theatres prepare, cue and share surtitles, translations and audio description from one controlled project: the operator desk, venue screens, foyer QR access and audience phones can all follow the same live text workflow.",
+    "Sténtor aiuta i teatri a preparare, mandare in scena e condividere soprattitoli, traduzioni e audio-descrizione da un unico progetto controllato: postazione di regia, schermi di sala, accesso QR nel foyer e telefoni del pubblico possono seguire lo stesso flusso di testo dal vivo.",
 };
 
 // ─── Featured case study ──────────────────────────────────────────────────
 export const featured = {
-  brand: { initial: "S", name: "Sténtor in the venue" },
+  brand: { initial: "S", name: "Sténtor nello spazio teatrale" },
   title:
-    'One performance workflow for <em class="text-red-500 not-italic">regia, screens, foyer and phones.</em>',
+    'Un solo flusso di spettacolo per <em class="text-red-500 not-italic">regia, schermi, foyer e telefoni.</em>',
   description:
-    "Prepare the script before the show, align translations and descriptions, cue the performance from the Stage desk, send text to configured screens, display a foyer QR page and let spectators follow selected languages or audio description from their own devices.",
+    "Prepara il copione prima dello spettacolo, allinea traduzioni e descrizioni, guida la rappresentazione dalla postazione di regia, invia il testo agli schermi configurati, mostra una pagina QR nel foyer e permette agli spettatori di seguire lingue selezionate o audio-descrizione dai propri dispositivi.",
   stats: [
-    { value: "1", label: "operator-led Stage desk" },
-    { value: "3", label: "surtitles · translation · audio description" },
-    { value: "Local", label: "room network, no internet required" },
+    { value: "1", label: "postazione di regia" },
+    { value: "3", label: "soprattitoli · traduzione · audio-descrizione" },
+    { value: "Locale", label: "rete di sala, senza internet obbligatorio" },
   ],
-  link: { href: "/docs", label: "See the workflow" },
+  link: { href: "/docs", label: "Vedi il flusso di lavoro" },
   hudRows: [
-    { method: "LIVE", path: "Stage desk / Regia", lat: "operator", emphasized: true },
-    { method: "TXT", path: "venue screens", lat: "synced", emphasized: true },
-    { method: "QR", path: "foyer welcome page", lat: "ready", emphasized: false },
-    { method: "WEB", path: "audience phones", lat: "following", emphasized: false },
-    { method: "AD", path: "audio description", lat: "available", emphasized: false },
+    { method: "DAL VIVO", path: "Regia", lat: "operatore", emphasized: true },
+    { method: "TESTO", path: "schermi di sala", lat: "sincrono", emphasized: true },
+    { method: "QR", path: "pagina di benvenuto nel foyer", lat: "pronta", emphasized: false },
+    { method: "TEL", path: "telefoni del pubblico", lat: "in ascolto", emphasized: false },
+    { method: "AD", path: "audio-descrizione", lat: "disponibile", emphasized: false },
   ],
   pullQuote: {
     text:
-      "The same project can support the person preparing the text, the operator cueing it live, the screens in the room, the foyer QR page and spectators following on their own devices.",
+      "Lo stesso progetto può sostenere chi prepara il testo, chi lo manda in scena, gli schermi in sala, la pagina QR nel foyer e gli spettatori che seguono dal proprio dispositivo.",
     author: "Sténtor",
-    role: "Venue workflow",
+    role: "Flusso per lo spazio teatrale",
   },
 };
 
 // ─── Filter chips ─────────────────────────────────────────────────────────
-export const filters = ["All", "Surtitles", "Translation", "Audio description", "Audience phones", "Foyer", "Touring", "Research"];
+export const filters = ["Tutti", "Soprattitoli", "Traduzione", "Audio-descrizione", "Telefoni del pubblico", "Foyer", "Tournée", "Ricerca"];
 
 export const filterCount = { showing: 6, total: 6 };
 
@@ -59,121 +59,121 @@ type CustomerCard = {
 
 export const cards: CustomerCard[] = [
   {
-    brand: "International productions",
-    industry: "Translation",
+    brand: "Produzioni internazionali",
+    industry: "Traduzione",
     glyph: "rounded-full",
     tint: "rgba(239,68,68,0.18)",
     illustration: "helio",
-    title: "Host work in another language without multiplying systems.",
+    title: "Ospita spettacoli in un’altra lingua senza moltiplicare i sistemi.",
     description:
-      "Keep the original script and translations in the same project, then decide what appears on venue screens and what remains available on audience phones.",
+      "Tieni copione originale e traduzioni nello stesso progetto, poi decidi cosa appare sugli schermi di sala e cosa resta disponibile sui telefoni del pubblico.",
     stats: [
-      { k: "2+", l: "Languages per project" },
-      { k: "Live", l: "Operator cueing" },
+      { k: "2+", l: "Lingue per progetto" },
+      { k: "Dal vivo", l: "Avanzamento in regia" },
     ],
   },
   {
-    brand: "Festivals and seasons",
-    industry: "Surtitles",
+    brand: "Festival e stagioni",
+    industry: "Soprattitoli",
     glyph: "",
     tint: "rgba(96,165,250,0.10)",
     illustration: "constellate",
-    title: "Move between productions without rebuilding the setup every night.",
+    title: "Passa da una produzione all’altra senza ricostruire l’impianto ogni sera.",
     description:
-      "Each show stays separate, but the live logic remains familiar: projects, cues, screens and audience access follow the same structure across rooms and dates.",
+      "Ogni spettacolo resta separato, ma la logica dal vivo rimane familiare: progetti, battute, schermi e accesso del pubblico seguono la stessa struttura in sale e date diverse.",
     stats: [
-      { k: "∞", l: "Projects and cues" },
-      { k: "1", l: "Reusable live workflow" },
+      { k: "∞", l: "Progetti e battute" },
+      { k: "1", l: "Flusso dal vivo riutilizzabile" },
     ],
   },
   {
-    brand: "Audio description",
-    industry: "Audio description",
+    brand: "Audio-descrizione",
+    industry: "Audio-descrizione",
     glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]",
     tint: "rgba(239,68,68,0.14)",
     illustration: "vector",
-    title: "Prepare audio description next to the script, not in a separate island.",
+    title: "Prepara l’audio-descrizione accanto al copione, non in un’isola separata.",
     description:
-      "Descriptions, cue references and optional audio files stay close to the text, so access work can be drafted, revised and tested inside the same production file.",
+      "Descrizioni, riferimenti alle battute e file audio opzionali restano vicini al testo, così il lavoro di accessibilità può essere scritto, rivisto e provato nello stesso file di produzione.",
     stats: [
-      { k: "AD", l: "Notes and audio" },
-      { k: "Cue", l: "Context preserved" },
+      { k: "AD", l: "Note e audio" },
+      { k: "Battuta", l: "Contesto conservato" },
     ],
   },
   {
-    brand: "Audience phones",
-    industry: "Audience phones",
+    brand: "Telefoni del pubblico",
+    industry: "Dispositivi del pubblico",
     glyph: "rounded",
     tint: "rgba(239,68,68,0.14)",
     illustration: "kettlebrook",
-    title: "Give spectators personal-device text when projection is not enough.",
+    title: "Offri testo su dispositivo personale quando la proiezione non basta.",
     description:
-      "A QR code can open a local audience page where spectators follow the selected language, surtitles or audio-description text in sync with the operator’s cues.",
+      "Un codice QR può aprire una pagina locale per il pubblico, dove seguire la lingua selezionata, i soprattitoli o il testo dell’audio-descrizione in sincronia con la regia.",
     stats: [
-      { k: "QR", l: "Audience access" },
-      { k: "Sync", l: "With Regia" },
+      { k: "QR", l: "Accesso del pubblico" },
+      { k: "Sincrono", l: "Con la regia" },
     ],
   },
   {
-    brand: "Touring productions",
-    industry: "Touring",
+    brand: "Produzioni in tournée",
+    industry: "Tournée",
     glyph: "rounded-full bg-transparent border-2 border-zinc-300",
     tint: "rgba(96,165,250,0.10)",
     illustration: "orbital",
-    title: "Carry one structured text project from venue to venue.",
+    title: "Porta un solo progetto testuale strutturato da un teatro all’altro.",
     description:
-      "The production can travel with script, translations, surtitles, audio-description notes and metadata already prepared, then adapt outputs to each venue’s screens and audience needs.",
+      "La produzione può viaggiare con copione, traduzioni, soprattitoli, note di audio-descrizione e metadati già preparati, adattando poi le uscite agli schermi e alle necessità di ogni spazio.",
     stats: [
-      { k: "Export", l: "Ready scripts" },
-      { k: "Local", l: "Room network" },
+      { k: "Esporta", l: "Copioni pronti" },
+      { k: "Locale", l: "Rete di sala" },
     ],
   },
   {
-    brand: "Field notes",
-    industry: "Research",
+    brand: "Note sul campo",
+    industry: "Ricerca",
     glyph: "rounded",
     tint: "rgba(239,68,68,0.16)",
     illustration: "tessera",
-    title: "Collect practical feedback after real use, not before download.",
+    title: "Raccogli riscontri pratici dopo l’uso reale, non prima dello scaricamento.",
     description:
-      "After a rehearsal or performance, operators, companies and venues can share practical notes. Sténtor stays easy to try and learns from actual theatre conditions.",
+      "Dopo una prova o uno spettacolo, operatori, compagnie e teatri possono condividere note pratiche. Sténtor resta facile da provare e impara dalle condizioni reali del teatro.",
     stats: [
-      { k: "After", l: "Feedback after use" },
-      { k: "Open", l: "No account required" },
+      { k: "Dopo", l: "Riscontri dopo l’uso" },
+      { k: "Aperto", l: "Nessun account obbligatorio" },
     ],
   },
 ];
 
 // ─── Logo wall ────────────────────────────────────────────────────────────
 export const logoWall = {
-  title: "Designed around theatre work, not generic software categories.",
+  title: "Progettato intorno al lavoro teatrale, non a categorie software generiche.",
   description:
-    "Sténtor follows the real sequence of a production: preparation, live operation, screen output, foyer communication, audience devices and post-use field notes.",
+    "Sténtor segue la sequenza reale di una produzione: preparazione, regia dal vivo, uscita sugli schermi, comunicazione nel foyer, dispositivi del pubblico e note dopo l’uso.",
   logos: [
-    { name: "Theatres", glyph: "rounded-full" },
-    { name: "Festivals", glyph: "rotate-45" },
-    { name: "Companies", glyph: "" },
-    { name: "Touring", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
-    { name: "Surtitlers", glyph: "rounded" },
-    { name: "Translators", glyph: "rounded-full bg-transparent border-2 border-zinc-300" },
-    { name: "Audio describers", glyph: "rounded" },
-    { name: "Operators", glyph: "rounded-full" },
-    { name: "Technicians", glyph: "" },
-    { name: "Audience phones", glyph: "rotate-45" },
-    { name: "Venue screens", glyph: "rounded" },
-    { name: "Foyer QR", glyph: "rounded-full" },
+    { name: "Teatri", glyph: "rounded-full" },
+    { name: "Festival", glyph: "rotate-45" },
+    { name: "Compagnie", glyph: "" },
+    { name: "Tournée", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
+    { name: "Soprattitolatori", glyph: "rounded" },
+    { name: "Traduttori", glyph: "rounded-full bg-transparent border-2 border-zinc-300" },
+    { name: "Audio-descrittori", glyph: "rounded" },
+    { name: "Operatori", glyph: "rounded-full" },
+    { name: "Tecnici", glyph: "" },
+    { name: "Telefoni del pubblico", glyph: "rotate-45" },
+    { name: "Schermi di sala", glyph: "rounded" },
+    { name: "QR nel foyer", glyph: "rounded-full" },
   ],
 };
 
 // ─── Aggregate stats strip ────────────────────────────────────────────────
 export const stats = {
-  title: "One setup can serve different theatrical needs.",
+  title: "Un solo assetto può servire esigenze teatrali diverse.",
   description:
-    "Use Sténtor as a preparation tool, a live Stage desk, a screen output system, a foyer QR page, an audience-phone web app and an optional field-notes channel.",
+    "Usa Sténtor come strumento di preparazione, postazione di regia dal vivo, sistema di uscita per schermi, pagina QR nel foyer, pagina per i telefoni del pubblico e canale facoltativo per note sul campo.",
   items: [
-    { value: "3", suffix: " layers", label: "Surtitles, translation and audio description in one project" },
-    { value: "∞", suffix: " languages", label: "Multilingual by design, not limited to one bilingual pair" },
-    { value: "Live", suffix: " Sync", label: "Operator-led connection for screens, foyer and audience phones" },
+    { value: "3", suffix: " livelli", label: "Soprattitoli, traduzione e audio-descrizione in un solo progetto" },
+    { value: "∞", suffix: " lingue", label: "Multilingue per impostazione, non limitato a una sola coppia bilingue" },
+    { value: "Dal vivo", suffix: " sincrono", label: "Connessione guidata dalla regia per schermi, foyer e telefoni del pubblico" },
   ],
 };
 
@@ -182,37 +182,37 @@ export const quotes = [
   {
     stars: 5,
     text:
-      "Start with a simple surtitling need; add translation, audio description, foyer QR or audience phones later without changing the entire workflow.",
+      "Parti da un’esigenza semplice di soprattitolazione; aggiungi traduzione, audio-descrizione, QR nel foyer o telefoni del pubblico senza cambiare tutto il flusso di lavoro.",
     av: "01",
-    name: "Start simple",
-    role: "Surtitles and screens",
+    name: "Inizia semplice",
+    role: "Soprattitoli e schermi",
   },
   {
     stars: 5,
     text:
-      "Keep festival projects separated by production while using the same live cueing logic for different rooms, languages and technical setups.",
+      "Mantieni separati i progetti di un festival e usa la stessa logica di avanzamento dal vivo per sale, lingue e configurazioni tecniche diverse.",
     av: "02",
-    name: "Scale across events",
-    role: "Festivals and seasons",
+    name: "Cresci su più eventi",
+    role: "Festival e stagioni",
   },
   {
     stars: 5,
     text:
-      "Use field notes after rehearsals and performances to improve the tool from real theatre work, not from abstract onboarding questionnaires.",
+      "Usa le note sul campo dopo prove e spettacoli per migliorare lo strumento a partire dal lavoro teatrale reale, non da questionari astratti.",
     av: "03",
-    name: "Learn from use",
-    role: "Field notes and research",
+    name: "Impara dall’uso",
+    role: "Note sul campo e ricerca",
   },
 ];
 
 // ─── Final CTA ─────────────────────────────────────────────────────────────
 export const finalCta = {
   variant: "borderY" as const,
-  title: "Bring Sténtor into your theatre.",
+  title: "Porta Sténtor nel tuo teatro.",
   body:
-    "Use it for a single production, a festival, a touring show or a research pilot. Download first, test it in the room, and share field notes only when you have something concrete to tell us.",
+    "Usalo per una singola produzione, un festival, uno spettacolo in tournée o una sperimentazione di ricerca. Scaricalo, provalo in sala e condividi note sul campo solo quando hai qualcosa di concreto da raccontarci.",
   ctas: [
-    { href: "/download", label: "Download Sténtor", variant: "primary" as const },
-    { href: "/contact", label: "Contact", variant: "ghost" as const },
+    { href: "/download", label: "Scarica Sténtor", variant: "primary" as const },
+    { href: "/contact", label: "Contatti", variant: "ghost" as const },
   ],
 };
