@@ -1,6 +1,6 @@
 /**
- * Documentation navigation: sidebar groups + on-this-page TOC.
- * The body of the documentation page lives in docs.astro.
+ * Navigazione della documentazione: gruppi laterali + indice della pagina.
+ * Il corpo della pagina documentazione vive in docs.astro.
  */
 
 export type DocsSidebarItem = {
@@ -18,71 +18,71 @@ export type DocsSidebarGroup = {
 
 export const sidebarGroups: DocsSidebarGroup[] = [
   {
-    title: "Start here",
+    title: "Da qui",
     items: [
-      { label: "Overview", href: "#overview", active: true },
-      { label: "What Sténtor is", href: "#what-it-is" },
-      { label: "Beta status", href: "#version", badge: "macOS", badgeNew: true },
+      { label: "Panoramica", href: "#overview", active: true },
+      { label: "Che cos’è Sténtor", href: "#what-it-is" },
+      { label: "Stato della beta", href: "#version", badge: "macOS", badgeNew: true },
     ],
   },
   {
-    title: "Prepare",
+    title: "Preparazione",
     items: [
-      { label: "Projects", href: "#projects" },
-      { label: "Import text", href: "#import", badge: "New" },
-      { label: "Text and languages", href: "#text" },
-      { label: "Audio description", href: "#audio" },
+      { label: "Progetti", href: "#projects" },
+      { label: "Importazione del testo", href: "#import", badge: "Nuovo" },
+      { label: "Testo e lingue", href: "#text" },
+      { label: "Audio-descrizione", href: "#audio" },
     ],
   },
   {
-    title: "Operate",
+    title: "Esecuzione",
     items: [
-      { label: "Timeline", href: "#timeline" },
+      { label: "Linea del tempo", href: "#timeline" },
       { label: "Regia", href: "#stage-desk" },
-      { label: "Screens", href: "#screens" },
-      { label: "Audience views", href: "#audience" },
+      { label: "Schermi", href: "#screens" },
+      { label: "Viste per il pubblico", href: "#audience" },
     ],
   },
   {
-    title: "Files and release",
+    title: "File e rilascio",
     items: [
-      { label: "Import and export", href: "#files" },
-      { label: "macOS app", href: "#desktop" },
-      { label: "What is still planned", href: "#planned" },
+      { label: "Importazione ed esportazione", href: "#files" },
+      { label: "Applicazione macOS", href: "#desktop" },
+      { label: "Funzioni previste", href: "#planned" },
     ],
   },
 ];
 
 export const tocItems = [
-  { label: "Overview", href: "#overview", active: true },
-  { label: "What Sténtor is", href: "#what-it-is" },
-  { label: "Beta status", href: "#version" },
-  { label: "Projects", href: "#projects" },
-  { label: "Import text", href: "#import" },
-  { label: "Text and languages", href: "#text" },
-  { label: "Audio description", href: "#audio" },
-  { label: "Timeline", href: "#timeline" },
+  { label: "Panoramica", href: "#overview", active: true },
+  { label: "Che cos’è Sténtor", href: "#what-it-is" },
+  { label: "Stato della beta", href: "#version" },
+  { label: "Progetti", href: "#projects" },
+  { label: "Importazione del testo", href: "#import" },
+  { label: "Testo e lingue", href: "#text" },
+  { label: "Audio-descrizione", href: "#audio" },
+  { label: "Linea del tempo", href: "#timeline" },
   { label: "Regia", href: "#stage-desk" },
-  { label: "Screens", href: "#screens" },
-  { label: "Audience views", href: "#audience" },
-  { label: "Import and export", href: "#files" },
-  { label: "macOS app", href: "#desktop" },
-  { label: "Planned", href: "#planned" },
+  { label: "Schermi", href: "#screens" },
+  { label: "Viste per il pubblico", href: "#audience" },
+  { label: "Importazione ed esportazione", href: "#files" },
+  { label: "Applicazione macOS", href: "#desktop" },
+  { label: "Funzioni previste", href: "#planned" },
 ];
 
 export const tocActions = [
-  { href: "/download", label: "Download Sténtor", icon: "playground" as const },
-  { href: "/contact", label: "Share field notes", icon: "message-circle" as const },
-  { href: "/features", label: "See features", icon: "edit" as const },
+  { href: "/download", label: "Scarica Sténtor", icon: "playground" as const },
+  { href: "/contact", label: "Condividi note dal campo", icon: "message-circle" as const },
+  { href: "/features", label: "Vedi le funzioni", icon: "edit" as const },
 ];
 
 export const pageMeta = {
   breadcrumb: [
-    { href: "#", label: "Docs" },
-    { href: "#", label: "Product" },
+    { href: "#", label: "Documentazione" },
+    { href: "#", label: "Prodotto" },
     { label: "Sténtor" },
   ],
-  maintainer: "Sténtor documentation",
-  lastUpdated: "Updated for the desktop beta",
-  readingTime: "Reading time: 7 min",
+  maintainer: "Documentazione Sténtor",
+  lastUpdated: "Aggiornata per la beta desktop",
+  readingTime: "Tempo di lettura: 7 min",
 };
