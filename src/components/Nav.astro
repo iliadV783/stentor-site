@@ -13,6 +13,7 @@ interface Props {
 const { active = null } = Astro.props;
 const isFr = Astro.url.pathname.startsWith("/fr");
 const isIt = Astro.url.pathname.startsWith("/it");
+const isEs = Astro.url.pathname.startsWith("/es");
 const navItems = isFr
   ? [
       { href: "/fr/features", label: "Fonctionnalités", id: "features" as const },
@@ -25,7 +26,13 @@ const navItems = isFr
         { href: "/it/docs", label: "Documentazione", id: "docs" as const },
         { href: "/it/for-theatres", label: "Per i teatri", id: "customers" as const },
       ]
-    : nav;
+    : isEs
+      ? [
+          { href: "/es/features", label: "Funciones", id: "features" as const },
+          { href: "/es/docs", label: "Guía", id: "docs" as const },
+          { href: "/es/for-theatres", label: "Para teatros", id: "customers" as const },
+        ]
+      : nav;
 const cta = isFr
   ? {
       primary: { href: "/fr/account", label: "Compte" },
@@ -38,7 +45,13 @@ const cta = isFr
         secondary: { href: "/it/download", label: "Scarica" },
         statusPrefix: "Pensato per lo spettacolo dal vivo",
       }
-    : { ...navCta, statusPrefix: site.statusPrefix };
+    : isEs
+      ? {
+          primary: { href: "/es/account", label: "Cuenta" },
+          secondary: { href: "/es/download", label: "Descargar" },
+          statusPrefix: "Pensado para las artes escénicas en vivo",
+        }
+      : { ...navCta, statusPrefix: site.statusPrefix };
 ---
 <div
   class="contents"
