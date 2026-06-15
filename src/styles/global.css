@@ -61,6 +61,12 @@
   /* Hide elements bound by Alpine.js until it has hydrated. */
   [x-cloak] { display: none !important; }
 
+  /* Admin header controls are shown only after the reserved console is active. */
+  body:not(:has([data-admin-app]:not([hidden]))) [data-admin-email],
+  body:not(:has([data-admin-app]:not([hidden]))) [data-admin-logout] {
+    display: none !important;
+  }
+
   /* Reveal-on-scroll. Elements opt in via [data-animate]; the global
      IntersectionObserver in Layout.astro adds .is-in once. Entry-only —
      no exit. Honors prefers-reduced-motion. */
