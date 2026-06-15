@@ -17,11 +17,10 @@ import Layout from "../../layouts/Layout.astro";
           <p>La scadenza serve solo a dare un perimetro alla fase di prova. L’uso di Sténtor è gratuito: anche dopo la sperimentazione potrai continuare a usare il software liberamente.</p>
         </div>
 
-        <form data-invite-email-form hidden class="mt-8 grid gap-3 max-w-[520px]">
-          <p class="text-white/48 text-sm leading-[1.55]">Per accettare l’invito, inserisci la tua email. Ti invieremo un link di accesso: dopo averlo aperto tornerai qui per completare l’attivazione.</p>
-          <input data-invite-email type="email" autocomplete="email" placeholder="email@dominio.it" class="h-13 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px] px-4 focus:border-red-500/55 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.12)]" required />
-          <button data-invite-email-submit type="submit" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Ricevi link di accesso</button>
-        </form>
+        <div data-invite-confirm-panel hidden class="mt-8 grid gap-3 max-w-[560px]">
+          <p class="text-white/48 text-sm leading-[1.55]">Per proteggere l’accesso, ti invieremo un link di conferma all’indirizzo email associato a questo invito. Dopo averlo aperto tornerai qui per completare l’attivazione.</p>
+          <button data-invite-confirm-submit type="button" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Inviami il link di conferma</button>
+        </div>
 
         <div data-invite-result class="mt-6"></div>
         <div class="flex flex-col sm:flex-row items-center gap-3 mt-8">
@@ -42,9 +41,8 @@ import Layout from "../../layouts/Layout.astro";
   const title = document.querySelector("[data-invite-title]");
   const message = document.querySelector("[data-invite-message]");
   const button = document.querySelector("[data-invite-accept]");
-  const emailForm = document.querySelector("[data-invite-email-form]");
-  const emailInput = document.querySelector("[data-invite-email]");
-  const emailSubmit = document.querySelector("[data-invite-email-submit]");
+  const confirmPanel = document.querySelector("[data-invite-confirm-panel]");
+  const confirmSubmit = document.querySelector("[data-invite-confirm-submit]");
   const result = document.querySelector("[data-invite-result]");
 
   function showResult(html) {
@@ -53,12 +51,12 @@ import Layout from "../../layouts/Layout.astro";
 
   function showSignedOutState() {
     if (button) button.hidden = true;
-    if (emailForm instanceof HTMLFormElement) emailForm.hidden = false;
+    if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = false;
   }
 
   function showSignedInState() {
     if (button) button.hidden = false;
-    if (emailForm instanceof HTMLFormElement) emailForm.hidden = true;
+    if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
   }
 
   async function readError(response, fallback) {
@@ -70,24 +68,28 @@ import Layout from "../../layouts/Layout.astro";
     }
   }
 
-  async function sendAccessLink(email) {
+  async function sendAccessLink() {
     const nextPath = `${window.location.pathname}${window.location.search}`;
     const redirectTo = `${window.location.origin}/auth/confirm?next=${encodeURIComponent(nextPath)}`;
-    const response = await fetch(`${supabaseUrl}/auth/v1/otp?redirect_to=${encodeURIComponent(redirectTo)}`, {
+    const response = await fetch(`${supabaseUrl}/functions/v1/send-invite-access-link`, {
       method: "POST",
       headers: {
         apikey: supabaseAnonKey,
+        Authorization: `Bearer ${supabaseAnonKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
-        create_user: true,
+        token: inviteToken,
+        redirect_to: redirectTo,
       }),
     });
 
     if (!response.ok) {
-      throw new Error(await readError(response, "Non è stato possibile inviare il link di accesso."));
+      throw new Error(await readError(response, "Non è stato possibile inviare il link di conferma."));
     }
+
+    const body = await response.json();
+    if (!body.ok) throw new Error(body.error || "Non è stato possibile inviare il link di conferma.");
   }
 
   async function acceptInvite(sessionToken) {
@@ -120,42 +122,38 @@ import Layout from "../../layouts/Layout.astro";
       message.innerHTML = `<p>Il link non contiene un token valido. Chiedi un nuovo invito a chi ti ha invitato a provare Sténtor.</p>`;
     }
     if (button) button.hidden = true;
-    if (emailForm instanceof HTMLFormElement) emailForm.hidden = true;
+    if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
   } else if (localStorage.getItem(sessionStorageKey)) {
     showSignedInState();
   } else {
     showSignedOutState();
   }
 
-  emailForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const email = emailInput instanceof HTMLInputElement ? emailInput.value.trim().toLowerCase() : "";
-    if (!email) return;
-
-    if (emailSubmit instanceof HTMLButtonElement) {
-      emailSubmit.disabled = true;
-      emailSubmit.textContent = "Invio...";
+  confirmSubmit?.addEventListener("click", async () => {
+    if (confirmSubmit instanceof HTMLButtonElement) {
+      confirmSubmit.disabled = true;
+      confirmSubmit.textContent = "Invio...";
     }
     showResult("");
 
     try {
-      await sendAccessLink(email);
+      await sendAccessLink();
       showResult(`
         <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
           <strong class="block mb-2">Link inviato.</strong>
-          <span class="text-white/60">Controlla la posta e apri il link ricevuto. Tornerai qui per completare l’attivazione.</span>
+          <span class="text-white/60">Controlla la posta associata a questo invito e apri il link ricevuto. Tornerai qui per completare l’attivazione.</span>
         </div>
       `);
     } catch (error) {
       showResult(`
         <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
-          ${error instanceof Error ? error.message : "Non è stato possibile inviare il link di accesso."}
+          ${error instanceof Error ? error.message : "Non è stato possibile inviare il link di conferma."}
         </p>
       `);
     } finally {
-      if (emailSubmit instanceof HTMLButtonElement) {
-        emailSubmit.disabled = false;
-        emailSubmit.textContent = "Ricevi link di accesso";
+      if (confirmSubmit instanceof HTMLButtonElement) {
+        confirmSubmit.disabled = false;
+        confirmSubmit.textContent = "Inviami il link di conferma";
       }
     }
   });
@@ -184,7 +182,7 @@ import Layout from "../../layouts/Layout.astro";
         message.innerHTML = `<p>L’accesso di sperimentazione a Sténtor è attivo fino al ${expiresAt}. Potrai continuare a usare il software liberamente anche dopo la sperimentazione.</p>`;
       }
       if (button) button.hidden = true;
-      if (emailForm instanceof HTMLFormElement) emailForm.hidden = true;
+      if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
 
       showResult(`
         <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
