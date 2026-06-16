@@ -1,6 +1,6 @@
 ---
 const currentPath = Astro.url.pathname;
-const currentLang = currentPath.startsWith("/it") ? "it" : currentPath.startsWith("/fr") ? "fr" : currentPath.startsWith("/es") ? "es" : "en";
+const currentLang = currentPath.startsWith("/it") ? "it" : currentPath.startsWith("/fr") ? "fr" : currentPath.startsWith("/es") ? "es" : currentPath.startsWith("/de") ? "de" : "en";
 
 const stripLang = (path: string) => {
   if (path === "/fr" || path === "/fr/") return "/";
@@ -9,28 +9,32 @@ const stripLang = (path: string) => {
   if (path.startsWith("/it/")) return path.slice(3) || "/";
   if (path === "/es" || path === "/es/") return "/";
   if (path.startsWith("/es/")) return path.slice(3) || "/";
+  if (path === "/de" || path === "/de/") return "/";
+  if (path.startsWith("/de/")) return path.slice(3) || "/";
   return path || "/";
 };
 
 const basePath = stripLang(currentPath).replace(/\/$/, "") || "/";
-const pathMap: Record<string, { en: string; fr: string; it: string; es: string }> = {
-  "/": { en: "/", fr: "/fr/", it: "/it/", es: "/es/" },
-  "/features": { en: "/features", fr: "/fr/features/", it: "/it/features/", es: "/es/features/" },
-  "/docs": { en: "/docs", fr: "/fr/docs/", it: "/it/docs/", es: "/es/docs/" },
-  "/for-theatres": { en: "/for-theatres", fr: "/fr/for-theatres/", it: "/it/for-theatres/", es: "/es/for-theatres/" },
-  "/customers": { en: "/customers", fr: "/fr/customers", it: "/it/customers/", es: "/es/for-theatres/" },
-  "/download": { en: "/download", fr: "/fr/download/", it: "/it/download/", es: "/es/download/" },
-  "/request-pro": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
-  "/richiedi-prova": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
-  "/demander-essai": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
-  "/solicitar-prueba": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/" },
-  "/accesso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/" },
-  "/acces": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/" },
-  "/acceso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/" },
-  "/account": { en: "/account", fr: "/fr/account/", it: "/it/account/", es: "/es/account/" },
-  "/contact": { en: "/contact", fr: "/fr/contact/", it: "/it/contact/", es: "/es/contact/" },
-  "/pricing": { en: "/pricing", fr: "/fr/pricing/", it: "/it/pricing/", es: "/es/pricing/" },
-  "/about": { en: "/about", fr: "/fr/about/", it: "/it/about/", es: "/es/about/" },
+const pathMap: Record<string, { en: string; fr: string; it: string; es: string; de: string }> = {
+  "/": { en: "/", fr: "/fr/", it: "/it/", es: "/es/", de: "/de/" },
+  "/features": { en: "/features", fr: "/fr/features/", it: "/it/features/", es: "/es/features/", de: "/de/features/" },
+  "/docs": { en: "/docs", fr: "/fr/docs/", it: "/it/docs/", es: "/es/docs/", de: "/de/docs/" },
+  "/for-theatres": { en: "/for-theatres", fr: "/fr/for-theatres/", it: "/it/for-theatres/", es: "/es/for-theatres/", de: "/de/for-theatres/" },
+  "/customers": { en: "/customers", fr: "/fr/customers", it: "/it/customers/", es: "/es/for-theatres/", de: "/de/for-theatres/" },
+  "/download": { en: "/download", fr: "/fr/download/", it: "/it/download/", es: "/es/download/", de: "/de/download/" },
+  "/request-pro": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
+  "/richiedi-prova": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
+  "/demander-essai": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
+  "/solicitar-prueba": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
+  "/testzugang": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
+  "/accesso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
+  "/acces": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
+  "/acceso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
+  "/zugang": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
+  "/account": { en: "/account", fr: "/fr/account/", it: "/it/account/", es: "/es/account/", de: "/de/account/" },
+  "/contact": { en: "/contact", fr: "/fr/contact/", it: "/it/contact/", es: "/es/contact/", de: "/de/contact/" },
+  "/pricing": { en: "/pricing", fr: "/fr/pricing/", it: "/it/pricing/", es: "/es/pricing/", de: "/de/pricing/" },
+  "/about": { en: "/about", fr: "/fr/about/", it: "/it/about/", es: "/es/about/", de: "/de/about/" },
 };
 
 const currentMap = pathMap[basePath] ?? pathMap["/"];
@@ -39,6 +43,7 @@ const languages = [
   { code: "it", label: "Italiano", href: currentMap.it, available: true },
   { code: "fr", label: "Français", href: currentMap.fr, available: true },
   { code: "es", label: "Español", href: currentMap.es, available: true },
+  { code: "de", label: "Deutsch", href: currentMap.de, available: true },
 ];
 ---
 
