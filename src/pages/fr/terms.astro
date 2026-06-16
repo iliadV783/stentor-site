@@ -1,0 +1,8 @@
+---
+import LegalPage from "../../components/LegalPage.astro";
+import { getLegalPage } from "../../data/legal";
+
+const page = getLegalPage("terms", "fr");
+---
+
+<LegalPage page={page} />
