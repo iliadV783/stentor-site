@@ -32,6 +32,18 @@ import { about as page } from "../data/about";
         <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-6">{page.story.title}</h2>
         <div class="grid gap-5 text-[15.5px] leading-[1.7] text-text-2 max-w-[640px]">
           {page.story.paragraphs.map((p) => <p set:html={p}></p>)}
+          <aside class="mt-1 rounded-xl border border-hairline bg-surface/60 p-5 text-[14px] leading-[1.7] text-text-2">
+            <p class="m-0">Calcofono: χαλκεόφωνος, da καλκος: bronzo + φωνή: voce.</p>
+            <p class="mt-4 mb-2 font-mono text-[12px] tracking-[0.08em] uppercase text-red-500">Il. V, 785-786</p>
+            <blockquote class="m-0 text-text font-serif text-[17px] leading-[1.75]">
+              Στέντορι εἰσαμένη μεγαλήτορι χαλκεοφώνῳ,<br />
+              ὃς τόσον αὐδήσασχ᾽ ὅσον ἄλλοι πεντήκοντα
+            </blockquote>
+            <p class="mt-3 mb-0 italic text-text-3">
+              in figura di stèntore, cuore grande, voce di bronzo,<br />
+              che tanto forte gridava quanto cinquanta degli altri (trad. it. R. Calzecchi Onesti)
+            </p>
+          </aside>
         </div>
       </div>
       <aside class="lg:sticky lg:top-32 self-start">
