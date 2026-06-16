@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Eyebrow from "../../components/Eyebrow.astro";
+import Btn from "../../components/Btn.astro";
+import FinalCta from "../../components/FinalCta.astro";
+import Hero from "../../components/sections/home/Hero.astro";
+import LogoCloud from "../../components/sections/home/LogoCloud.astro";
+import Metrics from "../../components/sections/home/Metrics.astro";
+import Bento from "../../components/sections/home/Bento.astro";
+import Testimonials from "../../components/sections/home/Testimonials.astro";
+import PricingPreview from "../../components/sections/home/PricingPreview.astro";
+import { hero, logoCloud, metrics, bento, testimonials, pricingPreview, finalCta } from "../../data/home.de";
+---
+<Layout
+  title="Sténtor — Übertitel, Übersetzung und Audiodeskription"
+  description="Sténtor verbindet Übertitel, Übersetzung und Audiodeskription in einem local-first Workflow für Live-Aufführungen."
+  active={null}
+>
+  <Hero hero={hero} />
+  <LogoCloud logoCloud={logoCloud} />
+  <Metrics metrics={metrics} />
+  <Bento bento={bento} />
+  <Testimonials testimonials={testimonials} />
+  <PricingPreview pricingPreview={pricingPreview} />
+
+  <FinalCta variant={finalCta.variant} paddingY={finalCta.paddingY} gap={finalCta.gap}>
+    <Eyebrow><span class="font-mono">{finalCta.eyebrow}</span></Eyebrow>
+    <h2 class="text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-[-0.04em] font-semibold max-w-[880px]" set:html={finalCta.title}></h2>
+    <p class="text-lg leading-[1.55] text-text-2 max-w-[640px]" set:html={finalCta.body}></p>
+    <div class="flex flex-wrap gap-3 justify-center mt-2">
+      {finalCta.ctas.map((cta, i) => (
+        <Btn href={cta.href} variant={cta.variant} size="lg">
+          {cta.label}{i === 0 && <span aria-hidden="true">→</span>}
+        </Btn>
+      ))}
+    </div>
+  </FinalCta>
+</Layout>
