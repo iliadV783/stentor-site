@@ -5,4 +5,20 @@ import { getLegalPage } from "../data/legal";
 const page = getLegalPage("privacy", "en");
 ---
 
+<script is:inline>
+  (() => {
+    const routes = {
+      it: "/it/privacy/",
+      fr: "/fr/privacy/",
+      es: "/es/privacy/",
+      de: "/de/privacy/",
+      en: "/privacy/",
+    };
+    const lang = new URLSearchParams(window.location.search).get("lang");
+    if (lang && routes[lang] && window.location.pathname !== routes[lang]) {
+      window.location.replace(routes[lang]);
+    }
+  })();
+</script>
+
 <LegalPage page={page} />
