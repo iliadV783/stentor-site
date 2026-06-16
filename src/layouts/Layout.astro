@@ -45,7 +45,9 @@ const pageLang = Astro.url.pathname.startsWith("/it")
     ? "fr"
     : Astro.url.pathname.startsWith("/es")
       ? "es"
-      : site.locale;
+      : Astro.url.pathname.startsWith("/de")
+        ? "de"
+        : site.locale;
 
 const isHome = Astro.url.pathname === "/";
 const isArticle = ogType === "article";
