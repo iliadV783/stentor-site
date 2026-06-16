@@ -1,53 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Eyebrow from "../components/Eyebrow.astro";
-import { privacy as page } from "../data/legal";
+import LegalPage from "../components/LegalPage.astro";
+import { getLegalPage } from "../data/legal";
+
+const page = getLegalPage("privacy", "en");
 ---
-<Layout
-  title="Sténtor – Privacy Policy"
-  description="How Sténtor handles contact details, feedback, questionnaires and research-related information."
-  active={null}
->
-  <!-- Header -->
-  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
-      <div class="max-w-[760px]">
-        <Eyebrow><span class="font-mono">{page.eyebrow}</span></Eyebrow>
-        <h1 class="text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-[-0.04em] font-semibold mt-5 mb-3">{page.title}</h1>
-        <p class="font-mono text-xs text-text-3 mb-5">{page.effectiveDate}</p>
-        <p class="text-lg leading-[1.55] text-text-2 max-w-[640px] m-0">{page.intro}</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- 2-column body: TOC + sections -->
-  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-16 grid gap-10 lg:[grid-template-columns:220px_minmax(0,1fr)] lg:gap-14 items-start">
-    <!-- TOC (sticky, desktop only) -->
-    <aside class="hidden lg:block sticky top-32 text-[13px]" aria-label="On this page">
-      <h2 class="text-[11px] tracking-[0.08em] uppercase text-text-3 font-medium mb-3">On this page</h2>
-      <ul class="grid gap-1.5 list-none p-0 m-0">
-        {page.sections.map((s) => (
-          <li>
-            <a href={`#${s.id}`} class="block py-0.5 text-text-3 hover:text-text-2 transition-colors">{s.title}</a>
-          </li>
-        ))}
-      </ul>
-    </aside>
-
-    <!-- Sections -->
-    <article class="min-w-0">
-      {page.sections.map((s) => (
-        <section id={s.id} class="mb-12 scroll-mt-32">
-          <h2 class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mb-4">{s.title}</h2>
-          <div class="legal-prose" set:html={s.body}></div>
-        </section>
-      ))}
-
-      <section class="mt-16 px-6 py-5 border border-hairline rounded-xl bg-surface">
-        <b class="block font-medium mb-2">{page.contact.title}</b>
-        <div class="legal-prose" set:html={page.contact.body}></div>
-      </section>
-    </article>
-  </div>
-</Layout>
+<LegalPage page={page} />
