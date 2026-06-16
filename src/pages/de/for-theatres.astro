@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Btn from "../../components/Btn.astro";
+---
+<Layout title="Für Theater - Sténtor" description="Sténtor für Theater, Festivals, Schulen und Kompanien." active="customers">
+  <section class="max-w-[1180px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[780px] mb-10">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Für Theater</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Theatrale Barrierefreiheit mit klarer Regie.</h1>
+      <p class="text-xl text-text-2 leading-[1.55]">Sténtor hilft beim Vorbereiten und Fahren von Übertiteln, Übersetzungen und Audiodeskription in realen Räumen: Theatern, Festivals, Schulen, Kompanien und Kulturinstitutionen.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <article class="rounded-2xl border border-hairline bg-surface p-6"><h2 class="text-xl font-semibold mb-3">Proben</h2><p class="text-text-3 leading-[1.6]">Teste Texte, Bildschirme und Geräte vor der Vorstellung.</p></article>
+      <article class="rounded-2xl border border-hairline bg-surface p-6"><h2 class="text-xl font-semibold mb-3">Vorstellungen</h2><p class="text-text-3 leading-[1.6]">Fahre Cues und Ausgaben von einem eigenen Arbeitsplatz aus.</p></article>
+      <article class="rounded-2xl border border-hairline bg-surface p-6"><h2 class="text-xl font-semibold mb-3">Forschung</h2><p class="text-text-3 leading-[1.6]">Sammle Feedback und verbessere Workflows für Barrierefreiheit.</p></article>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3"><Btn href="/de/testzugang" variant="primary">Zugang anfragen</Btn><Btn href="/de/contact" variant="ghost">Kontakt</Btn></div>
+  </section>
+</Layout>
