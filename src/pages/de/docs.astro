@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Btn from "../../components/Btn.astro";
+---
+<Layout title="Leitfaden - Sténtor" description="Erster Leitfaden zum Sténtor-Workflow." active="docs">
+  <section class="max-w-[1180px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <div class="max-w-[760px] mb-10">
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Leitfaden</p>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Vom Skript in den Saal.</h1>
+      <p class="text-xl text-text-2 leading-[1.55]">Ein kurzer Weg durch Materialvorbereitung, Ausgabekonfiguration und Live-Bedienung von Sténtor in Proben und Vorstellungen.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <article class="rounded-2xl border border-hairline bg-surface p-6"><p class="font-mono text-red-400 mb-3">01</p><h2 class="text-xl font-semibold mb-3">Text vorbereiten</h2><p class="text-text-3 leading-[1.6]">Organisiere Skript, Cues, Übersetzungen und Notizen.</p></article>
+      <article class="rounded-2xl border border-hairline bg-surface p-6"><p class="font-mono text-red-400 mb-3">02</p><h2 class="text-xl font-semibold mb-3">Ausgaben konfigurieren</h2><p class="text-text-3 leading-[1.6]">Wähle Bildschirme, Publikumstelefone und Barrierefreiheitsmaterialien.</p></article>
+      <article class="rounded-2xl border border-hairline bg-surface p-6"><p class="font-mono text-red-400 mb-3">03</p><h2 class="text-xl font-semibold mb-3">Live gehen</h2><p class="text-text-3 leading-[1.6]">Arbeite mit einer Regieansicht, die für Konzentration und Timing gestaltet ist.</p></article>
+    </div>
+    <div class="mt-8"><Btn href="/de/contact" variant="ghost">Nutzungshinweise teilen</Btn></div>
+  </section>
+</Layout>
