@@ -19,7 +19,14 @@ import Layout from "../layouts/Layout.astro";
       <section data-account-login class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Sténtor.</h1>
-        <p class="text-white/50 leading-[1.6] mb-7">Use your email to access downloads, activation details and your Sténtor access code.</p>
+        <p class="text-white/50 leading-[1.6] mb-7">Use your email, Google or Microsoft account to access downloads, activation details and your Sténtor access code.</p>
+
+        <div class="grid sm:grid-cols-2 gap-3 mb-6">
+          <button type="button" data-account-oauth="google" class="account-provider"><img src="/brand/google.svg" alt="" class="provider-logo" /> Continue with Google</button>
+          <button type="button" data-account-oauth="azure" class="account-provider"><img src="/brand/microsoft.svg" alt="" class="provider-logo" /> Continue with Microsoft</button>
+        </div>
+        <div class="flex items-center gap-4 my-6 text-white/35 font-mono text-[12px] uppercase tracking-[0.14em]"><span class="h-px bg-white/10 flex-1"></span> or email <span class="h-px bg-white/10 flex-1"></span></div>
+
         <form data-account-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@theatre.org" class="account-input" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="account-input" />
@@ -88,8 +95,12 @@ import Layout from "../layouts/Layout.astro";
   function getTokenFromHash() {
     const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
     const token = hash.get('access_token');
+    const error = hash.get('error_description') || hash.get('error');
     if (token) {
       localStorage.setItem(storageKey, token);
+      history.replaceState(null, '', window.location.pathname);
+    } else if (error) {
+      showError(error);
       history.replaceState(null, '', window.location.pathname);
     }
     return token;
@@ -118,6 +129,15 @@ import Layout from "../layouts/Layout.astro";
     if (!supabaseUrl || !supabaseAnonKey) {
       throw new Error('Account access is not configured yet. Check Supabase public environment variables.');
     }
+  }
+
+  function startOAuth(provider) {
+    ensureConfig();
+    const redirectTo = `${window.location.origin}/auth/confirm?next=/account`;
+    const url = new URL(`${supabaseUrl}/auth/v1/authorize`);
+    url.searchParams.set('provider', provider);
+    url.searchParams.set('redirect_to', redirectTo);
+    window.location.assign(url.toString());
   }
 
   async function apiFetch(path, token, options = {}) {
@@ -259,6 +279,26 @@ import Layout from "../layouts/Layout.astro";
     }
   });
 
+  document.addEventListener('click', async (event) => {
+    const oauthButton = event.target.closest?.('[data-account-oauth]');
+    if (oauthButton) {
+      if (errorBox) errorBox.hidden = true;
+      try {
+        startOAuth(oauthButton.getAttribute('data-account-oauth') || 'google');
+      } catch (error) {
+        showError(error instanceof Error ? error.message : 'Provider login is not configured yet.');
+      }
+      return;
+    }
+
+    const button = event.target.closest?.('[data-copy-access-code]');
+    if (!button) return;
+    const key = button.getAttribute('data-copy-access-code') || '';
+    await navigator.clipboard.writeText(key);
+    button.textContent = 'Copied';
+    window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
+  });
+
   logoutButton?.addEventListener('click', () => {
     localStorage.removeItem(storageKey);
     window.location.reload();
@@ -267,15 +307,6 @@ import Layout from "../layouts/Layout.astro";
   refreshButton?.addEventListener('click', async () => {
     const token = getStoredToken();
     if (token) await loadAccount(token).catch((error) => showError(error instanceof Error ? error.message : 'Refresh failed.'));
-  });
-
-  document.addEventListener('click', async (event) => {
-    const button = event.target.closest?.('[data-copy-access-code]');
-    if (!button) return;
-    const key = button.getAttribute('data-copy-access-code') || '';
-    await navigator.clipboard.writeText(key);
-    button.textContent = 'Copied';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
   });
 
   showLogin();
@@ -291,6 +322,8 @@ import Layout from "../layouts/Layout.astro";
 
 <style is:global>
   @reference "../styles/global.css";
+  .account-provider { @apply h-12 rounded-xl border border-white/10 bg-white/[0.045] hover:bg-white/[0.075] hover:border-white/20 transition-colors inline-flex items-center justify-center gap-3 text-[15px] font-medium text-white/90; }
+  .provider-logo { width: 20px; height: 20px; flex: none; display: block; }
   .account-input { @apply w-full h-12 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
   .account-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
   .account-input::placeholder { color: rgba(255,255,255,0.34); }
