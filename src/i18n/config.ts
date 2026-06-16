@@ -49,6 +49,8 @@ export const routeMap: Record<string, RouteMap> = {
   "/contact": { en: "/contact", it: "/it/contact/", fr: "/fr/contact/", es: "/es/contact/", de: "/de/contact/" },
   "/pricing": { en: "/pricing", it: "/it/pricing/", fr: "/fr/pricing/", es: "/es/pricing/", de: "/de/pricing/" },
   "/about": { en: "/about", it: "/it/about/", fr: "/fr/about/", es: "/es/about/", de: "/de/about/" },
+  "/privacy": { en: "/privacy/", it: "/it/privacy/", fr: "/fr/privacy/", es: "/es/privacy/", de: "/de/privacy/" },
+  "/terms": { en: "/terms/", it: "/it/terms/", fr: "/fr/terms/", es: "/es/terms/", de: "/de/terms/" },
 };
 
 const localePrefixPattern = new RegExp(`^/(${locales.filter((locale) => locale !== defaultLocale).join("|")})(?=/|$)`);
