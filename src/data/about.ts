@@ -8,13 +8,16 @@ export type Value = { number: string; title: string; description: string };
 export type Milestone = { year: string; title: string; description: string };
 export type TeamMember = { name: string; role: string; initial: string; bio: string };
 
+const leonardoProfileUrl = "https://www.studium.unito.it/do/docenti.pl/Show?_id=lmancini";
+const leonardoProfileLink = `<a href="${leonardoProfileUrl}" target="_blank" rel="noopener noreferrer" class="text-text underline decoration-red-500/60 underline-offset-4 hover:text-red-400 transition-colors">Leonardo Mancini</a>`;
+
 export const about = {
   hero: {
     eyebrow: "About Sténtor",
     title:
       'Live performance needs <em class="not-italic text-red-500">live words</em>.<br/>For every audience.',
     description:
-      "Sténtor is a cross-platform tool for surtitles, translation and audio description in live performance, created and developed by Leonardo Mancini (University of Turin, Italy).",
+      `Sténtor is a cross-platform tool for surtitles, translation and audio description in live performance, created and developed by ${leonardoProfileLink} (University of Turin, Italy).`,
   },
 
   story: {
@@ -23,7 +26,7 @@ export const about = {
     paragraphs: [
       "Sténtor starts from a practical problem: live performance often needs more than one layer of text. A production may need surtitles, translations, audio-description notes, operator cues, venue screens and audience phones — all while the show is happening in real time.",
       "The name refers to Στέντωρ, Stentor from Greek mythology, remembered for a voice powerful enough to carry across a battlefield. Sténtor takes that image and turns it into a tool for theatre: not louder sound, but clearer transmission of words, languages and descriptions.",
-      "The project is developed by Leonardo Mancini (University of Turin, Italy) as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.",
+      `The project is developed by ${leonardoProfileLink} (University of Turin, Italy) as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.`,
     ],
     pullQuote: {
       text: "Live performance text should travel clearly: from the script to the operator, from the stage to screens, from the room to each audience device.",
