@@ -4,9 +4,11 @@ import IconXTwitter from "../assets/icons/x-twitter.svg";
 import IconRss from "../assets/icons/rss.svg";
 import IconDiscord from "../assets/icons/discord.svg";
 import { site, footerGroups } from "../data/site";
+import { getLocaleFromPath, getLocalizedPath } from "../i18n/config";
 
-const isFr = Astro.url.pathname.startsWith("/fr");
-const isIt = Astro.url.pathname.startsWith("/it");
+const currentLocale = getLocaleFromPath(Astro.url.pathname);
+const isFr = currentLocale === "fr";
+const isIt = currentLocale === "it";
 const groups = isFr
   ? [
       { title: "Produit", links: [
@@ -56,6 +58,13 @@ const groups = isFr
         ] },
       ]
     : footerGroups;
+const localizedGroups = groups.map((group) => ({
+  ...group,
+  links: group.links.map((link) => ({
+    ...link,
+    href: link.href === "/privacy" ? getLocalizedPath("/privacy", currentLocale) : link.href === "/terms" ? getLocalizedPath("/terms", currentLocale) : link.href,
+  })),
+}));
 const footerTagline = isFr
   ? "Surtitres, traduction et audiodescription pour le spectacle vivant."
   : isIt
@@ -71,7 +80,7 @@ const statusRegions = isFr
   : isIt
     ? "soprattitoli, traduzione, audio-descrizione"
     : site.statusRegions;
-const homeHref = isFr ? "/fr/" : isIt ? "/it/" : "/";
+const homeHref = getLocalizedPath("/", currentLocale);
 const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
 
 const socialIcons = [
@@ -108,7 +117,7 @@ const socialIcons = [
       </div>
 
       {
-        groups.map((g) => (
+        localizedGroups.map((g) => (
           <div>
             <h2 class="text-xs uppercase tracking-[0.06em] text-text-3 mb-3.5 font-medium">{g.title}</h2>
             <ul class="grid gap-2.5 list-none p-0 m-0">
