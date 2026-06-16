@@ -26,11 +26,12 @@ import Layout from "../layouts/Layout.astro";
         <p class="text-white/45 mt-4">Already have an access code? <a href="/account" class="text-red-400 underline underline-offset-4 hover:text-red-300">Sign in →</a></p>
       </div>
 
-      <div class="grid sm:grid-cols-2 gap-3 mb-6">
+      <div class="grid sm:grid-cols-3 gap-3 mb-6">
         <button type="button" data-access-oauth="google" class="auth-provider"><img src="/brand/google.svg" alt="" class="provider-logo" /> Continue with Google</button>
         <button type="button" data-access-oauth="azure" class="auth-provider"><img src="/brand/microsoft.svg" alt="" class="provider-logo" /> Continue with Microsoft</button>
+        <button type="button" data-access-oauth="apple" class="auth-provider"><span class="provider-logo provider-logo-apple" aria-hidden="true"></span> Continue with Apple</button>
       </div>
-      <p class="text-center text-xs text-white/35 -mt-3 mb-6">Use Google or Microsoft to sign in, or complete the access request below.</p>
+      <p class="text-center text-xs text-white/35 -mt-3 mb-6">Use Google, Microsoft or Apple to sign in, or complete the access request below.</p>
       <div class="flex items-center gap-4 my-7 text-white/35 font-mono text-[12px] uppercase tracking-[0.14em]"><span class="h-px bg-white/10 flex-1"></span> access request <span class="h-px bg-white/10 flex-1"></span></div>
 
       <div id="request-form" class="scroll-mt-8 rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden shadow-2xl shadow-red-950/10">
@@ -94,6 +95,7 @@ import Layout from "../layouts/Layout.astro";
   @reference "../styles/global.css";
   .auth-provider { @apply h-14 rounded-xl border border-white/10 bg-white/[0.045] hover:bg-white/[0.075] hover:border-white/20 transition-colors inline-flex items-center justify-center gap-3 text-[15px] font-medium text-white/90; }
   .provider-logo { width: 20px; height: 20px; flex: none; display: block; }
+  .provider-logo-apple { font-size: 20px; line-height: 1; text-align: center; }
   .auth-label { @apply block text-[13px] font-medium text-white/62 mb-2; }
   .auth-input { @apply w-full h-12 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
   .auth-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
