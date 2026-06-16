@@ -9,7 +9,10 @@ export type Milestone = { year: string; title: string; description: string };
 export type TeamMember = { name: string; role: string; initial: string; bio: string };
 
 const leonardoProfileUrl = "https://www.studium.unito.it/do/docenti.pl/Show?_id=lmancini";
-const leonardoProfileLink = `<a href="${leonardoProfileUrl}" target="_blank" rel="noopener noreferrer" class="text-text underline decoration-red-500/60 underline-offset-4 hover:text-red-400 transition-colors">Leonardo Mancini</a>`;
+const eticaProjectUrl = "https://unifind.unito.it/resource/project/MANL_PE_ATENEO_25_01";
+const inlineLinkClass = "text-text underline decoration-red-500/60 underline-offset-4 hover:text-red-400 transition-colors";
+const leonardoProfileLink = `<a href="${leonardoProfileUrl}" target="_blank" rel="noopener noreferrer" class="${inlineLinkClass}">Leonardo Mancini</a>`;
+const eticaProjectLink = `<a href="${eticaProjectUrl}" target="_blank" rel="noopener noreferrer" class="${inlineLinkClass}">ETICA</a>`;
 
 export const about = {
   hero: {
@@ -17,7 +20,9 @@ export const about = {
     title:
       'Live performance needs <em class="not-italic text-red-500">live words</em>.<br/>For every audience.',
     description:
-      `Sténtor is a cross-platform tool for surtitles, translation and audio description in live performance, created and developed by ${leonardoProfileLink} (University of Turin, Italy).`,
+      "Sténtor is a cross-platform tool for surtitles, translation and audio description in live performance.",
+    credit:
+      `Created and developed by ${leonardoProfileLink} (University of Turin, Italy), within the public engagement project ${eticaProjectLink}.`,
   },
 
   story: {
@@ -25,8 +30,8 @@ export const about = {
     title: "Why Sténtor exists",
     paragraphs: [
       "Sténtor starts from a practical problem: live performance often needs more than one layer of text. A production may need surtitles, translations, audio-description notes, operator cues, venue screens and audience phones — all while the show is happening in real time.",
-      "The name refers to Στέντωρ, Stentor from Greek mythology, remembered for a voice powerful enough to carry across a battlefield. Sténtor takes that image and turns it into a tool for theatre: not louder sound, but clearer transmission of words, languages and descriptions.",
-      `The project is developed by ${leonardoProfileLink} (University of Turin, Italy) as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.`,
+      "The name refers to Stentor from Greek mythology: not as an image of combat, but as the figure remembered for a bronze voice. Homer describes him as chalkophonous, from chalkos, bronze, and phone, voice: endowed with a voice so powerful that it was equal to the voices of fifty others together. Sténtor turns that image into a theatre tool: not louder sound, but clearer transmission of words, languages and descriptions.",
+      `The project is developed by ${leonardoProfileLink} (University of Turin, Italy) within the public engagement project ${eticaProjectLink}, as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.`,
     ],
     pullQuote: {
       text: "Live performance text should travel clearly: from the script to the operator, from the stage to screens, from the room to each audience device.",
