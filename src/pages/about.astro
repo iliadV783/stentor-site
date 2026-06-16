@@ -8,7 +8,7 @@ import { about as page } from "../data/about";
 <Layout
   title="Sténtor – About"
   description="About Sténtor, a research-driven software project for surtitles, translation, audio description and audience devices in live performance."
-  active={null}
+  active="about"
 >
 
   <!-- Hero -->
@@ -18,7 +18,7 @@ import { about as page } from "../data/about";
       <div class="max-w-[820px]">
         <Eyebrow><span class="font-mono">{page.hero.eyebrow}</span></Eyebrow>
         <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mt-5 mb-5" set:html={page.hero.title}></h1>
-        <p class="text-lg leading-[1.55] text-text-2 max-w-[600px] m-0">{page.hero.description}</p>
+        <p class="text-lg leading-[1.55] text-text-2 max-w-[600px] m-0" set:html={page.hero.description}></p>
       </div>
     </div>
   </section>
@@ -30,7 +30,7 @@ import { about as page } from "../data/about";
         <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-4">{page.story.eyebrow}</p>
         <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-6">{page.story.title}</h2>
         <div class="grid gap-5 text-[15.5px] leading-[1.7] text-text-2 max-w-[640px]">
-          {page.story.paragraphs.map((p) => <p>{p}</p>)}
+          {page.story.paragraphs.map((p) => <p set:html={p}></p>)}
         </div>
       </div>
       <aside class="lg:sticky lg:top-32 self-start">
