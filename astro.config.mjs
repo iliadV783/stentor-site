@@ -9,6 +9,14 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // Canonical origin used by canonical URLs, OG tags, RSS, and the sitemap.
   site: 'https://www.stentor.live',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'it', 'fr', 'es', 'de'],
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: false,
+    },
+  },
   integrations: [
     alpinejs(),
     mdx(),
