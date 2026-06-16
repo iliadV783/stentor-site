@@ -19,12 +19,12 @@ import Layout from "../layouts/Layout.astro";
       <section data-account-login class="max-w-[760px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Sténtor.</h1>
-        <p class="text-white/50 leading-[1.6] mb-7">Use your email, Google, Microsoft or Apple account to access downloads, activation details and your Sténtor access code.</p>
+        <p class="text-white/50 leading-[1.6] mb-7">Use your email, Google, Apple or Microsoft account to access downloads, activation details and your Sténtor access code.</p>
 
         <div class="grid sm:grid-cols-3 gap-3 mb-6">
           <button type="button" data-account-oauth="google" class="account-provider"><img src="/brand/google.svg" alt="" class="provider-logo" /> Continue with Google</button>
-          <button type="button" data-account-oauth="azure" class="account-provider"><img src="/brand/microsoft.svg" alt="" class="provider-logo" /> Continue with Microsoft</button>
           <button type="button" data-account-oauth="apple" class="account-provider"><span class="provider-logo provider-logo-apple" aria-hidden="true"></span> Continue with Apple</button>
+          <button type="button" data-account-oauth="azure" class="account-provider"><img src="/brand/microsoft.svg" alt="" class="provider-logo" /> Continue with Microsoft</button>
         </div>
         <div class="flex items-center gap-4 my-6 text-white/35 font-mono text-[12px] uppercase tracking-[0.14em]"><span class="h-px bg-white/10 flex-1"></span> or email <span class="h-px bg-white/10 flex-1"></span></div>
 
