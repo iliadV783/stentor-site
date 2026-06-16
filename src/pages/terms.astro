@@ -5,4 +5,20 @@ import { getLegalPage } from "../data/legal";
 const page = getLegalPage("terms", "en");
 ---
 
+<script is:inline>
+  (() => {
+    const routes = {
+      it: "/it/terms/",
+      fr: "/fr/terms/",
+      es: "/es/terms/",
+      de: "/de/terms/",
+      en: "/terms/",
+    };
+    const lang = new URLSearchParams(window.location.search).get("lang");
+    if (lang && routes[lang] && window.location.pathname !== routes[lang]) {
+      window.location.replace(routes[lang]);
+    }
+  })();
+</script>
+
 <LegalPage page={page} />
