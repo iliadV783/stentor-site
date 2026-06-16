@@ -1,0 +1,15 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Btn from "../../components/Btn.astro";
+---
+<Layout title="Sténtor Zugang - Sténtor" description="Zugang zum Sténtor-Kontobereich." active={null} noindex={true}>
+  <section class="max-w-[860px] mx-auto px-4 md:px-8 py-24 md:py-32">
+    <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Zugang</p>
+    <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Bei Sténtor anmelden.</h1>
+    <p class="text-xl text-text-2 leading-[1.55] max-w-[720px] mb-8">Die Anmeldung mit Google, Microsoft oder E-Mail-Link ist in Vorbereitung. Frage vorerst eine Beta-Lizenz an oder kehre zum Kontobereich zurück.</p>
+    <div class="flex flex-wrap gap-3">
+      <Btn href="/de/testzugang" variant="primary" size="lg">Beta anfragen</Btn>
+      <Btn href="/de/account" variant="ghost" size="lg">Zurück zum Konto</Btn>
+    </div>
+  </section>
+</Layout>
