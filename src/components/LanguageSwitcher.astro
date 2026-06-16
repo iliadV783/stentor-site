@@ -1,50 +1,27 @@
 ---
+import {
+  getLocalizedPath,
+  getLocaleFromPath,
+  localeLabels,
+  locales,
+} from "../i18n/config";
+
 const currentPath = Astro.url.pathname;
-const currentLang = currentPath.startsWith("/it") ? "it" : currentPath.startsWith("/fr") ? "fr" : currentPath.startsWith("/es") ? "es" : currentPath.startsWith("/de") ? "de" : "en";
+const currentLang = getLocaleFromPath(currentPath);
+const languages = locales.map((code) => ({
+  code,
+  label: localeLabels[code],
+  href: getLocalizedPath(currentPath, code),
+}));
 
-const stripLang = (path: string) => {
-  if (path === "/fr" || path === "/fr/") return "/";
-  if (path.startsWith("/fr/")) return path.slice(3) || "/";
-  if (path === "/it" || path === "/it/") return "/";
-  if (path.startsWith("/it/")) return path.slice(3) || "/";
-  if (path === "/es" || path === "/es/") return "/";
-  if (path.startsWith("/es/")) return path.slice(3) || "/";
-  if (path === "/de" || path === "/de/") return "/";
-  if (path.startsWith("/de/")) return path.slice(3) || "/";
-  return path || "/";
-};
-
-const basePath = stripLang(currentPath).replace(/\/$/, "") || "/";
-const pathMap: Record<string, { en: string; fr: string; it: string; es: string; de: string }> = {
-  "/": { en: "/", fr: "/fr/", it: "/it/", es: "/es/", de: "/de/" },
-  "/features": { en: "/features", fr: "/fr/features/", it: "/it/features/", es: "/es/features/", de: "/de/features/" },
-  "/docs": { en: "/docs", fr: "/fr/docs/", it: "/it/docs/", es: "/es/docs/", de: "/de/docs/" },
-  "/for-theatres": { en: "/for-theatres", fr: "/fr/for-theatres/", it: "/it/for-theatres/", es: "/es/for-theatres/", de: "/de/for-theatres/" },
-  "/customers": { en: "/customers", fr: "/fr/customers", it: "/it/customers/", es: "/es/for-theatres/", de: "/de/for-theatres/" },
-  "/download": { en: "/download", fr: "/fr/download/", it: "/it/download/", es: "/es/download/", de: "/de/download/" },
-  "/request-pro": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
-  "/richiedi-prova": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
-  "/demander-essai": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
-  "/solicitar-prueba": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
-  "/testzugang": { en: "/request-pro", fr: "/fr/demander-essai/", it: "/it/richiedi-prova/", es: "/es/solicitar-prueba/", de: "/de/testzugang/" },
-  "/accesso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
-  "/acces": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
-  "/acceso": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
-  "/zugang": { en: "/accesso", fr: "/fr/acces/", it: "/it/accesso/", es: "/es/acceso/", de: "/de/zugang/" },
-  "/account": { en: "/account", fr: "/fr/account/", it: "/it/account/", es: "/es/account/", de: "/de/account/" },
-  "/contact": { en: "/contact", fr: "/fr/contact/", it: "/it/contact/", es: "/es/contact/", de: "/de/contact/" },
-  "/pricing": { en: "/pricing", fr: "/fr/pricing/", it: "/it/pricing/", es: "/es/pricing/", de: "/de/pricing/" },
-  "/about": { en: "/about", fr: "/fr/about/", it: "/it/about/", es: "/es/about/", de: "/de/about/" },
-};
-
-const currentMap = pathMap[basePath] ?? pathMap["/"];
-const languages = [
-  { code: "en", label: "English", href: currentMap.en, available: true },
-  { code: "it", label: "Italiano", href: currentMap.it, available: true },
-  { code: "fr", label: "Français", href: currentMap.fr, available: true },
-  { code: "es", label: "Español", href: currentMap.es, available: true },
-  { code: "de", label: "Deutsch", href: currentMap.de, available: true },
-];
+const currentLabel = localeLabels[currentLang];
+const currentText = {
+  en: "current",
+  it: "attuale",
+  fr: "actuelle",
+  es: "actual",
+  de: "aktuell",
+}[currentLang];
 ---
 
 <div
@@ -57,7 +34,7 @@ const languages = [
     x-on:click="open = !open"
     x-bind:aria-expanded="open.toString()"
     aria-haspopup="menu"
-    aria-label="Select language"
+    aria-label={`Select language: ${currentLabel}`}
     class="inline-flex items-center gap-2 h-10 px-2.5 rounded-lg text-sm text-text-3 hover:text-text hover:bg-white/[0.04] transition-colors"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -89,13 +66,16 @@ const languages = [
     {languages.map((lang) => (
       <a
         href={lang.href}
+        hreflang={lang.code}
+        lang={lang.code}
+        aria-current={currentLang === lang.code ? "page" : undefined}
         x-on:click={`localStorage.setItem('stentor-lang-choice', '${lang.code}'); open = false`}
         class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
         role="menuitem"
       >
         <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-red-500" : "text-text-3"]}>{lang.code}</span>
         <span class="flex-1">{lang.label}</span>
-        <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? "current" : ""}</span>
+        <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? currentText : ""}</span>
       </a>
     ))}
   </div>
