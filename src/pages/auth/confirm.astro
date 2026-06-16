@@ -33,16 +33,24 @@ import Layout from "../../layouts/Layout.astro";
   const link = document.querySelector('[data-confirm-link]');
   const icon = document.querySelector('[data-confirm-icon]');
 
+  function tokenStorageKeyFor(path) {
+    if (path.startsWith('/account')) return 'stentor_account_access_token';
+    return 'stentor_admin_access_token';
+  }
+
   if (token) {
-    localStorage.setItem('stentor_admin_access_token', token);
+    localStorage.setItem(tokenStorageKeyFor(next), token);
     history.replaceState(null, '', window.location.pathname + window.location.search);
     if (link instanceof HTMLAnchorElement) link.href = next;
+    if (next.startsWith('/account') && message) {
+      message.textContent = 'La sessione è stata confermata. Puoi continuare nel tuo account Sténtor.';
+    }
   } else if (error) {
     if (title) title.textContent = 'Link scaduto.';
     if (message) message.textContent = 'Il link di accesso non è valido o è scaduto. Torna alla pagina dell’invito e richiedi un nuovo link.';
     if (link instanceof HTMLAnchorElement) {
-      link.href = '/';
-      link.textContent = 'Torna al sito';
+      link.href = next.startsWith('/account') ? '/account' : '/';
+      link.textContent = next.startsWith('/account') ? 'Torna all’account' : 'Torna al sito';
     }
     if (icon) {
       icon.textContent = '!';
