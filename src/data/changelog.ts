@@ -6,7 +6,7 @@ export const hero = {
   eyebrow: "Project log",
   title: "What changed in Sténtor.",
   description:
-    "A public log of the software as it grows: desktop app work, Live Sync, audience web app, import/export, audio-description tools and research-facing improvements.",
+    "A public log of the software as it grows: Apple beta distribution, Windows development, Live Sync, audience web app, import/export, audio-description tools and research-facing improvements.",
   emailPlaceholder: "you@example.com",
   subscribeLabel: "Follow updates",
   subscribeLinks: [
@@ -17,22 +17,40 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "All", count: 6 },
-  { id: "major", label: "Milestones", count: 2 },
-  { id: "new", label: "New", count: 2 },
-  { id: "improvements", label: "Improvements", count: 2 },
+  { id: "all", label: "All", count: 7 },
+  { id: "major", label: "Milestones", count: 3 },
+  { id: "new", label: "New", count: 3 },
+  { id: "improvements", label: "Improvements", count: 3 },
   { id: "fixes", label: "Fixes", count: 1 },
 ];
 
-export const versionTag = "v0.1.64 · Live Sync";
+export const versionTag = "v0.1.70 · TestFlight + Windows";
 export const versionRange = "· current prototype";
 
 export const years = [
-  { y: "2026", n: 6, on: true },
+  { y: "2026", n: 7, on: true },
   { y: "Research", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.70",
+    date: "2026-06-17",
+    type: "major",
+    title: "Apple beta distribution and Windows development move forward",
+    body: "Sténtor advances on two fronts: the Apple version is being prepared for TestFlight distribution, while a native Windows edition is now in active C# development.",
+    changes: {
+      new: [
+        { title: "Apple TestFlight path", body: "The macOS/iOS work now includes the publication track for beta testing through Apple TestFlight." },
+        { title: "Windows C# edition", body: "A dedicated Windows version is in development with C#, moving beyond mockups into a real Windows 11-style desktop interface." },
+        { title: "Accessible script checks", body: "The text editor direction now includes sober control warnings for long surtitles, helping operators keep lines within readable live limits." },
+      ],
+      improvements: [
+        { title: "Character and AD import logic", body: "Script import work is being refined so markers such as AD can be treated as audio-description material rather than ordinary character names." },
+        { title: "Cross-platform roadmap", body: "The product direction is clearer: Apple beta testing, Windows desktop development and audience devices remain part of one coherent live-accessibility ecosystem." },
+      ],
+    },
+  },
   {
     version: "0.1.64",
     date: "2026-06-05",
@@ -127,9 +145,9 @@ export const sideStats = {
   thisYear: {
     title: "Current focus",
     rows: [
-      { label: "Prototype", value: "0.1.64", accent: true },
-      { label: "Live Sync", value: "active" },
-      { label: "Audience web app", value: "testing" },
+      { label: "Prototype", value: "0.1.70", accent: true },
+      { label: "Apple TestFlight", value: "publishing" },
+      { label: "Windows C#", value: "in development" },
       { label: "Feedback loop", value: "open" },
     ],
   },
@@ -142,9 +160,9 @@ export const sideStats = {
   status: {
     title: "Status",
     rows: [
-      { label: "Desktop app", value: "● prototype", color: "green" as const },
-      { label: "Audience web app", value: "testing" },
-      { label: "Next priority", value: "field feedback" },
+      { label: "Apple app", value: "● TestFlight", color: "green" as const },
+      { label: "Windows app", value: "C# development" },
+      { label: "Next priority", value: "beta feedback" },
     ],
   },
 };
