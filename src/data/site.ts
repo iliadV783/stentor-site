@@ -24,12 +24,13 @@ export const site = {
   },
 } as const;
 
-export type NavId = "features" | "docs" | "customers" | "about";
+export type NavId = "features" | "docs" | "customers" | "changelog" | "about";
 
 export const nav: { href: string; label: string; id: NavId }[] = [
   { href: "/features", label: "Features", id: "features" },
   { href: "/docs", label: "Workflow", id: "docs" },
   { href: "/for-theatres", label: "For Theatres", id: "customers" },
+  { href: "/changelog/", label: "Changelog", id: "changelog" },
   { href: "/about", label: "About", id: "about" },
 ];
 
@@ -68,7 +69,7 @@ export const footerGroups: FooterGroup[] = [
     links: [
       { href: "/about", label: "About" },
       { href: "/blog", label: "Notes" },
-      { href: "/changelog", label: "Updates" },
+      { href: "/changelog/", label: "Updates" },
     ],
   },
   {
