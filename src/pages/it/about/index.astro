@@ -1,39 +1,75 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import Eyebrow from "../../../components/Eyebrow.astro";
+import { about as page } from "../../../data/about.it";
 ---
-
 <Layout
-  title="Sténtor – Chi siamo"
-  description="Sténtor è un progetto software di ricerca per sopratitoli, traduzione, audio descrizione e dispositivi del pubblico nello spettacolo dal vivo."
+  title="Sténtor – About"
+  description="About di Sténtor, progetto software di ricerca per sopratitoli, traduzione, audiodescrizione e dispositivi del pubblico nello spettacolo dal vivo."
   active={null}
 >
-  <section class="max-w-[1040px] mx-auto px-4 md:px-8 py-24 md:py-32">
-    <div class="max-w-[820px] mb-14">
-      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Chi siamo</p>
-      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Lo spettacolo dal vivo ha bisogno di parole vive.</h1>
-      <p class="text-xl text-text-2 leading-[1.55] max-w-[760px]">
-        Sténtor è uno strumento multipiattaforma per sopratitoli, traduzione e audio descrizione nello spettacolo dal vivo, ideato e sviluppato da Leonardo Mancini presso l’Università di Torino.
-      </p>
+  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-20">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[820px]">
+        <Eyebrow><span class="font-mono">{page.hero.eyebrow}</span></Eyebrow>
+        <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mt-5 mb-5" set:html={page.hero.title}></h1>
+        <p class="text-lg leading-[1.55] text-text-2 max-w-[600px] m-0" set:html={page.hero.description}></p>
+        <p class="text-[15px] leading-[1.65] text-text-3 max-w-[620px] mt-7 mb-0" set:html={page.hero.credit}></p>
+      </div>
     </div>
+  </section>
 
-    <div class="grid gap-5 text-zinc-300 leading-[1.7] max-w-[760px] mb-14">
-      <p>Sténtor nasce da un problema concreto: uno spettacolo può richiedere più livelli di testo contemporaneamente. Un copione, una traduzione, note per audio descrizione, cue di regia, schermi di sala, pagina foyer e telefoni del pubblico devono funzionare mentre la performance accade in tempo reale.</p>
-      <p>Il nome rimanda a Στέντωρ, Stentore nella mitologia greca, famoso per una voce capace di attraversare il campo di battaglia. Sténtor trasforma quell’immagine in uno strumento teatrale: non una voce più forte, ma una circolazione più chiara di parole, lingue e descrizioni.</p>
-      <p>Il progetto mantiene accessibili gli strumenti essenziali e invita chi lo usa a condividere feedback, questionari, note di campo e risposte del pubblico dopo prove o spettacoli reali.</p>
-    </div>
-
-    <div class="grid md:grid-cols-4 gap-4">
-      {[
-        { value: "3", label: "livelli centrali: sopratitoli, traduzione, audio descrizione" },
-        { value: "∞", label: "progetti, lingue e cue" },
-        { value: "3", label: "piattaforme desktop: macOS, Windows e Linux" },
-        { value: "EUPL", label: "modello europeo open source" },
-      ].map((item) => (
-        <div class="rounded-2xl border border-hairline bg-surface p-5">
-          <div class="text-3xl tracking-[-0.04em] font-semibold text-red-500 mb-2">{item.value}</div>
-          <p class="text-sm text-text-3 leading-[1.5] m-0">{item.label}</p>
+  <section class="py-20 lg:py-24 border-b border-hairline">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8 grid gap-10 lg:[grid-template-columns:minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
+      <div>
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-4">{page.story.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-6">{page.story.title}</h2>
+        <div class="grid gap-5 text-[15.5px] leading-[1.7] text-text-2 max-w-[640px]">
+          {page.story.paragraphs.map((p) => <p set:html={p}></p>)}
         </div>
-      ))}
+      </div>
+      <aside class="lg:sticky lg:top-32 self-start">
+        <figure class="border border-hairline rounded-xl bg-surface p-7 lg:p-8 relative overflow-hidden">
+          <div class="absolute -top-8 -right-8 -translate-y-10 translate-x-10 w-40 h-40 pointer-events-none" style="background: radial-gradient(50% 50% at 50% 50%, rgba(239,68,68,0.16), transparent 70%);" aria-hidden="true"></div>
+          <img src="/favicon.svg" alt="" class="w-11 h-11 rounded-full border border-hairline-strong bg-gradient-to-br from-raised to-sunken p-1.5 select-none" aria-hidden="true" />
+          <blockquote class="text-[18px] leading-[1.5] tracking-[-0.01em] text-zinc-100 mt-5">
+            {page.story.pullQuote.text}
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-6 pt-5 border-t border-dashed border-hairline">
+            <div class="w-9 h-9 rounded-full grid place-items-center font-mono text-xs text-text border border-hairline-strong bg-gradient-to-br from-raised to-sunken">
+              {page.story.pullQuote.author.split(" ").map((n) => n[0]).join("")}
+            </div>
+            <div class="text-[13px]">
+              <b class="block font-medium">{page.story.pullQuote.author}</b>
+              <span class="text-text-3">{page.story.pullQuote.role}</span>
+            </div>
+          </figcaption>
+        </figure>
+      </aside>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:[grid-template-columns:1.4fr_1fr_1fr_1fr_1fr] border border-hairline rounded-xl bg-surface overflow-hidden">
+        <div class="px-7 py-7 lg:px-9 md:col-span-2 lg:col-span-1 bg-gradient-to-b from-red-500/[0.05] to-transparent border-b md:border-b-0 md:border-r border-hairline flex flex-col justify-center gap-2.5">
+          <h3 class="text-[22px] tracking-[-0.025em] leading-[1.15] font-semibold max-w-[280px]">{page.numbers.title}</h3>
+          <p class="text-[13px] text-text-3 leading-[1.5] max-w-[320px] m-0">{page.numbers.description}</p>
+        </div>
+        {page.numbers.items.map((item, i) => (
+          <div class:list={[
+            "flex flex-col justify-center px-6 py-6 lg:px-7",
+            i < page.numbers.items.length - 1 && "border-b md:border-b-0 lg:border-r border-hairline",
+            i === 1 && "md:border-r-0 lg:border-r",
+          ]}>
+            <div class="text-[32px] tracking-[-0.035em] font-semibold leading-none">
+              {item.value}{item.suffix && <em class="not-italic font-medium text-red-500">{item.suffix}</em>}
+            </div>
+            <div class="text-xs text-text-2 mt-2 leading-[1.4]">{item.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>
