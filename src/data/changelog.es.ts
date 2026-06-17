@@ -1,0 +1,43 @@
+/**
+ * Spanish changelog page content for Sténtor.
+ */
+
+export const ui = { jumpTo: "Ir a", milestone: "Hito", patch: "Patch", new: "Novedades", improvements: "Mejoras", fixes: "Correcciones", releaseStats: "Estadísticas de versiones" };
+
+export const hero = {
+  eyebrow: "Diario del proyecto",
+  title: "Qué ha cambiado en Sténtor.",
+  description: "Un diario público del software mientras crece: distribución beta de Apple, desarrollo para Windows, Live Sync, aplicación web para el público, importación/exportación, herramientas de audiodescripción y mejoras vinculadas a la investigación.",
+  emailPlaceholder: "tu@example.com",
+  subscribeLabel: "Seguir actualizaciones",
+  subscribeLinks: [
+    { href: "#", label: "RSS", icon: "rss" as const },
+    { href: "mailto:info@stentor.live?subject=Changelog Sténtor", label: "Email", icon: "mail" as const },
+    { href: "/es/contact", label: "Feedback", icon: "discord" as const },
+  ],
+};
+
+export const filters = [
+  { id: "all", label: "Todo", count: 7 },
+  { id: "major", label: "Hitos", count: 3 },
+  { id: "new", label: "Novedades", count: 3 },
+  { id: "improvements", label: "Mejoras", count: 3 },
+  { id: "fixes", label: "Correcciones", count: 1 },
+];
+
+export const versionTag = "v0.1.70 · TestFlight + Windows";
+export const versionRange = "· prototipo actual";
+export const years = [{ y: "2026", n: 7, on: true }, { y: "Investigación", n: 1 }];
+
+export const entries = [
+  { version: "0.1.70", date: "2026-06-17", type: "major", title: "Avanzan la distribución beta de Apple y el desarrollo para Windows", body: "Sténtor avanza en dos frentes: la versión Apple se prepara para su distribución mediante TestFlight, mientras que una edición nativa para Windows está ahora en desarrollo activo con C#.", changes: { new: [ { title: "Ruta Apple TestFlight", body: "El trabajo macOS/iOS incluye ahora el proceso de publicación para pruebas beta mediante Apple TestFlight." }, { title: "Edición Windows en C#", body: "Se desarrolla una versión dedicada para Windows con C#, pasando de maquetas a una interfaz de escritorio real con estilo Windows 11." }, { title: "Controles accesibles del texto", body: "La orientación del editor incluye avisos sobrios para líneas y sobretítulos demasiado largos, ayudando a los operadores a mantenerse dentro de límites legibles en directo." } ], improvements: [ { title: "Lógica de importación para personajes y AD", body: "La importación de guiones se está afinando para que marcadores como AD se traten como material de audiodescripción y no como nombres de personajes." }, { title: "Hoja de ruta multiplataforma", body: "La dirección del producto es más clara: beta de Apple, escritorio Windows y dispositivos del público siguen siendo partes de un único ecosistema de accesibilidad en vivo." } ] } },
+  { version: "0.1.64", date: "2026-06-05", type: "major", title: "Live Sync se convierte en el centro del flujo de trabajo en sala", body: "El prototipo actual conecta la vista del operador, las pantallas y los teléfonos del público alrededor de un estado compartido del cue en vivo.", changes: { new: [ { title: "Teléfonos del público", body: "Los espectadores pueden conectarse con su propio smartphone y seguir sobretítulos, traducciones o audiodescripciones." }, { title: "Modo sala local", body: "El proyecto puede compartirse en una red local para pruebas en teatro y ensayos." } ], improvements: [ { title: "Foco del operador", body: "La vista live se simplifica alrededor del cue actual, el cue siguiente, el blackout y los dispositivos conectados." } ] } },
+  { version: "0.1.61", date: "2026-06-02", type: "minor", title: "La app web del público se refina para el uso en función", body: "La página del público avanza hacia una vista live más limpia, especialmente en móviles y en orientación horizontal.", changes: { improvements: [ { title: "Menos ruido de interfaz", body: "Menos texto técnico durante la función, con ajustes y estado de conexión mantenidos de forma discreta." }, { title: "Cambio de idioma", body: "El idioma de la interfaz y el idioma de los subtítulos se tratan como parte de la experiencia del público." } ], fixes: [ { title: "Viewport móvil", body: "La parte inferior de la página se ajusta para evitar que quede oculta por los controles del navegador en smartphones." } ] } },
+  { version: "0.1.50", date: "2026-05-30", type: "minor", title: "Preparación del guion y modelo de metadatos", body: "La estructura del proyecto refleja necesidades reales de producción: título, compañía o colectivo, idiomas, cues, notas y material de audiodescripción.", changes: { new: [ { title: "Metadatos del proyecto", body: "Título y compañía/colectivo están disponibles como campos de proyecto." }, { title: "Campos de personaje vacíos", body: "El campo de hablante o personaje puede quedar vacío cuando no resulta útil para el guion." } ], improvements: [ { title: "Panel central del guion", body: "El espacio de trabajo del guion se ajusta para aprovechar mejor el ancho disponible." } ] } },
+  { version: "0.1.40", date: "2026-05-26", type: "major", title: "Confirmada la dirección desktop-first", body: "Sténtor se desarrolla como aplicación de escritorio para el trabajo teatral, con vistas web para pantallas y dispositivos del público.", changes: { new: [ { title: "Dirección multiplataforma", body: "El objetivo es una herramienta desktop-first para macOS, Windows y Linux." }, { title: "Arquitectura orientada a la sala", body: "La app se diseña alrededor de salas de ensayo, espacios escénicos, redes locales y operación en vivo." } ] } },
+  { version: "0.1.30", date: "2026-05-22", type: "minor", title: "Base para importación y exportación", body: "El trabajo inicial de import/export se centra en formatos teatrales prácticos en lugar de imponer un único formato de origen.", changes: { new: [ { title: "Importaciones compatibles", body: "Word, TXT, SRT, WebVTT, CSV y JSON forman parte del flujo de preparación." } ], improvements: [ { title: "Guiones listos para exportar", body: "Las exportaciones se consideran materiales para ensayos, archivo, gira e investigación." } ] } },
+  { version: "0.1.20", date: "2026-05-18", type: "patch", title: "Bucle de feedback de investigación añadido a la lógica del proyecto", body: "El sitio web y el flujo de trabajo incorporan feedback, cuestionarios y notas de campo al intercambio alrededor de Sténtor.", changes: { improvements: [ { title: "Conocimiento compartido", body: "El uso del software se conecta con comentarios prácticos de operadores, públicos, artistas y espacios." } ] } },
+];
+
+export const sideStats = { thisYear: { title: "Foco actual", rows: [ { label: "Prototipo", value: "0.1.70", accent: true }, { label: "Apple TestFlight", value: "publicación" }, { label: "Windows C#", value: "en desarrollo" }, { label: "Bucle feedback", value: "abierto" } ] }, cadence: { title: "Ritmo de desarrollo", bars: [28,46,34,62,54,70,48,76,66,88,58,100], rangeStart: "may '26", rangeEnd: "jun '26" }, status: { title: "Estado", rows: [ { label: "App Apple", value: "● TestFlight", color: "green" as const }, { label: "App Windows", value: "desarrollo C#" }, { label: "Próxima prioridad", value: "feedback beta" } ] } };
+export const loadMore = "Más notas de proyecto pronto";
