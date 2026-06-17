@@ -5,38 +5,38 @@ import Btn from "../../../components/Btn.astro";
 
 <Layout
   title="Sténtor – Per i teatri"
-  description="Casi d’uso per teatri, festival e gruppi dello spettacolo dal vivo che usano Sténtor per sopratitoli, traduzione, audio descrizione, telefoni del pubblico e note di campo."
+  description="Casi d’uso per teatri, festival e gruppi dello spettacolo dal vivo che usano Sténtor per sopratitoli, traduzione, audio-descrizione, telefoni del pubblico e note d’uso."
   active="customers"
 >
   <section class="max-w-[1120px] mx-auto px-4 md:px-8 py-24 md:py-32">
     <div class="max-w-[840px] mb-12">
       <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Per teatri, festival e luoghi</p>
-      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Far circolare testo live multilingue senza trasformare lo spettacolo in un progetto tecnico.</h1>
+      <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Far circolare testo dal vivo multilingue senza trasformare lo spettacolo in un progetto tecnico.</h1>
       <p class="text-xl text-text-2 leading-[1.55] max-w-[760px]">
-        Sténtor aiuta i luoghi dello spettacolo a preparare, pilotare e condividere sopratitoli, traduzioni e audio descrizione in un workflow local-first: una regia, più schermi, una pagina foyer con QR e i telefoni del pubblico quando serve.
+        Sténtor aiuta i luoghi dello spettacolo a preparare, mandare in scena e condividere sopratitoli, traduzioni e audio-descrizione in un flusso locale: una regia, più schermi, una pagina foyer con codice QR e i telefoni del pubblico quando serve.
       </p>
     </div>
 
     <div class="rounded-2xl border border-hairline bg-surface overflow-hidden mb-12 grid lg:grid-cols-[1.1fr_0.9fr]">
       <div class="p-6 md:p-8 lg:p-10">
-        <h2 class="text-3xl md:text-4xl tracking-[-0.04em] leading-[1.08] font-semibold mb-4">Un workflow di sala per regia, schermi, foyer e telefoni.</h2>
-        <p class="text-text-2 leading-[1.65] mb-6">Un teatro può preparare il testo prima dello spettacolo, pilotare i cue dalla regia, inviare i sopratitoli agli schermi configurati, mostrare un QR code nel foyer e permettere al pubblico di seguire traduzione o audio descrizione sul proprio telefono.</p>
+        <h2 class="text-3xl md:text-4xl tracking-[-0.04em] leading-[1.08] font-semibold mb-4">Un flusso di sala per regia, schermi, foyer e telefoni.</h2>
+        <p class="text-text-2 leading-[1.65] mb-6">Un teatro può preparare il testo prima dello spettacolo, avanzare le battute dalla regia, inviare i sopratitoli agli schermi configurati, mostrare un codice QR nel foyer e permettere al pubblico di seguire traduzione o audio-descrizione sul proprio telefono.</p>
         <div class="grid grid-cols-3 gap-4 border-y border-hairline py-5 mb-6">
-          <div><div class="text-3xl text-red-500 font-semibold">1</div><p class="text-sm text-text-3">regia operatore</p></div>
-          <div><div class="text-3xl text-red-500 font-semibold">3</div><p class="text-sm text-text-3">sopratitoli · traduzione · audio descrizione</p></div>
-          <div><div class="text-3xl text-red-500 font-semibold">Local</div><p class="text-sm text-text-3">rete di sala</p></div>
+          <div><div class="text-3xl text-red-500 font-semibold">1</div><p class="text-sm text-text-3">postazione di regia</p></div>
+          <div><div class="text-3xl text-red-500 font-semibold">3</div><p class="text-sm text-text-3">sopratitoli · traduzione · audio-descrizione</p></div>
+          <div><div class="text-3xl text-red-500 font-semibold">Locale</div><p class="text-sm text-text-3">rete di sala</p></div>
         </div>
-        <Btn href="/it/docs" variant="primary">Vedi il workflow</Btn>
+        <Btn href="/it/docs" variant="primary">Vedi il flusso</Btn>
       </div>
       <div class="bg-deep border-t lg:border-t-0 lg:border-l border-hairline p-6 md:p-8 flex flex-col justify-center gap-3 font-mono text-sm">
         {[
-          ["LIVE", "Regia / Stage desk", "operatore"],
-          ["TXT", "schermi di sala", "sync"],
+          ["DIRETTA", "Regia / postazione operatore", "operatore"],
+          ["TESTO", "schermi di sala", "allineati"],
           ["QR", "pagina foyer", "pronta"],
-          ["WEB", "telefoni del pubblico", "seguono"],
-          ["AD", "audio descrizione", "disponibile"],
+          ["PUBBLICO", "telefoni del pubblico", "seguono"],
+          ["AD", "audio-descrizione", "disponibile"],
         ].map((row) => (
-          <div class="grid grid-cols-[52px_1fr_auto] gap-3 items-center px-3 py-2.5 border border-hairline rounded-lg bg-bg/70">
+          <div class="grid grid-cols-[78px_1fr_auto] gap-3 items-center px-3 py-2.5 border border-hairline rounded-lg bg-bg/70">
             <span class="text-red-500">{row[0]}</span><span>{row[1]}</span><span class="text-text-3">{row[2]}</span>
           </div>
         ))}
@@ -47,15 +47,15 @@ import Btn from "../../../components/Btn.astro";
       {[
         ["Accoglienza internazionale", "Accogliere una produzione in lingua straniera con sopratitoli multilingue."],
         ["Festival", "Passare da una produzione all’altra senza ricostruire ogni sera il dispositivo."],
-        ["Audio descrizione", "Preparare l’audio descrizione nello stesso progetto del testo."],
+        ["Audio-descrizione", "Preparare l’audio-descrizione nello stesso progetto del testo."],
         ["Telefoni del pubblico", "Offrire testo su dispositivi personali senza installare un sistema complesso."],
         ["Produzioni in tournée", "Portare lo stesso progetto testuale da un luogo all’altro."],
-        ["Note di campo", "Invitare feedback dopo l’uso, non prima del download."],
+        ["Note d’uso", "Raccogliere osservazioni concrete dopo le prove o lo spettacolo."],
       ].map((card) => (
         <article class="rounded-2xl border border-hairline bg-surface p-5 md:p-6">
           <p class="font-mono text-xs text-red-500 mb-3">{card[0]}</p>
           <h2 class="text-xl font-semibold tracking-[-0.02em] leading-[1.25] mb-3">{card[1]}</h2>
-          <p class="text-sm text-text-3 leading-[1.6] m-0">Sténtor tiene insieme preparazione, regia live, schermi, foyer, dispositivi del pubblico e feedback pratici in un unico flusso di lavoro.</p>
+          <p class="text-sm text-text-3 leading-[1.6] m-0">Sténtor tiene insieme preparazione, regia dal vivo, schermi, foyer, dispositivi del pubblico e osservazioni pratiche in un unico flusso di lavoro.</p>
         </article>
       ))}
     </div>
