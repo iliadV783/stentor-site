@@ -20,13 +20,15 @@ const navItems = isFr
       { href: "/fr/features", label: "Fonctionnalités", id: "features" as const },
       { href: "/fr/docs", label: "Parcours", id: "docs" as const },
       { href: "/fr/for-theatres", label: "Pour les théâtres", id: "customers" as const },
-      { href: "/about", label: "About", id: "about" as const },
+      { href: "/fr/changelog/", label: "Changelog", id: "changelog" as const },
+      { href: "/fr/about", label: "Projet", id: "about" as const },
     ]
   : isIt
     ? [
         { href: "/it/features", label: "Funzioni", id: "features" as const },
         { href: "/it/docs", label: "Documentazione", id: "docs" as const },
         { href: "/it/for-theatres", label: "Per i teatri", id: "customers" as const },
+        { href: "/it/changelog/", label: "Changelog", id: "changelog" as const },
         { href: "/it/about", label: "Progetto", id: "about" as const },
       ]
     : isEs
@@ -34,14 +36,16 @@ const navItems = isFr
           { href: "/es/features", label: "Funciones", id: "features" as const },
           { href: "/es/docs", label: "Guía", id: "docs" as const },
           { href: "/es/for-theatres", label: "Para teatros", id: "customers" as const },
-          { href: "/about", label: "About", id: "about" as const },
+          { href: "/es/changelog/", label: "Changelog", id: "changelog" as const },
+          { href: "/es/about", label: "Proyecto", id: "about" as const },
         ]
       : isDe
         ? [
             { href: "/de/features", label: "Funktionen", id: "features" as const },
             { href: "/de/docs", label: "Leitfaden", id: "docs" as const },
             { href: "/de/for-theatres", label: "Für Theater", id: "customers" as const },
-            { href: "/about", label: "About", id: "about" as const },
+            { href: "/de/changelog/", label: "Changelog", id: "changelog" as const },
+            { href: "/de/about", label: "Projekt", id: "about" as const },
           ]
         : nav;
 const cta = isFr
@@ -203,7 +207,7 @@ const cta = isFr
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" aria-hidden="true"></span>
         <span class="text-[12px] text-text-3 font-mono">{cta.statusPrefix}</span>
       </div>
-      <span class="text-[11px] text-text-4 font-mono">v0.1.64</span>
+      <span class="text-[11px] text-text-4 font-mono">v0.1.70</span>
     </div>
 </div>
 
