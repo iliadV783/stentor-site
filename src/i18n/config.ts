@@ -33,6 +33,7 @@ export const routeMap: Record<string, RouteMap> = {
   "/": { en: "/", it: "/it/", fr: "/fr/", es: "/es/", de: "/de/" },
   "/features": { en: "/features", it: "/it/features/", fr: "/fr/features/", es: "/es/features/", de: "/de/features/" },
   "/docs": { en: "/docs", it: "/it/docs/", fr: "/fr/docs/", es: "/es/docs/", de: "/de/docs/" },
+  "/changelog": { en: "/changelog/", it: "/it/changelog/", fr: "/fr/changelog/", es: "/es/changelog/", de: "/de/changelog/" },
   "/for-theatres": { en: "/for-theatres", it: "/it/for-theatres/", fr: "/fr/for-theatres/", es: "/es/for-theatres/", de: "/de/for-theatres/" },
   "/customers": { en: "/customers", it: "/it/customers/", fr: "/fr/customers/", es: "/es/customers/", de: "/de/customers/" },
   "/download": { en: "/download", it: "/it/download/", fr: "/fr/download/", es: "/es/download/", de: "/de/download/" },
