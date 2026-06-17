@@ -1,0 +1,270 @@
+---
+import { Fragment } from "astro/jsx-runtime";
+import Layout from "../layouts/Layout.astro";
+import Eyebrow from "./Eyebrow.astro";
+import Btn from "./Btn.astro";
+import IconRss from "../assets/icons/rss.svg";
+import IconMail from "../assets/icons/mail.svg";
+import IconDiscord from "../assets/icons/discord.svg";
+
+const {
+  data,
+  locale = "en-US",
+  title = "Sténtor – Changelog",
+  description = "A public log of Sténtor releases, prototype milestones, Live Sync, audience web app and research-facing improvements.",
+} = Astro.props;
+
+const subscribeIconMap = { rss: IconRss, mail: IconMail, discord: IconDiscord } as const;
+const ui = {
+  jumpTo: "Jump to",
+  milestone: "Milestone",
+  patch: "Patch",
+  new: "New",
+  improvements: "Improvements",
+  fixes: "Fixes",
+  releaseStats: "Release stats",
+  ...(data.ui ?? {}),
+};
+
+function mdInline(s: string): string {
+  return s.replace(/`([^`]+)`/g, '<code class="cl-code">$1</code>');
+}
+
+const sortedEntries = [...data.entries].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+);
+
+type Bucket = { label: string; items: typeof sortedEntries };
+const monthBuckets: Bucket[] = [];
+for (const entry of sortedEntries) {
+  const d = new Date(entry.date);
+  const label = d.toLocaleString(locale, {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+  let bucket = monthBuckets.find((b) => b.label === label);
+  if (!bucket) {
+    bucket = { label, items: [] };
+    monthBuckets.push(bucket);
+  }
+  bucket.items.push(entry);
+}
+
+const fmtMonthDay = (d: string) =>
+  new Date(d).toLocaleString(locale, {
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+---
+<Layout
+  title={title}
+  description={description}
+  active="changelog"
+>
+  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[760px]">
+        <Eyebrow><span class="font-mono">{data.hero.eyebrow}</span></Eyebrow>
+        <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mt-5 mb-4">{data.hero.title}</h1>
+        <p class="text-lg leading-[1.55] text-text-2 mb-7 max-w-[560px]">{data.hero.description}</p>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <form action="javascript:void(0)" class="flex items-center border border-hairline rounded-lg bg-surface overflow-hidden">
+            <input type="email" aria-label="Email address" placeholder={data.hero.emailPlaceholder} class="bg-transparent border-0 outline-0 text-text font-sans text-sm px-3.5 h-10 w-[200px] sm:w-[280px] placeholder:text-text-3" />
+            <button type="submit" class="h-10 px-4 border-0 bg-red-500 text-bg font-medium text-sm">{data.hero.subscribeLabel}</button>
+          </form>
+          <div class="inline-flex gap-1.5 flex-wrap">
+            {data.hero.subscribeLinks.map((l) => {
+              const Icon = subscribeIconMap[l.icon];
+              return (
+                <a href={l.href} class="h-10 px-3 inline-flex items-center gap-1.5 border border-hairline rounded-lg text-text-2 hover:text-text hover:border-hairline-strong text-[13px] transition-colors">
+                  <Icon class="w-4 h-4" />
+                  {l.label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sticky top-16 z-10 border-b border-hairline bg-bg/60 backdrop-blur-md" x-data="{f:'all'}">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8 h-14 flex items-center justify-between gap-4 overflow-x-auto">
+      <div class="flex gap-1">
+        {data.filters.map((t) => (
+          <button
+            @click={`f='${t.id}'`}
+            :class={`f==='${t.id}' ? 'bg-red-500/[0.08] border-red-500/25 text-red-500' : 'border-transparent text-text-2 hover:text-text'`}
+            class="h-8 px-3 rounded-md border inline-flex items-center gap-2 text-[13px] whitespace-nowrap transition-colors"
+          >{t.label} <span :class={`f==='${t.id}' ? 'text-red-400 bg-red-500/[0.18]' : 'text-text-3 bg-white/[0.04]'`} class="font-mono text-[11px] px-1.5 py-px rounded-sm">{t.count}</span></button>
+        ))}
+      </div>
+      <div class="hidden sm:flex items-center gap-2 text-text-3 font-mono text-xs">
+        <span class="px-2.5 py-1 border border-hairline rounded-full text-text-2">{data.versionTag}</span>
+        <span>{data.versionRange}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-16 grid gap-10 lg:[grid-template-columns:160px_minmax(0,1fr)] xl:[grid-template-columns:160px_minmax(0,1fr)_220px] xl:gap-14 items-start">
+    <aside class="hidden lg:block sticky top-32 text-[13px]" aria-label={ui.jumpTo}>
+      <h2 class="text-[11px] tracking-[0.08em] uppercase text-text-3 font-medium mb-3.5">{ui.jumpTo}</h2>
+      <ul class="grid gap-1 list-none p-0 m-0">
+        {data.years.map((y) => (
+          <li>
+            <a href="#" class:list={[
+              "flex items-center justify-between px-2.5 py-1.5 transition-colors",
+              y.on ? "text-red-500 bg-red-500/[0.08] shadow-[inset_2px_0_0_#ef4444] rounded-r-md" : "text-text-2 hover:text-text hover:bg-white/[0.03] rounded-md",
+            ]}>
+              {y.y} <span class:list={["font-mono text-[11px]", y.on ? "text-red-500" : "text-text-3"]}>{y.n}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+
+    <section class="relative min-w-0 max-w-[820px]">
+      {monthBuckets.map((bucket, bi) => (
+        <>
+          {bi > 0 && (
+            <div class="font-mono text-[11px] text-text-3 tracking-[0.06em] uppercase mb-6 mt-2">— {bucket.label} —</div>
+          )}
+          {bucket.items.map((entry) => {
+            const isMajor = entry.type === "major";
+            return (
+              <article class:list={[
+                "cl-entry mb-14 relative pl-7",
+                isMajor && "cl-entry--major",
+              ]}>
+                <div class="cl-entry__head-row relative flex items-center gap-3 mb-2.5">
+                  {isMajor ? (
+                    <span class="absolute -left-[25px] top-[7px] w-[11px] h-[11px] rounded-full border-2 border-red-500 bg-red-500 [box-shadow:0_0_0_4px_rgba(239,68,68,0.18),0_0_12px_#ef4444]"></span>
+                  ) : (
+                    <span class="absolute -left-[25px] top-[7px] w-[11px] h-[11px] rounded-full bg-bg border-2 border-text-4"></span>
+                  )}
+                  <span class="font-mono text-xs text-text-2">
+                    <span class="text-text font-medium">{fmtMonthDay(entry.date)}</span> · <span class="text-text-4">{new Date(entry.date).getUTCFullYear()}</span>
+                  </span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5 mb-2">
+                  <span class:list={["cl-ver", !isMajor && "cl-ver--minor"]}>v{entry.version}</span>
+                  {isMajor && <span class="tag tag--amber">{ui.milestone}</span>}
+                  {entry.type === "patch" && <span class="tag">{ui.patch}</span>}
+                </div>
+
+                <h2 class="text-2xl md:text-[26px] tracking-[-0.025em] font-semibold mb-3 mt-1.5">{entry.title}</h2>
+
+                <div class="cl-prose mb-6">
+                  <p>{entry.body}</p>
+                </div>
+
+                {entry.changes && (
+                  <div class="grid gap-5 mb-3">
+                    {entry.changes.new && entry.changes.new.length > 0 && (
+                      <div>
+                        <div class="cl-group__hd cl-group__hd--new"><span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]"></span>{ui.new}</div>
+                        <ul class="cl-list">
+                          {entry.changes.new.map((c) => (
+                            <li><div>
+                              {c.title && <><b>{c.title}.</b>{" "}</>}
+                              <Fragment set:html={mdInline(c.body)} />
+                            </div></li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {entry.changes.improvements && entry.changes.improvements.length > 0 && (
+                      <div>
+                        <div class="cl-group__hd cl-group__hd--imp"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>{ui.improvements}</div>
+                        <ul class="cl-list">
+                          {entry.changes.improvements.map((c) => (
+                            <li><div>
+                              {c.title && <><b>{c.title}.</b>{" "}</>}
+                              <Fragment set:html={mdInline(c.body)} />
+                            </div></li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {entry.changes.fixes && entry.changes.fixes.length > 0 && (
+                      <div>
+                        <div class="cl-group__hd cl-group__hd--fix"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>{ui.fixes}</div>
+                        <ul class="cl-list">
+                          {entry.changes.fixes.map((c) => (
+                            <li><div>
+                              {c.title && <><b>{c.title}.</b>{" "}</>}
+                              <Fragment set:html={mdInline(c.body)} />
+                            </div></li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </>
+      ))}
+
+      <div class="pl-8">
+        <Btn href="/contact" variant="ghost">{data.loadMore} <span aria-hidden="true">↓</span></Btn>
+      </div>
+    </section>
+
+    <aside class="grid gap-3.5 lg:col-span-2 xl:col-span-1 xl:sticky xl:top-32" aria-label={ui.releaseStats}>
+      <div class="border border-hairline rounded-[10px] bg-surface px-5 py-4">
+        <h2 class="text-[11px] tracking-[0.06em] uppercase text-text-3 font-medium mb-3.5">{data.sideStats.thisYear.title}</h2>
+        {data.sideStats.thisYear.rows.map((r) => (
+          <div class="cl-stat-row">
+            <span class="text-text-2">{r.label}</span>
+            <span class:list={["font-mono", r.accent ? "text-red-500" : "text-text"]}>{r.value}</span>
+          </div>
+        ))}
+      </div>
+      <div class="border border-hairline rounded-[10px] bg-surface px-5 py-4">
+        <h2 class="text-[11px] tracking-[0.06em] uppercase text-text-3 font-medium mb-3.5">{data.sideStats.cadence.title}</h2>
+        <div class="mt-3.5 h-8 flex items-end gap-[3px]">
+          {data.sideStats.cadence.bars.map((h) => (
+            <i class="flex-1 bg-red-500 rounded-[1px] opacity-55" style={`height: ${h}%;${h === 100 ? " opacity: 1;" : ""}`}></i>
+          ))}
+        </div>
+        <div class="flex justify-between font-mono text-[10px] text-text-4 mt-1.5">
+          <span>{data.sideStats.cadence.rangeStart}</span><span>{data.sideStats.cadence.rangeEnd}</span>
+        </div>
+      </div>
+      <div class="border border-hairline rounded-[10px] bg-surface px-5 py-4">
+        <h2 class="text-[11px] tracking-[0.06em] uppercase text-text-3 font-medium mb-3.5">{data.sideStats.status.title}</h2>
+        {data.sideStats.status.rows.map((r) => (
+          <div class="cl-stat-row">
+            <span class="text-text-2">{r.label}</span>
+            <span class:list={["font-mono", r.color === "green" ? "text-green-400" : "text-text"]}>{r.value}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  </div>
+</Layout>
+
+<style is:global>
+  .cl-entry { padding-left: 1.75rem; }
+  .cl-entry::before { content: ""; position: absolute; left: 7px; top: 28px; bottom: -32px; width: 1px; background: var(--color-hairline); }
+  .cl-entry:last-child::before { display: none; }
+  .cl-ver { font-family: var(--font-mono); font-size: 0.75rem; padding: 3px 0.5rem; border: 1px solid rgba(239,68,68,0.28); color: #fca5a5; background: rgba(239,68,68,0.08); border-radius: 999px; }
+  .cl-ver--minor { border-color: var(--color-hairline); color: var(--color-text-2); background: rgba(255,255,255,0.03); }
+  .tag { font-size: 11px; font-weight: 600; color: var(--color-text-2); border: 1px solid var(--color-hairline); padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,0.03); }
+  .tag--amber { color: #fbbf24; border-color: rgba(251,191,36,0.25); background: rgba(251,191,36,0.08); }
+  .cl-prose p { color: var(--color-text-2); line-height: 1.7; }
+  .cl-group__hd { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 11px; line-height: 1; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-3); margin-bottom: 0.6rem; }
+  .cl-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+  .cl-list li { position: relative; padding-left: 1.1rem; color: var(--color-text-2); line-height: 1.6; }
+  .cl-list li::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 5px; height: 5px; border-radius: 50%; background: var(--color-text-4); }
+  .cl-list b { color: var(--color-text); font-weight: 600; }
+  .cl-code { font-family: var(--font-mono); font-size: 0.86em; background: rgba(255,255,255,0.06); border: 1px solid var(--color-hairline); border-radius: 5px; padding: 0.05rem 0.28rem; color: var(--color-text); }
+  .cl-stat-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: 13px; padding: 0.45rem 0; border-top: 1px solid var(--color-hairline); }
+  .cl-stat-row:first-of-type { border-top: 0; padding-top: 0; }
+</style>
