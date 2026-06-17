@@ -10,11 +10,11 @@ export const hero = {
     "Sténtor è un ambiente testuale per lo spettacolo dal vivo: permette di preparare copioni, mandare in scena soprattitoli, gestire traduzioni, audio-descrizione e accesso del pubblico durante prove e spettacoli.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
-    { href: "/it/richiedi-prova", label: "Accedi alla beta Pro", variant: "ghost" as const, icon: "play" as const },
+    { href: "/it/richiedi-prova", label: "Attiva licenza gratuita", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Lite: app gratuita multipiattaforma", live: true },
-    { label: "Pro: app professionale per macOS, Windows e Linux" },
+    { label: "Sténtor resta gratuito per tutte e tutti", live: true },
+    { label: "Licenza gratuita per attivazione e sviluppo" },
     { label: "Soprattitoli · traduzione · audio-descrizione · pubblico" },
   ],
   mock: {
@@ -58,7 +58,7 @@ export const metrics = {
   description:
     "Sténtor organizza il testo di scena dalla preparazione alla regia live, con strumenti per schermi, telefoni del pubblico, accessibilità e lavoro in più lingue.",
   items: [
-    { value: "Lite", suffix: "", label: "App gratuita per macOS, Windows e Linux" },
+    { value: "Free", suffix: "", label: "Sténtor è gratuito per macOS, Windows e Linux" },
     { value: "60", suffix: "+", label: "lingue disponibili nell’interfaccia" },
     { value: "Live Sync", suffix: "", label: "Per schermi e telefoni del pubblico" },
   ],
@@ -67,40 +67,40 @@ export const metrics = {
 export const bento = {
   title: "Un solo Sténtor.<br/>Due modi di lavorare.",
   description:
-    "Inizia con l’app leggera multipiattaforma, poi passa all’ambiente professionale quando prove, schermi, timeline, pubblico e audio-descrizione richiedono un flusso live dedicato.",
+    "Inizia con l’app leggera multipiattaforma, poi attiva gratuitamente l’ambiente completo quando prove, schermi, timeline, pubblico e audio-descrizione richiedono un flusso live dedicato.",
   cards: {
     types: { title: "Sténtor Lite: inizia ovunque", desc: "App gratuita Tauri per macOS, Windows e Linux, pensata per rendere accessibili preparazione del testo, soprattitoli e traduzioni senza barriera di licenza." },
-    p95: { title: "Sténtor: cabina di regia", desc: "App professionale per prove e spettacoli, con cueing, timeline, schermi, dispositivi del pubblico e audio-descrizione su piattaforme desktop." },
+    p95: { title: "Sténtor: cabina di regia", desc: "App completa e gratuita per prove e spettacoli, con cueing, timeline, schermi, dispositivi del pubblico e audio-descrizione su piattaforme desktop." },
     edge: { title: "Telefoni del pubblico sincronizzati", desc: "Le persone in sala possono collegarsi con il proprio smartphone e seguire soprattitoli, traduzioni o audio-descrizioni in sincronia con la regia." },
     auth: { title: "Interfaccia in oltre 60 lingue", desc: "L’interfaccia di Sténtor è già localizzata in più di 60 lingue, per facilitare test, formazione e uso in contesti internazionali." },
     cron: { title: "Importare, esportare, far circolare", desc: "Importa file Word, TXT, SRT, WebVTT, CSV o JSON, poi condividi i materiali per prove, archivio, tournée e studio." },
     migrations: { title: "Vista regia chiara", desc: "Avanza tra i cue durante lo spettacolo con un’interfaccia progettata per timing, concentrazione e sicurezza." },
-    deploys: { title: "Beta per Pro", desc: "Durante il testing, l’accesso Pro resta organizzato per offrire supporto, istruzioni e attivazione in modo sicuro." },
+    deploys: { title: "Licenza gratuita di attivazione", desc: "L’attivazione gratuita ci aiuta a capire dove Sténtor viene usato, dare supporto e continuare lo sviluppo in modo sostenibile." },
   },
 };
 
 export const testimonials = {
   title: "Uno strumento modellato da<br/>spettacoli reali.",
   description:
-    "Sténtor si sviluppa con chi lo usa: artiste, operatori, traduttrici, teatri e pubblico. Lite mantiene l’accesso aperto; Pro cresce attraverso beta test in contesti reali e non sarà limitato a un solo sistema operativo.",
+    "Sténtor si sviluppa con chi lo usa: artiste, operatori, traduttrici, teatri e pubblico. L’accesso resta gratuito; l’attivazione serve a seguire il progetto, raccogliere feedback e migliorare gli strumenti nei contesti reali.",
   quotes: [
-    { text: "Usa Lite per iniziare a preparare i materiali e capire il flusso di lavoro prima di portare Sténtor in produzione.", av: "01", name: "Inizia con Lite", role: "App gratuita · macOS, Windows, Linux" },
-    { text: "Usa Pro quando lo spettacolo richiede vista regia, timeline, schermi, dispositivi del pubblico e un setup live professionale.", av: "02", name: "Passa a Pro", role: "App professionale · accesso beta" },
-    { text: "Note da prove, pubblico e operatori aiutano a progettare strumenti migliori per lo spettacolo dal vivo.", av: "03", name: "Migliora la ricerca", role: "Feedback · prodotto" },
+    { text: "Usa Lite per iniziare a preparare i materiali e capire il flusso di lavoro senza alcuna barriera economica.", av: "01", name: "Inizia con Lite", role: "App gratuita · macOS, Windows, Linux" },
+    { text: "Attiva gratuitamente Sténtor quando lo spettacolo richiede vista regia, timeline, schermi, dispositivi del pubblico e un setup live professionale.", av: "02", name: "Attiva Sténtor", role: "Licenza gratuita · accesso completo" },
+    { text: "Note da prove, pubblico e operatori aiutano a progettare strumenti migliori per lo spettacolo dal vivo.", av: "03", name: "Migliora la ricerca", role: "Feedback · sviluppo" },
   ],
 };
 
-const liteFeatures = ["App desktop gratuita", "Sviluppata con Tauri", "Per macOS, Windows e Linux", "Preparazione testi, soprattitoli e traduzioni", "Download senza licenza Pro"];
-const proFeatures = ["App desktop professionale", "Prevista per macOS, Windows e Linux", "Timeline, cueing e vista regia live", "Schermi e telefoni del pubblico", "Audio-descrizione e strumenti di accessibilità", "Licenza beta privata e attivazione"];
-const institutionFeatures = ["Per teatri, festival e scuole", "Licenze di prova e multi-postazione", "Supporto durante testing e prove", "Guida alla configurazione in spazi reali", "Area account pronta per il futuro acquisto online"];
+const liteFeatures = ["App desktop gratuita", "Sviluppata con Tauri", "Per macOS, Windows e Linux", "Preparazione testi, soprattitoli e traduzioni", "Download libero, senza pagamento"];
+const stentorFeatures = ["App desktop completa gratuita", "Licenza gratuita di attivazione", "Prevista per macOS, Windows e Linux", "Timeline, cueing e vista regia live", "Schermi e telefoni del pubblico", "Audio-descrizione e strumenti di accessibilità"];
+const institutionFeatures = ["Per teatri, festival e scuole", "Attivazioni gratuite per più postazioni", "Supporto durante testing e prove", "Guida alla configurazione in spazi reali", "Feedback utile allo sviluppo del progetto"];
 
 export const pricingPreview = {
-  title: "Scegli il percorso<br/>Sténtor giusto.",
-  comparisonLink: { href: "/it/download", label: "Confronta Lite e Pro →" },
+  title: "Sténtor è gratuito.<br/>Attivalo per aiutarci a svilupparlo.",
+  comparisonLink: { href: "/it/download", label: "Perché chiediamo l’attivazione →" },
   plans: [
-    { name: "Sténtor Lite", tag: "Gratis", price: "Lite", cycle: "/multipiattaforma", tagline: "Per iniziare, preparare e sperimentare senza barriera di licenza.", features: liteFeatures, cta: { href: "/it/download", label: "Scarica Lite", variant: "ghost" as const }, highlighted: false },
-    { name: "Sténtor", tag: "Beta", tagAccent: true, price: "Pro", cycle: "/multipiattaforma", tagline: "Per produzione live professionale, ora disponibile in beta controllata.", features: proFeatures, cta: { href: "/it/richiedi-prova", label: "Richiedi accesso Pro", variant: "primary" as const }, highlighted: true },
-    { name: "Istituzioni", tag: "Team", price: "Team", cycle: "/spazi", tagline: "Per teatri, festival, scuole e organizzazioni che preparano un uso reale.", features: institutionFeatures, cta: { href: "/it/contact", label: "Parliamone", variant: "ghost" as const }, highlighted: false },
+    { name: "Sténtor Lite", tag: "Gratis", price: "Lite", cycle: "/multipiattaforma", tagline: "Per iniziare, preparare e sperimentare senza barriere.", features: liteFeatures, cta: { href: "/it/download", label: "Scarica Lite", variant: "ghost" as const }, highlighted: false },
+    { name: "Sténtor", tag: "Licenza gratuita", tagAccent: true, price: "Completo", cycle: "/attivazione gratuita", tagline: "Per la produzione live: resta gratuito, chiediamo solo un’attivazione per seguire e sostenere lo sviluppo.", features: stentorFeatures, cta: { href: "/it/richiedi-prova", label: "Attiva licenza gratuita", variant: "primary" as const }, highlighted: true },
+    { name: "Istituzioni", tag: "Supporto", price: "Spazi", cycle: "/uso reale", tagline: "Per teatri, festival, scuole e organizzazioni che vogliono usare Sténtor in contesti reali.", features: institutionFeatures, cta: { href: "/it/contact", label: "Scrivici", variant: "ghost" as const }, highlighted: false },
   ],
 };
 
@@ -108,11 +108,11 @@ export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "Sténtor Lite · Sténtor Pro",
-  title: "Inizia liberamente. Vai in scena professionalmente.",
-  body: "Scarica Sténtor Lite per iniziare su macOS, Windows o Linux. Richiedi accesso a Sténtor Pro quando serve un ambiente professionale per prove e spettacoli.",
+  eyebrow: "Sténtor Lite · Sténtor",
+  title: "Scarica liberamente. Attiva gratuitamente.",
+  body: "Sténtor resta gratuito per tutte e tutti. La licenza gratuita di attivazione ci aiuta a seguire l’uso reale, dare supporto e continuare lo sviluppo.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
-    { href: "/it/richiedi-prova", label: "Accedi alla beta Pro", variant: "ghost" as const },
+    { href: "/it/richiedi-prova", label: "Attiva licenza gratuita", variant: "ghost" as const },
   ],
 };
