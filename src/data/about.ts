@@ -30,7 +30,7 @@ export const about = {
     title: "Why Sténtor exists",
     paragraphs: [
       "Sténtor starts from a practical problem: live performance often needs more than one layer of text. A production may need surtitles, translations, audio-description notes, operator cues, venue screens and audience phones — all while the show is happening in real time.",
-      "The name refers to Stentor from Greek mythology: not as an image of combat, but as the figure remembered for a bronze voice. Homer describes him as chalkophonous, from chalkos, bronze, and phone, voice: endowed with a voice so powerful that it was equal to the voices of fifty others together. Sténtor turns that image into a theatre tool: not louder sound, but clearer transmission of words, languages and descriptions.",
+      "The name refers to Stentor from Greek mythology: not as an image of combat, but as the figure remembered for a bronze voice. Homer describes him as χαλκεόφωνος, from χαλκός, bronze, and φωνή, voice: endowed with a voice so powerful that it was equal to the voices of fifty others together. Sténtor turns that image into a theatre tool: not louder sound, but clearer transmission of words, languages and descriptions.",
       `The project is developed by ${leonardoProfileLink} (University of Turin, Italy) within the public engagement project ${eticaProjectLink}, as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.`,
     ],
     pullQuote: {
