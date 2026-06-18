@@ -1,0 +1,15 @@
+---
+import BlogIndexPage from "../../components/BlogIndexPage.astro";
+import { blog } from "../../data/blog.es";
+---
+
+<BlogIndexPage
+  blog={blog}
+  locale="es-ES"
+  title="Sténtor – Blog"
+  description="Notas de investigación, notas de campo y actualizaciones de desarrollo sobre sobretítulos, traducción, audiodescripción y texto en vivo para la escena."
+  basePath="/es/blog"
+  readLabel="Leer"
+  featuredLabel="Destacado"
+  notesLabel="notas"
+/>
