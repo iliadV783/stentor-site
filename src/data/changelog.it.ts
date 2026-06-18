@@ -1,5 +1,5 @@
 /**
- * Italian changelog page content for Sténtor.
+ * Italian updates page content for Sténtor.
  */
 
 export const ui = {
@@ -9,19 +9,17 @@ export const ui = {
   new: "Novità",
   improvements: "Miglioramenti",
   fixes: "Correzioni",
-  releaseStats: "Statistiche release",
+  releaseStats: "Statistiche aggiornamenti",
 };
 
 export const hero = {
-  eyebrow: "Diario di progetto",
+  eyebrow: "Aggiornamenti",
   title: "Cosa è cambiato in Sténtor.",
   description:
-    "Un diario pubblico del software mentre cresce: distribuzione beta Apple, sviluppo Windows, Live Sync, app web per il pubblico, import/export, strumenti di audiodescrizione e miglioramenti legati alla ricerca.",
-  emailPlaceholder: "tu@example.com",
-  subscribeLabel: "Segui gli aggiornamenti",
+    "Un registro pubblico delle versioni, dei prototipi e degli avanzamenti del progetto: distribuzione beta Apple, sviluppo Windows, Live Sync, app web per il pubblico, import/export, strumenti di audiodescrizione e miglioramenti legati alla ricerca.",
   subscribeLinks: [
     { href: "#", label: "RSS", icon: "rss" as const },
-    { href: "mailto:info@stentor.live?subject=Changelog Sténtor", label: "Email", icon: "mail" as const },
+    { href: "mailto:info@stentor.live?subject=Aggiornamenti Sténtor", label: "Email", icon: "mail" as const },
     { href: "/it/contact", label: "Feedback", icon: "discord" as const },
   ],
 };
@@ -177,4 +175,4 @@ export const sideStats = {
   },
 };
 
-export const loadMore = "Altre note di progetto presto";
+export const loadMore = "Altri aggiornamenti presto";
