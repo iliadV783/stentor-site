@@ -12,6 +12,38 @@ import PricingPreview from "../components/sections/home/PricingPreview.astro";
 import { finalCta } from "../data/home";
 ---
 <Layout active={null}>
+  <script is:inline>
+    (() => {
+      if (window.location.pathname !== "/") return;
+
+      try {
+        const explicitChoice = window.localStorage.getItem("stentor-lang-choice");
+        if (explicitChoice) return;
+      } catch (_) {
+        // localStorage can be unavailable in private or restricted browsing.
+      }
+
+      const localizedHome = {
+        it: "/it/",
+        fr: "/fr/",
+        es: "/es/",
+        de: "/de/",
+      };
+
+      const languages = Array.isArray(navigator.languages) && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language];
+
+      const preferred = languages
+        .map((lang) => String(lang || "").toLowerCase().split("-")[0])
+        .find((lang) => Object.prototype.hasOwnProperty.call(localizedHome, lang));
+
+      if (preferred) {
+        window.location.replace(localizedHome[preferred]);
+      }
+    })();
+  </script>
+
   <Hero />
   <LogoCloud />
   <Metrics />
