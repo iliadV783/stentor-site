@@ -34,8 +34,8 @@ export const blog = {
     title: "Notes on live text, theatre and audience devices.",
     description:
       "Research notes, development updates and practical reflections on surtitles, translation, audio description and shared knowledge around live performance.",
-    emailPlaceholder: "you@example.com",
-    subscribeLabel: "Follow updates",
+    primaryCta: { href: "/contact", label: "Share a field note" },
+    secondaryCta: { href: "/changelog/", label: "Read the changelog" },
   },
 
   categories: [
@@ -145,9 +145,9 @@ export const blog = {
   finalCta: {
     eyebrow: "Share field notes",
     title: "Used Sténtor in a room? Tell us what happened.",
-    body: "Short notes from rehearsals, audience tests and live performances help shape the software and the research behind it.",
-    placeholder: "you@example.com",
-    submitLabel: "Stay in touch",
-    fineprint: "We use your email only for Sténtor updates and research-related communication.",
+    body: "Short notes from rehearsals, audience tests and live performances help shape the software and the research behind it. No newsletter required: just write when there is something useful to share.",
+    primaryCta: { href: "/contact", label: "Send a note" },
+    secondaryCta: { href: "mailto:info@stentor.live?subject=Sténtor field note", label: "Email us" },
+    fineprint: "Blog and changelog stay public; direct contact is enough for now.",
   },
 } as const;
