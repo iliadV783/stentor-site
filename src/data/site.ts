@@ -30,7 +30,6 @@ export const nav: { href: string; label: string; id: NavId }[] = [
   { href: "/features", label: "Features", id: "features" },
   { href: "/docs", label: "Workflow", id: "docs" },
   { href: "/for-theatres", label: "For Theatres", id: "customers" },
-  { href: "/changelog/", label: "Changelog", id: "changelog" },
   { href: "/about", label: "About", id: "about" },
 ];
 
