@@ -3,7 +3,7 @@
  */
 
 export const hero = {
-  eyebrow: "Build v0.1.64 · 16. Juni 2026",
+  eyebrow: "Build v0.1.70 · 17. Juni 2026",
   title:
     'Übertitel, Übersetzung <em class="not-italic text-text-3 font-medium">und Barrierefreiheit.</em><br class="hidden sm:inline" /> Live.',
   description:
@@ -59,7 +59,7 @@ export const metrics = {
     "Sténtor organisiert den Aufführungstext von der Vorbereitung bis zur Live-Regie, mit Werkzeugen für Bildschirme, Publikumstelefone, Barrierefreiheit und mehrsprachige Arbeit.",
   items: [
     { value: "Lite", suffix: "", label: "Kostenlose App für macOS, Windows und Linux" },
-    { value: "60", suffix: "+", label: "Sprachen in der Oberfläche verfügbar" },
+    { value: "5", suffix: "", label: "Sprachen auf der Website; App für eine breitere mehrsprachige Oberfläche ausgelegt" },
     { value: "Live Sync", suffix: "", label: "Für Bildschirme und Publikumstelefone" },
   ],
 };
@@ -72,7 +72,7 @@ export const bento = {
     types: { title: "Sténtor Lite: überall beginnen", desc: "Kostenlose App für macOS, Windows und Linux, um Textvorbereitung, Übertitel und Übersetzungen ohne Lizenzbarriere zugänglich zu machen." },
     p95: { title: "Sténtor: Regiekabine", desc: "Professionelle App für Proben und Vorstellungen, mit Cueing, Timeline, Bildschirmen, Publikumsgeräten und Audiodeskription auf Desktop-Plattformen." },
     edge: { title: "Synchronisierte Publikumstelefone", desc: "Menschen im Saal können sich mit dem eigenen Smartphone verbinden und Übertitel, Übersetzungen oder Audiodeskriptionen synchron zur Regie verfolgen." },
-    auth: { title: "Oberfläche in über 60 Sprachen", desc: "Die Sténtor-Oberfläche ist bereits in mehr als 60 Sprachen lokalisiert, um Tests, Schulungen und internationale Arbeit zu erleichtern." },
+    auth: { title: "Website in 5 Sprachen", desc: "Die Website ist auf Italienisch, Englisch, Französisch, Spanisch und Deutsch verfügbar. Die Sténtor-App ist für eine breitere mehrsprachige Oberfläche ausgelegt." },
     cron: { title: "Importieren, exportieren, weitergeben", desc: "Importiere Word-, TXT-, SRT-, WebVTT-, CSV- oder JSON-Dateien und teile Materialien für Proben, Archiv, Tournee und Studium." },
     migrations: { title: "Klare Regieansicht", desc: "Bewege dich während der Vorstellung durch Cues mit einer Oberfläche, die für Timing, Konzentration und Sicherheit gestaltet ist." },
     deploys: { title: "Beta für Pro", desc: "Während der Testphase bleibt der Pro-Zugang organisiert, damit Support, Hinweise und Aktivierung sicher bereitgestellt werden." },
@@ -90,7 +90,7 @@ export const testimonials = {
   ],
 };
 
-const liteFeatures = ["Kostenlose Desktop-App", "Für macOS, Windows und Linux", "Textvorbereitung, Übertitel und Übersetzungen", "Download ohne Pro-Lizenz", "Oberfläche in über 60 Sprachen"];
+const liteFeatures = ["Kostenlose Desktop-App", "Für macOS, Windows und Linux", "Textvorbereitung, Übertitel und Übersetzungen", "Download ohne Pro-Lizenz", "Website in 5 Sprachen"];
 const proFeatures = ["Professionelle Desktop-App", "Für macOS, Windows und Linux vorgesehen", "Timeline, Cueing und Live-Regieansicht", "Bildschirme und Publikumstelefone", "Audiodeskription und Barrierefreiheitswerkzeuge", "Beta-Lizenz und Aktivierung"];
 const institutionFeatures = ["Für Theater, Festivals und Schulen", "Test- und Mehrplatzlizenzen", "Support während Tests und Proben", "Einrichtungshilfe in realen Räumen", "Account-Bereich für künftige Nutzung vorbereitet"];
 
