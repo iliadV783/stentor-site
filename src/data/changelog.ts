@@ -17,22 +17,40 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "All", count: 7 },
-  { id: "major", label: "Milestones", count: 3 },
+  { id: "all", label: "All", count: 8 },
+  { id: "major", label: "Milestones", count: 4 },
   { id: "new", label: "New", count: 3 },
-  { id: "improvements", label: "Improvements", count: 3 },
-  { id: "fixes", label: "Fixes", count: 1 },
+  { id: "improvements", label: "Improvements", count: 4 },
+  { id: "fixes", label: "Fixes", count: 2 },
 ];
 
-export const versionTag = "v0.1.70 · TestFlight + Windows";
+export const versionTag = "v0.1.71 · DOCX Parser + performance";
 export const versionRange = "· current prototype";
 
 export const years = [
-  { y: "2026", n: 7, on: true },
+  { y: "2026", n: 8, on: true },
   { y: "Research", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.71",
+    date: "2026-06-18",
+    type: "major",
+    title: "DOCX import becomes smarter for theatre scripts",
+    body: "The June 18 work focused on the native Apple parser: cleaner DOCX import, better audio-description handling, more natural line breaks and the first performance strategy for very long scripts.",
+    changes: {
+      improvements: [
+        { title: "Audio-description recognition", body: "Markers such as AD are treated as audio-description cues rather than ordinary character names, while imported audio-description text is preserved in the right field." },
+        { title: "Cleaner character detection", body: "Technical cues such as Light, Lights and stage directions are less likely to be mistaken for characters during DOCX import." },
+        { title: "More natural line splitting", body: "Automatic line breaks aim for a more balanced distribution, avoiding awkward cuts and respecting the rhythm of theatrical text." },
+        { title: "Parenthetical text option", body: "A parser option was prepared so text in parentheses can be omitted from spoken lines when the production needs to separate dialogue from notes." },
+      ],
+      fixes: [
+        { title: "Long-script responsiveness", body: "Performance issues in the Text editor with scripts of more than 1300 lines were analysed, with the goal of keeping selection, clicking and scrolling immediate." },
+      ],
+    },
+  },
   {
     version: "0.1.70",
     date: "2026-06-17",
@@ -145,8 +163,8 @@ export const sideStats = {
   thisYear: {
     title: "Current focus",
     rows: [
-      { label: "Prototype", value: "0.1.70", accent: true },
-      { label: "Apple TestFlight", value: "publishing" },
+      { label: "Prototype", value: "0.1.71", accent: true },
+      { label: "Apple parser", value: "DOCX import" },
       { label: "Windows C#", value: "in development" },
       { label: "Feedback loop", value: "open" },
     ],
@@ -160,7 +178,7 @@ export const sideStats = {
   status: {
     title: "Status",
     rows: [
-      { label: "Apple app", value: "● TestFlight", color: "green" as const },
+      { label: "Apple app", value: "● Parser tuning", color: "green" as const },
       { label: "Windows app", value: "C# development" },
       { label: "Next priority", value: "beta feedback" },
     ],
