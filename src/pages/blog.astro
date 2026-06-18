@@ -55,10 +55,10 @@ const fmtDate = (d: string) =>
         <Eyebrow><span class="font-mono">{blog.hero.eyebrow}</span></Eyebrow>
         <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mt-5 mb-4">{blog.hero.title}</h1>
         <p class="text-lg leading-[1.55] text-text-2 mb-7 max-w-[560px]">{blog.hero.description}</p>
-        <form action="javascript:void(0)" class="flex flex-wrap items-center border border-hairline rounded-lg bg-surface overflow-hidden max-w-[440px]">
-          <input type="email" aria-label="Email address" placeholder={blog.hero.emailPlaceholder} class="flex-1 min-w-[180px] bg-transparent border-0 outline-0 text-text font-sans text-sm px-3.5 h-11 placeholder:text-text-3" />
-          <button type="submit" class="h-11 px-5 border-0 bg-red-500 text-bg font-medium text-sm whitespace-nowrap hover:bg-red-400 transition-colors">{blog.hero.subscribeLabel}</button>
-        </form>
+        <div class="flex flex-wrap gap-3">
+          <Btn href={blog.hero.primaryCta.href} variant="primary">{blog.hero.primaryCta.label}</Btn>
+          <Btn href={blog.hero.secondaryCta.href} variant="ghost">{blog.hero.secondaryCta.label}</Btn>
+        </div>
       </div>
     </div>
   </section>
@@ -155,16 +155,16 @@ const fmtDate = (d: string) =>
     </div>
   </div>
 
-  <!-- Newsletter CTA -->
+  <!-- Field notes CTA -->
   <section class="border-t border-hairline py-20 bg-bg/40">
     <div class="max-w-[1280px] mx-auto px-4 md:px-8 text-center grid justify-items-center gap-5">
       <Eyebrow><span class="font-mono">{blog.finalCta.eyebrow}</span></Eyebrow>
       <h2 class="text-3xl md:text-4xl lg:text-[44px] tracking-[-0.035em] font-semibold leading-[1.1] max-w-[680px]">{blog.finalCta.title}</h2>
-      <p class="text-[15.5px] leading-[1.6] text-text-2 max-w-[520px]">{blog.finalCta.body}</p>
-      <form action="javascript:void(0)" class="flex flex-wrap items-center border border-hairline rounded-lg bg-surface overflow-hidden max-w-[440px] w-full mt-2">
-        <input type="email" aria-label="Email address" placeholder={blog.finalCta.placeholder} class="flex-1 min-w-[180px] bg-transparent border-0 outline-0 text-text font-sans text-sm px-3.5 h-11 placeholder:text-text-3" />
-        <button type="submit" class="h-11 px-5 border-0 bg-red-500 text-bg font-medium text-sm whitespace-nowrap hover:bg-red-400 transition-colors">{blog.finalCta.submitLabel}</button>
-      </form>
+      <p class="text-[15.5px] leading-[1.6] text-text-2 max-w-[560px]">{blog.finalCta.body}</p>
+      <div class="flex flex-wrap justify-center gap-3 mt-2">
+        <Btn href={blog.finalCta.primaryCta.href} variant="primary">{blog.finalCta.primaryCta.label}</Btn>
+        <Btn href={blog.finalCta.secondaryCta.href} variant="ghost">{blog.finalCta.secondaryCta.label}</Btn>
+      </div>
       <p class="text-[12px] text-text-4 max-w-[420px]">{blog.finalCta.fineprint}</p>
     </div>
   </section>
