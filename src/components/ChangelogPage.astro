@@ -70,22 +70,16 @@ const fmtMonthDay = (d: string) =>
         <Eyebrow><span class="font-mono">{data.hero.eyebrow}</span></Eyebrow>
         <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mt-5 mb-4">{data.hero.title}</h1>
         <p class="text-lg leading-[1.55] text-text-2 mb-7 max-w-[560px]">{data.hero.description}</p>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <form action="javascript:void(0)" class="flex items-center border border-hairline rounded-lg bg-surface overflow-hidden">
-            <input type="email" aria-label="Email address" placeholder={data.hero.emailPlaceholder} class="bg-transparent border-0 outline-0 text-text font-sans text-sm px-3.5 h-10 w-[200px] sm:w-[280px] placeholder:text-text-3" />
-            <button type="submit" class="h-10 px-4 border-0 bg-red-500 text-bg font-medium text-sm">{data.hero.subscribeLabel}</button>
-          </form>
-          <div class="inline-flex gap-1.5 flex-wrap">
-            {data.hero.subscribeLinks.map((l) => {
-              const Icon = subscribeIconMap[l.icon];
-              return (
-                <a href={l.href} class="h-10 px-3 inline-flex items-center gap-1.5 border border-hairline rounded-lg text-text-2 hover:text-text hover:border-hairline-strong text-[13px] transition-colors">
-                  <Icon class="w-4 h-4" />
-                  {l.label}
-                </a>
-              );
-            })}
-          </div>
+        <div class="inline-flex gap-1.5 flex-wrap">
+          {data.hero.subscribeLinks.map((l) => {
+            const Icon = subscribeIconMap[l.icon];
+            return (
+              <a href={l.href} class="h-10 px-3 inline-flex items-center gap-1.5 border border-hairline rounded-lg text-text-2 hover:text-text hover:border-hairline-strong text-[13px] transition-colors">
+                <Icon class="w-4 h-4" />
+                {l.label}
+              </a>
+            );
+          })}
         </div>
       </div>
     </div>
