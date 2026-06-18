@@ -18,9 +18,9 @@ const {
   title = "Sténtor – Blog",
   description = "Research notes, field notes and development updates on surtitles, translation, audio description and live-performance text.",
   basePath = "/blog",
-  readLabel = "Read",
   featuredLabel = "Featured",
   notesLabel = "notes",
+  postStatusLabel = "Coming soon",
 } = Astro.props;
 
 const coverMap = {
@@ -46,7 +46,6 @@ const sorted = [...blog.posts].sort(
 );
 const featured = sorted.find((p) => p.featured) ?? sorted[0];
 const rest = sorted.filter((p) => p.id !== featured?.id);
-const postHref = (id: string) => `${basePath.replace(/\/$/, "")}/${id}/`;
 
 const fmtDate = (d: string) =>
   new Date(d).toLocaleString(locale, { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
@@ -92,7 +91,7 @@ const fmtDate = (d: string) =>
       const featStyle = blog.categoryStyles[featured.category];
       const tint = coverTints[featured.category];
       return (
-        <a href={postHref(featured.id)} class="group block border border-hairline rounded-xl bg-surface overflow-hidden mb-14 grid grid-cols-1 lg:[grid-template-columns:1.05fr_1fr] hover:border-hairline-strong transition-colors">
+        <article class="block border border-hairline rounded-xl bg-surface overflow-hidden mb-14 grid grid-cols-1 lg:[grid-template-columns:1.05fr_1fr]">
           <div class="relative bg-deep border-b lg:border-b-0 lg:border-r border-hairline overflow-hidden aspect-[16/9] lg:aspect-auto lg:min-h-[360px]" style={`background: radial-gradient(ellipse 60% 80% at 50% 50%, ${tint}, var(--color-deep) 70%);`}>
             <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:48px_48px] [-webkit-mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] pointer-events-none"></div>
             {FeatCover && <FeatCover class="absolute inset-0 w-full h-full" />}
@@ -103,7 +102,7 @@ const fmtDate = (d: string) =>
           </div>
           <div class="p-8 lg:p-12 flex flex-col gap-4 justify-center">
             <span class="font-mono text-[12px] text-text-3">{fmtDate(featured.date)} · {featured.readingTime}</span>
-            <h2 class="text-3xl md:text-[34px] lg:text-[40px] tracking-[-0.03em] font-semibold leading-[1.08] group-hover:text-red-500 transition-colors">{featured.title}</h2>
+            <h2 class="text-3xl md:text-[34px] lg:text-[40px] tracking-[-0.03em] font-semibold leading-[1.08]">{featured.title}</h2>
             <p class="text-[15.5px] leading-[1.6] text-text-2 max-w-[480px]">{featured.description}</p>
             <div class="flex items-center gap-3 mt-3 pt-5 border-t border-dashed border-hairline">
               <div class="w-9 h-9 rounded-full grid place-items-center font-mono text-xs text-text border border-hairline-strong bg-gradient-to-br from-raised to-sunken">
@@ -113,12 +112,12 @@ const fmtDate = (d: string) =>
                 <b class="block font-medium">{featured.author.name}</b>
                 <span class="text-text-3">{featured.author.role}</span>
               </div>
-              <span class="ml-auto inline-flex items-center gap-1.5 text-red-500 text-[13px] font-medium">
-                {readLabel} <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+              <span class="ml-auto inline-flex items-center gap-1.5 text-text-3 text-[13px] font-medium border border-hairline rounded-full px-2.5 py-1">
+                {postStatusLabel}
               </span>
             </div>
           </div>
-        </a>
+        </article>
       );
     })()}
 
@@ -128,7 +127,7 @@ const fmtDate = (d: string) =>
         const style = blog.categoryStyles[post.category];
         const tint = coverTints[post.category];
         return (
-          <a href={postHref(post.id)} class="group flex flex-col border border-hairline rounded-xl bg-surface overflow-hidden hover:border-hairline-strong transition-colors">
+          <article class="flex flex-col border border-hairline rounded-xl bg-surface overflow-hidden">
             <div class="relative aspect-[16/10] bg-deep border-b border-hairline overflow-hidden" style={`background: radial-gradient(ellipse 70% 90% at 50% 60%, ${tint}, var(--color-deep) 70%);`}>
               <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:40px_40px] [-webkit-mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] pointer-events-none"></div>
               {Cover && <Cover class="absolute inset-0 w-full h-full" />}
@@ -139,16 +138,17 @@ const fmtDate = (d: string) =>
             </div>
             <div class="p-5 flex flex-col gap-3 flex-1">
               <span class="font-mono text-[11.5px] text-text-3">{fmtDate(post.date)} · {post.readingTime}</span>
-              <h3 class="text-[18px] tracking-[-0.02em] font-semibold leading-[1.25] group-hover:text-red-500 transition-colors">{post.title}</h3>
+              <h3 class="text-[18px] tracking-[-0.02em] font-semibold leading-[1.25]">{post.title}</h3>
               <p class="text-[13.5px] leading-[1.55] text-text-3 m-0 line-clamp-3">{post.description}</p>
               <div class="flex items-center gap-2.5 mt-auto pt-4 border-t border-dashed border-hairline">
                 <div class="w-7 h-7 rounded-full grid place-items-center font-mono text-[10px] text-text border border-hairline-strong bg-gradient-to-br from-raised to-sunken">
                   {post.author.initials}
                 </div>
                 <span class="text-[12.5px] text-text-2 font-medium">{post.author.name}</span>
+                <span class="ml-auto text-[11px] text-text-4 border border-hairline rounded-full px-2 py-0.5">{postStatusLabel}</span>
               </div>
             </div>
-          </a>
+          </article>
         );
       })}
     </div>
