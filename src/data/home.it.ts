@@ -7,7 +7,7 @@ export const hero = {
   title:
     'Soprattitoli, traduzione <em class="not-italic text-text-3 font-medium">e accessibilità.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
-    "Sténtor è un ambiente testuale per lo spettacolo dal vivo: permette di preparare copioni, mandare in scena soprattitoli, gestire traduzioni, audio-descrizione e accesso del pubblico durante prove e spettacoli.",
+    "Sténtor è un ambiente testuale per lo spettacolo dal vivo: permette di preparare copioni, mandare in scena soprattitoli, gestire traduzioni, audiodescrizioni e accesso del pubblico durante prove e spettacoli.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
     { href: "/it/richiedi-prova", label: "Attiva licenza gratuita", variant: "ghost" as const, icon: "play" as const },
@@ -15,7 +15,7 @@ export const hero = {
   trust: [
     { label: "Sténtor resta gratuito per tutte e tutti", live: true },
     { label: "Licenza gratuita per attivazione e sviluppo" },
-    { label: "Soprattitoli · traduzione · audio-descrizione · pubblico" },
+    { label: "Soprattitoli · traduzione · audiodescrizioni · pubblico" },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Prova live · rete locale" },
@@ -33,7 +33,7 @@ export const hero = {
     logs: [
       { t: "12:04:21", lvl: "ok", code: "cue", m: "024 inviato agli schermi · ", s: "live" },
       { t: "12:04:22", lvl: "ok", code: "web", m: "18 telefoni del pubblico · ", s: "sync" },
-      { t: "12:04:24", lvl: "info", code: "AD", m: "nota di audio-descrizione · ", s: "pronta" },
+      { t: "12:04:24", lvl: "info", code: "AD", m: "nota di audiodescrizione · ", s: "pronta" },
       { t: "12:04:30", lvl: "ok", code: "fb", m: "canale feedback · ", s: "aperto" },
       { t: "12:04:34", lvl: "warn", code: "next", m: "anteprima cue 025 · ", s: "attesa" },
     ],
@@ -67,11 +67,11 @@ export const metrics = {
 export const bento = {
   title: "Un solo Sténtor.<br/>Due modi di lavorare.",
   description:
-    "Inizia con l’app leggera multipiattaforma, poi attiva gratuitamente l’ambiente completo quando prove, schermi, timeline, pubblico e audio-descrizione richiedono un flusso live dedicato.",
+    "Inizia con l’app leggera multipiattaforma, poi attiva gratuitamente l’ambiente completo quando prove, schermi, timeline, pubblico e audiodescrizioni richiedono un flusso live dedicato.",
   cards: {
     types: { title: "Sténtor Lite: inizia ovunque", desc: "App gratuita Tauri per macOS, Windows e Linux, pensata per rendere accessibili preparazione del testo, soprattitoli e traduzioni senza barriera di licenza." },
-    p95: { title: "Sténtor: cabina di regia", desc: "App completa e gratuita per prove e spettacoli, con cueing, timeline, schermi, dispositivi del pubblico e audio-descrizione su piattaforme desktop." },
-    edge: { title: "Telefoni del pubblico sincronizzati", desc: "Le persone in sala possono collegarsi con il proprio smartphone e seguire soprattitoli, traduzioni o audio-descrizioni in sincronia con la regia." },
+    p95: { title: "Sténtor: cabina di regia", desc: "App completa e gratuita per prove e spettacoli, con cueing, timeline, schermi, dispositivi del pubblico e audiodescrizioni su piattaforme desktop." },
+    edge: { title: "Telefoni del pubblico sincronizzati", desc: "Le persone in sala possono collegarsi con il proprio smartphone e seguire soprattitoli, traduzioni o audiodescrizioni in sincronia con la regia." },
     auth: { title: "Interfaccia in oltre 60 lingue", desc: "L’interfaccia di Sténtor è già localizzata in più di 60 lingue, per facilitare test, formazione e uso in contesti internazionali." },
     cron: { title: "Importare, esportare, far circolare", desc: "Importa file Word, TXT, SRT, WebVTT, CSV o JSON, poi condividi i materiali per prove, archivio, tournée e studio." },
     migrations: { title: "Vista regia chiara", desc: "Avanza tra i cue durante lo spettacolo con un’interfaccia progettata per timing, concentrazione e sicurezza." },
@@ -91,7 +91,7 @@ export const testimonials = {
 };
 
 const liteFeatures = ["App desktop gratuita", "Sviluppata con Tauri", "Per macOS, Windows e Linux", "Preparazione testi, soprattitoli e traduzioni", "Download libero, senza pagamento"];
-const stentorFeatures = ["App desktop completa gratuita", "Licenza gratuita di attivazione", "Prevista per macOS, Windows e Linux", "Timeline, cueing e vista regia live", "Schermi e telefoni del pubblico", "Audio-descrizione e strumenti di accessibilità"];
+const stentorFeatures = ["App desktop completa gratuita", "Licenza gratuita di attivazione", "Prevista per macOS, Windows e Linux", "Timeline, cueing e vista regia live", "Schermi e telefoni del pubblico", "Audiodescrizioni e strumenti di accessibilità"];
 const institutionFeatures = ["Per teatri, festival e scuole", "Attivazioni gratuite per più postazioni", "Supporto durante testing e prove", "Guida alla configurazione in spazi reali", "Feedback utile allo sviluppo del progetto"];
 
 export const pricingPreview = {
