@@ -22,6 +22,20 @@ const currentText = {
   es: "actual",
   de: "aktuell",
 }[currentLang];
+const selectLanguageLabel = {
+  en: "Select language",
+  it: "Seleziona lingua",
+  fr: "Choisir la langue",
+  es: "Seleccionar idioma",
+  de: "Sprache auswählen",
+}[currentLang];
+const languageOptionsLabel = {
+  en: "Language options",
+  it: "Opzioni lingua",
+  fr: "Options de langue",
+  es: "Opciones de idioma",
+  de: "Sprachoptionen",
+}[currentLang];
 ---
 
 <div
@@ -34,7 +48,7 @@ const currentText = {
     x-on:click="open = !open"
     x-bind:aria-expanded="open.toString()"
     aria-haspopup="menu"
-    aria-label={`Select language: ${currentLabel}`}
+    aria-label={`${selectLanguageLabel}: ${currentLabel}`}
     class="inline-flex items-center gap-2 h-10 px-2.5 rounded-lg text-sm text-text-3 hover:text-text hover:bg-white/[0.04] transition-colors"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -61,7 +75,7 @@ const currentText = {
     x-on:click.outside="open = false"
     class="absolute right-0 mt-2 w-56 rounded-xl border border-hairline-strong bg-surface/98 backdrop-blur-xl shadow-[0_18px_50px_-22px_rgba(0,0,0,0.85)] overflow-hidden z-[60]"
     role="menu"
-    aria-label="Language options"
+    aria-label={languageOptionsLabel}
   >
     {languages.map((lang) => (
       <a
