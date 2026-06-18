@@ -5,7 +5,7 @@
  */
 
 export const hero = {
-  eyebrow: "Build v0.1.64 · 16 Jun 2026",
+  eyebrow: "Build v0.1.70 · 17 Jun 2026",
   title:
     'Surtitles, translation <em class="not-italic text-text-3 font-medium">and accessibility.</em><br class="hidden sm:inline" /> Live.',
   description:
@@ -69,7 +69,7 @@ export const metrics = {
     "Sténtor keeps the performance text organized from preparation to live cueing, with a focused workflow for screens, viewer phones, timelines and accessibility materials.",
   items: [
     { value: "Desktop", suffix: "", label: "For macOS, Windows and Linux" },
-    { value: "60", suffix: "+", label: "Interface languages already available" },
+    { value: "5", suffix: "", label: "Site languages; app designed for a broader multilingual interface" },
     { value: "Live Sync", suffix: "", label: "For screens and viewer phones" },
   ],
 };
@@ -92,8 +92,8 @@ export const bento = {
       desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
     },
     auth: {
-      title: "Interface in 60+ languages",
-      desc: "The Sténtor interface is already localized in more than 60 languages, helping international teams test, train and work in their own language.",
+      title: "Site in 5 languages",
+      desc: "The website is available in Italian, English, French, Spanish and German. The Sténtor app is designed for a broader multilingual interface.",
     },
     cron: {
       title: "Import, export, circulate",
