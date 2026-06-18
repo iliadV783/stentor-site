@@ -42,7 +42,7 @@ const groups = isFr
         { title: "Usi", links: [
           { href: "/it/features", label: "Soprattitoli" },
           { href: "/it/features", label: "Traduzione" },
-          { href: "/it/features", label: "Audio-descrizione" },
+          { href: "/it/features", label: "Audiodescrizioni" },
           { href: "/it/for-theatres", label: "Festival" },
         ] },
         { title: "Progetto", links: [
@@ -114,7 +114,7 @@ const localizedGroups = groups.map((group) => ({
 const footerTagline = isFr
   ? "Surtitres, traduction et audiodescription pour le spectacle vivant."
   : isIt
-    ? "Soprattitoli, traduzione e audio-descrizione per lo spettacolo dal vivo."
+    ? "Soprattitoli, traduzione e audiodescrizioni per lo spettacolo dal vivo."
     : isEs
       ? "Sobretítulos, traducción y audiodescripción para las artes escénicas en vivo."
       : isDe
@@ -132,7 +132,7 @@ const statusPrefix = isFr
 const statusRegions = isFr
   ? "surtitres, traduction, audiodescription"
   : isIt
-    ? "soprattitoli, traduzione, audio-descrizione"
+    ? "soprattitoli, traduzione, audiodescrizioni"
     : isEs
       ? "sobretítulos, traducción, audiodescripción"
       : isDe
