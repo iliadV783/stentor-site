@@ -25,22 +25,40 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 7 },
-  { id: "major", label: "Milestone", count: 3 },
+  { id: "all", label: "Tutto", count: 8 },
+  { id: "major", label: "Milestone", count: 4 },
   { id: "new", label: "Novità", count: 3 },
-  { id: "improvements", label: "Miglioramenti", count: 3 },
-  { id: "fixes", label: "Correzioni", count: 1 },
+  { id: "improvements", label: "Miglioramenti", count: 4 },
+  { id: "fixes", label: "Correzioni", count: 2 },
 ];
 
-export const versionTag = "v0.1.70 · TestFlight + Windows";
+export const versionTag = "v0.1.71 · Parser DOCX + prestazioni";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 7, on: true },
+  { y: "2026", n: 8, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.71",
+    date: "2026-06-18",
+    type: "major",
+    title: "L’import DOCX diventa più intelligente per i copioni teatrali",
+    body: "Il lavoro del 18 giugno si è concentrato sul Parser nativo Apple: importazione DOCX più pulita, audiodescrizione gestita meglio, tagli di riga più naturali e prime strategie di prestazione per copioni molto lunghi.",
+    changes: {
+      improvements: [
+        { title: "Riconoscimento dell’audiodescrizione", body: "Marcatori come AD vengono trattati come cue di audiodescrizione e non come personaggi, conservando il testo importato nel campo corretto." },
+        { title: "Riconoscimento personaggi più pulito", body: "Indicazioni tecniche come Luce, Luci e note di regia hanno meno probabilità di essere scambiate per nomi di personaggi durante l’import DOCX." },
+        { title: "Tagli di riga più naturali", body: "La divisione automatica del testo punta a una distribuzione più equilibrata, evitando spezzature innaturali e rispettando meglio il ritmo teatrale." },
+        { title: "Opzione per il testo tra parentesi", body: "È stata preparata un’opzione del Parser per omettere dalle battute il testo tra parentesi quando serve separare dialogo, note interne e indicazioni sceniche." },
+      ],
+      fixes: [
+        { title: "Reattività con copioni lunghi", body: "Sono stati analizzati i lag dell’editor Testo con copioni da oltre 1300 battute, con l’obiettivo di mantenere clic, selezione e scrolling immediati." },
+      ],
+    },
+  },
   {
     version: "0.1.70",
     date: "2026-06-17",
@@ -153,8 +171,8 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.70", accent: true },
-      { label: "Apple TestFlight", value: "pubblicazione" },
+      { label: "Prototipo", value: "0.1.71", accent: true },
+      { label: "Parser Apple", value: "import DOCX" },
       { label: "Windows C#", value: "in sviluppo" },
       { label: "Ciclo feedback", value: "aperto" },
     ],
@@ -168,7 +186,7 @@ export const sideStats = {
   status: {
     title: "Stato",
     rows: [
-      { label: "App Apple", value: "● TestFlight", color: "green" as const },
+      { label: "App Apple", value: "● Parser", color: "green" as const },
       { label: "App Windows", value: "sviluppo C#" },
       { label: "Prossima priorità", value: "feedback beta" },
     ],
