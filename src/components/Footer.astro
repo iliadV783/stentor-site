@@ -1,8 +1,4 @@
 ---
-import IconGithub from "../assets/icons/github.svg";
-import IconXTwitter from "../assets/icons/x-twitter.svg";
-import IconRss from "../assets/icons/rss.svg";
-import IconDiscord from "../assets/icons/discord.svg";
 import { site, footerGroups } from "../data/site";
 import { getLocaleFromPath, getLocalizedPath } from "../i18n/config";
 
@@ -25,8 +21,8 @@ const groups = isFr
       ] },
       { title: "Projet", links: [
         { href: "/fr/about", label: "A propos" },
-        { href: "/blog", label: "Notes" },
-        { href: "/changelog", label: "Mises a jour" },
+        { href: "/fr/blog/", label: "Notes" },
+        { href: "/fr/changelog/", label: "Mises a jour" },
       ] },
       { title: "Legal", links: [
         { href: "/privacy", label: "Confidentialite" },
@@ -49,8 +45,8 @@ const groups = isFr
         ] },
         { title: "Progetto", links: [
           { href: "/it/about", label: "Chi siamo" },
-          { href: "/blog", label: "Note" },
-          { href: "/changelog", label: "Aggiornamenti" },
+          { href: "/it/blog/", label: "Note" },
+          { href: "/it/changelog/", label: "Aggiornamenti" },
         ] },
         { title: "Legale", links: [
           { href: "/privacy", label: "Privacy" },
@@ -82,13 +78,6 @@ const statusRegions = isFr
     : site.statusRegions;
 const homeHref = getLocalizedPath("/", currentLocale);
 const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
-
-const socialIcons = [
-  { id: "github", href: site.social.github, label: "GitHub", Icon: IconGithub },
-  { id: "x", href: site.social.x, label: "X", Icon: IconXTwitter },
-  { id: "discord", href: site.social.discord, label: "Discord", Icon: IconDiscord },
-  { id: "rss", href: site.social.rss, label: "RSS", Icon: IconRss },
-];
 ---
 <footer class="border-t border-hairline pt-16 pb-10 text-text-3">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
@@ -106,13 +95,6 @@ const socialIcons = [
               {footerTagline}
             </p>
           </div>
-        </div>
-        <div class="flex gap-1.5 mt-5 sm:ml-[96px]">
-          {socialIcons.map(({ href, label, Icon }) => (
-            <a href={href} aria-label={label} class="grid place-items-center w-8 h-8 border border-hairline rounded-md text-text-2 hover:text-text hover:border-hairline-strong transition-colors">
-              <Icon class="w-4 h-4" />
-            </a>
-          ))}
         </div>
       </div>
 
