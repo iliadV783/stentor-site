@@ -16,19 +16,22 @@ import { finalCta } from "../data/home";
     (() => {
       if (window.location.pathname !== "/") return;
 
-      try {
-        const explicitChoice = window.localStorage.getItem("stentor-lang-choice");
-        if (explicitChoice) return;
-      } catch (_) {
-        // localStorage can be unavailable in private or restricted browsing.
-      }
-
       const localizedHome = {
         it: "/it/",
         fr: "/fr/",
         es: "/es/",
         de: "/de/",
       };
+
+      try {
+        const explicitChoice = window.localStorage.getItem("stentor-lang-choice");
+        if (Object.prototype.hasOwnProperty.call(localizedHome, explicitChoice)) {
+          window.location.replace(localizedHome[explicitChoice]);
+          return;
+        }
+      } catch (_) {
+        // localStorage can be unavailable in private or restricted browsing.
+      }
 
       const languages = Array.isArray(navigator.languages) && navigator.languages.length
         ? navigator.languages
