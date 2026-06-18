@@ -5,6 +5,8 @@ import { getLocaleFromPath, getLocalizedPath } from "../i18n/config";
 const currentLocale = getLocaleFromPath(Astro.url.pathname);
 const isFr = currentLocale === "fr";
 const isIt = currentLocale === "it";
+const isEs = currentLocale === "es";
+const isDe = currentLocale === "de";
 const groups = isFr
   ? [
       { title: "Produit", links: [
@@ -53,7 +55,55 @@ const groups = isFr
           { href: "/terms", label: "Termini" },
         ] },
       ]
-    : footerGroups;
+    : isEs
+      ? [
+          { title: "Producto", links: [
+            { href: "/es/features", label: "Funciones" },
+            { href: "/es/docs", label: "Guía" },
+            { href: "/es/for-theatres", label: "Para teatros" },
+            { href: "/es/contact", label: "Contacto" },
+          ] },
+          { title: "Usos", links: [
+            { href: "/es/features", label: "Sobretítulos" },
+            { href: "/es/features", label: "Traducción" },
+            { href: "/es/features", label: "Audiodescripción" },
+            { href: "/es/for-theatres", label: "Festivales" },
+          ] },
+          { title: "Proyecto", links: [
+            { href: "/es/about", label: "Proyecto" },
+            { href: "/es/blog/", label: "Notas" },
+            { href: "/es/changelog/", label: "Actualizaciones" },
+          ] },
+          { title: "Legal", links: [
+            { href: "/privacy", label: "Privacidad" },
+            { href: "/terms", label: "Términos" },
+          ] },
+        ]
+      : isDe
+        ? [
+            { title: "Produkt", links: [
+              { href: "/de/features", label: "Funktionen" },
+              { href: "/de/docs", label: "Leitfaden" },
+              { href: "/de/for-theatres", label: "Für Theater" },
+              { href: "/de/contact", label: "Kontakt" },
+            ] },
+            { title: "Anwendungen", links: [
+              { href: "/de/features", label: "Übertitel" },
+              { href: "/de/features", label: "Übersetzung" },
+              { href: "/de/features", label: "Audiodeskription" },
+              { href: "/de/for-theatres", label: "Festivals" },
+            ] },
+            { title: "Projekt", links: [
+              { href: "/de/about", label: "Projekt" },
+              { href: "/de/blog/", label: "Notizen" },
+              { href: "/de/changelog/", label: "Updates" },
+            ] },
+            { title: "Rechtliches", links: [
+              { href: "/privacy", label: "Datenschutz" },
+              { href: "/terms", label: "Bedingungen" },
+            ] },
+          ]
+        : footerGroups;
 const localizedGroups = groups.map((group) => ({
   ...group,
   links: group.links.map((link) => ({
@@ -65,17 +115,29 @@ const footerTagline = isFr
   ? "Surtitres, traduction et audiodescription pour le spectacle vivant."
   : isIt
     ? "Soprattitoli, traduzione e audio-descrizione per lo spettacolo dal vivo."
-    : site.footerTagline;
+    : isEs
+      ? "Sobretítulos, traducción y audiodescripción para las artes escénicas en vivo."
+      : isDe
+        ? "Übertitel, Übersetzung und Audiodeskription für Live-Aufführungen."
+        : site.footerTagline;
 const statusPrefix = isFr
   ? "Concu pour le spectacle vivant"
   : isIt
     ? "Pensato per lo spettacolo dal vivo"
-    : site.statusPrefix;
+    : isEs
+      ? "Pensado para las artes escénicas en vivo"
+      : isDe
+        ? "Für Live-Aufführungen entwickelt"
+        : site.statusPrefix;
 const statusRegions = isFr
   ? "surtitres, traduction, audiodescription"
   : isIt
     ? "soprattitoli, traduzione, audio-descrizione"
-    : site.statusRegions;
+    : isEs
+      ? "sobretítulos, traducción, audiodescripción"
+      : isDe
+        ? "Übertitel, Übersetzung, Audiodeskription"
+        : site.statusRegions;
 const homeHref = getLocalizedPath("/", currentLocale);
 const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
 ---
