@@ -10,9 +10,9 @@ const isDe = currentLocale === "de";
 const groups = isFr
   ? [
       { title: "Produit", links: [
-        { href: "/fr/features", label: "Fonctionnalites" },
-        { href: "/fr/docs", label: "Workflow" },
-        { href: "/fr/for-theatres", label: "Pour les theatres" },
+        { href: "/fr/features", label: "Fonctionnalités" },
+        { href: "/fr/docs", label: "Parcours" },
+        { href: "/fr/for-theatres", label: "Pour les théâtres" },
         { href: "/fr/contact", label: "Contact" },
       ] },
       { title: "Usages", links: [
@@ -22,12 +22,12 @@ const groups = isFr
         { href: "/fr/for-theatres", label: "Festivals" },
       ] },
       { title: "Projet", links: [
-        { href: "/fr/about", label: "A propos" },
+        { href: "/fr/about", label: "À propos" },
         { href: "/fr/blog/", label: "Notes" },
-        { href: "/fr/changelog/", label: "Mises a jour" },
+        { href: "/fr/changelog/", label: "Mises à jour" },
       ] },
-      { title: "Legal", links: [
-        { href: "/privacy", label: "Confidentialite" },
+      { title: "Légal", links: [
+        { href: "/privacy", label: "Confidentialité" },
         { href: "/terms", label: "Conditions" },
       ] },
     ]
@@ -121,7 +121,7 @@ const footerTagline = isFr
         ? "Übertitel, Übersetzung und Audiodeskription für Live-Aufführungen."
         : site.footerTagline;
 const statusPrefix = isFr
-  ? "Concu pour le spectacle vivant"
+  ? "Conçu pour le spectacle vivant"
   : isIt
     ? "Pensato per lo spettacolo dal vivo"
     : isEs
