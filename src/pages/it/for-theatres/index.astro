@@ -5,7 +5,7 @@ import Btn from "../../../components/Btn.astro";
 
 <Layout
   title="Sténtor – Per i teatri"
-  description="Casi d’uso per teatri, festival e gruppi dello spettacolo dal vivo che usano Sténtor per sopratitoli, traduzione, audio-descrizione, telefoni del pubblico e note d’uso."
+  description="Casi d’uso per teatri, festival e gruppi dello spettacolo dal vivo che usano Sténtor per soprattitoli, traduzione, audiodescrizioni, telefoni del pubblico e note d’uso."
   active="customers"
 >
   <section class="max-w-[1120px] mx-auto px-4 md:px-8 py-24 md:py-32">
@@ -13,17 +13,17 @@ import Btn from "../../../components/Btn.astro";
       <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Per teatri, festival e luoghi</p>
       <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Far circolare testo dal vivo multilingue senza trasformare lo spettacolo in un progetto tecnico.</h1>
       <p class="text-xl text-text-2 leading-[1.55] max-w-[760px]">
-        Sténtor aiuta i luoghi dello spettacolo a preparare, mandare in scena e condividere sopratitoli, traduzioni e audio-descrizione in un flusso locale: una regia, più schermi, una pagina foyer con codice QR e i telefoni del pubblico quando serve.
+        Sténtor aiuta i luoghi dello spettacolo a preparare, mandare in scena e condividere soprattitoli, traduzioni e audiodescrizioni in un flusso locale: una regia, più schermi, una pagina foyer con codice QR e i telefoni del pubblico quando serve.
       </p>
     </div>
 
     <div class="rounded-2xl border border-hairline bg-surface overflow-hidden mb-12 grid lg:grid-cols-[1.1fr_0.9fr]">
       <div class="p-6 md:p-8 lg:p-10">
         <h2 class="text-3xl md:text-4xl tracking-[-0.04em] leading-[1.08] font-semibold mb-4">Un flusso di sala per regia, schermi, foyer e telefoni.</h2>
-        <p class="text-text-2 leading-[1.65] mb-6">Un teatro può preparare il testo prima dello spettacolo, avanzare le battute dalla regia, inviare i sopratitoli agli schermi configurati, mostrare un codice QR nel foyer e permettere al pubblico di seguire traduzione o audio-descrizione sul proprio telefono.</p>
+        <p class="text-text-2 leading-[1.65] mb-6">Un teatro può preparare il testo prima dello spettacolo, avanzare le battute dalla regia, inviare i soprattitoli agli schermi configurati, mostrare un codice QR nel foyer e permettere al pubblico di seguire traduzione o audiodescrizione sul proprio telefono.</p>
         <div class="grid grid-cols-3 gap-4 border-y border-hairline py-5 mb-6">
           <div><div class="text-3xl text-red-500 font-semibold">1</div><p class="text-sm text-text-3">postazione di regia</p></div>
-          <div><div class="text-3xl text-red-500 font-semibold">3</div><p class="text-sm text-text-3">sopratitoli · traduzione · audio-descrizione</p></div>
+          <div><div class="text-3xl text-red-500 font-semibold">3</div><p class="text-sm text-text-3">soprattitoli · traduzione · audiodescrizioni</p></div>
           <div><div class="text-3xl text-red-500 font-semibold">Locale</div><p class="text-sm text-text-3">rete di sala</p></div>
         </div>
         <Btn href="/it/docs" variant="primary">Vedi il flusso</Btn>
@@ -34,7 +34,7 @@ import Btn from "../../../components/Btn.astro";
           ["TESTO", "schermi di sala", "allineati"],
           ["QR", "pagina foyer", "pronta"],
           ["PUBBLICO", "telefoni del pubblico", "seguono"],
-          ["AD", "audio-descrizione", "disponibile"],
+          ["AD", "audiodescrizione", "disponibile"],
         ].map((row) => (
           <div class="grid grid-cols-[78px_1fr_auto] gap-3 items-center px-3 py-2.5 border border-hairline rounded-lg bg-bg/70">
             <span class="text-red-500">{row[0]}</span><span>{row[1]}</span><span class="text-text-3">{row[2]}</span>
@@ -45,9 +45,9 @@ import Btn from "../../../components/Btn.astro";
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
       {[
-        ["Accoglienza internazionale", "Accogliere una produzione in lingua straniera con sopratitoli multilingue."],
+        ["Accoglienza internazionale", "Accogliere una produzione in lingua straniera con soprattitoli multilingue."],
         ["Festival", "Passare da una produzione all’altra senza ricostruire ogni sera il dispositivo."],
-        ["Audio-descrizione", "Preparare l’audio-descrizione nello stesso progetto del testo."],
+        ["Audiodescrizione", "Preparare l’audiodescrizione nello stesso progetto del testo."],
         ["Telefoni del pubblico", "Offrire testo su dispositivi personali senza installare un sistema complesso."],
         ["Produzioni in tournée", "Portare lo stesso progetto testuale da un luogo all’altro."],
         ["Note d’uso", "Raccogliere osservazioni concrete dopo le prove o lo spettacolo."],
