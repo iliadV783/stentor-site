@@ -3,11 +3,11 @@
  */
 
 export const hero = {
-  eyebrow: "Build v0.1.64 · 16 jun 2026",
+  eyebrow: "Build v0.1.70 · 17 jun 2026",
   title:
     'Sobretítulos, traducción <em class="not-italic text-text-3 font-medium">y accesibilidad.</em><br class="hidden sm:inline" /> En vivo.',
   description:
-    "Sténtor es un entorno textual para las artes escénicas en vivo: permite preparar guiones, lanzar sobretítulos, gestionar traducciones, audio descripción y acceso del público durante ensayos y funciones.",
+    "Sténtor es un entorno textual para las artes escénicas en vivo: permite preparar guiones, lanzar sobretítulos, gestionar traducciones, audiodescripción y acceso del público durante ensayos y funciones.",
   ctas: [
     { href: "/es/download", label: "Descargar Sténtor", variant: "primary" as const },
     { href: "/es/solicitar-prueba", label: "Acceder a la beta Pro", variant: "ghost" as const, icon: "play" as const },
@@ -15,7 +15,7 @@ export const hero = {
   trust: [
     { label: "Lite: app gratuita multiplataforma", live: true },
     { label: "Pro: app profesional para macOS, Windows y Linux" },
-    { label: "Sobretítulos · traducción · audio descripción · público" },
+    { label: "Sobretítulos · traducción · audiodescripción · público" },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Ensayo en vivo · red local" },
@@ -33,7 +33,7 @@ export const hero = {
     logs: [
       { t: "12:04:21", lvl: "ok", code: "cue", m: "024 enviado a pantallas · ", s: "live" },
       { t: "12:04:22", lvl: "ok", code: "web", m: "18 teléfonos del público · ", s: "sync" },
-      { t: "12:04:24", lvl: "info", code: "AD", m: "nota de audio descripción · ", s: "lista" },
+      { t: "12:04:24", lvl: "info", code: "AD", m: "nota de audiodescripción · ", s: "lista" },
       { t: "12:04:30", lvl: "ok", code: "fb", m: "canal de feedback · ", s: "abierto" },
       { t: "12:04:34", lvl: "warn", code: "next", m: "vista previa cue 025 · ", s: "espera" },
     ],
@@ -59,7 +59,7 @@ export const metrics = {
     "Sténtor organiza el texto escénico desde la preparación hasta la regía en vivo, con herramientas para pantallas, teléfonos del público, accesibilidad y trabajo multilingüe.",
   items: [
     { value: "Lite", suffix: "", label: "App gratuita para macOS, Windows y Linux" },
-    { value: "60", suffix: "+", label: "idiomas disponibles en la interfaz" },
+    { value: "5", suffix: "", label: "idiomas en el sitio; app diseñada para una interfaz multilingüe más amplia" },
     { value: "Live Sync", suffix: "", label: "Para pantallas y teléfonos del público" },
   ],
 };
@@ -67,12 +67,12 @@ export const metrics = {
 export const bento = {
   title: "Un solo Sténtor.<br/>Dos formas de trabajar.",
   description:
-    "Empieza con la app ligera multiplataforma y pasa al entorno profesional cuando ensayos, pantallas, timeline, público y audio descripción requieren un flujo en vivo dedicado.",
+    "Empieza con la app ligera multiplataforma y pasa al entorno profesional cuando ensayos, pantallas, timeline, público y audiodescripción requieren un flujo en vivo dedicado.",
   cards: {
     types: { title: "Sténtor Lite: empieza en cualquier lugar", desc: "App gratuita para macOS, Windows y Linux, pensada para hacer accesible la preparación del texto, los sobretítulos y las traducciones sin barrera de licencia." },
-    p95: { title: "Sténtor: cabina de regía", desc: "App profesional para ensayos y funciones, con cueing, timeline, pantallas, dispositivos del público y audio descripción en plataformas de escritorio." },
-    edge: { title: "Teléfonos del público sincronizados", desc: "Las personas en sala pueden conectarse con su propio smartphone y seguir sobretítulos, traducciones o audio descripciones en sincronía con la regía." },
-    auth: { title: "Interfaz en más de 60 idiomas", desc: "La interfaz de Sténtor ya está localizada en más de 60 idiomas, para facilitar pruebas, formación y uso en contextos internacionales." },
+    p95: { title: "Sténtor: cabina de regía", desc: "App profesional para ensayos y funciones, con cueing, timeline, pantallas, dispositivos del público y audiodescripción en plataformas de escritorio." },
+    edge: { title: "Teléfonos del público sincronizados", desc: "Las personas en sala pueden conectarse con su propio smartphone y seguir sobretítulos, traducciones o audiodescripciones en sincronía con la regía." },
+    auth: { title: "Sitio en 5 idiomas", desc: "El sitio está disponible en italiano, inglés, francés, español y alemán. La app Sténtor está diseñada para una interfaz multilingüe más amplia." },
     cron: { title: "Importar, exportar, circular", desc: "Importa archivos Word, TXT, SRT, WebVTT, CSV o JSON y comparte materiales para ensayos, archivo, giras y estudio." },
     migrations: { title: "Vista de regía clara", desc: "Avanza entre cues durante la función con una interfaz diseñada para timing, concentración y seguridad." },
     deploys: { title: "Beta para Pro", desc: "Durante las pruebas, el acceso Pro se organiza para ofrecer soporte, instrucciones y activación de forma segura." },
@@ -90,8 +90,8 @@ export const testimonials = {
   ],
 };
 
-const liteFeatures = ["App desktop gratuita", "Para macOS, Windows y Linux", "Preparación de textos, sobretítulos y traducciones", "Descarga sin licencia Pro", "Interfaz en más de 60 idiomas"];
-const proFeatures = ["App desktop profesional", "Prevista para macOS, Windows y Linux", "Timeline, cueing y vista de regía en vivo", "Pantallas y teléfonos del público", "Audio descripción y herramientas de accesibilidad", "Licencia beta y activación"];
+const liteFeatures = ["App desktop gratuita", "Para macOS, Windows y Linux", "Preparación de textos, sobretítulos y traducciones", "Descarga sin licencia Pro", "Sitio en 5 idiomas"];
+const proFeatures = ["App desktop profesional", "Prevista para macOS, Windows y Linux", "Timeline, cueing y vista de regía en vivo", "Pantallas y teléfonos del público", "Audiodescripción y herramientas de accesibilidad", "Licencia beta y activación"];
 const institutionFeatures = ["Para teatros, festivales y escuelas", "Licencias de prueba y multiusuario", "Soporte durante pruebas y ensayos", "Guía de configuración en espacios reales", "Área de cuenta preparada para uso futuro"];
 
 export const pricingPreview = {
