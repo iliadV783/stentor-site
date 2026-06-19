@@ -17,22 +17,47 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "All", count: 8 },
-  { id: "major", label: "Milestones", count: 4 },
-  { id: "new", label: "New", count: 3 },
-  { id: "improvements", label: "Improvements", count: 4 },
-  { id: "fixes", label: "Fixes", count: 2 },
+  { id: "all", label: "All", count: 9 },
+  { id: "major", label: "Milestones", count: 5 },
+  { id: "new", label: "New", count: 4 },
+  { id: "improvements", label: "Improvements", count: 5 },
+  { id: "fixes", label: "Fixes", count: 3 },
 ];
 
-export const versionTag = "v0.1.71 · DOCX Parser + performance";
+export const versionTag = "v0.1.72 · Accessible languages + text control";
 export const versionRange = "· current prototype";
 
 export const years = [
-  { y: "2026", n: 8, on: true },
+  { y: "2026", n: 9, on: true },
   { y: "Research", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.72",
+    date: "2026-06-19",
+    type: "major",
+    title: "Accessible variants for every language, line search and tighter live control",
+    body: "The June 19 work strengthened Sténtor as a rehearsal and room tool: accessible language variants for every project language, instant line search, more controllable audience questions and cleaner live projection for technical cues and material that should not reach spectators.",
+    changes: {
+      new: [
+        { title: "Accessible language variants", body: "The Languages screen now separates each base language from its accessible variant: it can generate it+, en can generate en+ and fr can generate fr+ when the operator enables + accessible." },
+        { title: "Editor for + versions", body: "In the Text page, the operator can edit the accessible version of a line for any active language, without treating + versions as separate languages in project configuration." },
+        { title: "Line search", body: "A search function has been introduced in the Text editor to quickly find lines, cues and passages during preparation and revision." },
+        { title: "More controllable audience questions", body: "The Home page is moving toward one unified question list, with General, Surtitles and Audio descriptions categories that can be selected and ordered for real operator use." },
+      ],
+      improvements: [
+        { title: "+ versions not forced at startup", body: "In the base project, the + accessible option remains visible for languages, but it is not already selected on first installation: the operator decides when to enable it." },
+        { title: "More coherent language codes", body: "Sténtor uses short standard codes such as it, en and fr, keeping the internal + convention only for accessible content variants." },
+        { title: "Audience smartphones", body: "When an accessible variant is enabled, the audience can also see the corresponding choice, such as IT+, EN+ or FR+ alongside the base languages." },
+        { title: "Extended parenthesis omission", body: "The option to omit text in parentheses has been extended to square brackets, so internal notes can be excluded from spoken lines when needed." },
+      ],
+      fixes: [
+        { title: "Light cues not projected", body: "Technical light cues are no longer treated as text to show spectators: during a Lights indication, the audience screen remains clean." },
+        { title: "Separation between setup and content", body: "The Languages screen configures which languages and variants are available, while the actual text for variants such as it+, en+ or fr+ is edited in the Text editor." },
+      ],
+    },
+  },
   {
     version: "0.1.71",
     date: "2026-06-18",
@@ -163,10 +188,10 @@ export const sideStats = {
   thisYear: {
     title: "Current focus",
     rows: [
-      { label: "Prototype", value: "0.1.71", accent: true },
-      { label: "Apple parser", value: "DOCX import" },
-      { label: "Windows C#", value: "in development" },
-      { label: "Feedback loop", value: "open" },
+      { label: "Prototype", value: "0.1.72", accent: true },
+      { label: "Languages", value: "it+ / en+ / fr+" },
+      { label: "Text editor", value: "line search" },
+      { label: "Live", value: "clean tech cues" },
     ],
   },
   cadence: {
@@ -178,7 +203,7 @@ export const sideStats = {
   status: {
     title: "Status",
     rows: [
-      { label: "Apple app", value: "● Parser tuning", color: "green" as const },
+      { label: "Apple app", value: "● Text and languages", color: "green" as const },
       { label: "Windows app", value: "C# development" },
       { label: "Next priority", value: "beta feedback" },
     ],
