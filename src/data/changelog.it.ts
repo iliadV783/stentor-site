@@ -25,22 +25,47 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 8 },
-  { id: "major", label: "Milestone", count: 4 },
-  { id: "new", label: "Novità", count: 3 },
-  { id: "improvements", label: "Miglioramenti", count: 4 },
-  { id: "fixes", label: "Correzioni", count: 2 },
+  { id: "all", label: "Tutto", count: 9 },
+  { id: "major", label: "Milestone", count: 5 },
+  { id: "new", label: "Novità", count: 4 },
+  { id: "improvements", label: "Miglioramenti", count: 5 },
+  { id: "fixes", label: "Correzioni", count: 3 },
 ];
 
-export const versionTag = "v0.1.71 · Parser DOCX + prestazioni";
+export const versionTag = "v0.1.72 · Lingue accessibili + controllo testo";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 8, on: true },
+  { y: "2026", n: 9, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.72",
+    date: "2026-06-19",
+    type: "major",
+    title: "Lingue accessibili, ricerca battute e controllo più preciso del live",
+    body: "Il lavoro del 19 giugno ha consolidato Sténtor come strumento per prove e sala: varianti linguistiche accessibili come Italiano +, ricerca immediata tra le battute, domande al pubblico più governabili e una proiezione live più pulita per cue tecnici e materiali non destinati agli spettatori.",
+    changes: {
+      new: [
+        { title: "Varianti linguistiche accessibili", body: "La schermata Lingue distingue la lingua base dalla sua variante accessibile: Italiano resta it, mentre Italiano + viene generato come it+ quando l’operatore abilita + accessibile." },
+        { title: "Editor per Italiano +", body: "Nella pagina Testo l’operatore può lavorare anche sulla variante accessibile della battuta, senza trattare it+ come una lingua separata nella configurazione del progetto." },
+        { title: "Ricerca battute", body: "È stata introdotta una funzione di ricerca nell’editor Testo per trovare rapidamente battute, cue e passaggi del copione durante preparazione e revisione." },
+        { title: "Domande al pubblico più controllabili", body: "La pagina Inizio evolve verso un elenco unico di domande, con categorie Generali, Sopratitoli e Audiodescrizioni selezionabili e ordinamento pensato per l’uso reale dell’operatore." },
+      ],
+      improvements: [
+        { title: "Italiano + non imposto all’avvio", body: "Nel progetto base la possibilità + accessibile resta visibile, ma non è già selezionata alla prima installazione: l’operatore decide quando attivarla." },
+        { title: "Codici lingua più coerenti", body: "Sténtor usa codici brevi standard come it, en e fr, mantenendo la convenzione interna + solo per le varianti accessibili dei contenuti." },
+        { title: "Smartphone del pubblico", body: "Quando una variante accessibile è attiva, il pubblico può vedere anche la scelta corrispondente, per esempio IT+ accanto a IT, EN e FR." },
+        { title: "Omissione delle parentesi estesa", body: "L’opzione per omettere testo tra parentesi viene estesa anche alle parentesi quadre, così le indicazioni interne possono essere escluse dalle battute quando necessario." },
+      ],
+      fixes: [
+        { title: "Cue luci non proiettati", body: "I cue tecnici di luce non vengono più trattati come testo da mostrare allo spettatore: durante una indicazione Luci lo schermo pubblico resta pulito." },
+        { title: "Separazione tra gestione e contenuto", body: "La schermata Lingue configura quali lingue e varianti sono disponibili, mentre il testo effettivo delle varianti come it+ viene modificato nell’editor Testo." },
+      ],
+    },
+  },
   {
     version: "0.1.71",
     date: "2026-06-18",
@@ -171,10 +196,10 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.71", accent: true },
-      { label: "Parser Apple", value: "import DOCX" },
-      { label: "Windows C#", value: "in sviluppo" },
-      { label: "Ciclo feedback", value: "aperto" },
+      { label: "Prototipo", value: "0.1.72", accent: true },
+      { label: "Lingue", value: "it / it+" },
+      { label: "Editor Testo", value: "ricerca battute" },
+      { label: "Live", value: "cue tecnici puliti" },
     ],
   },
   cadence: {
@@ -186,7 +211,7 @@ export const sideStats = {
   status: {
     title: "Stato",
     rows: [
-      { label: "App Apple", value: "● Parser", color: "green" as const },
+      { label: "App Apple", value: "● Testo e lingue", color: "green" as const },
       { label: "App Windows", value: "sviluppo C#" },
       { label: "Prossima priorità", value: "feedback beta" },
     ],
