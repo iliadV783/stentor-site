@@ -17,22 +17,45 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "All", count: 10 },
-  { id: "major", label: "Milestones", count: 6 },
-  { id: "new", label: "New", count: 4 },
-  { id: "improvements", label: "Improvements", count: 6 },
-  { id: "fixes", label: "Fixes", count: 4 },
+  { id: "all", label: "All", count: 11 },
+  { id: "major", label: "Milestones", count: 7 },
+  { id: "new", label: "New", count: 5 },
+  { id: "improvements", label: "Improvements", count: 7 },
+  { id: "fixes", label: "Fixes", count: 5 },
 ];
 
-export const versionTag = "v0.1.73 · Monterey + Intel TestFlight";
+export const versionTag = "v0.1.74 · Phase 1 + cleaner production";
 export const versionRange = "· current prototype";
 
 export const years = [
-  { y: "2026", n: 10, on: true },
+  { y: "2026", n: 11, on: true },
   { y: "Research", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.74",
+    date: "2026-06-20",
+    type: "major",
+    title: "Phase 1 stabilisation and cleaner production workflow",
+    body: "The latest work closes the first development phase of the Apple prototype with a cleaner production interface, a more readable import preview, stronger theatre-script handling and a clearer path toward beta collaborators and future cloud synchronisation.",
+    changes: {
+      new: [
+        { title: "Phase 1 baseline", body: "The Apple/macOS prototype now has a more stable baseline for scripts, languages, audience screens, audio descriptions, live cues and TestFlight distribution." },
+        { title: "Audience-question workflow", body: "The public questions area is moving toward one unified list with explicit General, Surtitles and Audio descriptions categories, so operators can see exactly what will appear on audience devices." },
+      ],
+      improvements: [
+        { title: "Cleaner Production screen", body: "The unused public page label field has been removed from Production, reducing visual noise and avoiding a setting that did not create a clear visible result." },
+        { title: "Import preview readability", body: "The import preview layout is being corrected so the script is no longer visually clipped on all four sides during review." },
+        { title: "Project-package hygiene", body: "The project archive is kept lighter by excluding build artefacts, caches and generated material that are not needed for source development." },
+        { title: "Roadmap clarified", body: "The next work is now framed around DOCX import stabilisation, Text editor performance, accessible language variants, audience screens, public questions and cloud-ready collaboration." },
+      ],
+      fixes: [
+        { title: "Production field confusion", body: "A non-essential label that was enabled in the interface but not visible in the actual public result has been removed from the operator workflow." },
+        { title: "Long-script focus", body: "Performance issues with large scripts remain a priority, with the goal of keeping scrolling and line selection immediate during rehearsal and live preparation." },
+      ],
+    },
+  },
   {
     version: "0.1.73",
     date: "2026-06-19",
@@ -207,10 +230,10 @@ export const sideStats = {
   thisYear: {
     title: "Current focus",
     rows: [
-      { label: "Prototype", value: "0.1.73", accent: true },
+      { label: "Prototype", value: "0.1.74", accent: true },
       { label: "macOS", value: "12.4+ universal" },
-      { label: "Architecture", value: "Intel + Apple Silicon" },
-      { label: "TestFlight", value: "build 1.1 (2)" },
+      { label: "Workflow", value: "Phase 1 stable" },
+      { label: "Next", value: "cloud sync + beta" },
     ],
   },
   cadence: {
@@ -224,7 +247,7 @@ export const sideStats = {
     rows: [
       { label: "Apple app", value: "● TestFlight universal", color: "green" as const },
       { label: "Compatibility", value: "Monterey 12.4+" },
-      { label: "Next priority", value: "beta collaborators" },
+      { label: "Next priority", value: "cloud-ready collaboration" },
     ],
   },
 };
