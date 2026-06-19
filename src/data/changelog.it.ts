@@ -25,22 +25,41 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 9 },
-  { id: "major", label: "Milestone", count: 5 },
+  { id: "all", label: "Tutto", count: 10 },
+  { id: "major", label: "Milestone", count: 6 },
   { id: "new", label: "Novità", count: 4 },
-  { id: "improvements", label: "Miglioramenti", count: 5 },
-  { id: "fixes", label: "Correzioni", count: 3 },
+  { id: "improvements", label: "Miglioramenti", count: 6 },
+  { id: "fixes", label: "Correzioni", count: 4 },
 ];
 
-export const versionTag = "v0.1.72 · Lingue accessibili + controllo testo";
+export const versionTag = "v0.1.73 · Monterey + Intel TestFlight";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 9, on: true },
+  { y: "2026", n: 10, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.73",
+    date: "2026-06-19",
+    type: "major",
+    title: "Build TestFlight compatibile con macOS Monterey e Mac Intel",
+    body: "Sténtor dispone ora di una build macOS universale per TestFlight, pensata per funzionare sia su Apple Silicon sia su Mac Intel, con deployment target abbassato a macOS Monterey 12.4. I Mac recenti continuano a usare automaticamente le rifiniture SwiftUI moderne, mentre i sistemi compatibili più vecchi usano fallback sicuri senza perdere il flusso teatrale principale.",
+    changes: {
+      improvements: [
+        { title: "Archivio macOS universale", body: "La build macOS include sia Apple Silicon sia Intel, così i collaboratori possono testare la stessa versione anche su Mac Intel come i modelli 2018." },
+        { title: "Compatibilità Monterey", body: "Il deployment target è stato abbassato a macOS 12.4, sostituendo o proteggendo le API SwiftUI disponibili solo da macOS 13 o macOS 14." },
+        { title: "Rifiniture progressive", body: "Dettagli moderni come comportamento dello scroll, sfondi scroll nascosti e spaziatura tipografica vengono applicati solo quando la versione di macOS li supporta." },
+        { title: "Sidebar collassabile mantenuta", body: "La sidebar compatta a sole icone resta disponibile e continua a proteggere l’interfaccia quando la finestra viene stretta." },
+      ],
+      fixes: [
+        { title: "Permessi dei progetti recenti", body: "I progetti .stn recenti vengono riaperti con bookmark macOS persistenti, invece di affidarsi soltanto al percorso del file salvato." },
+        { title: "Configurazione dell’archivio", body: "Le impostazioni Release sono state corrette per inviare a TestFlight una build universale, non solo Apple Silicon." },
+      ],
+    },
+  },
   {
     version: "0.1.72",
     date: "2026-06-19",
@@ -196,10 +215,10 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.72", accent: true },
-      { label: "Lingue", value: "it+ / en+ / fr+" },
-      { label: "Editor Testo", value: "ricerca battute" },
-      { label: "Live", value: "cue tecnici puliti" },
+      { label: "Prototipo", value: "0.1.73", accent: true },
+      { label: "macOS", value: "12.4+ universale" },
+      { label: "Architettura", value: "Intel + Apple Silicon" },
+      { label: "TestFlight", value: "build 1.1 (2)" },
     ],
   },
   cadence: {
@@ -211,9 +230,9 @@ export const sideStats = {
   status: {
     title: "Stato",
     rows: [
-      { label: "App Apple", value: "● Testo e lingue", color: "green" as const },
-      { label: "App Windows", value: "sviluppo C#" },
-      { label: "Prossima priorità", value: "feedback beta" },
+      { label: "App Apple", value: "● TestFlight universale", color: "green" as const },
+      { label: "Compatibilità", value: "Monterey 12.4+" },
+      { label: "Prossima priorità", value: "collaboratori beta" },
     ],
   },
 };
