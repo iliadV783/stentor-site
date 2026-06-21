@@ -3,7 +3,7 @@
  */
 
 export const hero = {
-  eyebrow: "Build v0.1.70 · 17 jun 2026",
+  eyebrow: "Actualización v0.1.74 · Audiodescripción en vivo",
   title:
     'Sobretítulos, traducción <em class="not-italic text-text-3 font-medium">y accesibilidad.</em><br class="hidden sm:inline" /> En vivo.',
   description:
