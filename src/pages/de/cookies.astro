@@ -1,0 +1,25 @@
+---
+import LegalPage from "../../components/LegalPage.astro";
+
+const page = {
+  metaTitle: "Sténtor – Cookie-Richtlinie",
+  metaDescription: "Wie Sténtor technische und funktionale Cookies sowie ähnliche Technologien verwendet.",
+  eyebrow: "Rechtliches · Cookies",
+  title: "Cookie-Richtlinie",
+  effectiveDate: "Gültig ab 21. Juni 2026",
+  intro: "Diese Seite erklärt, wie Sténtor Cookies und ähnliche Technologien auf der Website und auf kontobezogenen Seiten verwendet.",
+  tocLabel: "Auf dieser Seite",
+  sections: [
+    { id: "overview", title: "1. Überblick", body: `<p>Sténtor verwendet nur technische und funktionale Technologien, die für den Betrieb der Website, den Kontozugang, Downloads und die Verwaltung von Zugangscodes erforderlich sind. Wir verwenden keine Werbe-Cookies, Profiling-Cookies oder Marketing-Tracker Dritter.</p>` },
+    { id: "what", title: "2. Was Cookies sind", body: `<p>Cookies sind kleine Dateien oder ähnliche Browsertechnologien, mit denen eine Website technische Informationen speichern, eine Sitzung aufrechterhalten oder wesentliche Funktionen bereitstellen kann. Ähnliche Technologien können lokalen Speicher, Sitzungsspeicher oder Sicherheitstoken umfassen.</p>` },
+    { id: "essential", title: "3. Wesentliche und funktionale Technologien", body: `<p>Sténtor kann wesentliche Technologien verwenden, um die Website verfügbar zu halten, Formulare zu schützen, den Kontozugang zu unterstützen, technische Sitzungsinformationen zu speichern, Downloads zu verwalten oder Zugangscode-Abläufe aufrechtzuerhalten. Diese Technologien sind für den angefragten Dienst notwendig und werden nicht für Werbung verwendet.</p>` },
+    { id: "auth", title: "4. Kontozugang", body: `<p>Wenn Sie sich mit Apple, Google oder Microsoft anmelden, können diese Anbieter eigene Cookies oder Authentifizierungstechnologien gemäß ihren Richtlinien verwenden. Sténtor nutzt diesen Zugang nur zur Authentifizierung des Kontos, zur Verwaltung von Aktivierung, Downloads und Zugangscodes, nicht zur Profilbildung für Marketingzwecke.</p>` },
+    { id: "analytics", title: "5. Analyse und Marketing", body: `<p>Sténtor verwendet keine Werbe-Cookies, Profiling-Cookies oder Marketing-Tracker Dritter. Wenn in Zukunft datenschutzschonende technische Analysen eingeführt werden, wird diese Seite aktualisiert, bevor sie in einer Weise genutzt werden, die diese Richtlinie ändert.</p>` },
+    { id: "choices", title: "6. Ihre Optionen", body: `<p>Sie können Cookies über die Einstellungen Ihres Browsers verwalten oder löschen. Das Blockieren wesentlicher Cookies oder ähnlicher Technologien kann dazu führen, dass Kontozugang, Downloads, Formulare oder andere angefragte Funktionen nicht korrekt funktionieren.</p>` },
+    { id: "updates", title: "7. Aktualisierungen", body: `<p>Diese Seite kann aktualisiert werden, während sich Sténtor weiterentwickelt. Das Gültigkeitsdatum zeigt die neueste Version an.</p>` }
+  ],
+  contact: { title: "Fragen?", body: 'Schreiben Sie an <a href="mailto:info@stentor.live">info@stentor.live</a>.' }
+};
+---
+
+<LegalPage page={page} />
