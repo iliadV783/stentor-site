@@ -7,7 +7,7 @@ export const hero = {
   title:
     'Soprattitoli, traduzione <em class="not-italic text-text-3 font-medium">e audiodescrizioni.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
-    "Un ambiente di regia per preparare i testi, coordinare lingue e audiodescrizioni, sincronizzare schermi e dispositivi del pubblico durante prove e spettacoli.",
+    "Un ambiente di regia per preparare i testi, coordinare lingue e audiodescrizioni, sincronizzare schermi e dispositivi del pubblico, raccogliere questionari e lavorare in cloud durante prove e spettacoli.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
     { href: "/it/richiedi-prova", label: "Attiva gratuitamente", variant: "ghost" as const, icon: "play" as const },
