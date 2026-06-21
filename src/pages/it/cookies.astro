@@ -1,0 +1,25 @@
+---
+import LegalPage from "../../components/LegalPage.astro";
+
+const page = {
+  metaTitle: "Sténtor – Cookie policy",
+  metaDescription: "Come Sténtor usa cookie tecnici, funzionali e tecnologie simili.",
+  eyebrow: "Legale · Cookie",
+  title: "Cookie policy",
+  effectiveDate: "In vigore dal 21 giugno 2026",
+  intro: "Questa pagina spiega come Sténtor usa cookie e tecnologie simili sul sito e nelle pagine collegate all’account.",
+  tocLabel: "In questa pagina",
+  sections: [
+    { id: "overview", title: "1. Panoramica", body: `<p>Sténtor usa solo tecnologie tecniche e funzionali necessarie al funzionamento del sito, dell’accesso account, dei download e della gestione dei codici di accesso. Non usiamo cookie pubblicitari, cookie di profilazione o tracker marketing di terze parti.</p>` },
+    { id: "what", title: "2. Cosa sono i cookie", body: `<p>I cookie sono piccoli file o tecnologie simili del browser che permettono a un sito di ricordare informazioni tecniche, mantenere attiva una sessione o fornire funzioni essenziali. Tecnologie simili possono includere local storage, session storage o token di sicurezza.</p>` },
+    { id: "essential", title: "3. Tecnologie essenziali e funzionali", body: `<p>Sténtor può usare tecnologie essenziali per mantenere disponibile il sito, proteggere i moduli, supportare l’accesso account, ricordare informazioni tecniche di sessione, gestire download o mantenere i flussi dei codici di accesso. Queste tecnologie sono necessarie al servizio richiesto e non sono usate per pubblicità.</p>` },
+    { id: "auth", title: "4. Accesso account", body: `<p>Quando accedi con Apple, Google o Microsoft, questi provider possono usare propri cookie o tecnologie di autenticazione secondo le rispettive policy. Sténtor usa tale accesso solo per autenticare l’account, gestire attivazione, download e codici di accesso, non per profilare gli utenti a fini marketing.</p>` },
+    { id: "analytics", title: "5. Analytics e marketing", body: `<p>Sténtor non usa cookie pubblicitari, cookie di profilazione o tracker marketing di terze parti. Se in futuro saranno introdotti analytics tecnici rispettosi della privacy, questa pagina sarà aggiornata prima di usarli in modo tale da modificare questa policy.</p>` },
+    { id: "choices", title: "6. Le tue scelte", body: `<p>Puoi gestire o cancellare i cookie dalle impostazioni del browser. Bloccare cookie o tecnologie essenziali può impedire il corretto funzionamento di accesso account, download, moduli o altre funzioni richieste.</p>` },
+    { id: "updates", title: "7. Aggiornamenti", body: `<p>Questa pagina può essere aggiornata con l’evoluzione di Sténtor. La data di entrata in vigore indica l’ultima versione.</p>` }
+  ],
+  contact: { title: "Domande?", body: 'Scrivi a <a href="mailto:info@stentor.live">info@stentor.live</a>.' }
+};
+---
+
+<LegalPage page={page} />
