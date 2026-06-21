@@ -1,0 +1,55 @@
+---
+---
+
+<a class="site-privacy-fab" href="/privacy" aria-label="Privacy e preferenze" title="Privacy e preferenze">
+  <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <circle cx="16" cy="10.2" r="5.1" />
+    <path d="M6.8 27.2c1.1-6.1 4.7-9.1 9.2-9.1s8.1 3 9.2 9.1" />
+  </svg>
+</a>
+
+<style is:global>
+  .site-privacy-fab {
+    position: fixed;
+    left: max(18px, env(safe-area-inset-left));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 80;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 999px;
+    background: #111827;
+    color: #fff;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34), 0 0 32px rgba(239, 68, 68, 0.22);
+  }
+
+  .site-privacy-fab svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .site-privacy-fab circle,
+  .site-privacy-fab path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3.1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .site-privacy-fab:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.78);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 520px) {
+    .site-privacy-fab {
+      left: 14px;
+      bottom: 14px;
+      width: 50px;
+      height: 50px;
+    }
+  }
+</style>
