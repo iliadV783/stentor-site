@@ -5,9 +5,9 @@
 export const hero = {
   eyebrow: "Mise a jour v0.1.74 · Audiodescription en direct",
   title:
-    'Surtitres, traduction <em class="not-italic text-text-3 font-medium">et accessibilite.</em><br class="hidden sm:inline" /> En direct.',
+    'Surtitres, traduction <em class="not-italic text-text-3 font-medium">et audiodescription.</em><br class="hidden sm:inline" /> En direct.',
   description:
-    "Stentor est un ecosysteme pour le texte du spectacle vivant : une app Lite gratuite et multiplateforme pour commencer, et une app Pro professionnelle pensee pour macOS, Windows et Linux.",
+    "Logiciel pour creer et gerer les surtitres, traductions et audiodescriptions pendant le spectacle vivant.",
   ctas: [
     { href: "/fr/download", label: "Telecharger Stentor", variant: "primary" as const },
     { href: "/fr/demander-essai", label: "Acceder a la beta Pro", variant: "ghost" as const, icon: "play" as const },
