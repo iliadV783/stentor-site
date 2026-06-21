@@ -27,7 +27,7 @@ export const hero = {
 export const filters = [
   { id: "all", label: "Tutto", count: 11 },
   { id: "major", label: "Milestone", count: 7 },
-  { id: "new", label: "Novità", count: 4 },
+  { id: "new", label: "Novità", count: 5 },
   { id: "improvements", label: "Miglioramenti", count: 7 },
   { id: "fixes", label: "Correzioni", count: 5 },
 ];
@@ -45,9 +45,13 @@ export const entries = [
     version: "0.1.74",
     date: "2026-06-20",
     type: "major",
-    title: "Audiodescrizione dal vivo più chiara e sicura",
-    body: "Il lavoro recente ha rafforzato soprattutto l’audiodescrizione dal vivo: Sténtor separa meglio cue audio, battute, indicazioni tecniche e contenuti proiettati, così l’operatore può gestire lo spettacolo con maggiore controllo e meno ambiguità.",
+    title: "Introdotta l’audiodescrizione dal vivo",
+    body: "Sténtor introduce una nuova modalità di audiodescrizione dal vivo, affiancata alle audiodescrizioni registrate. È stato impostato un primo framework operativo per preparare, distinguere e controllare i cue audio durante lo spettacolo, separandoli da battute, luci, regia e contenuti proiettati.",
     changes: {
+      new: [
+        { title: "Audiodescrizione live", body: "Oltre ai file audio registrati, Sténtor può ora gestire cue pensati per essere letti o attivati dal vivo dall’operatore durante la rappresentazione." },
+        { title: "Framework AD dedicato", body: "È stata costruita una prima struttura funzionale per riconoscere, organizzare e comandare le audiodescrizioni come canale autonomo del live." },
+      ],
       improvements: [
         { title: "Canale AD più riconoscibile", body: "Le audiodescrizioni vengono trattate come materiale dedicato al canale audio, non come normali battute o personaggi del copione." },
         { title: "Controllo live più fluido", body: "La regia aiuta l’operatore a individuare e attivare le audiodescrizioni nel momento corretto durante lo spettacolo." },
