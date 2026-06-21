@@ -19,38 +19,100 @@
       <button type="button" aria-label="Chiudi preferenze sito" data-site-options-close>×</button>
     </div>
 
-    <p class="stentor-site-options-panel__intro">
+    <p class="stentor-site-options-panel__intro" data-site-options-status>
       Puoi scegliere come gestire le preferenze di navigazione. Le impostazioni essenziali restano sempre attive.
     </p>
 
     <div class="stentor-site-options-panel__actions">
-      <button type="button">Rifiuta tutto</button>
-      <button type="button">Personalizza</button>
-      <button type="button" class="is-primary">Accetta tutto</button>
+      <button type="button" data-site-options-reject>Rifiuta tutto</button>
+      <button type="button" data-site-options-customize>Personalizza</button>
+      <button type="button" class="is-primary" data-site-options-accept>Accetta tutto</button>
     </div>
 
-    <a class="stentor-site-options-panel__link" href="/privacy">Visualizza Privacy Policy</a>
+    <a class="stentor-site-options-panel__link" href="/privacy" data-site-options-policy>Visualizza Privacy Policy</a>
   </aside>
 </div>
 
 <script is:inline>
   (() => {
+    const storageKey = 'stentor-site-options-v1';
+    const root = document.documentElement;
+    const routes = {
+      it: '/it/privacy',
+      en: '/privacy',
+      fr: '/fr/privacy',
+      es: '/es/privacy',
+      de: '/de/privacy'
+    };
+
+    function getLang() {
+      return (root.lang || 'en').split('-')[0];
+    }
+
+    function getSaved() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey) || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function saveChoice(choice) {
+      const payload = {
+        choice,
+        updatedAt: new Date().toISOString()
+      };
+      localStorage.setItem(storageKey, JSON.stringify(payload));
+      window.dispatchEvent(new CustomEvent('stentor:site-options', { detail: payload }));
+      return payload;
+    }
+
     function init() {
       const toggle = document.querySelector('[data-site-options-toggle]');
       const panel = document.querySelector('[data-site-options-panel]');
       const close = document.querySelector('[data-site-options-close]');
+      const reject = document.querySelector('[data-site-options-reject]');
+      const customize = document.querySelector('[data-site-options-customize]');
+      const accept = document.querySelector('[data-site-options-accept]');
+      const status = document.querySelector('[data-site-options-status]');
+      const policy = document.querySelector('[data-site-options-policy]');
       if (!toggle || !panel) return;
+
+      if (policy) policy.setAttribute('href', routes[getLang()] || routes.en);
+
+      function updateStatus() {
+        const saved = getSaved();
+        if (!status || !saved.choice) return;
+        const label = saved.choice === 'accepted' ? 'Accettate' : saved.choice === 'rejected' ? 'Rifiutate' : 'Personalizzate';
+        status.textContent = `Preferenze salvate: ${label}. Puoi modificarle in qualunque momento.`;
+      }
+
       function setOpen(open) {
         panel.hidden = !open;
         toggle.setAttribute('aria-expanded', String(open));
-        if (open) panel.querySelector('button, a')?.focus();
+        if (open) {
+          updateStatus();
+          panel.querySelector('button, a')?.focus();
+        }
       }
+
+      function commit(choice) {
+        saveChoice(choice);
+        updateStatus();
+        setOpen(false);
+      }
+
+      updateStatus();
       toggle.addEventListener('click', () => setOpen(panel.hidden));
       close?.addEventListener('click', () => setOpen(false));
+      reject?.addEventListener('click', () => commit('rejected'));
+      accept?.addEventListener('click', () => commit('accepted'));
+      customize?.addEventListener('click', () => commit('customized'));
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setOpen(false);
       });
     }
+
     document.addEventListener('astro:page-load', init, { once: true });
     if (document.readyState !== 'loading') init();
   })();
