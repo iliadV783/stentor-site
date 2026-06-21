@@ -1,6 +1,7 @@
 ---
 import { site, footerGroups } from "../data/site";
 import { getLocaleFromPath, getLocalizedPath } from "../i18n/config";
+import SiteOptions from "./SiteOptions.astro";
 
 const currentLocale = getLocaleFromPath(Astro.url.pathname);
 const isFr = currentLocale === "fr";
@@ -188,3 +189,4 @@ const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
     </div>
   </div>
 </footer>
+<SiteOptions />
