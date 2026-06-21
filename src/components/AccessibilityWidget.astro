@@ -17,7 +17,7 @@
   <aside class="stentor-a11y__panel" id="stentor-a11y-panel" aria-label="Pannello accessibilità" hidden data-a11y-panel>
     <div class="stentor-a11y__head">
       <div>
-        <p class="stentor-a11y__eyebrow">Sténtor</p>
+        <p class="stentor-a11y__eyebrow" data-a11y-i18n="eyebrow">Sito</p>
         <h2 data-a11y-i18n="title">Accessibilità</h2>
         <p data-a11y-i18n="intro">Preferenze di lettura e navigazione per questo sito.</p>
       </div>
@@ -35,15 +35,6 @@
       <button type="button" data-a11y-action="read" data-a11y-i18n="read">Leggi pagina</button>
     </div>
 
-    <div class="stentor-a11y__section">
-      <h3 data-a11y-i18n="routesTitle">Percorsi rapidi</h3>
-      <nav class="stentor-a11y__links" aria-label="Percorsi accessibili Sténtor">
-        <a href="/" data-a11y-route="home" data-a11y-i18n="routeSimple">Cos’è Sténtor in breve</a>
-        <a href="/features" data-a11y-route="features" data-a11y-i18n="routeFeatures">Funzioni accessibili</a>
-        <a href="/docs#audience" data-a11y-route="audience" data-a11y-i18n="routeAudience">Viste per il pubblico</a>
-      </nav>
-    </div>
-
     <div class="stentor-a11y__foot">
       <button type="button" data-a11y-reset data-a11y-i18n="reset">Ripristina</button>
       <p data-a11y-i18n="note">Il pannello aiuta la lettura, ma non sostituisce un sito progettato accessibile alla base.</p>
@@ -51,12 +42,43 @@
   </aside>
 </div>
 
+<div class="stentor-privacy" data-stentor-privacy>
+  <button class="stentor-privacy__fab" type="button" aria-label="Privacy e preferenze" title="Privacy e preferenze" aria-expanded="false" aria-controls="stentor-privacy-panel" data-privacy-toggle>
+    <span class="stentor-privacy__fab-icon" aria-hidden="true">
+      <svg viewBox="0 0 32 32" focusable="false">
+        <circle cx="16" cy="10.2" r="5.1" />
+        <path d="M6.8 27.2c1.1-6.1 4.7-9.1 9.2-9.1s8.1 3 9.2 9.1" />
+      </svg>
+    </span>
+  </button>
+
+  <aside class="stentor-privacy__panel" id="stentor-privacy-panel" aria-label="Pannello privacy e preferenze" hidden data-privacy-panel>
+    <div class="stentor-a11y__head">
+      <div>
+        <p class="stentor-a11y__eyebrow" data-privacy-i18n="eyebrow">Privacy</p>
+        <h2 data-privacy-i18n="title">Privacy e preferenze</h2>
+        <p data-privacy-i18n="intro">Gestisci le preferenze essenziali del sito e apri l’informativa privacy.</p>
+      </div>
+      <button class="stentor-a11y__close" type="button" aria-label="Chiudi pannello privacy" data-privacy-close>×</button>
+    </div>
+
+    <div class="stentor-privacy__body">
+      <p data-privacy-i18n="essential">Usiamo solo preferenze tecniche salvate nel browser per ricordare le scelte di accessibilità e privacy.</p>
+      <a href="/privacy" data-privacy-route="privacy" data-privacy-i18n="privacyLink">Leggi l’informativa privacy</a>
+      <button type="button" data-privacy-save data-privacy-i18n="save">Salva preferenze essenziali</button>
+      <p class="stentor-privacy__status" data-privacy-status role="status" aria-live="polite"></p>
+    </div>
+  </aside>
+</div>
+
 <script is:inline>
   (() => {
     const storageKey = "stentor-a11y-preferences";
+    const privacyKey = "site-privacy-preferences";
     const root = document.documentElement;
     const copy = {
       it: {
+        eyebrow: "Sito",
         openLabel: "Accessibilità",
         title: "Accessibilità",
         intro: "Preferenze di lettura e navigazione per questo sito.",
@@ -68,14 +90,11 @@
         links: "Evidenzia link",
         images: "Nascondi immagini",
         read: "Leggi pagina",
-        routesTitle: "Percorsi rapidi",
-        routeSimple: "Cos’è Sténtor in breve",
-        routeFeatures: "Funzioni accessibili",
-        routeAudience: "Viste per il pubblico",
         reset: "Ripristina",
         note: "Il pannello aiuta la lettura, ma non sostituisce un sito progettato accessibile alla base."
       },
       en: {
+        eyebrow: "Site",
         openLabel: "Accessibility",
         title: "Accessibility",
         intro: "Reading and navigation preferences for this website.",
@@ -87,14 +106,11 @@
         links: "Highlight links",
         images: "Hide images",
         read: "Read page",
-        routesTitle: "Quick paths",
-        routeSimple: "Sténtor in brief",
-        routeFeatures: "Accessible features",
-        routeAudience: "Audience views",
         reset: "Reset",
         note: "This panel helps reading, but it does not replace an accessible-by-design website."
       },
       fr: {
+        eyebrow: "Site",
         openLabel: "Accessibilité",
         title: "Accessibilité",
         intro: "Préférences de lecture et de navigation pour ce site.",
@@ -106,14 +122,11 @@
         links: "Mettre les liens en évidence",
         images: "Masquer les images",
         read: "Lire la page",
-        routesTitle: "Accès rapides",
-        routeSimple: "Sténtor en bref",
-        routeFeatures: "Fonctions accessibles",
-        routeAudience: "Vues pour le public",
         reset: "Réinitialiser",
         note: "Ce panneau facilite la lecture, mais ne remplace pas un site conçu accessible dès le départ."
       },
       es: {
+        eyebrow: "Sitio",
         openLabel: "Accesibilidad",
         title: "Accesibilidad",
         intro: "Preferencias de lectura y navegación para este sitio.",
@@ -125,14 +138,11 @@
         links: "Resaltar enlaces",
         images: "Ocultar imágenes",
         read: "Leer página",
-        routesTitle: "Rutas rápidas",
-        routeSimple: "Sténtor en breve",
-        routeFeatures: "Funciones accesibles",
-        routeAudience: "Vistas para el público",
         reset: "Restablecer",
         note: "Este panel ayuda a la lectura, pero no sustituye un sitio diseñado con accesibilidad desde la base."
       },
       de: {
+        eyebrow: "Website",
         openLabel: "Barrierefreiheit",
         title: "Barrierefreiheit",
         intro: "Lese- und Navigationseinstellungen für diese Website.",
@@ -144,20 +154,23 @@
         links: "Links hervorheben",
         images: "Bilder ausblenden",
         read: "Seite vorlesen",
-        routesTitle: "Schnellzugänge",
-        routeSimple: "Sténtor kurz erklärt",
-        routeFeatures: "Barrierefreie Funktionen",
-        routeAudience: "Publikumsansichten",
         reset: "Zurücksetzen",
         note: "Dieses Panel unterstützt die Lesbarkeit, ersetzt aber keine barrierefrei gestaltete Website."
       }
     };
-    const localizedRoutes = {
-      it: { home: "/it/", features: "/it/features", audience: "/it/docs#audience" },
-      en: { home: "/", features: "/features", audience: "/docs#audience" },
-      fr: { home: "/fr/", features: "/fr/features", audience: "/fr/docs#audience" },
-      es: { home: "/es/", features: "/es/features", audience: "/es/docs#audience" },
-      de: { home: "/de/", features: "/de/features", audience: "/de/docs#audience" }
+    const privacyCopy = {
+      it: { openLabel: "Privacy e preferenze", title: "Privacy e preferenze", intro: "Gestisci le preferenze essenziali del sito e apri l’informativa privacy.", essential: "Usiamo solo preferenze tecniche salvate nel browser per ricordare le scelte di accessibilità e privacy.", privacyLink: "Leggi l’informativa privacy", save: "Salva preferenze essenziali", saved: "Preferenze salvate.", close: "Chiudi pannello privacy" },
+      en: { openLabel: "Privacy and preferences", title: "Privacy and preferences", intro: "Manage essential site preferences and open the privacy notice.", essential: "We only store technical browser preferences to remember accessibility and privacy choices.", privacyLink: "Read the privacy notice", save: "Save essential preferences", saved: "Preferences saved.", close: "Close privacy panel" },
+      fr: { openLabel: "Confidentialité et préférences", title: "Confidentialité et préférences", intro: "Gérez les préférences essentielles du site et ouvrez la politique de confidentialité.", essential: "Nous conservons uniquement des préférences techniques dans le navigateur pour mémoriser les choix d’accessibilité et de confidentialité.", privacyLink: "Lire la politique de confidentialité", save: "Enregistrer les préférences essentielles", saved: "Préférences enregistrées.", close: "Fermer le panneau de confidentialité" },
+      es: { openLabel: "Privacidad y preferencias", title: "Privacidad y preferencias", intro: "Gestiona las preferencias esenciales del sitio y abre la política de privacidad.", essential: "Solo guardamos preferencias técnicas en el navegador para recordar elecciones de accesibilidad y privacidad.", privacyLink: "Leer la política de privacidad", save: "Guardar preferencias esenciales", saved: "Preferencias guardadas.", close: "Cerrar panel de privacidad" },
+      de: { openLabel: "Datenschutz und Einstellungen", title: "Datenschutz und Einstellungen", intro: "Verwalten Sie wesentliche Website-Einstellungen und öffnen Sie die Datenschutzhinweise.", essential: "Wir speichern nur technische Browser-Einstellungen, um Barrierefreiheits- und Datenschutzoptionen zu merken.", privacyLink: "Datenschutzhinweise lesen", save: "Wesentliche Einstellungen speichern", saved: "Einstellungen gespeichert.", close: "Datenschutz-Panel schließen" }
+    };
+    const localizedPrivacyRoutes = {
+      it: "/it/privacy",
+      en: "/privacy",
+      fr: "/fr/privacy",
+      es: "/es/privacy",
+      de: "/de/privacy"
     };
     const defaults = { text: 0, contrast: false, theme: false, font: false, motion: false, links: false, images: false };
     let state = { ...defaults };
@@ -199,13 +212,17 @@
     function translate() {
       const lang = getLang();
       const labels = copy[lang];
+      const privacyLabels = privacyCopy[lang];
       document.querySelectorAll("[data-a11y-i18n]").forEach((el) => {
         const key = el.getAttribute("data-a11y-i18n");
         if (labels[key]) el.textContent = labels[key];
       });
-      document.querySelectorAll("[data-a11y-route]").forEach((el) => {
-        const key = el.getAttribute("data-a11y-route");
-        el.setAttribute("href", localizedRoutes[lang]?.[key] || localizedRoutes.en[key]);
+      document.querySelectorAll("[data-privacy-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-privacy-i18n");
+        if (privacyLabels[key]) el.textContent = privacyLabels[key];
+      });
+      document.querySelectorAll("[data-privacy-route='privacy']").forEach((el) => {
+        el.setAttribute("href", localizedPrivacyRoutes[lang] || localizedPrivacyRoutes.en);
       });
       const panel = document.querySelector("[data-a11y-panel]");
       if (panel) panel.setAttribute("aria-label", labels.title);
@@ -216,6 +233,15 @@
       }
       const close = document.querySelector("[data-a11y-close]");
       if (close) close.setAttribute("aria-label", lang === "it" ? "Chiudi pannello accessibilità" : "Close accessibility panel");
+      const privacyToggle = document.querySelector("[data-privacy-toggle]");
+      if (privacyToggle) {
+        privacyToggle.setAttribute("aria-label", privacyLabels.openLabel);
+        privacyToggle.setAttribute("title", privacyLabels.openLabel);
+      }
+      const privacyPanel = document.querySelector("[data-privacy-panel]");
+      if (privacyPanel) privacyPanel.setAttribute("aria-label", privacyLabels.title);
+      const privacyClose = document.querySelector("[data-privacy-close]");
+      if (privacyClose) privacyClose.setAttribute("aria-label", privacyLabels.close);
     }
 
     function readPage() {
@@ -240,18 +266,34 @@
       const panel = document.querySelector("[data-a11y-panel]");
       const close = document.querySelector("[data-a11y-close]");
       const reset = document.querySelector("[data-a11y-reset]");
-      if (!toggle || !panel) return;
+      const privacyToggle = document.querySelector("[data-privacy-toggle]");
+      const privacyPanel = document.querySelector("[data-privacy-panel]");
+      const privacyClose = document.querySelector("[data-privacy-close]");
+      const privacySave = document.querySelector("[data-privacy-save]");
+      const privacyStatus = document.querySelector("[data-privacy-status]");
 
-      function setOpen(open) {
-        panel.hidden = !open;
-        toggle.setAttribute("aria-expanded", String(open));
-        if (open) panel.querySelector("button, a")?.focus();
+      function setOpen(targetPanel, targetToggle, open) {
+        if (!targetPanel || !targetToggle) return;
+        targetPanel.hidden = !open;
+        targetToggle.setAttribute("aria-expanded", String(open));
+        if (open) targetPanel.querySelector("button, a")?.focus();
       }
 
-      toggle.addEventListener("click", () => setOpen(panel.hidden));
-      close?.addEventListener("click", () => setOpen(false));
+      toggle?.addEventListener("click", () => {
+        setOpen(privacyPanel, privacyToggle, false);
+        setOpen(panel, toggle, panel.hidden);
+      });
+      close?.addEventListener("click", () => setOpen(panel, toggle, false));
+      privacyToggle?.addEventListener("click", () => {
+        setOpen(panel, toggle, false);
+        setOpen(privacyPanel, privacyToggle, privacyPanel.hidden);
+      });
+      privacyClose?.addEventListener("click", () => setOpen(privacyPanel, privacyToggle, false));
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") setOpen(false);
+        if (event.key === "Escape") {
+          setOpen(panel, toggle, false);
+          setOpen(privacyPanel, privacyToggle, false);
+        }
       });
       document.querySelectorAll("[data-a11y-action]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -271,6 +313,11 @@
         save();
         apply();
       });
+      privacySave?.addEventListener("click", () => {
+        const lang = getLang();
+        localStorage.setItem(privacyKey, JSON.stringify({ essential: true, savedAt: new Date().toISOString() }));
+        if (privacyStatus) privacyStatus.textContent = privacyCopy[lang].saved;
+      });
     }
 
     document.addEventListener("astro:page-load", init, { once: true });
@@ -279,15 +326,24 @@
 </script>
 
 <style is:global>
-  .stentor-a11y {
+  .stentor-a11y,
+  .stentor-privacy {
     position: fixed;
-    right: max(18px, env(safe-area-inset-right));
     bottom: max(18px, env(safe-area-inset-bottom));
     z-index: 80;
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
 
-  .stentor-a11y__fab {
+  .stentor-a11y {
+    right: max(18px, env(safe-area-inset-right));
+  }
+
+  .stentor-privacy {
+    left: max(18px, env(safe-area-inset-left));
+  }
+
+  .stentor-a11y__fab,
+  .stentor-privacy__fab {
     display: grid;
     place-items: center;
     width: 52px;
@@ -295,12 +351,20 @@
     padding: 0;
     border: 1px solid rgba(255, 255, 255, 0.32);
     border-radius: 999px;
-    background: #ef4444;
     color: #fff;
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34), 0 0 32px rgba(239, 68, 68, 0.22);
   }
 
-  .stentor-a11y__fab-icon {
+  .stentor-a11y__fab {
+    background: #ef4444;
+  }
+
+  .stentor-privacy__fab {
+    background: #111827;
+  }
+
+  .stentor-a11y__fab-icon,
+  .stentor-privacy__fab-icon {
     display: grid;
     place-items: center;
     width: 42px;
@@ -310,13 +374,15 @@
     color: #fff;
   }
 
-  .stentor-a11y__fab-icon svg {
+  .stentor-a11y__fab-icon svg,
+  .stentor-privacy__fab-icon svg {
     width: 28px;
     height: 28px;
     fill: currentColor;
   }
 
-  .stentor-a11y__fab-icon svg path {
+  .stentor-a11y__fab-icon svg path,
+  .stentor-privacy__fab-icon svg path {
     fill: none;
     stroke: currentColor;
     stroke-width: 3.1;
@@ -324,9 +390,15 @@
     stroke-linejoin: round;
   }
 
-  .stentor-a11y__panel {
+  .stentor-privacy__fab-icon svg circle {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3.1;
+  }
+
+  .stentor-a11y__panel,
+  .stentor-privacy__panel {
     position: absolute;
-    right: 0;
     bottom: 64px;
     width: min(380px, calc(100vw - 28px));
     max-height: min(690px, calc(100vh - 96px));
@@ -338,6 +410,14 @@
     color: #fafafa;
     box-shadow: 0 28px 90px rgba(0, 0, 0, 0.52);
     backdrop-filter: blur(22px);
+  }
+
+  .stentor-a11y__panel {
+    right: 0;
+  }
+
+  .stentor-privacy__panel {
+    left: 0;
   }
 
   .stentor-a11y__head {
@@ -365,7 +445,8 @@
   }
 
   .stentor-a11y__head p:not(.stentor-a11y__eyebrow),
-  .stentor-a11y__foot p {
+  .stentor-a11y__foot p,
+  .stentor-privacy__body p {
     margin: 8px 0 0;
     color: #b8b8c2;
     font-size: 13px;
@@ -393,7 +474,8 @@
 
   .stentor-a11y__grid button,
   .stentor-a11y__foot button,
-  .stentor-a11y__links a {
+  .stentor-privacy__body button,
+  .stentor-privacy__body a {
     min-height: 46px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
@@ -406,13 +488,17 @@
     transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
   }
 
-  .stentor-a11y__grid button {
+  .stentor-a11y__grid button,
+  .stentor-a11y__foot button,
+  .stentor-privacy__body button,
+  .stentor-privacy__body a {
     padding: 12px;
   }
 
   .stentor-a11y__grid button:hover,
   .stentor-a11y__foot button:hover,
-  .stentor-a11y__links a:hover {
+  .stentor-privacy__body button:hover,
+  .stentor-privacy__body a:hover {
     border-color: rgba(239, 68, 68, 0.45);
     background: rgba(239, 68, 68, 0.12);
   }
@@ -423,43 +509,35 @@
     color: #fff;
   }
 
-  .stentor-a11y__section {
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .stentor-a11y__section h3 {
-    margin: 0 0 10px;
-    color: #d5d5dc;
-    font-size: 13px;
-    font-weight: 750;
-  }
-
-  .stentor-a11y__links {
-    display: grid;
-    gap: 8px;
-  }
-
-  .stentor-a11y__links a {
-    display: flex;
-    align-items: center;
-    padding: 11px 12px;
-    text-decoration: none;
-  }
-
-  .stentor-a11y__foot {
+  .stentor-a11y__foot,
+  .stentor-privacy__body {
     margin-top: 16px;
   }
 
-  .stentor-a11y__foot button {
+  .stentor-a11y__foot button,
+  .stentor-privacy__body button,
+  .stentor-privacy__body a {
+    display: flex;
     width: 100%;
-    padding: 12px;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    text-decoration: none;
+  }
+
+  .stentor-privacy__body {
+    display: grid;
+    gap: 10px;
+  }
+
+  .stentor-privacy__status:empty {
+    display: none;
   }
 
   .stentor-a11y button:focus-visible,
-  .stentor-a11y a:focus-visible {
+  .stentor-a11y a:focus-visible,
+  .stentor-privacy button:focus-visible,
+  .stentor-privacy a:focus-visible {
     outline: 3px solid rgba(255, 255, 255, 0.78);
     outline-offset: 4px;
   }
@@ -475,10 +553,10 @@
     scroll-behavior: auto !important;
     transition: none !important;
   }
-  html.stentor-a11y-hide-images img:not([alt*="Sténtor"]),
+  html.stentor-a11y-hide-images img,
   html.stentor-a11y-hide-images picture,
   html.stentor-a11y-hide-images video,
-  html.stentor-a11y-hide-images svg:not(.stentor-a11y svg) {
+  html.stentor-a11y-hide-images main svg {
     visibility: hidden !important;
   }
   html.stentor-a11y-contrast {
@@ -513,9 +591,13 @@
 
   @media (max-width: 520px) {
     .stentor-a11y { right: 14px; bottom: 14px; }
-    .stentor-a11y__fab { width: 50px; height: 50px; }
-    .stentor-a11y__fab-icon { width: 40px; height: 40px; }
-    .stentor-a11y__panel { bottom: 62px; padding: 14px; border-radius: 20px; }
+    .stentor-privacy { left: 14px; bottom: 14px; }
+    .stentor-a11y__fab,
+    .stentor-privacy__fab { width: 50px; height: 50px; }
+    .stentor-a11y__fab-icon,
+    .stentor-privacy__fab-icon { width: 40px; height: 40px; }
+    .stentor-a11y__panel,
+    .stentor-privacy__panel { bottom: 62px; padding: 14px; border-radius: 20px; }
     .stentor-a11y__grid { grid-template-columns: 1fr; }
   }
 </style>
