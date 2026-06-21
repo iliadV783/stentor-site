@@ -7,7 +7,7 @@ export const hero = {
   title:
     'Sobretítulos, traducción <em class="not-italic text-text-3 font-medium">y audiodescripciones.</em><br class="hidden sm:inline" /> En vivo.',
   description:
-    "Software para crear y gestionar sobretítulos, traducciones y audiodescripciones durante el espectáculo en vivo.",
+    "Un entorno de regía para preparar textos, coordinar idiomas y audiodescripciones, sincronizar pantallas y dispositivos del público, recoger cuestionarios y trabajar en la nube durante ensayos y funciones.",
   ctas: [
     { href: "/es/download", label: "Descargar Sténtor", variant: "primary" as const },
     { href: "/es/solicitar-prueba", label: "Acceder a la beta Pro", variant: "ghost" as const, icon: "play" as const },
