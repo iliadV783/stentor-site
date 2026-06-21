@@ -5,9 +5,9 @@
 export const hero = {
   eyebrow: "Update v0.1.74 · Live-Audiodeskription",
   title:
-    'Übertitel, Übersetzung <em class="not-italic text-text-3 font-medium">und Barrierefreiheit.</em><br class="hidden sm:inline" /> Live.',
+    'Übertitel, Übersetzung <em class="not-italic text-text-3 font-medium">und Audiodeskriptionen.</em><br class="hidden sm:inline" /> Live.',
   description:
-    "Sténtor ist eine Textumgebung für Live-Aufführungen: zur Vorbereitung von Skripten, zum Fahren von Übertiteln, zur Verwaltung von Übersetzungen, Audiodeskription und Publikumszugang während Proben und Vorstellungen.",
+    "Software zum Erstellen und Verwalten von Übertiteln, Übersetzungen und Audiodeskriptionen während der Live-Aufführung.",
   ctas: [
     { href: "/de/download", label: "Sténtor herunterladen", variant: "primary" as const },
     { href: "/de/testzugang", label: "Pro-Beta öffnen", variant: "ghost" as const, icon: "play" as const },
