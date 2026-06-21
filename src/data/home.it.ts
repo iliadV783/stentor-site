@@ -3,7 +3,7 @@
  */
 
 export const hero = {
-  eyebrow: "Aggiornamento v0.1.74 · Audiodescrizione dal vivo",
+  eyebrow: "Aggiornamento v0.1.75 · Audiodescrizione dal vivo e prima infrastruttura cloud reale",
   title:
     'Soprattitoli, traduzione <em class="not-italic text-text-3 font-medium">e audiodescrizioni.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
