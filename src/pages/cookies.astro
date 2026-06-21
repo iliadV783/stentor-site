@@ -1,0 +1,25 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+
+const page = {
+  metaTitle: "Sténtor – Cookie Policy",
+  metaDescription: "How Sténtor uses technical and functional cookies and similar technologies.",
+  eyebrow: "Legal · Cookies",
+  title: "Cookie Policy",
+  effectiveDate: "Effective June 21, 2026",
+  intro: "This page explains how Sténtor uses cookies and similar technologies on the website and account-related pages.",
+  tocLabel: "On this page",
+  sections: [
+    { id: "overview", title: "1. Overview", body: `<p>Sténtor uses only technical and functional technologies needed to operate the website, account access, downloads and access-code management. We do not use advertising cookies, profiling cookies or third-party marketing trackers.</p>` },
+    { id: "what", title: "2. What cookies are", body: `<p>Cookies are small files or similar browser technologies that allow a website to remember technical information, keep a session working or provide essential functions. Similar technologies may include local storage, session storage or security tokens.</p>` },
+    { id: "essential", title: "3. Essential and functional technologies", body: `<p>Sténtor may use essential technologies to keep the website available, protect forms, support account access, remember technical session information, manage downloads or maintain access-code workflows. These technologies are necessary for the requested service and are not used for advertising.</p>` },
+    { id: "auth", title: "4. Account access", body: `<p>When you sign in with Apple, Google or Microsoft, those providers may use their own cookies or authentication technologies according to their policies. Sténtor uses this access only to authenticate the account, manage activation, downloads and access codes, not to profile users for marketing.</p>` },
+    { id: "analytics", title: "5. Analytics and marketing", body: `<p>Sténtor does not use advertising cookies, profiling cookies or third-party marketing trackers. If privacy-preserving technical analytics are introduced in the future, this page will be updated before they are used in a way that changes this policy.</p>` },
+    { id: "choices", title: "6. Your choices", body: `<p>You can manage or delete cookies through your browser settings. Blocking essential cookies or similar technologies may prevent account access, downloads, forms or other requested functions from working correctly.</p>` },
+    { id: "updates", title: "7. Updates", body: `<p>This page may be updated as Sténtor develops. The effective date shows the latest version.</p>` }
+  ],
+  contact: { title: "Questions?", body: 'Email <a href="mailto:info@stentor.live">info@stentor.live</a>.' }
+};
+---
+
+<LegalPage page={page} />
