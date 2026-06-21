@@ -7,7 +7,7 @@ export const hero = {
   title:
     'Surtitres, traduction <em class="not-italic text-text-3 font-medium">et audiodescription.</em><br class="hidden sm:inline" /> En direct.',
   description:
-    "Logiciel pour creer et gerer les surtitres, traductions et audiodescriptions pendant le spectacle vivant.",
+    "Un environnement de regie pour preparer les textes, coordonner langues et audiodescriptions, synchroniser ecrans et dispositifs du public, recueillir des questionnaires et travailler dans le cloud pendant repetitions et spectacles.",
   ctas: [
     { href: "/fr/download", label: "Telecharger Stentor", variant: "primary" as const },
     { href: "/fr/demander-essai", label: "Acceder a la beta Pro", variant: "ghost" as const, icon: "play" as const },
