@@ -19,7 +19,7 @@ export const about = {
     title: "Perché esiste Sténtor",
     paragraphs: [
       "Sténtor nasce da un problema pratico: lo spettacolo dal vivo ha spesso bisogno di più livelli di testo. Una produzione può richiedere sopratitoli, traduzioni, note di audiodescrizione, cue per l’operatore, schermi in sala e telefoni del pubblico — tutto mentre lo spettacolo accade in tempo reale.",
-      "Il nome rimanda a Stentore nella mitologia greca: non come immagine di combattimento, ma come figura ricordata per una voce di bronzo. Omero lo descrive come χαλκεόφωνος, da χαλκός, bronzo, e φωνή, voce: dotato di una voce così potente da eguagliare quella di cinquanta altri insieme. Sténtor trasforma quell’immagine in uno strumento teatrale: non un suono più forte, ma una trasmissione più chiara di parole, lingue e descrizioni.",
+      "Il nome rimanda a Stentore nella mitologia greca: non come immagine di combattimento, ma come figura ricordata per una voce di bronzo. Sténtor trasforma quell’immagine in uno strumento teatrale: non un suono più forte, ma una trasmissione più chiara di parole, lingue e descrizioni.",
       `Il progetto è sviluppato da ${leonardoProfileLink} (Università di Torino) nell’ambito del progetto di public engagement ${eticaProjectLink}, come software di ricerca per lo spettacolo dal vivo. Mantiene accessibili gli strumenti essenziali e invita chi lo usa a contribuire con feedback, note d’uso, risposte del pubblico e dati di ricerca che possano far crescere il software attraverso spettacoli reali.`,
     ],
     pullQuote: {
@@ -36,7 +36,7 @@ export const about = {
       { value: "3", label: "livelli centrali: sopratitoli, traduzione, audiodescrizione" },
       { value: "∞", label: "progetti, lingue e cue in ogni piano" },
       { value: "3", label: "piattaforme desktop: macOS, Windows e Linux" },
-      { value: "EUPL", label: "modello europeo di licenza open source" },
+      { value: "Free", label: "download e attivazione gratuiti" },
     ],
   },
 } as const;
