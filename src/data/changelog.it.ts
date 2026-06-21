@@ -55,9 +55,7 @@ export const entries = [
       ],
       improvements: [
         { title: "Audiodescrizione dal vivo", body: "Il lavoro sul canale AD live è stato consolidato come parte del flusso di regia, distinguendo cue audio, battute, luci e materiali destinati al pubblico." },
-        { title: "Credenziali sicure", body: "I dati sensibili della connessione WebDAV vengono custoditi nel Portachiavi macOS, mentre nei profili restano solo le informazioni operative non sensibili." },
         { title: "Stati locale/cloud", body: "I progetti possono mostrare stati più espliciti: locale, associato al cloud, allineato, da sincronizzare o da scaricare." },
-        { title: "TestFlight salvata", body: "La build macOS universale è stata pubblicata su TestFlight come build 1.1 (3), con le nuove funzioni cloud presentate come anteprima infrastrutturale." },
       ],
       fixes: [
         { title: "Feedback del test WebDAV", body: "Il test connessione ora espone esito, autenticazione, cartella remota, risposta PROPFIND e numero di progetti .stn rilevati." },
@@ -70,22 +68,19 @@ export const entries = [
     date: "2026-06-20",
     type: "major",
     title: "Introdotta l’audiodescrizione dal vivo",
-    body: "Sténtor introduce una nuova modalità di audiodescrizione dal vivo, affiancata alle audiodescrizioni registrate. È stato impostato un primo framework operativo per preparare, distinguere e controllare i cue audio durante lo spettacolo, separandoli da battute, luci, regia e contenuti proiettati.",
-    changes: {
-      new: [
-        { title: "Audiodescrizione live", body: "Oltre ai file audio registrati, Sténtor può ora gestire cue pensati per essere letti o attivati dal vivo dall’operatore durante la rappresentazione." },
-        { title: "Framework AD dedicato", body: "È stata costruita una prima struttura funzionale per riconoscere, organizzare e comandare le audiodescrizioni come canale autonomo del live." },
-      ],
-      improvements: [
-        { title: "Canale AD più riconoscibile", body: "Le audiodescrizioni vengono trattate come materiale dedicato al canale audio, non come normali battute o personaggi del copione." },
-        { title: "Controllo live più fluido", body: "La regia aiuta l’operatore a individuare e attivare le audiodescrizioni nel momento corretto durante lo spettacolo." },
-        { title: "Esperienza pubblico semplificata", body: "L’accesso alle audiodescrizioni sui dispositivi del pubblico viene reso più diretto, riducendo i passaggi necessari per ascoltare." },
-      ],
-      fixes: [
-        { title: "Separazione dai cue tecnici", body: "Indicazioni come luci, regia e note interne restano distinte dai contenuti destinati agli spettatori o all’ascolto in cuffia." },
-      ],
-    },
+    body: "Sténtor introduce una nuova modalità di audiodescrizione dal vivo, affiancata alle audiodescrizioni registrate.",
+    changes: { new: [{ title: "Audiodescrizione live", body: "Cue pensati per essere letti o attivati dal vivo dall’operatore durante la rappresentazione." }], improvements: [{ title: "Canale AD più riconoscibile", body: "Le audiodescrizioni vengono trattate come materiale dedicato al canale audio." }], fixes: [{ title: "Separazione dai cue tecnici", body: "Luci, regia e note interne restano distinte dai contenuti destinati agli spettatori." }] },
   },
+  { version: "0.1.73", date: "2026-06-19", type: "major", title: "Build TestFlight compatibile con macOS Monterey e Mac Intel", body: "Build macOS universale per TestFlight, Apple Silicon e Intel, con deployment target macOS Monterey 12.4.", changes: { improvements: [{ title: "Archivio universale", body: "La build include Apple Silicon e Intel." }], fixes: [{ title: "Configurazione dell’archivio", body: "Le impostazioni Release sono state corrette per TestFlight." }] } },
+  { version: "0.1.72", date: "2026-06-19", type: "major", title: "Varianti accessibili, ricerca battute e controllo live", body: "Varianti linguistiche accessibili, ricerca immediata tra le battute e proiezione live più pulita.", changes: { new: [{ title: "Varianti linguistiche accessibili", body: "Ogni lingua può avere la propria variante + accessibile." }, { title: "Ricerca battute", body: "Ricerca rapida nell’editor Testo." }], improvements: [{ title: "Smartphone del pubblico", body: "Le varianti accessibili possono comparire accanto alle lingue base." }], fixes: [{ title: "Cue luci non proiettati", body: "Le indicazioni tecniche di luce non vengono mostrate allo spettatore." }] } },
+  { version: "0.1.71", date: "2026-06-18", type: "major", title: "Import DOCX più intelligente", body: "Importazione DOCX più pulita, audiodescrizione gestita meglio e prime strategie di prestazione per copioni lunghi.", changes: { improvements: [{ title: "Riconoscimento AD", body: "Marcatori come AD vengono trattati come audiodescrizione." }], fixes: [{ title: "Reattività con copioni lunghi", body: "Analisi delle prestazioni con copioni da oltre 1300 battute." }] } },
+  { version: "0.1.70", date: "2026-06-17", type: "major", title: "Beta Apple e sviluppo Windows avanzano", body: "Sténtor avanza verso TestFlight e verso una versione nativa Windows in C#.", changes: { new: [{ title: "Percorso Apple TestFlight", body: "Preparazione della distribuzione beta Apple." }, { title: "Edizione Windows", body: "Sviluppo nativo Windows in C#." }], improvements: [{ title: "Roadmap multipiattaforma", body: "Apple, Windows e dispositivi del pubblico restano parte di un unico ecosistema." }] } },
+  { version: "0.1.64", date: "2026-06-05", type: "major", title: "Live Sync al centro del lavoro in sala", body: "Vista operatore, schermi e telefoni del pubblico condividono lo stato del cue live.", changes: { new: [{ title: "Telefoni del pubblico", body: "Gli spettatori possono seguire soprattitoli, traduzioni o audiodescrizioni." }], improvements: [{ title: "Concentrazione dell’operatore", body: "La vista live viene semplificata intorno al cue corrente." }] } },
+  { version: "0.1.61", date: "2026-06-02", type: "minor", title: "App web del pubblico rifinita", body: "La pagina del pubblico diventa più pulita per l’uso in spettacolo.", changes: { improvements: [{ title: "Interfaccia meno rumorosa", body: "Meno testo tecnico durante lo spettacolo." }], fixes: [{ title: "Viewport mobile", body: "Il fondo della pagina viene regolato per smartphone." }] } },
+  { version: "0.1.50", date: "2026-05-30", type: "minor", title: "Preparazione del copione e metadati", body: "Titolo, compagnia, lingue, cue, note e materiali di audiodescrizione entrano nel modello progetto.", changes: { new: [{ title: "Metadati di progetto", body: "Titolo e compagnia sono disponibili a livello di progetto." }], improvements: [{ title: "Pannello centrale", body: "Lo spazio di lavoro usa meglio la larghezza disponibile." }] } },
+  { version: "0.1.40", date: "2026-05-26", type: "major", title: "Direzione desktop-first", body: "Sténtor viene sviluppato come app desktop per il lavoro teatrale.", changes: { new: [{ title: "Direzione multipiattaforma", body: "Obiettivo desktop-first per macOS, Windows e Linux." }] } },
+  { version: "0.1.30", date: "2026-05-22", type: "minor", title: "Base import/export", body: "Prime basi per importare ed esportare formati teatrali pratici.", changes: { new: [{ title: "Import supportati", body: "Word, TXT, SRT, WebVTT, CSV e JSON." }], improvements: [{ title: "Export per prove e archivio", body: "Gli export sono pensati per prove, tournée e ricerca." }] } },
+  { version: "0.1.20", date: "2026-05-18", type: "patch", title: "Feedback della ricerca", body: "Feedback, questionari e note di campo entrano nel flusso del progetto.", changes: { improvements: [{ title: "Conoscenza condivisa", body: "Il software resta collegato al lavoro con operatori, pubblico e spazi." }] } },
 ];
 
 export const sideStats = {
