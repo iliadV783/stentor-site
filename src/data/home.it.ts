@@ -5,9 +5,9 @@
 export const hero = {
   eyebrow: "Aggiornamento v0.1.74 · Audiodescrizione dal vivo",
   title:
-    'Soprattitoli, traduzione <em class="not-italic text-text-3 font-medium">e accessibilità.</em><br class="hidden sm:inline" /> Dal vivo.',
+    'Soprattitoli, traduzione <em class="not-italic text-text-3 font-medium">e audiodescrizioni.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
-    "Sténtor è un ambiente testuale per lo spettacolo dal vivo: permette di preparare copioni, mandare in scena soprattitoli, gestire traduzioni, audiodescrizioni e accesso del pubblico durante prove e spettacoli.",
+    "Software per creare e gestire soprattitoli, traduzioni e audiodescrizioni durante lo spettacolo dal vivo.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
     { href: "/it/richiedi-prova", label: "Attiva gratuitamente", variant: "ghost" as const, icon: "play" as const },
