@@ -25,22 +25,39 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 10 },
-  { id: "major", label: "Milestone", count: 6 },
+  { id: "all", label: "Tutto", count: 11 },
+  { id: "major", label: "Milestone", count: 7 },
   { id: "new", label: "Novità", count: 4 },
-  { id: "improvements", label: "Miglioramenti", count: 6 },
-  { id: "fixes", label: "Correzioni", count: 4 },
+  { id: "improvements", label: "Miglioramenti", count: 7 },
+  { id: "fixes", label: "Correzioni", count: 5 },
 ];
 
-export const versionTag = "v0.1.73 · Monterey + Intel TestFlight";
+export const versionTag = "v0.1.74 · Audiodescrizione live";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 10, on: true },
+  { y: "2026", n: 11, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.74",
+    date: "2026-06-20",
+    type: "major",
+    title: "Audiodescrizione dal vivo più chiara e sicura",
+    body: "Il lavoro recente ha rafforzato soprattutto l’audiodescrizione dal vivo: Sténtor separa meglio cue audio, battute, indicazioni tecniche e contenuti proiettati, così l’operatore può gestire lo spettacolo con maggiore controllo e meno ambiguità.",
+    changes: {
+      improvements: [
+        { title: "Canale AD più riconoscibile", body: "Le audiodescrizioni vengono trattate come materiale dedicato al canale audio, non come normali battute o personaggi del copione." },
+        { title: "Controllo live più fluido", body: "La regia aiuta l’operatore a individuare e attivare le audiodescrizioni nel momento corretto durante lo spettacolo." },
+        { title: "Esperienza pubblico semplificata", body: "L’accesso alle audiodescrizioni sui dispositivi del pubblico viene reso più diretto, riducendo i passaggi necessari per ascoltare." },
+      ],
+      fixes: [
+        { title: "Separazione dai cue tecnici", body: "Indicazioni come luci, regia e note interne restano distinte dai contenuti destinati agli spettatori o all’ascolto in cuffia." },
+      ],
+    },
+  },
   {
     version: "0.1.73",
     date: "2026-06-19",
@@ -215,7 +232,7 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.73", accent: true },
+      { label: "Prototipo", value: "0.1.74", accent: true },
       { label: "macOS", value: "12.4+ universale" },
       { label: "Architettura", value: "Intel + Apple Silicon" },
       { label: "TestFlight", value: "build 1.1 (2)" },
@@ -232,7 +249,7 @@ export const sideStats = {
     rows: [
       { label: "App Apple", value: "● TestFlight universale", color: "green" as const },
       { label: "Compatibilità", value: "Monterey 12.4+" },
-      { label: "Prossima priorità", value: "collaboratori beta" },
+      { label: "Prossima priorità", value: "audiodescrizione live" },
     ],
   },
 };
