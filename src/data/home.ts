@@ -7,9 +7,9 @@
 export const hero = {
   eyebrow: "Update v0.1.74 · Live audio description",
   title:
-    'Surtitles, translation <em class="not-italic text-text-3 font-medium">and accessibility.</em><br class="hidden sm:inline" /> Live.',
+    'Surtitles, translation <em class="not-italic text-text-3 font-medium">and audio description.</em><br class="hidden sm:inline" /> Live.',
   description:
-    "Sténtor is a live-performance text environment for preparing scripts, operating surtitles, managing translations, audio description and viewer access during rehearsals and performances.",
+    "Software for creating and managing surtitles, translations and audio descriptions during live performance.",
   ctas: [
     { href: "/download", label: "Download Sténtor", variant: "primary" as const },
     { href: "/account", label: "Account", variant: "ghost" as const, icon: "play" as const },
