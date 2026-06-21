@@ -19,7 +19,7 @@ export const about = {
     title: "Pourquoi Sténtor existe",
     paragraphs: [
       "Sténtor part d’un problème pratique : le spectacle vivant a souvent besoin de plusieurs couches de texte. Une production peut demander des surtitres, des traductions, des notes d’audiodescription, des cues de régie, des écrans de salle et des téléphones du public — pendant que le spectacle se déroule en temps réel.",
-      "Le nom renvoie à Stentor dans la mythologie grecque : non pas comme image de combat, mais comme figure connue pour sa voix de bronze. Homère le décrit comme χαλκεόφωνος, de χαλκός, bronze, et φωνή, voix : doté d’une voix si puissante qu’elle égalait celle de cinquante autres ensemble. Sténtor transforme cette image en outil pour le théâtre : non pas un son plus fort, mais une transmission plus claire des mots, des langues et des descriptions.",
+      "Le nom renvoie à Stentor dans la mythologie grecque : non pas comme image de combat, mais comme figure connue pour sa voix de bronze. Sténtor transforme cette image en outil pour le théâtre : non pas un son plus fort, mais une transmission plus claire des mots, des langues et des descriptions.",
       `Le projet est développé par ${leonardoProfileLink} (Université de Turin, Italie) dans le cadre du projet d’engagement public ${eticaProjectLink}, comme logiciel de recherche pour le spectacle vivant. Il garde les outils essentiels accessibles et invite les utilisateurs à contribuer des retours, des notes d’usage, des réactions du public et des données de recherche qui peuvent faire grandir le logiciel à partir de performances réelles.`,
     ],
     pullQuote: {
@@ -36,7 +36,7 @@ export const about = {
       { value: "3", label: "couches centrales : surtitres, traduction, audiodescription" },
       { value: "∞", label: "projets, langues et cues dans chaque formule" },
       { value: "3", label: "plateformes desktop : macOS, Windows et Linux" },
-      { value: "EUPL", label: "modèle européen de licence open source" },
+      { value: "Free", label: "téléchargement et activation gratuits" },
     ],
   },
 } as const;
