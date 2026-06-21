@@ -1,20 +1,71 @@
 ---
 ---
 
-<button class="stentor-site-options" type="button" aria-label="Preferenze sito" title="Preferenze sito">
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M8 10.4V8a4 4 0 0 1 8 0v2.4" />
-    <rect x="5.5" y="10" width="13" height="10" rx="2.6" />
-    <path d="M12 14v2.2" />
-  </svg>
-</button>
+<div class="stentor-site-options-shell" data-site-options>
+  <button class="stentor-site-options" type="button" aria-label="Preferenze sito" title="Preferenze sito" aria-expanded="false" aria-controls="stentor-site-options-panel" data-site-options-toggle>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M8 10.4V8a4 4 0 0 1 8 0v2.4" />
+      <rect x="5.5" y="10" width="13" height="10" rx="2.6" />
+      <path d="M12 14v2.2" />
+    </svg>
+  </button>
+
+  <aside class="stentor-site-options-panel" id="stentor-site-options-panel" aria-label="Preferenze sito" hidden data-site-options-panel>
+    <div class="stentor-site-options-panel__head">
+      <div>
+        <p>Sténtor</p>
+        <h2>Preferenze sito</h2>
+      </div>
+      <button type="button" aria-label="Chiudi preferenze sito" data-site-options-close>×</button>
+    </div>
+
+    <p class="stentor-site-options-panel__intro">
+      Puoi scegliere come gestire le preferenze di navigazione. Le impostazioni essenziali restano sempre attive.
+    </p>
+
+    <div class="stentor-site-options-panel__actions">
+      <button type="button">Rifiuta tutto</button>
+      <button type="button">Personalizza</button>
+      <button type="button" class="is-primary">Accetta tutto</button>
+    </div>
+
+    <a class="stentor-site-options-panel__link" href="/privacy">Visualizza Privacy Policy</a>
+  </aside>
+</div>
+
+<script is:inline>
+  (() => {
+    function init() {
+      const toggle = document.querySelector('[data-site-options-toggle]');
+      const panel = document.querySelector('[data-site-options-panel]');
+      const close = document.querySelector('[data-site-options-close]');
+      if (!toggle || !panel) return;
+      function setOpen(open) {
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        if (open) panel.querySelector('button, a')?.focus();
+      }
+      toggle.addEventListener('click', () => setOpen(panel.hidden));
+      close?.addEventListener('click', () => setOpen(false));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    }
+    document.addEventListener('astro:page-load', init, { once: true });
+    if (document.readyState !== 'loading') init();
+  })();
+</script>
 
 <style is:global>
-  .stentor-site-options {
+  .stentor-site-options-shell {
     position: fixed;
     left: max(18px, env(safe-area-inset-left));
     bottom: max(18px, env(safe-area-inset-bottom));
     z-index: 82;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .stentor-site-options {
     display: grid;
     place-items: center;
     width: 48px;
@@ -42,7 +93,101 @@
     stroke-linejoin: round;
   }
 
-  .stentor-site-options:focus-visible {
+  .stentor-site-options-panel {
+    position: absolute;
+    left: 0;
+    bottom: 60px;
+    width: min(380px, calc(100vw - 28px));
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    background: rgba(12, 12, 12, 0.96);
+    color: #fafafa;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.52);
+    backdrop-filter: blur(22px);
+  }
+
+  .stentor-site-options-panel__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .stentor-site-options-panel__head p {
+    margin: 0 0 6px;
+    color: #24c7a0;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .stentor-site-options-panel__head h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+
+  .stentor-site-options-panel__head button {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .stentor-site-options-panel__intro {
+    margin: 14px 0 0;
+    color: #cfcfd6;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .stentor-site-options-panel__actions {
+    display: grid;
+    gap: 9px;
+    margin-top: 16px;
+  }
+
+  .stentor-site-options-panel__actions button,
+  .stentor-site-options-panel__link {
+    min-height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.055);
+    color: #f7f7f8;
+    font-size: 13.5px;
+    font-weight: 700;
+  }
+
+  .stentor-site-options-panel__actions button {
+    padding: 0 12px;
+    text-align: left;
+  }
+
+  .stentor-site-options-panel__actions .is-primary {
+    border-color: rgba(36, 199, 160, 0.65);
+    background: rgba(36, 199, 160, 0.18);
+  }
+
+  .stentor-site-options-panel__link {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 12px;
+    text-decoration: none;
+  }
+
+  .stentor-site-options:focus-visible,
+  .stentor-site-options-panel button:focus-visible,
+  .stentor-site-options-panel a:focus-visible {
     outline: 3px solid rgba(37, 99, 235, 0.8);
     outline-offset: 4px;
   }
