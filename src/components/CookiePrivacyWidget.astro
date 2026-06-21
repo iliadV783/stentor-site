@@ -1,0 +1,753 @@
+---
+---
+
+<div class="stentor-privacy" data-stentor-privacy>
+  <button class="stentor-privacy__recall" type="button" aria-label="Privacy e cookie" title="Privacy e cookie" data-privacy-open hidden>
+    <span aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path d="M8 10.4V8a4 4 0 0 1 8 0v2.4" />
+        <rect x="5.5" y="10" width="13" height="10" rx="2.6" />
+        <path d="M12 14v2.2" />
+      </svg>
+    </span>
+  </button>
+
+  <div class="stentor-privacy__overlay" data-privacy-overlay hidden></div>
+
+  <section class="stentor-privacy__banner" role="dialog" aria-modal="false" aria-labelledby="stentor-privacy-title" data-privacy-banner hidden>
+    <button class="stentor-privacy__x" type="button" aria-label="Chiudi e continua solo con cookie necessari" data-privacy-close>×</button>
+    <div>
+      <p class="stentor-privacy__eyebrow">Sténtor</p>
+      <h2 id="stentor-privacy-title" data-privacy-i18n="bannerTitle">Privacy e cookie</h2>
+      <p data-privacy-i18n="bannerText">Usiamo solo strumenti necessari e, con il tuo consenso, funzioni di misurazione per capire come migliorare il sito. Puoi accettare, rifiutare o personalizzare le preferenze.</p>
+      <div class="stentor-privacy__policy-links">
+        <a href="/privacy" data-privacy-route="privacy" data-privacy-i18n="privacyPolicy">Privacy Policy</a>
+        <button type="button" data-privacy-customize data-privacy-i18n="customizeLink">Personalizza</button>
+      </div>
+    </div>
+    <div class="stentor-privacy__actions">
+      <button type="button" class="stentor-privacy__secondary" data-privacy-reject data-privacy-i18n="rejectAll">Rifiuta tutto</button>
+      <button type="button" class="stentor-privacy__secondary" data-privacy-customize data-privacy-i18n="customize">Personalizza</button>
+      <button type="button" class="stentor-privacy__primary" data-privacy-accept data-privacy-i18n="acceptAll">Accetta tutto</button>
+    </div>
+  </section>
+
+  <section class="stentor-privacy__modal" role="dialog" aria-modal="true" aria-labelledby="stentor-privacy-modal-title" data-privacy-modal hidden>
+    <div class="stentor-privacy__modal-head">
+      <button class="stentor-privacy__back" type="button" aria-label="Torna al riepilogo" data-privacy-back>
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>
+      </button>
+      <a class="stentor-privacy__policy" href="/privacy" data-privacy-route="privacy" data-privacy-i18n="fullPolicy">Visualizza Privacy Policy completa</a>
+      <div class="stentor-privacy__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false"><path d="M8 10.4V8a4 4 0 0 1 8 0v2.4" /><rect x="5.5" y="10" width="13" height="10" rx="2.6" /><path d="M12 14v2.2" /></svg>
+      </div>
+    </div>
+
+    <div class="stentor-privacy__modal-body">
+      <div class="stentor-privacy__intro">
+        <p class="stentor-privacy__eyebrow">Sténtor</p>
+        <h2 id="stentor-privacy-modal-title" data-privacy-i18n="modalTitle">Le tue preferenze relative alla privacy</h2>
+        <p data-privacy-i18n="modalText">Scegli quali strumenti autorizzare. I cookie necessari restano sempre attivi perché servono al funzionamento del sito.</p>
+      </div>
+
+      <div class="stentor-privacy__quick">
+        <button type="button" data-privacy-reject data-privacy-i18n="rejectAll">Rifiuta tutto</button>
+        <button type="button" data-privacy-accept data-privacy-i18n="acceptAll">Accetta tutto</button>
+      </div>
+
+      <div class="stentor-privacy__categories">
+        <article class="stentor-privacy__category">
+          <div>
+            <h3 data-privacy-i18n="necessaryTitle">Necessari</h3>
+            <p data-privacy-i18n="necessaryText">Servono a salvare preferenze essenziali e garantire il corretto funzionamento del sito. Sono sempre attivi.</p>
+          </div>
+          <button class="stentor-privacy__switch" type="button" aria-pressed="true" disabled data-privacy-switch="necessary">
+            <span></span>
+          </button>
+        </article>
+        <article class="stentor-privacy__category">
+          <div>
+            <h3 data-privacy-i18n="functionalTitle">Funzionalità</h3>
+            <p data-privacy-i18n="functionalText">Memorizzano scelte utili per rendere la navigazione più comoda e coerente.</p>
+          </div>
+          <button class="stentor-privacy__switch" type="button" aria-pressed="false" data-privacy-switch="functional">
+            <span></span>
+          </button>
+        </article>
+        <article class="stentor-privacy__category">
+          <div>
+            <h3 data-privacy-i18n="analyticsTitle">Misurazione</h3>
+            <p data-privacy-i18n="analyticsText">Aiutano a capire quali pagine funzionano meglio, in forma aggregata, per migliorare il sito.</p>
+          </div>
+          <button class="stentor-privacy__switch" type="button" aria-pressed="false" data-privacy-switch="analytics">
+            <span></span>
+          </button>
+        </article>
+        <article class="stentor-privacy__category">
+          <div>
+            <h3 data-privacy-i18n="marketingTitle">Marketing</h3>
+            <p data-privacy-i18n="marketingText">Riguarda eventuali contenuti promozionali o integrazioni esterne non necessarie. Attivalo solo se desideri acconsentire.</p>
+          </div>
+          <button class="stentor-privacy__switch" type="button" aria-pressed="false" data-privacy-switch="marketing">
+            <span></span>
+          </button>
+        </article>
+      </div>
+    </div>
+
+    <div class="stentor-privacy__modal-foot">
+      <p data-privacy-i18n="saveNote">Potrai modificare le preferenze in qualunque momento dal pulsante Privacy e cookie.</p>
+      <button type="button" class="stentor-privacy__primary" data-privacy-save data-privacy-i18n="saveContinue">Salva e continua</button>
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+  (() => {
+    const storageKey = "stentor-privacy-preferences";
+    const root = document.documentElement;
+    const defaults = { functional: false, analytics: false, marketing: false, decided: false, updatedAt: null };
+    const copy = {
+      it: {
+        bannerTitle: "Privacy e cookie",
+        bannerText: "Usiamo solo strumenti necessari e, con il tuo consenso, funzioni di misurazione per capire come migliorare il sito. Puoi accettare, rifiutare o personalizzare le preferenze.",
+        privacyPolicy: "Privacy Policy",
+        customizeLink: "Personalizza",
+        rejectAll: "Rifiuta tutto",
+        customize: "Personalizza",
+        acceptAll: "Accetta tutto",
+        fullPolicy: "Visualizza Privacy Policy completa",
+        modalTitle: "Le tue preferenze relative alla privacy",
+        modalText: "Scegli quali strumenti autorizzare. I cookie necessari restano sempre attivi perché servono al funzionamento del sito.",
+        necessaryTitle: "Necessari",
+        necessaryText: "Servono a salvare preferenze essenziali e garantire il corretto funzionamento del sito. Sono sempre attivi.",
+        functionalTitle: "Funzionalità",
+        functionalText: "Memorizzano scelte utili per rendere la navigazione più comoda e coerente.",
+        analyticsTitle: "Misurazione",
+        analyticsText: "Aiutano a capire quali pagine funzionano meglio, in forma aggregata, per migliorare il sito.",
+        marketingTitle: "Marketing",
+        marketingText: "Riguarda eventuali contenuti promozionali o integrazioni esterne non necessarie. Attivalo solo se desideri acconsentire.",
+        saveNote: "Potrai modificare le preferenze in qualunque momento dal pulsante Privacy e cookie.",
+        saveContinue: "Salva e continua"
+      },
+      en: {
+        bannerTitle: "Privacy and cookies",
+        bannerText: "We use necessary tools and, with your consent, measurement features to understand how to improve the site. You can accept, reject, or customize your preferences.",
+        privacyPolicy: "Privacy Policy",
+        customizeLink: "Customize",
+        rejectAll: "Reject all",
+        customize: "Customize",
+        acceptAll: "Accept all",
+        fullPolicy: "View full Privacy Policy",
+        modalTitle: "Your privacy preferences",
+        modalText: "Choose which tools to allow. Necessary cookies always remain active because they are needed for the site to work.",
+        necessaryTitle: "Necessary",
+        necessaryText: "They store essential preferences and help the site work correctly. They are always active.",
+        functionalTitle: "Functionality",
+        functionalText: "They remember useful choices to make navigation more comfortable and consistent.",
+        analyticsTitle: "Measurement",
+        analyticsText: "They help us understand which pages work best, in aggregate form, so we can improve the site.",
+        marketingTitle: "Marketing",
+        marketingText: "This concerns optional promotional content or external integrations. Enable it only if you want to consent.",
+        saveNote: "You can change your preferences at any time from the Privacy and cookies button.",
+        saveContinue: "Save and continue"
+      },
+      fr: {
+        bannerTitle: "Confidentialité et cookies",
+        bannerText: "Nous utilisons les outils nécessaires et, avec votre accord, des fonctions de mesure pour améliorer le site. Vous pouvez accepter, refuser ou personnaliser vos préférences.",
+        privacyPolicy: "Politique de confidentialité",
+        customizeLink: "Personnaliser",
+        rejectAll: "Tout refuser",
+        customize: "Personnaliser",
+        acceptAll: "Tout accepter",
+        fullPolicy: "Voir la politique de confidentialité complète",
+        modalTitle: "Vos préférences de confidentialité",
+        modalText: "Choisissez les outils à autoriser. Les cookies nécessaires restent toujours actifs car ils sont indispensables au fonctionnement du site.",
+        necessaryTitle: "Nécessaires",
+        necessaryText: "Ils enregistrent les préférences essentielles et garantissent le bon fonctionnement du site. Ils sont toujours actifs.",
+        functionalTitle: "Fonctionnalités",
+        functionalText: "Ils mémorisent des choix utiles pour rendre la navigation plus confortable et cohérente.",
+        analyticsTitle: "Mesure",
+        analyticsText: "Ils nous aident à comprendre, sous forme agrégée, quelles pages fonctionnent le mieux afin d’améliorer le site.",
+        marketingTitle: "Marketing",
+        marketingText: "Cela concerne d’éventuels contenus promotionnels ou intégrations externes non nécessaires. Activez-le uniquement si vous souhaitez donner votre accord.",
+        saveNote: "Vous pourrez modifier vos préférences à tout moment depuis le bouton Confidentialité et cookies.",
+        saveContinue: "Enregistrer et continuer"
+      },
+      es: {
+        bannerTitle: "Privacidad y cookies",
+        bannerText: "Usamos herramientas necesarias y, con tu consentimiento, funciones de medición para mejorar el sitio. Puedes aceptar, rechazar o personalizar tus preferencias.",
+        privacyPolicy: "Política de privacidad",
+        customizeLink: "Personalizar",
+        rejectAll: "Rechazar todo",
+        customize: "Personalizar",
+        acceptAll: "Aceptar todo",
+        fullPolicy: "Ver la Política de privacidad completa",
+        modalTitle: "Tus preferencias de privacidad",
+        modalText: "Elige qué herramientas autorizar. Las cookies necesarias permanecen siempre activas porque son necesarias para que el sitio funcione.",
+        necessaryTitle: "Necesarias",
+        necessaryText: "Guardan preferencias esenciales y garantizan el funcionamiento correcto del sitio. Siempre están activas.",
+        functionalTitle: "Funcionalidad",
+        functionalText: "Recuerdan opciones útiles para que la navegación sea más cómoda y coherente.",
+        analyticsTitle: "Medición",
+        analyticsText: "Ayudan a entender qué páginas funcionan mejor, de forma agregada, para mejorar el sitio.",
+        marketingTitle: "Marketing",
+        marketingText: "Incluye posibles contenidos promocionales o integraciones externas no necesarias. Actívalo solo si deseas dar tu consentimiento.",
+        saveNote: "Puedes modificar tus preferencias en cualquier momento desde el botón Privacidad y cookies.",
+        saveContinue: "Guardar y continuar"
+      },
+      de: {
+        bannerTitle: "Datenschutz und Cookies",
+        bannerText: "Wir verwenden notwendige Werkzeuge und, mit Ihrer Einwilligung, Messfunktionen, um die Website zu verbessern. Sie können akzeptieren, ablehnen oder Ihre Einstellungen anpassen.",
+        privacyPolicy: "Datenschutzerklärung",
+        customizeLink: "Anpassen",
+        rejectAll: "Alle ablehnen",
+        customize: "Anpassen",
+        acceptAll: "Alle akzeptieren",
+        fullPolicy: "Vollständige Datenschutzerklärung anzeigen",
+        modalTitle: "Ihre Datenschutzeinstellungen",
+        modalText: "Wählen Sie, welche Werkzeuge erlaubt sind. Notwendige Cookies bleiben immer aktiv, weil sie für den Betrieb der Website erforderlich sind.",
+        necessaryTitle: "Notwendig",
+        necessaryText: "Sie speichern wesentliche Einstellungen und sorgen dafür, dass die Website korrekt funktioniert. Sie sind immer aktiv.",
+        functionalTitle: "Funktionalität",
+        functionalText: "Sie speichern nützliche Entscheidungen, um die Navigation komfortabler und konsistenter zu machen.",
+        analyticsTitle: "Messung",
+        analyticsText: "Sie helfen uns in aggregierter Form zu verstehen, welche Seiten am besten funktionieren, damit wir die Website verbessern können.",
+        marketingTitle: "Marketing",
+        marketingText: "Dies betrifft optionale Werbeinhalte oder externe Integrationen. Aktivieren Sie es nur, wenn Sie zustimmen möchten.",
+        saveNote: "Sie können Ihre Einstellungen jederzeit über die Schaltfläche Datenschutz und Cookies ändern.",
+        saveContinue: "Speichern und fortfahren"
+      }
+    };
+    const routes = {
+      it: { privacy: "/it/privacy" },
+      en: { privacy: "/privacy" },
+      fr: { privacy: "/fr/privacy" },
+      es: { privacy: "/es/privacy" },
+      de: { privacy: "/de/privacy" }
+    };
+    let state = { ...defaults };
+
+    function getLang() {
+      const lang = (root.lang || "en").split("-")[0];
+      return copy[lang] ? lang : "en";
+    }
+
+    function load() {
+      try {
+        state = { ...defaults, ...JSON.parse(localStorage.getItem(storageKey) || "{}") };
+      } catch {
+        state = { ...defaults };
+      }
+    }
+
+    function save() {
+      state.updatedAt = new Date().toISOString();
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      window.dispatchEvent(new CustomEvent("stentor:privacy-consent", { detail: { ...state } }));
+    }
+
+    function translate() {
+      const lang = getLang();
+      const labels = copy[lang];
+      document.querySelectorAll("[data-privacy-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-privacy-i18n");
+        if (labels[key]) el.textContent = labels[key];
+      });
+      document.querySelectorAll("[data-privacy-route]").forEach((el) => {
+        const key = el.getAttribute("data-privacy-route");
+        el.setAttribute("href", routes[lang]?.[key] || routes.en[key]);
+      });
+      document.querySelectorAll("[data-privacy-open]").forEach((el) => {
+        el.setAttribute("aria-label", `${labels.bannerTitle}`);
+        el.setAttribute("title", `${labels.bannerTitle}`);
+      });
+    }
+
+    function syncSwitches() {
+      document.querySelectorAll("[data-privacy-switch]").forEach((button) => {
+        const key = button.getAttribute("data-privacy-switch");
+        const active = key === "necessary" ? true : Boolean(state[key]);
+        button.setAttribute("aria-pressed", String(active));
+        button.dataset.active = active ? "true" : "false";
+      });
+    }
+
+    function openModal() {
+      document.querySelector("[data-privacy-overlay]").hidden = false;
+      document.querySelector("[data-privacy-banner]").hidden = true;
+      document.querySelector("[data-privacy-modal]").hidden = false;
+      syncSwitches();
+      document.querySelector("[data-privacy-modal]")?.querySelector("button, a")?.focus();
+    }
+
+    function closeAll() {
+      document.querySelector("[data-privacy-overlay]").hidden = true;
+      document.querySelector("[data-privacy-banner]").hidden = true;
+      document.querySelector("[data-privacy-modal]").hidden = true;
+      document.querySelector("[data-privacy-open]").hidden = false;
+    }
+
+    function rejectAll() {
+      state = { ...state, functional: false, analytics: false, marketing: false, decided: true };
+      save();
+      closeAll();
+    }
+
+    function acceptAll() {
+      state = { ...state, functional: true, analytics: true, marketing: true, decided: true };
+      save();
+      closeAll();
+    }
+
+    function saveCustom() {
+      state.decided = true;
+      save();
+      closeAll();
+    }
+
+    function init() {
+      load();
+      translate();
+      syncSwitches();
+      const banner = document.querySelector("[data-privacy-banner]");
+      const recall = document.querySelector("[data-privacy-open]");
+      if (!state.decided) {
+        banner.hidden = false;
+        recall.hidden = true;
+      } else {
+        recall.hidden = false;
+      }
+
+      document.querySelectorAll("[data-privacy-open]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-privacy-customize]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-privacy-reject]").forEach((button) => button.addEventListener("click", rejectAll));
+      document.querySelectorAll("[data-privacy-accept]").forEach((button) => button.addEventListener("click", acceptAll));
+      document.querySelectorAll("[data-privacy-save]").forEach((button) => button.addEventListener("click", saveCustom));
+      document.querySelectorAll("[data-privacy-close]").forEach((button) => button.addEventListener("click", rejectAll));
+      document.querySelectorAll("[data-privacy-back]").forEach((button) => button.addEventListener("click", () => {
+        document.querySelector("[data-privacy-modal]").hidden = true;
+        if (!state.decided) document.querySelector("[data-privacy-banner]").hidden = false;
+        else closeAll();
+      }));
+      document.querySelectorAll("[data-privacy-switch]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const key = button.getAttribute("data-privacy-switch");
+          if (!key || key === "necessary") return;
+          state[key] = !state[key];
+          syncSwitches();
+        });
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !document.querySelector("[data-privacy-modal]").hidden) {
+          if (!state.decided) rejectAll();
+          else closeAll();
+        }
+      });
+    }
+
+    document.addEventListener("astro:page-load", init, { once: true });
+    if (document.readyState !== "loading") init();
+  })();
+</script>
+
+<style is:global>
+  .stentor-privacy {
+    position: relative;
+    z-index: 90;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .stentor-privacy__recall {
+    position: fixed;
+    left: max(18px, env(safe-area-inset-left));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 85;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    background: rgba(18, 18, 18, 0.9);
+    color: #24c7a0;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(18px);
+  }
+
+  .stentor-privacy__recall svg,
+  .stentor-privacy__mark svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  .stentor-privacy__recall svg path:first-child,
+  .stentor-privacy__recall svg path:last-child,
+  .stentor-privacy__mark svg path:first-child,
+  .stentor-privacy__mark svg path:last-child {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .stentor-privacy__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 91;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(3px);
+  }
+
+  .stentor-privacy__banner,
+  .stentor-privacy__modal {
+    position: fixed;
+    z-index: 92;
+    color: #111;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 34px 110px rgba(0, 0, 0, 0.48);
+  }
+
+  .stentor-privacy__banner {
+    left: max(18px, env(safe-area-inset-left));
+    right: max(18px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: end;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .stentor-privacy__x {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+    background: #f2f2f2;
+    color: #111;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .stentor-privacy__eyebrow {
+    margin: 0 0 8px;
+    color: #ef4444;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .stentor-privacy__banner h2,
+  .stentor-privacy__intro h2 {
+    margin: 0;
+    font-weight: 850;
+    letter-spacing: -0.05em;
+  }
+
+  .stentor-privacy__banner h2 {
+    font-size: 28px;
+  }
+
+  .stentor-privacy__banner p:not(.stentor-privacy__eyebrow),
+  .stentor-privacy__intro p:not(.stentor-privacy__eyebrow),
+  .stentor-privacy__category p,
+  .stentor-privacy__modal-foot p {
+    color: #444;
+    line-height: 1.55;
+  }
+
+  .stentor-privacy__banner p:not(.stentor-privacy__eyebrow) {
+    max-width: 820px;
+    margin: 10px 0 0;
+    font-size: 15.5px;
+  }
+
+  .stentor-privacy__policy-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .stentor-privacy__policy-links a,
+  .stentor-privacy__policy-links button {
+    border: 0;
+    background: transparent;
+    color: #111;
+    font-weight: 750;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .stentor-privacy__actions,
+  .stentor-privacy__quick {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .stentor-privacy__primary,
+  .stentor-privacy__secondary,
+  .stentor-privacy__quick button {
+    min-height: 48px;
+    border: 0;
+    border-radius: 999px;
+    padding: 0 20px;
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .stentor-privacy__primary {
+    background: #ef4444;
+    color: #fff;
+    box-shadow: 0 16px 36px rgba(239, 68, 68, 0.22);
+  }
+
+  .stentor-privacy__secondary,
+  .stentor-privacy__quick button {
+    background: #eeeeee;
+    color: #222;
+  }
+
+  .stentor-privacy__modal {
+    inset: min(5vh, 40px) max(22px, env(safe-area-inset-right)) max(22px, env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left));
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    max-width: 1180px;
+    margin: auto;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .stentor-privacy__modal-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .stentor-privacy__back,
+  .stentor-privacy__mark {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
+
+  .stentor-privacy__back {
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: #f8f8f8;
+    color: #333;
+  }
+
+  .stentor-privacy__back svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .stentor-privacy__policy {
+    justify-self: end;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: #eeeeee;
+    color: #333;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .stentor-privacy__mark {
+    background: #f2f2f2;
+    color: #24c7a0;
+  }
+
+  .stentor-privacy__modal-body {
+    overflow: auto;
+    padding: 34px 40px 28px;
+  }
+
+  .stentor-privacy__intro h2 {
+    max-width: 850px;
+    font-size: clamp(34px, 6vw, 72px);
+    line-height: 1.05;
+  }
+
+  .stentor-privacy__intro p:not(.stentor-privacy__eyebrow) {
+    max-width: 900px;
+    margin: 18px 0 0;
+    font-size: 18px;
+  }
+
+  .stentor-privacy__quick {
+    margin: 28px 0 18px;
+  }
+
+  .stentor-privacy__categories {
+    display: grid;
+    gap: 0;
+    margin-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .stentor-privacy__category {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: center;
+    padding: 26px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .stentor-privacy__category h3 {
+    margin: 0;
+    color: #050505;
+    font-size: 22px;
+    font-weight: 850;
+    letter-spacing: -0.02em;
+  }
+
+  .stentor-privacy__category p {
+    margin: 12px 0 0;
+    max-width: 840px;
+    font-size: 16px;
+  }
+
+  .stentor-privacy__switch {
+    position: relative;
+    width: 74px;
+    height: 38px;
+    border: 0;
+    border-radius: 999px;
+    background: #d8d8d8;
+    transition: background 160ms ease;
+  }
+
+  .stentor-privacy__switch span {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    transition: transform 160ms ease;
+  }
+
+  .stentor-privacy__switch[data-active="true"] {
+    background: #24c7a0;
+  }
+
+  .stentor-privacy__switch[data-active="true"] span {
+    transform: translateX(36px);
+  }
+
+  .stentor-privacy__switch:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .stentor-privacy__modal-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px 28px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .stentor-privacy__modal-foot p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .stentor-privacy button:focus-visible,
+  .stentor-privacy a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.8);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 780px) {
+    .stentor-privacy__banner {
+      grid-template-columns: 1fr;
+      padding: 22px;
+    }
+
+    .stentor-privacy__actions,
+    .stentor-privacy__quick {
+      justify-content: stretch;
+    }
+
+    .stentor-privacy__actions button,
+    .stentor-privacy__quick button,
+    .stentor-privacy__modal-foot button {
+      flex: 1 1 100%;
+    }
+
+    .stentor-privacy__modal {
+      inset: 12px;
+      border-radius: 20px;
+    }
+
+    .stentor-privacy__modal-head {
+      grid-template-columns: auto 1fr;
+      padding: 18px;
+    }
+
+    .stentor-privacy__policy {
+      justify-self: stretch;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .stentor-privacy__mark {
+      display: none;
+    }
+
+    .stentor-privacy__modal-body {
+      padding: 24px 22px;
+    }
+
+    .stentor-privacy__intro h2 {
+      font-size: 38px;
+    }
+
+    .stentor-privacy__intro p:not(.stentor-privacy__eyebrow) {
+      font-size: 16px;
+    }
+
+    .stentor-privacy__category {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .stentor-privacy__switch {
+      justify-self: start;
+    }
+
+    .stentor-privacy__modal-foot {
+      display: grid;
+      padding: 18px;
+    }
+  }
+</style>
