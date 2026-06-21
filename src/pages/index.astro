@@ -25,6 +25,7 @@ import { finalCta } from "../data/home";
 
       try {
         const explicitChoice = window.localStorage.getItem("stentor-lang-choice");
+        if (explicitChoice === "en") return;
         if (Object.prototype.hasOwnProperty.call(localizedHome, explicitChoice)) {
           window.location.replace(localizedHome[explicitChoice]);
           return;
