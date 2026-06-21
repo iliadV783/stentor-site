@@ -7,14 +7,8 @@ import StentorLogo from "../assets/icons/logo.svg";
 
 const { href = "/" } = Astro.props;
 const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
-const isIt = Astro.url.pathname.startsWith("/it");
-const isFr = Astro.url.pathname.startsWith("/fr");
-const tagline = isIt
-  ? "Accessibilità teatrale dal vivo"
-  : isFr
-    ? "Accessibilité du spectacle vivant"
-    : "Live Theatre Accessibility";
-const homeLabel = isIt ? "Sténtor — pagina iniziale" : isFr ? "Sténtor — accueil" : "Sténtor — home";
+const tagline = "Soprattitoli e audiodescrizioni";
+const homeLabel = "Sténtor — home";
 ---
 <a href={href} aria-label={homeLabel} class="inline-flex items-center gap-[10px] font-semibold tracking-[-0.02em]">
   <span class="grid place-items-center w-9 h-9 rounded-full overflow-hidden ring-1 ring-[#d19a4a]/35 shadow-[0_0_16px_rgba(209,154,74,0.16)] bg-transparent flex-none">
