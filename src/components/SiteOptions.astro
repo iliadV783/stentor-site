@@ -20,13 +20,39 @@
     </div>
 
     <p class="stentor-site-options-panel__intro" data-site-options-status>
-      Puoi scegliere come gestire le preferenze di navigazione. Le impostazioni essenziali restano sempre attive.
+      Sténtor non vende dati e non usa preferenze marketing. Puoi gestire solo strumenti essenziali e misurazione anonima/aggregata.
     </p>
+
+    <div class="stentor-site-options-panel__custom" hidden data-site-options-custom-panel>
+      <article class="stentor-site-options-panel__row">
+        <div>
+          <h3>Necessari</h3>
+          <p>Servono al funzionamento del sito e restano sempre attivi.</p>
+        </div>
+        <button type="button" class="stentor-site-options-panel__switch" aria-pressed="true" disabled data-site-options-switch="necessary"><span></span></button>
+      </article>
+      <article class="stentor-site-options-panel__row">
+        <div>
+          <h3>Funzionalità</h3>
+          <p>Salvano preferenze utili, come scelte di interfaccia e navigazione.</p>
+        </div>
+        <button type="button" class="stentor-site-options-panel__switch" aria-pressed="false" data-site-options-switch="functional"><span></span></button>
+      </article>
+      <article class="stentor-site-options-panel__row">
+        <div>
+          <h3>Misurazione</h3>
+          <p>Aiuta a capire quali pagine funzionano meglio, solo in forma aggregata.</p>
+        </div>
+        <button type="button" class="stentor-site-options-panel__switch" aria-pressed="false" data-site-options-switch="analytics"><span></span></button>
+      </article>
+      <p class="stentor-site-options-panel__note">Nessuna categoria marketing: Sténtor non vende dati e non usa profilazione pubblicitaria.</p>
+    </div>
 
     <div class="stentor-site-options-panel__actions">
       <button type="button" data-site-options-reject>Rifiuta tutto</button>
       <button type="button" data-site-options-customize>Personalizza</button>
       <button type="button" class="is-primary" data-site-options-accept>Accetta tutto</button>
+      <button type="button" class="is-primary" hidden data-site-options-save>Salva preferenze</button>
     </div>
 
     <a class="stentor-site-options-panel__link" href="/privacy" data-site-options-policy>Visualizza Privacy Policy</a>
@@ -35,7 +61,7 @@
 
 <script is:inline>
   (() => {
-    const storageKey = 'stentor-site-options-v1';
+    const storageKey = 'stentor-site-options-v2';
     const root = document.documentElement;
     const routes = {
       it: '/it/privacy',
@@ -44,6 +70,7 @@
       es: '/es/privacy',
       de: '/de/privacy'
     };
+    let draft = { functional: false, analytics: false };
 
     function getLang() {
       return (root.lang || 'en').split('-')[0];
@@ -57,9 +84,12 @@
       }
     }
 
-    function saveChoice(choice) {
+    function saveOptions(choice, options = {}) {
       const payload = {
         choice,
+        functional: Boolean(options.functional),
+        analytics: Boolean(options.analytics),
+        marketing: false,
         updatedAt: new Date().toISOString()
       };
       localStorage.setItem(storageKey, JSON.stringify(payload));
@@ -74,40 +104,73 @@
       const reject = document.querySelector('[data-site-options-reject]');
       const customize = document.querySelector('[data-site-options-customize]');
       const accept = document.querySelector('[data-site-options-accept]');
+      const save = document.querySelector('[data-site-options-save]');
+      const customPanel = document.querySelector('[data-site-options-custom-panel]');
       const status = document.querySelector('[data-site-options-status]');
       const policy = document.querySelector('[data-site-options-policy]');
       if (!toggle || !panel) return;
 
       if (policy) policy.setAttribute('href', routes[getLang()] || routes.en);
 
+      function syncSwitches() {
+        document.querySelectorAll('[data-site-options-switch]').forEach((button) => {
+          const key = button.getAttribute('data-site-options-switch');
+          const active = key === 'necessary' ? true : Boolean(draft[key]);
+          button.setAttribute('aria-pressed', String(active));
+          button.dataset.active = active ? 'true' : 'false';
+        });
+      }
+
       function updateStatus() {
         const saved = getSaved();
         if (!status || !saved.choice) return;
-        const label = saved.choice === 'accepted' ? 'Accettate' : saved.choice === 'rejected' ? 'Rifiutate' : 'Personalizzate';
-        status.textContent = `Preferenze salvate: ${label}. Puoi modificarle in qualunque momento.`;
+        if (saved.choice === 'accepted') status.textContent = 'Preferenze salvate: funzionalità e misurazione attive. Nessuna profilazione marketing.';
+        else if (saved.choice === 'rejected') status.textContent = 'Preferenze salvate: solo impostazioni essenziali. Nessuna profilazione marketing.';
+        else status.textContent = 'Preferenze personalizzate salvate. Nessuna categoria marketing è prevista.';
+      }
+
+      function setCustomizeMode(active) {
+        if (customPanel) customPanel.hidden = !active;
+        if (save) save.hidden = !active;
+        if (customize) customize.hidden = active;
+        syncSwitches();
       }
 
       function setOpen(open) {
         panel.hidden = !open;
         toggle.setAttribute('aria-expanded', String(open));
         if (open) {
+          const saved = getSaved();
+          draft.functional = Boolean(saved.functional);
+          draft.analytics = Boolean(saved.analytics);
+          setCustomizeMode(false);
           updateStatus();
           panel.querySelector('button, a')?.focus();
         }
       }
 
-      function commit(choice) {
-        saveChoice(choice);
+      function commit(choice, options) {
+        saveOptions(choice, options);
         updateStatus();
         setOpen(false);
       }
 
       updateStatus();
+      syncSwitches();
       toggle.addEventListener('click', () => setOpen(panel.hidden));
       close?.addEventListener('click', () => setOpen(false));
-      reject?.addEventListener('click', () => commit('rejected'));
-      accept?.addEventListener('click', () => commit('accepted'));
-      customize?.addEventListener('click', () => commit('customized'));
+      reject?.addEventListener('click', () => commit('rejected', { functional: false, analytics: false }));
+      accept?.addEventListener('click', () => commit('accepted', { functional: true, analytics: true }));
+      customize?.addEventListener('click', () => setCustomizeMode(true));
+      save?.addEventListener('click', () => commit('customized', draft));
+      document.querySelectorAll('[data-site-options-switch]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const key = button.getAttribute('data-site-options-switch');
+          if (!key || key === 'necessary') return;
+          draft[key] = !draft[key];
+          syncSwitches();
+        });
+      });
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setOpen(false);
       });
@@ -159,7 +222,9 @@
     position: absolute;
     left: 0;
     bottom: 60px;
-    width: min(380px, calc(100vw - 28px));
+    width: min(410px, calc(100vw - 28px));
+    max-height: min(720px, calc(100vh - 96px));
+    overflow: auto;
     padding: 18px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 24px;
@@ -205,11 +270,75 @@
     line-height: 1;
   }
 
-  .stentor-site-options-panel__intro {
-    margin: 14px 0 0;
+  .stentor-site-options-panel__intro,
+  .stentor-site-options-panel__note,
+  .stentor-site-options-panel__row p {
     color: #cfcfd6;
     font-size: 13.5px;
     line-height: 1.5;
+  }
+
+  .stentor-site-options-panel__intro {
+    margin: 14px 0 0;
+  }
+
+  .stentor-site-options-panel__custom {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .stentor-site-options-panel__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .stentor-site-options-panel__row h3 {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 800;
+  }
+
+  .stentor-site-options-panel__row p,
+  .stentor-site-options-panel__note {
+    margin: 5px 0 0;
+  }
+
+  .stentor-site-options-panel__switch {
+    position: relative;
+    width: 54px;
+    height: 30px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .stentor-site-options-panel__switch span {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: #fff;
+    transition: transform 160ms ease;
+  }
+
+  .stentor-site-options-panel__switch[data-active="true"] {
+    background: #24c7a0;
+  }
+
+  .stentor-site-options-panel__switch[data-active="true"] span {
+    transform: translateX(24px);
+  }
+
+  .stentor-site-options-panel__switch:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
   }
 
   .stentor-site-options-panel__actions {
