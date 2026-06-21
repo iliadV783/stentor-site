@@ -1,0 +1,499 @@
+---
+---
+
+<div class="stentor-a11y" data-stentor-a11y>
+  <button class="stentor-a11y__fab" type="button" aria-expanded="false" aria-controls="stentor-a11y-panel" data-a11y-toggle>
+    <span aria-hidden="true">Aa</span>
+    <span data-a11y-i18n="openLabel">Accessibilità</span>
+  </button>
+
+  <aside class="stentor-a11y__panel" id="stentor-a11y-panel" aria-label="Pannello accessibilità" hidden data-a11y-panel>
+    <div class="stentor-a11y__head">
+      <div>
+        <p class="stentor-a11y__eyebrow">Sténtor</p>
+        <h2 data-a11y-i18n="title">Accessibilità</h2>
+        <p data-a11y-i18n="intro">Preferenze di lettura e navigazione per questo sito.</p>
+      </div>
+      <button class="stentor-a11y__close" type="button" aria-label="Chiudi pannello accessibilità" data-a11y-close>×</button>
+    </div>
+
+    <div class="stentor-a11y__grid" role="group" aria-label="Preferenze di visualizzazione">
+      <button type="button" data-a11y-action="text" data-a11y-i18n="textSize">Testo grande</button>
+      <button type="button" data-a11y-action="contrast" data-a11y-i18n="contrast">Contrasto alto</button>
+      <button type="button" data-a11y-action="theme" data-a11y-i18n="theme">Tema chiaro</button>
+      <button type="button" data-a11y-action="font" data-a11y-i18n="font">Font leggibile</button>
+      <button type="button" data-a11y-action="motion" data-a11y-i18n="motion">Riduci movimento</button>
+      <button type="button" data-a11y-action="links" data-a11y-i18n="links">Evidenzia link</button>
+      <button type="button" data-a11y-action="images" data-a11y-i18n="images">Nascondi immagini</button>
+      <button type="button" data-a11y-action="read" data-a11y-i18n="read">Leggi pagina</button>
+    </div>
+
+    <div class="stentor-a11y__section">
+      <h3 data-a11y-i18n="routesTitle">Percorsi rapidi</h3>
+      <nav class="stentor-a11y__links" aria-label="Percorsi accessibili Sténtor">
+        <a href="/" data-a11y-route="home" data-a11y-i18n="routeSimple">Cos’è Sténtor in breve</a>
+        <a href="/features" data-a11y-route="features" data-a11y-i18n="routeFeatures">Funzioni accessibili</a>
+        <a href="/docs#audience" data-a11y-route="audience" data-a11y-i18n="routeAudience">Viste per il pubblico</a>
+      </nav>
+    </div>
+
+    <div class="stentor-a11y__foot">
+      <button type="button" data-a11y-reset data-a11y-i18n="reset">Ripristina</button>
+      <p data-a11y-i18n="note">Il pannello aiuta la lettura, ma non sostituisce un sito progettato accessibile alla base.</p>
+    </div>
+  </aside>
+</div>
+
+<script is:inline>
+  (() => {
+    const storageKey = "stentor-a11y-preferences";
+    const root = document.documentElement;
+    const copy = {
+      it: {
+        openLabel: "Accessibilità",
+        title: "Accessibilità",
+        intro: "Preferenze di lettura e navigazione per questo sito.",
+        textSize: "Testo grande",
+        contrast: "Contrasto alto",
+        theme: "Tema chiaro",
+        font: "Font leggibile",
+        motion: "Riduci movimento",
+        links: "Evidenzia link",
+        images: "Nascondi immagini",
+        read: "Leggi pagina",
+        routesTitle: "Percorsi rapidi",
+        routeSimple: "Cos’è Sténtor in breve",
+        routeFeatures: "Funzioni accessibili",
+        routeAudience: "Viste per il pubblico",
+        reset: "Ripristina",
+        note: "Il pannello aiuta la lettura, ma non sostituisce un sito progettato accessibile alla base."
+      },
+      en: {
+        openLabel: "Accessibility",
+        title: "Accessibility",
+        intro: "Reading and navigation preferences for this website.",
+        textSize: "Large text",
+        contrast: "High contrast",
+        theme: "Light theme",
+        font: "Readable font",
+        motion: "Reduce motion",
+        links: "Highlight links",
+        images: "Hide images",
+        read: "Read page",
+        routesTitle: "Quick paths",
+        routeSimple: "Sténtor in brief",
+        routeFeatures: "Accessible features",
+        routeAudience: "Audience views",
+        reset: "Reset",
+        note: "This panel helps reading, but it does not replace an accessible-by-design website."
+      },
+      fr: {
+        openLabel: "Accessibilité",
+        title: "Accessibilité",
+        intro: "Préférences de lecture et de navigation pour ce site.",
+        textSize: "Grand texte",
+        contrast: "Contraste élevé",
+        theme: "Thème clair",
+        font: "Police lisible",
+        motion: "Réduire le mouvement",
+        links: "Mettre les liens en évidence",
+        images: "Masquer les images",
+        read: "Lire la page",
+        routesTitle: "Accès rapides",
+        routeSimple: "Sténtor en bref",
+        routeFeatures: "Fonctions accessibles",
+        routeAudience: "Vues pour le public",
+        reset: "Réinitialiser",
+        note: "Ce panneau facilite la lecture, mais ne remplace pas un site conçu accessible dès le départ."
+      },
+      es: {
+        openLabel: "Accesibilidad",
+        title: "Accesibilidad",
+        intro: "Preferencias de lectura y navegación para este sitio.",
+        textSize: "Texto grande",
+        contrast: "Alto contraste",
+        theme: "Tema claro",
+        font: "Fuente legible",
+        motion: "Reducir movimiento",
+        links: "Resaltar enlaces",
+        images: "Ocultar imágenes",
+        read: "Leer página",
+        routesTitle: "Rutas rápidas",
+        routeSimple: "Sténtor en breve",
+        routeFeatures: "Funciones accesibles",
+        routeAudience: "Vistas para el público",
+        reset: "Restablecer",
+        note: "Este panel ayuda a la lectura, pero no sustituye un sitio diseñado con accesibilidad desde la base."
+      },
+      de: {
+        openLabel: "Barrierefreiheit",
+        title: "Barrierefreiheit",
+        intro: "Lese- und Navigationseinstellungen für diese Website.",
+        textSize: "Großer Text",
+        contrast: "Hoher Kontrast",
+        theme: "Helles Design",
+        font: "Lesbare Schrift",
+        motion: "Bewegung reduzieren",
+        links: "Links hervorheben",
+        images: "Bilder ausblenden",
+        read: "Seite vorlesen",
+        routesTitle: "Schnellzugänge",
+        routeSimple: "Sténtor kurz erklärt",
+        routeFeatures: "Barrierefreie Funktionen",
+        routeAudience: "Publikumsansichten",
+        reset: "Zurücksetzen",
+        note: "Dieses Panel unterstützt die Lesbarkeit, ersetzt aber keine barrierefrei gestaltete Website."
+      }
+    };
+    const localizedRoutes = {
+      it: { home: "/it/", features: "/it/features", audience: "/it/docs#audience" },
+      en: { home: "/", features: "/features", audience: "/docs#audience" },
+      fr: { home: "/fr/", features: "/fr/features", audience: "/fr/docs#audience" },
+      es: { home: "/es/", features: "/es/features", audience: "/es/docs#audience" },
+      de: { home: "/de/", features: "/de/features", audience: "/de/docs#audience" }
+    };
+    const defaults = { text: 0, contrast: false, theme: false, font: false, motion: false, links: false, images: false };
+    let state = { ...defaults };
+
+    function getLang() {
+      const lang = (root.lang || "en").split("-")[0];
+      return copy[lang] ? lang : "en";
+    }
+
+    function load() {
+      try {
+        state = { ...defaults, ...JSON.parse(localStorage.getItem(storageKey) || "{}") };
+      } catch {
+        state = { ...defaults };
+      }
+    }
+
+    function save() {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function apply() {
+      root.classList.toggle("stentor-a11y-text-large", state.text === 1);
+      root.classList.toggle("stentor-a11y-text-xlarge", state.text === 2);
+      root.classList.toggle("stentor-a11y-contrast", state.contrast);
+      root.classList.toggle("stentor-a11y-light", state.theme);
+      root.classList.toggle("stentor-a11y-readable", state.font);
+      root.classList.toggle("stentor-a11y-reduce-motion", state.motion);
+      root.classList.toggle("stentor-a11y-highlight-links", state.links);
+      root.classList.toggle("stentor-a11y-hide-images", state.images);
+      document.querySelectorAll("[data-a11y-action]").forEach((button) => {
+        const action = button.getAttribute("data-a11y-action");
+        const active = action === "text" ? state.text > 0 : Boolean(state[action]);
+        button.setAttribute("aria-pressed", String(active));
+        button.dataset.active = active ? "true" : "false";
+      });
+    }
+
+    function translate() {
+      const lang = getLang();
+      const labels = copy[lang];
+      document.querySelectorAll("[data-a11y-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-a11y-i18n");
+        if (labels[key]) el.textContent = labels[key];
+      });
+      document.querySelectorAll("[data-a11y-route]").forEach((el) => {
+        const key = el.getAttribute("data-a11y-route");
+        el.setAttribute("href", localizedRoutes[lang]?.[key] || localizedRoutes.en[key]);
+      });
+      const panel = document.querySelector("[data-a11y-panel]");
+      if (panel) panel.setAttribute("aria-label", labels.title);
+      const close = document.querySelector("[data-a11y-close]");
+      if (close) close.setAttribute("aria-label", lang === "it" ? "Chiudi pannello accessibilità" : "Close accessibility panel");
+    }
+
+    function readPage() {
+      if (!("speechSynthesis" in window)) return;
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        return;
+      }
+      const main = document.querySelector("main");
+      const text = (main?.innerText || document.body.innerText || "").replace(/\s+/g, " ").trim().slice(0, 12000);
+      if (!text) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = root.lang || getLang();
+      speechSynthesis.speak(utterance);
+    }
+
+    function init() {
+      load();
+      translate();
+      apply();
+      const toggle = document.querySelector("[data-a11y-toggle]");
+      const panel = document.querySelector("[data-a11y-panel]");
+      const close = document.querySelector("[data-a11y-close]");
+      const reset = document.querySelector("[data-a11y-reset]");
+      if (!toggle || !panel) return;
+
+      function setOpen(open) {
+        panel.hidden = !open;
+        toggle.setAttribute("aria-expanded", String(open));
+        if (open) panel.querySelector("button, a")?.focus();
+      }
+
+      toggle.addEventListener("click", () => setOpen(panel.hidden));
+      close?.addEventListener("click", () => setOpen(false));
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setOpen(false);
+      });
+      document.querySelectorAll("[data-a11y-action]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const action = button.getAttribute("data-a11y-action");
+          if (action === "read") {
+            readPage();
+            return;
+          }
+          if (action === "text") state.text = (state.text + 1) % 3;
+          else state[action] = !state[action];
+          save();
+          apply();
+        });
+      });
+      reset?.addEventListener("click", () => {
+        state = { ...defaults };
+        save();
+        apply();
+      });
+    }
+
+    document.addEventListener("astro:page-load", init, { once: true });
+    if (document.readyState !== "loading") init();
+  })();
+</script>
+
+<style is:global>
+  .stentor-a11y {
+    position: fixed;
+    right: max(18px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 80;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .stentor-a11y__fab {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(250, 250, 250, 0.94);
+    color: #090909;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(18px);
+  }
+
+  .stentor-a11y__fab span:first-child {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #090909;
+    color: #fff;
+    font-size: 13px;
+  }
+
+  .stentor-a11y__panel {
+    position: absolute;
+    right: 0;
+    bottom: 58px;
+    width: min(380px, calc(100vw - 28px));
+    max-height: min(690px, calc(100vh - 96px));
+    overflow: auto;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    background: rgba(12, 12, 12, 0.96);
+    color: #fafafa;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.52);
+    backdrop-filter: blur(22px);
+  }
+
+  .stentor-a11y__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .stentor-a11y__eyebrow {
+    margin: 0 0 6px;
+    color: #ef4444;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .stentor-a11y__head h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+
+  .stentor-a11y__head p:not(.stentor-a11y__eyebrow),
+  .stentor-a11y__foot p {
+    margin: 8px 0 0;
+    color: #b8b8c2;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .stentor-a11y__close {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .stentor-a11y__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .stentor-a11y__grid button,
+  .stentor-a11y__foot button,
+  .stentor-a11y__links a {
+    min-height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.055);
+    color: #f7f7f8;
+    font-size: 13.5px;
+    font-weight: 650;
+    text-align: left;
+    line-height: 1.25;
+    transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+  }
+
+  .stentor-a11y__grid button {
+    padding: 12px;
+  }
+
+  .stentor-a11y__grid button:hover,
+  .stentor-a11y__foot button:hover,
+  .stentor-a11y__links a:hover {
+    border-color: rgba(239, 68, 68, 0.45);
+    background: rgba(239, 68, 68, 0.12);
+  }
+
+  .stentor-a11y__grid button[data-active="true"] {
+    border-color: rgba(239, 68, 68, 0.8);
+    background: rgba(239, 68, 68, 0.22);
+    color: #fff;
+  }
+
+  .stentor-a11y__section {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .stentor-a11y__section h3 {
+    margin: 0 0 10px;
+    color: #d5d5dc;
+    font-size: 13px;
+    font-weight: 750;
+  }
+
+  .stentor-a11y__links {
+    display: grid;
+    gap: 8px;
+  }
+
+  .stentor-a11y__links a {
+    display: flex;
+    align-items: center;
+    padding: 11px 12px;
+    text-decoration: none;
+  }
+
+  .stentor-a11y__foot {
+    margin-top: 16px;
+  }
+
+  .stentor-a11y__foot button {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .stentor-a11y button:focus-visible,
+  .stentor-a11y a:focus-visible {
+    outline: 3px solid rgba(239, 68, 68, 0.72);
+    outline-offset: 3px;
+  }
+
+  html.stentor-a11y-text-large body { font-size: 17px; }
+  html.stentor-a11y-text-xlarge body { font-size: 19px; }
+  html.stentor-a11y-readable body { font-family: Arial, Verdana, Tahoma, sans-serif; letter-spacing: 0.01em; }
+  html.stentor-a11y-highlight-links a { text-decoration: underline !important; text-decoration-thickness: 2px !important; text-underline-offset: 4px !important; }
+  html.stentor-a11y-reduce-motion *,
+  html.stentor-a11y-reduce-motion *::before,
+  html.stentor-a11y-reduce-motion *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+  html.stentor-a11y-hide-images img:not([alt*="Sténtor"]),
+  html.stentor-a11y-hide-images picture,
+  html.stentor-a11y-hide-images video,
+  html.stentor-a11y-hide-images svg:not(.stentor-a11y svg) {
+    visibility: hidden !important;
+  }
+  html.stentor-a11y-contrast {
+    --color-bg: #000;
+    --color-deep: #000;
+    --color-surface: #050505;
+    --color-surface-2: #080808;
+    --color-elevated: #080808;
+    --color-text: #fff;
+    --color-text-2: #fff;
+    --color-text-3: #f2f2f2;
+    --color-text-4: #e8e8e8;
+    --color-hairline: rgba(255, 255, 255, 0.34);
+    --color-hairline-strong: rgba(255, 255, 255, 0.52);
+  }
+  html.stentor-a11y-light {
+    --color-bg: #f7f6f2;
+    --color-deep: #fffdf7;
+    --color-sunken: #efede6;
+    --color-surface: #fffdf7;
+    --color-surface-2: #f2f0e8;
+    --color-elevated: #fffaf0;
+    --color-raised: #ebe7dc;
+    --color-chrome: #d8d2c5;
+    --color-text: #111;
+    --color-text-2: #313139;
+    --color-text-3: #4d4d57;
+    --color-text-4: #5f5f68;
+    --color-hairline: rgba(0, 0, 0, 0.12);
+    --color-hairline-strong: rgba(0, 0, 0, 0.22);
+  }
+
+  @media (max-width: 520px) {
+    .stentor-a11y { right: 14px; bottom: 14px; }
+    .stentor-a11y__fab { min-height: 44px; padding: 0 13px; }
+    .stentor-a11y__panel { bottom: 54px; padding: 14px; border-radius: 20px; }
+    .stentor-a11y__grid { grid-template-columns: 1fr; }
+  }
+</style>
