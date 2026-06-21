@@ -7,8 +7,20 @@ import StentorLogo from "../assets/icons/logo.svg";
 
 const { href = "/" } = Astro.props;
 const brandMark = "/stentor-brand-mark.png?v=2026-06-13-real-png";
-const tagline = "Soprattitoli e audiodescrizioni";
-const homeLabel = "Sténtor — home";
+const isIt = Astro.url.pathname.startsWith("/it");
+const isFr = Astro.url.pathname.startsWith("/fr");
+const isEs = Astro.url.pathname.startsWith("/es");
+const isDe = Astro.url.pathname.startsWith("/de");
+const tagline = isIt
+  ? "Soprattitoli e audiodescrizioni"
+  : isFr
+    ? "Surtitres et audiodescription"
+    : isEs
+      ? "Sobretítulos y audiodescripciones"
+      : isDe
+        ? "Übertitel und Audiodeskriptionen"
+        : "Surtitles and audio description";
+const homeLabel = isIt ? "Sténtor — pagina iniziale" : isFr ? "Sténtor — accueil" : isEs ? "Sténtor — inicio" : isDe ? "Sténtor — Startseite" : "Sténtor — home";
 ---
 <a href={href} aria-label={homeLabel} class="inline-flex items-center gap-[10px] font-semibold tracking-[-0.02em]">
   <span class="grid place-items-center w-9 h-9 rounded-full overflow-hidden ring-1 ring-[#d19a4a]/35 shadow-[0_0_16px_rgba(209,154,74,0.16)] bg-transparent flex-none">
