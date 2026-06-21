@@ -9,7 +9,7 @@ export const hero = {
   title:
     'Surtitles, translation <em class="not-italic text-text-3 font-medium">and audio description.</em><br class="hidden sm:inline" /> Live.',
   description:
-    "Software for creating and managing surtitles, translations and audio descriptions during live performance.",
+    "A control-room environment for preparing texts, coordinating languages and audio descriptions, synchronizing screens and audience devices, collecting questionnaires and working in the cloud during rehearsals and performances.",
   ctas: [
     { href: "/download", label: "Download Sténtor", variant: "primary" as const },
     { href: "/account", label: "Account", variant: "ghost" as const, icon: "play" as const },
