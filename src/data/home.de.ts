@@ -7,7 +7,7 @@ export const hero = {
   title:
     'Übertitel, Übersetzung <em class="not-italic text-text-3 font-medium">und Audiodeskriptionen.</em><br class="hidden sm:inline" /> Live.',
   description:
-    "Software zum Erstellen und Verwalten von Übertiteln, Übersetzungen und Audiodeskriptionen während der Live-Aufführung.",
+    "Eine Regieumgebung zum Vorbereiten von Texten, Koordinieren von Sprachen und Audiodeskriptionen, Synchronisieren von Bildschirmen und Publikumsgeräten, Sammeln von Fragebögen und Arbeiten in der Cloud während Proben und Aufführungen.",
   ctas: [
     { href: "/de/download", label: "Sténtor herunterladen", variant: "primary" as const },
     { href: "/de/testzugang", label: "Pro-Beta öffnen", variant: "ghost" as const, icon: "play" as const },
