@@ -13,9 +13,9 @@ export const hero = {
     { href: "/it/richiedi-prova", label: "Attiva gratuitamente", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Sténtor resta gratuito per tutte e tutti", live: true },
-    { label: "Attivazione gratuita per supporto e sviluppo" },
-    { label: "Soprattitoli · traduzione · audiodescrizioni · pubblico" },
+    { label: "Uso gratuito", live: true },
+    { label: "Disponibile per Mac, Windows e Linux" },
+    { label: "Progettato per la ricerca" },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Prova live · rete locale" },
