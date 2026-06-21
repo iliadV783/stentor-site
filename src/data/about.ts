@@ -30,7 +30,7 @@ export const about = {
     title: "Why Sténtor exists",
     paragraphs: [
       "Sténtor starts from a practical problem: live performance often needs more than one layer of text. A production may need surtitles, translations, audio-description notes, operator cues, venue screens and audience phones — all while the show is happening in real time.",
-      "The name refers to Stentor from Greek mythology: not as an image of combat, but as the figure remembered for a bronze voice. Homer describes him as χαλκεόφωνος, from χαλκός, bronze, and φωνή, voice: endowed with a voice so powerful that it was equal to the voices of fifty others together. Sténtor turns that image into a theatre tool: not louder sound, but clearer transmission of words, languages and descriptions.",
+      "The name refers to Stentor from Greek mythology: not as an image of combat, but as the figure remembered for a bronze voice. Sténtor turns that image into a theatre tool: not louder sound, but clearer transmission of words, languages and descriptions.",
       `The project is developed by ${leonardoProfileLink} (University of Turin, Italy) within the public engagement project ${eticaProjectLink}, as a research-driven software project for live performance. It keeps essential tools accessible and asks users to contribute feedback, usage notes, audience responses and research data that can help the software grow through real performances.`,
     ],
     pullQuote: {
@@ -48,7 +48,7 @@ export const about = {
       { value: "3", label: "core layers: surtitles, translation, audio description" },
       { value: "∞", label: "projects, languages and cues across every plan" },
       { value: "3", label: "desktop platforms: macOS, Windows and Linux" },
-      { value: "EUPL", label: "European open-source license model" },
+      { value: "Free", label: "free download and activation" },
     ] as Stat[],
   },
 
@@ -110,9 +110,9 @@ export const about = {
       },
       {
         year: "Public",
-        title: "Open release and research exchange",
+        title: "Public release and research exchange",
         description:
-          "Sténtor moves toward a public release with accessible pricing, EUPL licensing and a clear research-feedback model.",
+          "Sténtor moves toward a public release with free access, account-based activation and a clear research-feedback model.",
       },
       {
         year: "Next",
@@ -134,7 +134,7 @@ export const about = {
       { name: "Live operation", role: "Operator view · Live Sync", initial: "LO", bio: "The operator advances cues during rehearsal or performance while screens and phones stay aligned with the live event." },
       { name: "Audience experience", role: "Phones · screens", initial: "AE", bio: "Spectators can connect with personal devices and choose the layer of text or description they need during the show." },
       { name: "Research feedback", role: "Usage · responses", initial: "RF", bio: "Feedback from creators and audiences helps improve the tool and understand how live-performance text is experienced." },
-      { name: "Open licensing", role: "EUPL model", initial: "OL", bio: "The project is built around a European open-source licensing model and an accessible approach to software distribution." },
+      { name: "Accessible distribution", role: "Free access model", initial: "AD", bio: "The project is built around free download, account-based activation and an accessible approach to software distribution." },
     ] as TeamMember[],
   },
 
@@ -147,7 +147,7 @@ export const about = {
       { name: "Research-driven" },
       { name: "Live performance" },
       { name: "Audience feedback" },
-      { name: "EUPL license" },
+      { name: "Free access" },
       { name: "Donations welcome" },
     ],
   },
