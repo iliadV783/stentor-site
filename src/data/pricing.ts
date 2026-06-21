@@ -1,14 +1,8 @@
-/**
- * Support page content: same features for every plan, with suggested yearly
- * contributions based on scale and context of use.
- */
-
-// ─── Hero ─────────────────────────────────────────────────────────────────
 export const hero = {
-  eyebrow: "Support · Donation · Same features",
+  eyebrow: "Support · Same features",
   title: "Same tools for everyone.<br/>Support according to your scale.",
   description:
-    "Sténtor does not lock essential features behind higher tiers. Free, Pro and Venues all include the same core tools. The suggested contribution simply reflects who is using the software, what they can afford and how large the context of use is.",
+    "Sténtor does not lock essential features behind higher tiers. Free, Pro and Venues all include the same core tools. The suggested contribution reflects the context and scale of use.",
   toggle: {
     monthlyLabel: "Donation",
     annualLabel: "Support",
@@ -16,7 +10,6 @@ export const hero = {
   },
 };
 
-// ─── Plans ─────────────────────────────────────────────────────────────────
 type PlanCta = { href: string; label: string; variant: "primary" | "ghost" };
 
 export type Plan = {
@@ -25,13 +18,10 @@ export type Plan = {
   tag: string;
   tagAccent?: boolean;
   highlighted?: boolean;
-  // Prices: both views intentionally keep the same suggested yearly support.
   price: { annual: string; monthly: string };
-  // Cycle copy under the price
   cycle: { annual: string; monthly: string };
   tagline: string;
   cta: PlanCta;
-  // Section heading shown above the feature list
   featuresHeader: string;
   features: string[];
 };
@@ -66,10 +56,7 @@ export const plans: Plan[] = [
     tagAccent: true,
     highlighted: true,
     price: { annual: "€19", monthly: "€19" },
-    cycle: {
-      annual: "/year · suggested support",
-      monthly: "/year · suggested donation",
-    },
+    cycle: { annual: "/year · suggested support", monthly: "/year · suggested donation" },
     tagline: "For companies, collectives, professional projects and touring productions that can contribute a little more.",
     cta: { href: "/signup", label: "Support as Pro", variant: "primary" },
     featuresHeader: "SAME FEATURES INCLUDED",
@@ -88,15 +75,9 @@ export const plans: Plan[] = [
   },
 ];
 
-// ─── Compare table ────────────────────────────────────────────────────────
-// Cell value conventions:
-//   "—"          → muted dash
-//   "●"          → accent dot + "Yes"
-//   "● <text>"   → accent dot + <text>
-//   anything else → rendered as-is
 export type CompareGroup = {
   title: string;
-  rows: [string, string, string, string][]; // [feature, free, pro, venues]
+  rows: [string, string, string, string][];
 };
 
 export const compareTable = {
@@ -129,7 +110,7 @@ export const compareTable = {
         ["Questionnaires and feedback", "Welcome", "Welcome", "Welcome"],
         ["Audience responses", "Welcome", "Welcome", "Welcome"],
         ["Usage notes for research", "Welcome", "Welcome", "Welcome"],
-        ["EUPL open-source licensing model", "●", "●", "●"],
+        ["Free account-based activation", "●", "●", "●"],
       ],
     },
     {
@@ -144,7 +125,6 @@ export const compareTable = {
   ] satisfies CompareGroup[],
 };
 
-// ─── FAQ ───────────────────────────────────────────────────────────────────
 export const faq = {
   title: "Questions, answered clearly.",
   items: [
@@ -154,28 +134,27 @@ export const faq = {
     },
     {
       q: "Why ask for a contribution at all?",
-      a: "Sténtor needs time, maintenance, testing and documentation. Contributions help keep the software available while allowing artists, companies and venues with different resources to participate fairly.",
+      a: "Contributions help keep the software available while allowing artists, companies and venues with different resources to participate fairly.",
     },
     {
       q: "Is this a price, a donation or support?",
-      a: "It is best understood as suggested yearly support. Use the level that matches your situation and sensitivity: free access for those who need it, a small contribution for professional use, and a larger contribution for venues and institutions.",
+      a: "It is best understood as suggested yearly support. Use the level that matches your situation: free access when needed, a small contribution for professional use, and a larger contribution for venues and institutions.",
     },
     {
       q: "What can I give if I cannot contribute money?",
-      a: "Feedback is valuable. Questionnaires, practical notes, audience responses, screenshots of real workflows and comments from operators or spectators all help improve the project and the research behind it.",
+      a: "Feedback is valuable. Questionnaires, practical notes, audience responses, screenshots of real workflows and comments from operators or spectators all help improve the project.",
     },
     {
       q: "Do you provide paid support or service-level guarantees?",
-      a: "No. The contribution levels do not buy support, guarantees or priority treatment. They support the development and maintenance of the project.",
+      a: "No. Contributions support the development and maintenance of the project.",
     },
     {
       q: "Can a theatre or festival contribute more than the suggested amount?",
-      a: "Yes. Institutions that can support the project more generously are welcome to get in touch, especially when Sténtor is used in public programmes, festivals, research projects or recurring seasons.",
+      a: "Yes. Institutions that can support the project more generously are welcome to get in touch.",
     },
   ],
 };
 
-// ─── Final CTA ─────────────────────────────────────────────────────────────
 export const finalCta = {
   eyebrow: "Use it, support it, improve it",
   title: "Same features.<br/>Shared responsibility.",
