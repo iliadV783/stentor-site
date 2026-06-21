@@ -1,0 +1,25 @@
+---
+import LegalPage from "../../components/LegalPage.astro";
+
+const page = {
+  metaTitle: "Sténtor – Politique de cookies",
+  metaDescription: "Comment Sténtor utilise les cookies techniques, fonctionnels et technologies similaires.",
+  eyebrow: "Légal · Cookies",
+  title: "Politique de cookies",
+  effectiveDate: "En vigueur le 21 juin 2026",
+  intro: "Cette page explique comment Sténtor utilise les cookies et technologies similaires sur le site et les pages liées au compte.",
+  tocLabel: "Sur cette page",
+  sections: [
+    { id: "overview", title: "1. Vue d’ensemble", body: `<p>Sténtor utilise uniquement des technologies techniques et fonctionnelles nécessaires au fonctionnement du site, de l’accès au compte, des téléchargements et de la gestion des codes d’accès. Nous n’utilisons pas de cookies publicitaires, de cookies de profilage ni de traceurs marketing tiers.</p>` },
+    { id: "what", title: "2. Que sont les cookies", body: `<p>Les cookies sont de petits fichiers ou technologies similaires du navigateur qui permettent à un site de mémoriser des informations techniques, de maintenir une session ou de fournir des fonctions essentielles. Les technologies similaires peuvent inclure le stockage local, le stockage de session ou des jetons de sécurité.</p>` },
+    { id: "essential", title: "3. Technologies essentielles et fonctionnelles", body: `<p>Sténtor peut utiliser des technologies essentielles pour maintenir le site disponible, protéger les formulaires, prendre en charge l’accès au compte, mémoriser des informations techniques de session, gérer les téléchargements ou maintenir les flux de codes d’accès. Ces technologies sont nécessaires au service demandé et ne sont pas utilisées pour la publicité.</p>` },
+    { id: "auth", title: "4. Accès au compte", body: `<p>Lorsque vous vous connectez avec Apple, Google ou Microsoft, ces fournisseurs peuvent utiliser leurs propres cookies ou technologies d’authentification selon leurs politiques. Sténtor utilise cet accès uniquement pour authentifier le compte, gérer l’activation, les téléchargements et les codes d’accès, et non pour profiler les utilisateurs à des fins marketing.</p>` },
+    { id: "analytics", title: "5. Analytics et marketing", body: `<p>Sténtor n’utilise pas de cookies publicitaires, de cookies de profilage ni de traceurs marketing tiers. Si des analytics techniques respectueux de la confidentialité sont introduits à l’avenir, cette page sera mise à jour avant toute utilisation qui modifierait cette politique.</p>` },
+    { id: "choices", title: "6. Vos choix", body: `<p>Vous pouvez gérer ou supprimer les cookies dans les paramètres de votre navigateur. Bloquer les cookies ou technologies essentiels peut empêcher le bon fonctionnement de l’accès au compte, des téléchargements, des formulaires ou d’autres fonctions demandées.</p>` },
+    { id: "updates", title: "7. Mises à jour", body: `<p>Cette page peut être mise à jour au fur et à mesure de l’évolution de Sténtor. La date d’entrée en vigueur indique la dernière version.</p>` }
+  ],
+  contact: { title: "Questions ?", body: 'Écrivez à <a href="mailto:info@stentor.live">info@stentor.live</a>.' }
+};
+---
+
+<LegalPage page={page} />
