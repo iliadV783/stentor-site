@@ -82,8 +82,41 @@ import Layout from "../layouts/Layout.astro";
 <script>
   import { setupAdminConsole } from '../lib/adminConsole';
   import { setupAdminInvites } from '../lib/adminInvites';
+
+  const publicSiteUrl = String(import.meta.env.PUBLIC_SITE_URL || 'https://www.stentor.live').replace(/\/$/, '');
+
+  function normalizeInviteUrl(value: string) {
+    if (!value) return '';
+    try {
+      const url = new URL(value, publicSiteUrl);
+      if (url.pathname === '/invite/accept') return `${publicSiteUrl}${url.pathname}${url.search}${url.hash}`;
+    } catch {
+      if (value.startsWith('/')) return `${publicSiteUrl}${value}`;
+    }
+    return value;
+  }
+
+  function normalizeAdminInviteLinks() {
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-invite-url]').forEach((button) => {
+      const normalized = normalizeInviteUrl(button.dataset.copyInviteUrl || '');
+      if (!normalized) return;
+      button.dataset.copyInviteUrl = normalized;
+      const code = button.previousElementSibling;
+      if (code?.tagName === 'CODE') code.textContent = normalized;
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-copy-invite-url]');
+    if (!button) return;
+    button.dataset.copyInviteUrl = normalizeInviteUrl(button.dataset.copyInviteUrl || '');
+  }, true);
+
   setupAdminConsole();
   setupAdminInvites();
+
+  normalizeAdminInviteLinks();
+  new MutationObserver(normalizeAdminInviteLinks).observe(document.body, { childList: true, subtree: true });
 </script>
 
 <style is:global>
