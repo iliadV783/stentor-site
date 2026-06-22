@@ -34,7 +34,7 @@ import Layout from "../../layouts/Layout.astro";
   const icon = document.querySelector('[data-confirm-icon]');
 
   function tokenStorageKeyFor(path) {
-    if (path.startsWith('/account')) return 'stentor_account_access_token';
+    if (path.startsWith('/account') || path.startsWith('/invite/')) return 'stentor_account_access_token';
     return 'stentor_admin_access_token';
   }
 
@@ -44,6 +44,8 @@ import Layout from "../../layouts/Layout.astro";
     if (link instanceof HTMLAnchorElement) link.href = next;
     if (next.startsWith('/account') && message) {
       message.textContent = 'La sessione è stata confermata. Puoi continuare nel tuo account Sténtor.';
+    } else if (next.startsWith('/invite/') && message) {
+      message.textContent = 'La sessione è stata confermata. Continua per completare l’attivazione dell’invito.';
     }
   } else if (error) {
     if (title) title.textContent = 'Link scaduto.';
