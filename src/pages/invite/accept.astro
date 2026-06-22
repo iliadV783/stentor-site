@@ -35,8 +35,8 @@ import Layout from "../../layouts/Layout.astro";
 <script>
   const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-  const sessionStorageKey = "stentor_admin_access_token";
-  const downloadUrl = "https://www.stentor.live/download/";
+  const sessionStorageKey = "stentor_account_access_token";
+  const downloadUrl = "https://www.stentor.live/account/";
   const inviteToken = new URLSearchParams(window.location.search).get("token") || "";
 
   const title = document.querySelector("[data-invite-title]");
@@ -120,6 +120,61 @@ import Layout from "../../layouts/Layout.astro";
     return body;
   }
 
+  async function completeActivation() {
+    const sessionToken = localStorage.getItem(sessionStorageKey) || "";
+
+    if (!sessionToken) {
+      showSignedOutState();
+      showResult("");
+      return;
+    }
+
+    if (button instanceof HTMLButtonElement) {
+      button.disabled = true;
+      button.textContent = "Attivazione...";
+    }
+    showSignedInState();
+    showResult("");
+
+    try {
+      const body = await acceptInvite(sessionToken);
+      const expiresAt = body.license?.expires_at
+        ? new Date(body.license.expires_at).toLocaleDateString("it-IT")
+        : "tra 6 mesi";
+
+      if (title) title.textContent = "Invito accettato.";
+      if (message) {
+        message.innerHTML = `<p>L’accesso di sperimentazione è attivo fino al ${expiresAt}. Il codice di accesso e i download disponibili sono nel tuo account.</p>`;
+      }
+      if (actions instanceof HTMLElement) actions.hidden = true;
+      if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
+
+      showResult(`
+        <div class="grid gap-5 max-w-[620px]">
+          <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] px-4 py-3">
+            <strong class="block mb-1">Accesso attivato.</strong>
+            <span class="text-white/60">Apri l’account per copiare il codice di accesso e scaricare la build disponibile.</span>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="${downloadUrl}" class="h-12 px-6 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer">Apri account</a>
+            <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/65 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a>
+          </div>
+        </div>
+      `);
+    } catch (error) {
+      showResult(`
+        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
+          ${error instanceof Error ? error.message : "Attivazione non riuscita."}
+        </p>
+      `);
+    } finally {
+      if (button instanceof HTMLButtonElement) {
+        button.disabled = false;
+        button.textContent = "Accetta invito";
+      }
+    }
+  }
+
   if (!inviteToken) {
     if (title) title.textContent = "Invito mancante.";
     if (message) {
@@ -128,7 +183,7 @@ import Layout from "../../layouts/Layout.astro";
     if (actions instanceof HTMLElement) actions.hidden = true;
     if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
   } else if (localStorage.getItem(sessionStorageKey)) {
-    showSignedInState();
+    completeActivation();
   } else {
     showSignedOutState();
   }
@@ -162,53 +217,5 @@ import Layout from "../../layouts/Layout.astro";
     }
   });
 
-  button?.addEventListener("click", async () => {
-    const sessionToken = localStorage.getItem(sessionStorageKey) || "";
-
-    if (!sessionToken) {
-      showSignedOutState();
-      showResult("");
-      return;
-    }
-
-    button.disabled = true;
-    button.textContent = "Attivazione...";
-    showResult("");
-
-    try {
-      const body = await acceptInvite(sessionToken);
-      const expiresAt = body.license?.expires_at
-        ? new Date(body.license.expires_at).toLocaleDateString("it-IT")
-        : "tra 6 mesi";
-
-      if (title) title.textContent = "Invito accettato.";
-      if (message) {
-        message.innerHTML = `<p>L’accesso di sperimentazione è attivo fino al ${expiresAt}. Potrai continuare a usare il software liberamente anche dopo la sperimentazione.</p>`;
-      }
-      if (actions instanceof HTMLElement) actions.hidden = true;
-      if (confirmPanel instanceof HTMLElement) confirmPanel.hidden = true;
-
-      showResult(`
-        <div class="grid gap-5 max-w-[620px]">
-          <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] px-4 py-3">
-            <strong class="block mb-1">Accesso attivato.</strong>
-            <span class="text-white/60">Grazie: il tuo uso ci aiuterà a migliorare questa fase di sperimentazione.</span>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-3">
-            <a href="${downloadUrl}" class="h-12 px-6 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer">Scarica Sténtor</a>
-            <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/65 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a>
-          </div>
-        </div>
-      `);
-    } catch (error) {
-      showResult(`
-        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
-          ${error instanceof Error ? error.message : "Attivazione non riuscita."}
-        </p>
-      `);
-    } finally {
-      button.disabled = false;
-      button.textContent = "Accetta invito";
-    }
-  });
+  button?.addEventListener("click", completeActivation);
 </script>
