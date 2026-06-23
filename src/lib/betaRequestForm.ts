@@ -23,13 +23,22 @@ function updateOrganizationFields(form: HTMLFormElement) {
   const organizationInput = form.querySelector<HTMLInputElement>('[name="organization_name"]');
   const seatsInput = form.querySelector<HTMLInputElement>('[name="requested_seats"]');
 
+  form.dataset.accountType = accountType;
+
   organizationFields.forEach((field) => {
     field.hidden = accountType !== 'organization';
+    field.setAttribute('aria-hidden', accountType !== 'organization' ? 'true' : 'false');
   });
 
-  if (organizationInput) organizationInput.required = accountType === 'organization';
+  if (organizationInput) {
+    organizationInput.required = accountType === 'organization';
+    organizationInput.disabled = accountType !== 'organization';
+    if (accountType !== 'organization') organizationInput.value = '';
+  }
+
   if (seatsInput) {
     seatsInput.required = accountType === 'organization';
+    seatsInput.disabled = accountType !== 'organization';
     if (accountType === 'individual') seatsInput.value = '1';
   }
 }
@@ -50,6 +59,7 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
     event.preventDefault();
     errorBox.hidden = true;
     errorBox.textContent = '';
+    updateOrganizationFields(form);
 
     if (!isSupabaseConfigured) {
       errorBox.textContent = 'Missing public site configuration.';
