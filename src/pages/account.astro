@@ -9,69 +9,69 @@ import Layout from "../layouts/Layout.astro";
 
     <header class="relative border-b border-white/10">
       <div class="max-w-[1180px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-white/45 text-sm">Account</span></a>
-        <div class="flex items-center gap-3"><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Logout</button>
-        <a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
+        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-white/45 text-sm" data-i18n="nav.account">Account</span></a>
+        <div class="flex items-center gap-3"><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors" data-i18n="action.logout">Logout</button>
+        <a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors" data-i18n="action.backToSite">Back to site</a></div>
       </div>
     </header>
 
     <main class="relative max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
       <section data-account-login class="max-w-[760px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
-        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Sign in to Sténtor.</h1>
-        <p class="text-white/50 leading-[1.6] mb-7">Use your email, Google, Apple or Microsoft account to access downloads, activation details and your Sténtor access code.</p>
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3" data-i18n="accessCode">Access code</p>
+        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4" data-i18n="login.title">Sign in to Sténtor.</h1>
+        <p class="text-white/50 leading-[1.6] mb-7" data-i18n="login.subtitle">Use your email, Google, Apple or Microsoft account to access downloads, activation details and your Sténtor access code.</p>
 
         <div class="grid sm:grid-cols-3 gap-3 mb-6">
-          <button type="button" data-account-oauth="google" class="account-provider"><img src="/brand/google.svg" alt="" class="provider-logo" /> Continue with Google</button>
-          <button type="button" data-account-oauth="apple" class="account-provider"><span class="provider-logo provider-logo-apple" aria-hidden="true"></span> Continue with Apple</button>
-          <button type="button" data-account-oauth="azure" class="account-provider"><img src="/brand/microsoft.svg" alt="" class="provider-logo" /> Continue with Microsoft</button>
+          <button type="button" data-account-oauth="google" class="account-provider"><img src="/brand/google.svg" alt="" class="provider-logo" /> <span data-i18n="login.google">Continue with Google</span></button>
+          <button type="button" data-account-oauth="apple" class="account-provider"><span class="provider-logo provider-logo-apple" aria-hidden="true"></span> <span data-i18n="login.apple">Continue with Apple</span></button>
+          <button type="button" data-account-oauth="azure" class="account-provider"><img src="/brand/microsoft.svg" alt="" class="provider-logo" /> <span data-i18n="login.microsoft">Continue with Microsoft</span></button>
         </div>
-        <div class="flex items-center gap-4 my-6 text-white/35 font-mono text-[12px] uppercase tracking-[0.14em]"><span class="h-px bg-white/10 flex-1"></span> or email <span class="h-px bg-white/10 flex-1"></span></div>
+        <div class="flex items-center gap-4 my-6 text-white/35 font-mono text-[12px] uppercase tracking-[0.14em]"><span class="h-px bg-white/10 flex-1"></span><span data-i18n="login.orEmail">or email</span><span class="h-px bg-white/10 flex-1"></span></div>
 
         <form data-account-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@theatre.org" class="account-input" required />
-          <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="account-input" />
-          <button type="submit" class="h-12 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Sign in</button>
-          <button type="button" data-account-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Send email link</button>
+          <input name="password" type="password" autocomplete="current-password" placeholder="Password" data-i18n-placeholder="login.password" class="account-input" />
+          <button type="submit" class="h-12 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors" data-i18n="action.signIn">Sign in</button>
+          <button type="button" data-account-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors" data-i18n="action.magicLink">Send email link</button>
         </form>
-        <p class="mt-5 text-sm text-white/38 leading-[1.5]">No account yet? <a href="/request-pro" class="text-red-300 underline underline-offset-4 hover:text-red-200">Request free beta access</a>.</p>
+        <p class="mt-5 text-sm text-white/38 leading-[1.5]"><span data-i18n="login.noAccount">No account yet?</span> <a href="/request-pro" class="text-red-300 underline underline-offset-4 hover:text-red-200" data-i18n="login.requestBeta">Request free beta access</a>.</p>
         <p data-account-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
       </section>
 
       <section data-account-app hidden class="grid gap-6">
         <div class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Access code</p>
-          <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Your Sténtor account.</h1>
-          <p class="text-white/50 leading-[1.6] max-w-[760px]">This area shows your Sténtor access code, enabled platforms, available downloads and the projects synced to the cloud.</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3" data-i18n="accessCode">Access code</p>
+          <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4" data-i18n="app.title">Your Sténtor account.</h1>
+          <p class="text-white/50 leading-[1.6] max-w-[760px]" data-i18n="app.subtitle">This area shows your Sténtor access code, enabled platforms, available downloads and the projects synced to the cloud.</p>
         </div>
 
         <div class="grid lg:grid-cols-[1fr_0.72fr] gap-6 items-start">
           <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
             <div class="flex items-start justify-between gap-4 mb-6">
-              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Access</p><h2 class="text-2xl font-semibold tracking-[-0.04em]">Access code</h2></div>
-              <button data-account-refresh class="h-10 px-4 rounded-xl border border-white/10 text-sm text-white/55 hover:text-white hover:bg-white/[0.06] transition-colors">Refresh</button>
+              <div><p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2" data-i18n="section.access">Access</p><h2 class="text-2xl font-semibold tracking-[-0.04em]" data-i18n="accessCode">Access code</h2></div>
+              <button data-account-refresh class="h-10 px-4 rounded-xl border border-white/10 text-sm text-white/55 hover:text-white hover:bg-white/[0.06] transition-colors" data-i18n="action.refresh">Refresh</button>
             </div>
-            <div data-account-licenses class="grid gap-3"><p class="text-white/45">Loading access code...</p></div>
+            <div data-account-licenses class="grid gap-3"><p class="text-white/45" data-i18n="loading.accessCode">Loading access code...</p></div>
           </section>
 
           <aside class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3">Downloads</p>
-            <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4">Available builds</h2>
-            <p class="text-white/50 leading-[1.6] mb-5">Downloads appear here when a Sténtor build is available for your account.</p>
-            <div data-account-downloads class="grid gap-2"><span class="download-chip">Loading downloads...</span></div>
+            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-3" data-i18n="section.downloads">Downloads</p>
+            <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4" data-i18n="downloads.title">Available builds</h2>
+            <p class="text-white/50 leading-[1.6] mb-5" data-i18n="downloads.subtitle">Downloads appear here when a Sténtor build is available for your account.</p>
+            <div data-account-downloads class="grid gap-2"><span class="download-chip" data-i18n="loading.downloads">Loading downloads...</span></div>
           </aside>
         </div>
 
         <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
           <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
             <div>
-              <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Cloud</p>
-              <h2 class="text-2xl font-semibold tracking-[-0.04em]">Cloud projects</h2>
-              <p class="text-white/50 leading-[1.6] mt-2 max-w-[720px]">A compact summary of the Sténtor projects available in your cloud workspace and their latest synchronization state.</p>
+              <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2" data-i18n="section.cloud">Cloud</p>
+              <h2 class="text-2xl font-semibold tracking-[-0.04em]" data-i18n="cloud.title">Cloud projects</h2>
+              <p class="text-white/50 leading-[1.6] mt-2 max-w-[720px]" data-i18n="cloud.subtitle">A compact summary of the Sténtor projects available in your cloud workspace and their latest synchronization state.</p>
             </div>
-            <div data-account-cloud-summary class="cloud-summary"><span>Loading cloud summary...</span></div>
+            <div data-account-cloud-summary class="cloud-summary"><span data-i18n="loading.cloudSummary">Loading cloud summary...</span></div>
           </div>
-          <div data-account-cloud-projects class="grid gap-3"><p class="text-white/45">Loading cloud projects...</p></div>
+          <div data-account-cloud-projects class="grid gap-3"><p class="text-white/45" data-i18n="loading.cloudProjects">Loading cloud projects...</p></div>
         </section>
       </section>
     </main>
@@ -82,6 +82,75 @@ import Layout from "../layouts/Layout.astro";
   const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
   const storageKey = 'stentor_account_access_token';
+
+  const translations = {
+    en: {
+      'nav.account': 'Account', 'action.logout': 'Logout', 'action.backToSite': 'Back to site', 'accessCode': 'Access code',
+      'login.title': 'Sign in to Sténtor.', 'login.subtitle': 'Use your email, Google, Apple or Microsoft account to access downloads, activation details and your Sténtor access code.', 'login.google': 'Continue with Google', 'login.apple': 'Continue with Apple', 'login.microsoft': 'Continue with Microsoft', 'login.orEmail': 'or email', 'login.password': 'Password', 'action.signIn': 'Sign in', 'action.magicLink': 'Send email link', 'login.noAccount': 'No account yet?', 'login.requestBeta': 'Request free beta access',
+      'app.title': 'Your Sténtor account.', 'app.subtitle': 'This area shows your Sténtor access code, enabled platforms, available downloads and the projects synced to the cloud.', 'section.access': 'Access', 'action.refresh': 'Refresh', 'loading.accessCode': 'Loading access code...', 'section.downloads': 'Downloads', 'downloads.title': 'Available builds', 'downloads.subtitle': 'Downloads appear here when a Sténtor build is available for your account.', 'loading.downloads': 'Loading downloads...',
+      'section.cloud': 'Cloud', 'cloud.title': 'Cloud projects', 'cloud.subtitle': 'A compact summary of the Sténtor projects available in your cloud workspace and their latest synchronization state.', 'loading.cloudSummary': 'Loading cloud summary...', 'loading.cloudProjects': 'Loading cloud projects...',
+      'error.config': 'Account access is not configured yet. Check Supabase public environment variables.', 'error.request': 'Request failed.', 'error.login': 'Login failed.', 'error.emailLink': 'Email link failed.', 'error.emailNotSent': 'Email link could not be sent.', 'error.provider': 'Provider login is not configured yet.', 'error.refresh': 'Refresh failed.', 'error.session': 'Session expired. Please sign in again.', 'form.enterEmail': 'Enter your email.', 'form.enterPassword': 'Enter your password, or use the email link button.', 'magic.sent': 'Email link sent. Check your inbox, then return here.',
+      'license.noneTitle': 'No access code yet', 'license.noneBody': 'When your Sténtor account is enabled, your access code will appear here automatically.', 'license.refreshAccount': 'Refresh account', 'label.status': 'Status', 'label.access': 'Access', 'label.devices': 'Devices', 'label.platforms': 'Platforms', 'label.expires': 'Expires', 'label.organization': 'Organization', 'label.copy': 'Copy', 'label.copied': 'Copied', 'date.noExpiration': 'No expiration', 'date.never': 'Never', 'date.unknown': 'Unknown',
+      'downloads.noneTitle': 'No builds yet', 'downloads.noneBody': 'Downloads will appear here after the first build artifact is configured.', 'downloads.download': 'Download', 'downloads.comingSoon': 'Coming soon',
+      'cloud.notConfigured': 'Cloud index not configured', 'cloud.unavailableTitle': 'Cloud projects unavailable', 'cloud.unavailableBody': 'Apply the cloud projects migration in Supabase to enable this account summary.', 'cloud.noneTitle': 'No cloud projects yet', 'cloud.noneBody': 'Projects will appear here after Sténtor uploads their cloud manifest.', 'cloud.projects': 'projects', 'cloud.used': 'used', 'cloud.synced': 'synced', 'cloud.conflicts': 'conflicts', 'cloud.noOrganization': 'No organization', 'cloud.providerFallback': 'cloud', 'cloud.untitled': 'Untitled project', 'label.lastSync': 'Last sync', 'label.size': 'Size', 'label.cues': 'Cues', 'label.translations': 'Translations', 'label.audio': 'Audio', 'label.questionnaires': 'Questionnaires', 'label.updatedBy': 'Updated by', 'sync.synced': 'Synced', 'sync.local_changes': 'Local changes', 'sync.remote_changes': 'Remote changes', 'sync.conflict': 'Conflict', 'sync.archived': 'Archived', 'sync.unknown': 'Unknown'
+    },
+    it: {
+      'nav.account': 'Account', 'action.logout': 'Esci', 'action.backToSite': 'Torna al sito', 'accessCode': 'Codice di accesso',
+      'login.title': 'Accedi a Sténtor.', 'login.subtitle': 'Usa email, Google, Apple o Microsoft per accedere a download, dettagli di attivazione e codice di accesso Sténtor.', 'login.google': 'Continua con Google', 'login.apple': 'Continua con Apple', 'login.microsoft': 'Continua con Microsoft', 'login.orEmail': 'o email', 'login.password': 'Password', 'action.signIn': 'Accedi', 'action.magicLink': 'Invia link email', 'login.noAccount': 'Non hai ancora un account?', 'login.requestBeta': 'Richiedi accesso beta gratuito',
+      'app.title': 'Il tuo account Sténtor.', 'app.subtitle': 'Quest’area mostra il codice di accesso Sténtor, le piattaforme abilitate, i download disponibili e i progetti sincronizzati in cloud.', 'section.access': 'Accesso', 'action.refresh': 'Aggiorna', 'loading.accessCode': 'Caricamento codice di accesso...', 'section.downloads': 'Download', 'downloads.title': 'Build disponibili', 'downloads.subtitle': 'I download compariranno qui quando una build Sténtor sarà disponibile per il tuo account.', 'loading.downloads': 'Caricamento download...',
+      'section.cloud': 'Cloud', 'cloud.title': 'Progetti cloud', 'cloud.subtitle': 'Un riepilogo compatto dei progetti Sténtor disponibili nel tuo spazio cloud e del loro stato di sincronizzazione.', 'loading.cloudSummary': 'Caricamento riepilogo cloud...', 'loading.cloudProjects': 'Caricamento progetti cloud...',
+      'error.config': 'L’accesso account non è ancora configurato. Verifica le variabili pubbliche Supabase.', 'error.request': 'Richiesta non riuscita.', 'error.login': 'Accesso non riuscito.', 'error.emailLink': 'Invio link email non riuscito.', 'error.emailNotSent': 'Impossibile inviare il link email.', 'error.provider': 'Login con provider non ancora configurato.', 'error.refresh': 'Aggiornamento non riuscito.', 'error.session': 'Sessione scaduta. Accedi di nuovo.', 'form.enterEmail': 'Inserisci la tua email.', 'form.enterPassword': 'Inserisci la password oppure usa il link email.', 'magic.sent': 'Link email inviato. Controlla la posta e poi torna qui.',
+      'license.noneTitle': 'Nessun codice di accesso', 'license.noneBody': 'Quando il tuo account Sténtor sarà abilitato, il codice di accesso apparirà automaticamente qui.', 'license.refreshAccount': 'Aggiorna account', 'label.status': 'Stato', 'label.access': 'Accesso', 'label.devices': 'Dispositivi', 'label.platforms': 'Piattaforme', 'label.expires': 'Scadenza', 'label.organization': 'Organizzazione', 'label.copy': 'Copia', 'label.copied': 'Copiato', 'date.noExpiration': 'Nessuna scadenza', 'date.never': 'Mai', 'date.unknown': 'Sconosciuto',
+      'downloads.noneTitle': 'Nessuna build', 'downloads.noneBody': 'I download appariranno qui dopo la configurazione del primo artefatto di build.', 'downloads.download': 'Scarica', 'downloads.comingSoon': 'In arrivo',
+      'cloud.notConfigured': 'Indice cloud non configurato', 'cloud.unavailableTitle': 'Progetti cloud non disponibili', 'cloud.unavailableBody': 'Applica la migration dei progetti cloud in Supabase per abilitare questo riepilogo account.', 'cloud.noneTitle': 'Ancora nessun progetto cloud', 'cloud.noneBody': 'I progetti appariranno qui dopo che Sténtor avrà caricato il relativo manifesto cloud.', 'cloud.projects': 'progetti', 'cloud.used': 'usati', 'cloud.synced': 'sincronizzati', 'cloud.conflicts': 'conflitti', 'cloud.noOrganization': 'Nessuna organizzazione', 'cloud.providerFallback': 'cloud', 'cloud.untitled': 'Progetto senza titolo', 'label.lastSync': 'Ultima sync', 'label.size': 'Dimensione', 'label.cues': 'Battute', 'label.translations': 'Traduzioni', 'label.audio': 'Audio', 'label.questionnaires': 'Questionari', 'label.updatedBy': 'Modificato da', 'sync.synced': 'Sincronizzato', 'sync.local_changes': 'Modifiche locali', 'sync.remote_changes': 'Modifiche remote', 'sync.conflict': 'Conflitto', 'sync.archived': 'Archiviato', 'sync.unknown': 'Sconosciuto'
+    },
+    fr: {
+      'nav.account': 'Compte', 'action.logout': 'Déconnexion', 'action.backToSite': 'Retour au site', 'accessCode': 'Code d’accès',
+      'login.title': 'Connectez-vous à Sténtor.', 'login.subtitle': 'Utilisez votre e-mail, Google, Apple ou Microsoft pour accéder aux téléchargements, aux activations et à votre code Sténtor.', 'login.google': 'Continuer avec Google', 'login.apple': 'Continuer avec Apple', 'login.microsoft': 'Continuer avec Microsoft', 'login.orEmail': 'ou e-mail', 'login.password': 'Mot de passe', 'action.signIn': 'Se connecter', 'action.magicLink': 'Envoyer un lien e-mail', 'login.noAccount': 'Pas encore de compte ?', 'login.requestBeta': 'Demander un accès bêta gratuit',
+      'app.title': 'Votre compte Sténtor.', 'app.subtitle': 'Cet espace affiche votre code d’accès Sténtor, les plateformes activées, les téléchargements disponibles et les projets synchronisés dans le cloud.', 'section.access': 'Accès', 'action.refresh': 'Actualiser', 'loading.accessCode': 'Chargement du code d’accès...', 'section.downloads': 'Téléchargements', 'downloads.title': 'Builds disponibles', 'downloads.subtitle': 'Les téléchargements apparaissent ici lorsqu’une build Sténtor est disponible pour votre compte.', 'loading.downloads': 'Chargement des téléchargements...',
+      'section.cloud': 'Cloud', 'cloud.title': 'Projets cloud', 'cloud.subtitle': 'Un résumé compact des projets Sténtor disponibles dans votre espace cloud et de leur état de synchronisation.', 'loading.cloudSummary': 'Chargement du résumé cloud...', 'loading.cloudProjects': 'Chargement des projets cloud...',
+      'error.config': 'L’accès au compte n’est pas encore configuré. Vérifiez les variables publiques Supabase.', 'error.request': 'La requête a échoué.', 'error.login': 'Connexion échouée.', 'error.emailLink': 'Échec du lien e-mail.', 'error.emailNotSent': 'Impossible d’envoyer le lien e-mail.', 'error.provider': 'La connexion avec ce fournisseur n’est pas encore configurée.', 'error.refresh': 'Actualisation échouée.', 'error.session': 'Session expirée. Connectez-vous à nouveau.', 'form.enterEmail': 'Saisissez votre e-mail.', 'form.enterPassword': 'Saisissez votre mot de passe ou utilisez le lien e-mail.', 'magic.sent': 'Lien e-mail envoyé. Vérifiez votre boîte de réception puis revenez ici.',
+      'license.noneTitle': 'Aucun code d’accès', 'license.noneBody': 'Lorsque votre compte Sténtor sera activé, votre code d’accès apparaîtra automatiquement ici.', 'license.refreshAccount': 'Actualiser le compte', 'label.status': 'Statut', 'label.access': 'Accès', 'label.devices': 'Appareils', 'label.platforms': 'Plateformes', 'label.expires': 'Expiration', 'label.organization': 'Organisation', 'label.copy': 'Copier', 'label.copied': 'Copié', 'date.noExpiration': 'Aucune expiration', 'date.never': 'Jamais', 'date.unknown': 'Inconnu',
+      'downloads.noneTitle': 'Aucune build', 'downloads.noneBody': 'Les téléchargements apparaîtront ici après la configuration du premier artefact de build.', 'downloads.download': 'Télécharger', 'downloads.comingSoon': 'Bientôt disponible',
+      'cloud.notConfigured': 'Index cloud non configuré', 'cloud.unavailableTitle': 'Projets cloud indisponibles', 'cloud.unavailableBody': 'Appliquez la migration des projets cloud dans Supabase pour activer ce résumé de compte.', 'cloud.noneTitle': 'Aucun projet cloud pour le moment', 'cloud.noneBody': 'Les projets apparaîtront ici après l’envoi de leur manifeste cloud par Sténtor.', 'cloud.projects': 'projets', 'cloud.used': 'utilisés', 'cloud.synced': 'synchronisés', 'cloud.conflicts': 'conflits', 'cloud.noOrganization': 'Aucune organisation', 'cloud.providerFallback': 'cloud', 'cloud.untitled': 'Projet sans titre', 'label.lastSync': 'Dernière sync', 'label.size': 'Taille', 'label.cues': 'Répliques', 'label.translations': 'Traductions', 'label.audio': 'Audio', 'label.questionnaires': 'Questionnaires', 'label.updatedBy': 'Modifié par', 'sync.synced': 'Synchronisé', 'sync.local_changes': 'Modifications locales', 'sync.remote_changes': 'Modifications distantes', 'sync.conflict': 'Conflit', 'sync.archived': 'Archivé', 'sync.unknown': 'Inconnu'
+    },
+    es: {
+      'nav.account': 'Cuenta', 'action.logout': 'Cerrar sesión', 'action.backToSite': 'Volver al sitio', 'accessCode': 'Código de acceso',
+      'login.title': 'Accede a Sténtor.', 'login.subtitle': 'Usa tu correo, Google, Apple o Microsoft para acceder a descargas, activaciones y código de acceso Sténtor.', 'login.google': 'Continuar con Google', 'login.apple': 'Continuar con Apple', 'login.microsoft': 'Continuar con Microsoft', 'login.orEmail': 'o correo', 'login.password': 'Contraseña', 'action.signIn': 'Acceder', 'action.magicLink': 'Enviar enlace por correo', 'login.noAccount': '¿Aún no tienes cuenta?', 'login.requestBeta': 'Solicitar acceso beta gratuito',
+      'app.title': 'Tu cuenta Sténtor.', 'app.subtitle': 'Esta área muestra tu código de acceso Sténtor, plataformas habilitadas, descargas disponibles y proyectos sincronizados en la nube.', 'section.access': 'Acceso', 'action.refresh': 'Actualizar', 'loading.accessCode': 'Cargando código de acceso...', 'section.downloads': 'Descargas', 'downloads.title': 'Builds disponibles', 'downloads.subtitle': 'Las descargas aparecerán aquí cuando haya una build Sténtor disponible para tu cuenta.', 'loading.downloads': 'Cargando descargas...',
+      'section.cloud': 'Cloud', 'cloud.title': 'Proyectos cloud', 'cloud.subtitle': 'Un resumen compacto de los proyectos Sténtor disponibles en tu espacio cloud y su estado de sincronización.', 'loading.cloudSummary': 'Cargando resumen cloud...', 'loading.cloudProjects': 'Cargando proyectos cloud...',
+      'error.config': 'El acceso a la cuenta aún no está configurado. Revisa las variables públicas de Supabase.', 'error.request': 'La solicitud ha fallado.', 'error.login': 'Inicio de sesión fallido.', 'error.emailLink': 'Error al enviar el enlace por correo.', 'error.emailNotSent': 'No se pudo enviar el enlace por correo.', 'error.provider': 'El inicio con proveedor aún no está configurado.', 'error.refresh': 'Actualización fallida.', 'error.session': 'Sesión caducada. Inicia sesión de nuevo.', 'form.enterEmail': 'Introduce tu correo.', 'form.enterPassword': 'Introduce la contraseña o usa el enlace por correo.', 'magic.sent': 'Enlace enviado. Revisa tu correo y vuelve aquí.',
+      'license.noneTitle': 'Aún no hay código de acceso', 'license.noneBody': 'Cuando tu cuenta Sténtor esté habilitada, el código aparecerá aquí automáticamente.', 'license.refreshAccount': 'Actualizar cuenta', 'label.status': 'Estado', 'label.access': 'Acceso', 'label.devices': 'Dispositivos', 'label.platforms': 'Plataformas', 'label.expires': 'Caduca', 'label.organization': 'Organización', 'label.copy': 'Copiar', 'label.copied': 'Copiado', 'date.noExpiration': 'Sin caducidad', 'date.never': 'Nunca', 'date.unknown': 'Desconocido',
+      'downloads.noneTitle': 'Aún no hay builds', 'downloads.noneBody': 'Las descargas aparecerán aquí tras configurar el primer artefacto de build.', 'downloads.download': 'Descargar', 'downloads.comingSoon': 'Próximamente',
+      'cloud.notConfigured': 'Índice cloud no configurado', 'cloud.unavailableTitle': 'Proyectos cloud no disponibles', 'cloud.unavailableBody': 'Aplica la migración de proyectos cloud en Supabase para activar este resumen de cuenta.', 'cloud.noneTitle': 'Aún no hay proyectos cloud', 'cloud.noneBody': 'Los proyectos aparecerán aquí después de que Sténtor suba su manifiesto cloud.', 'cloud.projects': 'proyectos', 'cloud.used': 'usados', 'cloud.synced': 'sincronizados', 'cloud.conflicts': 'conflictos', 'cloud.noOrganization': 'Sin organización', 'cloud.providerFallback': 'cloud', 'cloud.untitled': 'Proyecto sin título', 'label.lastSync': 'Última sync', 'label.size': 'Tamaño', 'label.cues': 'Líneas', 'label.translations': 'Traducciones', 'label.audio': 'Audio', 'label.questionnaires': 'Cuestionarios', 'label.updatedBy': 'Modificado por', 'sync.synced': 'Sincronizado', 'sync.local_changes': 'Cambios locales', 'sync.remote_changes': 'Cambios remotos', 'sync.conflict': 'Conflicto', 'sync.archived': 'Archivado', 'sync.unknown': 'Desconocido'
+    },
+    de: {
+      'nav.account': 'Konto', 'action.logout': 'Abmelden', 'action.backToSite': 'Zurück zur Website', 'accessCode': 'Zugangscode',
+      'login.title': 'Bei Sténtor anmelden.', 'login.subtitle': 'Melden Sie sich mit E-Mail, Google, Apple oder Microsoft an, um Downloads, Aktivierungen und Ihren Sténtor-Zugangscode zu sehen.', 'login.google': 'Mit Google fortfahren', 'login.apple': 'Mit Apple fortfahren', 'login.microsoft': 'Mit Microsoft fortfahren', 'login.orEmail': 'oder E-Mail', 'login.password': 'Passwort', 'action.signIn': 'Anmelden', 'action.magicLink': 'E-Mail-Link senden', 'login.noAccount': 'Noch kein Konto?', 'login.requestBeta': 'Kostenlosen Beta-Zugang anfragen',
+      'app.title': 'Ihr Sténtor-Konto.', 'app.subtitle': 'Dieser Bereich zeigt Ihren Sténtor-Zugangscode, aktivierte Plattformen, verfügbare Downloads und cloud-synchronisierte Projekte.', 'section.access': 'Zugang', 'action.refresh': 'Aktualisieren', 'loading.accessCode': 'Zugangscode wird geladen...', 'section.downloads': 'Downloads', 'downloads.title': 'Verfügbare Builds', 'downloads.subtitle': 'Downloads erscheinen hier, sobald ein Sténtor-Build für Ihr Konto verfügbar ist.', 'loading.downloads': 'Downloads werden geladen...',
+      'section.cloud': 'Cloud', 'cloud.title': 'Cloud-Projekte', 'cloud.subtitle': 'Eine kompakte Übersicht der Sténtor-Projekte in Ihrem Cloud-Arbeitsbereich und ihres Synchronisationsstatus.', 'loading.cloudSummary': 'Cloud-Übersicht wird geladen...', 'loading.cloudProjects': 'Cloud-Projekte werden geladen...',
+      'error.config': 'Der Kontozugriff ist noch nicht konfiguriert. Prüfen Sie die öffentlichen Supabase-Variablen.', 'error.request': 'Anfrage fehlgeschlagen.', 'error.login': 'Anmeldung fehlgeschlagen.', 'error.emailLink': 'E-Mail-Link fehlgeschlagen.', 'error.emailNotSent': 'Der E-Mail-Link konnte nicht gesendet werden.', 'error.provider': 'Provider-Anmeldung ist noch nicht konfiguriert.', 'error.refresh': 'Aktualisierung fehlgeschlagen.', 'error.session': 'Sitzung abgelaufen. Bitte erneut anmelden.', 'form.enterEmail': 'Geben Sie Ihre E-Mail-Adresse ein.', 'form.enterPassword': 'Geben Sie Ihr Passwort ein oder verwenden Sie den E-Mail-Link.', 'magic.sent': 'E-Mail-Link gesendet. Prüfen Sie Ihr Postfach und kehren Sie hierher zurück.',
+      'license.noneTitle': 'Noch kein Zugangscode', 'license.noneBody': 'Wenn Ihr Sténtor-Konto aktiviert ist, erscheint Ihr Zugangscode automatisch hier.', 'license.refreshAccount': 'Konto aktualisieren', 'label.status': 'Status', 'label.access': 'Zugang', 'label.devices': 'Geräte', 'label.platforms': 'Plattformen', 'label.expires': 'Ablauf', 'label.organization': 'Organisation', 'label.copy': 'Kopieren', 'label.copied': 'Kopiert', 'date.noExpiration': 'Kein Ablaufdatum', 'date.never': 'Nie', 'date.unknown': 'Unbekannt',
+      'downloads.noneTitle': 'Noch keine Builds', 'downloads.noneBody': 'Downloads erscheinen hier nach Konfiguration des ersten Build-Artefakts.', 'downloads.download': 'Download', 'downloads.comingSoon': 'Demnächst',
+      'cloud.notConfigured': 'Cloud-Index nicht konfiguriert', 'cloud.unavailableTitle': 'Cloud-Projekte nicht verfügbar', 'cloud.unavailableBody': 'Wenden Sie die Cloud-Projekt-Migration in Supabase an, um diese Kontoübersicht zu aktivieren.', 'cloud.noneTitle': 'Noch keine Cloud-Projekte', 'cloud.noneBody': 'Projekte erscheinen hier, nachdem Sténtor ihr Cloud-Manifest hochgeladen hat.', 'cloud.projects': 'Projekte', 'cloud.used': 'belegt', 'cloud.synced': 'synchronisiert', 'cloud.conflicts': 'Konflikte', 'cloud.noOrganization': 'Keine Organisation', 'cloud.providerFallback': 'Cloud', 'cloud.untitled': 'Unbenanntes Projekt', 'label.lastSync': 'Letzte Sync', 'label.size': 'Größe', 'label.cues': 'Textstellen', 'label.translations': 'Übersetzungen', 'label.audio': 'Audio', 'label.questionnaires': 'Fragebögen', 'label.updatedBy': 'Geändert von', 'sync.synced': 'Synchronisiert', 'sync.local_changes': 'Lokale Änderungen', 'sync.remote_changes': 'Remote-Änderungen', 'sync.conflict': 'Konflikt', 'sync.archived': 'Archiviert', 'sync.unknown': 'Unbekannt'
+    }
+  };
+
+  function detectLocale() {
+    const pathLocale = window.location.pathname.split('/').filter(Boolean)[0];
+    if (['it', 'fr', 'es', 'de'].includes(pathLocale)) return pathLocale;
+    const browserLocale = (navigator.languages?.[0] || navigator.language || 'en').toLowerCase().split('-')[0];
+    return ['it', 'fr', 'es', 'de'].includes(browserLocale) ? browserLocale : 'en';
+  }
+
+  const locale = detectLocale();
+  const text = translations[locale] || translations.en;
+  const t = (key) => text[key] || translations.en[key] || key;
+
+  document.documentElement.lang = locale;
+  document.querySelectorAll('[data-i18n]').forEach((node) => { node.textContent = t(node.getAttribute('data-i18n')); });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach((node) => { node.setAttribute('placeholder', t(node.getAttribute('data-i18n-placeholder'))); });
+  document.title = `${t('nav.account')} Sténtor - Sténtor`;
 
   const loginPanel = document.querySelector('[data-account-login]');
   const appPanel = document.querySelector('[data-account-app]');
@@ -142,7 +211,7 @@ import Layout from "../layouts/Layout.astro";
 
   function ensureConfig() {
     if (!supabaseUrl || !supabaseAnonKey) {
-      throw new Error('Account access is not configured yet. Check Supabase public environment variables.');
+      throw new Error(t('error.config'));
     }
   }
 
@@ -166,7 +235,7 @@ import Layout from "../layouts/Layout.astro";
         ...(options.headers || {}),
       },
     });
-    if (!response.ok) throw new Error(await readError(response, 'Request failed.'));
+    if (!response.ok) throw new Error(await readError(response, t('error.request')));
     return response.json();
   }
 
@@ -177,7 +246,7 @@ import Layout from "../layouts/Layout.astro";
       headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
-    if (!response.ok) throw new Error(await readError(response, 'Login failed.'));
+    if (!response.ok) throw new Error(await readError(response, t('error.login')));
     const body = await response.json();
     localStorage.setItem(storageKey, body.access_token);
     return body.access_token;
@@ -191,7 +260,7 @@ import Layout from "../layouts/Layout.astro";
       headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, create_user: true }),
     });
-    if (!response.ok) throw new Error(await readError(response, 'Email link could not be sent.'));
+    if (!response.ok) throw new Error(await readError(response, t('error.emailNotSent')));
   }
 
   function escapeHtml(value) {
@@ -218,12 +287,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   function syncStatusLabel(status) {
-    if (status === 'synced') return 'Synced';
-    if (status === 'local_changes') return 'Local changes';
-    if (status === 'remote_changes') return 'Remote changes';
-    if (status === 'conflict') return 'Conflict';
-    if (status === 'archived') return 'Archived';
-    return status || 'Unknown';
+    return t(`sync.${status}`) || t('sync.unknown');
   }
 
   function formatBytes(bytes) {
@@ -240,10 +304,10 @@ import Layout from "../layouts/Layout.astro";
   }
 
   function formatDate(value) {
-    if (!value) return 'Never';
+    if (!value) return t('date.never');
     const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return 'Unknown';
-    return date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+    if (Number.isNaN(date.getTime())) return t('date.unknown');
+    return date.toLocaleString(locale, { dateStyle: 'medium', timeStyle: 'short' });
   }
 
   function productLabel() {
@@ -260,25 +324,25 @@ import Layout from "../layouts/Layout.astro";
   function renderLicenses(licenses) {
     if (!licensesTarget) return;
     if (!licenses.length) {
-      licensesTarget.innerHTML = '<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">No access code yet</h3><p class="text-white/50 leading-[1.6]">When your Sténtor account is enabled, your access code will appear here automatically.</p><a href="/account" class="inline-flex mt-5 h-11 px-4 rounded-xl bg-red-500 text-black font-semibold items-center justify-center hover:bg-red-400 transition-colors">Refresh account</a></div>';
+      licensesTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('license.noneTitle')}</h3><p class="text-white/50 leading-[1.6]">${t('license.noneBody')}</p><a href="/account" class="inline-flex mt-5 h-11 px-4 rounded-xl bg-red-500 text-black font-semibold items-center justify-center hover:bg-red-400 transition-colors">${t('license.refreshAccount')}</a></div>`;
       return;
     }
 
     licensesTarget.innerHTML = licenses.map((license) => {
       const platforms = (license.enabled_platforms || []).join(', ') || '—';
-      const expires = license.expires_at ? new Date(license.expires_at).toLocaleDateString() : 'No expiration';
+      const expires = license.expires_at ? new Date(license.expires_at).toLocaleDateString(locale) : t('date.noExpiration');
       return `<article class="account-card">
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
-          <div><span class="account-label">Access code</span><div class="account-access-code">${license.license_key}</div></div>
-          <button type="button" class="account-copy" data-copy-access-code="${license.license_key}">Copy</button>
+          <div><span class="account-label">${t('accessCode')}</span><div class="account-access-code">${license.license_key}</div></div>
+          <button type="button" class="account-copy" data-copy-access-code="${license.license_key}">${t('label.copy')}</button>
         </div>
         <div class="grid sm:grid-cols-3 gap-3">
-          <div><span class="account-label">Status</span><span class="${statusClass(license.status)}">${license.status}</span></div>
-          <div><span class="account-label">Access</span><div class="text-white/70">${license.plan}</div></div>
-          <div><span class="account-label">Devices</span><div class="text-white/70">${license.max_activations}</div></div>
-          <div><span class="account-label">Platforms</span><div class="text-white/70">${platforms}</div></div>
-          <div><span class="account-label">Expires</span><div class="text-white/70">${expires}</div></div>
-          <div><span class="account-label">Organization</span><div class="text-white/70">${license.organization_name || '—'}</div></div>
+          <div><span class="account-label">${t('label.status')}</span><span class="${statusClass(license.status)}">${escapeHtml(license.status)}</span></div>
+          <div><span class="account-label">${t('label.access')}</span><div class="text-white/70">${escapeHtml(license.plan)}</div></div>
+          <div><span class="account-label">${t('label.devices')}</span><div class="text-white/70">${license.max_activations}</div></div>
+          <div><span class="account-label">${t('label.platforms')}</span><div class="text-white/70">${escapeHtml(platforms)}</div></div>
+          <div><span class="account-label">${t('label.expires')}</span><div class="text-white/70">${expires}</div></div>
+          <div><span class="account-label">${t('label.organization')}</span><div class="text-white/70">${escapeHtml(license.organization_name || '—')}</div></div>
         </div>
       </article>`;
     }).join('');
@@ -287,7 +351,7 @@ import Layout from "../layouts/Layout.astro";
   function renderDownloads(downloads) {
     if (!downloadsTarget) return;
     if (!downloads.length) {
-      downloadsTarget.innerHTML = '<div class="download-card"><strong>No builds yet</strong><span>Downloads will appear here after the first build artifact is configured.</span></div>';
+      downloadsTarget.innerHTML = `<div class="download-card"><strong>${t('downloads.noneTitle')}</strong><span>${t('downloads.noneBody')}</span></div>`;
       return;
     }
 
@@ -295,9 +359,9 @@ import Layout from "../layouts/Layout.astro";
       const title = `${productLabel(item.product)} ${platformLabel(item.platform)}`;
       const subtitle = `${item.channel} · v${item.version}`;
       if (item.is_available && item.file_url) {
-        return `<a class="download-card download-card-active" href="${item.file_url}" target="_blank" rel="noreferrer"><strong>${title}</strong><span>${subtitle}</span><em>Download →</em></a>`;
+        return `<a class="download-card download-card-active" href="${item.file_url}" target="_blank" rel="noreferrer"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(subtitle)}</span><em>${t('downloads.download')} →</em></a>`;
       }
-      return `<div class="download-card"><strong>${title}</strong><span>${subtitle}</span><em>Coming soon</em></div>`;
+      return `<div class="download-card"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(subtitle)}</span><em>${t('downloads.comingSoon')}</em></div>`;
     }).join('');
   }
 
@@ -305,14 +369,14 @@ import Layout from "../layouts/Layout.astro";
     if (!cloudSummaryTarget || !cloudProjectsTarget) return;
 
     if (unavailable) {
-      cloudSummaryTarget.innerHTML = '<span>Cloud index not configured</span>';
-      cloudProjectsTarget.innerHTML = '<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">Cloud projects unavailable</h3><p class="text-white/50 leading-[1.6]">Apply the cloud projects migration in Supabase to enable this account summary.</p></div>';
+      cloudSummaryTarget.innerHTML = `<span>${t('cloud.notConfigured')}</span>`;
+      cloudProjectsTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('cloud.unavailableTitle')}</h3><p class="text-white/50 leading-[1.6]">${t('cloud.unavailableBody')}</p></div>`;
       return;
     }
 
     if (!projects.length) {
-      cloudSummaryTarget.innerHTML = '<span>0 projects</span>';
-      cloudProjectsTarget.innerHTML = '<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">No cloud projects yet</h3><p class="text-white/50 leading-[1.6]">Projects will appear here after Sténtor uploads their cloud manifest.</p></div>';
+      cloudSummaryTarget.innerHTML = `<span>0 ${t('cloud.projects')}</span>`;
+      cloudProjectsTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('cloud.noneTitle')}</h3><p class="text-white/50 leading-[1.6]">${t('cloud.noneBody')}</p></div>`;
       return;
     }
 
@@ -321,10 +385,10 @@ import Layout from "../layouts/Layout.astro";
     const conflictCount = projects.filter((project) => project.sync_status === 'conflict').length;
 
     cloudSummaryTarget.innerHTML = `
-      <span><strong>${projects.length}</strong> projects</span>
-      <span><strong>${formatBytes(totalBytes)}</strong> used</span>
-      <span><strong>${syncedCount}</strong> synced</span>
-      ${conflictCount ? `<span class="text-red-200"><strong>${conflictCount}</strong> conflicts</span>` : ''}
+      <span><strong>${projects.length}</strong> ${t('cloud.projects')}</span>
+      <span><strong>${formatBytes(totalBytes)}</strong> ${t('cloud.used')}</span>
+      <span><strong>${syncedCount}</strong> ${t('cloud.synced')}</span>
+      ${conflictCount ? `<span class="text-red-200"><strong>${conflictCount}</strong> ${t('cloud.conflicts')}</span>` : ''}
     `;
 
     cloudProjectsTarget.innerHTML = projects.map((project) => {
@@ -337,23 +401,23 @@ import Layout from "../layouts/Layout.astro";
         <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
           <div class="min-w-0">
             <div class="flex flex-wrap items-center gap-2 mb-2">
-              <h3 class="text-xl font-semibold tracking-[-0.035em] truncate">${escapeHtml(project.name || 'Untitled project')}</h3>
+              <h3 class="text-xl font-semibold tracking-[-0.035em] truncate">${escapeHtml(project.name || t('cloud.untitled'))}</h3>
               <span class="${syncStatusClass(project.sync_status)}">${escapeHtml(syncStatusLabel(project.sync_status))}</span>
             </div>
-            <p class="text-white/42 text-sm">${escapeHtml(project.organization_name || 'No organization')} · ${escapeHtml(project.provider || 'cloud')}</p>
+            <p class="text-white/42 text-sm">${escapeHtml(project.organization_name || t('cloud.noOrganization'))} · ${escapeHtml(project.provider || t('cloud.providerFallback'))}</p>
           </div>
           <div class="text-left lg:text-right">
-            <span class="account-label">Last sync</span>
+            <span class="account-label">${t('label.lastSync')}</span>
             <div class="text-white/70 text-sm">${formatDate(project.last_synced_at || project.updated_at)}</div>
           </div>
         </div>
         <div class="cloud-project-meta">
-          <div><span class="account-label">Size</span><div>${formatBytes(project.size_bytes)}</div></div>
-          <div><span class="account-label">Cues</span><div>${cueCount || '—'}</div></div>
-          <div><span class="account-label">Translations</span><div>${translationCount || '—'}</div></div>
-          <div><span class="account-label">Audio</span><div>${audioCount || '—'}</div></div>
-          <div><span class="account-label">Questionnaires</span><div>${questionnaireCount || '—'}</div></div>
-          <div><span class="account-label">Updated by</span><div>${escapeHtml(project.last_modified_by || '—')}</div></div>
+          <div><span class="account-label">${t('label.size')}</span><div>${formatBytes(project.size_bytes)}</div></div>
+          <div><span class="account-label">${t('label.cues')}</span><div>${cueCount || '—'}</div></div>
+          <div><span class="account-label">${t('label.translations')}</span><div>${translationCount || '—'}</div></div>
+          <div><span class="account-label">${t('label.audio')}</span><div>${audioCount || '—'}</div></div>
+          <div><span class="account-label">${t('label.questionnaires')}</span><div>${questionnaireCount || '—'}</div></div>
+          <div><span class="account-label">${t('label.updatedBy')}</span><div>${escapeHtml(project.last_modified_by || '—')}</div></div>
         </div>
       </article>`;
     }).join('');
@@ -384,14 +448,14 @@ import Layout from "../layouts/Layout.astro";
     const formData = new FormData(loginForm);
     const email = String(formData.get('email') || '').trim();
     const password = String(formData.get('password') || '');
-    if (!email) return showError('Enter your email.');
-    if (!password) return showError('Enter your password, or use the email link button.');
+    if (!email) return showError(t('form.enterEmail'));
+    if (!password) return showError(t('form.enterPassword'));
     try {
       const token = await signInWithPassword(email, password);
       await loadAccount(token);
     } catch (error) {
       showLogin();
-      showError(error instanceof Error ? error.message : 'Login failed.');
+      showError(error instanceof Error ? error.message : t('error.login'));
     }
   });
 
@@ -399,12 +463,12 @@ import Layout from "../layouts/Layout.astro";
     if (errorBox) errorBox.hidden = true;
     const formData = new FormData(loginForm);
     const email = String(formData.get('email') || '').trim();
-    if (!email) return showError('Enter your email.');
+    if (!email) return showError(t('form.enterEmail'));
     try {
       await sendMagicLink(email);
-      showError('Email link sent. Check your inbox, then return here.');
+      showError(t('magic.sent'));
     } catch (error) {
-      showError(error instanceof Error ? error.message : 'Email link failed.');
+      showError(error instanceof Error ? error.message : t('error.emailLink'));
     }
   });
 
@@ -415,7 +479,7 @@ import Layout from "../layouts/Layout.astro";
       try {
         startOAuth(oauthButton.getAttribute('data-account-oauth') || 'google');
       } catch (error) {
-        showError(error instanceof Error ? error.message : 'Provider login is not configured yet.');
+        showError(error instanceof Error ? error.message : t('error.provider'));
       }
       return;
     }
@@ -424,8 +488,8 @@ import Layout from "../layouts/Layout.astro";
     if (!button) return;
     const key = button.getAttribute('data-copy-access-code') || '';
     await navigator.clipboard.writeText(key);
-    button.textContent = 'Copied';
-    window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
+    button.textContent = t('label.copied');
+    window.setTimeout(() => { button.textContent = t('label.copy'); }, 1400);
   });
 
   logoutButton?.addEventListener('click', () => {
@@ -435,7 +499,7 @@ import Layout from "../layouts/Layout.astro";
 
   refreshButton?.addEventListener('click', async () => {
     const token = getStoredToken();
-    if (token) await loadAccount(token).catch((error) => showError(error instanceof Error ? error.message : 'Refresh failed.'));
+    if (token) await loadAccount(token).catch((error) => showError(error instanceof Error ? error.message : t('error.refresh')));
   });
 
   showLogin();
@@ -444,7 +508,7 @@ import Layout from "../layouts/Layout.astro";
     loadAccount(token).catch((error) => {
       localStorage.removeItem(storageKey);
       showLogin();
-      showError(error instanceof Error ? error.message : 'Session expired. Please sign in again.');
+      showError(error instanceof Error ? error.message : t('error.session'));
     });
   }
 </script>
