@@ -16,6 +16,13 @@ function getAccountType(formData: FormData) {
   return value === 'organization' ? 'organization' : 'individual';
 }
 
+function getFullName(formData: FormData) {
+  const firstName = getString(formData, 'first_name');
+  const lastName = getString(formData, 'last_name');
+  const fullName = [firstName, lastName].filter(Boolean).join(' ').trim();
+  return fullName || getString(formData, 'full_name');
+}
+
 function replaceNeutralFooterCopy() {
   const replacements = new Map([
     ['No card required', 'Manual review'],
@@ -98,6 +105,9 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
 
     const formData = new FormData(form);
     const accountType = getAccountType(formData);
+    const firstName = getString(formData, 'first_name');
+    const lastName = getString(formData, 'last_name');
+    const fullName = getFullName(formData);
     const requestedPlatforms = formData
       .getAll('platforms')
       .filter((value): value is string => typeof value === 'string' && value.length > 0);
@@ -107,7 +117,9 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
 
     const payload = {
       account_type: accountType,
-      full_name: getString(formData, 'full_name'),
+      first_name: firstName,
+      last_name: lastName,
+      full_name: fullName,
       email: getString(formData, 'email'),
       organization_name: accountType === 'organization' ? getString(formData, 'organization_name') : '',
       role: getString(formData, 'role'),
