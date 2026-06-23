@@ -186,6 +186,47 @@ const articleSchema =
 
     <script is:inline>
       (() => {
+        const labels = {
+          en: "Manage account",
+          it: "Gestisci account",
+          fr: "Gérer le compte",
+          es: "Gestionar cuenta",
+          de: "Konto verwalten",
+        };
+
+        function locale() {
+          const pathLocale = window.location.pathname.split("/").filter(Boolean)[0];
+          if (["it", "fr", "es", "de"].includes(pathLocale)) return pathLocale;
+          const browserLocale = (navigator.languages?.[0] || navigator.language || "en").toLowerCase().split("-")[0];
+          return ["it", "fr", "es", "de"].includes(browserLocale) ? browserLocale : "en";
+        }
+
+        function initAccountManageLink() {
+          if (!/^\/(it\/|fr\/|es\/|de\/)?account\/?$/.test(window.location.pathname)) return;
+          const logoutButton = document.querySelector("[data-account-logout]");
+          if (!logoutButton || document.querySelector("[data-account-manage-link]")) return;
+          const link = document.createElement("a");
+          link.href = "/account/manage";
+          link.dataset.accountManageLink = "";
+          link.hidden = logoutButton.hidden;
+          link.className = "inline-flex items-center justify-center h-10 px-4 rounded-xl border border-red-400/30 bg-red-500/10 text-sm text-red-100 hover:text-white hover:bg-red-500/16 transition-colors";
+          link.textContent = labels[locale()] || labels.en;
+          logoutButton.parentElement?.insertBefore(link, logoutButton);
+
+          const observer = new MutationObserver(() => {
+            link.hidden = logoutButton.hidden;
+          });
+          observer.observe(logoutButton, { attributes: true, attributeFilter: ["hidden"] });
+        }
+
+        document.addEventListener("astro:page-load", initAccountManageLink);
+        document.addEventListener("astro:after-swap", initAccountManageLink);
+        initAccountManageLink();
+      })();
+    </script>
+
+    <script is:inline>
+      (() => {
         function init() {
           const els = document.querySelectorAll("[data-animate]:not(.is-in)");
           if (!els.length) return;
