@@ -9,40 +9,44 @@ import Layout from "../layouts/Layout.astro";
   showNav={false}
   showFooter={false}
 >
-  <section class="min-h-screen bg-black text-white relative overflow-hidden">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.22)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute right-[-18%] top-[-18%] w-[560px] h-[560px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <section class="min-h-screen text-white relative overflow-hidden request-access-page">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.24)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[560px] h-[560px] rounded-full bg-red-500/14 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
     <header class="relative max-w-[1120px] mx-auto px-5 md:px-8 py-7 flex items-center justify-between">
-      <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors" aria-label="Sténtor home"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-white/45 text-sm">Access</span></a>
-      <a href="/" class="inline-flex items-center gap-2 text-sm text-white/55 hover:text-white transition-colors"><span aria-hidden="true">←</span> Back to site</a>
+      <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors" aria-label="Sténtor home"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-white/55 text-sm">Access</span></a>
+      <a href="/" class="inline-flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors"><span aria-hidden="true">←</span> Back to site</a>
     </header>
 
     <main class="relative max-w-[1120px] mx-auto px-5 md:px-8 pt-10 pb-20">
-      <div class="mb-10 max-w-[680px]">
+      <div class="mb-10 max-w-[720px]">
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-4">Access request</p>
-        <h1 class="text-5xl sm:text-6xl lg:text-[72px] leading-[0.96] tracking-[-0.06em] font-semibold max-w-[680px]">Request Sténtor access.</h1>
-        <p class="text-white/55 text-lg leading-[1.55] mt-6 max-w-[600px]">Tell us whether you will use Sténtor individually or for an organization. Access is reviewed manually before downloads and access codes are enabled.</p>
-        <p class="text-white/45 mt-4">Already have an access code? <a href="/account" class="text-red-400 underline underline-offset-4 hover:text-red-300">Sign in →</a></p>
+        <h1 class="text-5xl sm:text-6xl lg:text-[72px] leading-[0.96] tracking-[-0.06em] font-semibold max-w-[720px]">Request Sténtor access.</h1>
+        <p class="text-white/68 text-lg leading-[1.55] mt-6 max-w-[640px]">Tell us whether you will use Sténtor individually or for an organization. Access is reviewed manually before downloads and access codes are enabled.</p>
+        <p class="text-white/58 mt-4">Already have an access code? <a href="/account" class="text-red-300 underline underline-offset-4 hover:text-red-200">Sign in →</a></p>
       </div>
 
-      <div id="request-form" class="scroll-mt-8 rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden shadow-2xl shadow-red-950/10">
-        <div data-beta-success hidden class="p-8 sm:p-10 text-center"><div class="mx-auto w-12 h-12 rounded-full bg-green-400/10 border border-green-400/25 flex items-center justify-center text-green-300 mb-5">✓</div><h2 class="text-2xl font-semibold tracking-[-0.03em] mb-3">Access request saved</h2><p class="text-white/55 leading-[1.6] max-w-[460px] mx-auto">Your request is now in the Sténtor access queue. When approved, your Account will show your access code, downloads and activation details.</p><a href="/" class="inline-flex items-center justify-center mt-7 h-11 px-5 rounded-lg border border-white/10 text-sm text-white/75 hover:text-white hover:bg-white/[0.06] transition-colors">Back to site</a></div>
+      <div id="request-form" class="scroll-mt-8 rounded-2xl border border-white/16 bg-white/[0.075] backdrop-blur-sm overflow-hidden shadow-2xl shadow-red-950/10">
+        <div data-beta-success hidden class="p-8 sm:p-10 text-center"><div class="mx-auto w-12 h-12 rounded-full bg-green-400/10 border border-green-400/25 flex items-center justify-center text-green-300 mb-5">✓</div><h2 class="text-2xl font-semibold tracking-[-0.03em] mb-3">Access request saved</h2><p class="text-white/65 leading-[1.6] max-w-[460px] mx-auto">Your request is now in the Sténtor access queue. When approved, your Account will show your access code, downloads and activation details.</p><a href="/" class="inline-flex items-center justify-center mt-7 h-11 px-5 rounded-lg border border-white/14 text-sm text-white/80 hover:text-white hover:bg-white/[0.08] transition-colors">Back to site</a></div>
         <form data-beta-form class="p-6 sm:p-8 grid gap-5" novalidate>
-          <fieldset class="grid gap-3"><legend class="auth-label">How will you use Sténtor?</legend><div class="grid sm:grid-cols-2 gap-3"><label class="account-type-option"><input type="radio" name="account_type" value="individual" class="accent-red-500" checked /><span><strong>Individual</strong><small>I use Sténtor on my own.</small></span></label><label class="account-type-option"><input type="radio" name="account_type" value="organization" class="accent-red-500" /><span><strong>Organization</strong><small>I represent a theatre, company, festival, school, university or team.</small></span></label></div></fieldset>
+          <fieldset class="grid gap-3 form-full"><legend class="auth-label">How will you use Sténtor?</legend><div class="grid sm:grid-cols-2 gap-4"><label class="account-type-option"><input type="radio" name="account_type" value="individual" class="accent-red-500" checked /><span><strong>Individual</strong><small>I use Sténtor on my own.</small></span></label><label class="account-type-option"><input type="radio" name="account_type" value="organization" class="accent-red-500" /><span><strong>Organization</strong><small>I represent a theatre, company, festival, school, university or team.</small></span></label></div></fieldset>
+
           <div><label class="auth-label" for="name">Full name</label><input id="name" name="full_name" required type="text" class="auth-input" placeholder="Ada Lovelace" autocomplete="name" /></div>
           <div><label class="auth-label" for="email">Work email</label><input id="email" name="email" required type="email" class="auth-input" placeholder="name@theatre.org" autocomplete="email" /></div>
-          <div class="grid sm:grid-cols-2 gap-5"><div data-organization-only><label class="auth-label" for="organization">Organization</label><input id="organization" name="organization_name" type="text" class="auth-input" placeholder="Theatre, company, festival" autocomplete="organization" /></div><div><label class="auth-label" for="role">Role</label><input id="role" name="role" type="text" class="auth-input" placeholder="Direction, production, accessibility" /></div></div>
-          <div class="grid sm:grid-cols-2 gap-5"><div><label class="auth-label" for="country">Country</label><input id="country" name="country" type="text" class="auth-input" placeholder="Italy" /></div><div data-organization-only><label class="auth-label" for="seats">Users</label><input id="seats" name="requested_seats" type="number" min="1" value="1" class="auth-input" /></div></div>
-          <fieldset class="grid gap-2"><legend class="auth-label">Platforms</legend><div class="flex flex-wrap gap-3 text-sm text-white/60"><label class="inline-flex items-center gap-2"><input type="checkbox" name="platforms" value="macos" checked class="accent-red-500" /> macOS</label><label class="inline-flex items-center gap-2"><input type="checkbox" name="platforms" value="windows" class="accent-red-500" /> Windows</label><label class="inline-flex items-center gap-2"><input type="checkbox" name="platforms" value="linux" class="accent-red-500" /> Linux</label></div></fieldset>
-          <div><label class="auth-label" for="expected_use">Expected use</label><input id="expected_use" name="expected_use" type="text" class="auth-input" placeholder="Rehearsal, festival, accessibility project..." /></div>
-          <div><label class="auth-label" for="message">How would you like to use Sténtor?</label><textarea id="message" name="message" rows="4" class="auth-input auth-textarea" placeholder="Tell us about the production, access needs and setup you need."></textarea></div>
-          <p data-beta-error hidden class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
-          <label class="flex gap-3 items-start text-sm text-white/55 leading-[1.5]"><input type="checkbox" required class="mt-0.5 w-4 h-4 rounded border-white/15 bg-white/5 accent-red-500" /><span>I accept the <a href="/terms" class="text-white underline underline-offset-4 hover:text-red-300">Terms</a> and <a href="/privacy" class="text-white underline underline-offset-4 hover:text-red-300">Privacy Policy</a>.</span></label>
-          <button type="submit" data-loading-label="Saving request..." class="h-14 rounded-xl bg-red-500 text-black font-semibold text-[15px] shadow-[0_0_40px_rgba(239,68,68,0.18)] hover:bg-red-400 transition-colors disabled:opacity-60">Request access →</button>
+          <div data-organization-only><label class="auth-label" for="organization">Organization</label><input id="organization" name="organization_name" type="text" class="auth-input" placeholder="Theatre, company, festival" autocomplete="organization" /></div>
+          <div><label class="auth-label" for="role">Role</label><input id="role" name="role" type="text" class="auth-input" placeholder="Direction, production, accessibility" /></div>
+          <div><label class="auth-label" for="country">Country</label><input id="country" name="country" type="text" class="auth-input" placeholder="Italy" /></div>
+          <div data-organization-only><label class="auth-label" for="seats">Users</label><input id="seats" name="requested_seats" type="number" min="1" value="1" class="auth-input" /></div>
+
+          <fieldset class="grid gap-2 form-full"><legend class="auth-label">Platforms</legend><div class="flex flex-wrap gap-4 text-sm text-white/68"><label class="inline-flex items-center gap-2"><input type="checkbox" name="platforms" value="macos" checked class="accent-red-500" /> macOS</label><label class="inline-flex items-center gap-2"><input type="checkbox" name="platforms" value="windows" class="accent-red-500" /> Windows</label><label class="inline-flex items-center gap-2"><input type="checkbox" name="platforms" value="linux" class="accent-red-500" /> Linux</label></div></fieldset>
+          <div class="form-full"><label class="auth-label" for="expected_use">Expected use</label><input id="expected_use" name="expected_use" type="text" class="auth-input" placeholder="Rehearsal, festival, accessibility project..." /></div>
+          <div class="form-full"><label class="auth-label" for="message">How would you like to use Sténtor?</label><textarea id="message" name="message" rows="4" class="auth-input auth-textarea" placeholder="Tell us about the production, access needs and setup you need."></textarea></div>
+          <p data-beta-error hidden class="form-full rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+          <label class="form-full flex gap-3 items-start text-sm text-white/65 leading-[1.5]"><input type="checkbox" required class="mt-0.5 w-4 h-4 rounded border-white/20 bg-white/5 accent-red-500" /><span>I accept the <a href="/terms" class="text-white underline underline-offset-4 hover:text-red-300">Terms</a> and <a href="/privacy" class="text-white underline underline-offset-4 hover:text-red-300">Privacy Policy</a>.</span></label>
+          <button type="submit" data-loading-label="Saving request..." class="form-full h-14 rounded-xl bg-red-500 text-black font-semibold text-[15px] shadow-[0_0_40px_rgba(239,68,68,0.20)] hover:bg-red-400 transition-colors disabled:opacity-60">Request access →</button>
         </form>
       </div>
-      <ul class="grid sm:grid-cols-3 gap-3 mt-7 text-white/45 text-sm"><li class="flex gap-2"><span class="text-green-400">✓</span> No card required</li><li class="flex gap-2"><span class="text-green-400">✓</span> Access code on approval</li><li class="flex gap-2"><span class="text-green-400">✓</span> Built for live performance</li></ul>
+      <ul class="grid sm:grid-cols-3 gap-3 mt-7 text-white/55 text-sm"><li class="flex gap-2"><span class="text-green-400">✓</span> Manual review</li><li class="flex gap-2"><span class="text-green-400">✓</span> Access code on approval</li><li class="flex gap-2"><span class="text-green-400">✓</span> Built for live performance</li></ul>
     </main>
   </section>
 </Layout>
@@ -54,23 +58,19 @@ import Layout from "../layouts/Layout.astro";
 
 <style>
   @reference "../styles/global.css";
-  .auth-label { @apply block text-[13px] font-medium text-white/62 mb-2; }
-  .auth-input { @apply w-full h-12 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
-  .auth-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
-  .auth-input::placeholder { color: rgba(255,255,255,0.34); }
+  .request-access-page { background: radial-gradient(circle at 82% 0%, rgba(239, 68, 68, 0.13), transparent 34%), linear-gradient(180deg, #0d0d0d 0%, #080808 100%); }
+  .auth-label { @apply block text-[13px] font-medium text-white/72 mb-2; }
+  .auth-input { @apply w-full h-12 rounded-xl border border-white/14 bg-white/[0.045] text-white outline-none transition-all text-[15px]; padding: 0 16px; }
+  .auth-input:focus { border-color: rgba(239, 68, 68, 0.58); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
+  .auth-input::placeholder { color: rgba(255,255,255,0.42); }
   .auth-textarea { height: auto; padding-top: 14px; padding-bottom: 14px; resize: none; }
-  .account-type-option { @apply min-h-24 rounded-xl border border-white/10 bg-black/25 p-4 flex items-start gap-3 cursor-pointer hover:border-red-400/35 hover:bg-white/[0.06] transition-colors; }
+  .account-type-option { @apply min-h-24 rounded-xl border border-white/14 bg-black/20 p-4 flex items-start gap-3 cursor-pointer hover:border-red-400/35 hover:bg-white/[0.07] transition-colors; }
   .account-type-option input { margin-top: 3px; }
   .account-type-option span { @apply grid gap-1; }
   .account-type-option strong { @apply text-white font-semibold; }
-  .account-type-option small { @apply text-white/58 leading-[1.45] text-sm; }
+  .account-type-option small { @apply text-white/68 leading-[1.45] text-sm; }
   @media (min-width: 980px) {
-    #request-form form[data-beta-form] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    #request-form form[data-beta-form] > fieldset,
-    #request-form form[data-beta-form] > div:has(textarea),
-    #request-form form[data-beta-form] > [data-beta-error],
-    #request-form form[data-beta-form] > label,
-    #request-form form[data-beta-form] > button { grid-column: 1 / -1; }
-    #request-form form[data-beta-form] > div:has([data-organization-only]) { grid-column: 1 / -1; }
+    #request-form form[data-beta-form] { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; row-gap: 22px; }
+    #request-form form[data-beta-form] > .form-full { grid-column: 1 / -1; }
   }
 </style>
