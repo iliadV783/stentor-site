@@ -70,6 +70,28 @@ function updateOrganizationFields(form: HTMLFormElement) {
   }
 }
 
+function validationMessage(form: HTMLFormElement, formData: FormData) {
+  const accountType = getAccountType(formData);
+  const fullName = getFullName(formData);
+  const email = getString(formData, 'email');
+  const country = getString(formData, 'country');
+  const organizationName = getString(formData, 'organization_name');
+  const requestedPlatforms = formData
+    .getAll('platforms')
+    .filter((value): value is string => typeof value === 'string' && value.length > 0);
+  const termsAccepted = Boolean(form.querySelector<HTMLInputElement>('input[type="checkbox"][required]')?.checked);
+
+  if (!fullName || !email || !country) return 'Please complete first name, last name, e-mail and country.';
+  if (accountType === 'organization' && !organizationName) return 'Please complete organization name.';
+  if (accountType === 'organization') {
+    const requestedSeatsRaw = Number(getString(formData, 'requested_seats'));
+    if (!Number.isFinite(requestedSeatsRaw) || requestedSeatsRaw < 1) return 'Please enter the expected number of users.';
+  }
+  if (!requestedPlatforms.length) return 'Please select at least one platform.';
+  if (!termsAccepted) return 'Please accept the Terms and Privacy Policy.';
+  return '';
+}
+
 export function setupBetaRequestForm(options: BetaRequestOptions) {
   const form = document.querySelector<HTMLFormElement>(options.formSelector);
   const success = document.querySelector<HTMLElement>(options.successSelector);
@@ -98,12 +120,19 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
 
     const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const previousLabel = submitButton?.textContent ?? '';
+    const formData = new FormData(form);
+    const errorMessage = validationMessage(form, formData);
+    if (errorMessage) {
+      errorBox.textContent = errorMessage;
+      errorBox.hidden = false;
+      return;
+    }
+
     if (submitButton) {
       submitButton.disabled = true;
       submitButton.textContent = submitButton.dataset.loadingLabel || 'Sending...';
     }
 
-    const formData = new FormData(form);
     const accountType = getAccountType(formData);
     const firstName = getString(formData, 'first_name');
     const lastName = getString(formData, 'last_name');
@@ -125,22 +154,10 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
       role: getString(formData, 'role'),
       country: getString(formData, 'country'),
       expected_use: getString(formData, 'expected_use'),
-      requested_platforms: requestedPlatforms.length ? requestedPlatforms : ['macos', 'windows', 'linux'],
+      requested_platforms: requestedPlatforms,
       requested_seats: requestedSeats,
       message: getString(formData, 'message'),
     };
-
-    if (!payload.full_name || !payload.email || (accountType === 'organization' && !payload.organization_name)) {
-      errorBox.textContent = accountType === 'organization'
-        ? 'Please complete name, email and organization.'
-        : 'Please complete name and email.';
-      errorBox.hidden = false;
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = previousLabel;
-      }
-      return;
-    }
 
     try {
       await insertSupabaseRow('beta' + '_requests', payload);
