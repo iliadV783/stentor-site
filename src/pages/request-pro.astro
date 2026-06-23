@@ -18,8 +18,8 @@ import Layout from "../layouts/Layout.astro";
       <a href="/" class="inline-flex items-center gap-2 text-sm text-white/55 hover:text-white transition-colors"><span aria-hidden="true">←</span> Back to site</a>
     </header>
 
-    <main class="relative max-w-[760px] mx-auto px-5 md:px-8 pt-10 pb-20">
-      <div class="mb-10">
+    <main class="relative max-w-[1120px] mx-auto px-5 md:px-8 pt-10 pb-20">
+      <div class="mb-10 max-w-[680px]">
         <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-4">Access request</p>
         <h1 class="text-5xl sm:text-6xl lg:text-[72px] leading-[0.96] tracking-[-0.06em] font-semibold max-w-[680px]">Request Sténtor access.</h1>
         <p class="text-white/55 text-lg leading-[1.55] mt-6 max-w-[600px]">Tell us whether you will use Sténtor individually or for an organization. Access is reviewed manually before downloads and access codes are enabled.</p>
@@ -64,4 +64,13 @@ import Layout from "../layouts/Layout.astro";
   .account-type-option span { @apply grid gap-1; }
   .account-type-option strong { @apply text-white font-semibold; }
   .account-type-option small { @apply text-white/58 leading-[1.45] text-sm; }
+  @media (min-width: 980px) {
+    #request-form form[data-beta-form] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #request-form form[data-beta-form] > fieldset,
+    #request-form form[data-beta-form] > div:has(textarea),
+    #request-form form[data-beta-form] > [data-beta-error],
+    #request-form form[data-beta-form] > label,
+    #request-form form[data-beta-form] > button { grid-column: 1 / -1; }
+    #request-form form[data-beta-form] > div:has([data-organization-only]) { grid-column: 1 / -1; }
+  }
 </style>
