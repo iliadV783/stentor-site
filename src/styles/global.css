@@ -262,3 +262,37 @@
   color: rgba(255, 255, 255, 0.70) !important;
   border-color: rgba(255, 255, 255, 0.16) !important;
 }
+
+/* Access request form readability. */
+#request-form .auth-label {
+  font-size: 16px !important;
+  line-height: 1.35 !important;
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+#request-form .auth-input {
+  min-height: 58px !important;
+  font-size: 18px !important;
+  line-height: 1.45 !important;
+}
+#request-form .auth-textarea {
+  min-height: 148px !important;
+  font-size: 18px !important;
+}
+#request-form .account-type-option strong {
+  font-size: 21px !important;
+  line-height: 1.25 !important;
+}
+#request-form .account-type-option small {
+  font-size: 17px !important;
+  line-height: 1.45 !important;
+  color: rgba(255, 255, 255, 0.70) !important;
+}
+#request-form label,
+#request-form .text-sm {
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+#request-form button[type="submit"] {
+  font-size: 17px !important;
+  min-height: 62px !important;
+}
