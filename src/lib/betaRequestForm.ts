@@ -11,12 +11,40 @@ function getString(formData: FormData, key: string) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+function getAccountType(formData: FormData) {
+  const value = getString(formData, 'account_type');
+  return value === 'organization' ? 'organization' : 'individual';
+}
+
+function updateOrganizationFields(form: HTMLFormElement) {
+  const formData = new FormData(form);
+  const accountType = getAccountType(formData);
+  const organizationFields = form.querySelectorAll<HTMLElement>('[data-organization-only]');
+  const organizationInput = form.querySelector<HTMLInputElement>('[name="organization_name"]');
+  const seatsInput = form.querySelector<HTMLInputElement>('[name="requested_seats"]');
+
+  organizationFields.forEach((field) => {
+    field.hidden = accountType !== 'organization';
+  });
+
+  if (organizationInput) organizationInput.required = accountType === 'organization';
+  if (seatsInput) {
+    seatsInput.required = accountType === 'organization';
+    if (accountType === 'individual') seatsInput.value = '1';
+  }
+}
+
 export function setupBetaRequestForm(options: BetaRequestOptions) {
   const form = document.querySelector<HTMLFormElement>(options.formSelector);
   const success = document.querySelector<HTMLElement>(options.successSelector);
   const errorBox = document.querySelector<HTMLElement>(options.errorSelector);
 
   if (!form || !success || !errorBox) return;
+
+  updateOrganizationFields(form);
+  form.querySelectorAll<HTMLInputElement>('[name="account_type"]').forEach((input) => {
+    input.addEventListener('change', () => updateOrganizationFields(form));
+  });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -37,17 +65,19 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
     }
 
     const formData = new FormData(form);
+    const accountType = getAccountType(formData);
     const requestedPlatforms = formData
       .getAll('platforms')
       .filter((value): value is string => typeof value === 'string' && value.length > 0);
 
     const requestedSeatsRaw = Number(getString(formData, 'requested_seats'));
-    const requestedSeats = Number.isFinite(requestedSeatsRaw) && requestedSeatsRaw > 0 ? requestedSeatsRaw : 1;
+    const requestedSeats = accountType === 'organization' && Number.isFinite(requestedSeatsRaw) && requestedSeatsRaw > 0 ? requestedSeatsRaw : 1;
 
     const payload = {
+      account_type: accountType,
       full_name: getString(formData, 'full_name'),
       email: getString(formData, 'email'),
-      organization_name: getString(formData, 'organization_name'),
+      organization_name: accountType === 'organization' ? getString(formData, 'organization_name') : '',
       role: getString(formData, 'role'),
       country: getString(formData, 'country'),
       expected_use: getString(formData, 'expected_use'),
@@ -56,8 +86,10 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
       message: getString(formData, 'message'),
     };
 
-    if (!payload.full_name || !payload.email || !payload.organization_name) {
-      errorBox.textContent = 'Please complete name, email and organization.';
+    if (!payload.full_name || !payload.email || (accountType === 'organization' && !payload.organization_name)) {
+      errorBox.textContent = accountType === 'organization'
+        ? 'Please complete name, email and organization.'
+        : 'Please complete name and email.';
       errorBox.hidden = false;
       if (submitButton) {
         submitButton.disabled = false;
