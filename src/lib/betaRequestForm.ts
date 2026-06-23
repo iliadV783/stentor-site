@@ -16,6 +16,24 @@ function getAccountType(formData: FormData) {
   return value === 'organization' ? 'organization' : 'individual';
 }
 
+function replaceNeutralFooterCopy() {
+  const replacements = new Map([
+    ['No card required', 'Manual review'],
+    ['Nessuna carta richiesta', 'Revisione manuale'],
+    ['Aucune carte requise', 'Examen manuel'],
+  ]);
+
+  document.querySelectorAll('li').forEach((item) => {
+    const current = item.textContent?.replace('✓', '').trim() || '';
+    const replacement = replacements.get(current);
+    if (!replacement) return;
+    const marker = item.querySelector('span');
+    item.innerHTML = '';
+    if (marker) item.appendChild(marker);
+    item.append(` ${replacement}`);
+  });
+}
+
 function updateOrganizationFields(form: HTMLFormElement) {
   const formData = new FormData(form);
   const accountType = getAccountType(formData);
@@ -26,8 +44,10 @@ function updateOrganizationFields(form: HTMLFormElement) {
   form.dataset.accountType = accountType;
 
   organizationFields.forEach((field) => {
-    field.hidden = accountType !== 'organization';
-    field.setAttribute('aria-hidden', accountType !== 'organization' ? 'true' : 'false');
+    const hidden = accountType !== 'organization';
+    field.hidden = hidden;
+    field.style.display = hidden ? 'none' : '';
+    field.setAttribute('aria-hidden', hidden ? 'true' : 'false');
   });
 
   if (organizationInput) {
@@ -47,6 +67,8 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
   const form = document.querySelector<HTMLFormElement>(options.formSelector);
   const success = document.querySelector<HTMLElement>(options.successSelector);
   const errorBox = document.querySelector<HTMLElement>(options.errorSelector);
+
+  replaceNeutralFooterCopy();
 
   if (!form || !success || !errorBox) return;
 
