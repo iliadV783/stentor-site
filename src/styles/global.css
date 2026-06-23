@@ -214,3 +214,51 @@
 .iso-red-fill { fill: #f87171; }
 .iso-line { stroke: rgba(255, 255, 255, 0.2); }
 .iso-dim { stroke: rgba(255, 255, 255, 0.12); }
+
+/* Account dashboard contrast tuning.
+   The account page is operational rather than promotional: secondary text and
+   metadata must remain readable on the black shell, especially for license and
+   cloud status review. */
+[data-account-app] .text-white\/35,
+[data-account-login] .text-white\/35 { color: rgba(255, 255, 255, 0.58) !important; }
+[data-account-app] .text-white\/38,
+[data-account-login] .text-white\/38 { color: rgba(255, 255, 255, 0.64) !important; }
+[data-account-app] .text-white\/42,
+[data-account-login] .text-white\/42 { color: rgba(255, 255, 255, 0.66) !important; }
+[data-account-app] .text-white\/45,
+[data-account-login] .text-white\/45 { color: rgba(255, 255, 255, 0.66) !important; }
+[data-account-app] .text-white\/50,
+[data-account-login] .text-white\/50 { color: rgba(255, 255, 255, 0.72) !important; }
+[data-account-app] .text-white\/52,
+[data-account-login] .text-white\/52 { color: rgba(255, 255, 255, 0.72) !important; }
+[data-account-app] .text-white\/55,
+[data-account-login] .text-white\/55 { color: rgba(255, 255, 255, 0.72) !important; }
+[data-account-app] .text-white\/65,
+[data-account-login] .text-white\/65 { color: rgba(255, 255, 255, 0.82) !important; }
+
+.account-card,
+.download-card,
+.cloud-project-card {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+}
+.account-label {
+  color: rgba(255, 255, 255, 0.52) !important;
+  letter-spacing: 0.14em;
+}
+.account-access-code {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+.download-card strong,
+.cloud-project-card h3 {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+.download-card span,
+.download-card em,
+.cloud-summary {
+  color: rgba(255, 255, 255, 0.66) !important;
+}
+.account-copy {
+  color: rgba(255, 255, 255, 0.70) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
