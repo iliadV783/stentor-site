@@ -5,19 +5,19 @@
  */
 
 export const hero = {
-  eyebrow: "Update v0.1.74 · Live audio description",
+  eyebrow: "Free desktop app · No subscription required",
   title:
-    'Surtitles, translation <em class="not-italic text-text-3 font-medium">and audio description.</em><br class="hidden sm:inline" /> Live.',
+    'Free live-text software <em class="not-italic text-text-3 font-medium">for performance.</em><br class="hidden sm:inline" />',
   description:
-    "A control-room environment for preparing texts, coordinating languages and audio descriptions, synchronizing screens and audience devices, collecting questionnaires and working in the cloud during rehearsals and performances.",
+    "Prepare, translate and cue surtitles, captions, audio description and audience-phone text from one native desktop app for rehearsals and live performance.",
   ctas: [
     { href: "/download", label: "Download Sténtor", variant: "primary" as const },
     { href: "/account", label: "Account", variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Desktop app for macOS, Windows and Linux", live: true },
-    { label: "Account area" },
-    { label: "Surtitles · translation · audio description · viewers on phones" },
+    { label: "Free to use", live: true },
+    { label: "Native desktop app for macOS, Windows and Linux" },
+    { label: "Surtitles · translations · audio description · audience phones" },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Live rehearsal · local network" },
@@ -51,33 +51,33 @@ export const hero = {
 };
 
 export const logoCloud = {
-  label: "ONE LIVE-PERFORMANCE TEXT ENVIRONMENT",
+  label: "FREE LIVE-PERFORMANCE TEXT ENVIRONMENT",
   bigNumber: "3 OS",
   logos: [
     { name: "Sténtor", glyph: "rounded-full" },
-    { name: "Account", glyph: "rotate-45" },
+    { name: "Free", glyph: "rotate-45" },
     { name: "macOS", glyph: "" },
     { name: "Windows", glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]" },
     { name: "Linux", glyph: "rounded" },
-    { name: "Viewer phones", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
+    { name: "Audience phones", glyph: "rounded-full border-2 border-zinc-300 bg-transparent" },
   ],
 };
 
 export const metrics = {
   title: "Built for<br/>live performance.",
   description:
-    "Sténtor keeps the performance text organized from preparation to live cueing, with a focused workflow for screens, viewer phones, timelines and accessibility materials.",
+    "Sténtor keeps performance text organized from preparation to live cueing, with a focused workflow for screens, audience phones, timelines and audio-description materials.",
   items: [
+    { value: "Free", suffix: "", label: "Core desktop app with no subscription" },
     { value: "Desktop", suffix: "", label: "For macOS, Windows and Linux" },
-    { value: "5", suffix: "", label: "Site languages; app designed for a broader multilingual interface" },
-    { value: "Live Sync", suffix: "", label: "For screens and viewer phones" },
+    { value: "Live Sync", suffix: "", label: "For screens and audience phones" },
   ],
 };
 
 export const bento = {
   title: "One Sténtor.<br/>One live workflow.",
   description:
-    "Prepare scripts, structure translations, operate surtitles, control viewer access and keep accessibility materials together in a dedicated live-performance environment.",
+    "Prepare scripts, structure translations, operate surtitles, control audience access and keep audio-description materials together in a dedicated live-performance environment.",
   cards: {
     types: {
       title: "Start from the script",
@@ -85,15 +85,15 @@ export const bento = {
     },
     p95: {
       title: "Sténtor: live control room",
-      desc: "A focused app for cueing, timeline, screens, viewer phones and audio-description workflows across desktop platforms.",
+      desc: "A focused app for cueing, timeline, screens, audience phones and audio-description workflows across desktop platforms.",
     },
     edge: {
       title: "Viewers on phones",
       desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
     },
     auth: {
-      title: "Site in 5 languages",
-      desc: "The website is available in Italian, English, French, Spanish and German. The Sténtor app is designed for a broader multilingual interface.",
+      title: "Free desktop workflow",
+      desc: "The core Sténtor desktop app is free to download and use. No monthly subscription is required for preparation and live operation.",
     },
     cron: {
       title: "Import, export, circulate",
@@ -128,20 +128,20 @@ export const testimonials = {
       role: "Operator view · access code",
     },
     {
-      text: "Field notes from rehearsals, audiences and operators help us design better tools for live performance.",
+      text: "Free software lowers the threshold for theatres, schools, festivals and independent companies to test live text in real conditions.",
       av: "03",
-      name: "Improve the research",
-      role: "Feedback · product",
+      name: "Keep it open to use",
+      role: "Free app · live testing",
     },
   ],
 };
 
 const downloadFeatures = [
-  "Desktop app for macOS, Windows and Linux",
+  "Free desktop app for macOS, Windows and Linux",
+  "No monthly subscription for core desktop use",
   "Script preparation, surtitles and translations",
   "Timeline, cueing and live operator view",
-  "Screens and viewer-phone workflows",
-  "Audio description and accessibility tools",
+  "Screens, audience phones and audio description",
 ];
 
 const accountFeatures = [
@@ -161,15 +161,15 @@ const institutionFeatures = [
 ];
 
 export const pricingPreview = {
-  title: "Download Sténtor.<br/>Open your Account.",
+  title: "Free to download.<br/>Ready for live text.",
   comparisonLink: { href: "/download", label: "Open downloads →" },
   plans: [
     {
       name: "Sténtor",
-      tag: "Download",
-      price: "Desktop",
-      cycle: "/app",
-      tagline: "Install the app for preparing scripts, translations, surtitles and accessibility materials.",
+      tag: "Free",
+      price: "Free",
+      cycle: "/desktop",
+      tagline: "Install the app for preparing scripts, translations, surtitles, audio description and audience-phone text.",
       features: downloadFeatures,
       cta: { href: "/download", label: "Download Sténtor", variant: "ghost" as const },
       highlighted: false,
@@ -190,7 +190,7 @@ export const pricingPreview = {
       tag: "Setup",
       price: "Live",
       cycle: "/venues",
-      tagline: "Prepare screens, phones and accessibility workflows for real rehearsal rooms.",
+      tagline: "Prepare screens, phones and live-text workflows for real rehearsal rooms.",
       features: institutionFeatures,
       cta: { href: "/contact", label: "Talk to us", variant: "ghost" as const },
       highlighted: false,
@@ -202,8 +202,8 @@ export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "Sténtor · Account",
-  title: "Prepare the text. Go live with confidence.",
+  eyebrow: "Sténtor · Free desktop app",
+  title: "Prepare the text. Go live without a subscription.",
   body: "Download Sténtor to begin on macOS, Windows or Linux. Use the Account area when you need your access code and enabled builds.",
   ctas: [
     { href: "/download", label: "Download Sténtor", variant: "primary" as const },
