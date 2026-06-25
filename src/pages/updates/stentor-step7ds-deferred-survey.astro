@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Eyebrow from "../../components/Eyebrow.astro";
+import Btn from "../../components/Btn.astro";
+---
+
+<Layout
+  title="Sténtor step7ds: deferred audience survey - Sténtor"
+  description="Sténtor step7ds introduces the first app-side foundation for audience questionnaires that remain available after the performance."
+  active={null}
+  ogType="article"
+  publishedTime="2026-06-25T00:00:00+01:00"
+  author="Sténtor"
+>
+  <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.28)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="max-w-[860px]">
+        <Eyebrow><span class="font-mono">UPDATE · 25 JUNE 2026</span></Eyebrow>
+        <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.05em] font-semibold mt-5 mb-4">Deferred audience survey.</h1>
+        <p class="text-lg leading-[1.55] text-text-2 max-w-[780px] m-0">The step7ds build introduces the first Sténtor foundation for letting spectators complete a questionnaire not only immediately after the performance, but also in the following days.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[1280px] mx-auto px-4 md:px-8 py-16">
+    <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-5 items-start">
+      <article class="relative overflow-hidden border border-red-500/25 rounded-2xl bg-surface p-7 md:p-8 shadow-[0_0_80px_rgba(239,68,68,0.07)]">
+        <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-red-500 mb-4">Step7ds · Deferred survey link</p>
+        <h2 class="text-3xl font-semibold tracking-[-0.04em] mb-4">What changes in the app</h2>
+        <p class="text-text-3 leading-[1.65] mb-6">In the Audience settings, the operator can enable deferred survey access, set a public questionnaire link, define how many days it remains available and show a dedicated message on the local public screen.</p>
+        <ul class="grid gap-3 text-[14px] text-text-2 mb-7">
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Option to complete the questionnaire after the performance.</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Survey link saved with the project.</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Configurable availability window.</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Public message shown to spectators.</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Deferred-survey data included in the local JSON state.</li>
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <Btn href="/download" variant="primary" size="lg">Download via Account <span aria-hidden="true">→</span></Btn>
+          <Btn href="/privacy" variant="ghost" size="lg">Privacy</Btn>
+        </div>
+      </article>
+
+      <aside class="grid gap-5">
+        <article class="border border-hairline rounded-2xl bg-surface p-7 md:p-8">
+          <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-3 mb-4">Theatre use</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">Why it matters</h2>
+          <p class="text-text-3 leading-[1.65]">Audience members, especially blind or partially sighted spectators, can respond with more time after the performance. Feedback collection is no longer compressed into the exit moment.</p>
+        </article>
+
+        <article class="border border-hairline rounded-2xl bg-surface p-7 md:p-8">
+          <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-3 mb-4">Technical status</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">App foundation first</h2>
+          <p class="text-text-3 leading-[1.65]">This update prepares the interface, persistence and public link publication. Actual remote collection on stentor.live requires the next server/cloud step, including the public survey page, response storage, export and privacy controls.</p>
+        </article>
+
+        <article class="border border-hairline rounded-2xl bg-surface p-7 md:p-8">
+          <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-3 mb-4">Version</p>
+          <dl class="grid gap-3 text-sm text-text-2">
+            <div class="flex justify-between gap-4"><dt>Build</dt><dd class="font-mono text-text">step7ds</dd></div>
+            <div class="flex justify-between gap-4"><dt>Focus</dt><dd>deferred survey</dd></div>
+            <div class="flex justify-between gap-4"><dt>App</dt><dd>macOS/iOS SwiftUI</dd></div>
+            <div class="flex justify-between gap-4"><dt>Website</dt><dd>update page published</dd></div>
+          </dl>
+        </article>
+      </aside>
+    </div>
+  </section>
+</Layout>
