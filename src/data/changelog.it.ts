@@ -25,22 +25,47 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 12 },
-  { id: "major", label: "Milestone", count: 8 },
-  { id: "new", label: "Novità", count: 6 },
-  { id: "improvements", label: "Miglioramenti", count: 8 },
-  { id: "fixes", label: "Correzioni", count: 6 },
+  { id: "all", label: "Tutto", count: 13 },
+  { id: "major", label: "Milestone", count: 9 },
+  { id: "new", label: "Novità", count: 7 },
+  { id: "improvements", label: "Miglioramenti", count: 9 },
+  { id: "fixes", label: "Correzioni", count: 7 },
 ];
 
-export const versionTag = "v0.1.75 · Live AD e cloud WebDAV";
+export const versionTag = "v0.1.76 · Testo live, bilingue e questionari differiti";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 12, on: true },
+  { y: "2026", n: 13, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.76",
+    date: "2026-06-25",
+    type: "major",
+    title: "Testo live, sopratitoli bilingui, tutorial e nuova build di prova",
+    body: "La nuova build amplia il lavoro in scena e la distribuzione beta: riconoscimento del testo dal vivo con sensibilità regolabile, proiezione bilingue dei sopratitoli, accessi più chiari, questionari compilabili anche dopo lo spettacolo, tutorial iniziale integrato, nuova build su TestFlight Apple e sviluppo Windows portato avanti in parallelo.",
+    changes: {
+      new: [
+        { title: "Riconoscimento del testo dal vivo", body: "La sezione Regia può seguire il copione durante prove e repliche, aiutando l’operatore a riconoscere il punto della scena senza dipendere solo dall’avanzamento manuale dei cue." },
+        { title: "Sensibilità regolabile alla scena", body: "Il riconoscimento automatico può essere impostato su tre modalità di sensibilità, così da adattarsi a scene più lente, dialoghi serrati o situazioni in cui serve maggiore prudenza prima di avanzare." },
+        { title: "Questionari differiti", body: "I questionari per il pubblico possono essere raggiunti tramite QR code o link e compilati anche nei giorni successivi allo spettacolo, separando la raccolta dei feedback dal solo momento di uscita dalla sala." },
+        { title: "Tutorial iniziale", body: "Una nuova introduzione guidata accompagna il primo avvio dell’app e resta riapribile dal menu Aiuto, con la possibilità di non mostrarla automaticamente all’avvio." },
+      ],
+      improvements: [
+        { title: "Sopratitoli bilingui", body: "La proiezione può mostrare due lingue in parallelo, con controlli e diagnostica per individuare battute non tradotte o coperture incomplete prima della messa in onda." },
+        { title: "Regia e memorie dei tempi", body: "Il flusso live integra meglio memorie dei tempi, riconoscimento del testo e controllo dei cue, offrendo all’operatore più modalità per seguire il ritmo reale della scena." },
+        { title: "Accessi e account", body: "L’interfaccia distingue in modo più leggibile lavoro locale, accesso all’account e sincronizzazione, riducendo l’ambiguità tra uso offline e funzioni cloud." },
+        { title: "Distribuzione Apple e Windows", body: "La build Apple prosegue su TestFlight, mentre lo sviluppo della versione nativa Windows avanza in parallelo per mantenere coerenza funzionale e visiva tra le piattaforme." },
+      ],
+      fixes: [
+        { title: "Controlli sulle traduzioni mancanti", body: "Sono stati rafforzati gli avvisi che segnalano coperture bilingui incomplete, così la proiezione evita fallback poco controllati nei passaggi non ancora tradotti." },
+        { title: "Tutorial senza audio", body: "L’introduzione guidata è solo visiva e non aggiunge suoni, notifiche acustiche o effetti durante l’uso dell’app." },
+      ],
+    },
+  },
   {
     version: "0.1.75",
     date: "2026-06-21",
@@ -87,10 +112,10 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.75", accent: true },
+      { label: "Prototipo", value: "0.1.76", accent: true },
       { label: "macOS", value: "12.4+ universale" },
       { label: "Architettura", value: "Intel + Apple Silicon" },
-      { label: "TestFlight", value: "build 1.1 (3)" },
+      { label: "TestFlight", value: "build aggiornata" },
     ],
   },
   cadence: {
@@ -102,9 +127,9 @@ export const sideStats = {
   status: {
     title: "Stato",
     rows: [
-      { label: "App Apple", value: "● TestFlight 1.1 (3)", color: "green" as const },
-      { label: "Cloud", value: "Nextcloud/WebDAV in anteprima" },
-      { label: "Prossima priorità", value: "sincronizzazione collaborativa" },
+      { label: "App Apple", value: "● TestFlight aggiornata", color: "green" as const },
+      { label: "Windows", value: "sviluppo nativo parallelo" },
+      { label: "Prossima priorità", value: "stabilità live e sincronizzazione" },
     ],
   },
 };
