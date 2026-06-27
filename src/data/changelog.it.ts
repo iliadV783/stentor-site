@@ -46,7 +46,7 @@ export const entries = [
     date: "2026-06-27",
     type: "major",
     title: "Prima sperimentazione dal vivo di Sténtor",
-    body: "Questa sera, in occasione della rappresentazione de Il matrimonio di Witold Gombrowicz presso Villa Martini, a Cavagnolo, Sténtor viene provato per la prima volta in una situazione reale di spettacolo dal vivo. La sperimentazione riguarda in particolare l’uso del riconoscimento audio per tentare la sincronizzazione automatica dei sopratitoli durante la recita, in uno spazio all’aperto e con segnale proveniente dalla regia tecnica.",
+    body: "Questa sera, in occasione della rappresentazione de Il matrimonio di Witold Gombrowicz del gruppo teatrale universitario Tan Tan Teatro presso Villa Martini, a Cavagnolo, Sténtor viene provato per la prima volta in una situazione reale di spettacolo dal vivo. La sperimentazione riguarda in particolare l’uso del riconoscimento audio per tentare la sincronizzazione automatica dei sopratitoli durante la recita, in uno spazio all’aperto e con segnale proveniente dalla regia tecnica.",
     changes: {
       new: [
         { title: "Test in spettacolo reale", body: "Sténtor esce dal solo contesto di sviluppo e prova il proprio flusso live in una rappresentazione aperta al pubblico." },
