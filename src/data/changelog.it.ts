@@ -25,22 +25,39 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 13 },
-  { id: "major", label: "Milestone", count: 9 },
-  { id: "new", label: "Novità", count: 7 },
-  { id: "improvements", label: "Miglioramenti", count: 9 },
+  { id: "all", label: "Tutto", count: 14 },
+  { id: "major", label: "Milestone", count: 10 },
+  { id: "new", label: "Novità", count: 8 },
+  { id: "improvements", label: "Miglioramenti", count: 10 },
   { id: "fixes", label: "Correzioni", count: 7 },
 ];
 
-export const versionTag = "v0.1.76 · Testo live, bilingue e questionari differiti";
+export const versionTag = "v0.1.77 · Prima sperimentazione dal vivo";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 13, on: true },
+  { y: "2026", n: 14, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.77",
+    date: "2026-06-27",
+    type: "major",
+    title: "Prima sperimentazione dal vivo di Sténtor",
+    body: "Questa sera, in occasione della rappresentazione de Il matrimonio di Witold Gombrowicz presso Villa Martini, a Cavagnolo, Sténtor viene provato per la prima volta in una situazione reale di spettacolo dal vivo. La sperimentazione riguarda in particolare l’uso del riconoscimento audio per tentare la sincronizzazione automatica dei sopratitoli durante la recita, in uno spazio all’aperto e con segnale proveniente dalla regia tecnica.",
+    changes: {
+      new: [
+        { title: "Test in spettacolo reale", body: "Sténtor esce dal solo contesto di sviluppo e prova il proprio flusso live in una rappresentazione aperta al pubblico." },
+        { title: "Sincronizzazione audio in campo", body: "Il riconoscimento audio viene usato per verificare se il sistema può seguire il copione e aiutare la sincronizzazione automatica dei sopratitoli durante la recita." },
+      ],
+      improvements: [
+        { title: "Dati da condizioni operative reali", body: "La prova permette di osservare il comportamento del prototipo con voci dal vivo, microfonazione ambientale, spazio aperto e segnale audio proveniente dalla regia." },
+        { title: "Verifica della tenuta live", body: "La sperimentazione serve a individuare limiti, margini di stabilità e priorità di sviluppo per l’uso di Sténtor in contesti performativi reali." },
+      ],
+    },
+  },
   {
     version: "0.1.76",
     date: "2026-06-25",
@@ -112,7 +129,7 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.76", accent: true },
+      { label: "Prototipo", value: "0.1.77", accent: true },
       { label: "macOS", value: "12.4+ universale" },
       { label: "Architettura", value: "Intel + Apple Silicon" },
       { label: "TestFlight", value: "build aggiornata" },
@@ -129,7 +146,7 @@ export const sideStats = {
     rows: [
       { label: "App Apple", value: "● TestFlight aggiornata", color: "green" as const },
       { label: "Windows", value: "sviluppo nativo parallelo" },
-      { label: "Prossima priorità", value: "stabilità live e sincronizzazione" },
+      { label: "Prossima priorità", value: "test live e sincronizzazione audio" },
     ],
   },
 };
