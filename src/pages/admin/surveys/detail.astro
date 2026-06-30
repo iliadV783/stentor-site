@@ -1,0 +1,309 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="Dettaglio questionario - Stentor Admin" description="Dettaglio risposte anonime questionario Stentor." active={null} showNav={false} showFooter={false} noindex={true}>
+  <section class="min-h-screen bg-black text-white relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <header class="relative border-b border-white/10">
+      <div class="max-w-[1280px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
+        <a href="/admin/surveys" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors">
+          <span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span>
+          <span class="text-white/45 text-sm">Questionari</span>
+        </a>
+        <div class="flex items-center gap-3">
+          <span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Admin area</span>
+          <a href="/admin/surveys" class="admin-top-link">Tutti i questionari</a>
+          <a href="/admin" class="admin-top-link">Admin console</a>
+          <button data-admin-refresh hidden class="admin-top-link">Aggiorna</button>
+          <button data-admin-logout hidden class="admin-top-link">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative max-w-[1280px] mx-auto px-5 md:px-8 py-10 md:py-14">
+      <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
+        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accedi al dettaglio.</h1>
+        <form data-admin-login-form class="grid gap-4">
+          <input name="email" type="email" autocomplete="email" placeholder="name@stentor.live" class="admin-input h-12" required />
+          <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="admin-input h-12" />
+          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Accedi</button>
+        </form>
+        <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+      </section>
+
+      <section data-admin-app hidden class="grid gap-6">
+        <div data-hero class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></div>
+        <div data-stats class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        <section data-responses class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></section>
+      </section>
+    </main>
+  </section>
+</Layout>
+
+<style is:global>
+  @reference "../../../styles/global.css";
+  .admin-top-link { @apply inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors; }
+  .admin-input { @apply rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50; }
+</style>
+
+<script>
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const storageKey = 'stentor_account_access_token';
+  const surveyId = new URLSearchParams(window.location.search).get('id') || '';
+
+  const loginPanel = document.querySelector('[data-admin-login]');
+  const appPanel = document.querySelector('[data-admin-app]');
+  const loginForm = document.querySelector('[data-admin-login-form]');
+  const errorBox = document.querySelector('[data-admin-error]');
+  const emailBadge = document.querySelector('[data-admin-email]');
+  const logoutButton = document.querySelector('[data-admin-logout]');
+  const refreshButton = document.querySelector('[data-admin-refresh]');
+  const heroTarget = document.querySelector('[data-hero]');
+  const statsTarget = document.querySelector('[data-stats]');
+  const responsesTarget = document.querySelector('[data-responses]');
+
+  function getTokenFromHash() {
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const token = hash.get('access_token');
+    if (token) {
+      localStorage.setItem(storageKey, token);
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    return token;
+  }
+
+  function getStoredToken() {
+    return getTokenFromHash() || localStorage.getItem(storageKey) || '';
+  }
+
+  async function readError(response, fallback) {
+    try {
+      const body = await response.json();
+      return body.msg || body.message || body.error_description || body.error || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function showError(message) {
+    if (!errorBox) return;
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+  }
+
+  async function apiFetch(path, token, options = {}) {
+    const response = await fetch(`${supabaseUrl}${path}`, {
+      ...options,
+      headers: {
+        apikey: supabaseAnonKey,
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      },
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Request failed.'));
+    return response.json();
+  }
+
+  async function signInWithPassword(email, password) {
+    const response = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
+      method: 'POST',
+      headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Login failed.'));
+    const body = await response.json();
+    localStorage.setItem(storageKey, body.access_token);
+    return body.access_token;
+  }
+
+  function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>'"]/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
+    }[char]));
+  }
+
+  function formatDate(value) {
+    if (!value) return '—';
+    try {
+      return new Intl.DateTimeFormat('it-IT', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
+    } catch {
+      return value;
+    }
+  }
+
+  function publicUrl(row) {
+    return `${window.location.origin}/q?token=${encodeURIComponent(row.public_token || '')}`;
+  }
+
+  function isOpen(row) {
+    const now = Date.now();
+    const opens = row.opens_at ? Date.parse(row.opens_at) : null;
+    const closes = row.closes_at ? Date.parse(row.closes_at) : null;
+    return row.is_active !== false && (!opens || now >= opens) && (!closes || now <= closes);
+  }
+
+  function humanizeQuestionKey(key) {
+    const labels = {
+      showComment: 'Osservazioni sullo spettacolo',
+      storyClarity: 'Chiarezza della storia',
+      subtitleEase: 'Facilità di lettura dei sopratitoli',
+      subtitleSync: 'Sincronizzazione dei sopratitoli',
+      subtitlePosition: 'Posizione dei sopratitoli',
+      translationQuality: 'Qualità della traduzione',
+      audioDescriptionClarity: 'Chiarezza dell’audiodescrizione',
+      audioDescriptionTiming: 'Tempismo dell’audiodescrizione',
+      audioDescriptionVoice: 'Voce dell’audiodescrizione',
+      overall: 'Valutazione complessiva',
+      comment: 'Commento',
+    };
+    if (labels[key]) return labels[key];
+    return String(key || 'Domanda').replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ').replace(/^./, (char) => char.toUpperCase());
+  }
+
+  function normalizeAnswerEntries(answers) {
+    if (!answers || typeof answers !== 'object') return [];
+    return Object.entries(answers).map(([key, raw]) => {
+      const item = raw && typeof raw === 'object' && !Array.isArray(raw) ? raw : { value: raw };
+      return {
+        key,
+        question: item.question || item.title || humanizeQuestionKey(key),
+        value: item.value ?? item.answer ?? item.response ?? '—',
+      };
+    }).filter((entry) => String(entry.value ?? '').trim().length > 0);
+  }
+
+  function renderResponseCard(response, index) {
+    const entries = normalizeAnswerEntries(response.answers_json || {});
+    const meta = [formatDate(response.submitted_at), response.service_used || 'servizio non indicato', response.language || 'lingua non indicata'].join(' · ');
+    return `
+      <article class="rounded-2xl border border-white/10 bg-black/25 p-5 md:p-6">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
+          <div>
+            <h3 class="text-2xl font-semibold tracking-[-0.04em]">Risposta ${index + 1}</h3>
+            <p class="text-white/40 text-sm mt-1">${escapeHTML(meta)}</p>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          ${entries.length ? entries.map((entry) => `
+            <div class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+              <div class="text-white/45 text-sm leading-[1.4] mb-2">${escapeHTML(entry.question)}</div>
+              <div class="text-white/88 text-base leading-[1.55] whitespace-pre-wrap">${escapeHTML(entry.value)}</div>
+            </div>
+          `).join('') : '<p class="text-white/45 leading-[1.6]">Risposta vuota.</p>'}
+        </div>
+        <details class="mt-4 rounded-xl border border-white/10 bg-black/30 p-4">
+          <summary class="cursor-pointer text-sm text-white/45 hover:text-white/75">JSON tecnico</summary>
+          <pre class="mt-3 max-h-[320px] overflow-auto whitespace-pre-wrap text-xs text-white/48 leading-[1.45]">${escapeHTML(JSON.stringify(response.answers_json || {}, null, 2))}</pre>
+        </details>
+      </article>
+    `;
+  }
+
+  async function loadDetail(token) {
+    if (!surveyId) throw new Error('ID questionario mancante.');
+    const user = await apiFetch('/auth/v1/user', token);
+    if (emailBadge) emailBadge.textContent = user.email || 'Admin';
+
+    const surveySelect = ['id','survey_id','public_token','title','company_name','venue','opens_at','closes_at','is_active','created_at','updated_at','responses_count','last_response_at'].join(',');
+    const surveys = await apiFetch(`/rest/v1/audience_surveys_admin_view?select=${encodeURIComponent(surveySelect)}&id=eq.${encodeURIComponent(surveyId)}&limit=1`, token);
+    const survey = Array.isArray(surveys) ? surveys[0] : null;
+    if (!survey) throw new Error('Questionario non trovato.');
+
+    const responseSelect = 'id,submitted_at,answers_json,service_used,language';
+    const responses = await apiFetch(`/rest/v1/audience_survey_responses?select=${encodeURIComponent(responseSelect)}&survey_id=eq.${encodeURIComponent(survey.id)}&order=submitted_at.desc&limit=500`, token);
+
+    heroTarget.innerHTML = `
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Dettaglio questionario</p>
+          <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">${escapeHTML(survey.title || 'Senza titolo')}</h1>
+          <p class="text-white/50 leading-[1.6]">${escapeHTML(survey.company_name || 'Compagnia non indicata')} · ${escapeHTML(isOpen(survey) ? 'Aperto' : 'Chiuso')}</p>
+        </div>
+        <a href="${escapeHTML(publicUrl(survey))}" target="_blank" rel="noreferrer" class="inline-flex h-11 items-center justify-center px-4 rounded-xl border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06]">Apri link pubblico</a>
+      </div>
+    `;
+
+    const stats = [
+      ['Risposte', responses.length],
+      ['Apertura', formatDate(survey.opens_at)],
+      ['Chiusura', formatDate(survey.closes_at)],
+      ['Ultima risposta', formatDate(survey.last_response_at)],
+    ];
+    statsTarget.innerHTML = stats.map(([label, value]) => `
+      <article class="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
+        <div class="text-2xl font-semibold tracking-[-0.05em] mb-1">${escapeHTML(value)}</div>
+        <div class="text-white/45 text-sm">${escapeHTML(label)}</div>
+      </article>
+    `).join('');
+
+    responsesTarget.innerHTML = `
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+        <div>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Risposte anonime</p>
+          <h2 class="text-3xl font-semibold tracking-[-0.04em]">Lettura completa</h2>
+        </div>
+        <code class="rounded-xl bg-black/40 border border-white/10 p-3 text-xs text-white/62 break-all">${escapeHTML(publicUrl(survey))}</code>
+      </div>
+      <div class="grid gap-4">
+        ${responses.length ? responses.map(renderResponseCard).join('') : '<p class="text-white/45 leading-[1.6]">Nessuna risposta ricevuta.</p>'}
+      </div>
+    `;
+
+    loginPanel.hidden = true;
+    appPanel.hidden = false;
+    logoutButton.hidden = false;
+    refreshButton.hidden = false;
+  }
+
+  loginForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (errorBox) errorBox.hidden = true;
+    const formData = new FormData(loginForm);
+    const email = String(formData.get('email') || '').trim();
+    const password = String(formData.get('password') || '');
+    if (!email) return showError('Inserisci la tua email.');
+    if (!password) return showError('Inserisci la password.');
+    try {
+      const token = await signInWithPassword(email, password);
+      await loadDetail(token);
+    } catch (error) {
+      showError(error instanceof Error ? error.message : 'Accesso non riuscito.');
+    }
+  });
+
+  logoutButton?.addEventListener('click', () => {
+    localStorage.removeItem(storageKey);
+    window.location.href = '/admin/surveys';
+  });
+
+  refreshButton?.addEventListener('click', async () => {
+    const token = getStoredToken();
+    if (token) await loadDetail(token);
+  });
+
+  (async () => {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      showError('Configura PUBLIC_SUPABASE_URL e PUBLIC_SUPABASE_ANON_KEY nelle variabili ambiente del sito.');
+      loginPanel.hidden = false;
+      return;
+    }
+    const token = getStoredToken();
+    if (!token) {
+      loginPanel.hidden = false;
+      return;
+    }
+    try {
+      await loadDetail(token);
+    } catch (error) {
+      localStorage.removeItem(storageKey);
+      loginPanel.hidden = false;
+      showError(error instanceof Error ? error.message : 'Accesso non riuscito.');
+    }
+  })();
+</script>
