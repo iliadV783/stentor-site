@@ -38,6 +38,7 @@ import Layout from "../../../layouts/Layout.astro";
       <section data-admin-app hidden class="grid gap-6">
         <div data-hero class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></div>
         <div data-stats class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        <section data-rating-stats class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></section>
         <section data-responses class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></section>
       </section>
     </main>
@@ -65,6 +66,7 @@ import Layout from "../../../layouts/Layout.astro";
   const refreshButton = document.querySelector('[data-admin-refresh]');
   const heroTarget = document.querySelector('[data-hero]');
   const statsTarget = document.querySelector('[data-stats]');
+  const ratingStatsTarget = document.querySelector('[data-rating-stats]');
   const responsesTarget = document.querySelector('[data-responses]');
 
   function getTokenFromHash() {
@@ -150,6 +152,9 @@ import Layout from "../../../layouts/Layout.astro";
 
   function humanizeQuestionKey(key) {
     const labels = {
+      overallSatisfaction: 'Gradimento complessivo',
+      serviceUsefulness: 'Utilità del servizio Sténtor',
+      easeOfUse: 'Facilità di utilizzo sullo smartphone',
       showComment: 'Osservazioni sullo spettacolo',
       storyClarity: 'Chiarezza della storia',
       subtitleEase: 'Facilità di lettura dei sopratitoli',
@@ -161,21 +166,102 @@ import Layout from "../../../layouts/Layout.astro";
       audioDescriptionVoice: 'Voce dell’audiodescrizione',
       overall: 'Valutazione complessiva',
       comment: 'Commento',
+      freeComment: 'Commento libero',
     };
     if (labels[key]) return labels[key];
     return String(key || 'Domanda').replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ').replace(/^./, (char) => char.toUpperCase());
+  }
+
+  function toRating(value) {
+    const number = Number(value);
+    return Number.isFinite(number) && number >= 1 && number <= 5 ? number : null;
   }
 
   function normalizeAnswerEntries(answers) {
     if (!answers || typeof answers !== 'object') return [];
     return Object.entries(answers).map(([key, raw]) => {
       const item = raw && typeof raw === 'object' && !Array.isArray(raw) ? raw : { value: raw };
+      const rating = toRating(item.value ?? item.answer ?? item.response);
       return {
         key,
+        type: item.type || (rating ? 'rating_1_5' : 'text'),
         question: item.question || item.title || humanizeQuestionKey(key),
         value: item.value ?? item.answer ?? item.response ?? '—',
+        rating,
       };
     }).filter((entry) => String(entry.value ?? '').trim().length > 0);
+  }
+
+  function collectRatingEntries(responses) {
+    return responses.flatMap((response) => normalizeAnswerEntries(response.answers_json || {}).filter((entry) => entry.rating !== null));
+  }
+
+  function buildRatingStats(responses) {
+    const ratings = collectRatingEntries(responses);
+    const total = ratings.length;
+    const average = total ? ratings.reduce((sum, item) => sum + item.rating, 0) / total : null;
+    const positive = ratings.filter((item) => item.rating >= 4).length;
+    const negative = ratings.filter((item) => item.rating <= 2).length;
+    const distribution = [1, 2, 3, 4, 5].map((value) => ({
+      value,
+      count: ratings.filter((item) => item.rating === value).length,
+      percent: total ? Math.round((ratings.filter((item) => item.rating === value).length / total) * 100) : 0,
+    }));
+    const byQuestion = new Map();
+    ratings.forEach((item) => {
+      if (!byQuestion.has(item.key)) byQuestion.set(item.key, { question: item.question, values: [] });
+      byQuestion.get(item.key).values.push(item.rating);
+    });
+    return { total, average, positive, negative, distribution, byQuestion: Array.from(byQuestion.values()) };
+  }
+
+  function percent(part, total) {
+    return total ? `${Math.round((part / total) * 100)}%` : '—';
+  }
+
+  function renderRatingStats(stats) {
+    if (!stats.total) {
+      return `
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+          <div>
+            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Statistiche gradimento</p>
+            <h2 class="text-3xl font-semibold tracking-[-0.04em]">Nessun dato numerico</h2>
+          </div>
+        </div>
+        <p class="text-white/50 leading-[1.6]">Le risposte attuali sono testuali. Le statistiche percentuali saranno disponibili sulle nuove risposte raccolte con domande 1–5.</p>
+      `;
+    }
+
+    return `
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+        <div>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Statistiche gradimento</p>
+          <h2 class="text-3xl font-semibold tracking-[-0.04em]">Valutazioni 1–5</h2>
+        </div>
+        <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/55">${stats.total} valutazioni</span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <article class="rounded-2xl border border-white/10 bg-black/25 p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${stats.average.toFixed(1)}/5</div><div class="text-white/45 text-sm mt-1">Media generale</div></article>
+        <article class="rounded-2xl border border-white/10 bg-black/25 p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${percent(stats.positive, stats.total)}</div><div class="text-white/45 text-sm mt-1">Valutazioni positive 4–5</div></article>
+        <article class="rounded-2xl border border-white/10 bg-black/25 p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${percent(stats.negative, stats.total)}</div><div class="text-white/45 text-sm mt-1">Criticità 1–2</div></article>
+      </div>
+      <div class="grid gap-3 mb-6">
+        ${stats.distribution.map((item) => `
+          <div class="grid grid-cols-[36px_1fr_56px] gap-3 items-center text-sm">
+            <span class="text-white/55">${item.value}</span>
+            <div class="h-2 rounded-full bg-white/[0.08] overflow-hidden"><div class="h-full rounded-full bg-red-500/70" style="width:${item.percent}%"></div></div>
+            <span class="text-white/55 text-right">${item.count}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="grid md:grid-cols-2 gap-3">
+        ${stats.byQuestion.map((item) => {
+          const avg = item.values.reduce((sum, value) => sum + value, 0) / item.values.length;
+          const positive = item.values.filter((value) => value >= 4).length;
+          return `<article class="rounded-xl border border-white/10 bg-white/[0.035] p-4"><div class="text-white/45 text-sm leading-[1.4] mb-2">${escapeHTML(item.question)}</div><div class="text-white text-xl font-semibold">${avg.toFixed(1)}/5</div><div class="text-white/45 text-xs mt-1">${percent(positive, item.values.length)} positive · ${item.values.length} risposte</div></article>`;
+        }).join('')}
+      </div>
+    `;
   }
 
   function renderResponseCard(response, index) {
@@ -193,7 +279,7 @@ import Layout from "../../../layouts/Layout.astro";
           ${entries.length ? entries.map((entry) => `
             <div class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
               <div class="text-white/45 text-sm leading-[1.4] mb-2">${escapeHTML(entry.question)}</div>
-              <div class="text-white/88 text-base leading-[1.55] whitespace-pre-wrap">${escapeHTML(entry.value)}</div>
+              <div class="text-white/88 text-base leading-[1.55] whitespace-pre-wrap">${escapeHTML(entry.rating ? `${entry.rating}/5` : entry.value)}</div>
             </div>
           `).join('') : '<p class="text-white/45 leading-[1.6]">Risposta vuota.</p>'}
         </div>
@@ -217,6 +303,7 @@ import Layout from "../../../layouts/Layout.astro";
 
     const responseSelect = 'id,submitted_at,answers_json,service_used,language';
     const responses = await apiFetch(`/rest/v1/audience_survey_responses?select=${encodeURIComponent(responseSelect)}&survey_id=eq.${encodeURIComponent(survey.id)}&order=submitted_at.desc&limit=500`, token);
+    const ratingStats = buildRatingStats(responses);
 
     heroTarget.innerHTML = `
       <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
@@ -241,6 +328,8 @@ import Layout from "../../../layouts/Layout.astro";
         <div class="text-white/45 text-sm">${escapeHTML(label)}</div>
       </article>
     `).join('');
+
+    ratingStatsTarget.innerHTML = renderRatingStats(ratingStats);
 
     responsesTarget.innerHTML = `
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
