@@ -1,0 +1,280 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Questionario pubblico - Sténtor"
+  description="Questionario anonimo post-spettacolo raccolto tramite Sténtor."
+  active={null}
+  showNav={false}
+  showFooter={false}
+  noindex={true}
+>
+  <section class="min-h-screen bg-black text-white relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_72%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_72%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-20%] top-[-20%] w-[680px] h-[680px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <main class="relative max-w-[780px] mx-auto px-5 py-10 md:py-16">
+      <header class="mb-8">
+        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors">
+          <span class="font-semibold tracking-[-0.04em] text-xl">STÉNTOR</span>
+          <span class="text-white/45 text-sm">Questionario pubblico</span>
+        </a>
+      </header>
+
+      <section class="rounded-3xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-8">
+        <div data-loading>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Opinioni pubblico</p>
+          <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Caricamento questionario.</h1>
+          <p class="text-white/50 leading-[1.6]">Sto verificando il link e la finestra temporale di compilazione.</p>
+        </div>
+
+        <div data-error hidden>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Questionario non disponibile</p>
+          <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Non posso aprire questo questionario.</h1>
+          <p data-error-text class="text-white/55 leading-[1.6]"></p>
+        </div>
+
+        <div data-success hidden>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Grazie</p>
+          <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Risposta inviata.</h1>
+          <p class="text-white/55 leading-[1.6]">Le risposte sono anonime e verranno mostrate alla compagnia in forma consultabile dentro Sténtor.</p>
+        </div>
+
+        <form data-survey-form hidden class="grid gap-6">
+          <div>
+            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Questionario post-spettacolo</p>
+            <h1 data-survey-title class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Questionario Sténtor</h1>
+            <p data-survey-meta class="text-white/50 leading-[1.6]"></p>
+          </div>
+
+          <div data-questions class="grid gap-4"></div>
+
+          <label class="grid gap-2">
+            <span class="text-sm font-medium text-white/70">Servizio usato</span>
+            <select name="serviceUsed" class="survey-input">
+              <option value="">Preferisco non indicarlo</option>
+              <option value="surtitles">Sopratitoli</option>
+              <option value="translation">Traduzione</option>
+              <option value="audio-description">Audiodescrizione</option>
+              <option value="multiple">Più servizi</option>
+            </select>
+          </label>
+
+          <label class="grid gap-2">
+            <span class="text-sm font-medium text-white/70">Lingua</span>
+            <input name="language" class="survey-input" placeholder="it, en, fr..." />
+          </label>
+
+          <p class="text-white/38 text-sm leading-[1.6]">Non vengono richiesti nome, email o account. Il questionario salva solo le risposte fornite.</p>
+
+          <button data-submit type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors disabled:opacity-50 disabled:cursor-wait">Invia risposta anonima</button>
+          <p data-form-error hidden class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-100 text-sm leading-[1.5] p-4"></p>
+        </form>
+      </section>
+    </main>
+  </section>
+</Layout>
+
+<style is:global>
+  @reference "../styles/global.css";
+  .survey-input { @apply w-full min-h-12 rounded-xl bg-white/[0.06] border border-white/10 px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-red-400/50; }
+  .survey-card { @apply rounded-2xl border border-white/10 bg-black/20 p-4 md:p-5; }
+  .survey-label { @apply block text-sm font-medium text-white/72 mb-3; }
+</style>
+
+<script>
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const endpoint = supabaseUrl ? `${String(supabaseUrl).replace(/\/$/, '')}/functions/v1/stentor-survey` : '';
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token') || params.get('t') || '';
+
+  const loading = document.querySelector('[data-loading]');
+  const errorPanel = document.querySelector('[data-error]');
+  const errorText = document.querySelector('[data-error-text]');
+  const successPanel = document.querySelector('[data-success]');
+  const form = document.querySelector('[data-survey-form]');
+  const title = document.querySelector('[data-survey-title]');
+  const meta = document.querySelector('[data-survey-meta]');
+  const questionsTarget = document.querySelector('[data-questions]');
+  const submitButton = document.querySelector('[data-submit]');
+  const formError = document.querySelector('[data-form-error]');
+
+  let currentSurvey = null;
+
+  function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[char]));
+  }
+
+  function hideAll() {
+    if (loading) loading.hidden = true;
+    if (errorPanel) errorPanel.hidden = true;
+    if (successPanel) successPanel.hidden = true;
+    if (form) form.hidden = true;
+  }
+
+  function showError(message) {
+    hideAll();
+    if (errorText) errorText.textContent = message;
+    if (errorPanel) errorPanel.hidden = false;
+  }
+
+  function formatDate(value) {
+    if (!value) return '';
+    try {
+      return new Intl.DateTimeFormat('it-IT', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(value));
+    } catch {
+      return String(value);
+    }
+  }
+
+  function normalizedQuestions(questions) {
+    if (!Array.isArray(questions)) return [];
+    return questions.map((question, index) => {
+      if (typeof question === 'string') {
+        return { id: `q${index + 1}`, title: question, type: 'text' };
+      }
+
+      return {
+        id: String(question.id || question.key || `q${index + 1}`),
+        title: String(question.title || question.prompt || question.text || `Domanda ${index + 1}`),
+        type: String(question.type || question.kind || 'text').toLowerCase(),
+        options: Array.isArray(question.options) ? question.options : [],
+      };
+    });
+  }
+
+  function renderQuestion(question) {
+    const id = escapeHTML(question.id);
+    const label = escapeHTML(question.title);
+
+    if (['rating', 'scale', 'stars'].includes(question.type)) {
+      return `
+        <fieldset class="survey-card">
+          <legend class="survey-label">${label}</legend>
+          <div class="grid grid-cols-5 gap-2">
+            ${[1, 2, 3, 4, 5].map((value) => `
+              <label class="h-11 rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center cursor-pointer hover:bg-white/[0.08]">
+                <input class="sr-only" type="radio" name="${id}" value="${value}" />
+                <span>${value}</span>
+              </label>
+            `).join('')}
+          </div>
+        </fieldset>
+      `;
+    }
+
+    if (['choice', 'single_choice', 'select'].includes(question.type) && question.options.length) {
+      return `
+        <fieldset class="survey-card">
+          <legend class="survey-label">${label}</legend>
+          <div class="grid gap-2">
+            ${question.options.map((option) => `
+              <label class="min-h-11 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 flex items-center gap-3 cursor-pointer hover:bg-white/[0.08]">
+                <input type="radio" name="${id}" value="${escapeHTML(option)}" />
+                <span>${escapeHTML(option)}</span>
+              </label>
+            `).join('')}
+          </div>
+        </fieldset>
+      `;
+    }
+
+    return `
+      <label class="survey-card grid gap-3">
+        <span class="survey-label mb-0">${label}</span>
+        <textarea name="${id}" rows="4" class="survey-input resize-y" placeholder="Scrivi qui la tua risposta"></textarea>
+      </label>
+    `;
+  }
+
+  function collectAnswers() {
+    const answers = {};
+    normalizedQuestions(currentSurvey?.questions || []).forEach((question) => {
+      const fields = Array.from(form.querySelectorAll(`[name="${CSS.escape(question.id)}"]`));
+      if (!fields.length) return;
+      const checked = fields.find((field) => field.checked);
+      const value = checked ? checked.value : fields[0].value;
+      answers[question.id] = { question: question.title, value: value || '' };
+    });
+    return answers;
+  }
+
+  async function loadSurvey() {
+    if (!endpoint) return showError('Backend Supabase non configurato sul sito.');
+    if (!token) return showError('Link questionario incompleto: manca il token pubblico.');
+
+    const response = await fetch(`${endpoint}?action=publicSurvey&token=${encodeURIComponent(token)}`);
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(body.error || 'Questionario non disponibile.');
+
+    currentSurvey = body;
+    if (!body.isOpen) {
+      const closes = formatDate(body.closesAt);
+      return showError(closes ? `La finestra di compilazione è chiusa. Scadenza: ${closes}.` : 'La finestra di compilazione è chiusa.');
+    }
+
+    if (title) title.textContent = body.title || 'Questionario Sténtor';
+    if (meta) {
+      const parts = [body.companyName, body.venue, body.closesAt ? `Disponibile fino al ${formatDate(body.closesAt)}` : ''];
+      meta.textContent = parts.filter(Boolean).join(' · ');
+    }
+
+    const questions = normalizedQuestions(body.questions);
+    if (questionsTarget) {
+      questionsTarget.innerHTML = questions.length
+        ? questions.map(renderQuestion).join('')
+        : '<label class="survey-card grid gap-3"><span class="survey-label mb-0">Lascia un commento sul servizio ricevuto</span><textarea name="comment" rows="5" class="survey-input resize-y"></textarea></label>';
+    }
+
+    hideAll();
+    if (form) form.hidden = false;
+  }
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (formError) formError.hidden = true;
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const formData = new FormData(form);
+      const answers = collectAnswers();
+      if (!Object.keys(answers).length && formData.get('comment')) {
+        answers.comment = { question: 'Commento', value: String(formData.get('comment') || '') };
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'submitResponse',
+          publicToken: token,
+          answers,
+          serviceUsed: String(formData.get('serviceUsed') || ''),
+          language: String(formData.get('language') || ''),
+        }),
+      });
+
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(body.error || 'Invio non riuscito.');
+
+      hideAll();
+      if (successPanel) successPanel.hidden = false;
+    } catch (error) {
+      if (formError) {
+        formError.textContent = error instanceof Error ? error.message : 'Invio non riuscito.';
+        formError.hidden = false;
+      }
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+
+  loadSurvey().catch((error) => showError(error instanceof Error ? error.message : 'Questionario non disponibile.'));
+</script>
