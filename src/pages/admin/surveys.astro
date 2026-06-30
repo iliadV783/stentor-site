@@ -1,0 +1,439 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Questionari pubblico - Stentor Admin"
+  description="Area admin per consultare i questionari differiti pubblicati da Stentor."
+  active={null}
+  showNav={false}
+  showFooter={false}
+  noindex={true}
+>
+  <section class="min-h-screen bg-black text-white relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <header class="relative border-b border-white/10">
+      <div class="max-w-[1280px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
+        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors">
+          <span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span>
+          <span class="text-white/45 text-sm">Admin</span>
+        </a>
+
+        <div class="flex items-center gap-3">
+          <span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Admin area</span>
+          <a href="/admin" class="admin-top-link">Admin console</a>
+          <a href="/admin/feedback/" class="admin-top-link">Feedback</a>
+          <button data-admin-refresh hidden class="admin-top-link">Aggiorna</button>
+          <button data-admin-logout hidden class="admin-top-link">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative max-w-[1280px] mx-auto px-5 md:px-8 py-10 md:py-14">
+      <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
+        <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accedi ai questionari.</h1>
+        <p class="text-white/50 leading-[1.6] mb-7">Usa il tuo account autorizzato per consultare questionari differiti e risposte anonime raccolte su stentor.live.</p>
+
+        <form data-admin-login-form class="grid gap-4">
+          <input name="email" type="email" autocomplete="email" placeholder="name@stentor.live" class="survey-admin-input" required />
+          <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="survey-admin-input" />
+          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Accedi</button>
+          <button type="button" data-admin-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Invia link via email</button>
+        </form>
+
+        <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+      </section>
+
+      <section data-admin-app hidden class="grid gap-6">
+        <div class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Questionari differiti</p>
+          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div>
+              <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Risposte anonime degli spettatori.</h1>
+              <p class="text-white/50 leading-[1.6] max-w-[820px]">Consulta i questionari pubblicati da Stentor, controlla la finestra di compilazione e leggi le risposte anonime ricevute dopo lo spettacolo.</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-filter="all" class="survey-filter is-active">Tutti</button>
+              <button data-filter="open" class="survey-filter">Aperti</button>
+              <button data-filter="closed" class="survey-filter">Chiusi</button>
+            </div>
+          </div>
+        </div>
+
+        <div data-admin-stats class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        <div data-admin-message hidden class="rounded-2xl border border-red-500/25 bg-red-500/10 text-red-100 p-5 leading-[1.6]"></div>
+
+        <div class="grid lg:grid-cols-[minmax(0,1fr)_400px] gap-5 items-start min-h-0">
+          <section class="min-w-0 rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden max-h-[680px] flex flex-col">
+            <div class="shrink-0 p-5 md:p-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Pubblicazioni</p>
+                <h2 class="text-2xl font-semibold tracking-[-0.04em]">Questionari pubblicati</h2>
+              </div>
+              <input data-admin-search type="search" placeholder="Cerca spettacolo, compagnia, token..." class="survey-admin-input h-11 sm:w-[340px]" />
+            </div>
+            <div data-admin-table class="overflow-auto min-h-0 flex-1"></div>
+          </section>
+
+          <aside data-admin-detail class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7 min-h-[420px] max-h-[680px] overflow-auto">
+            <p class="text-white/45 leading-[1.6]">Seleziona un questionario dalla tabella per vedere link, scadenza e risposte.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </section>
+</Layout>
+
+<style is:global>
+  @reference "../../styles/global.css";
+  .admin-top-link { @apply inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors; }
+  .survey-admin-input { @apply rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50; }
+  .survey-filter { @apply h-10 px-4 rounded-full border border-white/10 text-sm text-white/55 bg-white/[0.04] hover:text-white hover:bg-white/[0.06] transition-colors; }
+  .survey-filter.is-active { @apply text-white bg-red-500/15 border-red-500/30; }
+</style>
+
+<script>
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const storageKey = 'stentor_account_access_token';
+
+  const loginPanel = document.querySelector('[data-admin-login]');
+  const appPanel = document.querySelector('[data-admin-app]');
+  const loginForm = document.querySelector('[data-admin-login-form]');
+  const errorBox = document.querySelector('[data-admin-error]');
+  const emailBadge = document.querySelector('[data-admin-email]');
+  const logoutButton = document.querySelector('[data-admin-logout]');
+  const magicButton = document.querySelector('[data-admin-magic-link]');
+  const refreshButton = document.querySelector('[data-admin-refresh]');
+  const statsTarget = document.querySelector('[data-admin-stats]');
+  const tableTarget = document.querySelector('[data-admin-table]');
+  const detailTarget = document.querySelector('[data-admin-detail]');
+  const messageBox = document.querySelector('[data-admin-message]');
+  const searchInput = document.querySelector('[data-admin-search]');
+  const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+
+  let allSurveys = [];
+  let responsesBySurvey = new Map();
+  let selectedId = null;
+  let currentFilter = 'all';
+
+  function getTokenFromHash() {
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const token = hash.get('access_token');
+    if (token) {
+      localStorage.setItem(storageKey, token);
+      history.replaceState(null, '', window.location.pathname);
+    }
+    return token;
+  }
+
+  function getStoredToken() {
+    return getTokenFromHash() || localStorage.getItem(storageKey) || '';
+  }
+
+  async function readError(response, fallback) {
+    try {
+      const body = await response.json();
+      return body.msg || body.message || body.error_description || body.error || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function showError(message) {
+    if (!errorBox) return;
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+  }
+
+  function showMessage(message) {
+    if (!messageBox) return;
+    messageBox.textContent = message;
+    messageBox.hidden = !message;
+  }
+
+  async function apiFetch(path, token, options = {}) {
+    const response = await fetch(`${supabaseUrl}${path}`, {
+      ...options,
+      headers: {
+        apikey: supabaseAnonKey,
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      },
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Request failed.'));
+    return response.json();
+  }
+
+  async function signInWithPassword(email, password) {
+    const response = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
+      method: 'POST',
+      headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Login failed.'));
+    const body = await response.json();
+    localStorage.setItem(storageKey, body.access_token);
+    return body.access_token;
+  }
+
+  async function sendMagicLink(email) {
+    const redirectTo = `${window.location.origin}/auth/confirm?next=/admin/surveys`;
+    const response = await fetch(`${supabaseUrl}/auth/v1/otp?redirect_to=${encodeURIComponent(redirectTo)}`, {
+      method: 'POST',
+      headers: { apikey: supabaseAnonKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, create_user: false }),
+    });
+    if (!response.ok) throw new Error(await readError(response, 'Email link could not be sent.'));
+  }
+
+  function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>'"]/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
+    }[char]));
+  }
+
+  function formatDate(value) {
+    if (!value) return '—';
+    try {
+      return new Intl.DateTimeFormat('it-IT', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
+    } catch {
+      return value;
+    }
+  }
+
+  function publicUrl(row) {
+    return `${window.location.origin}/q?token=${encodeURIComponent(row.public_token || '')}`;
+  }
+
+  function isOpen(row) {
+    const now = Date.now();
+    const opens = row.opens_at ? Date.parse(row.opens_at) : null;
+    const closes = row.closes_at ? Date.parse(row.closes_at) : null;
+    return row.is_active !== false && (!opens || now >= opens) && (!closes || now <= closes);
+  }
+
+  function filteredSurveys() {
+    const query = String(searchInput?.value || '').trim().toLowerCase();
+    return allSurveys.filter((row) => {
+      const open = isOpen(row);
+      if (currentFilter === 'open' && !open) return false;
+      if (currentFilter === 'closed' && open) return false;
+      if (!query) return true;
+      return [row.title, row.company_name, row.venue, row.public_token, row.survey_id].join(' ').toLowerCase().includes(query);
+    });
+  }
+
+  function renderStats() {
+    if (!statsTarget) return;
+    const total = allSurveys.length;
+    const open = allSurveys.filter(isOpen).length;
+    const responses = allSurveys.reduce((sum, row) => sum + Number(row.responses_count || 0), 0);
+    const last = allSurveys.map((row) => row.last_response_at).filter(Boolean).sort().at(-1);
+    const cards = [
+      ['Questionari', total],
+      ['Aperti', open],
+      ['Risposte', responses],
+      ['Ultima risposta', formatDate(last)],
+    ];
+    statsTarget.innerHTML = cards.map(([label, value]) => `
+      <article class="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
+        <div class="text-3xl font-semibold tracking-[-0.05em] mb-1">${escapeHTML(value)}</div>
+        <div class="text-white/45 text-sm">${escapeHTML(label)}</div>
+      </article>
+    `).join('');
+  }
+
+  function renderTable() {
+    const rows = filteredSurveys();
+    renderStats();
+    if (!tableTarget) return;
+    if (!rows.length) {
+      tableTarget.innerHTML = '<div class="p-6 text-white/45">Nessun questionario corrisponde ai filtri attuali.</div>';
+      return;
+    }
+    tableTarget.innerHTML = `
+      <table class="w-full table-fixed text-left text-sm">
+        <thead class="sticky top-0 z-10 bg-[#080808] text-white/35 border-b border-white/10">
+          <tr>
+            <th class="font-medium px-5 py-3 whitespace-nowrap w-[190px]">Creato</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap">Questionario</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap w-[110px]">Stato</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap w-[100px]">Risposte</th>
+            <th class="font-medium px-5 py-3 whitespace-nowrap w-[180px]">Scadenza</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr data-row-id="${escapeHTML(row.id)}" class="border-b border-white/10 cursor-pointer hover:bg-white/[0.04] ${row.id === selectedId ? 'bg-red-500/10' : ''}">
+              <td class="px-5 py-4 text-white/55 whitespace-nowrap">${escapeHTML(formatDate(row.created_at))}</td>
+              <td class="px-5 py-4 min-w-0"><div class="text-white font-medium truncate">${escapeHTML(row.title || 'Senza titolo')}</div><div class="text-white/35 text-xs truncate">${escapeHTML(row.company_name || row.public_token || '—')}</div></td>
+              <td class="px-5 py-4 whitespace-nowrap">${isOpen(row) ? '<span class="text-emerald-300">Aperto</span>' : '<span class="text-white/45">Chiuso</span>'}</td>
+              <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(row.responses_count ?? 0)}</td>
+              <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(formatDate(row.closes_at))}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+
+  function detailRow(label, value) {
+    return `<div class="grid grid-cols-[120px_1fr] gap-3 py-2 border-b border-white/10 last:border-b-0"><span class="text-white/35">${escapeHTML(label)}</span><span class="text-white/75 break-words">${escapeHTML(value ?? '—')}</span></div>`;
+  }
+
+  async function loadResponses(row, token) {
+    if (!responsesBySurvey.has(row.id)) {
+      const select = 'id,submitted_at,answers_json,service_used,language';
+      const responses = await apiFetch(`/rest/v1/audience_survey_responses?select=${encodeURIComponent(select)}&survey_id=eq.${encodeURIComponent(row.id)}&order=submitted_at.desc&limit=500`, token);
+      responsesBySurvey.set(row.id, Array.isArray(responses) ? responses : []);
+    }
+    return responsesBySurvey.get(row.id) || [];
+  }
+
+  async function renderDetail(row, token) {
+    if (!detailTarget) return;
+    if (!row) {
+      detailTarget.innerHTML = '<p class="text-white/45 leading-[1.6]">Seleziona un questionario dalla tabella per vedere link, scadenza e risposte.</p>';
+      return;
+    }
+    detailTarget.innerHTML = '<p class="text-white/45 leading-[1.6]">Caricamento risposte...</p>';
+    const responses = await loadResponses(row, token);
+    detailTarget.innerHTML = `
+      <div class="flex items-start justify-between gap-4 mb-6">
+        <div>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-2">Dettaglio questionario</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.04em]">${escapeHTML(row.title || 'Senza titolo')}</h2>
+          <p class="text-white/40 text-sm mt-1">${escapeHTML(formatDate(row.created_at))}</p>
+        </div>
+        <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/55 whitespace-nowrap">${isOpen(row) ? 'Aperto' : 'Chiuso'}</span>
+      </div>
+      <div class="grid gap-4">
+        <section class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+          <h3 class="font-semibold tracking-[-0.03em] mb-3">Pubblicazione</h3>
+          ${detailRow('Compagnia', row.company_name)}
+          ${detailRow('Luogo', row.venue)}
+          ${detailRow('Apertura', formatDate(row.opens_at))}
+          ${detailRow('Chiusura', formatDate(row.closes_at))}
+          ${detailRow('Risposte', responses.length)}
+          <div class="mt-4 grid gap-2"><code class="block rounded-xl bg-black/40 border border-white/10 p-3 text-xs text-white/62 break-all">${escapeHTML(publicUrl(row))}</code><button data-copy-url="${escapeHTML(publicUrl(row))}" class="h-10 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06]">Copia link pubblico</button></div>
+        </section>
+        <section class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+          <h3 class="font-semibold tracking-[-0.03em] mb-3">Risposte anonime</h3>
+          <div class="grid gap-3">
+            ${responses.length ? responses.map((response) => `
+              <article class="rounded-xl border border-white/10 bg-black/25 p-4">
+                <div class="text-white/38 text-xs mb-3">${escapeHTML(formatDate(response.submitted_at))} · ${escapeHTML(response.service_used || 'servizio non indicato')} · ${escapeHTML(response.language || 'lingua non indicata')}</div>
+                <pre class="whitespace-pre-wrap text-sm text-white/70 leading-[1.5]">${escapeHTML(JSON.stringify(response.answers_json || {}, null, 2))}</pre>
+              </article>
+            `).join('') : '<p class="text-white/45 leading-[1.6]">Nessuna risposta ricevuta.</p>'}
+          </div>
+        </section>
+      </div>
+    `;
+  }
+
+  async function loadSurveys(token) {
+    showMessage('');
+    responsesBySurvey = new Map();
+    const user = await apiFetch('/auth/v1/user', token);
+    if (emailBadge) emailBadge.textContent = user.email || 'Admin';
+    const select = ['id','survey_id','public_token','title','company_name','venue','opens_at','closes_at','is_active','created_at','updated_at','responses_count','last_response_at'].join(',');
+    allSurveys = await apiFetch(`/rest/v1/audience_surveys_admin_view?select=${encodeURIComponent(select)}&order=created_at.desc&limit=200`, token);
+    selectedId = allSurveys[0]?.id || null;
+    renderTable();
+    await renderDetail(allSurveys.find((row) => row.id === selectedId), token);
+    if (loginPanel) loginPanel.hidden = true;
+    if (appPanel) appPanel.hidden = false;
+    if (logoutButton) logoutButton.hidden = false;
+    if (refreshButton) refreshButton.hidden = false;
+  }
+
+  loginForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (errorBox) errorBox.hidden = true;
+    const formData = new FormData(loginForm);
+    const email = String(formData.get('email') || '').trim();
+    const password = String(formData.get('password') || '');
+    if (!email) return showError('Inserisci la tua email.');
+    if (!password) return showError('Inserisci la password, oppure usa il link via email.');
+    try {
+      const token = await signInWithPassword(email, password);
+      await loadSurveys(token);
+    } catch (error) {
+      showError(error instanceof Error ? error.message : 'Accesso non riuscito.');
+    }
+  });
+
+  magicButton?.addEventListener('click', async () => {
+    if (errorBox) errorBox.hidden = true;
+    const formData = new FormData(loginForm);
+    const email = String(formData.get('email') || '').trim();
+    if (!email) return showError('Inserisci la tua email.');
+    try {
+      await sendMagicLink(email);
+      showError('Link inviato. Controlla la posta e torna qui.');
+    } catch (error) {
+      showError(error instanceof Error ? error.message : 'Invio link non riuscito.');
+    }
+  });
+
+  logoutButton?.addEventListener('click', () => {
+    localStorage.removeItem(storageKey);
+    window.location.reload();
+  });
+
+  refreshButton?.addEventListener('click', async () => {
+    const token = getStoredToken();
+    if (token) await loadSurveys(token);
+  });
+
+  searchInput?.addEventListener('input', () => renderTable());
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      currentFilter = button.getAttribute('data-filter') || 'all';
+      filterButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+      renderTable();
+    });
+  });
+
+  document.addEventListener('click', async (event) => {
+    const copyButton = event.target.closest?.('[data-copy-url]');
+    if (copyButton) {
+      await navigator.clipboard.writeText(copyButton.getAttribute('data-copy-url') || '');
+      copyButton.textContent = 'Link copiato';
+      setTimeout(() => { copyButton.textContent = 'Copia link pubblico'; }, 1400);
+      return;
+    }
+    const row = event.target.closest?.('[data-row-id]');
+    if (!row) return;
+    selectedId = row.getAttribute('data-row-id');
+    renderTable();
+    await renderDetail(allSurveys.find((item) => item.id === selectedId), getStoredToken());
+  });
+
+  (async () => {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      showError('Configura PUBLIC_SUPABASE_URL e PUBLIC_SUPABASE_ANON_KEY nelle variabili ambiente del sito.');
+      if (loginPanel) loginPanel.hidden = false;
+      return;
+    }
+    const token = getStoredToken();
+    if (!token) {
+      if (loginPanel) loginPanel.hidden = false;
+      return;
+    }
+    try {
+      await loadSurveys(token);
+    } catch (error) {
+      localStorage.removeItem(storageKey);
+      if (loginPanel) loginPanel.hidden = false;
+      showError(error instanceof Error ? error.message : 'Accesso non riuscito.');
+    }
+  })();
+</script>
