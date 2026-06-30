@@ -81,6 +81,8 @@ import Layout from "../layouts/Layout.astro";
   .survey-input { @apply w-full min-h-12 rounded-xl bg-white/[0.06] border border-white/10 px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-red-400/50; }
   .survey-card { @apply rounded-2xl border border-white/10 bg-black/20 p-4 md:p-5; }
   .survey-label { @apply block text-sm font-medium text-white/72 mb-3; }
+  .rating-choice { @apply h-12 rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center cursor-pointer hover:bg-white/[0.08] transition-colors; }
+  .rating-choice:has(input:checked) { @apply border-red-400/60 bg-red-500/20 text-white; }
 </style>
 
 <script>
@@ -134,17 +136,34 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
+  function normalizedType(value) {
+    const type = String(value || 'text').toLowerCase();
+    if (['rating', 'rating_1_5', 'scale', 'scale_1_5', 'stars'].includes(type)) return 'rating_1_5';
+    if (['choice', 'single_choice', 'select', 'yes_no'].includes(type)) return 'single_choice';
+    return 'text';
+  }
+
+  function defaultQuestions() {
+    return [
+      { id: 'overallSatisfaction', title: 'Quanto ti è piaciuta l’esperienza complessiva?', type: 'rating_1_5' },
+      { id: 'serviceUsefulness', title: 'Quanto è stato utile il servizio Sténtor?', type: 'rating_1_5' },
+      { id: 'easeOfUse', title: 'Quanto è stato facile usare il servizio sullo smartphone?', type: 'rating_1_5' },
+      { id: 'freeComment', title: 'Vuoi aggiungere un commento?', type: 'text' },
+    ];
+  }
+
   function normalizedQuestions(questions) {
-    if (!Array.isArray(questions)) return [];
+    if (!Array.isArray(questions) || !questions.length) return defaultQuestions();
     return questions.map((question, index) => {
       if (typeof question === 'string') {
-        return { id: `q${index + 1}`, title: question, type: 'text' };
+        return { id: `q${index + 1}`, title: question, type: 'text', options: [] };
       }
 
+      const type = normalizedType(question.type || question.kind);
       return {
         id: String(question.id || question.key || `q${index + 1}`),
         title: String(question.title || question.prompt || question.text || `Domanda ${index + 1}`),
-        type: String(question.type || question.kind || 'text').toLowerCase(),
+        type,
         options: Array.isArray(question.options) ? question.options : [],
       };
     });
@@ -154,25 +173,26 @@ import Layout from "../layouts/Layout.astro";
     const id = escapeHTML(question.id);
     const label = escapeHTML(question.title);
 
-    if (['rating', 'scale', 'stars'].includes(question.type)) {
+    if (question.type === 'rating_1_5') {
       return `
-        <fieldset class="survey-card">
+        <fieldset class="survey-card" data-question-type="rating_1_5" data-question-id="${id}">
           <legend class="survey-label">${label}</legend>
-          <div class="grid grid-cols-5 gap-2">
+          <div class="grid grid-cols-5 gap-2" aria-label="Valutazione da 1 a 5">
             ${[1, 2, 3, 4, 5].map((value) => `
-              <label class="h-11 rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center cursor-pointer hover:bg-white/[0.08]">
+              <label class="rating-choice">
                 <input class="sr-only" type="radio" name="${id}" value="${value}" />
-                <span>${value}</span>
+                <span class="font-semibold">${value}</span>
               </label>
             `).join('')}
           </div>
+          <div class="mt-2 flex justify-between text-[11px] text-white/35"><span>1 = poco</span><span>5 = molto</span></div>
         </fieldset>
       `;
     }
 
-    if (['choice', 'single_choice', 'select'].includes(question.type) && question.options.length) {
+    if (question.type === 'single_choice' && question.options.length) {
       return `
-        <fieldset class="survey-card">
+        <fieldset class="survey-card" data-question-type="single_choice" data-question-id="${id}">
           <legend class="survey-label">${label}</legend>
           <div class="grid gap-2">
             ${question.options.map((option) => `
@@ -187,7 +207,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     return `
-      <label class="survey-card grid gap-3">
+      <label class="survey-card grid gap-3" data-question-type="text" data-question-id="${id}">
         <span class="survey-label mb-0">${label}</span>
         <textarea name="${id}" rows="4" class="survey-input resize-y" placeholder="Scrivi qui la tua risposta"></textarea>
       </label>
@@ -200,8 +220,13 @@ import Layout from "../layouts/Layout.astro";
       const fields = Array.from(form.querySelectorAll(`[name="${CSS.escape(question.id)}"]`));
       if (!fields.length) return;
       const checked = fields.find((field) => field.checked);
-      const value = checked ? checked.value : fields[0].value;
-      answers[question.id] = { question: question.title, value: value || '' };
+      const rawValue = checked ? checked.value : fields[0].value;
+      const value = question.type === 'rating_1_5' && rawValue ? Number(rawValue) : (rawValue || '');
+      answers[question.id] = {
+        type: question.type,
+        question: question.title,
+        value,
+      };
     });
     return answers;
   }
@@ -228,9 +253,7 @@ import Layout from "../layouts/Layout.astro";
 
     const questions = normalizedQuestions(body.questions);
     if (questionsTarget) {
-      questionsTarget.innerHTML = questions.length
-        ? questions.map(renderQuestion).join('')
-        : '<label class="survey-card grid gap-3"><span class="survey-label mb-0">Lascia un commento sul servizio ricevuto</span><textarea name="comment" rows="5" class="survey-input resize-y"></textarea></label>';
+      questionsTarget.innerHTML = questions.map(renderQuestion).join('');
     }
 
     hideAll();
@@ -246,7 +269,7 @@ import Layout from "../layouts/Layout.astro";
       const formData = new FormData(form);
       const answers = collectAnswers();
       if (!Object.keys(answers).length && formData.get('comment')) {
-        answers.comment = { question: 'Commento', value: String(formData.get('comment') || '') };
+        answers.comment = { type: 'text', question: 'Commento', value: String(formData.get('comment') || '') };
       }
 
       const response = await fetch(endpoint, {
