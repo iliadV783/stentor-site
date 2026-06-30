@@ -37,27 +37,6 @@ create index if not exists audience_surveys_closes_at_idx on public.audience_sur
 create index if not exists audience_survey_responses_survey_id_idx on public.audience_survey_responses(survey_id);
 create index if not exists audience_survey_responses_submitted_at_idx on public.audience_survey_responses(submitted_at desc);
 
-create or replace view public.audience_surveys_admin_view as
-select
-  s.id,
-  s.survey_id,
-  s.public_token,
-  s.title,
-  s.company_name,
-  s.venue,
-  s.opens_at,
-  s.closes_at,
-  s.questions_json,
-  s.is_active,
-  s.source_payload,
-  s.created_at,
-  s.updated_at,
-  count(r.id)::integer as responses_count,
-  max(r.submitted_at) as last_response_at
-from public.audience_surveys s
-left join public.audience_survey_responses r on r.survey_id = s.id
-group by s.id;
-
 alter table public.audience_surveys enable row level security;
 alter table public.audience_survey_responses enable row level security;
 
@@ -78,3 +57,25 @@ begin
       for all using (public.current_user_is_admin()) with check (public.current_user_is_admin());
   end if;
 end $$;
+
+create or replace view public.audience_surveys_admin_view
+with (security_invoker = true) as
+select
+  s.id,
+  s.survey_id,
+  s.public_token,
+  s.title,
+  s.company_name,
+  s.venue,
+  s.opens_at,
+  s.closes_at,
+  s.questions_json,
+  s.is_active,
+  s.source_payload,
+  s.created_at,
+  s.updated_at,
+  count(r.id)::integer as responses_count,
+  max(r.submitted_at) as last_response_at
+from public.audience_surveys s
+left join public.audience_survey_responses r on r.survey_id = s.id
+group by s.id;
