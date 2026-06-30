@@ -286,6 +286,75 @@ import Layout from "../../layouts/Layout.astro";
     return `<div class="grid grid-cols-[120px_1fr] gap-3 py-2 border-b border-white/10 last:border-b-0"><span class="text-white/35">${escapeHTML(label)}</span><span class="text-white/75 break-words">${escapeHTML(value ?? '—')}</span></div>`;
   }
 
+  function humanizeQuestionKey(key) {
+    const labels = {
+      showComment: 'Osservazioni sullo spettacolo',
+      storyClarity: 'Chiarezza della storia',
+      subtitleEase: 'Facilità di lettura dei sopratitoli',
+      subtitleSync: 'Sincronizzazione dei sopratitoli',
+      subtitlePosition: 'Posizione dei sopratitoli',
+      translationQuality: 'Qualità della traduzione',
+      audioDescriptionClarity: 'Chiarezza dell’audiodescrizione',
+      audioDescriptionTiming: 'Tempismo dell’audiodescrizione',
+      audioDescriptionVoice: 'Voce dell’audiodescrizione',
+      overall: 'Valutazione complessiva',
+      comment: 'Commento',
+    };
+    if (labels[key]) return labels[key];
+    return String(key || 'Domanda')
+      .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+      .replace(/[_-]+/g, ' ')
+      .replace(/^./, (char) => char.toUpperCase());
+  }
+
+  function normalizeAnswerEntries(answers) {
+    if (!answers || typeof answers !== 'object') return [];
+    return Object.entries(answers).map(([key, raw]) => {
+      const item = raw && typeof raw === 'object' && !Array.isArray(raw) ? raw : { value: raw };
+      return {
+        key,
+        question: item.question || item.title || humanizeQuestionKey(key),
+        value: item.value ?? item.answer ?? item.response ?? '—',
+      };
+    }).filter((entry) => String(entry.value ?? '').trim().length > 0);
+  }
+
+  function renderHumanAnswer(entry) {
+    return `
+      <div class="rounded-xl border border-white/10 bg-white/[0.035] p-3">
+        <div class="text-white/45 text-xs leading-[1.4] mb-1">${escapeHTML(entry.question)}</div>
+        <div class="text-white/85 text-sm leading-[1.55] whitespace-pre-wrap">${escapeHTML(entry.value)}</div>
+      </div>
+    `;
+  }
+
+  function renderResponseCard(response, index) {
+    const entries = normalizeAnswerEntries(response.answers_json || {});
+    const meta = [
+      formatDate(response.submitted_at),
+      response.service_used || 'servizio non indicato',
+      response.language || 'lingua non indicata',
+    ].filter(Boolean).join(' · ');
+
+    return `
+      <article class="rounded-xl border border-white/10 bg-black/25 p-4">
+        <div class="flex items-start justify-between gap-3 mb-4">
+          <div>
+            <h4 class="font-semibold tracking-[-0.03em]">Risposta ${index + 1}</h4>
+            <div class="text-white/38 text-xs mt-1">${escapeHTML(meta)}</div>
+          </div>
+        </div>
+        <div class="grid gap-2">
+          ${entries.length ? entries.map(renderHumanAnswer).join('') : '<p class="text-white/45 text-sm leading-[1.6]">Risposta vuota.</p>'}
+        </div>
+        <details class="mt-3 rounded-xl border border-white/10 bg-black/30 p-3">
+          <summary class="cursor-pointer text-xs text-white/45 hover:text-white/75">JSON tecnico</summary>
+          <pre class="mt-3 max-h-[260px] overflow-auto whitespace-pre-wrap text-xs text-white/48 leading-[1.45]">${escapeHTML(JSON.stringify(response.answers_json || {}, null, 2))}</pre>
+        </details>
+      </article>
+    `;
+  }
+
   async function loadResponses(row, token) {
     if (!responsesBySurvey.has(row.id)) {
       const select = 'id,submitted_at,answers_json,service_used,language';
@@ -323,14 +392,12 @@ import Layout from "../../layouts/Layout.astro";
           <div class="mt-4 grid gap-2"><code class="block rounded-xl bg-black/40 border border-white/10 p-3 text-xs text-white/62 break-all">${escapeHTML(publicUrl(row))}</code><button data-copy-url="${escapeHTML(publicUrl(row))}" class="h-10 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06]">Copia link pubblico</button></div>
         </section>
         <section class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
-          <h3 class="font-semibold tracking-[-0.03em] mb-3">Risposte anonime</h3>
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <h3 class="font-semibold tracking-[-0.03em]">Risposte anonime</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/55">${responses.length}</span>
+          </div>
           <div class="grid gap-3">
-            ${responses.length ? responses.map((response) => `
-              <article class="rounded-xl border border-white/10 bg-black/25 p-4">
-                <div class="text-white/38 text-xs mb-3">${escapeHTML(formatDate(response.submitted_at))} · ${escapeHTML(response.service_used || 'servizio non indicato')} · ${escapeHTML(response.language || 'lingua non indicata')}</div>
-                <pre class="whitespace-pre-wrap text-sm text-white/70 leading-[1.5]">${escapeHTML(JSON.stringify(response.answers_json || {}, null, 2))}</pre>
-              </article>
-            `).join('') : '<p class="text-white/45 leading-[1.6]">Nessuna risposta ricevuta.</p>'}
+            ${responses.length ? responses.map(renderResponseCard).join('') : '<p class="text-white/45 leading-[1.6]">Nessuna risposta ricevuta.</p>'}
           </div>
         </section>
       </div>
