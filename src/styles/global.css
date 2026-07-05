@@ -262,6 +262,18 @@
   color: rgba(255, 255, 255, 0.70) !important;
   border-color: rgba(255, 255, 255, 0.16) !important;
 }
+.account-hero-mark {
+  background-image: url('/brand/stentor-account-hero.svg') !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: 0 28px 90px rgba(234, 179, 8, 0.18) !important;
+}
+.account-hero-mark span {
+  opacity: 0 !important;
+}
 
 /* Access request form readability. */
 #request-form .auth-label {
