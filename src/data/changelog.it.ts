@@ -25,22 +25,57 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 14 },
-  { id: "major", label: "Milestone", count: 10 },
-  { id: "new", label: "Novità", count: 8 },
-  { id: "improvements", label: "Miglioramenti", count: 10 },
-  { id: "fixes", label: "Correzioni", count: 7 },
+  { id: "all", label: "Tutto", count: 15 },
+  { id: "major", label: "Milestone", count: 11 },
+  { id: "new", label: "Novità", count: 9 },
+  { id: "improvements", label: "Miglioramenti", count: 11 },
+  { id: "fixes", label: "Correzioni", count: 8 },
 ];
 
-export const versionTag = "v0.1.77 · Prima sperimentazione dal vivo";
+export const versionTag = "v0.1.78 · Regia, pubblico e audiodescrizioni più affidabili";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 14, on: true },
+  { y: "2026", n: 15, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.78",
+    date: "2026-07-05",
+    type: "major",
+    title: "Regia professionale, pubblico più stabile e audiodescrizioni più affidabili",
+    body: "Questa build consolida Sténtor per l’uso in prova e in spettacolo dal vivo. Il lavoro riguarda soprattutto Regia, pagina Pubblico, audiodescrizioni, questionari, preparazione dello spettacolo e stabilità della build macOS.",
+    changes: {
+      new: [
+        { title: "Monitor AD in Regia", body: "La Regia mostra una scheda dedicata alle audiodescrizioni con stato della cue, destinatari collegati, dispositivi in ascolto e controlli locali." },
+        { title: "Centro Preparazione spettacolo", body: "La Regia raccoglie controlli su copione, soprattitoli, audiodescrizioni, server, dispositivi collegati e canale AD." },
+        { title: "Schermata finale per il pubblico", body: "Al termine dello spettacolo la pagina Pubblico mostra una vista conclusiva dedicata, con invito al questionario e interfaccia live nascosta." },
+        { title: "Dividi e Unisci battute", body: "L’editor Testo introduce comandi per dividere una battuta nel punto del cursore o unirla alla battuta successiva." },
+      ],
+      improvements: [
+        { title: "Regia più leggibile durante il live", body: "Lo scorrimento cue mantiene più chiaro il punto operativo dello spettacolo e distingue meglio avanzamento live, click manuale e ricerca." },
+        { title: "Audiodescrizioni precaricate", body: "La pagina Pubblico riceve un manifest degli audio disponibili, prova a scaricarli prima dell’uso e usa la copia locale quando disponibile." },
+        { title: "Conferme dai dispositivi", body: "I telefoni possono comunicare ricezione, avvio e conclusione delle cue AD, aiutando la Regia a distinguere invio, rete e riproduzione." },
+        { title: "Modalità pubblico più flessibile", body: "Gli spettatori possono cambiare modalità durante il live e, se previsto dal progetto, usare soprattitoli e audiodescrizione insieme." },
+        { title: "Ricerca con ritorno al contesto", body: "In Regia e nell’Editor, il doppio click su un risultato riapre il copione completo nel punto reale della battuta selezionata." },
+        { title: "Undo più completo", body: "Command-Z copre più operazioni sul copione, inclusi testo, tipo riga, note, stili locali, spostamenti, divisione e unione battute." },
+        { title: "Monitor rete più dettagliato", body: "La Regia espone qualità rete, latenza, conferme mancanti, dispositivi sincronizzati, riconnessioni e risincronizzazioni." },
+        { title: "Questionari più personalizzabili", body: "Il questionario può includere titolo e testo introduttivo, così da presentare meglio il contesto dello spettacolo o della ricerca." },
+        { title: "Archivio progetti più pulito", body: "L’apertura ripetuta dello stesso file .stn esterno non modificato non genera nuove copie duplicate nell’archivio gestito." },
+      ],
+      fixes: [
+        { title: "Stato post-spettacolo azzerato", body: "La schermata di spettacolo terminato non resta attiva quando si apre, importa o crea un altro progetto." },
+        { title: "Questionario solo dopo chiusura esplicita", body: "La pagina Pubblico non deduce più la fine dello spettacolo dal solo raggiungimento dell’ultima cue." },
+        { title: "Riapertura spettacolo ripulita", body: "Quando lo spettacolo viene riaperto, vengono rimossi gli stati e le didascalie di fine spettacolo." },
+        { title: "Colori accessibili corretti", body: "La lingua italiana standard resta neutra, mentre i colori personaggio vengono applicati alla variante accessibile Italiano+." },
+        { title: "Sidebar Regia non tagliata", body: "I pannelli laterali possono scorrere verticalmente e restano accessibili anche su finestre meno alte." },
+        { title: "Compatibilità macOS 12", body: "Il pannello Sistema usa componenti compatibili con il target macOS 12, evitando errori legati a NavigationStack." },
+        { title: "Framework WebRTC corretto", body: "La struttura simbolica di WebRTC.xcframework viene riparata per macOS e Mac Catalyst." },
+      ],
+    },
+  },
   {
     version: "0.1.77",
     date: "2026-06-27",
@@ -129,7 +164,7 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.77", accent: true },
+      { label: "Prototipo", value: "0.1.78", accent: true },
       { label: "macOS", value: "12.4+ universale" },
       { label: "Architettura", value: "Intel + Apple Silicon" },
       { label: "TestFlight", value: "build aggiornata" },
@@ -139,14 +174,14 @@ export const sideStats = {
     title: "Ritmo di sviluppo",
     bars: [28, 46, 34, 62, 54, 70, 48, 76, 66, 88, 58, 100],
     rangeStart: "Mag '26",
-    rangeEnd: "Giu '26",
+    rangeEnd: "Lug '26",
   },
   status: {
     title: "Stato",
     rows: [
       { label: "App Apple", value: "● TestFlight aggiornata", color: "green" as const },
       { label: "Windows", value: "sviluppo nativo parallelo" },
-      { label: "Prossima priorità", value: "test live e sincronizzazione audio" },
+      { label: "Prossima priorità", value: "Regia, pubblico e AD" },
     ],
   },
 };
