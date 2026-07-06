@@ -309,33 +309,35 @@
   min-height: 62px !important;
 }
 
-/* Account dashboard wide-screen layout.
-   The account area is a desktop control panel: use available horizontal space before stacking. */
+/* Account dashboard wide-screen composition.
+   Expand the app beyond the inherited marketing-page max-width and keep the dashboard visually balanced. */
 @media (min-width: 1180px) {
-  body:has([data-account-app]) header > div,
-  body:has([data-account-app]) main {
-    max-width: 1540px !important;
-  }
-
   [data-account-app] {
-    gap: 28px !important;
+    width: min(1760px, calc(100vw - 48px));
+    max-width: none !important;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 22px !important;
   }
 
   [data-account-app] .account-hero {
-    min-height: 170px;
-    padding: 34px 42px !important;
+    min-height: 150px;
+    padding: 32px 38px !important;
   }
 
   [data-account-app] .account-hero h1 {
-    max-width: 900px;
+    max-width: 920px;
   }
 
   [data-account-app] .account-hero p[data-i18n="app.subtitle"] {
-    max-width: 960px !important;
+    max-width: 980px !important;
   }
 
   [data-account-app] > .grid:nth-of-type(2) {
-    grid-template-columns: minmax(0, 1.35fr) minmax(420px, 0.85fr) !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.18fr) minmax(560px, 0.82fr) !important;
+    gap: 22px !important;
     align-items: start !important;
   }
 
@@ -349,12 +351,12 @@
   }
 
   [data-account-app] .account-summary-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   [data-account-app] .summary-row {
-    min-height: 88px;
+    min-height: 92px;
     flex-direction: column;
     align-items: flex-start !important;
     justify-content: space-between !important;
@@ -382,33 +384,40 @@
   }
 
   [data-account-app] .account-data-grid {
-    grid-template-columns: 0.8fr 0.9fr 0.9fr 1fr 1fr 1.2fr !important;
+    grid-template-columns: 0.72fr 0.82fr 0.82fr 0.95fr 1fr 1.1fr !important;
     gap: 14px 18px !important;
   }
 
   [data-account-app] .account-panel {
-    padding: 28px !important;
+    padding: 26px !important;
   }
 
   [data-account-app] .account-panel-compact {
     padding: 22px !important;
   }
+
+  [data-account-app] .download-card {
+    min-height: 68px;
+  }
 }
 
-@media (min-width: 1500px) {
-  body:has([data-account-app]) header > div,
-  body:has([data-account-app]) main {
-    max-width: 1660px !important;
+@media (min-width: 1540px) {
+  [data-account-app] {
+    width: min(1840px, calc(100vw - 64px));
   }
 
   [data-account-app] > .grid:nth-of-type(2) {
-    grid-template-columns: minmax(0, 1.55fr) minmax(520px, 0.95fr) !important;
+    grid-template-columns: minmax(0, 1.12fr) minmax(650px, 0.88fr) !important;
   }
 }
 
-@media (min-width: 1180px) and (max-width: 1350px) {
+@media (min-width: 1180px) and (max-width: 1320px) {
+  [data-account-app] > .grid:nth-of-type(2) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
   [data-account-app] aside {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1.05fr 1fr 1fr !important;
   }
 
   [data-account-app] aside > section:first-child {
