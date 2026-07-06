@@ -1,5 +1,7 @@
 import { insertSupabaseRow, isSupabaseConfigured } from './supabase';
 
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+
 type BetaRequestOptions = {
   formSelector: string;
   successSelector: string;
@@ -21,6 +23,29 @@ function getFullName(formData: FormData) {
   const lastName = getString(formData, 'last_name');
   const fullName = [firstName, lastName].filter(Boolean).join(' ').trim();
   return fullName || getString(formData, 'full_name');
+}
+
+async function sendBetaRequestEmail(payload: Record<string, unknown>) {
+  if (!supabaseUrl) return;
+
+  const response = await fetch(`${supabaseUrl}/functions/v1/beta-request-email`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    let message = 'Beta request saved, but confirmation email failed.';
+    try {
+      const body = await response.json();
+      message = body.message || body.error || message;
+    } catch {
+      message = response.statusText || message;
+    }
+    throw new Error(message);
+  }
 }
 
 function replaceNeutralFooterCopy() {
@@ -161,6 +186,11 @@ export function setupBetaRequestForm(options: BetaRequestOptions) {
 
     try {
       await insertSupabaseRow('beta' + '_requests', payload);
+      try {
+        await sendBetaRequestEmail(payload);
+      } catch (emailError) {
+        console.error(emailError);
+      }
     } catch (err) {
       errorBox.textContent = err instanceof Error ? err.message : 'The request could not be saved. Please try again.';
       errorBox.hidden = false;
