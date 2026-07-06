@@ -308,3 +308,118 @@
   font-size: 17px !important;
   min-height: 62px !important;
 }
+
+/* Account dashboard wide-screen layout.
+   The account area is a desktop control panel: use available horizontal space before stacking. */
+@media (min-width: 1180px) {
+  body:has([data-account-app]) header > div,
+  body:has([data-account-app]) main {
+    max-width: 1540px !important;
+  }
+
+  [data-account-app] {
+    gap: 28px !important;
+  }
+
+  [data-account-app] .account-hero {
+    min-height: 170px;
+    padding: 34px 42px !important;
+  }
+
+  [data-account-app] .account-hero h1 {
+    max-width: 900px;
+  }
+
+  [data-account-app] .account-hero p[data-i18n="app.subtitle"] {
+    max-width: 960px !important;
+  }
+
+  [data-account-app] > .grid:nth-of-type(2) {
+    grid-template-columns: minmax(0, 1.35fr) minmax(420px, 0.85fr) !important;
+    align-items: start !important;
+  }
+
+  [data-account-app] aside {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  [data-account-app] aside > section:first-child {
+    grid-column: 1 / -1;
+  }
+
+  [data-account-app] .account-summary-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: grid !important;
+  }
+
+  [data-account-app] .summary-row {
+    min-height: 88px;
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    border-bottom: 0 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px !important;
+  }
+
+  [data-account-app] .summary-row:last-child {
+    border-right: 0 !important;
+  }
+
+  [data-account-app] .summary-row strong {
+    text-align: left !important;
+    font-size: 18px;
+    letter-spacing: -0.03em;
+  }
+
+  [data-account-app] [data-account-licenses] {
+    gap: 14px !important;
+  }
+
+  [data-account-app] .access-card {
+    padding: 18px 20px !important;
+  }
+
+  [data-account-app] .account-data-grid {
+    grid-template-columns: 0.8fr 0.9fr 0.9fr 1fr 1fr 1.2fr !important;
+    gap: 14px 18px !important;
+  }
+
+  [data-account-app] .account-panel {
+    padding: 28px !important;
+  }
+
+  [data-account-app] .account-panel-compact {
+    padding: 22px !important;
+  }
+}
+
+@media (min-width: 1500px) {
+  body:has([data-account-app]) header > div,
+  body:has([data-account-app]) main {
+    max-width: 1660px !important;
+  }
+
+  [data-account-app] > .grid:nth-of-type(2) {
+    grid-template-columns: minmax(0, 1.55fr) minmax(520px, 0.95fr) !important;
+  }
+}
+
+@media (min-width: 1180px) and (max-width: 1350px) {
+  [data-account-app] aside {
+    grid-template-columns: 1fr !important;
+  }
+
+  [data-account-app] aside > section:first-child {
+    grid-column: auto;
+  }
+
+  [data-account-app] .account-summary-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  [data-account-app] .summary-row:nth-child(2n) {
+    border-right: 0 !important;
+  }
+}
