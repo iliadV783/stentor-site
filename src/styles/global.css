@@ -3,45 +3,30 @@
 /* Design tokens (extends Tailwind theme) */
 @theme {
   /* Surface scale — darkest to lightest. Generates bg-*, from-*, to-*, etc. */
-  --color-bg: #0a0a0a;          /* page background */
-  --color-deep: #0c0c0c;        /* viewport / visualization backdrop */
-  --color-sunken: #0e0e0e;      /* inset stat panels, avatar gradient end */
-  --color-surface: #111111;     /* cards */
-  --color-surface-2: #141414;   /* input areas */
-  --color-elevated: #171717;    /* raised cards */
-  --color-raised: #1f1f1f;      /* avatar gradient start */
-  --color-chrome: #2a2a2a;      /* decorative window dots */
-
+  --color-bg: #0a0a0a;
+  --color-deep: #0c0c0c;
+  --color-sunken: #0e0e0e;
+  --color-surface: #111111;
+  --color-surface-2: #141414;
+  --color-elevated: #171717;
+  --color-raised: #1f1f1f;
+  --color-chrome: #2a2a2a;
   --color-hairline: rgba(255, 255, 255, 0.08);
   --color-hairline-strong: rgba(255, 255, 255, 0.14);
-
-  /* Text scale — every token meets WCAG AA (≥4.5:1) on bg/deep/surface. */
-  --color-text: #fafafa;     /* primary  — ~19:1 on bg */
-  --color-text-2: #a1a1aa;   /* secondary — ~8:1  on bg */
-  --color-text-3: #8b8b95;   /* tertiary  — ~5.7:1 on bg (was #71717a → 4.2:1, failed AA) */
-  --color-text-4: #828289;   /* quaternary — 5.1:1 on bg, 4.8:1 on surface (#111) */
-
-  /* Astro injects --font-geist / --font-geist-mono on :root via <Font />.
-     Each var() resolves to a chain that already includes a metric-adjusted
-     fallback face, so the swap from fallback to web font causes no CLS. */
+  --color-text: #fafafa;
+  --color-text-2: #a1a1aa;
+  --color-text-3: #8b8b95;
+  --color-text-4: #828289;
   --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
 }
 
 @layer base {
-  html {
-    /* Anchor jumps account for the sticky nav (h-16 = 64px) + breathing room */
-    scroll-padding-top: 96px;
-  }
+  html { scroll-padding-top: 96px; }
   html,
   body {
     background: var(--color-bg);
     color: var(--color-text);
-    /* Clamp accidental horizontal overflow at the document root. `clip` (not
-       `hidden`) avoids creating a scroll container, so `position: sticky` and
-       `position: fixed` descendants behave normally. Without this, an isolated
-       overflowing child on one page causes the fixed nav to drift right and,
-       on iOS Safari, lose its containing block during scroll. */
     overflow-x: clip;
   }
   body {
@@ -53,161 +38,58 @@
     line-height: 1.5;
     letter-spacing: -0.005em;
   }
-  ::selection {
-    background: rgba(239, 68, 68, 0.35);
-    color: #fff;
-  }
-
-  /* Hide elements bound by Alpine.js until it has hydrated. */
+  ::selection { background: rgba(239, 68, 68, 0.35); color: #fff; }
   [x-cloak] { display: none !important; }
-
-  /* Admin header controls are shown only after the reserved console is active. */
   body:not(:has([data-admin-app]:not([hidden]))) [data-admin-email],
-  body:not(:has([data-admin-app]:not([hidden]))) [data-admin-logout] {
-    display: none !important;
-  }
-
-  /* Reveal-on-scroll. Elements opt in via [data-animate]; the global
-     IntersectionObserver in Layout.astro adds .is-in once. Entry-only —
-     no exit. Honors prefers-reduced-motion. */
+  body:not(:has([data-admin-app]:not([hidden]))) [data-admin-logout] { display: none !important; }
   @media (prefers-reduced-motion: no-preference) {
     [data-animate] {
       opacity: 0;
       transform: translate3d(0, 16px, 0);
-      transition:
-        opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1), transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
       transition-delay: 150ms;
       will-change: opacity, transform;
     }
     [data-animate="fade"] { transform: none; }
-    /* Horizontal slide variants — content enters from its outer edge.
-       Used in the features Showcase to mirror text/illustration alternation. */
     [data-animate="left"] { transform: translate3d(-28px, 0, 0); }
     [data-animate="right"] { transform: translate3d(28px, 0, 0); }
-    [data-animate].is-in {
-      opacity: 1;
-      transform: none;
-    }
+    [data-animate].is-in { opacity: 1; transform: none; }
   }
-
-  /* Custom scrollbar — dark theme, subtle */
-  * {
-    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
-    scrollbar-width: thin;
-  }
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.10);
-    border-radius: 8px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.22);
-    background-clip: padding-box;
-    border: 2px solid transparent;
-  }
-  ::-webkit-scrollbar-corner {
-    background: transparent;
-  }
+  * { scrollbar-color: rgba(255, 255, 255, 0.12) transparent; scrollbar-width: thin; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.10); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); background-clip: padding-box; border: 2px solid transparent; }
+  ::-webkit-scrollbar-corner { background: transparent; }
 }
 
-/* Reusable patterns expressed in CSS where utilities aren't enough */
-@utility dotgrid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-@utility dotgrid-fade {
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%);
-}
-@utility halo-red {
-  background:
-    radial-gradient(50% 50% at 50% 50%, rgba(239, 68, 68, 0.3), transparent 70%),
-    radial-gradient(30% 60% at 50% 50%, rgba(239, 68, 68, 0.18), transparent 70%);
-  filter: blur(8px);
-}
-/* Subtle vertical gradient used for small icon tiles inside bento panels. */
-@utility tile-grad {
-  background-image: linear-gradient(180deg, #1a1a1a, #0f0f0f);
-}
+@utility dotgrid { background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px); background-size: 24px 24px; }
+@utility dotgrid-fade { -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%); mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%); }
+@utility halo-red { background: radial-gradient(50% 50% at 50% 50%, rgba(239, 68, 68, 0.3), transparent 70%), radial-gradient(30% 60% at 50% 50%, rgba(239, 68, 68, 0.18), transparent 70%); filter: blur(8px); }
+@utility tile-grad { background-image: linear-gradient(180deg, #1a1a1a, #0f0f0f); }
 
-/* Code-block syntax classes (kept small) */
 .tok-kw { color: #c4b5fd; }
 .tok-fn { color: #ef4444; }
 .tok-str { color: #86efac; }
 .tok-num { color: #fcd34d; }
-.tok-cm { color: #828289; }   /* AA-safe dim gray for code comments */
-.tok-pn { color: #8b8b95; }   /* AA-safe dim gray for punctuation */
-.tok-ln {
-  color: #828289;
-  user-select: none;
-  display: inline-block;
-  width: 22px;
-  text-align: right;
-  margin-right: 14px;
-}
+.tok-cm { color: #828289; }
+.tok-pn { color: #8b8b95; }
+.tok-ln { color: #828289; user-select: none; display: inline-block; width: 22px; text-align: right; margin-right: 14px; }
 
-/* Long-form legal/document prose. Used by /privacy and /terms — section
-   bodies arrive as raw HTML (<p>, <ul>, <a>, <strong>) and inherit these
-   styles without per-element class soup. */
-.legal-prose {
-  color: var(--color-text-2);
-  font-size: 15px;
-  line-height: 1.65;
-}
+.legal-prose { color: var(--color-text-2); font-size: 15px; line-height: 1.65; }
 .legal-prose p { margin: 0 0 1rem; }
 .legal-prose p:last-child { margin-bottom: 0; }
 .legal-prose strong { color: var(--color-text); font-weight: 500; }
-.legal-prose a {
-  color: #ef4444;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-}
+.legal-prose a { color: #ef4444; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 .legal-prose a:hover { text-decoration-thickness: 2px; }
 .legal-prose ul,
-.legal-prose ol {
-  margin: 0 0 1rem;
-  padding-left: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+.legal-prose ol { margin: 0 0 1rem; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .legal-prose ul { list-style: none; padding-left: 0; }
-.legal-prose ul > li {
-  position: relative;
-  padding-left: 1.25rem;
-}
-.legal-prose ul > li::before {
-  content: "";
-  position: absolute;
-  left: 0.4rem;
-  top: 0.65em;
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background: var(--color-text-4);
-}
+.legal-prose ul > li { position: relative; padding-left: 1.25rem; }
+.legal-prose ul > li::before { content: ""; position: absolute; left: 0.4rem; top: 0.65em; width: 5px; height: 5px; border-radius: 9999px; background: var(--color-text-4); }
 .legal-prose ol { list-style: decimal; color: var(--color-text-2); }
-.legal-prose code {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  padding: 1px 6px;
-  border-radius: 2px;
-  background: rgba(239, 68, 68, 0.08);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.18);
-}
+.legal-prose code { font-family: var(--font-mono); font-size: 13px; padding: 1px 6px; border-radius: 2px; background: rgba(239, 68, 68, 0.08); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.18); }
 
-/* SVG illustration stroke/fill classes */
 .iso-amber { stroke: #ef4444; }
 .iso-amber-fill { fill: #ef4444; }
 .iso-red { stroke: #f87171; }
@@ -215,10 +97,6 @@
 .iso-line { stroke: rgba(255, 255, 255, 0.2); }
 .iso-dim { stroke: rgba(255, 255, 255, 0.12); }
 
-/* Account dashboard contrast tuning.
-   The account page is operational rather than promotional: secondary text and
-   metadata must remain readable on the black shell, especially for license and
-   cloud status review. */
 [data-account-app] .text-white\/35,
 [data-account-login] .text-white\/35 { color: rgba(255, 255, 255, 0.58) !important; }
 [data-account-app] .text-white\/38,
@@ -238,197 +116,69 @@
 
 .account-card,
 .download-card,
-.cloud-project-card {
-  border-color: rgba(255, 255, 255, 0.14) !important;
-  background: rgba(255, 255, 255, 0.035) !important;
-}
-.account-label {
-  color: rgba(255, 255, 255, 0.52) !important;
-  letter-spacing: 0.14em;
-}
-.account-access-code {
-  color: rgba(255, 255, 255, 0.78) !important;
-}
+.cloud-project-card { border-color: rgba(255, 255, 255, 0.14) !important; background: rgba(255, 255, 255, 0.035) !important; }
+.account-label { color: rgba(255, 255, 255, 0.52) !important; letter-spacing: 0.14em; }
+.account-access-code { color: rgba(255, 255, 255, 0.78) !important; }
 .download-card strong,
-.cloud-project-card h3 {
-  color: rgba(255, 255, 255, 0.88) !important;
-}
+.cloud-project-card h3 { color: rgba(255, 255, 255, 0.88) !important; }
 .download-card span,
 .download-card em,
-.cloud-summary {
-  color: rgba(255, 255, 255, 0.66) !important;
-}
-.account-copy {
-  color: rgba(255, 255, 255, 0.70) !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
-}
-.account-hero-mark {
-  background-image: url('/brand/stentor-account-hero.svg') !important;
-  background-size: contain !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-color: transparent !important;
-  border: 0 !important;
-  box-shadow: 0 28px 90px rgba(234, 179, 8, 0.18) !important;
-}
-.account-hero-mark span {
-  opacity: 0 !important;
-}
+.cloud-summary { color: rgba(255, 255, 255, 0.66) !important; }
+.account-copy { color: rgba(255, 255, 255, 0.70) !important; border-color: rgba(255, 255, 255, 0.16) !important; }
+.account-hero-mark { background-image: url('/brand/stentor-account-hero.svg') !important; background-size: contain !important; background-position: center !important; background-repeat: no-repeat !important; background-color: transparent !important; border: 0 !important; box-shadow: 0 28px 90px rgba(234, 179, 8, 0.18) !important; }
+.account-hero-mark span { opacity: 0 !important; }
 
-/* Access request form readability. */
-#request-form .auth-label {
-  font-size: 16px !important;
-  line-height: 1.35 !important;
-  color: rgba(255, 255, 255, 0.74) !important;
-}
-#request-form .auth-input {
-  min-height: 58px !important;
-  font-size: 18px !important;
-  line-height: 1.45 !important;
-}
-#request-form .auth-textarea {
-  min-height: 148px !important;
-  font-size: 18px !important;
-}
-#request-form .account-type-option strong {
-  font-size: 21px !important;
-  line-height: 1.25 !important;
-}
-#request-form .account-type-option small {
-  font-size: 17px !important;
-  line-height: 1.45 !important;
-  color: rgba(255, 255, 255, 0.70) !important;
-}
+#request-form .auth-label { font-size: 16px !important; line-height: 1.35 !important; color: rgba(255, 255, 255, 0.74) !important; }
+#request-form .auth-input { min-height: 58px !important; font-size: 18px !important; line-height: 1.45 !important; }
+#request-form .auth-textarea { min-height: 148px !important; font-size: 18px !important; }
+#request-form .account-type-option strong { font-size: 21px !important; line-height: 1.25 !important; }
+#request-form .account-type-option small { font-size: 17px !important; line-height: 1.45 !important; color: rgba(255, 255, 255, 0.70) !important; }
 #request-form label,
-#request-form .text-sm {
-  font-size: 16px !important;
-  line-height: 1.45 !important;
+#request-form .text-sm { font-size: 16px !important; line-height: 1.45 !important; }
+#request-form button[type="submit"] { font-size: 17px !important; min-height: 62px !important; }
+
+body:has([data-account-login]:not([hidden])) main {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
 }
-#request-form button[type="submit"] {
-  font-size: 17px !important;
-  min-height: 62px !important;
+body:has([data-account-login]:not([hidden])) [data-account-login] {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
-/* Account dashboard wide-screen composition.
-   Expand the app beyond the inherited marketing-page max-width and keep the dashboard visually balanced. */
 @media (min-width: 1180px) {
-  [data-account-app] {
-    width: min(1760px, calc(100vw - 48px));
-    max-width: none !important;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    gap: 22px !important;
-  }
-
-  [data-account-app] .account-hero {
-    min-height: 150px;
-    padding: 32px 38px !important;
-  }
-
-  [data-account-app] .account-hero h1 {
-    max-width: 920px;
-  }
-
-  [data-account-app] .account-hero p[data-i18n="app.subtitle"] {
-    max-width: 980px !important;
-  }
-
-  [data-account-app] > .grid:nth-of-type(2) {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1.18fr) minmax(560px, 0.82fr) !important;
-    gap: 22px !important;
-    align-items: start !important;
-  }
-
-  [data-account-app] aside {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 18px !important;
-  }
-
-  [data-account-app] aside > section:first-child {
-    grid-column: 1 / -1;
-  }
-
-  [data-account-app] .account-summary-list {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  [data-account-app] .summary-row {
-    min-height: 92px;
-    flex-direction: column;
-    align-items: flex-start !important;
-    justify-content: space-between !important;
-    border-bottom: 0 !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 16px !important;
-  }
-
-  [data-account-app] .summary-row:last-child {
-    border-right: 0 !important;
-  }
-
-  [data-account-app] .summary-row strong {
-    text-align: left !important;
-    font-size: 18px;
-    letter-spacing: -0.03em;
-  }
-
-  [data-account-app] [data-account-licenses] {
-    gap: 14px !important;
-  }
-
-  [data-account-app] .access-card {
-    padding: 18px 20px !important;
-  }
-
-  [data-account-app] .account-data-grid {
-    grid-template-columns: 0.72fr 0.82fr 0.82fr 0.95fr 1fr 1.1fr !important;
-    gap: 14px 18px !important;
-  }
-
-  [data-account-app] .account-panel {
-    padding: 26px !important;
-  }
-
-  [data-account-app] .account-panel-compact {
-    padding: 22px !important;
-  }
-
-  [data-account-app] .download-card {
-    min-height: 68px;
-  }
+  [data-account-app] { width: min(1760px, calc(100vw - 48px)); max-width: none !important; position: relative; left: 50%; transform: translateX(-50%); gap: 22px !important; }
+  [data-account-app] .account-hero { min-height: 150px; padding: 32px 38px !important; }
+  [data-account-app] .account-hero h1 { max-width: 920px; }
+  [data-account-app] .account-hero p[data-i18n="app.subtitle"] { max-width: 980px !important; }
+  [data-account-app] > .grid:nth-of-type(2) { display: grid !important; grid-template-columns: minmax(0, 1.18fr) minmax(560px, 0.82fr) !important; gap: 22px !important; align-items: start !important; }
+  [data-account-app] aside { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px !important; }
+  [data-account-app] aside > section:first-child { grid-column: 1 / -1; }
+  [data-account-app] .account-summary-list { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  [data-account-app] .summary-row { min-height: 92px; flex-direction: column; align-items: flex-start !important; justify-content: space-between !important; border-bottom: 0 !important; border-right: 1px solid rgba(255, 255, 255, 0.08); padding: 16px !important; }
+  [data-account-app] .summary-row:last-child { border-right: 0 !important; }
+  [data-account-app] .summary-row strong { text-align: left !important; font-size: 18px; letter-spacing: -0.03em; }
+  [data-account-app] [data-account-licenses] { gap: 14px !important; }
+  [data-account-app] .access-card { padding: 18px 20px !important; }
+  [data-account-app] .account-data-grid { grid-template-columns: 0.72fr 0.82fr 0.82fr 0.95fr 1fr 1.1fr !important; gap: 14px 18px !important; }
+  [data-account-app] .account-panel { padding: 26px !important; }
+  [data-account-app] .account-panel-compact { padding: 22px !important; }
+  [data-account-app] .download-card { min-height: 68px; }
 }
 
 @media (min-width: 1540px) {
-  [data-account-app] {
-    width: min(1840px, calc(100vw - 64px));
-  }
-
-  [data-account-app] > .grid:nth-of-type(2) {
-    grid-template-columns: minmax(0, 1.12fr) minmax(650px, 0.88fr) !important;
-  }
+  [data-account-app] { width: min(1840px, calc(100vw - 64px)); }
+  [data-account-app] > .grid:nth-of-type(2) { grid-template-columns: minmax(0, 1.12fr) minmax(650px, 0.88fr) !important; }
 }
 
 @media (min-width: 1180px) and (max-width: 1320px) {
-  [data-account-app] > .grid:nth-of-type(2) {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  [data-account-app] aside {
-    grid-template-columns: 1.05fr 1fr 1fr !important;
-  }
-
-  [data-account-app] aside > section:first-child {
-    grid-column: auto;
-  }
-
-  [data-account-app] .account-summary-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  [data-account-app] .summary-row:nth-child(2n) {
-    border-right: 0 !important;
-  }
+  [data-account-app] > .grid:nth-of-type(2) { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-account-app] aside { grid-template-columns: 1.05fr 1fr 1fr !important; }
+  [data-account-app] aside > section:first-child { grid-column: auto; }
+  [data-account-app] .account-summary-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [data-account-app] .summary-row:nth-child(2n) { border-right: 0 !important; }
 }
