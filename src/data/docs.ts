@@ -1,6 +1,6 @@
 /**
  * Navigazione della documentazione: gruppi laterali + indice della pagina.
- * Il corpo della pagina documentazione vive in docs.astro.
+ * Il corpo della pagina documentazione vive in src/pages/it/docs/index.astro.
  */
 
 export type DocsSidebarItem = {
@@ -21,16 +21,17 @@ export const sidebarGroups: DocsSidebarGroup[] = [
     title: "Da qui",
     items: [
       { label: "Panoramica", href: "#overview", active: true },
-      { label: "Che cos’è Sténtor", href: "#what-it-is" },
-      { label: "Stato della beta", href: "#version", badge: "macOS", badgeNew: true },
+      { label: "Stato della beta", href: "#version", badge: "2026", badgeNew: true },
+      { label: "Flusso consigliato", href: "#workflow" },
     ],
   },
   {
     title: "Preparazione",
     items: [
-      { label: "Progetti", href: "#projects" },
-      { label: "Importazione del testo", href: "#import", badge: "Nuovo" },
+      { label: "Progetti e archivio", href: "#projects" },
+      { label: "Importazione", href: "#import" },
       { label: "Testo e lingue", href: "#text" },
+      { label: "Stile delle battute", href: "#cue-style", badge: "Nuovo" },
       { label: "Audio-descrizione", href: "#audio" },
     ],
   },
@@ -38,36 +39,43 @@ export const sidebarGroups: DocsSidebarGroup[] = [
     title: "Esecuzione",
     items: [
       { label: "Linea del tempo", href: "#timeline" },
-      { label: "Regia", href: "#stage-desk" },
+      { label: "Regia", href: "#stage-desk", badge: "Nuovo" },
       { label: "Schermi", href: "#screens" },
-      { label: "Viste per il pubblico", href: "#audience" },
+      { label: "Pubblico", href: "#audience" },
+      { label: "Questionari", href: "#surveys", badge: "Beta" },
     ],
   },
   {
-    title: "File e rilascio",
+    title: "Sistema",
     items: [
+      { label: "Connessione", href: "#connection" },
+      { label: "Impostazioni", href: "#settings" },
       { label: "Importazione ed esportazione", href: "#files" },
-      { label: "Applicazione macOS", href: "#desktop" },
-      { label: "Funzioni previste", href: "#planned" },
+      { label: "macOS e Windows", href: "#desktop" },
+      { label: "Ricerca e sviluppo", href: "#research" },
     ],
   },
 ];
 
 export const tocItems = [
   { label: "Panoramica", href: "#overview", active: true },
-  { label: "Che cos’è Sténtor", href: "#what-it-is" },
   { label: "Stato della beta", href: "#version" },
-  { label: "Progetti", href: "#projects" },
-  { label: "Importazione del testo", href: "#import" },
+  { label: "Flusso consigliato", href: "#workflow" },
+  { label: "Progetti e archivio", href: "#projects" },
+  { label: "Importazione", href: "#import" },
   { label: "Testo e lingue", href: "#text" },
+  { label: "Stile delle battute", href: "#cue-style" },
   { label: "Audio-descrizione", href: "#audio" },
   { label: "Linea del tempo", href: "#timeline" },
   { label: "Regia", href: "#stage-desk" },
   { label: "Schermi", href: "#screens" },
-  { label: "Viste per il pubblico", href: "#audience" },
-  { label: "Importazione ed esportazione", href: "#files" },
-  { label: "Applicazione macOS", href: "#desktop" },
-  { label: "Funzioni previste", href: "#planned" },
+  { label: "Pubblico", href: "#audience" },
+  { label: "Questionari", href: "#surveys" },
+  { label: "Connessione", href: "#connection" },
+  { label: "Impostazioni", href: "#settings" },
+  { label: "File", href: "#files" },
+  { label: "macOS e Windows", href: "#desktop" },
+  { label: "Ricerca e sviluppo", href: "#research" },
 ];
 
 export const tocActions = [
@@ -80,9 +88,9 @@ export const pageMeta = {
   breadcrumb: [
     { href: "#", label: "Documentazione" },
     { href: "#", label: "Prodotto" },
-    { label: "Sténtor" },
+    { label: "Guida italiana" },
   ],
   maintainer: "Documentazione Sténtor",
-  lastUpdated: "Aggiornata per la beta desktop",
-  readingTime: "Tempo di lettura: 7 min",
+  lastUpdated: "Aggiornata alle funzioni beta attuali",
+  readingTime: "Tempo di lettura: 10 min",
 };
