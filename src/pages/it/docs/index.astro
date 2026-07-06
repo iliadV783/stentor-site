@@ -21,28 +21,28 @@ const localizedTocActions = tocActions.map((a) => ({
 }));
 ---
 <Layout
-  title="Documentazione — Sténtor"
-  description="Documentazione italiana di Sténtor: lo spazio di lavoro per preparare copioni, traduzioni, soprattitoli, audio-descrizione, linee del tempo e testo di scena dal vivo."
+  title="Guida — Sténtor"
+  description="Guida italiana aggiornata di Sténtor: progetti, testo, lingue, stile battute, regia, schermi, pubblico, questionari, connessione, impostazioni e sviluppo beta."
   active="docs"
 >
   <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-10 pb-24 grid gap-10 lg:[grid-template-columns:240px_minmax(0,1fr)] xl:[grid-template-columns:260px_minmax(0,1fr)_240px] xl:gap-12 items-start" x-data="{mobileOpen:false}">
 
     <button @click="mobileOpen=!mobileOpen" class="w-fit lg:hidden inline-flex items-center gap-2 h-10 px-3 border border-hairline rounded-lg text-sm text-text-2 hover:text-text">
       <IconMenu class="w-4 h-4" />
-      Documentazione
+      Guida
     </button>
 
     <aside class:list={[
       "lg:sticky lg:top-32 lg:max-h-[calc(100vh-152px)] lg:overflow-y-auto pr-2 text-sm",
       "max-lg:fixed max-lg:inset-x-0 max-lg:top-16 max-lg:bottom-0 max-lg:bg-bg max-lg:border-b max-lg:border-hairline max-lg:p-6 max-lg:z-40 max-lg:overflow-y-auto max-lg:overscroll-contain",
-    ]} x-show="mobileOpen || window.matchMedia('(min-width: 1024px)').matches" x-cloak aria-label="Documentazione">
-      <button @click="mobileOpen=false" class="lg:hidden flex items-center justify-between w-full mb-4 text-xs tracking-[0.08em] uppercase text-text-3 font-medium" aria-label="Chiudi il menu della documentazione">
-        <span>Documentazione</span>
+    ]} x-show="mobileOpen || window.matchMedia('(min-width: 1024px)').matches" x-cloak aria-label="Guida Sténtor">
+      <button @click="mobileOpen=false" class="lg:hidden flex items-center justify-between w-full mb-4 text-xs tracking-[0.08em] uppercase text-text-3 font-medium" aria-label="Chiudi il menu della guida">
+        <span>Guida</span>
         <span aria-hidden="true" class="text-base text-text-2"><IconX class="w-4 h-4" /></span>
       </button>
       <div class="docs-search">
         <IconSearch class="w-4 h-4" />
-        <span class="flex-1">Cerca nella documentazione…</span>
+        <span class="flex-1">Cerca nella guida…</span>
       </div>
       {sidebarGroups.map((g) => (
         <>
@@ -79,9 +79,9 @@ const localizedTocActions = tocActions.map((a) => ({
         ))}
       </div>
 
-      <h1 id="overview" class="text-4xl md:text-[48px] leading-[1.03] tracking-[-0.05em] font-semibold mb-4">Prepara il testo. Costruisci la linea del tempo. Manda in scena lo spettacolo.</h1>
-      <p class="text-lg leading-[1.6] text-text-2 max-w-[720px] mb-7">
-        Sténtor è uno spazio di lavoro per il testo nello spettacolo dal vivo: mette insieme copioni, traduzioni, soprattitoli, audio-descrizione, linee del tempo, schermi e regia in un unico progetto controllato.
+      <h1 id="overview" class="text-4xl md:text-[48px] leading-[1.03] tracking-[-0.05em] font-semibold mb-4">Guida aggiornata alle funzioni di Sténtor.</h1>
+      <p class="text-lg leading-[1.6] text-text-2 max-w-[760px] mb-7">
+        Sténtor è uno spazio di lavoro per preparare e mandare in scena testo dal vivo: copione, traduzioni, versioni in italiano facile, audio-descrizione, schermi, dispositivi del pubblico, questionari e regia restano dentro un unico progetto controllato.
       </p>
 
       <div class="flex items-center gap-3 flex-wrap mb-10 font-mono text-xs text-text-3">
@@ -95,178 +95,210 @@ const localizedTocActions = tocActions.map((a) => ({
 
       <div class="callout callout--info">
         <div>
-          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Posizionamento attuale.</b> Sténtor è pensato per teatri, festival e spazi di spettacolo che hanno bisogno di un flusso testuale preciso prima e durante la rappresentazione: preparazione, versioni multilingue, avanzamento dal vivo e materiali accessibili.</p>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Stato della guida.</b> Questa pagina descrive il flusso funzionale attuale della beta e la direzione già implementata nelle aree principali: preparazione, Regia, Schermi, Pubblico, Connessione, Impostazioni e Ricerca e sviluppo.</p>
         </div>
       </div>
 
-      <h2 id="what-it-is" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Che cos’è Sténtor</h2>
+      <h2 id="version" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Stato della beta</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        Sténtor è un’applicazione per chi prepara e gestisce il testo nello spettacolo dal vivo. Mantiene nello stesso file di produzione il copione di origine, le traduzioni, i soprattitoli, i personaggi, la struttura delle battute, le note di audio-descrizione, la linea del tempo e le impostazioni degli schermi.
-      </p>
-      <div class="grid md:grid-cols-3 gap-3 mb-8">
-        {[
-          { t: "Prima il progetto", d: "Ogni produzione tiene insieme testo, lingue, personaggi, battute, linea del tempo e impostazioni." },
-          { t: "Pensato per la regia", d: "La vista dal vivo dà priorità a posizione della battuta, testo corrente e successivo, tempi, oscuramento e controllo operativo." },
-          { t: "Multilingue per impostazione", d: "La lingua dell’interfaccia resta separata dalle lingue usate dentro ciascun progetto di spettacolo." },
-        ].map((item) => (
-          <div class="border border-hairline rounded-xl bg-surface p-4">
-            <h3 class="text-[15px] font-semibold tracking-[-0.015em] mb-1">{item.t}</h3>
-            <p class="text-sm text-text-2 leading-[1.5] m-0">{item.d}</p>
-          </div>
-        ))}
-      </div>
-
-      <h2 id="version" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Stato della beta: applicazione desktop</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
-        La beta attuale è concentrata sulla versione macOS di Sténtor, mentre la direzione di lungo periodo rimane desktop e multipiattaforma. La priorità non è esporre un prototipo tecnico, ma offrire un’applicazione coerente per preparare progetti, importare testo, gestire lingue, costruire linee del tempo e mandare in scena i soprattitoli dal vivo.
+        La versione macOS è la linea più avanzata; la versione Windows viene riallineata progressivamente alle stesse sezioni e agli stessi comportamenti. L’obiettivo non è avere due applicazioni diverse, ma un unico modello di progetto con interfacce coerenti sulle piattaforme desktop.
       </p>
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
-        <table class="w-full border-collapse text-[13px] min-w-[520px]">
+        <table class="w-full border-collapse text-[13px] min-w-[560px]">
           <thead>
             <tr>
               <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Area</th>
-              <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Direzione attuale</th>
+              <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Stato operativo</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Desktop</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Prima beta macOS, con architettura del prodotto e comunicazione aperte anche a Windows e Linux.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Preparazione</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Progetti, importazione del testo, modifica del copione, gestione dei personaggi, lingue e note di audio-descrizione.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Esecuzione</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Linea del tempo, avanzamento dal vivo, controlli di regia, oscuramento, note e uscita orientata agli schermi.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3">Rilascio</td><td class="text-text-2 px-4 py-3">Programma di installazione, attivazione gratuita e distribuzione vengono preparati insieme al sito pubblico.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">macOS</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Linea principale di sviluppo, con funzioni avanzate di preparazione, Regia, Schermi, Pubblico e impostazioni.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Windows</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Porting in riallineamento: Testo, Regia, Pubblico, Connessione, Impostazioni e Ricerca e sviluppo vengono uniformati alla versione Mac.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Pubblico</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Supporto a viste spettatore, QR/link locale, lingue, materiali accessibili e questionari immediati o differiti.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3">Ricerca</td><td class="text-text-2 px-4 py-3">La beta raccoglie feedback di prova e dati di esperienza solo quando il contesto lo consente e con impostazioni esplicite.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="projects" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">1. Progetti</h2>
+      <h2 id="workflow" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Flusso consigliato</h2>
+      <div class="docs-codeblock mb-6">
+        <div class="docs-codeblock__bar"><span class="font-mono">flusso produzione</span><span class="font-mono text-text-3">preparazione → scena → pubblico</span></div>
+        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">→</span> Crea o apri un progetto .stn
+<span class="tok-ln">2</span><span class="tok-pn">→</span> Importa il copione e controlla personaggi, tipi riga e lingue
+<span class="tok-ln">3</span><span class="tok-pn">→</span> Rifinisci battute, traduzioni, italiano facile e stile
+<span class="tok-ln">4</span><span class="tok-pn">→</span> Configura schermi, pubblico, connessione e questionari
+<span class="tok-ln">5</span><span class="tok-pn">→</span> Usa Regia per prova e rappresentazione</code></pre>
+      </div>
+
+      <h2 id="projects" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">1. Progetti e archivio</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        La vista Progetti è il punto di ingresso. Qui si creano nuove produzioni, si aprono lavori esistenti, si ritrovano i progetti recenti, si caricano materiali dimostrativi e si mantengono sotto controllo le informazioni generali dello spettacolo.
+        La sezione Progetti è l’ingresso operativo. Da qui si crea una produzione, si apre un file esistente, si recuperano lavori recenti e si mantiene il progetto in un formato trasportabile.
       </p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Crea un nuovo progetto Sténtor o aprine uno recente.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Tieni insieme titolo, lingue, personaggi, battute, linea del tempo, audio-descrizione e impostazioni degli schermi.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Usa materiali dimostrativi per le prove senza confonderli con il tuo archivio.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Crea nuovi progetti e apri archivi <code>.stn</code> esportati da altre postazioni.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Gestisci titolo, compagnia, lingue, personaggi, battute, schermi, pubblico, questionari e metadati di produzione.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Usa progetti dimostrativi per prove tecniche senza confonderli con l’archivio reale.</span></li>
       </ul>
 
       <h2 id="import" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">2. Importazione del testo</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        Sténtor include un flusso di importazione per portare copioni esistenti dentro un progetto. Prima che il testo importato entri nella produzione, l’app può mostrare opzioni e un’anteprima, così l’operatore può controllare struttura, personaggi e divisione in battute.
+        L’importazione trasforma materiali esistenti in battute lavorabili. Il controllo successivo serve a verificare divisione in righe, parlanti, didascalie, scene e ordine del copione.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
-        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Fonti supportate</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Testo semplice, testo formattato, documenti in stile Word, file di sottotitoli e dati strutturati possono essere supportati progressivamente nello stesso flusso di importazione.</p></div>
-        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Controllo prima dell’importazione</h3><p class="text-sm text-text-2 leading-[1.5] m-0">L’obiettivo è riconoscere parlanti, battute, atti, scene e didascalie senza costringere l’utente a ripulire tutto a mano dopo.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Copioni e sottotitoli</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Testo semplice, materiale copiato, file strutturati e formati di sottotitolazione possono essere normalizzati in un’unica lista di cue.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Controllo manuale</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Dopo l’importazione l’operatore corregge tipo riga, personaggio, lingua e testo prima di andare in prova.</p></div>
       </div>
 
       <h2 id="text" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">3. Testo e lingue</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        L’area Testo è il punto in cui il copione diventa utilizzabile in scena. Le righe possono essere organizzate in battute, assegnate ai personaggi, controllate per leggibilità e collegate alle versioni linguistiche del progetto.
+        La sezione Testo è organizzata per lavorare rapidamente sul copione: elenco battute a sinistra, editor al centro, anteprima e controlli a destra. Le lingue del progetto sono indipendenti dalla lingua dell’interfaccia.
       </p>
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
-        <table class="w-full border-collapse text-[13px] min-w-[520px]">
+        <table class="w-full border-collapse text-[13px] min-w-[560px]">
           <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Elemento</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Funzione</th></tr></thead>
           <tbody>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Copione originale</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Mantiene leggibile e modificabile il testo di partenza durante la preparazione.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Traduzioni</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Permette a più versioni linguistiche di restare allineate alla stessa struttura di battute.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Personaggi</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Rende il copione più facile da leggere, filtrare e visualizzare lungo la linea del tempo.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3">A capo</td><td class="text-text-2 px-4 py-3">Aiuta a creare soprattitoli leggibili, evitando spezzature innaturali e blocchi troppo densi.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Elenco cue</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Permette di scorrere, cercare e selezionare rapidamente le battute.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Tipo riga</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Distingue battute, titoli, didascalie, note, audio-descrizioni e materiali non proiettati.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Lingue</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Tiene allineati originale, traduzioni, italiano facile e versioni accessibili sulla stessa struttura.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3">Anteprima</td><td class="text-text-2 px-4 py-3">Mostra come la battuta apparirà in uscita e segnala possibili problemi di leggibilità.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="callout callout--info">
-        <div>
-          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">La lingua dell’interfaccia è separata.</b> La lingua usata dall’app è indipendente dalle lingue usate dentro un progetto. Una produzione può contenere italiano, inglese, francese o altre versioni mentre l’operatore usa l’interfaccia in un’altra lingua.</p>
-        </div>
-      </div>
-
-      <h2 id="audio" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">4. Audio-descrizione</h2>
+      <h2 id="cue-style" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">4. Stile delle singole battute</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        L’audio-descrizione è trattata come un livello dedicato del progetto. Le descrizioni possono essere scritte, riviste e collegate alle battute, così il materiale accessibile resta vicino al copione e alla struttura dal vivo.
+        Oltre allo stile generale degli schermi, Sténtor può associare opzioni di stile alla singola battuta. Questa funzione serve quando una cue deve avere enfasi, posizione, ritmo o formattazione diversa senza cambiare tutto il progetto.
+      </p>
+      <ul class="grid gap-2 mb-5 list-none">
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Lo stile di progetto rimane la base; lo stile della battuta è un’eccezione controllata.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le opzioni possono essere aperte solo quando servono, per non appesantire l’editor.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le righe di tipo audio-descrizione restano separate dalle battute proiettate.</span></li>
+      </ul>
+
+      <h2 id="audio" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">5. Audio-descrizione</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">
+        L’audio-descrizione è un livello del progetto, non un semplice commento. Può essere preparata vicino alle battute, gestita come materiale autonomo e resa disponibile in Regia o in sezioni dedicate quando l’allestimento lo prevede.
       </p>
       <div class="callout callout--warning">
         <div class="callout__icon"><IconWarningTriangle class="w-3.5 h-3.5" /></div>
         <div>
-          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Implementazione progressiva.</b> Questa documentazione descrive la direzione prevista del prodotto. La distribuzione audio pubblica e la riproduzione sui dispositivi vanno abilitate solo quando il flusso dal vivo è abbastanza affidabile per uno spazio reale.</p>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Uso in sala.</b> La distribuzione audio al pubblico richiede prove tecniche, connessione stabile e decisioni chiare su dispositivi, auricolari e responsabilità dell’operatore.</p>
         </div>
       </div>
 
-      <h2 id="timeline" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">5. Linea del tempo</h2>
+      <h2 id="timeline" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">6. Linea del tempo</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        La linea del tempo offre all’operatore una mappa visiva dello spettacolo. Può mostrare ordine delle battute, durata approssimativa, sezioni, tempi registrati e posizione corrente durante prova o rappresentazione.
+        La linea del tempo offre una mappa dello spettacolo. Aiuta a leggere l’ordine delle battute, la posizione corrente, le sezioni, i tempi di prova e la densità del testo.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
-        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Panoramica dello spettacolo</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Una mappa compatta aiuta l’operatore a capire a che punto è la rappresentazione e che cosa sta per arrivare.</p></div>
-        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Vista per personaggi</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Una vista futura potrà distribuire le battute lungo le linee dei personaggi, rendendo più leggibili ingressi e densità testuale.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Orientamento</h3><p class="text-sm text-text-2 leading-[1.5] m-0">L’operatore capisce dove si trova e quali blocchi stanno arrivando.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Tempi e prove</h3><p class="text-sm text-text-2 leading-[1.5] m-0">I tempi registrati aiutano la preparazione, ma non sostituiscono il controllo manuale dal vivo.</p></div>
       </div>
 
-      <h2 id="stage-desk" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">6. Regia</h2>
+      <h2 id="stage-desk" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">7. Regia</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        Regia è la vista operativa dal vivo. Tiene insieme battuta corrente, battuta successiva, tempi, oscuramento, navigazione e note operative, così chi manda in scena il testo può restare concentrato.
+        Regia è la vista per la rappresentazione. La battuta corrente resta in alto e visibile, seguita dalla prossima e dalle battute successive. L’obiettivo è evitare che l’operatore veda solo il passato del copione.
       </p>
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
-        <table class="w-full border-collapse text-[13px] min-w-[520px]">
+        <table class="w-full border-collapse text-[13px] min-w-[560px]">
           <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Strumento</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Uso</th></tr></thead>
           <tbody>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Avanti / indietro</td><td class="text-text-2 px-4 py-3 border-b border-hairline">L’avanzamento manuale resta l’impostazione più sicura nello spettacolo dal vivo.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Oscuramento</td><td class="text-text-2 px-4 py-3 border-b border-hairline">L’operatore può nascondere subito il testo quando il momento scenico lo richiede.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Tempi registrati</td><td class="text-text-2 px-4 py-3 border-b border-hairline">I tempi di prova possono sostenere la preparazione senza sostituire il giudizio dal vivo.</td></tr>
-            <tr><td class="font-mono text-text px-4 py-3">Note</td><td class="text-text-2 px-4 py-3">Le note operative aiutano a seguire problemi, tagli e aggiustamenti delle battute durante le prove.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Avanti / indietro</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Controllo manuale della cue corrente, con battuta successiva sempre leggibile.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Evidenziazione</td><td class="text-text-2 px-4 py-3 border-b border-hairline">La corrente e la prossima battuta hanno colori più riconoscibili senza disturbare il resto dell’elenco.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Trova</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Il campo di ricerca nella lista cue permette di recuperare rapidamente una battuta durante prove e correzioni.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Oscuramento</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Nasconde l’uscita pubblica quando la scena lo richiede.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3">Audio-descrizione live</td><td class="text-text-2 px-4 py-3">Area operativa dedicata per gestire descrizioni e note senza sovraccaricare i controlli principali.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="screens" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">7. Schermi</h2>
+      <h2 id="screens" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">8. Schermi</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        La sezione Schermi serve a configurare l’uscita pubblica del testo. Ogni schermo può ricevere progressivamente una propria lingua, un formato, uno stile e una destinazione dei contenuti in base alle esigenze dello spazio.
+        La sezione Schermi configura le uscite pubbliche: lingua, stile, dimensione, contrasto, destinazione, anteprima e stato. Serve a separare il lavoro dell’operatore dall’uscita che vede il pubblico.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
-        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Destinazioni di proiezione</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Gli schermi possono rappresentare uscite diverse, sale, proiettori o future visualizzazioni rivolte al pubblico.</p></div>
-        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Stili leggibili</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Tipografia, contrasto e impaginazione devono restare abbastanza semplici per le condizioni reali dello spettacolo.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Proiezione</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Ogni uscita può essere configurata per soprattitoli, traduzione, italiano facile o altri contenuti testuali.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Controllo visivo</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Anteprima, stato, oscuramento e stile aiutano a evitare errori prima che il testo venga mostrato.</p></div>
       </div>
 
-      <h2 id="audience" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">8. Viste per il pubblico</h2>
+      <h2 id="audience" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">9. Pubblico</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        La direzione di lungo periodo di Sténtor include viste rivolte al pubblico per soprattitoli, traduzioni e materiali accessibili. Nella beta desktop attuale, questa area va presentata con cautela: viene prima l’affidabilità del flusso di regia, mentre i dispositivi del pubblico vanno introdotti solo quando l’allestimento di sala è stabile.
+        La sezione Pubblico prepara l’accesso da smartphone o dispositivi personali. Può esporre una pagina locale, un QR o un link, con scelta dei contenuti disponibili: lingua, soprattitoli, traduzione, materiali accessibili e questionario.
       </p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Utile per futuri scenari di accesso multilingue e lettura da dispositivo mobile.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Deve restare secondaria rispetto a proiezione affidabile e controlli di regia.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Potrà supportare accesso QR, scelta della lingua e contenuti accessibili.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Usa il pubblico su rete locale quando la sala non deve dipendere da Internet.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Mostra solo le funzioni effettivamente pronte per quella produzione.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Verifica indirizzo, QR, accessibilità e leggibilità prima dell’apertura al pubblico.</span></li>
       </ul>
 
-      <h2 id="files" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">9. Importazione ed esportazione</h2>
+      <h2 id="surveys" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">10. Questionari</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        Il supporto ai file serve a portare dentro e fuori da Sténtor materiali reali di produzione senza distruggerne la struttura. L’importazione deve sostenere formati testuali e dati strutturati; l’esportazione deve aiutare prove, tournée, archiviazione e revisione delle traduzioni.
+        I questionari possono essere usati per raccogliere feedback dopo la rappresentazione. Sténtor distingue il questionario immediato, mostrato a fine spettacolo, dal questionario differito, compilabile più tardi entro una finestra temporale definita.
+      </p>
+      <div class="grid md:grid-cols-2 gap-3 mb-8">
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Fine spettacolo</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Può apparire quando la Regia arriva alla fine della sequenza prevista.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Compilazione differita</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Il link può restare valido per alcuni giorni, ad esempio sette, così lo spettatore risponde quando ha tempo.</p></div>
+      </div>
+
+      <h2 id="connection" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">11. Connessione</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">
+        La sezione Connessione serve a controllare rete locale, indirizzi, endpoint pubblico, dispositivi collegati e stato delle uscite. È una sezione tecnica, ma deve essere leggibile anche da chi gestisce la sala senza essere sviluppatore.
+      </p>
+      <div class="callout callout--info">
+        <div>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Prima della prova con pubblico.</b> Verifica che computer, schermi e smartphone siano sulla rete giusta, che il QR apra la pagina corretta e che eventuali firewall o hotspot non blocchino la comunicazione locale.</p>
+        </div>
+      </div>
+
+      <h2 id="settings" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">12. Impostazioni</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">
+        Le impostazioni raccolgono preferenze di applicazione e di progetto: lingua interfaccia, comportamento delle uscite, stile di default, dati dello spettacolo, funzioni accessibili, gestione di prova e parametri di rete.
+      </p>
+      <ul class="grid gap-2 mb-5 list-none">
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le impostazioni globali riguardano l’applicazione e la postazione.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le impostazioni di progetto viaggiano con lo spettacolo e restano nel file di produzione.</span></li>
+        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le funzioni ancora sperimentali vanno tenute distinguibili dalle funzioni pronte per la sala.</span></li>
+      </ul>
+
+      <h2 id="files" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">13. Importazione ed esportazione</h2>
+      <p class="text-zinc-300 leading-[1.65] mb-4">
+        Il file di progetto deve permettere spostamenti tra computer, sistemi operativi e prove diverse. Importazione ed esportazione servono anche per traduzioni, archivi, versioni consegnabili e backup.
       </p>
       <div class="docs-codeblock mb-6">
         <div class="docs-codeblock__bar"><span class="font-mono">flusso file</span><span class="font-mono text-text-3">preparazione / archivio</span></div>
-        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">→</span> Importa copione o materiale di sottotitolazione
-<span class="tok-ln">2</span><span class="tok-pn">→</span> Controlla struttura, personaggi e divisione in battute
-<span class="tok-ln">3</span><span class="tok-pn">→</span> Esporta materiali per prova, traduzione o archivio</code></pre>
+        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">→</span> Importa copione o sottotitoli
+<span class="tok-ln">2</span><span class="tok-pn">→</span> Controlla struttura, personaggi, lingue e cue
+<span class="tok-ln">3</span><span class="tok-pn">→</span> Salva il progetto .stn
+<span class="tok-ln">4</span><span class="tok-pn">→</span> Esporta materiali per prova, traduzione, archivio o ricerca</code></pre>
       </div>
 
-      <h2 id="desktop" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">10. Applicazione macOS</h2>
+      <h2 id="desktop" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">14. Applicazione macOS e Windows</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        Sténtor viene preparato prima come applicazione macOS rifinita, senza presentare il progetto come esclusivamente Mac. Il rilascio pubblico deve risultare un’applicazione desktop vera: apertura chiara dei progetti, menu coerenti, icona riconoscibile, programma di installazione, versionamento, attivazione gratuita e un flusso che non esponga strumenti di sviluppo all’utente.
+        Sténtor viene sviluppato come applicazione desktop. macOS è il riferimento più maturo; Windows viene allineato sezione per sezione. L’utente finale deve poter aprire l’app, caricare un progetto, preparare il testo e usare Regia senza strumenti di sviluppo visibili.
       </p>
-      <div class="docs-codeblock mb-6">
-        <div class="docs-codeblock__bar"><span class="font-mono">percorso di rilascio</span><span class="font-mono text-text-3">macOS</span></div>
-        <pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">✓</span> Interfaccia nativa dell’applicazione
-<span class="tok-ln">2</span><span class="tok-pn">→</span> Programma di installazione e pacchetto di distribuzione
-<span class="tok-ln">3</span><span class="tok-pn">→</span> Attivazione gratuita e scaricamento pubblico</code></pre>
+      <div class="grid md:grid-cols-2 gap-3 mb-8">
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">macOS</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Interfaccia principale, funzioni avanzate e sperimentazioni più recenti.</p></div>
+        <div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Windows</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Porting funzionale con attenzione a layout, sezioni, archivio progetti, Regia, Pubblico e impostazioni.</p></div>
       </div>
 
-      <h2 id="planned" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Funzioni ancora previste</h2>
+      <h2 id="research" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">15. Ricerca e sviluppo</h2>
       <p class="text-zinc-300 leading-[1.65] mb-4">
-        Sténtor è in sviluppo beta attivo. Le aree ancora in rifinitura sono l’importazione, la gestione dei progetti recenti, la localizzazione completa dell’interfaccia, l’uscita su più schermi, l’attivazione gratuita, il pacchetto di installazione, i formati di esportazione, le opzioni di controllo esterno e il modo più sicuro per introdurre i dispositivi del pubblico.
+        Ricerca e sviluppo raccoglie ciò che serve a far crescere Sténtor in contesti reali: note di prova, feedback, questionari, osservazioni sull’accessibilità, esperimenti con pubblico e valutazione delle funzioni ancora in beta.
       </p>
+      <div class="callout callout--warning">
+        <div class="callout__icon"><IconWarningTriangle class="w-3.5 h-3.5" /></div>
+        <div>
+          <p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">Separare prova e spettacolo.</b> Le funzioni di ricerca devono essere attivate solo quando sono utili, dichiarate e compatibili con il contesto. Durante la rappresentazione la priorità resta la stabilità del flusso di Regia.</p>
+        </div>
+      </div>
 
       <div class="mt-8 px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border border-hairline rounded-xl bg-surface">
         <div>
           <b class="font-medium">Stai preparando una produzione reale?</b>
-          <p class="mt-1 text-[13px] text-text-3 m-0">Parti da un progetto, importa il copione, organizza le lingue e costruisci una linea del tempo prima di usare Regia in prova.</p>
+          <p class="mt-1 text-[13px] text-text-3 m-0">Parti dal progetto, controlla testo e lingue, configura schermi e pubblico, poi prova Regia con la rete reale della sala.</p>
         </div>
         <div class="flex gap-2">
-          <a href="/it/download" class="h-8 px-3.5 rounded-md bg-red-500 text-bg text-[13px] inline-flex items-center">Scarica</a>
+          <a href="/it/richiedi-prova" class="h-8 px-3.5 rounded-md bg-red-500 text-bg text-[13px] inline-flex items-center">Richiedi prova</a>
           <a href="/it/contact" class="h-8 px-3.5 rounded-md border border-hairline text-text-2 hover:text-text text-[13px] inline-flex items-center">Condividi note</a>
         </div>
       </div>
