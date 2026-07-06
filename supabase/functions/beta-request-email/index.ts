@@ -95,7 +95,7 @@ function emailShell(params: {
                   <td style="padding: 22px 34px 30px 34px; border-top: 1px solid rgba(255,255,255,0.08); color: #7b7b82; font-size: 12px; line-height: 1.6;">
                     <div style="font-weight: 700; color: #ffffff; letter-spacing: -0.03em; font-size: 15px; margin-bottom: 6px;">STÉNTOR</div>
                     <div>Comunicazione automatica generata dal sistema di gestione della beta privata.</div>
-                    <div>Progetto universitario. Si prega di non rispondere a questo messaggio se non espressamente richiesto.</div>
+                    <div>Progetto di ricerca. Si prega di non rispondere a questo messaggio se non espressamente richiesto.</div>
                   </td>
                 </tr>
               </table>
@@ -152,13 +152,13 @@ Deno.serve(async (req) => {
         <div style="font-size: 15px; line-height: 1.75; color: #d4d4d8;">
           <p style="margin: 0 0 18px 0;">Gentile ${escapeHtml(name)},</p>
           <p style="margin: 0 0 18px 0;">la informiamo che la Sua richiesta di accesso alla beta privata di <strong style="color: #ffffff;">Sténtor</strong> è stata acquisita correttamente.</p>
-          <p style="margin: 0 0 18px 0;">Sténtor è un progetto universitario in fase di sviluppo e sperimentazione. Per questo motivo, ogni richiesta viene esaminata manualmente prima dell’eventuale abilitazione della licenza di prova, del download e delle istruzioni di attivazione.</p>
+          <p style="margin: 0 0 18px 0;">Sténtor è un progetto di ricerca in fase di sviluppo e sperimentazione. Per questo motivo, ogni richiesta viene esaminata manualmente prima dell’eventuale abilitazione della licenza di prova, del download e delle istruzioni di attivazione.</p>
           <div style="margin: 26px 0; padding: 18px 20px; border: 1px solid rgba(248,113,113,0.28); background: rgba(239,68,68,0.08); border-radius: 16px; color: #f4f4f5;">
             <div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #f87171; font-weight: 700; margin-bottom: 8px;">Stato richiesta</div>
             <div style="font-size: 18px; line-height: 1.25; font-weight: 700; color: #ffffff;">In attesa di revisione manuale</div>
           </div>
           <p style="margin: 0 0 18px 0;">Non è richiesta alcuna ulteriore azione da parte Sua in questa fase. Riceverà una comunicazione successiva qualora la richiesta venga approvata o siano necessarie informazioni integrative.</p>
-          <p style="margin: 26px 0 0 0;">Cordiali saluti,<br /><strong style="color: #ffffff;">Il team Sténtor</strong></p>
+          <p style="margin: 26px 0 0 0;">Cordiali saluti,<br /><br /><strong style="color: #ffffff;">Leonardo Mancini</strong><br />Dipartimento di Studi Umanistici<br />Università degli Studi di Torino</p>
         </div>
       `,
     });
