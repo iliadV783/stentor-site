@@ -25,22 +25,53 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "Tutto", count: 15 },
-  { id: "major", label: "Milestone", count: 11 },
-  { id: "new", label: "Novità", count: 9 },
-  { id: "improvements", label: "Miglioramenti", count: 11 },
-  { id: "fixes", label: "Correzioni", count: 8 },
+  { id: "all", label: "Tutto", count: 16 },
+  { id: "major", label: "Milestone", count: 12 },
+  { id: "new", label: "Novità", count: 10 },
+  { id: "improvements", label: "Miglioramenti", count: 12 },
+  { id: "fixes", label: "Correzioni", count: 9 },
 ];
 
-export const versionTag = "v0.1.78 · Regia, pubblico e audiodescrizioni più affidabili";
+export const versionTag = "v0.1.79 · Schermi di sala, Regia e sviluppo Windows";
 export const versionRange = "· prototipo attuale";
 
 export const years = [
-  { y: "2026", n: 15, on: true },
+  { y: "2026", n: 16, on: true },
   { y: "Ricerca", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.79",
+    date: "2026-07-11",
+    type: "major",
+    title: "Schermi di sala più teatrali, Regia più fluida e maggiore parità tra Mac e Windows",
+    body: "Negli ultimi giorni Sténtor ha consolidato il lavoro dal vivo su tre fronti: visualizzazione dei dialoghi sugli schermi di sala, operatività della Regia e allineamento della versione Windows alle funzioni già disponibili su macOS. Sono stati inoltre rivisti il finale dello spettacolo, il questionario per il pubblico e diversi aspetti dell’editor Testo.",
+    changes: {
+      new: [
+        { title: "Transizioni configurabili per gli schermi di sala", body: "La visualizzazione delle battute può usare effetti di entrata e uscita, inclusi fade, con opzioni pensate per adattare il comportamento alle esigenze dello spettacolo." },
+        { title: "Dialoghi rapidi più riconoscibili", body: "Nei cambi di battuta ravvicinati, la battuta precedente può restare temporaneamente visibile con minore intensità mentre quella nuova assume il primo piano." },
+        { title: "Ricerca dei cue in Regia", body: "La Regia integra un campo Trova per raggiungere più rapidamente una battuta o un cue nel copione operativo." },
+        { title: "Controlli di stile a comparsa", body: "Nell’editor Testo di Windows le opzioni di stile della singola battuta vengono organizzate in un pannello richiamabile sopra il campo di modifica." },
+      ],
+      improvements: [
+        { title: "Scorrimento Regia più operativo", body: "La battuta corrente resta nella parte alta dell’elenco, lasciando immediatamente visibili la prossima battuta e quelle in coda." },
+        { title: "Evidenziazione più leggibile", body: "Battuta corrente e prossima sono distinguibili con maggiore chiarezza senza appesantire il resto dell’elenco cue." },
+        { title: "Sidebar Regia più compatta", body: "Spazi, pulsanti e pannelli laterali sono stati riorganizzati per ridurre l’ingombro verticale e accogliere meglio i controlli di audiodescrizione live." },
+        { title: "Schermi di sala più flessibili", body: "Posizione, colore del testo e persistenza delle battute possono essere regolati dall’utente invece di dipendere da un unico comportamento predefinito." },
+        { title: "Sezione Pubblico allineata su Windows", body: "Layout e controlli della versione Windows vengono avvicinati alla sezione Pubblico già sviluppata su macOS." },
+        { title: "Editor Testo più contestuale", body: "Il campo Audiodescrizione viene nascosto quando la riga è una normale battuta, riducendo i controlli non pertinenti." },
+        { title: "Interfaccia Windows in italiano", body: "Ulteriori etichette e comandi della versione Windows sono stati uniformati alla terminologia italiana dell’app." },
+      ],
+      fixes: [
+        { title: "Questionario finale più affidabile", body: "È stato rivisto il meccanismo che collega la conclusione esplicita dello spettacolo alla schermata finale e all’accesso al questionario sugli smartphone." },
+        { title: "Allineamento delle battute corretto", body: "La disposizione dei testi sugli schermi di sala non resta più concentrata quasi sempre sul lato destro." },
+        { title: "Colore testo effettivamente applicato", body: "Le impostazioni cromatiche degli schermi di sala vengono propagate correttamente alla visualizzazione proiettata." },
+        { title: "Build macOS e transizioni stabilizzate", body: "Sono stati corretti errori di compilazione Xcode e incompatibilità emerse durante l’integrazione dei nuovi effetti di transizione." },
+        { title: "Pacchetti Windows più puliti", body: "Sono stati corretti archivi con ZIP annidati e altri problemi di confezionamento che rendevano meno chiara l’apertura delle build." },
+      ],
+    },
+  },
   {
     version: "0.1.78",
     date: "2026-07-05",
@@ -164,7 +195,7 @@ export const sideStats = {
   thisYear: {
     title: "Focus attuale",
     rows: [
-      { label: "Prototipo", value: "0.1.78", accent: true },
+      { label: "Prototipo", value: "0.1.79", accent: true },
       { label: "macOS", value: "12.4+ universale" },
       { label: "Architettura", value: "Intel + Apple Silicon" },
       { label: "TestFlight", value: "build aggiornata" },
@@ -181,7 +212,7 @@ export const sideStats = {
     rows: [
       { label: "App Apple", value: "● TestFlight aggiornata", color: "green" as const },
       { label: "Windows", value: "sviluppo nativo parallelo" },
-      { label: "Prossima priorità", value: "Regia, pubblico e AD" },
+      { label: "Prossima priorità", value: "Schermi sala, Regia e parità Windows" },
     ],
   },
 };
