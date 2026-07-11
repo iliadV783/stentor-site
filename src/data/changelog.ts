@@ -17,22 +17,53 @@ export const hero = {
 };
 
 export const filters = [
-  { id: "all", label: "All", count: 12 },
-  { id: "major", label: "Milestones", count: 8 },
-  { id: "new", label: "New", count: 6 },
-  { id: "improvements", label: "Improvements", count: 8 },
-  { id: "fixes", label: "Fixes", count: 6 },
+  { id: "all", label: "All", count: 13 },
+  { id: "major", label: "Milestones", count: 9 },
+  { id: "new", label: "New", count: 7 },
+  { id: "improvements", label: "Improvements", count: 9 },
+  { id: "fixes", label: "Fixes", count: 7 },
 ];
 
-export const versionTag = "v0.1.78 · More reliable direction, audience and audio descriptions";
+export const versionTag = "v0.1.79 · Stage screens, Direction and Windows development";
 export const versionRange = "· current prototype";
 
 export const years = [
-  { y: "2026", n: 12, on: true },
+  { y: "2026", n: 13, on: true },
   { y: "Research", n: 1 },
 ];
 
 export const entries = [
+  {
+    version: "0.1.79",
+    date: "2026-07-11",
+    type: "major",
+    title: "More theatrical stage screens, smoother Direction and closer Mac–Windows parity",
+    body: "Over the past few days, Sténtor has consolidated live work on three fronts: dialogue presentation on stage screens, Direction workflow and alignment of the Windows edition with features already available on macOS. The end-of-show flow, audience questionnaire and several parts of the Text editor have also been revised.",
+    changes: {
+      new: [
+        { title: "Configurable stage-screen transitions", body: "Line changes can use entrance and exit effects, including fades, with options designed to adapt the behaviour to each production." },
+        { title: "Clearer rapid dialogue exchanges", body: "During quick line changes, the previous line can remain temporarily visible at lower intensity while the new one moves to the foreground." },
+        { title: "Cue search in Direction", body: "Direction now includes a Find field to reach a line or cue more quickly in the operational script." },
+        { title: "Expandable style controls", body: "In the Windows Text editor, per-line style options are organised in a panel opened above the editing field." },
+      ],
+      improvements: [
+        { title: "More operational Direction scrolling", body: "The current line stays near the top of the list, keeping the next line and queued cues immediately visible." },
+        { title: "More legible highlighting", body: "The current and next lines are easier to distinguish without making the rest of the cue list visually heavier." },
+        { title: "More compact Direction sidebar", body: "Spacing, buttons and side panels have been reorganised to reduce vertical footprint and better accommodate live audio-description controls." },
+        { title: "More flexible stage screens", body: "Position, text colour and line persistence can be adjusted by the user instead of relying on one fixed behaviour." },
+        { title: "Audience section aligned on Windows", body: "The Windows layout and controls have been brought closer to the Audience section already developed on macOS." },
+        { title: "More contextual Text editor", body: "The Audio Description field is hidden when the row is an ordinary spoken line, reducing irrelevant controls." },
+        { title: "Italian terminology on Windows", body: "Additional labels and commands in the Windows edition have been aligned with the Italian terminology used across the app." },
+      ],
+      fixes: [
+        { title: "More reliable final questionnaire", body: "The mechanism connecting explicit show closure with the final screen and questionnaire access on audience phones has been revised." },
+        { title: "Corrected line alignment", body: "Text placement on stage screens no longer remains concentrated almost entirely on the right-hand side." },
+        { title: "Text colour applied correctly", body: "Stage-screen colour settings are now propagated correctly to the projected view." },
+        { title: "macOS builds and transitions stabilised", body: "Xcode compilation errors and incompatibilities introduced during transition integration have been corrected." },
+        { title: "Cleaner Windows packages", body: "Nested ZIP archives and other packaging issues that made builds harder to open have been corrected." },
+      ],
+    },
+  },
   {
     version: "0.1.78",
     date: "2026-07-05",
@@ -68,27 +99,7 @@ export const entries = [
       ],
     },
   },
-  {
-    version: "0.1.74",
-    date: "2026-06-20",
-    type: "major",
-    title: "Live audio description introduced",
-    body: "Sténtor introduces a new live audio-description mode alongside recorded audio descriptions. A first operating framework has been set up to prepare, distinguish and control audio cues during the performance, keeping them separate from spoken lines, lights, stage notes and projected content.",
-    changes: {
-      new: [
-        { title: "Live audio description", body: "In addition to recorded audio files, Sténtor can now manage cues designed to be read or triggered live by the operator during the performance." },
-        { title: "Dedicated AD framework", body: "A first functional structure has been built to recognise, organise and control audio descriptions as an independent live channel." },
-      ],
-      improvements: [
-        { title: "Clearer AD channel", body: "Audio descriptions are treated as material dedicated to the audio channel, not as ordinary script lines or character names." },
-        { title: "Smoother live control", body: "The operator view helps locate and trigger audio-description cues at the right moment during the show." },
-        { title: "Simpler audience access", body: "Access to audio descriptions on audience devices is made more direct, reducing the steps needed to listen." },
-      ],
-      fixes: [
-        { title: "Separated from technical cues", body: "Lights, stage directions and internal notes remain distinct from content intended for audience screens or headphone listening." },
-      ],
-    },
-  },
+  { version: "0.1.74", date: "2026-06-20", type: "major", title: "Live audio description introduced", body: "Sténtor introduces a new live audio-description mode alongside recorded audio descriptions. A first operating framework has been set up to prepare, distinguish and control audio cues during the performance, keeping them separate from spoken lines, lights, stage notes and projected content.", changes: { new: [ { title: "Live audio description", body: "In addition to recorded audio files, Sténtor can now manage cues designed to be read or triggered live by the operator during the performance." }, { title: "Dedicated AD framework", body: "A first functional structure has been built to recognise, organise and control audio descriptions as an independent live channel." } ], improvements: [ { title: "Clearer AD channel", body: "Audio descriptions are treated as material dedicated to the audio channel, not as ordinary script lines or character names." }, { title: "Smoother live control", body: "The operator view helps locate and trigger audio-description cues at the right moment during the show." }, { title: "Simpler audience access", body: "Access to audio descriptions on audience devices is made more direct, reducing the steps needed to listen." } ], fixes: [ { title: "Separated from technical cues", body: "Lights, stage directions and internal notes remain distinct from content intended for audience screens or headphone listening." } ] } },
   { version: "0.1.73", date: "2026-06-19", type: "major", title: "TestFlight build compatible with macOS Monterey and Intel Macs", body: "Sténtor now has a universal macOS TestFlight build designed to run on both Apple Silicon and Intel Macs, with the minimum deployment lowered to macOS Monterey 12.4.", changes: { improvements: [ { title: "Universal macOS archive", body: "The macOS archive now includes both Apple Silicon and Intel architectures." }, { title: "Monterey compatibility", body: "The deployment target has been lowered to macOS 12.4." } ], fixes: [ { title: "Recent project permissions", body: "Recent .stn projects are reopened through persistent macOS security-scoped bookmarks." }, { title: "Archive configuration", body: "Release settings were corrected for a universal TestFlight build." } ] } },
   { version: "0.1.72", date: "2026-06-19", type: "major", title: "Accessible variants, line search and tighter live control", body: "Accessible language variants, instant line search, more controllable audience questions and cleaner live projection.", changes: { new: [ { title: "Accessible language variants", body: "Each base language can generate its accessible + variant." }, { title: "Editor for + versions", body: "Accessible versions can be edited in the Text page." }, { title: "Line search", body: "The Text editor can quickly find lines, cues and passages." } ], improvements: [ { title: "Audience smartphones", body: "Enabled accessible variants can appear alongside base languages." } ], fixes: [ { title: "Light cues not projected", body: "Technical light cues are no longer shown to spectators." } ] } },
   { version: "0.1.71", date: "2026-06-18", type: "major", title: "DOCX import becomes smarter for theatre scripts", body: "Cleaner DOCX import, better audio-description handling, more natural line breaks and first performance strategies for very long scripts.", changes: { improvements: [ { title: "Audio-description recognition", body: "Markers such as AD are treated as audio-description cues." }, { title: "Cleaner character detection", body: "Technical cues are less likely to be mistaken for character names." } ], fixes: [ { title: "Long-script responsiveness", body: "Text editor performance with scripts above 1300 lines was analysed." } ] } },
@@ -105,10 +116,10 @@ export const sideStats = {
   thisYear: {
     title: "Current focus",
     rows: [
-      { label: "Prototype", value: "0.1.78", accent: true },
+      { label: "Prototype", value: "0.1.79", accent: true },
       { label: "macOS", value: "12.4+ universal" },
-      { label: "Workflow", value: "Direction, audience and AD" },
-      { label: "Next", value: "live reliability" },
+      { label: "Workflow", value: "stage screens, Direction and audience" },
+      { label: "Next", value: "Mac–Windows parity" },
     ],
   },
   cadence: {
@@ -121,8 +132,8 @@ export const sideStats = {
     title: "Status",
     rows: [
       { label: "Apple app", value: "● TestFlight updated", color: "green" as const },
-      { label: "Compatibility", value: "Monterey 12.4+" },
-      { label: "Next priority", value: "Direction, audience and AD" },
+      { label: "Windows", value: "native development in parallel" },
+      { label: "Next priority", value: "stage screens and live workflow" },
     ],
   },
 };
