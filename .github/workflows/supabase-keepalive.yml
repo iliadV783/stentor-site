@@ -33,7 +33,6 @@ jobs:
             --write-out "%{http_code}" \
             --max-time 30 \
             --header "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
-            --header "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
             --header "Accept: application/json" \
             "${SUPABASE_URL}/rest/v1/profiles?select=id&limit=1")
 
