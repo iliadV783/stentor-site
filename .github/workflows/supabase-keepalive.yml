@@ -1,0 +1,46 @@
+name: Supabase keepalive
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Execute a minimal database read
+        env:
+          SUPABASE_URL: https://hdfkkdhhdtcjgjapkbjh.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            echo "Missing repository secret: SUPABASE_SERVICE_ROLE_KEY"
+            exit 1
+          fi
+
+          http_code=$(curl \
+            --silent \
+            --show-error \
+            --output /tmp/supabase-response.json \
+            --write-out "%{http_code}" \
+            --max-time 30 \
+            --header "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
+            --header "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
+            --header "Accept: application/json" \
+            "${SUPABASE_URL}/rest/v1/profiles?select=id&limit=1")
+
+          if [ "${http_code}" -lt 200 ] || [ "${http_code}" -ge 300 ]; then
+            echo "Supabase keepalive failed with HTTP ${http_code}"
+            cat /tmp/supabase-response.json
+            exit 1
+          fi
+
+          echo "Supabase database read completed successfully (HTTP ${http_code})."
