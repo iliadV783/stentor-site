@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 2
 
     steps:
-      - name: Execute a minimal database read
+      - name: Execute a minimal database RPC
         env:
           SUPABASE_URL: https://hdfkkdhhdtcjgjapkbjh.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
@@ -29,12 +29,15 @@ jobs:
           http_code=$(curl \
             --silent \
             --show-error \
+            --request POST \
             --output /tmp/supabase-response.json \
             --write-out "%{http_code}" \
             --max-time 30 \
             --header "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
+            --header "Content-Type: application/json" \
             --header "Accept: application/json" \
-            "${SUPABASE_URL}/rest/v1/profiles?select=id&limit=1")
+            --data '{}' \
+            "${SUPABASE_URL}/rest/v1/rpc/stentor_keepalive")
 
           if [ "${http_code}" -lt 200 ] || [ "${http_code}" -ge 300 ]; then
             echo "Supabase keepalive failed with HTTP ${http_code}"
@@ -42,4 +45,5 @@ jobs:
             exit 1
           fi
 
-          echo "Supabase database read completed successfully (HTTP ${http_code})."
+          echo "Supabase keepalive RPC completed successfully (HTTP ${http_code})."
+          cat /tmp/supabase-response.json
