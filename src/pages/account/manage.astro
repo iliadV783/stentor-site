@@ -3,43 +3,43 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="Gestisci account Sténtor - Sténtor" description="Gestione organizzazione, utenti e dispositivi Sténtor." active={null} showNav={false} showFooter={false} noindex={true}>
-  <section class="min-h-screen bg-black text-white relative overflow-hidden">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.18)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <section class="min-h-screen bg-bg text-text relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.18)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-stentor/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-    <header class="relative border-b border-white/10">
+    <header class="relative border-b border-hairline-strong">
       <div class="max-w-[1180px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        <a href="/account" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-white/55 text-sm">Gestione account</span></a>
-        <a href="/account" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/75 hover:text-white hover:bg-white/[0.06] transition-colors">Torna all’account</a>
+        <a href="/account" class="inline-flex items-center gap-3 text-text hover:text-text-2 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-text-2 text-sm">Gestione account</span></a>
+        <a href="/account" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-hairline-strong text-sm text-text-2 hover:text-text hover:bg-surface-2 transition-colors">Torna all’account</a>
       </div>
     </header>
 
     <main class="relative max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
-      <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7 mb-6">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Account istituzionale</p>
+      <section class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7 mb-6">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Account istituzionale</p>
         <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Gestisci account.</h1>
-        <p class="text-white/72 leading-[1.6] max-w-[780px]">Questa sezione sarà usata dall’amministratore dell’organizzazione per aggiornare dati dell’ente, invitare utenti, assegnare ruoli e controllare i dispositivi attivati.</p>
+        <p class="text-text-2 leading-[1.6] max-w-[780px]">Questa sezione sarà usata dall’amministratore dell’organizzazione per aggiornare dati dell’ente, invitare utenti, assegnare ruoli e controllare i dispositivi attivati.</p>
       </section>
 
       <div class="grid lg:grid-cols-3 gap-6 items-start">
-        <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/58 mb-3">Organizzazione</p>
+        <section class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7">
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-text-2 mb-3">Organizzazione</p>
           <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">Dati ente</h2>
-          <p class="text-white/70 leading-[1.6] mb-5">Nome organizzazione, referente, indirizzo, dominio email e dati amministrativi.</p>
+          <p class="text-text-2 leading-[1.6] mb-5">Nome organizzazione, referente, indirizzo, dominio email e dati amministrativi.</p>
           <span class="inline-flex px-3 py-1 rounded-full border border-amber-400/20 bg-amber-400/10 text-amber-200 text-xs font-mono uppercase tracking-[0.08em]">in preparazione</span>
         </section>
 
-        <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/58 mb-3">Utenti</p>
+        <section class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7">
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-text-2 mb-3">Utenti</p>
           <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">Dipendenti e collaboratori</h2>
-          <p class="text-white/70 leading-[1.6] mb-5">Inviti via email, ruoli, stato invito e revoca degli accessi collegati all’organizzazione.</p>
+          <p class="text-text-2 leading-[1.6] mb-5">Inviti via email, ruoli, stato invito e revoca degli accessi collegati all’organizzazione.</p>
           <span class="inline-flex px-3 py-1 rounded-full border border-amber-400/20 bg-amber-400/10 text-amber-200 text-xs font-mono uppercase tracking-[0.08em]">in preparazione</span>
         </section>
 
-        <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/58 mb-3">Dispositivi</p>
+        <section class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7">
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-text-2 mb-3">Dispositivi</p>
           <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3">Postazioni attivate</h2>
-          <p class="text-white/70 leading-[1.6] mb-5">Elenco dei computer autorizzati, ultimo accesso e revoca delle attivazioni.</p>
+          <p class="text-text-2 leading-[1.6] mb-5">Elenco dei computer autorizzati, ultimo accesso e revoca delle attivazioni.</p>
           <span class="inline-flex px-3 py-1 rounded-full border border-amber-400/20 bg-amber-400/10 text-amber-200 text-xs font-mono uppercase tracking-[0.08em]">in preparazione</span>
         </section>
       </div>

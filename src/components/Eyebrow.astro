@@ -4,10 +4,10 @@ interface Props {
 }
 const { class: className = "" } = Astro.props;
 ---
-<span class:list={["inline-flex items-center gap-2 font-mono text-xs tracking-[0.04em] text-red-500 px-2.5 py-1.5 border border-hairline rounded-full bg-red-500/[0.04]", className]}>
+<span class:list={["inline-flex items-center gap-2 font-mono text-xs tracking-[0.04em] text-stentor px-3 py-1.5 border border-stentor/15 rounded-full bg-stentor-soft", className]}>
   <span class="relative flex size-2 shrink-0">
-    <span class="animate-ping absolute inset-0 rounded-full bg-red-500 opacity-75"></span>
-    <span class="relative size-2 rounded-full bg-red-500 shadow-[0_0_10px_#ef4444]"></span>
+    <span class="animate-ping absolute inset-0 rounded-full bg-stentor opacity-50"></span>
+    <span class="relative size-2 rounded-full bg-stentor shadow-[0_0_10px_rgba(24,88,200,0.35)]"></span>
   </span>
   <slot />
 </span>

@@ -9,7 +9,7 @@ import { about as page } from "../../../data/about.fr";
   active={null}
 >
   <section class="relative overflow-hidden border-b border-hairline pt-24 pb-20">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
     <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
       <div class="max-w-[820px]">
         <Eyebrow><span class="font-mono">{page.hero.eyebrow}</span></Eyebrow>
@@ -23,13 +23,13 @@ import { about as page } from "../../../data/about.fr";
   <section class="py-20 lg:py-24 border-b border-hairline">
     <div class="max-w-[1280px] mx-auto px-4 md:px-8 grid gap-10 lg:[grid-template-columns:minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
       <div>
-        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-4">{page.story.eyebrow}</p>
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-stentor mb-4">{page.story.eyebrow}</p>
         <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-6">{page.story.title}</h2>
         <div class="grid gap-5 text-[15.5px] leading-[1.7] text-text-2 max-w-[640px]">
           {page.story.paragraphs.map((p) => <p set:html={p}></p>)}
           <aside class="mt-1 rounded-xl border border-hairline bg-surface/60 p-5 text-[14px] leading-[1.7] text-text-2">
             <p class="m-0">Chalcophone : χαλκεόφωνος, de χαλκός : bronze + φωνή : voix.</p>
-            <p class="mt-4 mb-2 font-mono text-[12px] tracking-[0.08em] uppercase text-red-500">Il. V, 785-786</p>
+            <p class="mt-4 mb-2 font-mono text-[12px] tracking-[0.08em] uppercase text-stentor">Il. V, 785-786</p>
             <blockquote class="m-0 text-text font-serif text-[17px] leading-[1.75]">
               Στέντορι εἰσαμένη μεγαλήτορι χαλκεοφώνῳ,<br />
               ὃς τόσον αὐδήσασχ᾽ ὅσον ἄλλοι πεντήκοντα
@@ -43,9 +43,9 @@ import { about as page } from "../../../data/about.fr";
       </div>
       <aside class="lg:sticky lg:top-32 self-start">
         <figure class="border border-hairline rounded-xl bg-surface p-7 lg:p-8 relative overflow-hidden">
-          <div class="absolute -top-8 -right-8 -translate-y-10 translate-x-10 w-40 h-40 pointer-events-none" style="background: radial-gradient(50% 50% at 50% 50%, rgba(239,68,68,0.16), transparent 70%);" aria-hidden="true"></div>
+          <div class="absolute -top-8 -right-8 -translate-y-10 translate-x-10 w-40 h-40 pointer-events-none" style="background: radial-gradient(50% 50% at 50% 50%, rgba(24, 88, 200,0.16), transparent 70%);" aria-hidden="true"></div>
           <img src="/favicon.svg" alt="" class="w-11 h-11 rounded-full border border-hairline-strong bg-gradient-to-br from-raised to-sunken p-1.5 select-none" aria-hidden="true" />
-          <blockquote class="text-[18px] leading-[1.5] tracking-[-0.01em] text-zinc-100 mt-5">
+          <blockquote class="text-[18px] leading-[1.5] tracking-[-0.01em] text-text-2 mt-5">
             {page.story.pullQuote.text}
           </blockquote>
           <figcaption class="flex items-center gap-3 mt-6 pt-5 border-t border-dashed border-hairline">
@@ -65,7 +65,7 @@ import { about as page } from "../../../data/about.fr";
   <section class="py-16 md:py-20">
     <div class="max-w-[1280px] mx-auto px-4 md:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:[grid-template-columns:1.4fr_1fr_1fr_1fr_1fr] border border-hairline rounded-xl bg-surface overflow-hidden">
-        <div class="px-7 py-7 lg:px-9 md:col-span-2 lg:col-span-1 bg-gradient-to-b from-red-500/[0.05] to-transparent border-b md:border-b-0 md:border-r border-hairline flex flex-col justify-center gap-2.5">
+        <div class="px-7 py-7 lg:px-9 md:col-span-2 lg:col-span-1 bg-gradient-to-b from-stentor/[0.05] to-transparent border-b md:border-b-0 md:border-r border-hairline flex flex-col justify-center gap-2.5">
           <h3 class="text-[22px] tracking-[-0.025em] leading-[1.15] font-semibold max-w-[280px]">{page.numbers.title}</h3>
           <p class="text-[13px] text-text-3 leading-[1.5] max-w-[320px] m-0">{page.numbers.description}</p>
         </div>
@@ -76,7 +76,7 @@ import { about as page } from "../../../data/about.fr";
             i === 1 && "md:border-r-0 lg:border-r",
           ]}>
             <div class="text-[32px] tracking-[-0.035em] font-semibold leading-none">
-              {item.value}{item.suffix && <em class="not-italic font-medium text-red-500">{item.suffix}</em>}
+              {item.value}{item.suffix && <em class="not-italic font-medium text-stentor">{item.suffix}</em>}
             </div>
             <div class="text-xs text-text-2 mt-2 leading-[1.4]">{item.label}</div>
           </div>

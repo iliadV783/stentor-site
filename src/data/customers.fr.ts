@@ -9,7 +9,7 @@ export const hero = {
 export const featured = {
   brand: { initial: "S", name: "Sténtor dans le lieu" },
   title:
-    'Un workflow de salle pour <em class="text-red-500 not-italic">régie, écrans, foyer et téléphones.</em>',
+    'Un workflow de salle pour <em class="text-stentor not-italic">régie, écrans, foyer et téléphones.</em>',
   description:
     "Un théâtre peut préparer le texte avant le spectacle, piloter les cues depuis la régie, envoyer les surtitres aux écrans configurés, afficher un QR code dans le foyer et permettre aux spectateurs de suivre traduction ou audiodescription sur leurs propres téléphones.",
   stats: [
@@ -38,7 +38,7 @@ export const cards = [
     brand: "Accueil international",
     industry: "Traduction",
     glyph: "rounded-full",
-    tint: "rgba(239,68,68,0.18)",
+    tint: "rgba(24, 88, 200,0.18)",
     illustration: "helio" as const,
     title: "Accueillir une production en langue étrangère avec surtitres multilingues.",
     description:
@@ -66,7 +66,7 @@ export const cards = [
     brand: "Audiodescription",
     industry: "Audiodescription",
     glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]",
-    tint: "rgba(239,68,68,0.14)",
+    tint: "rgba(24, 88, 200,0.14)",
     illustration: "vector" as const,
     title: "Préparer l’audiodescription dans le même projet que le texte.",
     description:
@@ -80,7 +80,7 @@ export const cards = [
     brand: "Téléphones du public",
     industry: "Audience phones",
     glyph: "rounded",
-    tint: "rgba(239,68,68,0.14)",
+    tint: "rgba(24, 88, 200,0.14)",
     illustration: "kettlebrook" as const,
     title: "Proposer du texte sur appareils personnels sans installer un système complexe.",
     description:
@@ -108,7 +108,7 @@ export const cards = [
     brand: "Notes de terrain",
     industry: "Recherche",
     glyph: "rounded",
-    tint: "rgba(239,68,68,0.16)",
+    tint: "rgba(24, 88, 200,0.16)",
     illustration: "tessera" as const,
     title: "Inviter les retours après l’usage, pas avant le téléchargement.",
     description:

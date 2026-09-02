@@ -7,7 +7,7 @@
 export const hero = {
   eyebrow: "Free desktop app · No subscription required",
   title:
-    'Free live-text software <em class="not-italic text-text-3 font-medium">for performance.</em><br class="hidden sm:inline" />',
+    'Free live-text software <em class="not-italic text-stentor font-medium">for performance.</em><br class="hidden sm:inline" />',
   description:
     "Prepare, translate and cue surtitles, captions, audio description and audience-phone text from one native desktop app for rehearsals and live performance.",
   ctas: [
@@ -16,7 +16,7 @@ export const hero = {
   ],
   trust: [
     { label: "Free to use", live: true },
-    { label: "Native desktop app for macOS, Windows and Linux" },
+    { label: "Native desktop app for macOS and Windows" },
     { label: "Surtitles · translations · audio description · audience phones" },
   ],
   mock: {
@@ -69,19 +69,19 @@ export const metrics = {
     "Sténtor keeps performance text organized from preparation to live cueing, with a focused workflow for screens, audience phones, timelines and audio-description materials.",
   items: [
     { value: "Free", suffix: "", label: "Core desktop app with no subscription" },
-    { value: "Desktop", suffix: "", label: "For macOS, Windows and Linux" },
+    { value: "Desktop", suffix: "", label: "For macOS and Windows" },
     { value: "Live Sync", suffix: "", label: "For screens and audience phones" },
   ],
 };
 
 export const bento = {
-  title: "One Sténtor.<br/>One live workflow.",
+  title: "One Sténtor.<br/>Two ways of working.",
   description:
     "Prepare scripts, structure translations, operate surtitles, control audience access and keep audio-description materials together in a dedicated live-performance environment.",
   cards: {
     types: {
-      title: "Start from the script",
-      desc: "Prepare source text, surtitles, translations and metadata in a structured workspace designed for rehearsal and performance.",
+      title: "Sténtor Lite: start anywhere",
+      desc: "A free app for preparing source text, surtitles and translations on macOS and Windows.",
     },
     p95: {
       title: "Sténtor: live control room",
@@ -92,8 +92,8 @@ export const bento = {
       desc: "Spectators can connect with their own smartphones and follow surtitles, translations or audio descriptions in sync with the operator's cues.",
     },
     auth: {
-      title: "Free desktop workflow",
-      desc: "The core Sténtor desktop app is free to download and use. No monthly subscription is required for preparation and live operation.",
+      title: "Audio description and access",
+      desc: "Keep audio-description notes beside the script and synchronize accessible content with the live performance.",
     },
     cron: {
       title: "Import, export, circulate",
@@ -137,7 +137,7 @@ export const testimonials = {
 };
 
 const downloadFeatures = [
-  "Free desktop app for macOS, Windows and Linux",
+  "Free desktop app for macOS and Windows",
   "No monthly subscription for core desktop use",
   "Script preparation, surtitles and translations",
   "Timeline, cueing and live operator view",

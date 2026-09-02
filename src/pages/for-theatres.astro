@@ -26,7 +26,7 @@ const illustrationMap = {
   active="customers"
 >
   <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
     <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
       <div class="max-w-[760px]">
         <Eyebrow><span class="font-mono">{hero.eyebrow}</span></Eyebrow>
@@ -41,7 +41,7 @@ const illustrationMap = {
       <article class="border border-hairline rounded-xl bg-surface overflow-hidden mb-14 grid grid-cols-1 lg:[grid-template-columns:1.1fr_1fr]">
         <div class="p-8 lg:p-12 flex flex-col gap-4">
           <div class="inline-flex items-center gap-2.5 text-lg tracking-[-0.02em] font-medium">
-            <div class="grid place-items-center w-7 h-7 rounded-md bg-gradient-to-br from-red-500 to-red-700 text-bg font-mono font-semibold text-sm">{featured.brand.initial}</div>
+            <div class="grid place-items-center w-7 h-7 rounded-md bg-gradient-to-br from-stentor to-stentor text-bg font-mono font-semibold text-sm">{featured.brand.initial}</div>
             {featured.brand.name}
           </div>
           <h2 class="text-3xl md:text-4xl leading-[1.12] tracking-[-0.03em] font-semibold" set:html={featured.title}></h2>
@@ -49,25 +49,25 @@ const illustrationMap = {
           <div class="grid grid-cols-3 gap-6 my-3 py-5 border-y border-hairline">
             {featured.stats.map((s) => (
               <div>
-                <div class="text-[28px] tracking-[-0.03em] font-semibold text-red-500 leading-none">{s.value}</div>
+                <div class="text-[28px] tracking-[-0.03em] font-semibold text-stentor leading-none">{s.value}</div>
                 <div class="text-sm text-text-3 mt-1.5 leading-[1.4]">{s.label}</div>
               </div>
             ))}
           </div>
-          <a href={featured.link.href} class="inline-flex items-center gap-2 text-red-500 text-sm font-medium hover:underline">{featured.link.label} <span aria-hidden="true">→</span></a>
+          <a href={featured.link.href} class="inline-flex items-center gap-2 text-stentor text-sm font-medium hover:underline">{featured.link.label} <span aria-hidden="true">→</span></a>
         </div>
-        <div class="relative bg-deep border-t lg:border-t-0 lg:border-l border-hairline overflow-hidden p-8 lg:p-0 flex flex-col gap-8 justify-between lg:min-h-[540px]" style="background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(239,68,68,0.18), transparent 70%), var(--color-deep);">
+        <div class="relative bg-deep border-t lg:border-t-0 lg:border-l border-hairline overflow-hidden p-8 lg:p-0 flex flex-col gap-8 justify-between lg:min-h-[540px]" style="background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(24, 88, 200,0.18), transparent 70%), var(--color-deep);">
           <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:40px_40px] [-webkit-mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_30%,transparent_80%)] pointer-events-none"></div>
           <div class="relative grid gap-2.5 z-10 lg:absolute lg:top-10 lg:left-10 lg:right-10">
             {featured.hudRows.map((r) => (
               <div class:list={["hud-row", !r.emphasized && "opacity-55"]}>
                 <span>{r.method}</span>
                 <span>{r.emphasized ? <b class="text-text font-medium">{r.path}</b> : r.path}</span>
-                <span class="text-red-500 text-[12px] text-right">{r.lat}</span>
+                <span class="text-stentor text-[12px] text-right">{r.lat}</span>
               </div>
             ))}
           </div>
-          <blockquote class="relative z-10 text-lg leading-[1.5] text-zinc-200 border-l-2 border-red-500 py-1 pl-4 lg:absolute lg:left-10 lg:right-10 lg:bottom-10">
+          <blockquote class="relative z-10 text-lg leading-[1.5] text-text-2 border-l-2 border-stentor py-1 pl-4 lg:absolute lg:left-10 lg:right-10 lg:bottom-10">
             {featured.pullQuote.text}
             <span class="block mt-2.5 text-sm text-text-3"><b class="text-text-2 font-medium">{featured.pullQuote.author}</b> · {featured.pullQuote.role}</span>
           </blockquote>
@@ -84,7 +84,7 @@ const illustrationMap = {
               </div>
               <div class="cu-card__body">
                 <div class="cu-card__head">
-                  <div class:list={["w-6 h-6 bg-zinc-300", card.glyph]}></div>
+                  <div class:list={["w-6 h-6 bg-chrome", card.glyph]}></div>
                   <b class="text-sm">{card.brand}</b>
                   <span class="tag ml-auto">{card.industry}</span>
                 </div>
@@ -111,8 +111,8 @@ const illustrationMap = {
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border border-hairline rounded-xl overflow-hidden">
         {logoWall.logos.map((l) => (
-          <div class="h-[88px] grid place-items-center text-zinc-300 text-base lg:text-[17px] tracking-[-0.02em] font-medium opacity-70 border-hairline border-b lg:border-b-0 lg:border-r">
-            <span><span class:list={["w-[18px] h-[18px] mr-2 inline-block bg-zinc-300", l.glyph]}></span>{l.name}</span>
+          <div class="h-[88px] grid place-items-center text-text-2 text-base lg:text-[17px] tracking-[-0.02em] font-medium opacity-70 border-hairline border-b lg:border-b-0 lg:border-r">
+            <span><span class:list={["w-[18px] h-[18px] mr-2 inline-block bg-chrome", l.glyph]}></span>{l.name}</span>
           </div>
         ))}
       </div>
@@ -122,13 +122,13 @@ const illustrationMap = {
   <section class="py-24">
     <div class="max-w-[1280px] mx-auto px-4 md:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:[grid-template-columns:1.4fr_1fr_1fr_1fr] border border-hairline rounded-xl bg-surface overflow-hidden">
-        <div class="px-8 py-9 lg:px-10 bg-gradient-to-b from-red-500/[0.05] to-transparent border-b md:border-b-0 md:border-r border-hairline flex flex-col justify-center gap-2.5">
+        <div class="px-8 py-9 lg:px-10 bg-gradient-to-b from-stentor/[0.05] to-transparent border-b md:border-b-0 md:border-r border-hairline flex flex-col justify-center gap-2.5">
           <h3 class="text-2xl tracking-[-0.025em] font-semibold max-w-[280px] leading-[1.2]">{stats.title}</h3>
           <p class="text-sm text-text-3 m-0 max-w-[320px] leading-[1.5]">{stats.description}</p>
         </div>
         {stats.items.map((s) => (
           <div class="px-7 py-8 flex flex-col justify-center border-b md:border-b-0 md:border-r border-hairline">
-            <div class="text-4xl tracking-[-0.035em] font-semibold leading-none">{s.value}<em class="not-italic text-red-500 text-2xl font-medium">{s.suffix}</em></div>
+            <div class="text-4xl tracking-[-0.035em] font-semibold leading-none">{s.value}<em class="not-italic text-stentor text-2xl font-medium">{s.suffix}</em></div>
             <div class="text-sm text-text-2 mt-2.5 leading-[1.4]">{s.label}</div>
           </div>
         ))}
@@ -141,8 +141,8 @@ const illustrationMap = {
       <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3 mb-24">
         {quotes.map((q) => (
           <div class="border border-hairline rounded-xl bg-surface p-7 flex flex-col gap-5">
-            <span class="text-red-500 tracking-[2px]">{"★".repeat(q.stars)}</span>
-            <p class="m-0 leading-[1.55] text-zinc-200 before:content-['“'] before:text-red-500 before:mr-0.5 after:content-['”'] after:text-red-500 after:ml-0.5">{q.text}</p>
+            <span class="text-stentor tracking-[2px]">{"★".repeat(q.stars)}</span>
+            <p class="m-0 leading-[1.55] text-text-2 before:content-['“'] before:text-stentor before:mr-0.5 after:content-['”'] after:text-stentor after:ml-0.5">{q.text}</p>
             <div class="flex items-center gap-3 mt-auto pt-3.5 border-t border-dashed border-hairline">
               <div class="w-9 h-9 rounded-full border border-hairline-strong grid place-items-center font-mono text-xs text-text-2 bg-gradient-to-br from-raised to-sunken">{q.av}</div>
               <div><b class="block font-medium text-[13.5px]">{q.name}</b><span class="block text-xs text-text-3">{q.role}</span></div>
@@ -171,7 +171,7 @@ const illustrationMap = {
   .cu-card__body { @apply px-6 py-5 flex flex-col gap-3 flex-1; }
   .cu-card__head { @apply flex items-center gap-2.5; }
   .cu-card__stats { @apply grid grid-cols-2 gap-4 pt-4 mt-auto border-t border-dashed border-hairline font-mono text-[12px]; }
-  .cu-card__stats .k { @apply text-red-500 text-lg tracking-[-0.02em] font-semibold; }
+  .cu-card__stats .k { @apply text-stentor text-lg tracking-[-0.02em] font-semibold; }
   .cu-card__stats .l { @apply text-text-3 mt-1 text-[12px]; }
-  .tag { @apply inline-flex items-center gap-1.5 font-mono text-[12px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline; }
+  .tag { @apply inline-flex items-center gap-1.5 font-mono text-[12px] px-2 py-0.5 rounded-sm bg-surface-2 text-text-2 border border-hairline; }
 </style>

@@ -3,10 +3,7 @@ import IconCode from "../../../assets/icons/code.svg";
 import IconShieldCheck from "../../../assets/icons/shield-check.svg";
 import IconLightning from "../../../assets/icons/lightning.svg";
 import IconRefreshCcw from "../../../assets/icons/refresh-ccw.svg";
-import IconAtom from "../../../assets/icons/atom.svg";
 import IconClock from "../../../assets/icons/clock.svg";
-import IllusIsoBentoPulseArc from "../../../assets/illustrations/iso-bento-pulse-arc.svg";
-import IllusIsoBentoCron from "../../../assets/illustrations/iso-bento-cron.svg";
 import { bento as defaultBento } from "../../../data/home";
 import { bento as frBento } from "../../../data/home.fr";
 
@@ -18,17 +15,25 @@ const { bento: propBento } = Astro.props;
 const bento = propBento ?? (Astro.url.pathname.startsWith("/fr") ? frBento : defaultBento);
 const c = bento.cards;
 const isFr = Astro.url.pathname.startsWith("/fr");
+const locale = Astro.url.pathname.split("/").filter(Boolean)[0] || "en";
+const featureCopy = {
+  en: { title: "Three essential workflows.", body: "From the first line to the live cue: the tools that keep text, timing and accessibility together." },
+  it: { title: "Tre flussi essenziali.", body: "Dalla prima battuta al cue dal vivo: gli strumenti che tengono insieme testo, tempo e accessibilità." },
+  fr: { title: "Trois flux essentiels.", body: "De la première réplique au cue en direct : les outils qui réunissent texte, rythme et accessibilité." },
+  es: { title: "Tres flujos esenciales.", body: "Desde la primera línea hasta el cue en vivo: las herramientas que reúnen texto, ritmo y accesibilidad." },
+  de: { title: "Drei wesentliche Abläufe.", body: "Von der ersten Zeile bis zum Live-Cue: Werkzeuge, die Text, Timing und Barrierefreiheit verbinden." },
+} as const;
+const features = featureCopy[locale as keyof typeof featureCopy] ?? featureCopy.en;
 ---
 
-<section class="py-24" id="features">
+<section class="py-20 lg:py-24" id="modes">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
     <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6">
       <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] font-semibold" set:html={bento.title}></h2>
       <p class="text-text-2 max-w-[420px]">{bento.description}</p>
     </div>
 
-    <div class="grid gap-5">
-      <div class="grid gap-5 lg:[grid-template-columns:4fr_2fr]">
+    <div class="grid gap-5 lg:grid-cols-2">
         <article class="bento">
           <div class="bento__head">
             <div class="bento__icon"><IconCode class="w-4 h-4" /></div>
@@ -78,9 +83,18 @@ const isFr = Astro.url.pathname.startsWith("/fr");
             <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span>{isFr ? "ecrans" : "screens"}</span><b class="text-text font-medium">2</b><span class="text-text-3">{isFr ? "prets" : "ready"}</span></div>
           </div>
         </article>
-      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="grid gap-5 lg:grid-cols-2">
+<section class="pb-20 lg:pb-24" id="features">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] font-semibold">{features.title}</h2>
+      <p class="text-text-2 max-w-[460px]">{features.body}</p>
+    </div>
+
+    <div class="grid gap-5 lg:grid-cols-3">
         <article class="bento">
           <div class="bento__head">
             <div class="bento__icon"><IconLightning class="w-4 h-4" /></div>
@@ -93,46 +107,6 @@ const isFr = Astro.url.pathname.startsWith("/fr");
             <div class="phone-card"><span>EN</span><b>O my country, poor country!</b></div>
             <div class="phone-card"><span>IT</span><b>O mio paese, povero paese!</b></div>
             <div class="phone-card"><span>AD</span><b>Dark stage. A pause before the line.</b></div>
-          </div>
-        </article>
-
-        <article class="bento">
-          <div class="bento__head">
-            <div class="bento__icon"><IconShieldCheck class="w-4 h-4" /></div>
-            <div>
-              <div class="bento__title">{c.auth.title}</div>
-              <div class="bento__desc">{c.auth.desc}</div>
-            </div>
-          </div>
-          <div class="project-board" aria-hidden="true">
-            <div class="project-board__bar"><span>Macbett</span><span class="tag tag--green">open</span></div>
-            <div class="project-board__grid">
-              <div><span>Script</span><b>Italian source</b></div>
-              <div><span>Surtitles</span><b>English</b></div>
-              <div><span>Audio description</span><b>35 notes</b></div>
-              <div><span>Research</span><b>operator notes</b></div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="grid gap-5 lg:grid-cols-3">
-        <article class="bento">
-          <div class="bento__head">
-            <div class="bento__icon"><IconClock class="w-4 h-4" /></div>
-            <div>
-              <div class="bento__title">{c.cron.title}</div>
-              <div class="bento__desc">{c.cron.desc}</div>
-            </div>
-          </div>
-          <div class="bento__illus" style="aspect-ratio: 16/8;" aria-hidden="true">
-            <IllusIsoBentoCron />
-          </div>
-          <div class="grid gap-1.5 font-mono text-xs">
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span class="text-red-500">import</span><b class="text-text font-medium">script.docx</b><span class="text-text-3">cues</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span class="text-red-500">import</span><b class="text-text font-medium">captions.vtt</b><span class="text-text-3">ready</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 300ms"><span class="text-red-500">export</span><b class="text-text font-medium">show.en.srt</b><span class="text-text-3">share</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 400ms"><span class="text-red-500">archive</span><b class="text-text font-medium">notes.pdf</b><span class="text-text-3">study</span></div>
           </div>
         </article>
 
@@ -154,80 +128,82 @@ const isFr = Astro.url.pathname.startsWith("/fr");
 
         <article class="bento">
           <div class="bento__head">
-            <div class="bento__icon"><IconAtom class="w-4 h-4" /></div>
+            <div class="bento__icon"><IconShieldCheck class="w-4 h-4" /></div>
             <div>
-              <div class="bento__title">{c.deploys.title}</div>
-              <div class="bento__desc">{c.deploys.desc}</div>
+              <div class="bento__title">{c.auth.title}</div>
+              <div class="bento__desc">{c.auth.desc}</div>
             </div>
           </div>
-          <div class="account-preview" aria-hidden="true">
-            <div class="account-preview__code"><span>Access code</span><b>ST-24-MACBETT</b></div>
-            <div class="account-preview__row"><span>Downloads</span><b>macOS · Windows · Linux</b></div>
-            <div class="account-preview__row"><span>Platforms</span><b>enabled</b></div>
-            <div class="account-preview__row"><span>Account</span><b>ready</b></div>
+          <div class="project-board" aria-hidden="true">
+            <div class="project-board__bar"><span>Macbett</span><span class="tag tag--green">live</span></div>
+            <div class="project-board__grid">
+              <div><span>Script</span><b>Italian source</b></div>
+              <div><span>Surtitles</span><b>English</b></div>
+              <div><span>Audio description</span><b>35 notes</b></div>
+              <div><span>Access</span><b>synced</b></div>
+            </div>
           </div>
         </article>
-      </div>
     </div>
   </div>
 </section>
 
 <style>
   @reference "../../../styles/global.css";
-  .bento { @apply relative flex flex-col gap-4 overflow-hidden bg-surface border border-hairline rounded-xl p-6 min-h-[280px]; }
+  .bento { @apply relative flex flex-col gap-4 overflow-hidden bg-surface border border-hairline rounded-xl p-6 min-h-[280px] shadow-[0_18px_48px_-40px_rgba(37,61,96,0.35)]; }
   .bento__head { @apply flex items-center gap-3; }
-  .bento__icon { @apply grid place-items-center w-9 h-9 rounded-lg border border-hairline text-red-500 tile-grad; }
+  .bento__icon { @apply grid place-items-center w-9 h-9 rounded-lg border border-hairline text-stentor tile-grad; }
   .bento__title { @apply text-[17px] tracking-[-0.02em] font-semibold; }
   .bento__desc { @apply text-text-2 text-sm max-w-[380px]; }
-  .bento__illus { @apply relative border border-hairline rounded-[10px] overflow-hidden; aspect-ratio: 16 / 7; background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(239, 68, 68, 0.08), transparent 70%), #0a0a0a; }
+  .bento__illus { @apply relative border border-hairline rounded-[10px] overflow-hidden; aspect-ratio: 16 / 7; background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(24, 88, 200, 0.08), transparent 70%), #0a0a0a; }
   .bento__illus > svg { @apply w-full h-full block; }
   .tag { @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap; }
   .tag--green { @apply text-green-400 bg-green-400/10 border-green-400/20; }
   .row-list-item { @apply grid [grid-template-columns:80px_1fr_auto] gap-2.5 items-center px-2.5 py-2 border border-hairline rounded-md bg-bg text-text-2; }
 
   .script-preview { @apply grid md:grid-cols-[1fr_220px] gap-4 border border-hairline rounded-[10px] bg-bg p-4 mt-auto; }
-  .script-preview__page { @apply rounded-lg border border-hairline bg-black/30 p-4 grid gap-3; }
-  .script-preview__line { @apply h-3 rounded-full bg-white/12; }
+  .script-preview__page { @apply rounded-lg border border-hairline bg-white p-4 grid gap-3; }
+  .script-preview__line { @apply h-3 rounded-full bg-chrome; }
   .script-preview__line--wide { width: 86%; }
   .script-preview__line--short { width: 54%; }
-  .script-preview__line--accent { width: 72%; background: linear-gradient(90deg, rgba(239,68,68,.85), rgba(239,68,68,.18)); }
+  .script-preview__line--accent { width: 72%; background: linear-gradient(90deg, rgba(24, 88, 200,.85), rgba(24, 88, 200,.18)); }
   .translation-stack { @apply grid gap-2 font-mono text-xs; }
   .translation-stack div { @apply grid grid-cols-[1fr_auto] items-center px-3 py-2 rounded-md border border-hairline bg-surface text-text-3; }
   .translation-stack b { @apply text-text font-medium; }
 
   .live-card { @apply border border-hairline rounded-[10px] bg-bg p-4 grid gap-4; }
-  .live-card__screen { @apply rounded-lg border border-hairline bg-black/30 p-4 grid gap-1; }
-  .live-card__screen span { @apply font-mono text-xs text-text-3; }
-  .live-card__screen strong { @apply text-4xl leading-none tracking-[-0.05em]; }
+  .live-card__screen { @apply rounded-lg border border-slate-700 bg-[#0f172a] p-4 grid gap-1; }
+  .live-card__screen span { @apply font-mono text-xs text-slate-400; }
+  .live-card__screen strong { @apply text-4xl text-white leading-none tracking-[-0.05em]; }
   .live-card__screen em { @apply not-italic font-mono text-xs text-green-400; }
-  .cue-timeline { @apply relative h-2 rounded-full bg-white/5 overflow-hidden; }
-  .cue-timeline i { @apply absolute inset-y-0 left-0 bg-red-500; }
-  .cue-timeline span { @apply absolute top-1/2 w-2.5 h-2.5 rounded-full bg-red-400 -translate-y-1/2; }
+  .cue-timeline { @apply relative h-2 rounded-full bg-chrome overflow-hidden; }
+  .cue-timeline i { @apply absolute inset-y-0 left-0 bg-stentor; }
+  .cue-timeline span { @apply absolute top-1/2 w-2.5 h-2.5 rounded-full bg-stentor -translate-y-1/2; }
   .cue-timeline--small { @apply mt-2; }
 
   .phone-preview { @apply grid sm:grid-cols-3 gap-3 mt-auto; }
   .phone-card { @apply min-h-[150px] rounded-[18px] border border-hairline bg-bg p-4 flex flex-col justify-between; }
-  .phone-card span { @apply w-fit rounded-full bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 font-mono text-[10px]; }
+  .phone-card span { @apply w-fit rounded-full bg-stentor/10 text-stentor border border-stentor/20 px-2 py-0.5 font-mono text-[10px]; }
   .phone-card b { @apply text-text text-sm leading-snug font-medium; }
 
   .project-board { @apply rounded-[10px] border border-hairline bg-bg overflow-hidden; }
   .project-board__bar { @apply flex items-center justify-between px-3 py-2 border-b border-hairline font-mono text-xs text-text-3; }
   .project-board__grid { @apply grid sm:grid-cols-2 gap-2 p-3; }
-  .project-board__grid div { @apply rounded-md border border-hairline bg-black/20 p-3; }
+  .project-board__grid div { @apply rounded-md border border-hairline bg-surface-2 p-3; }
   .project-board__grid span { @apply block font-mono text-[11px] text-text-3 mb-1; }
   .project-board__grid b { @apply text-text font-medium; }
 
   .operator-mini { @apply rounded-[10px] border border-hairline bg-bg p-4 grid gap-2 mt-auto; }
-  .operator-mini__cue { @apply grid grid-cols-[70px_1fr_auto] gap-2 px-3 py-2 rounded-md border border-hairline bg-black/20 font-mono text-xs; }
+  .operator-mini__cue { @apply grid grid-cols-[70px_1fr_auto] gap-2 px-3 py-2 rounded-md border border-hairline bg-surface-2 font-mono text-xs; }
   .operator-mini__cue span { @apply text-text-3; }
   .operator-mini__cue b { @apply text-text font-medium; }
   .operator-mini__cue em { @apply not-italic text-green-400; }
-  .operator-mini__text { @apply rounded-md border border-hairline bg-black/30 p-4 text-xl tracking-[-0.04em] font-semibold; }
+  .operator-mini__text { @apply rounded-md border border-slate-700 bg-[#0f172a] text-white p-4 text-xl tracking-[-0.04em] font-semibold; }
 
   .account-preview { @apply rounded-[10px] border border-hairline bg-bg p-4 grid gap-2 mt-auto; }
-  .account-preview__code { @apply rounded-lg border border-red-500/35 bg-red-500/[0.06] p-3; }
+  .account-preview__code { @apply rounded-lg border border-stentor/35 bg-stentor/[0.06] p-3; }
   .account-preview__code span, .account-preview__row span { @apply block font-mono text-[11px] text-text-3 mb-1; }
   .account-preview__code b { @apply text-text font-mono text-sm break-all; }
-  .account-preview__row { @apply grid grid-cols-[90px_1fr] gap-3 items-center rounded-md border border-hairline bg-black/20 px-3 py-2; }
+  .account-preview__row { @apply grid grid-cols-[90px_1fr] gap-3 items-center rounded-md border border-hairline bg-surface-2 px-3 py-2; }
   .account-preview__row b { @apply text-text font-medium text-sm; }
 </style>

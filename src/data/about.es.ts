@@ -1,6 +1,6 @@
 const leonardoProfileUrl = "https://www.studium.unito.it/do/docenti.pl/Show?_id=lmancini";
 const eticaProjectUrl = "https://unifind.unito.it/resource/project/MANL_PE_ATENEO_25_01";
-const inlineLinkClass = "text-text underline decoration-red-500/60 underline-offset-4 hover:text-red-400 transition-colors";
+const inlineLinkClass = "text-text underline decoration-stentor/60 underline-offset-4 hover:text-stentor transition-colors";
 const leonardoProfileLink = `<a href="${leonardoProfileUrl}" target="_blank" rel="noopener noreferrer" class="${inlineLinkClass}">Leonardo Mancini</a>`;
 const eticaProjectLink = `<a href="${eticaProjectUrl}" target="_blank" rel="noopener noreferrer" class="${inlineLinkClass}">ETICA</a>`;
 
@@ -8,7 +8,7 @@ export const about = {
   hero: {
     eyebrow: "Acerca de Sténtor",
     title:
-      'La escena en vivo necesita <em class="not-italic text-red-500">palabras vivas</em>.<br/>Para cada público.',
+      'La escena en vivo necesita <em class="not-italic text-stentor">palabras vivas</em>.<br/>Para cada público.',
     description:
       "Sténtor es una herramienta multiplataforma para sobretítulos, traducción y audiodescripción en artes escénicas en vivo.",
     credit:
@@ -35,7 +35,7 @@ export const about = {
     items: [
       { value: "3", label: "capas centrales: sobretítulos, traducción, audiodescripción" },
       { value: "∞", label: "proyectos, idiomas y cues en cada plan" },
-      { value: "3", label: "plataformas de escritorio: macOS, Windows y Linux" },
+      { value: "3", label: "plataformas de escritorio: macOS y Windows" },
       { value: "Free", label: "descarga y activación gratuitas" },
     ],
   },

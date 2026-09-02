@@ -52,13 +52,13 @@ const localizedTocActions = tocActions.map((a) => ({
               <li>
                 <a href={item.href} class:list={[
                   "flex items-center gap-2.5 px-2.5 py-1.5 transition-colors border-l-2",
-                  item.active ? "bg-red-500/[0.08] text-red-500 font-medium border-red-500 rounded-r-md" : "text-text-2 hover:text-text hover:bg-white/[0.03] border-transparent rounded-md",
+                  item.active ? "bg-stentor/[0.08] text-stentor font-medium border-stentor rounded-r-md" : "text-text-2 hover:text-text hover:bg-surface-2 border-transparent rounded-md",
                 ]}>
                   {item.label}
                   {item.badge && (
                     <span class:list={[
                       "ml-auto font-mono text-xs px-1.5 py-px rounded-sm",
-                      item.badgeNew ? "text-red-500 bg-red-500/10" : "text-text-3 bg-white/[0.04]",
+                      item.badgeNew ? "text-stentor bg-stentor/10" : "text-text-3 bg-surface-2",
                     ]}>{item.badge}</span>
                   )}
                 </a>
@@ -100,15 +100,15 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="version" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Stato della beta</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La versione macOS è la linea più avanzata; la versione Windows viene riallineata progressivamente alle stesse sezioni e agli stessi comportamenti. L’obiettivo non è avere due applicazioni diverse, ma un unico modello di progetto con interfacce coerenti sulle piattaforme desktop.
       </p>
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
         <table class="w-full border-collapse text-[13px] min-w-[560px]">
           <thead>
             <tr>
-              <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Area</th>
-              <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Stato operativo</th>
+              <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Area</th>
+              <th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Stato operativo</th>
             </tr>
           </thead>
           <tbody>
@@ -131,17 +131,17 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="projects" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">1. Progetti e archivio</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La sezione Progetti è l’ingresso operativo. Da qui si crea una produzione, si apre un file esistente, si recuperano lavori recenti e si mantiene il progetto in un formato trasportabile.
       </p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Crea nuovi progetti e apri archivi <code>.stn</code> esportati da altre postazioni.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Gestisci titolo, compagnia, lingue, personaggi, battute, schermi, pubblico, questionari e metadati di produzione.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Usa progetti dimostrativi per prove tecniche senza confonderli con l’archivio reale.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Crea nuovi progetti e apri archivi <code>.stn</code> esportati da altre postazioni.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Gestisci titolo, compagnia, lingue, personaggi, battute, schermi, pubblico, questionari e metadati di produzione.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Usa progetti dimostrativi per prove tecniche senza confonderli con l’archivio reale.</span></li>
       </ul>
 
       <h2 id="import" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">2. Importazione del testo</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         L’importazione trasforma materiali esistenti in battute lavorabili. Il controllo successivo serve a verificare divisione in righe, parlanti, didascalie, scene e ordine del copione.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
@@ -150,12 +150,12 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="text" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">3. Testo e lingue</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La sezione Testo è organizzata per lavorare rapidamente sul copione: elenco battute a sinistra, editor al centro, anteprima e controlli a destra. Le lingue del progetto sono indipendenti dalla lingua dell’interfaccia.
       </p>
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
         <table class="w-full border-collapse text-[13px] min-w-[560px]">
-          <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Elemento</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Funzione</th></tr></thead>
+          <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Elemento</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Funzione</th></tr></thead>
           <tbody>
             <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Elenco cue</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Permette di scorrere, cercare e selezionare rapidamente le battute.</td></tr>
             <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Tipo riga</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Distingue battute, titoli, didascalie, note, audio-descrizioni e materiali non proiettati.</td></tr>
@@ -166,17 +166,17 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="cue-style" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">4. Stile delle singole battute</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         Oltre allo stile generale degli schermi, Sténtor può associare opzioni di stile alla singola battuta. Questa funzione serve quando una cue deve avere enfasi, posizione, ritmo o formattazione diversa senza cambiare tutto il progetto.
       </p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Lo stile di progetto rimane la base; lo stile della battuta è un’eccezione controllata.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le opzioni possono essere aperte solo quando servono, per non appesantire l’editor.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le righe di tipo audio-descrizione restano separate dalle battute proiettate.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Lo stile di progetto rimane la base; lo stile della battuta è un’eccezione controllata.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Le opzioni possono essere aperte solo quando servono, per non appesantire l’editor.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Le righe di tipo audio-descrizione restano separate dalle battute proiettate.</span></li>
       </ul>
 
       <h2 id="audio" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">5. Audio-descrizione</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         L’audio-descrizione è un livello del progetto, non un semplice commento. Può essere preparata vicino alle battute, gestita come materiale autonomo e resa disponibile in Regia o in sezioni dedicate quando l’allestimento lo prevede.
       </p>
       <div class="callout callout--warning">
@@ -187,7 +187,7 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="timeline" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">6. Linea del tempo</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La linea del tempo offre una mappa dello spettacolo. Aiuta a leggere l’ordine delle battute, la posizione corrente, le sezioni, i tempi di prova e la densità del testo.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
@@ -196,12 +196,12 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="stage-desk" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">7. Regia</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         Regia è la vista per la rappresentazione. La battuta corrente resta in alto e visibile, seguita dalla prossima e dalle battute successive. L’obiettivo è evitare che l’operatore veda solo il passato del copione.
       </p>
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
         <table class="w-full border-collapse text-[13px] min-w-[560px]">
-          <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Strumento</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Uso</th></tr></thead>
+          <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Strumento</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Uso</th></tr></thead>
           <tbody>
             <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Avanti / indietro</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Controllo manuale della cue corrente, con battuta successiva sempre leggibile.</td></tr>
             <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Evidenziazione</td><td class="text-text-2 px-4 py-3 border-b border-hairline">La corrente e la prossima battuta hanno colori più riconoscibili senza disturbare il resto dell’elenco.</td></tr>
@@ -213,7 +213,7 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="screens" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">8. Schermi</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La sezione Schermi configura le uscite pubbliche: lingua, stile, dimensione, contrasto, destinazione, anteprima e stato. Serve a separare il lavoro dell’operatore dall’uscita che vede il pubblico.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
@@ -222,17 +222,17 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="audience" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">9. Pubblico</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La sezione Pubblico prepara l’accesso da smartphone o dispositivi personali. Può esporre una pagina locale, un QR o un link, con scelta dei contenuti disponibili: lingua, soprattitoli, traduzione, materiali accessibili e questionario.
       </p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Usa il pubblico su rete locale quando la sala non deve dipendere da Internet.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Mostra solo le funzioni effettivamente pronte per quella produzione.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Verifica indirizzo, QR, accessibilità e leggibilità prima dell’apertura al pubblico.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Usa il pubblico su rete locale quando la sala non deve dipendere da Internet.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Mostra solo le funzioni effettivamente pronte per quella produzione.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Verifica indirizzo, QR, accessibilità e leggibilità prima dell’apertura al pubblico.</span></li>
       </ul>
 
       <h2 id="surveys" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">10. Questionari</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         I questionari possono essere usati per raccogliere feedback dopo la rappresentazione. Sténtor distingue il questionario immediato, mostrato a fine spettacolo, dal questionario differito, compilabile più tardi entro una finestra temporale definita.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
@@ -241,7 +241,7 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="connection" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">11. Connessione</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La sezione Connessione serve a controllare rete locale, indirizzi, endpoint pubblico, dispositivi collegati e stato delle uscite. È una sezione tecnica, ma deve essere leggibile anche da chi gestisce la sala senza essere sviluppatore.
       </p>
       <div class="callout callout--info">
@@ -251,17 +251,17 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="settings" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">12. Impostazioni</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         Le impostazioni raccolgono preferenze di applicazione e di progetto: lingua interfaccia, comportamento delle uscite, stile di default, dati dello spettacolo, funzioni accessibili, gestione di prova e parametri di rete.
       </p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le impostazioni globali riguardano l’applicazione e la postazione.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le impostazioni di progetto viaggiano con lo spettacolo e restano nel file di produzione.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Le funzioni ancora sperimentali vanno tenute distinguibili dalle funzioni pronte per la sala.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Le impostazioni globali riguardano l’applicazione e la postazione.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Le impostazioni di progetto viaggiano con lo spettacolo e restano nel file di produzione.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Le funzioni ancora sperimentali vanno tenute distinguibili dalle funzioni pronte per la sala.</span></li>
       </ul>
 
       <h2 id="files" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">13. Importazione ed esportazione</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         Il file di progetto deve permettere spostamenti tra computer, sistemi operativi e prove diverse. Importazione ed esportazione servono anche per traduzioni, archivi, versioni consegnabili e backup.
       </p>
       <div class="docs-codeblock mb-6">
@@ -273,7 +273,7 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="desktop" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">14. Applicazione macOS e Windows</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         Sténtor viene sviluppato come applicazione desktop. macOS è il riferimento più maturo; Windows viene allineato sezione per sezione. L’utente finale deve poter aprire l’app, caricare un progetto, preparare il testo e usare Regia senza strumenti di sviluppo visibili.
       </p>
       <div class="grid md:grid-cols-2 gap-3 mb-8">
@@ -282,7 +282,7 @@ const localizedTocActions = tocActions.map((a) => ({
       </div>
 
       <h2 id="research" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">15. Ricerca e sviluppo</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         Ricerca e sviluppo raccoglie ciò che serve a far crescere Sténtor in contesti reali: note di prova, feedback, questionari, osservazioni sull’accessibilità, esperimenti con pubblico e valutazione delle funzioni ancora in beta.
       </p>
       <div class="callout callout--warning">
@@ -298,7 +298,7 @@ const localizedTocActions = tocActions.map((a) => ({
           <p class="mt-1 text-[13px] text-text-3 m-0">Parti dal progetto, controlla testo e lingue, configura schermi e pubblico, poi prova Regia con la rete reale della sala.</p>
         </div>
         <div class="flex gap-2">
-          <a href="/it/richiedi-prova" class="h-8 px-3.5 rounded-md bg-red-500 text-bg text-[13px] inline-flex items-center">Richiedi prova</a>
+          <a href="/it/richiedi-prova" class="h-8 px-3.5 rounded-md bg-stentor text-bg text-[13px] inline-flex items-center">Richiedi prova</a>
           <a href="/it/contact" class="h-8 px-3.5 rounded-md border border-hairline text-text-2 hover:text-text text-[13px] inline-flex items-center">Condividi note</a>
         </div>
       </div>
@@ -309,7 +309,7 @@ const localizedTocActions = tocActions.map((a) => ({
       <ul class="grid gap-1.5 list-none p-0 m-0">
         {tocItems.map((t, i) => (
           <li class:list={[t.sub && "pl-3.5"]}>
-            <a href={t.href} data-toc-link class:list={["block py-0.5 transition-colors duration-300 ease-out", i === 0 ? "text-red-500" : "text-text-3 hover:text-text-2", t.sub && "text-xs"]}>{t.label}</a>
+            <a href={t.href} data-toc-link class:list={["block py-0.5 transition-colors duration-300 ease-out", i === 0 ? "text-stentor" : "text-text-3 hover:text-text-2", t.sub && "text-xs"]}>{t.label}</a>
           </li>
         ))}
       </ul>
@@ -345,10 +345,10 @@ const localizedTocActions = tocActions.map((a) => ({
       sections.forEach((s) => {
         const isActive = s.id === id;
         if (isActive) {
-          s.link.classList.add("text-red-500");
+          s.link.classList.add("text-stentor");
           s.link.classList.remove("text-text-3", "hover:text-text-2");
         } else {
-          s.link.classList.remove("text-red-500");
+          s.link.classList.remove("text-stentor");
           s.link.classList.add("text-text-3", "hover:text-text-2");
         }
       });

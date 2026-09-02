@@ -17,7 +17,7 @@ export const form = {
 };
 
 export const sidePanel = {
-  tagline: 'From <em class="text-red-500 not-italic">real rooms</em> to better tools.',
+  tagline: 'From <em class="text-stentor not-italic">real rooms</em> to better tools.',
   description: "Sténtor grows through rehearsals, theatre tests, audience responses and shared knowledge about live-performance text.",
   terminal: {
     breadcrumb: "~/stentor · download",

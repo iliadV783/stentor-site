@@ -3,18 +3,18 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="Questionari pubblico - Stentor Admin" description="Area admin per consultare i questionari differiti pubblicati da Stentor." active={null} showNav={false} showFooter={false} noindex={true}>
-  <section class="min-h-screen bg-black text-white relative overflow-hidden">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <section class="min-h-screen bg-bg text-text relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-stentor/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-    <header class="relative border-b border-white/10">
+    <header class="relative border-b border-hairline-strong">
       <div class="max-w-[1280px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors">
+        <a href="/" class="inline-flex items-center gap-3 text-text hover:text-text-2 transition-colors">
           <span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span>
-          <span class="text-white/45 text-sm">Admin</span>
+          <span class="text-text-2 text-sm">Admin</span>
         </a>
         <div class="flex items-center gap-3">
-          <span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Admin area</span>
+          <span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-hairline-strong bg-surface-2 text-text-2 text-xs font-mono uppercase tracking-[0.12em]">Admin area</span>
           <a href="/admin" class="admin-top-link">Admin console</a>
           <a href="/admin/feedback/" class="admin-top-link">Feedback</a>
           <button data-admin-refresh hidden class="admin-top-link">Aggiorna</button>
@@ -24,26 +24,26 @@ import Layout from "../../layouts/Layout.astro";
     </header>
 
     <main class="relative max-w-[1280px] mx-auto px-5 md:px-8 py-10 md:py-14">
-      <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
+      <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-7 md:p-8">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Admin login</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accedi ai questionari.</h1>
-        <p class="text-white/50 leading-[1.6] mb-7">Usa il tuo account autorizzato per consultare questionari differiti e risposte anonime raccolte su stentor.live.</p>
+        <p class="text-text-2 leading-[1.6] mb-7">Usa il tuo account autorizzato per consultare questionari differiti e risposte anonime raccolte su stentor.live.</p>
         <form data-admin-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@stentor.live" class="survey-admin-input h-12" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="survey-admin-input h-12" />
-          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Accedi</button>
-          <button type="button" data-admin-magic-link class="h-12 rounded-xl border border-white/10 text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors">Invia link via email</button>
+          <button type="submit" class="h-13 rounded-xl bg-stentor text-white font-semibold hover:bg-stentor-dark transition-colors">Accedi</button>
+          <button type="button" data-admin-magic-link class="h-12 rounded-xl border border-hairline-strong text-text-2 hover:text-text hover:bg-surface-2 transition-colors">Invia link via email</button>
         </form>
-        <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+        <p data-admin-error hidden class="mt-5 rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4"></p>
       </section>
 
       <section data-admin-app hidden class="grid gap-6">
-        <div class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7">
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Questionari differiti</p>
+        <div class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7">
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Questionari differiti</p>
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
               <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">Risposte anonime degli spettatori.</h1>
-              <p class="text-white/50 leading-[1.6] max-w-[820px]">Clicca un questionario per aprire una pagina dedicata, più leggibile della vecchia sidebar laterale.</p>
+              <p class="text-text-2 leading-[1.6] max-w-[820px]">Clicca un questionario per aprire una pagina dedicata, più leggibile della vecchia sidebar laterale.</p>
             </div>
             <div class="flex flex-wrap gap-2">
               <button data-filter="all" class="survey-filter is-active">Tutti</button>
@@ -54,12 +54,12 @@ import Layout from "../../layouts/Layout.astro";
         </div>
 
         <div data-admin-stats class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
-        <div data-admin-message hidden class="rounded-2xl border border-red-500/25 bg-red-500/10 text-red-100 p-5 leading-[1.6]"></div>
+        <div data-admin-message hidden class="rounded-2xl border border-stentor/25 bg-stentor/10 text-stentor p-5 leading-[1.6]"></div>
 
-        <section class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm overflow-hidden">
-          <div class="p-5 md:p-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <section class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm overflow-hidden">
+          <div class="p-5 md:p-6 border-b border-hairline-strong flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Pubblicazioni</p>
+              <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-text-2 mb-2">Pubblicazioni</p>
               <h2 class="text-2xl font-semibold tracking-[-0.04em]">Questionari pubblicati</h2>
             </div>
             <input data-admin-search type="search" placeholder="Cerca spettacolo, compagnia, token..." class="survey-admin-input h-11 sm:w-[360px]" />
@@ -73,10 +73,10 @@ import Layout from "../../layouts/Layout.astro";
 
 <style is:global>
   @reference "../../styles/global.css";
-  .admin-top-link { @apply inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors; }
-  .survey-admin-input { @apply rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50; }
-  .survey-filter { @apply h-10 px-4 rounded-full border border-white/10 text-sm text-white/55 bg-white/[0.04] hover:text-white hover:bg-white/[0.06] transition-colors; }
-  .survey-filter.is-active { @apply text-white bg-red-500/15 border-red-500/30; }
+  .admin-top-link { @apply inline-flex items-center justify-center h-10 px-4 rounded-xl border border-hairline-strong text-sm text-text-2 hover:text-text hover:bg-surface-2 transition-colors; }
+  .survey-admin-input { @apply rounded-xl bg-surface-2 border border-hairline-strong px-4 text-text placeholder:text-text-2 outline-none focus:border-stentor/50; }
+  .survey-filter { @apply h-10 px-4 rounded-full border border-hairline-strong text-sm text-text-2 bg-surface-2 hover:text-text hover:bg-surface-2 transition-colors; }
+  .survey-filter.is-active { @apply text-text bg-stentor/15 border-stentor/30; }
 </style>
 
 <script>
@@ -222,9 +222,9 @@ import Layout from "../../layouts/Layout.astro";
       ['Ultima risposta', formatDate(last)],
     ];
     statsTarget.innerHTML = cards.map(([label, value]) => `
-      <article class="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
+      <article class="rounded-2xl border border-hairline-strong bg-surface-2 p-5">
         <div class="text-3xl font-semibold tracking-[-0.05em] mb-1">${escapeHTML(value)}</div>
-        <div class="text-white/45 text-sm">${escapeHTML(label)}</div>
+        <div class="text-text-2 text-sm">${escapeHTML(label)}</div>
       </article>
     `).join('');
   }
@@ -234,12 +234,12 @@ import Layout from "../../layouts/Layout.astro";
     renderStats();
     if (!tableTarget) return;
     if (!rows.length) {
-      tableTarget.innerHTML = '<div class="p-6 text-white/45">Nessun questionario corrisponde ai filtri attuali.</div>';
+      tableTarget.innerHTML = '<div class="p-6 text-text-2">Nessun questionario corrisponde ai filtri attuali.</div>';
       return;
     }
     tableTarget.innerHTML = `
       <table class="w-full table-fixed text-left text-sm">
-        <thead class="sticky top-0 z-10 bg-[#080808] text-white/35 border-b border-white/10">
+        <thead class="sticky top-0 z-10 bg-surface-2 text-text-2 border-b border-hairline-strong">
           <tr>
             <th class="font-medium px-5 py-3 whitespace-nowrap w-[190px]">Creato</th>
             <th class="font-medium px-5 py-3 whitespace-nowrap">Questionario</th>
@@ -251,13 +251,13 @@ import Layout from "../../layouts/Layout.astro";
         </thead>
         <tbody>
           ${rows.map((row) => `
-            <tr data-row-link="${escapeHTML(detailUrl(row))}" class="border-b border-white/10 cursor-pointer hover:bg-white/[0.06]">
-              <td class="px-5 py-4 text-white/55 whitespace-nowrap">${escapeHTML(formatDate(row.created_at))}</td>
-              <td class="px-5 py-4 min-w-0"><div class="text-white font-medium truncate">${escapeHTML(row.title || 'Senza titolo')}</div><div class="text-white/35 text-xs truncate">${escapeHTML(row.company_name || row.public_token || '—')}</div></td>
-              <td class="px-5 py-4 whitespace-nowrap">${isOpen(row) ? '<span class="text-emerald-300">Aperto</span>' : '<span class="text-white/45">Chiuso</span>'}</td>
-              <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(row.responses_count ?? 0)}</td>
-              <td class="px-5 py-4 whitespace-nowrap text-white/65">${escapeHTML(formatDate(row.closes_at))}</td>
-              <td class="px-5 py-4 whitespace-nowrap"><a href="${escapeHTML(detailUrl(row))}" class="inline-flex h-9 items-center px-3 rounded-xl border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06]">Apri dettaglio</a></td>
+            <tr data-row-link="${escapeHTML(detailUrl(row))}" class="border-b border-hairline-strong cursor-pointer hover:bg-surface-2">
+              <td class="px-5 py-4 text-text-2 whitespace-nowrap">${escapeHTML(formatDate(row.created_at))}</td>
+              <td class="px-5 py-4 min-w-0"><div class="text-text font-medium truncate">${escapeHTML(row.title || 'Senza titolo')}</div><div class="text-text-2 text-xs truncate">${escapeHTML(row.company_name || row.public_token || '—')}</div></td>
+              <td class="px-5 py-4 whitespace-nowrap">${isOpen(row) ? '<span class="text-emerald-300">Aperto</span>' : '<span class="text-text-2">Chiuso</span>'}</td>
+              <td class="px-5 py-4 whitespace-nowrap text-text-2">${escapeHTML(row.responses_count ?? 0)}</td>
+              <td class="px-5 py-4 whitespace-nowrap text-text-2">${escapeHTML(formatDate(row.closes_at))}</td>
+              <td class="px-5 py-4 whitespace-nowrap"><a href="${escapeHTML(detailUrl(row))}" class="inline-flex h-9 items-center px-3 rounded-xl border border-hairline-strong text-text-2 hover:text-text hover:bg-surface-2">Apri dettaglio</a></td>
             </tr>
           `).join('')}
         </tbody>

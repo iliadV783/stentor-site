@@ -23,12 +23,12 @@ const { codeTabs = defaultCodeTabs } = Astro.props;
             :aria-selected={`tab==='${t.id}' ? 'true' : 'false'`}
             :tabindex={`tab==='${t.id}' ? '0' : '-1'`}
             @click={`tab='${t.id}'`}
-            :class={`tab==='${t.id}' ? 'text-red-500 border-hairline border-b-surface bg-surface' : 'text-text-3 border-transparent'`}
+            :class={`tab==='${t.id}' ? 'text-stentor border-hairline border-b-surface bg-surface' : 'text-text-3 border-transparent'`}
             class="appearance-none border border-transparent border-b-0 font-mono text-xs px-3.5 py-2.5 rounded-t-md cursor-pointer relative top-px whitespace-nowrap"
           >{t.label}<span class="text-text-4 ml-1.5 text-[11px]">{t.count}</span></button>
         ))}
       </div>
-      <div class="p-7 min-h-[360px] font-mono text-[12.5px] leading-[1.65] text-zinc-200 overflow-x-auto">
+      <div class="p-7 min-h-[360px] font-mono text-[12.5px] leading-[1.65] text-text-2 overflow-x-auto">
         <div x-show="tab==='ts'" role="tabpanel" id="codepanel-ts" aria-labelledby="codetab-ts">
           <div class="text-text-4 mb-3.5">{`// Structured project file: metadata, languages, cues and outputs.`}</div>
           <pre class="m-0 p-0 whitespace-pre-wrap"><code>{`{`}

@@ -64,7 +64,7 @@ const fmtMonthDay = (d: string) =>
   active="changelog"
 >
   <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
     <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
       <div class="max-w-[760px]">
         <Eyebrow><span class="font-mono">{data.hero.eyebrow}</span></Eyebrow>
@@ -91,9 +91,9 @@ const fmtMonthDay = (d: string) =>
         {data.filters.map((t) => (
           <button
             @click={`f='${t.id}'`}
-            :class={`f==='${t.id}' ? 'bg-red-500/[0.08] border-red-500/25 text-red-500' : 'border-transparent text-text-2 hover:text-text'`}
+            :class={`f==='${t.id}' ? 'bg-stentor/[0.08] border-stentor/25 text-stentor' : 'border-transparent text-text-2 hover:text-text'`}
             class="h-8 px-3 rounded-md border inline-flex items-center gap-2 text-[13px] whitespace-nowrap transition-colors"
-          >{t.label} <span :class={`f==='${t.id}' ? 'text-red-400 bg-red-500/[0.18]' : 'text-text-3 bg-white/[0.04]'`} class="font-mono text-[11px] px-1.5 py-px rounded-sm">{t.count}</span></button>
+          >{t.label} <span :class={`f==='${t.id}' ? 'text-stentor bg-stentor/[0.18]' : 'text-text-3 bg-surface-2'`} class="font-mono text-[11px] px-1.5 py-px rounded-sm">{t.count}</span></button>
         ))}
       </div>
       <div class="hidden sm:flex items-center gap-2 text-text-3 font-mono text-xs">
@@ -111,9 +111,9 @@ const fmtMonthDay = (d: string) =>
           <li>
             <a href="#" class:list={[
               "flex items-center justify-between px-2.5 py-1.5 transition-colors",
-              y.on ? "text-red-500 bg-red-500/[0.08] shadow-[inset_2px_0_0_#ef4444] rounded-r-md" : "text-text-2 hover:text-text hover:bg-white/[0.03] rounded-md",
+              y.on ? "text-stentor bg-stentor/[0.08] shadow-[inset_2px_0_0_#1858c8] rounded-r-md" : "text-text-2 hover:text-text hover:bg-surface-2 rounded-md",
             ]}>
-              {y.y} <span class:list={["font-mono text-[11px]", y.on ? "text-red-500" : "text-text-3"]}>{y.n}</span>
+              {y.y} <span class:list={["font-mono text-[11px]", y.on ? "text-stentor" : "text-text-3"]}>{y.n}</span>
             </a>
           </li>
         ))}
@@ -135,7 +135,7 @@ const fmtMonthDay = (d: string) =>
               ]}>
                 <div class="cl-entry__head-row relative flex items-center gap-3 mb-2.5">
                   {isMajor ? (
-                    <span class="absolute -left-[25px] top-[7px] w-[11px] h-[11px] rounded-full border-2 border-red-500 bg-red-500 [box-shadow:0_0_0_4px_rgba(239,68,68,0.18),0_0_12px_#ef4444]"></span>
+                    <span class="absolute -left-[25px] top-[7px] w-[11px] h-[11px] rounded-full border-2 border-stentor bg-stentor [box-shadow:0_0_0_4px_rgba(24, 88, 200,0.18),0_0_12px_#1858c8]"></span>
                   ) : (
                     <span class="absolute -left-[25px] top-[7px] w-[11px] h-[11px] rounded-full bg-bg border-2 border-text-4"></span>
                   )}
@@ -160,7 +160,7 @@ const fmtMonthDay = (d: string) =>
                   <div class="grid gap-5 mb-3">
                     {entry.changes.new && entry.changes.new.length > 0 && (
                       <div>
-                        <div class="cl-group__hd cl-group__hd--new"><span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]"></span>{ui.new}</div>
+                        <div class="cl-group__hd cl-group__hd--new"><span class="w-1.5 h-1.5 rounded-full bg-stentor shadow-[0_0_8px_#1858c8]"></span>{ui.new}</div>
                         <ul class="cl-list">
                           {entry.changes.new.map((c) => (
                             <li><div>
@@ -216,7 +216,7 @@ const fmtMonthDay = (d: string) =>
         {data.sideStats.thisYear.rows.map((r) => (
           <div class="cl-stat-row">
             <span class="text-text-2">{r.label}</span>
-            <span class:list={["font-mono", r.accent ? "text-red-500" : "text-text"]}>{r.value}</span>
+            <span class:list={["font-mono", r.accent ? "text-stentor" : "text-text"]}>{r.value}</span>
           </div>
         ))}
       </div>
@@ -224,7 +224,7 @@ const fmtMonthDay = (d: string) =>
         <h2 class="text-[11px] tracking-[0.06em] uppercase text-text-3 font-medium mb-3.5">{data.sideStats.cadence.title}</h2>
         <div class="mt-3.5 h-8 flex items-end gap-[3px]">
           {data.sideStats.cadence.bars.map((h) => (
-            <i class="flex-1 bg-red-500 rounded-[1px] opacity-55" style={`height: ${h}%;${h === 100 ? " opacity: 1;" : ""}`}></i>
+            <i class="flex-1 bg-stentor rounded-[1px] opacity-55" style={`height: ${h}%;${h === 100 ? " opacity: 1;" : ""}`}></i>
           ))}
         </div>
         <div class="flex justify-between font-mono text-[10px] text-text-4 mt-1.5">
@@ -248,7 +248,7 @@ const fmtMonthDay = (d: string) =>
   .cl-entry { padding-left: 1.75rem; }
   .cl-entry::before { content: ""; position: absolute; left: 7px; top: 28px; bottom: -32px; width: 1px; background: var(--color-hairline); }
   .cl-entry:last-child::before { display: none; }
-  .cl-ver { font-family: var(--font-mono); font-size: 0.75rem; padding: 3px 0.5rem; border: 1px solid rgba(239,68,68,0.28); color: #fca5a5; background: rgba(239,68,68,0.08); border-radius: 999px; }
+  .cl-ver { font-family: var(--font-mono); font-size: 0.75rem; padding: 3px 0.5rem; border: 1px solid rgba(24, 88, 200,0.28); color: #1858c8; background: rgba(24, 88, 200,0.08); border-radius: 999px; }
   .cl-ver--minor { border-color: var(--color-hairline); color: var(--color-text-2); background: rgba(255,255,255,0.03); }
   .tag { font-size: 11px; font-weight: 600; color: var(--color-text-2); border: 1px solid var(--color-hairline); padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,0.03); }
   .tag--amber { color: #fbbf24; border-color: rgba(251,191,36,0.25); background: rgba(251,191,36,0.08); }

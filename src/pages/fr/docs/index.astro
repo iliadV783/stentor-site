@@ -80,10 +80,10 @@ const tocItems = [
               <li>
                 <a href={item.href} class:list={[
                   "flex items-center gap-2.5 px-2.5 py-1.5 transition-colors border-l-2",
-                  item.active ? "bg-red-500/[0.08] text-red-500 font-medium border-red-500 rounded-r-md" : "text-text-2 hover:text-text hover:bg-white/[0.03] border-transparent rounded-md",
+                  item.active ? "bg-stentor/[0.08] text-stentor font-medium border-stentor rounded-r-md" : "text-text-2 hover:text-text hover:bg-surface-2 border-transparent rounded-md",
                 ]}>
                   {item.label}
-                  {item.badge && <span class="ml-auto font-mono text-xs px-1.5 py-px rounded-sm text-text-3 bg-white/[0.04]">{item.badge}</span>}
+                  {item.badge && <span class="ml-auto font-mono text-xs px-1.5 py-px rounded-sm text-text-3 bg-surface-2">{item.badge}</span>}
                 </a>
               </li>
             ))}
@@ -123,7 +123,7 @@ const tocItems = [
       </div>
 
       <h2 id="what-it-is" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Ce qu’est Sténtor</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         Sténtor est une application pour les personnes qui préparent et pilotent le texte pendant une représentation. Elle garde le texte source, les traductions, les surtitres, les notes d’audiodescription, les réglages de projection et les vues destinées au public dans le même projet.
       </p>
       <div class="grid md:grid-cols-3 gap-3 mb-8">
@@ -140,14 +140,14 @@ const tocItems = [
       </div>
 
       <h2 id="version" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Version actuelle : 0.3.40</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">
+      <p class="text-text-2 leading-[1.65] mb-4">
         La version desktop actuelle est la 0.3.40. Les travaux récents ont porté sur le workflow de salle : écran foyer avec QR code, titre du spectacle, formulation « surtitres et audiodescription », et langues générées à partir de celles configurées dans le projet.
       </p>
       <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8">
         <table class="w-full border-collapse text-[13px] min-w-[520px]">
-          <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Zone</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Capacité actuelle</th></tr></thead>
+          <thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Zone</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Capacité actuelle</th></tr></thead>
           <tbody>
-            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Desktop</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Base Tauri + React/Vite, macOS Apple Silicon en premier, puis Windows et Linux.</td></tr>
+            <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Desktop</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Base Tauri + React/Vite, macOS Apple Silicon en premier, puis Windows.</td></tr>
             <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Interface</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Sidebar avec Projets, Régie, Texte, Audiodescription, Écrans, Public et Réglages.</td></tr>
             <tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Public</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Accès QR, choix de langue, surtitres, audiodescription ou les deux, suivi live de la régie.</td></tr>
             <tr><td class="font-mono text-text px-4 py-3">Écrans</td><td class="text-text-2 px-4 py-3">Plusieurs sorties de projection configurables avec aperçu, langue, format et style.</td></tr>
@@ -156,15 +156,15 @@ const tocItems = [
       </div>
 
       <h2 id="projects" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">1. Projets</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">La vue Projets est l’archive. Chaque carte montre le titre, la compagnie ou le collectif, le nombre de cues, les langues, les audiodescriptions et la date de mise à jour. On peut ouvrir un projet, modifier ses détails, l’exporter ou le supprimer.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">La vue Projets est l’archive. Chaque carte montre le titre, la compagnie ou le collectif, le nombre de cues, les langues, les audiodescriptions et la date de mise à jour. On peut ouvrir un projet, modifier ses détails, l’exporter ou le supprimer.</p>
       <ul class="grid gap-2 mb-5 list-none">
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Créer un nouveau projet ou ouvrir un fichier Sténtor existant.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Garder métadonnées, langues, cues, audiodescriptions et écrans ensemble.</span></li>
-        <li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Autosave et historique protègent le travail pendant la préparation.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Créer un nouveau projet ou ouvrir un fichier Sténtor existant.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Garder métadonnées, langues, cues, audiodescriptions et écrans ensemble.</span></li>
+        <li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Autosave et historique protègent le travail pendant la préparation.</span></li>
       </ul>
 
       <h2 id="text" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">2. Texte et langues</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">La vue Texte est l’espace de préparation. Un projet peut contenir le texte original, les traductions, les informations de voix ou de personnage, les marqueurs et la mise en forme. La langue de l’application est distincte des langues du script et des surtitres.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">La vue Texte est l’espace de préparation. Un projet peut contenir le texte original, les traductions, les informations de voix ou de personnage, les marqueurs et la mise en forme. La langue de l’application est distincte des langues du script et des surtitres.</p>
       <div class="docs-codeblock mb-6"><div class="docs-codeblock__bar"><span class="font-mono">project.stentor.json</span><span class="font-mono text-text-3">structure conceptuelle</span></div><pre class="docs-codeblock__body"><code><span class="tok-ln">1</span>{`{`}
 <span class="tok-ln">2</span>  <span class="tok-str">"title"</span>: <span class="tok-str">"Macbett"</span>,
 <span class="tok-ln">3</span>  <span class="tok-str">"languages"</span>: [<span class="tok-str">"it"</span>, <span class="tok-str">"en"</span>, <span class="tok-str">"fr"</span>],
@@ -172,45 +172,45 @@ const tocItems = [
 <span class="tok-ln">5</span>    {`{`} <span class="tok-str">"speaker"</span>: <span class="tok-str">""</span>, <span class="tok-str">"text"</span>: <span class="tok-str">"..."</span>, <span class="tok-str">"translations"</span>: {`{`} <span class="tok-str">"fr"</span>: <span class="tok-str">"..."</span> {`}`} {`}`}
 <span class="tok-ln">6</span>  ]
 <span class="tok-ln">7</span>{`}`}</code></pre></div>
-      <p class="text-zinc-300 leading-[1.65] mb-4">L’import est disponible depuis JSON, TXT, SRT, WebVTT, CSV et Word <code class="docs-code">.docx</code>. L’import Word tente de reconnaître la structure théâtrale : personnages, répliques, didascalies, actes, scènes, tableaux ou entractes.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">L’import est disponible depuis JSON, TXT, SRT, WebVTT, CSV et Word <code class="docs-code">.docx</code>. L’import Word tente de reconnaître la structure théâtrale : personnages, répliques, didascalies, actes, scènes, tableaux ou entractes.</p>
 
       <h2 id="audio" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">3. Audiodescription</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">L’audiodescription est une couche de premier niveau du projet. Les notes peuvent être liées aux cues, révisées en contexte, exportées pour la répétition et associées à des fichiers audio enregistrés pour les tests publics.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">L’audiodescription est une couche de premier niveau du projet. Les notes peuvent être liées aux cues, révisées en contexte, exportées pour la répétition et associées à des fichiers audio enregistrés pour les tests publics.</p>
       <div class="callout callout--warn"><div class="callout__icon"><IconWarningTriangle class="w-3.5 h-3.5" /></div><div><p class="m-0 text-sm leading-[1.55] text-text-2"><b class="text-text font-medium">L’audio reste local dans le prototype.</b> Les fichiers attachés peuvent être intégrés au projet pour les tests. La lecture publique dépend encore des règles du navigateur et d’un geste utilisateur.</p></div></div>
 
       <h2 id="screens" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">4. Écrans</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">La section Écrans configure les sorties de projection. Chaque écran peut avoir sa langue, son format et son style. Les builds récents ont amélioré les cartes, les aperçus et le défilement lorsque plusieurs écrans sont actifs.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">La section Écrans configure les sorties de projection. Chaque écran peut avoir sa langue, son format et son style. Les builds récents ont amélioré les cartes, les aperçus et le défilement lorsque plusieurs écrans sont actifs.</p>
       <div class="grid md:grid-cols-2 gap-3 mb-8"><div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Sorties multiples</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Ouvrir un écran configuré ou tous les écrans nécessaires à la salle.</p></div><div class="border border-hairline rounded-xl bg-surface p-4"><h3 class="text-[15px] font-semibold mb-1">Aperçus lisibles</h3><p class="text-sm text-text-2 leading-[1.5] m-0">Les cartes d’aperçu montrent ce que chaque écran actif reçoit.</p></div></div>
 
       <h2 id="stage-desk" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">5. Régie / Stage desk</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">La Régie est la vue d’exploitation live. Elle garde près de l’opérateur le cue actuel, le cue suivant, le noir, les outils de timing, la distribution aux écrans, la présence du public et l’état de l’audiodescription.</p>
-      <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8"><table class="w-full border-collapse text-[13px] min-w-[520px]"><thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Outil</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-white/[0.02] px-4 py-3 text-left border-b border-hairline">Usage</th></tr></thead><tbody><tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Avancer / reculer / noir</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Le pilotage manuel reste le défaut le plus sûr en représentation.</td></tr><tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Timing semi-automatique</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Timers, temps enregistrés et override manuel soutiennent les séquences répétées.</td></tr><tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Notes opérateur</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Les notes rapides peuvent être liées au cue, à la langue, au texte projeté et au timer.</td></tr><tr><td class="font-mono text-text px-4 py-3">Contrôle externe</td><td class="text-text-2 px-4 py-3">Le code sépare déjà la gestion des commandes externes ; pédale, MIDI ou OSC restent prévus.</td></tr></tbody></table></div>
+      <p class="text-text-2 leading-[1.65] mb-4">La Régie est la vue d’exploitation live. Elle garde près de l’opérateur le cue actuel, le cue suivant, le noir, les outils de timing, la distribution aux écrans, la présence du public et l’état de l’audiodescription.</p>
+      <div class="border border-hairline rounded-[10px] bg-surface overflow-hidden mb-8"><table class="w-full border-collapse text-[13px] min-w-[520px]"><thead><tr><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Outil</th><th class="font-mono text-xs tracking-[0.04em] uppercase text-text-3 font-medium bg-surface-2 px-4 py-3 text-left border-b border-hairline">Usage</th></tr></thead><tbody><tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Avancer / reculer / noir</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Le pilotage manuel reste le défaut le plus sûr en représentation.</td></tr><tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Timing semi-automatique</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Timers, temps enregistrés et override manuel soutiennent les séquences répétées.</td></tr><tr><td class="font-mono text-text px-4 py-3 border-b border-hairline">Notes opérateur</td><td class="text-text-2 px-4 py-3 border-b border-hairline">Les notes rapides peuvent être liées au cue, à la langue, au texte projeté et au timer.</td></tr><tr><td class="font-mono text-text px-4 py-3">Contrôle externe</td><td class="text-text-2 px-4 py-3">Le code sépare déjà la gestion des commandes externes ; pédale, MIDI ou OSC restent prévus.</td></tr></tbody></table></div>
 
       <h2 id="audience" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">6. Téléphones du public</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Les téléphones du public se connectent par QR code ou adresse locale. Les spectateurs choisissent la langue et le mode : surtitres, audiodescription ou les deux. La page suit ensuite la Régie en direct.</p>
-      <ul class="grid gap-2 mb-5 list-none"><li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>L’opérateur peut suivre les téléphones connectés, ceux qui suivent la Régie et ceux qui ont l’audio actif.</span></li><li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>L’interface publique reste minimale pendant le spectacle : le texte d’abord, les contrôles dans les réglages.</span></li><li class="flex gap-2 items-start text-zinc-300 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-red-500"><span>Les retours doivent rester optionnels et arriver après l’usage réel.</span></li></ul>
+      <p class="text-text-2 leading-[1.65] mb-4">Les téléphones du public se connectent par QR code ou adresse locale. Les spectateurs choisissent la langue et le mode : surtitres, audiodescription ou les deux. La page suit ensuite la Régie en direct.</p>
+      <ul class="grid gap-2 mb-5 list-none"><li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>L’opérateur peut suivre les téléphones connectés, ceux qui suivent la Régie et ceux qui ont l’audio actif.</span></li><li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>L’interface publique reste minimale pendant le spectacle : le texte d’abord, les contrôles dans les réglages.</span></li><li class="flex gap-2 items-start text-text-2 text-[15px] leading-[1.55] before:content-[''] before:flex-none before:mt-2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-stentor"><span>Les retours doivent rester optionnels et arriver après l’usage réel.</span></li></ul>
 
       <h2 id="foyer" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">7. Foyer QR et écran d’accueil</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Le workflow de salle inclut une page foyer : elle affiche le titre du spectacle et un QR code pour « surtitres et audiodescription ». La liste des langues vient directement du projet.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">Le workflow de salle inclut une page foyer : elle affiche le titre du spectacle et un QR code pour « surtitres et audiodescription ». La liste des langues vient directement du projet.</p>
 
       <h2 id="network" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">8. Réseau local</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Pour un test au théâtre, lancez le serveur de salle et placez l’ordinateur de régie, les écrans et les téléphones sur le même réseau local. Internet n’est pas requis : les appareils doivent seulement atteindre la machine opérateur.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">Pour un test au théâtre, lancez le serveur de salle et placez l’ordinateur de régie, les écrans et les téléphones sur le même réseau local. Internet n’est pas requis : les appareils doivent seulement atteindre la machine opérateur.</p>
       <div class="docs-codeblock mb-6"><div class="docs-codeblock__bar"><span class="font-mono">mode salle local</span><span class="font-mono text-text-3">test / développement</span></div><pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">$</span> npm install
 <span class="tok-ln">2</span><span class="tok-pn">$</span> npm run build
 <span class="tok-ln">3</span><span class="tok-pn">$</span> npm run room</code></pre></div>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Dans un lieu, un routeur dédié est souvent plus sûr qu’un Wi-Fi partagé, surtout si l’isolation client empêche les téléphones de voir l’ordinateur de régie.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">Dans un lieu, un routeur dédié est souvent plus sûr qu’un Wi-Fi partagé, surtout si l’isolation client empêche les téléphones de voir l’ordinateur de régie.</p>
 
       <h2 id="files" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">9. Import et export</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Sténtor importe JSON, TXT, SRT, WebVTT, CSV et Word. Il exporte le projet JSON, des formats de sous-titres, des rapports CSV et un paquet show offline pour répétition, archive, tournée ou étude.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">Sténtor importe JSON, TXT, SRT, WebVTT, CSV et Word. Il exporte le projet JSON, des formats de sous-titres, des rapports CSV et un paquet show offline pour répétition, archive, tournée ou étude.</p>
 
       <h2 id="desktop" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">10. Builds desktop</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">La fondation desktop utilise Tauri avec React/Vite. La première cible est macOS Apple Silicon, puis Windows et Linux. Le paquet source ne contient pas encore une app macOS signée et notarée.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">La fondation desktop utilise Tauri avec React/Vite. La première cible est macOS Apple Silicon, puis Windows. Le paquet source ne contient pas encore une app macOS signée et notarée.</p>
       <div class="docs-codeblock mb-6"><div class="docs-codeblock__bar"><span class="font-mono">desktop build</span><span class="font-mono text-text-3">Tauri</span></div><pre class="docs-codeblock__body"><code><span class="tok-ln">1</span><span class="tok-pn">$</span> npm install
 <span class="tok-ln">2</span><span class="tok-pn">$</span> npm run desktop:dev
 <span class="tok-ln">3</span><span class="tok-pn">$</span> npm run desktop:build</code></pre></div>
 
       <h2 id="planned" class="text-2xl md:text-[28px] tracking-[-0.03em] font-semibold mt-14 mb-4 pt-4">Ce qui est encore prévu</h2>
-      <p class="text-zinc-300 leading-[1.65] mb-4">Sténtor est utilisable comme prototype live, mais plusieurs zones évoluent encore : multi-écran natif, packaging et signature, stockage desktop plus robuste, contrôle externe par pédale/MIDI/OSC, workflows de traduction ou d’IA optionnels, et services cloud uniquement s’ils ne nuisent pas au workflow local-first.</p>
+      <p class="text-text-2 leading-[1.65] mb-4">Sténtor est utilisable comme prototype live, mais plusieurs zones évoluent encore : multi-écran natif, packaging et signature, stockage desktop plus robuste, contrôle externe par pédale/MIDI/OSC, workflows de traduction ou d’IA optionnels, et services cloud uniquement s’ils ne nuisent pas au workflow local-first.</p>
 
       <div class="mt-8 px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border border-hairline rounded-xl bg-surface"><div><b class="font-medium">Vous utilisez Sténtor en salle ?</b><p class="mt-1 text-[13px] text-text-3 m-0">Téléchargez d’abord. Partagez vos notes après répétition ou représentation, quand vous avez quelque chose de concret à dire.</p></div><div class="flex gap-2"><Btn href="/fr/download" variant="primary">Télécharger</Btn><Btn href="/fr/contact" variant="ghost">Partager des notes</Btn></div></div>
     </article>
@@ -219,7 +219,7 @@ const tocItems = [
       <h2 class="text-xs tracking-[0.08em] uppercase text-text-3 font-medium mb-3">Sur cette page</h2>
       <ul class="grid gap-1.5 list-none p-0 m-0">
         {tocItems.map((t, i) => (
-          <li><a href={t.href} data-toc-link class:list={["block py-0.5 transition-colors duration-300 ease-out", i === 0 ? "text-red-500" : "text-text-3 hover:text-text-2"]}>{t.label}</a></li>
+          <li><a href={t.href} data-toc-link class:list={["block py-0.5 transition-colors duration-300 ease-out", i === 0 ? "text-stentor" : "text-text-3 hover:text-text-2"]}>{t.label}</a></li>
         ))}
       </ul>
       <div class="mt-7 pt-4 border-t border-hairline grid gap-2 text-xs"><a href="/fr/download" class="inline-flex items-center gap-2 text-text-3 hover:text-text-2">Télécharger Sténtor</a><a href="/fr/contact" class="inline-flex items-center gap-2 text-text-3 hover:text-text-2">Partager des notes</a><a href="/fr/features" class="inline-flex items-center gap-2 text-text-3 hover:text-text-2">Voir les fonctionnalités</a></div>
@@ -241,8 +241,8 @@ const tocItems = [
     function activate(id) {
       sections.forEach((s) => {
         const isActive = s.id === id;
-        if (isActive) { s.link.classList.add("text-red-500"); s.link.classList.remove("text-text-3", "hover:text-text-2"); }
-        else { s.link.classList.remove("text-red-500"); s.link.classList.add("text-text-3", "hover:text-text-2"); }
+        if (isActive) { s.link.classList.add("text-stentor"); s.link.classList.remove("text-text-3", "hover:text-text-2"); }
+        else { s.link.classList.remove("text-stentor"); s.link.classList.add("text-text-3", "hover:text-text-2"); }
       });
     }
     const visible = new Set();

@@ -3,29 +3,29 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="Accetta invito - Sténtor" description="Accetta un invito alla sperimentazione di Sténtor." active={null} showNav={false} showFooter={false} noindex={true}>
-  <section class="min-h-screen bg-black text-white relative overflow-hidden">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.20)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute right-[-18%] top-[-18%] w-[560px] h-[560px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <section class="min-h-screen bg-bg text-text relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.20)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_62%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[560px] h-[560px] rounded-full bg-stentor/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
     <main class="relative min-h-screen flex items-center justify-center px-5 py-16">
-      <div class="w-full max-w-[760px] rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-8 sm:p-10 shadow-2xl shadow-red-950/10">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-4">Invito Sténtor</p>
+      <div class="w-full max-w-[760px] rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-8 sm:p-10 shadow-2xl shadow-stentor-dark/10">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-4">Invito Sténtor</p>
         <h1 data-invite-title class="text-4xl sm:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-5">Attiva il tuo accesso.</h1>
-        <div data-invite-message class="space-y-4 text-white/55 leading-[1.65] max-w-[650px]">
+        <div data-invite-message class="space-y-4 text-text-2 leading-[1.65] max-w-[650px]">
           <p>Hai ricevuto un invito a provare Sténtor. Stiamo conducendo una fase di sperimentazione con teatri, festival e professionisti dello spettacolo dal vivo per capire come il software possa adattarsi meglio al lavoro reale di produzione, regia, accessibilità e soprattitolazione.</p>
           <p>L’attivazione crea un accesso valido per 6 mesi. In questo periodo ti chiediamo semplicemente di usare Sténtor, esplorarlo nel tuo contesto e, se vorrai, condividere impressioni, necessità o difficoltà incontrate.</p>
           <p>La scadenza serve solo a dare un perimetro alla fase di prova. L’uso di Sténtor è gratuito: anche dopo la sperimentazione potrai continuare a usare il software liberamente.</p>
         </div>
 
         <div data-invite-confirm-panel hidden class="mt-8 grid gap-3 max-w-[560px]">
-          <p class="text-white/48 text-sm leading-[1.55]">Per proteggere l’accesso, ti invieremo un link di conferma all’indirizzo email associato a questo invito. Dopo averlo aperto tornerai qui per completare l’attivazione.</p>
-          <button data-invite-confirm-submit type="button" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Inviami il link di conferma</button>
+          <p class="text-text-2 text-sm leading-[1.55]">Per proteggere l’accesso, ti invieremo un link di conferma all’indirizzo email associato a questo invito. Dopo averlo aperto tornerai qui per completare l’attivazione.</p>
+          <button data-invite-confirm-submit type="button" class="h-12 px-7 rounded-xl bg-stentor text-white font-semibold inline-flex items-center justify-center hover:bg-stentor-dark transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Inviami il link di conferma</button>
         </div>
 
         <div data-invite-result class="mt-6"></div>
         <div data-invite-actions class="flex flex-col sm:flex-row items-center gap-3 mt-8">
-          <button data-invite-accept type="button" class="h-12 px-7 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Accetta invito</button>
-          <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/40 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a>
+          <button data-invite-accept type="button" class="h-12 px-7 rounded-xl bg-stentor text-white font-semibold inline-flex items-center justify-center hover:bg-stentor-dark transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-wait">Accetta invito</button>
+          <a href="/" class="h-12 px-5 rounded-xl border border-hairline-strong text-text-2 inline-flex items-center justify-center hover:text-text hover:bg-surface-2 transition-colors cursor-pointer">Torna al sito</a>
         </div>
       </div>
     </main>
@@ -153,17 +153,17 @@ import Layout from "../../layouts/Layout.astro";
         <div class="grid gap-5 max-w-[620px]">
           <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] px-4 py-3">
             <strong class="block mb-1">Accesso attivato.</strong>
-            <span class="text-white/60">Apri l’account per copiare il codice di accesso e scaricare la build disponibile.</span>
+            <span class="text-text-2">Apri l’account per copiare il codice di accesso e scaricare la build disponibile.</span>
           </div>
           <div class="flex flex-col sm:flex-row gap-3">
-            <a href="${downloadUrl}" class="h-12 px-6 rounded-xl bg-red-500 text-black font-semibold inline-flex items-center justify-center hover:bg-red-400 transition-colors cursor-pointer">Apri account</a>
-            <a href="/" class="h-12 px-5 rounded-xl border border-white/10 text-white/65 inline-flex items-center justify-center hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer">Torna al sito</a>
+            <a href="${downloadUrl}" class="h-12 px-6 rounded-xl bg-stentor text-white font-semibold inline-flex items-center justify-center hover:bg-stentor-dark transition-colors cursor-pointer">Apri account</a>
+            <a href="/" class="h-12 px-5 rounded-xl border border-hairline-strong text-text-2 inline-flex items-center justify-center hover:text-text hover:bg-surface-2 transition-colors cursor-pointer">Torna al sito</a>
           </div>
         </div>
       `);
     } catch (error) {
       showResult(`
-        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
+        <p class="rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4">
           ${error instanceof Error ? error.message : "Attivazione non riuscita."}
         </p>
       `);
@@ -200,12 +200,12 @@ import Layout from "../../layouts/Layout.astro";
       showResult(`
         <div class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">
           <strong class="block mb-2">Link inviato.</strong>
-          <span class="text-white/60">Controlla la posta associata a questo invito e apri il link ricevuto. Tornerai qui per completare l’attivazione.</span>
+          <span class="text-text-2">Controlla la posta associata a questo invito e apri il link ricevuto. Tornerai qui per completare l’attivazione.</span>
         </div>
       `);
     } catch (error) {
       showResult(`
-        <p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">
+        <p class="rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4">
           ${error instanceof Error ? error.message : "Non è stato possibile inviare il link di conferma."}
         </p>
       `);

@@ -23,7 +23,7 @@ const [schemasRow, traceRow, runtimeRow] = showcase;
       <p class="text-text-2 text-base leading-[1.6] mb-5" set:html={schemasRow.description}></p>
       <ul class="grid gap-2.5 list-none p-0 mb-7">
         {schemasRow.bullets.map((b) => (
-          <li class="flex gap-2.5 text-sm text-zinc-300"><IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{b}</li>
+          <li class="flex gap-2.5 text-sm text-text-2"><IconCheck class="w-4 h-4 stroke-stentor flex-none mt-0.5" />{b}</li>
         ))}
       </ul>
       <Btn href={schemasRow.cta.href} variant="ghost">{schemasRow.cta.label} <span aria-hidden="true">→</span></Btn>
@@ -39,7 +39,7 @@ const [schemasRow, traceRow, runtimeRow] = showcase;
       <p class="text-text-2 text-base leading-[1.6] mb-5" set:html={traceRow.description}></p>
       <ul class="grid gap-2.5 list-none p-0 mb-7">
         {traceRow.bullets.map((b) => (
-          <li class="flex gap-2.5 text-sm text-zinc-300"><IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{b}</li>
+          <li class="flex gap-2.5 text-sm text-text-2"><IconCheck class="w-4 h-4 stroke-stentor flex-none mt-0.5" />{b}</li>
         ))}
       </ul>
       <Btn href={traceRow.cta.href} variant="ghost">{traceRow.cta.label} <span aria-hidden="true">→</span></Btn>
@@ -53,7 +53,7 @@ const [schemasRow, traceRow, runtimeRow] = showcase;
       <p class="text-text-2 text-base leading-[1.6] mb-5" set:html={runtimeRow.description}></p>
       <ul class="grid gap-2.5 list-none p-0 mb-7">
         {runtimeRow.bullets.map((b) => (
-          <li class="flex gap-2.5 text-sm text-zinc-300"><IconCheck class="w-4 h-4 stroke-red-500 flex-none mt-0.5" />{b}</li>
+          <li class="flex gap-2.5 text-sm text-text-2"><IconCheck class="w-4 h-4 stroke-stentor flex-none mt-0.5" />{b}</li>
         ))}
       </ul>
       <Btn href={runtimeRow.cta.href} variant="ghost">{runtimeRow.cta.label} <span aria-hidden="true">→</span></Btn>

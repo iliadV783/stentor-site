@@ -3,18 +3,18 @@ import Layout from "../../../layouts/Layout.astro";
 ---
 
 <Layout title="Dettaglio questionario - Stentor Admin" description="Dettaglio risposte anonime questionario Stentor." active={null} showNav={false} showFooter={false} noindex={true}>
-  <section class="min-h-screen bg-black text-white relative overflow-hidden">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <section class="min-h-screen bg-bg text-text relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_68%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-stentor/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-    <header class="relative border-b border-white/10">
+    <header class="relative border-b border-hairline-strong">
       <div class="max-w-[1280px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        <a href="/admin/surveys" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors">
+        <a href="/admin/surveys" class="inline-flex items-center gap-3 text-text hover:text-text-2 transition-colors">
           <span class="font-semibold tracking-[-0.04em] text-xl">STENTOR</span>
-          <span class="text-white/45 text-sm">Questionari</span>
+          <span class="text-text-2 text-sm">Questionari</span>
         </a>
         <div class="flex items-center gap-3">
-          <span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-white/10 bg-white/[0.04] text-white/45 text-xs font-mono uppercase tracking-[0.12em]">Admin area</span>
+          <span data-admin-email class="hidden sm:inline-flex h-9 items-center px-3 rounded-full border border-hairline-strong bg-surface-2 text-text-2 text-xs font-mono uppercase tracking-[0.12em]">Admin area</span>
           <a href="/admin/surveys" class="admin-top-link">Tutti i questionari</a>
           <a href="/admin" class="admin-top-link">Admin console</a>
           <button data-admin-refresh hidden class="admin-top-link">Aggiorna</button>
@@ -24,22 +24,22 @@ import Layout from "../../../layouts/Layout.astro";
     </header>
 
     <main class="relative max-w-[1280px] mx-auto px-5 md:px-8 py-10 md:py-14">
-      <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Admin login</p>
+      <section data-admin-login hidden class="max-w-[680px] mx-auto rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-7 md:p-8">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Admin login</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Accedi al dettaglio.</h1>
         <form data-admin-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@stentor.live" class="admin-input h-12" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password" class="admin-input h-12" />
-          <button type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors">Accedi</button>
+          <button type="submit" class="h-13 rounded-xl bg-stentor text-white font-semibold hover:bg-stentor-dark transition-colors">Accedi</button>
         </form>
-        <p data-admin-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+        <p data-admin-error hidden class="mt-5 rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4"></p>
       </section>
 
       <section data-admin-app hidden class="grid gap-6">
-        <div data-hero class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></div>
+        <div data-hero class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7"></div>
         <div data-stats class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
-        <section data-rating-stats class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></section>
-        <section data-responses class="rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7"></section>
+        <section data-rating-stats class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7"></section>
+        <section data-responses class="rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7"></section>
       </section>
     </main>
   </section>
@@ -47,8 +47,8 @@ import Layout from "../../../layouts/Layout.astro";
 
 <style is:global>
   @reference "../../../styles/global.css";
-  .admin-top-link { @apply inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/10 text-sm text-white/65 hover:text-white hover:bg-white/[0.06] transition-colors; }
-  .admin-input { @apply rounded-xl bg-white/[0.06] border border-white/10 px-4 text-white placeholder:text-white/30 outline-none focus:border-red-400/50; }
+  .admin-top-link { @apply inline-flex items-center justify-center h-10 px-4 rounded-xl border border-hairline-strong text-sm text-text-2 hover:text-text hover:bg-surface-2 transition-colors; }
+  .admin-input { @apply rounded-xl bg-surface-2 border border-hairline-strong px-4 text-text placeholder:text-text-2 outline-none focus:border-stentor/50; }
 </style>
 
 <script>
@@ -224,33 +224,33 @@ import Layout from "../../../layouts/Layout.astro";
       return `
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
           <div>
-            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Statistiche gradimento</p>
+            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-text-2 mb-2">Statistiche gradimento</p>
             <h2 class="text-3xl font-semibold tracking-[-0.04em]">Nessun dato numerico</h2>
           </div>
         </div>
-        <p class="text-white/50 leading-[1.6]">Le risposte attuali sono testuali. Le statistiche percentuali saranno disponibili sulle nuove risposte raccolte con domande 1–5.</p>
+        <p class="text-text-2 leading-[1.6]">Le risposte attuali sono testuali. Le statistiche percentuali saranno disponibili sulle nuove risposte raccolte con domande 1–5.</p>
       `;
     }
 
     return `
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
         <div>
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Statistiche gradimento</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-text-2 mb-2">Statistiche gradimento</p>
           <h2 class="text-3xl font-semibold tracking-[-0.04em]">Valutazioni 1–5</h2>
         </div>
-        <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/55">${stats.total} valutazioni</span>
+        <span class="rounded-full border border-hairline-strong bg-surface-2 px-3 py-1 text-xs text-text-2">${stats.total} valutazioni</span>
       </div>
       <div class="grid md:grid-cols-3 gap-4 mb-6">
-        <article class="rounded-2xl border border-white/10 bg-black/25 p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${stats.average.toFixed(1)}/5</div><div class="text-white/45 text-sm mt-1">Media generale</div></article>
-        <article class="rounded-2xl border border-white/10 bg-black/25 p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${percent(stats.positive, stats.total)}</div><div class="text-white/45 text-sm mt-1">Valutazioni positive 4–5</div></article>
-        <article class="rounded-2xl border border-white/10 bg-black/25 p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${percent(stats.negative, stats.total)}</div><div class="text-white/45 text-sm mt-1">Criticità 1–2</div></article>
+        <article class="rounded-2xl border border-hairline-strong bg-sunken p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${stats.average.toFixed(1)}/5</div><div class="text-text-2 text-sm mt-1">Media generale</div></article>
+        <article class="rounded-2xl border border-hairline-strong bg-sunken p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${percent(stats.positive, stats.total)}</div><div class="text-text-2 text-sm mt-1">Valutazioni positive 4–5</div></article>
+        <article class="rounded-2xl border border-hairline-strong bg-sunken p-5"><div class="text-3xl font-semibold tracking-[-0.05em]">${percent(stats.negative, stats.total)}</div><div class="text-text-2 text-sm mt-1">Criticità 1–2</div></article>
       </div>
       <div class="grid gap-3 mb-6">
         ${stats.distribution.map((item) => `
           <div class="grid grid-cols-[36px_1fr_56px] gap-3 items-center text-sm">
-            <span class="text-white/55">${item.value}</span>
-            <div class="h-2 rounded-full bg-white/[0.08] overflow-hidden"><div class="h-full rounded-full bg-red-500/70" style="width:${item.percent}%"></div></div>
-            <span class="text-white/55 text-right">${item.count}</span>
+            <span class="text-text-2">${item.value}</span>
+            <div class="h-2 rounded-full bg-surface-2 overflow-hidden"><div class="h-full rounded-full bg-stentor/70" style="width:${item.percent}%"></div></div>
+            <span class="text-text-2 text-right">${item.count}</span>
           </div>
         `).join('')}
       </div>
@@ -258,7 +258,7 @@ import Layout from "../../../layouts/Layout.astro";
         ${stats.byQuestion.map((item) => {
           const avg = item.values.reduce((sum, value) => sum + value, 0) / item.values.length;
           const positive = item.values.filter((value) => value >= 4).length;
-          return `<article class="rounded-xl border border-white/10 bg-white/[0.035] p-4"><div class="text-white/45 text-sm leading-[1.4] mb-2">${escapeHTML(item.question)}</div><div class="text-white text-xl font-semibold">${avg.toFixed(1)}/5</div><div class="text-white/45 text-xs mt-1">${percent(positive, item.values.length)} positive · ${item.values.length} risposte</div></article>`;
+          return `<article class="rounded-xl border border-hairline-strong bg-surface-2 p-4"><div class="text-text-2 text-sm leading-[1.4] mb-2">${escapeHTML(item.question)}</div><div class="text-text text-xl font-semibold">${avg.toFixed(1)}/5</div><div class="text-text-2 text-xs mt-1">${percent(positive, item.values.length)} positive · ${item.values.length} risposte</div></article>`;
         }).join('')}
       </div>
     `;
@@ -268,24 +268,24 @@ import Layout from "../../../layouts/Layout.astro";
     const entries = normalizeAnswerEntries(response.answers_json || {});
     const meta = [formatDate(response.submitted_at), response.service_used || 'servizio non indicato', response.language || 'lingua non indicata'].join(' · ');
     return `
-      <article class="rounded-2xl border border-white/10 bg-black/25 p-5 md:p-6">
+      <article class="rounded-2xl border border-hairline-strong bg-sunken p-5 md:p-6">
         <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
           <div>
             <h3 class="text-2xl font-semibold tracking-[-0.04em]">Risposta ${index + 1}</h3>
-            <p class="text-white/40 text-sm mt-1">${escapeHTML(meta)}</p>
+            <p class="text-text-2 text-sm mt-1">${escapeHTML(meta)}</p>
           </div>
         </div>
         <div class="grid md:grid-cols-2 gap-3">
           ${entries.length ? entries.map((entry) => `
-            <div class="rounded-xl border border-white/10 bg-white/[0.035] p-4">
-              <div class="text-white/45 text-sm leading-[1.4] mb-2">${escapeHTML(entry.question)}</div>
-              <div class="text-white/88 text-base leading-[1.55] whitespace-pre-wrap">${escapeHTML(entry.rating ? `${entry.rating}/5` : entry.value)}</div>
+            <div class="rounded-xl border border-hairline-strong bg-surface-2 p-4">
+              <div class="text-text-2 text-sm leading-[1.4] mb-2">${escapeHTML(entry.question)}</div>
+              <div class="text-text-2 text-base leading-[1.55] whitespace-pre-wrap">${escapeHTML(entry.rating ? `${entry.rating}/5` : entry.value)}</div>
             </div>
-          `).join('') : '<p class="text-white/45 leading-[1.6]">Risposta vuota.</p>'}
+          `).join('') : '<p class="text-text-2 leading-[1.6]">Risposta vuota.</p>'}
         </div>
-        <details class="mt-4 rounded-xl border border-white/10 bg-black/30 p-4">
-          <summary class="cursor-pointer text-sm text-white/45 hover:text-white/75">JSON tecnico</summary>
-          <pre class="mt-3 max-h-[320px] overflow-auto whitespace-pre-wrap text-xs text-white/48 leading-[1.45]">${escapeHTML(JSON.stringify(response.answers_json || {}, null, 2))}</pre>
+        <details class="mt-4 rounded-xl border border-hairline-strong bg-sunken p-4">
+          <summary class="cursor-pointer text-sm text-text-2 hover:text-text-2">JSON tecnico</summary>
+          <pre class="mt-3 max-h-[320px] overflow-auto whitespace-pre-wrap text-xs text-text-2 leading-[1.45]">${escapeHTML(JSON.stringify(response.answers_json || {}, null, 2))}</pre>
         </details>
       </article>
     `;
@@ -308,11 +308,11 @@ import Layout from "../../../layouts/Layout.astro";
     heroTarget.innerHTML = `
       <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
         <div>
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Dettaglio questionario</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Dettaglio questionario</p>
           <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-4">${escapeHTML(survey.title || 'Senza titolo')}</h1>
-          <p class="text-white/50 leading-[1.6]">${escapeHTML(survey.company_name || 'Compagnia non indicata')} · ${escapeHTML(isOpen(survey) ? 'Aperto' : 'Chiuso')}</p>
+          <p class="text-text-2 leading-[1.6]">${escapeHTML(survey.company_name || 'Compagnia non indicata')} · ${escapeHTML(isOpen(survey) ? 'Aperto' : 'Chiuso')}</p>
         </div>
-        <a href="${escapeHTML(publicUrl(survey))}" target="_blank" rel="noreferrer" class="inline-flex h-11 items-center justify-center px-4 rounded-xl border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06]">Apri link pubblico</a>
+        <a href="${escapeHTML(publicUrl(survey))}" target="_blank" rel="noreferrer" class="inline-flex h-11 items-center justify-center px-4 rounded-xl border border-hairline-strong text-text-2 hover:text-text hover:bg-surface-2">Apri link pubblico</a>
       </div>
     `;
 
@@ -323,9 +323,9 @@ import Layout from "../../../layouts/Layout.astro";
       ['Ultima risposta', formatDate(survey.last_response_at)],
     ];
     statsTarget.innerHTML = stats.map(([label, value]) => `
-      <article class="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
+      <article class="rounded-2xl border border-hairline-strong bg-surface-2 p-5">
         <div class="text-2xl font-semibold tracking-[-0.05em] mb-1">${escapeHTML(value)}</div>
-        <div class="text-white/45 text-sm">${escapeHTML(label)}</div>
+        <div class="text-text-2 text-sm">${escapeHTML(label)}</div>
       </article>
     `).join('');
 
@@ -334,13 +334,13 @@ import Layout from "../../../layouts/Layout.astro";
     responsesTarget.innerHTML = `
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
         <div>
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-white/35 mb-2">Risposte anonime</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-text-2 mb-2">Risposte anonime</p>
           <h2 class="text-3xl font-semibold tracking-[-0.04em]">Lettura completa</h2>
         </div>
-        <code class="rounded-xl bg-black/40 border border-white/10 p-3 text-xs text-white/62 break-all">${escapeHTML(publicUrl(survey))}</code>
+        <code class="rounded-xl bg-sunken border border-hairline-strong p-3 text-xs text-text-2 break-all">${escapeHTML(publicUrl(survey))}</code>
       </div>
       <div class="grid gap-4">
-        ${responses.length ? responses.map(renderResponseCard).join('') : '<p class="text-white/45 leading-[1.6]">Nessuna risposta ricevuta.</p>'}
+        ${responses.length ? responses.map(renderResponseCard).join('') : '<p class="text-text-2 leading-[1.6]">Nessuna risposta ricevuta.</p>'}
       </div>
     `;
 

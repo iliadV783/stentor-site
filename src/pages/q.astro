@@ -10,48 +10,48 @@ import Layout from "../layouts/Layout.astro";
   showFooter={false}
   noindex={true}
 >
-  <section class="min-h-screen bg-black text-white relative overflow-hidden">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_72%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_72%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute right-[-20%] top-[-20%] w-[680px] h-[680px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <section class="min-h-screen bg-bg text-text relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.16)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_72%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_72%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-20%] top-[-20%] w-[680px] h-[680px] rounded-full bg-stentor/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
     <main class="relative max-w-[780px] mx-auto px-5 py-10 md:py-16">
       <header class="mb-8">
-        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors">
+        <a href="/" class="inline-flex items-center gap-3 text-text hover:text-text-2 transition-colors">
           <span class="font-semibold tracking-[-0.04em] text-xl">STÉNTOR</span>
-          <span class="text-white/45 text-sm">Questionario pubblico</span>
+          <span class="text-text-2 text-sm">Questionario pubblico</span>
         </a>
       </header>
 
-      <section class="rounded-3xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-6 md:p-8">
+      <section class="rounded-3xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-8">
         <div data-loading>
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Opinioni pubblico</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Opinioni pubblico</p>
           <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Caricamento questionario.</h1>
-          <p class="text-white/50 leading-[1.6]">Sto verificando il link e la finestra temporale di compilazione.</p>
+          <p class="text-text-2 leading-[1.6]">Sto verificando il link e la finestra temporale di compilazione.</p>
         </div>
 
         <div data-error hidden>
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Questionario non disponibile</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Questionario non disponibile</p>
           <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Non posso aprire questo questionario.</h1>
-          <p data-error-text class="text-white/55 leading-[1.6]"></p>
+          <p data-error-text class="text-text-2 leading-[1.6]"></p>
         </div>
 
         <div data-success hidden>
-          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Grazie</p>
+          <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Grazie</p>
           <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Risposta inviata.</h1>
-          <p class="text-white/55 leading-[1.6]">Le risposte sono anonime e verranno mostrate alla compagnia in forma consultabile dentro Sténtor.</p>
+          <p class="text-text-2 leading-[1.6]">Le risposte sono anonime e verranno mostrate alla compagnia in forma consultabile dentro Sténtor.</p>
         </div>
 
         <form data-survey-form hidden class="grid gap-6">
           <div>
-            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3">Questionario post-spettacolo</p>
+            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3">Questionario post-spettacolo</p>
             <h1 data-survey-title class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4">Questionario Sténtor</h1>
-            <p data-survey-meta class="text-white/50 leading-[1.6]"></p>
+            <p data-survey-meta class="text-text-2 leading-[1.6]"></p>
           </div>
 
           <div data-questions class="grid gap-4"></div>
 
           <label class="grid gap-2">
-            <span class="text-sm font-medium text-white/70">Servizio usato</span>
+            <span class="text-sm font-medium text-text-2">Servizio usato</span>
             <select name="serviceUsed" class="survey-input">
               <option value="">Preferisco non indicarlo</option>
               <option value="surtitles">Sopratitoli</option>
@@ -62,14 +62,14 @@ import Layout from "../layouts/Layout.astro";
           </label>
 
           <label class="grid gap-2">
-            <span class="text-sm font-medium text-white/70">Lingua</span>
+            <span class="text-sm font-medium text-text-2">Lingua</span>
             <input name="language" class="survey-input" placeholder="it, en, fr..." />
           </label>
 
-          <p class="text-white/38 text-sm leading-[1.6]">Non vengono richiesti nome, email o account. Il questionario salva solo le risposte fornite.</p>
+          <p class="text-text-2 text-sm leading-[1.6]">Non vengono richiesti nome, email o account. Il questionario salva solo le risposte fornite.</p>
 
-          <button data-submit type="submit" class="h-13 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors disabled:opacity-50 disabled:cursor-wait">Invia risposta anonima</button>
-          <p data-form-error hidden class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-100 text-sm leading-[1.5] p-4"></p>
+          <button data-submit type="submit" class="h-13 rounded-xl bg-stentor text-white font-semibold hover:bg-stentor-dark transition-colors disabled:opacity-50 disabled:cursor-wait">Invia risposta anonima</button>
+          <p data-form-error hidden class="rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4"></p>
         </form>
       </section>
     </main>
@@ -78,11 +78,11 @@ import Layout from "../layouts/Layout.astro";
 
 <style is:global>
   @reference "../styles/global.css";
-  .survey-input { @apply w-full min-h-12 rounded-xl bg-white/[0.06] border border-white/10 px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-red-400/50; }
-  .survey-card { @apply rounded-2xl border border-white/10 bg-black/20 p-4 md:p-5; }
-  .survey-label { @apply block text-sm font-medium text-white/72 mb-3; }
-  .rating-choice { @apply h-12 rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center cursor-pointer hover:bg-white/[0.08] transition-colors; }
-  .rating-choice:has(input:checked) { @apply border-red-400/60 bg-red-500/20 text-white; }
+  .survey-input { @apply w-full min-h-12 rounded-xl bg-surface-2 border border-hairline-strong px-4 py-3 text-text placeholder:text-text-2 outline-none focus:border-stentor/50; }
+  .survey-card { @apply rounded-2xl border border-hairline-strong bg-sunken p-4 md:p-5; }
+  .survey-label { @apply block text-sm font-medium text-text-2 mb-3; }
+  .rating-choice { @apply h-12 rounded-xl border border-hairline-strong bg-surface-2 flex items-center justify-center cursor-pointer hover:bg-surface-2 transition-colors; }
+  .rating-choice:has(input:checked) { @apply border-stentor/60 bg-stentor/20 text-text; }
 </style>
 
 <script>
@@ -185,7 +185,7 @@ import Layout from "../layouts/Layout.astro";
               </label>
             `).join('')}
           </div>
-          <div class="mt-2 flex justify-between text-[11px] text-white/35"><span>1 = poco</span><span>5 = molto</span></div>
+          <div class="mt-2 flex justify-between text-[11px] text-text-2"><span>1 = poco</span><span>5 = molto</span></div>
         </fieldset>
       `;
     }
@@ -196,7 +196,7 @@ import Layout from "../layouts/Layout.astro";
           <legend class="survey-label">${label}</legend>
           <div class="grid gap-2">
             ${question.options.map((option) => `
-              <label class="min-h-11 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 flex items-center gap-3 cursor-pointer hover:bg-white/[0.08]">
+              <label class="min-h-11 rounded-xl border border-hairline-strong bg-surface-2 px-4 py-3 flex items-center gap-3 cursor-pointer hover:bg-surface-2">
                 <input type="radio" name="${id}" value="${escapeHTML(option)}" />
                 <span>${escapeHTML(option)}</span>
               </label>

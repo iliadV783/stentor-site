@@ -36,7 +36,7 @@ export const ssoProviders: { compact: SsoProvider[]; wide: SsoProvider } = {
 
 // ─── Right column (visual) ────────────────────────────────────────────────
 export const sidePanel = {
-  tagline: 'One project. <em class="text-red-500 not-italic">Many live outputs.</em>',
+  tagline: 'One project. <em class="text-stentor not-italic">Many live outputs.</em>',
   description:
     "Prepare a performance text once, then cue it for screens, audience phones, translations and audio-description notes.",
   terminal: {

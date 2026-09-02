@@ -16,7 +16,7 @@ export const hero = {
 export const featured = {
   brand: { initial: "S", name: "Sténtor nello spazio teatrale" },
   title:
-    'Un solo flusso di spettacolo per <em class="text-red-500 not-italic">regia, schermi, foyer e telefoni.</em>',
+    'Un solo flusso di spettacolo per <em class="text-stentor not-italic">regia, schermi, foyer e telefoni.</em>',
   description:
     "Prepara il copione prima dello spettacolo, allinea traduzioni e descrizioni, guida la rappresentazione dalla postazione di regia, invia il testo agli schermi configurati, mostra una pagina QR nel foyer e permette agli spettatori di seguire lingue selezionate o audio-descrizione dai propri dispositivi.",
   stats: [
@@ -62,7 +62,7 @@ export const cards: CustomerCard[] = [
     brand: "Produzioni internazionali",
     industry: "Traduzione",
     glyph: "rounded-full",
-    tint: "rgba(239,68,68,0.18)",
+    tint: "rgba(24, 88, 200,0.18)",
     illustration: "helio",
     title: "Ospita spettacoli in un’altra lingua senza moltiplicare i sistemi.",
     description:
@@ -90,7 +90,7 @@ export const cards: CustomerCard[] = [
     brand: "Audio-descrizione",
     industry: "Audio-descrizione",
     glyph: "[clip-path:polygon(50%_0,100%_100%,0_100%)]",
-    tint: "rgba(239,68,68,0.14)",
+    tint: "rgba(24, 88, 200,0.14)",
     illustration: "vector",
     title: "Prepara l’audio-descrizione accanto al copione, non in un’isola separata.",
     description:
@@ -104,7 +104,7 @@ export const cards: CustomerCard[] = [
     brand: "Telefoni del pubblico",
     industry: "Dispositivi del pubblico",
     glyph: "rounded",
-    tint: "rgba(239,68,68,0.14)",
+    tint: "rgba(24, 88, 200,0.14)",
     illustration: "kettlebrook",
     title: "Offri testo su dispositivo personale quando la proiezione non basta.",
     description:
@@ -132,7 +132,7 @@ export const cards: CustomerCard[] = [
     brand: "Note sul campo",
     industry: "Ricerca",
     glyph: "rounded",
-    tint: "rgba(239,68,68,0.16)",
+    tint: "rgba(24, 88, 200,0.16)",
     illustration: "tessera",
     title: "Raccogli riscontri pratici dopo l’uso reale, non prima dello scaricamento.",
     description:

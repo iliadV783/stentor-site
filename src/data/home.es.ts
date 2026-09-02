@@ -5,7 +5,7 @@
 export const hero = {
   eyebrow: "Actualización v0.1.74 · Audiodescripción en vivo",
   title:
-    'Sobretítulos, traducción <em class="not-italic text-text-3 font-medium">y audiodescripciones.</em><br class="hidden sm:inline" /> En vivo.',
+    'Sobretítulos, traducción <em class="not-italic text-stentor font-medium">y audiodescripciones.</em><br class="hidden sm:inline" /> En vivo.',
   description:
     "Un entorno de regía para preparar textos, coordinar idiomas y audiodescripciones, sincronizar pantallas y dispositivos del público, recoger cuestionarios y trabajar en la nube durante ensayos y funciones.",
   ctas: [
@@ -14,7 +14,7 @@ export const hero = {
   ],
   trust: [
     { label: "Lite: app gratuita multiplataforma", live: true },
-    { label: "Pro: app profesional para macOS, Windows y Linux" },
+    { label: "Pro: app profesional para macOS y Windows" },
     { label: "Sobretítulos · traducción · audiodescripción · público" },
   ],
   mock: {
@@ -58,7 +58,7 @@ export const metrics = {
   description:
     "Sténtor organiza el texto escénico desde la preparación hasta la regía en vivo, con herramientas para pantallas, teléfonos del público, accesibilidad y trabajo multilingüe.",
   items: [
-    { value: "Lite", suffix: "", label: "App gratuita para macOS, Windows y Linux" },
+    { value: "Lite", suffix: "", label: "App gratuita para macOS y Windows" },
     { value: "5", suffix: "", label: "idiomas en el sitio; app diseñada para una interfaz multilingüe más amplia" },
     { value: "Live Sync", suffix: "", label: "Para pantallas y teléfonos del público" },
   ],
@@ -69,10 +69,10 @@ export const bento = {
   description:
     "Empieza con la app ligera multiplataforma y pasa al entorno profesional cuando ensayos, pantallas, timeline, público y audiodescripción requieren un flujo en vivo dedicado.",
   cards: {
-    types: { title: "Sténtor Lite: empieza en cualquier lugar", desc: "App gratuita para macOS, Windows y Linux, pensada para hacer accesible la preparación del texto, los sobretítulos y las traducciones sin barrera de licencia." },
+    types: { title: "Sténtor Lite: empieza en cualquier lugar", desc: "App gratuita para macOS y Windows, pensada para hacer accesible la preparación del texto, los sobretítulos y las traducciones sin barrera de licencia." },
     p95: { title: "Sténtor: cabina de regía", desc: "App profesional para ensayos y funciones, con cueing, timeline, pantallas, dispositivos del público y audiodescripción en plataformas de escritorio." },
     edge: { title: "Teléfonos del público sincronizados", desc: "Las personas en sala pueden conectarse con su propio smartphone y seguir sobretítulos, traducciones o audiodescripciones en sincronía con la regía." },
-    auth: { title: "Sitio en 5 idiomas", desc: "El sitio está disponible en italiano, inglés, francés, español y alemán. La app Sténtor está diseñada para una interfaz multilingüe más amplia." },
+    auth: { title: "Audiodescripción y accesibilidad", desc: "Prepara las notas junto al texto y sincroniza los contenidos accesibles con el ritmo de la función." },
     cron: { title: "Importar, exportar, circular", desc: "Importa archivos Word, TXT, SRT, WebVTT, CSV o JSON y comparte materiales para ensayos, archivo, giras y estudio." },
     migrations: { title: "Vista de regía clara", desc: "Avanza entre cues durante la función con una interfaz diseñada para timing, concentración y seguridad." },
     deploys: { title: "Beta para Pro", desc: "Durante las pruebas, el acceso Pro se organiza para ofrecer soporte, instrucciones y activación de forma segura." },
@@ -84,14 +84,14 @@ export const testimonials = {
   description:
     "Sténtor se desarrolla con quienes lo usan: artistas, operadores, traductoras, teatros y público. Lite mantiene el acceso abierto; Pro crece mediante beta tests en contextos reales.",
   quotes: [
-    { text: "Usa Lite para empezar a preparar los materiales y comprender el flujo antes de llevar Sténtor a producción.", av: "01", name: "Empieza con Lite", role: "App gratuita · macOS, Windows, Linux" },
+    { text: "Usa Lite para empezar a preparar los materiales y comprender el flujo antes de llevar Sténtor a producción.", av: "01", name: "Empieza con Lite", role: "App gratuita · macOS, Windows" },
     { text: "Usa Pro cuando la función exige vista de regía, timeline, pantallas, dispositivos del público y un setup profesional en vivo.", av: "02", name: "Pasa a Pro", role: "App profesional · acceso beta" },
     { text: "Las notas de ensayos, público y operadores ayudan a diseñar mejores herramientas para las artes escénicas en vivo.", av: "03", name: "Mejora la investigación", role: "Feedback · producto" },
   ],
 };
 
-const liteFeatures = ["App desktop gratuita", "Para macOS, Windows y Linux", "Preparación de textos, sobretítulos y traducciones", "Descarga sin licencia Pro", "Sitio en 5 idiomas"];
-const proFeatures = ["App desktop profesional", "Prevista para macOS, Windows y Linux", "Timeline, cueing y vista de regía en vivo", "Pantallas y teléfonos del público", "Audiodescripción y herramientas de accesibilidad", "Licencia beta y activación"];
+const liteFeatures = ["App desktop gratuita", "Para macOS y Windows", "Preparación de textos, sobretítulos y traducciones", "Descarga sin licencia Pro", "Sitio en 5 idiomas"];
+const proFeatures = ["App desktop profesional", "Prevista para macOS y Windows", "Timeline, cueing y vista de regía en vivo", "Pantallas y teléfonos del público", "Audiodescripción y herramientas de accesibilidad", "Licencia beta y activación"];
 const institutionFeatures = ["Para teatros, festivales y escuelas", "Licencias de prueba y multiusuario", "Soporte durante pruebas y ensayos", "Guía de configuración en espacios reales", "Área de cuenta preparada para uso futuro"];
 
 export const pricingPreview = {

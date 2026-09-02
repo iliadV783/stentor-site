@@ -99,7 +99,7 @@ const articleSchema =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#f7f9fc" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -209,7 +209,7 @@ const articleSchema =
           link.href = "/account/manage";
           link.dataset.accountManageLink = "";
           link.hidden = logoutButton.hidden;
-          link.className = "inline-flex items-center justify-center h-10 px-4 rounded-xl border border-red-400/30 bg-red-500/10 text-sm text-red-100 hover:text-white hover:bg-red-500/16 transition-colors";
+          link.className = "inline-flex items-center justify-center h-10 px-4 rounded-xl border border-stentor/25 bg-stentor/8 text-sm text-stentor-dark hover:text-stentor hover:bg-stentor/12 transition-colors";
           link.textContent = labels[locale()] || labels.en;
           logoutButton.parentElement?.insertBefore(link, logoutButton);
 

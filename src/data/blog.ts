@@ -53,9 +53,9 @@ export const blog = {
       tag: "bg-blue-400/[0.08] text-blue-400 border-blue-400/25",
     },
     practice: {
-      dot: "bg-red-500",
-      text: "text-red-500",
-      tag: "bg-red-500/[0.08] text-red-500 border-red-500/25",
+      dot: "bg-stentor",
+      text: "text-stentor",
+      tag: "bg-stentor/[0.08] text-stentor border-stentor/25",
     },
     product: {
       dot: "bg-amber-400",

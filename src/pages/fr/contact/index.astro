@@ -27,7 +27,7 @@ const iconMap = {
 >
 
   <section class="relative overflow-hidden border-b border-hairline pt-24 pb-16">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
     <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
       <div class="max-w-[680px]">
         <Eyebrow><span class="font-mono">{page.eyebrow}</span></Eyebrow>
@@ -46,14 +46,14 @@ const iconMap = {
             href={ch.href}
             class="group flex flex-col gap-4 p-5 border border-hairline rounded-xl bg-surface hover:border-hairline-strong hover:bg-elevated transition-colors"
           >
-            <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center flex-none group-hover:border-red-500/30 group-hover:bg-red-500/[0.06] transition-colors">
-              <Icon class="w-4 h-4 text-text-2 group-hover:text-red-500 transition-colors" />
+            <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center flex-none group-hover:border-stentor/30 group-hover:bg-stentor/[0.06] transition-colors">
+              <Icon class="w-4 h-4 text-text-2 group-hover:text-stentor transition-colors" />
             </span>
             <div class="flex-1">
               <p class="font-medium text-[15px] mb-1.5">{ch.label}</p>
               <p class="text-text-3 text-[13.5px] leading-[1.5]">{ch.description}</p>
             </div>
-            <span class="inline-flex items-center gap-1.5 text-[13px] text-red-500 font-medium">
+            <span class="inline-flex items-center gap-1.5 text-[13px] text-stentor font-medium">
               {ch.cta}
               <IconArrowRight class="w-3.5 h-3.5 [stroke-width:2.2] transition-transform group-hover:translate-x-0.5" />
             </span>
@@ -85,7 +85,7 @@ const iconMap = {
         <button
           type="button"
           x-on:click="sent = false"
-          class="text-[13px] text-red-500 hover:underline mt-2"
+          class="text-[13px] text-stentor hover:underline mt-2"
         >
           Envoyer un autre message
         </button>
@@ -153,11 +153,11 @@ const iconMap = {
 
     <aside class="grid gap-6">
       <div class="relative overflow-hidden border border-hairline rounded-xl p-6 bg-surface">
-        <div class="absolute right-0 top-0 w-48 h-48 pointer-events-none" style="background: radial-gradient(50% 50% at 100% 0%, rgba(239,68,68,0.14), transparent);" aria-hidden="true"></div>
+        <div class="absolute right-0 top-0 w-48 h-48 pointer-events-none" style="background: radial-gradient(50% 50% at 100% 0%, rgba(24, 88, 200,0.14), transparent);" aria-hidden="true"></div>
         <span class="w-9 h-9 rounded-lg border border-hairline bg-elevated flex items-center justify-center mb-4">
           <IconLightning class="w-4 h-4 text-text-2" />
         </span>
-        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-red-500 mb-2">{page.enterprise.eyebrow}</p>
+        <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-stentor mb-2">{page.enterprise.eyebrow}</p>
         <h2 class="text-[18px] font-semibold tracking-[-0.02em] mb-2">{page.enterprise.title}</h2>
         <p class="text-[13.5px] text-text-3 leading-[1.55] mb-5">{page.enterprise.description}</p>
 
@@ -206,8 +206,8 @@ const iconMap = {
     padding: 0 14px;
   }
   .c-input:focus {
-    border-color: rgba(239, 68, 68, 0.5);
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    border-color: rgba(24, 88, 200, 0.5);
+    box-shadow: 0 0 0 3px rgba(24, 88, 200, 0.1);
   }
   .c-input::placeholder { color: rgb(var(--text-4)); }
   textarea.c-input { height: auto; padding-top: 12px; padding-bottom: 12px; }
@@ -219,7 +219,7 @@ const iconMap = {
     background-repeat: no-repeat;
   }
   .c-submit {
-    @apply inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg bg-red-500 text-black font-medium text-sm transition-transform hover:-translate-y-px whitespace-nowrap;
+    @apply inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg bg-stentor text-white font-medium text-sm transition-transform hover:-translate-y-px whitespace-nowrap;
   }
   [x-cloak] { display: none !important; }
 </style>

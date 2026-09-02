@@ -13,7 +13,7 @@ import { traceRows } from "../../../../data/features";
   </div>
   <div class="px-6 py-5">
     {traceRows.map((r) => (
-      <div class="grid [grid-template-columns:auto_1fr] md:[grid-template-columns:200px_1fr_70px] items-center gap-3.5 py-2 font-mono text-xs text-text-2 border-b last:border-b-0 border-dashed border-white/5">
+      <div class="grid [grid-template-columns:auto_1fr] md:[grid-template-columns:200px_1fr_70px] items-center gap-3.5 py-2 font-mono text-xs text-text-2 border-b last:border-b-0 border-dashed border-hairline-strong">
         <div class:list={[
           "flex items-center gap-2 text-text font-medium",
           r.name.startsWith("└") && "pl-3"
@@ -23,14 +23,14 @@ import { traceRows } from "../../../../data/features";
             <span class:list={[
               "text-[10px] px-1.5 py-px rounded-sm font-normal",
               r.lvlColor === "ok" && "text-green-400 bg-green-400/10",
-              r.lvlColor === "amber" && "text-red-500 bg-red-500/10",
+              r.lvlColor === "amber" && "text-stentor bg-stentor/10",
             ]}>{r.lvl}</span>
           )}
         </div>
-        <div class="hidden md:block relative h-2 rounded-md bg-white/[0.04]">
+        <div class="hidden md:block relative h-2 rounded-md bg-surface-2">
           <i class:list={[
             "absolute top-0 bottom-0 rounded-md",
-            r.barColor === "amber" && "bg-red-500",
+            r.barColor === "amber" && "bg-stentor",
             r.barColor === "green" && "bg-green-400",
             r.barColor === "blue" && "bg-blue-400",
             r.barColor === "gray" && "bg-text-3",
@@ -48,10 +48,10 @@ import { traceRows } from "../../../../data/features";
     @apply bg-surface border border-hairline rounded-xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)];
   }
   .illus__bar {
-    @apply flex items-center justify-between px-3.5 py-2.5 border-b border-hairline font-mono text-[11px] text-text-3 bg-white/[0.02];
+    @apply flex items-center justify-between px-3.5 py-2.5 border-b border-hairline font-mono text-[11px] text-text-3 bg-surface-2;
   }
   .tag {
-    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap;
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-surface-2 text-text-2 border border-hairline whitespace-nowrap;
   }
-  .tag--amber { @apply text-red-400 bg-red-500/15 border-red-500/30; }
+  .tag--amber { @apply text-stentor bg-stentor/15 border-stentor/30; }
 </style>

@@ -4,7 +4,7 @@ const author = { name: "Leonardo Mancini", role: "Créateur et développeur de S
 
 const categoryStyles = {
   research: { dot: "bg-blue-400", text: "text-blue-400", tag: "bg-blue-400/[0.08] text-blue-400 border-blue-400/25" },
-  practice: { dot: "bg-red-500", text: "text-red-500", tag: "bg-red-500/[0.08] text-red-500 border-red-500/25" },
+  practice: { dot: "bg-stentor", text: "text-stentor", tag: "bg-stentor/[0.08] text-stentor border-stentor/25" },
   product: { dot: "bg-amber-400", text: "text-amber-400", tag: "bg-amber-400/[0.08] text-amber-400 border-amber-400/25" },
   fieldnotes: { dot: "bg-green-400", text: "text-green-400", tag: "bg-green-400/[0.08] text-green-400 border-green-400/25" },
 } as const;

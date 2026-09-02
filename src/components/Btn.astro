@@ -12,14 +12,14 @@ const { href, variant = "ghost", size = "md", class: className = "", type } = As
 const sizing = size === "lg" ? "h-[46px] px-5 text-[15px]" : "h-10 px-4 text-sm";
 const variants = {
   primary:
-    "bg-red-500 text-bg hover:bg-red-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_6px_24px_-8px_rgba(239,68,68,0.5)]",
+    "bg-stentor text-white hover:bg-stentor-dark shadow-[0_10px_24px_-14px_rgba(24,88,200,0.55)]",
   ghost:
-    "bg-transparent text-text border border-hairline-strong hover:bg-white/[0.04] hover:border-white/20",
+    "bg-white text-text border border-hairline-strong hover:bg-stentor-soft hover:border-stentor/25",
   quiet: "bg-transparent text-text-2 hover:text-text",
 };
 
 const cls = [
-  "inline-flex items-center justify-center gap-2 rounded-lg font-medium whitespace-nowrap transition-colors",
+  "inline-flex items-center justify-center gap-2 rounded-lg font-medium whitespace-nowrap transition-[color,background-color,border-color,box-shadow] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-stentor/25",
   sizing,
   variants[variant],
   className,

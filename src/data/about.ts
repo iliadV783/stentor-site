@@ -10,7 +10,7 @@ export type TeamMember = { name: string; role: string; initial: string; bio: str
 
 const leonardoProfileUrl = "https://www.studium.unito.it/do/docenti.pl/Show?_id=lmancini";
 const eticaProjectUrl = "https://unifind.unito.it/resource/project/MANL_PE_ATENEO_25_01";
-const inlineLinkClass = "text-text underline decoration-red-500/60 underline-offset-4 hover:text-red-400 transition-colors";
+const inlineLinkClass = "text-text underline decoration-stentor/60 underline-offset-4 hover:text-stentor transition-colors";
 const leonardoProfileLink = `<a href="${leonardoProfileUrl}" target="_blank" rel="noopener noreferrer" class="${inlineLinkClass}">Leonardo Mancini</a>`;
 const eticaProjectLink = `<a href="${eticaProjectUrl}" target="_blank" rel="noopener noreferrer" class="${inlineLinkClass}">ETICA</a>`;
 
@@ -18,7 +18,7 @@ export const about = {
   hero: {
     eyebrow: "About Sténtor",
     title:
-      'Live performance needs <em class="not-italic text-red-500">live words</em>.<br/>For every audience.',
+      'Live performance needs <em class="not-italic text-stentor">live words</em>.<br/>For every audience.',
     description:
       "Sténtor is a cross-platform tool for surtitles, translation and audio description in live performance.",
     credit:
@@ -47,7 +47,7 @@ export const about = {
     items: [
       { value: "3", label: "core layers: surtitles, translation, audio description" },
       { value: "∞", label: "projects, languages and cues across every plan" },
-      { value: "3", label: "desktop platforms: macOS, Windows and Linux" },
+      { value: "3", label: "desktop platforms: macOS and Windows" },
       { value: "Free", label: "free download and activation" },
     ] as Stat[],
   },

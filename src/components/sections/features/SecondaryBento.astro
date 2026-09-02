@@ -47,7 +47,7 @@ const { secondaryBento = defaultSecondaryBento } = Astro.props;
               <div class="mt-auto grid gap-1.5">
                 {card.demo.items.map((row) => (
                   <div class="border border-hairline rounded-md px-2.5 py-1.5 flex items-center gap-2.5 font-mono text-xs">
-                    <span class="px-1.5 py-px rounded-sm text-[10px] text-red-500 bg-red-500/10">{row.schedule}</span>
+                    <span class="px-1.5 py-px rounded-sm text-[10px] text-stentor bg-stentor/10">{row.schedule}</span>
                     <span class="text-text">{row.name}</span>
                     <span class="ml-auto text-text-3">{row.status}</span>
                   </div>
@@ -57,7 +57,7 @@ const { secondaryBento = defaultSecondaryBento } = Astro.props;
 
             {card.demo.type === "progress" && (
               <div class="mt-auto">
-                <div class="h-1.5 rounded bg-white/5 overflow-hidden"><i class="block h-full bg-red-500" style={`width: ${card.demo.percent}%;`}></i></div>
+                <div class="h-1.5 rounded bg-surface-2 overflow-hidden"><i class="block h-full bg-stentor" style={`width: ${card.demo.percent}%;`}></i></div>
                 <div class="font-mono text-[11px] text-text-3 mt-2">{card.demo.label}</div>
               </div>
             )}
@@ -65,7 +65,7 @@ const { secondaryBento = defaultSecondaryBento } = Astro.props;
             {card.demo.type === "bars" && (
               <div class="mt-auto h-20 flex items-end gap-1">
                 {card.demo.heights.map((h) => (
-                  <i class="flex-1 rounded-t-sm bg-gradient-to-b from-red-500 to-red-500/20" style={`height: ${h}%;`}></i>
+                  <i class="flex-1 rounded-t-sm bg-gradient-to-b from-stentor to-stentor/20" style={`height: ${h}%;`}></i>
                 ))}
               </div>
             )}
@@ -76,7 +76,7 @@ const { secondaryBento = defaultSecondaryBento } = Astro.props;
                   <div class:list={[
                     "h-8 rounded-md bg-deep px-2.5 flex items-center font-mono text-xs",
                     row.highlighted
-                      ? "border border-red-500/50 text-text shadow-[0_0_0_3px_rgba(239,68,68,0.12)]"
+                      ? "border border-stentor/50 text-text shadow-[0_0_0_3px_rgba(24, 88, 200,0.12)]"
                       : "border border-hairline text-text-2",
                   ]}>{row.text}</div>
                 ))}
@@ -97,9 +97,9 @@ const { secondaryBento = defaultSecondaryBento } = Astro.props;
   .b2__title { @apply text-[17px] font-semibold tracking-[-0.02em]; }
   .b2__desc { @apply text-text-2 text-sm; }
   .icon-tile {
-    @apply grid place-items-center w-9 h-9 rounded-lg border border-hairline text-red-500 tile-grad;
+    @apply grid place-items-center w-9 h-9 rounded-lg border border-hairline text-stentor tile-grad;
   }
   .tag {
-    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-white/5 text-text-2 border border-hairline whitespace-nowrap;
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 rounded-sm bg-surface-2 text-text-2 border border-hairline whitespace-nowrap;
   }
 </style>

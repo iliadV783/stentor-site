@@ -9,7 +9,7 @@ interface Props {
 const { hero = defaultHero } = Astro.props;
 ---
 <section class="relative pt-24 pb-16 text-center">
-  <div class="absolute inset-0 pointer-events-none [background-image:radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)]" aria-hidden="true"></div>
+  <div class="absolute inset-0 pointer-events-none [background-image:radial-gradient(rgba(24,88,200,0.09)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,#000_30%,transparent_75%)]" aria-hidden="true"></div>
   <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
     <Eyebrow><span class="font-mono">{hero.eyebrow}</span></Eyebrow>
     <h1 class="mt-6 mb-4 mx-auto max-w-[940px] text-4xl sm:text-5xl lg:text-[64px] leading-[0.98] tracking-[-0.045em] font-semibold" set:html={hero.title}></h1>

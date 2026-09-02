@@ -195,7 +195,7 @@ export function setupAdminInvites() {
   if (token) {
     loadInvites(token).catch((error) => {
       const target = qs<HTMLElement>('[data-admin-invites-list]');
-      if (target) target.innerHTML = `<p class="text-red-200">${error instanceof Error ? error.message : 'Invites could not be loaded.'}</p>`;
+      if (target) target.innerHTML = `<p class="text-stentor">${error instanceof Error ? error.message : 'Invites could not be loaded.'}</p>`;
     });
   }
 
@@ -203,7 +203,7 @@ export function setupAdminInvites() {
     event.preventDefault();
     const activeToken = getStoredToken();
     if (!activeToken) {
-      message.innerHTML = '<p class="text-red-200">Accedi come admin prima di creare un invito.</p>';
+      message.innerHTML = '<p class="text-stentor">Accedi come admin prima di creare un invito.</p>';
       return;
     }
 
@@ -233,7 +233,7 @@ export function setupAdminInvites() {
       form.reset();
       await loadInvites(activeToken);
     } catch (error) {
-      message.innerHTML = `<p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">${error instanceof Error ? error.message : 'Invito non creato.'}</p>`;
+      message.innerHTML = `<p class="rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4">${error instanceof Error ? error.message : 'Invito non creato.'}</p>`;
     } finally {
       button.disabled = false;
       button.textContent = 'Crea invito';
@@ -276,7 +276,7 @@ export function setupAdminInvites() {
       await loadInvites(activeToken);
       message.innerHTML = `<p class="rounded-xl border border-green-400/20 bg-green-400/10 text-green-100 text-sm leading-[1.5] p-4">${status === 'pending' ? 'Invito revocato.' : 'Invito nascosto dalla lista.'}</p>`;
     } catch (error) {
-      message.innerHTML = `<p class="rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4">${error instanceof Error ? error.message : 'Invito non rimosso.'}</p>`;
+      message.innerHTML = `<p class="rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4">${error instanceof Error ? error.message : 'Invito non rimosso.'}</p>`;
       removeButton.disabled = false;
       removeButton.textContent = status === 'pending' ? 'Revoca' : 'Nascondi';
     }

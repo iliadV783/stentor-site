@@ -16,7 +16,7 @@ import { regions } from "../../../../data/features";
       <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:28px_28px]"></div>
       {regions.map((r) => (
         <>
-          <span class="absolute w-2.5 h-2.5 rounded-full bg-red-500 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_0_4px_rgba(239,68,68,0.18),0_0_16px_#ef4444]" style={`left: ${r.left}; top: ${r.top};`}></span>
+          <span class="absolute w-2.5 h-2.5 rounded-full bg-stentor -translate-x-1/2 -translate-y-1/2 shadow-[0_0_0_4px_rgba(24, 88, 200,0.18),0_0_16px_#1858c8]" style={`left: ${r.left}; top: ${r.top};`}></span>
           <span class="absolute font-mono text-[10px] text-text-2 translate-x-2 -translate-y-1/2" style={`left: ${r.left}; top: ${r.top};`}>{r.code} · {r.lat}</span>
         </>
       ))}
@@ -33,7 +33,7 @@ import { regions } from "../../../../data/features";
         <span class="ml-auto text-text-3">42ms</span>
       </div>
       <div class="border border-hairline rounded-md px-2.5 py-2 flex items-center gap-2.5 font-mono text-xs">
-        <span class="px-1.5 py-px rounded-sm text-[10px] text-red-500 bg-red-500/10">PUT</span>
+        <span class="px-1.5 py-px rounded-sm text-[10px] text-stentor bg-stentor/10">PUT</span>
         <span class="text-text">/api/sessions</span>
         <span class="ml-auto text-text-3">24ms</span>
       </div>
@@ -47,6 +47,6 @@ import { regions } from "../../../../data/features";
     @apply bg-surface border border-hairline rounded-xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)];
   }
   .illus__bar {
-    @apply flex items-center justify-between px-3.5 py-2.5 border-b border-hairline font-mono text-[11px] text-text-3 bg-white/[0.02];
+    @apply flex items-center justify-between px-3.5 py-2.5 border-b border-hairline font-mono text-[11px] text-text-3 bg-surface-2;
   }
 </style>

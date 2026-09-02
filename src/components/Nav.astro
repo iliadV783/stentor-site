@@ -78,8 +78,8 @@ const cta = isFr
   x-on:resize.window.debounce.150ms="if (window.innerWidth >= 768) open = false"
 >
 <header
-  x-bind:class="open ? 'bg-bg' : 'bg-bg/70'"
-  class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md backdrop-saturate-150 border-b border-hairline transition-colors"
+  x-bind:class="open ? 'bg-white' : 'bg-white/90'"
+  class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl backdrop-saturate-150 border-b border-hairline transition-colors"
 >
   <div class="relative max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between h-16">
     <div class="flex items-center gap-2 min-w-0">
@@ -91,7 +91,7 @@ const cta = isFr
         <a
           href={l.href}
           class:list={[
-            "px-3 py-2 text-sm rounded-md transition-colors hover:bg-white/5 whitespace-nowrap",
+            "px-3 py-2 text-sm rounded-md transition-colors hover:bg-surface-2 whitespace-nowrap",
             active === l.id ? "text-text" : "text-text-2 hover:text-text",
           ]}
         >
@@ -113,7 +113,7 @@ const cta = isFr
       </a>
       <a
         href={cta.primary.href}
-        class="hidden md:inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-sm font-medium bg-red-500 text-bg hover:bg-red-400 transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_6px_24px_-8px_rgba(239,68,68,0.5)] whitespace-nowrap"
+        class="hidden md:inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-sm font-medium bg-stentor text-white hover:bg-stentor-dark transition-colors shadow-[0_8px_22px_-12px_rgba(24,88,200,0.55)] whitespace-nowrap"
       >
         {cta.primary.label} <span aria-hidden="true">→</span>
       </a>
@@ -124,7 +124,7 @@ const cta = isFr
         x-bind:aria-expanded="open.toString()"
         aria-controls="mobile-nav"
         aria-label="Apri o chiudi il menu"
-        class="md:hidden ml-1 inline-flex items-center justify-center w-10 h-10 rounded-md text-text-2 hover:text-text hover:bg-white/5 transition-colors"
+        class="md:hidden ml-1 inline-flex items-center justify-center w-10 h-10 rounded-md text-text-2 hover:text-text hover:bg-surface-2 transition-colors"
       >
         <IconMenu class="w-5 h-5 stroke-2" x-show="!open" />
         <IconX class="w-5 h-5 stroke-2" x-show="open" x-cloak />
@@ -145,7 +145,7 @@ const cta = isFr
   x-transition:leave="transition ease-in duration-150"
   x-transition:leave-start="opacity-100 translate-y-0 scale-100"
   x-transition:leave-end="opacity-0 -translate-y-2 scale-[0.97]"
-  class="md:hidden fixed left-3 right-3 top-[70px] z-50 origin-top rounded-2xl border border-hairline-strong bg-surface/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,255,255,0.04)]"
+  class="md:hidden fixed left-3 right-3 top-[70px] z-50 origin-top rounded-2xl border border-hairline-strong bg-white/95 backdrop-blur-xl shadow-[0_20px_60px_-28px_rgba(37,61,96,0.35)]"
   role="dialog"
   aria-label="Menu di navigazione"
 >
@@ -157,8 +157,8 @@ const cta = isFr
           class:list={[
             "flex items-center justify-between px-3 py-3.5 rounded-xl text-[15px] font-medium transition-colors border",
             active === l.id
-              ? "bg-red-500/10 border-red-500/25 text-text"
-              : "border-transparent text-text-2 hover:text-text hover:bg-white/[0.04]",
+              ? "bg-stentor/10 border-stentor/25 text-text"
+              : "border-transparent text-text-2 hover:text-text hover:bg-surface-2",
           ]}
         >
           <span>{l.label}</span>
@@ -166,7 +166,7 @@ const cta = isFr
             <span
               class:list={[
                 "text-sm transition-colors",
-                active === l.id ? "text-red-400" : "text-text-4",
+                active === l.id ? "text-stentor" : "text-text-4",
               ]}
               aria-hidden="true"
             >
@@ -192,13 +192,13 @@ const cta = isFr
       <a
         href={cta.primary.href}
         x-on:click="open = false"
-        class="h-12 inline-flex items-center justify-center gap-1.5 bg-red-500 hover:bg-red-400 text-bg rounded-xl text-[14px] font-semibold shadow-[0_4px_20px_-4px_rgba(239,68,68,0.55)] transition-colors"
+        class="h-12 inline-flex items-center justify-center gap-1.5 bg-stentor hover:bg-stentor-dark text-white rounded-xl text-[14px] font-semibold shadow-[0_8px_20px_-12px_rgba(24,88,200,0.55)] transition-colors"
       >
         {cta.primary.label} <span aria-hidden="true">→</span>
       </a>
     </div>
 
-    <div class="px-4 py-2.5 flex items-center justify-between border-t border-hairline bg-black/20 rounded-b-2xl">
+    <div class="px-4 py-2.5 flex items-center justify-between border-t border-hairline bg-sunken rounded-b-2xl">
       <div class="flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" aria-hidden="true"></span>
         <span class="text-[12px] text-text-3 font-mono">{cta.statusPrefix}</span>
@@ -218,6 +218,6 @@ const cta = isFr
   x-transition:leave-start="opacity-100"
   x-transition:leave-end="opacity-0"
   aria-hidden="true"
-  class="md:hidden fixed inset-0 top-16 z-40 bg-bg/85 backdrop-blur-sm"
+  class="md:hidden fixed inset-0 top-16 z-40 bg-slate-900/15 backdrop-blur-sm"
 ></div>
 </div>

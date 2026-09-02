@@ -5,7 +5,7 @@
 export const hero = {
   eyebrow: "Update v0.1.74 · Live-Audiodeskription",
   title:
-    'Übertitel, Übersetzung <em class="not-italic text-text-3 font-medium">und Audiodeskriptionen.</em><br class="hidden sm:inline" /> Live.',
+    'Übertitel, Übersetzung <em class="not-italic text-stentor font-medium">und Audiodeskriptionen.</em><br class="hidden sm:inline" /> Live.',
   description:
     "Eine Regieumgebung zum Vorbereiten von Texten, Koordinieren von Sprachen und Audiodeskriptionen, Synchronisieren von Bildschirmen und Publikumsgeräten, Sammeln von Fragebögen und Arbeiten in der Cloud während Proben und Aufführungen.",
   ctas: [
@@ -14,7 +14,7 @@ export const hero = {
   ],
   trust: [
     { label: "Lite: kostenlose plattformübergreifende App", live: true },
-    { label: "Pro: professionelle App für macOS, Windows und Linux" },
+    { label: "Pro: professionelle App für macOS und Windows" },
     { label: "Übertitel · Übersetzung · Audiodeskription · Publikum" },
   ],
   mock: {
@@ -58,7 +58,7 @@ export const metrics = {
   description:
     "Sténtor organisiert den Aufführungstext von der Vorbereitung bis zur Live-Regie, mit Werkzeugen für Bildschirme, Publikumstelefone, Barrierefreiheit und mehrsprachige Arbeit.",
   items: [
-    { value: "Lite", suffix: "", label: "Kostenlose App für macOS, Windows und Linux" },
+    { value: "Lite", suffix: "", label: "Kostenlose App für macOS und Windows" },
     { value: "5", suffix: "", label: "Sprachen auf der Website; App für eine breitere mehrsprachige Oberfläche ausgelegt" },
     { value: "Live Sync", suffix: "", label: "Für Bildschirme und Publikumstelefone" },
   ],
@@ -69,10 +69,10 @@ export const bento = {
   description:
     "Beginne mit der leichten plattformübergreifenden App und wechsle zur professionellen Umgebung, wenn Proben, Bildschirme, Timeline, Publikum und Audiodeskription einen eigenen Live-Workflow brauchen.",
   cards: {
-    types: { title: "Sténtor Lite: überall beginnen", desc: "Kostenlose App für macOS, Windows und Linux, um Textvorbereitung, Übertitel und Übersetzungen ohne Lizenzbarriere zugänglich zu machen." },
+    types: { title: "Sténtor Lite: überall beginnen", desc: "Kostenlose App für macOS und Windows, um Textvorbereitung, Übertitel und Übersetzungen ohne Lizenzbarriere zugänglich zu machen." },
     p95: { title: "Sténtor: Regiekabine", desc: "Professionelle App für Proben und Vorstellungen, mit Cueing, Timeline, Bildschirmen, Publikumsgeräten und Audiodeskription auf Desktop-Plattformen." },
     edge: { title: "Synchronisierte Publikumstelefone", desc: "Menschen im Saal können sich mit dem eigenen Smartphone verbinden und Übertitel, Übersetzungen oder Audiodeskriptionen synchron zur Regie verfolgen." },
-    auth: { title: "Website in 5 Sprachen", desc: "Die Website ist auf Italienisch, Englisch, Französisch, Spanisch und Deutsch verfügbar. Die Sténtor-App ist für eine breitere mehrsprachige Oberfläche ausgelegt." },
+    auth: { title: "Audiodeskription und Barrierefreiheit", desc: "Bereite Hinweise neben dem Text vor und synchronisiere barrierefreie Inhalte mit dem Ablauf der Vorstellung." },
     cron: { title: "Importieren, exportieren, weitergeben", desc: "Importiere Word-, TXT-, SRT-, WebVTT-, CSV- oder JSON-Dateien und teile Materialien für Proben, Archiv, Tournee und Studium." },
     migrations: { title: "Klare Regieansicht", desc: "Bewege dich während der Vorstellung durch Cues mit einer Oberfläche, die für Timing, Konzentration und Sicherheit gestaltet ist." },
     deploys: { title: "Beta für Pro", desc: "Während der Testphase bleibt der Pro-Zugang organisiert, damit Support, Hinweise und Aktivierung sicher bereitgestellt werden." },
@@ -84,14 +84,14 @@ export const testimonials = {
   description:
     "Sténtor wird mit den Menschen entwickelt, die es nutzen: Künstlerinnen, Operatoren, Übersetzerinnen, Theater und Publikum. Lite hält den Zugang offen; Pro wächst durch Beta-Tests in realen Kontexten.",
   quotes: [
-    { text: "Nutze Lite, um Materialien vorzubereiten und den Workflow zu verstehen, bevor Sténtor in die Produktion geht.", av: "01", name: "Mit Lite beginnen", role: "Kostenlose App · macOS, Windows, Linux" },
+    { text: "Nutze Lite, um Materialien vorzubereiten und den Workflow zu verstehen, bevor Sténtor in die Produktion geht.", av: "01", name: "Mit Lite beginnen", role: "Kostenlose App · macOS, Windows" },
     { text: "Nutze Pro, wenn die Vorstellung Regieansicht, Timeline, Bildschirme, Publikumsgeräte und ein professionelles Live-Setup braucht.", av: "02", name: "Zu Pro wechseln", role: "Professionelle App · Beta-Zugang" },
     { text: "Notizen aus Proben, Publikum und Operatoren helfen, bessere Werkzeuge für Live-Aufführungen zu gestalten.", av: "03", name: "Forschung verbessern", role: "Feedback · Produkt" },
   ],
 };
 
-const liteFeatures = ["Kostenlose Desktop-App", "Für macOS, Windows und Linux", "Textvorbereitung, Übertitel und Übersetzungen", "Download ohne Pro-Lizenz", "Website in 5 Sprachen"];
-const proFeatures = ["Professionelle Desktop-App", "Für macOS, Windows und Linux vorgesehen", "Timeline, Cueing und Live-Regieansicht", "Bildschirme und Publikumstelefone", "Audiodeskription und Barrierefreiheitswerkzeuge", "Beta-Lizenz und Aktivierung"];
+const liteFeatures = ["Kostenlose Desktop-App", "Für macOS und Windows", "Textvorbereitung, Übertitel und Übersetzungen", "Download ohne Pro-Lizenz", "Website in 5 Sprachen"];
+const proFeatures = ["Professionelle Desktop-App", "Für macOS und Windows vorgesehen", "Timeline, Cueing und Live-Regieansicht", "Bildschirme und Publikumstelefone", "Audiodeskription und Barrierefreiheitswerkzeuge", "Beta-Lizenz und Aktivierung"];
 const institutionFeatures = ["Für Theater, Festivals und Schulen", "Test- und Mehrplatzlizenzen", "Support während Tests und Proben", "Einrichtungshilfe in realen Räumen", "Account-Bereich für künftige Nutzung vorbereitet"];
 
 export const pricingPreview = {
@@ -110,7 +110,7 @@ export const finalCta = {
   gap: "gap-6",
   eyebrow: "Sténtor Lite · Sténtor Pro",
   title: "Frei beginnen. Professionell auf die Bühne gehen.",
-  body: "Lade Sténtor Lite herunter, um auf macOS, Windows oder Linux zu beginnen. Frage Sténtor Pro an, wenn du eine professionelle Umgebung für Proben und Vorstellungen brauchst.",
+  body: "Lade Sténtor Lite herunter, um auf macOS oder Windows zu beginnen. Frage Sténtor Pro an, wenn du eine professionelle Umgebung für Proben und Vorstellungen brauchst.",
   ctas: [
     { href: "/de/download", label: "Sténtor herunterladen", variant: "primary" as const },
     { href: "/de/testzugang", label: "Pro-Beta öffnen", variant: "ghost" as const },

@@ -49,7 +49,7 @@ const languageOptionsLabel = {
     x-bind:aria-expanded="open.toString()"
     aria-haspopup="menu"
     aria-label={`${selectLanguageLabel}: ${currentLabel}`}
-    class="inline-flex items-center gap-2 h-10 px-2.5 rounded-lg text-sm text-text-3 hover:text-text hover:bg-white/[0.04] transition-colors"
+    class="inline-flex items-center gap-2 h-10 px-2.5 rounded-lg text-sm text-text-3 hover:text-text hover:bg-surface-2 transition-colors"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="9"></circle>
@@ -84,10 +84,10 @@ const languageOptionsLabel = {
         lang={lang.code}
         aria-current={currentLang === lang.code ? "page" : undefined}
         x-on:click={`localStorage.setItem('stentor-lang-choice', '${lang.code}'); open = false`}
-        class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-white/[0.04] transition-colors"
+        class="flex items-center gap-3 px-4 py-3 text-sm text-text hover:bg-surface-2 transition-colors"
         role="menuitem"
       >
-        <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-red-500" : "text-text-3"]}>{lang.code}</span>
+        <span class:list={["font-mono text-[11px] uppercase w-6", currentLang === lang.code ? "text-stentor" : "text-text-3"]}>{lang.code}</span>
         <span class="flex-1">{lang.label}</span>
         <span class="font-mono text-[10px] uppercase text-text-4">{currentLang === lang.code ? currentText : ""}</span>
       </a>

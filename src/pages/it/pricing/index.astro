@@ -10,7 +10,7 @@ import Btn from "../../../components/Btn.astro";
 >
   <section class="max-w-[1120px] mx-auto px-4 md:px-8 py-24 md:py-32">
     <div class="max-w-[840px] mb-12 text-center mx-auto">
-      <p class="font-mono text-xs tracking-[0.08em] uppercase text-red-500 mb-4">Supporto · donazione · stesse funzioni</p>
+      <p class="font-mono text-xs tracking-[0.08em] uppercase text-stentor mb-4">Supporto · donazione · stesse funzioni</p>
       <h1 class="text-5xl md:text-[72px] tracking-[-0.06em] leading-[0.98] font-semibold mb-5">Gli stessi strumenti per tutti.<br/>Sostieni in base alla tua scala.</h1>
       <p class="text-xl text-text-2 leading-[1.55] max-w-[760px] mx-auto">
         Sténtor non blocca le funzioni essenziali dietro piani superiori. Free, Pro e Venues includono gli stessi strumenti di base. Il contributo suggerito riflette solo chi usa il software, con quali mezzi e in quale contesto.
@@ -23,11 +23,11 @@ import Btn from "../../../components/Btn.astro";
         { name: "Pro", tag: "Suggerito", price: "€19", cycle: "/anno · supporto", text: "Per compagnie, collettivi, progetti professionali e produzioni in tournée che possono contribuire un po’ di più.", cta: "Sostieni come Pro", href: "/it/download", hi: true },
         { name: "Venues", tag: "Teatri", price: "€99", cycle: "/anno · supporto", text: "Per teatri, festival, istituzioni e luoghi che usano Sténtor in contesti pubblici più ampi.", cta: "Sostieni come luogo", href: "/it/contact", hi: false },
       ].map((plan) => (
-        <article class:list={["rounded-2xl border bg-surface p-6 md:p-7 flex flex-col gap-5", plan.hi ? "border-red-500/45 shadow-[0_30px_60px_-30px_rgba(239,68,68,0.35)]" : "border-hairline"]}>
+        <article class:list={["rounded-2xl border bg-surface p-6 md:p-7 flex flex-col gap-5", plan.hi ? "border-stentor/45 shadow-[0_30px_60px_-30px_rgba(24, 88, 200,0.35)]" : "border-hairline"]}>
           <div class="flex items-center justify-between gap-3"><h2 class="text-xl font-semibold tracking-[-0.02em]">{plan.name}</h2><span class="font-mono text-xs text-text-3 border border-hairline rounded px-2 py-1">{plan.tag}</span></div>
           <div><span class="text-5xl tracking-[-0.05em] font-semibold">{plan.price}</span><span class="text-sm text-text-3 ml-2">{plan.cycle}</span></div>
           <p class="text-sm text-text-2 leading-[1.6]">{plan.text}</p>
-          <ul class="grid gap-2 text-sm text-zinc-300 list-none p-0 m-0 flex-1">
+          <ul class="grid gap-2 text-sm text-text-2 list-none p-0 m-0 flex-1">
             <li>✓ Stesse funzioni essenziali per tutti</li>
             <li>✓ Progetti, lingue e cue illimitati</li>
             <li>✓ Sopratitoli, traduzioni e audio descrizione</li>

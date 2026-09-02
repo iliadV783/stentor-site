@@ -3,47 +3,47 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Account Sténtor - Sténtor" description="Access your Sténtor account, downloads and access code." active={null} showNav={false} showFooter={false} noindex={true}>
-  <section class="min-h-screen bg-black text-white relative overflow-hidden">
-    <div class="absolute inset-0 [background-image:radial-gradient(rgba(239,68,68,0.18)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-red-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <section class="min-h-screen bg-bg text-text relative overflow-hidden">
+    <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.18)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] [mask-image:linear-gradient(to_bottom_right,#000_0%,transparent_66%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute right-[-18%] top-[-18%] w-[620px] h-[620px] rounded-full bg-stentor/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-    <header class="relative border-b border-white/10">
+    <header class="relative border-b border-hairline-strong">
       <div class="max-w-[1180px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        <a href="/" class="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-white/55 text-sm" data-i18n="nav.account">Account</span></a>
-        <div class="flex items-center gap-3"><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-red-400/30 bg-red-500/10 text-sm text-red-100 hover:text-white hover:bg-red-500/15 transition-colors" data-i18n="action.logout">Logout</button>
-        <a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-white/12 text-sm text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors" data-i18n="action.backToSite">Back to site</a></div>
+        <a href="/" class="inline-flex items-center gap-3 text-text hover:text-text-2 transition-colors"><span class="font-semibold tracking-[-0.04em] text-xl">Sténtor</span><span class="text-text-2 text-sm" data-i18n="nav.account">Account</span></a>
+        <div class="flex items-center gap-3"><button data-account-logout hidden class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-stentor/30 bg-stentor/10 text-sm text-stentor hover:text-text hover:bg-stentor/15 transition-colors" data-i18n="action.logout">Logout</button>
+        <a href="/" class="inline-flex items-center justify-center h-10 px-4 rounded-xl border border-hairline-strong text-sm text-text-2 hover:text-text hover:bg-surface-2 transition-colors" data-i18n="action.backToSite">Back to site</a></div>
       </div>
     </header>
 
     <main class="relative max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
-      <section data-account-login class="max-w-[760px] mx-auto rounded-2xl border border-white/10 bg-white/[0.045] backdrop-blur-sm p-7 md:p-8">
-        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-3" data-i18n="accessCode">Access code</p>
+      <section data-account-login class="max-w-[760px] mx-auto rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-7 md:p-8">
+        <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-3" data-i18n="accessCode">Access code</p>
         <h1 class="text-4xl md:text-5xl tracking-[-0.055em] leading-[1] font-semibold mb-4" data-i18n="login.title">Sign in to Sténtor.</h1>
-        <p class="text-white/58 leading-[1.65] mb-7" data-i18n="login.subtitle">Use your email, Google, Apple or Microsoft account to access downloads, activation details and your Sténtor access code.</p>
+        <p class="text-text-2 leading-[1.65] mb-7" data-i18n="login.subtitle">Use your email, Google, Apple or Microsoft account to access downloads, activation details and your Sténtor access code.</p>
 
         <div class="grid sm:grid-cols-3 gap-3 mb-6">
           <button type="button" data-account-oauth="google" class="account-provider"><img src="/brand/google.svg" alt="" class="provider-logo" /> <span data-i18n="login.google">Continue with Google</span></button>
           <button type="button" data-account-oauth="apple" class="account-provider"><span class="provider-logo provider-logo-apple" aria-hidden="true"></span> <span data-i18n="login.apple">Continue with Apple</span></button>
           <button type="button" data-account-oauth="azure" class="account-provider"><img src="/brand/microsoft.svg" alt="" class="provider-logo" /> <span data-i18n="login.microsoft">Continue with Microsoft</span></button>
         </div>
-        <div class="flex items-center gap-4 my-6 text-white/42 font-mono text-[12px] uppercase tracking-[0.12em]"><span class="h-px bg-white/10 flex-1"></span><span data-i18n="login.orEmail">or email</span><span class="h-px bg-white/10 flex-1"></span></div>
+        <div class="flex items-center gap-4 my-6 text-text-2 font-mono text-[12px] uppercase tracking-[0.12em]"><span class="h-px bg-surface-2 flex-1"></span><span data-i18n="login.orEmail">or email</span><span class="h-px bg-surface-2 flex-1"></span></div>
 
         <form data-account-login-form class="grid gap-4">
           <input name="email" type="email" autocomplete="email" placeholder="name@theatre.org" class="account-input" required />
           <input name="password" type="password" autocomplete="current-password" placeholder="Password" data-i18n-placeholder="login.password" class="account-input" />
-          <button type="submit" class="h-12 rounded-xl bg-red-500 text-black font-semibold hover:bg-red-400 transition-colors" data-i18n="action.signIn">Sign in</button>
-          <button type="button" data-account-magic-link class="h-12 rounded-xl border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors" data-i18n="action.magicLink">Send email link</button>
+          <button type="submit" class="h-12 rounded-xl bg-stentor text-white font-semibold hover:bg-stentor-dark transition-colors" data-i18n="action.signIn">Sign in</button>
+          <button type="button" data-account-magic-link class="h-12 rounded-xl border border-hairline-strong text-text-2 hover:text-text hover:bg-surface-2 transition-colors" data-i18n="action.magicLink">Send email link</button>
         </form>
-        <p class="mt-5 text-sm text-white/45 leading-[1.5]"><span data-i18n="login.noAccount">No account yet?</span> <a href="/request-pro" class="text-red-300 underline underline-offset-4 hover:text-red-200" data-i18n="login.requestBeta">Request free beta access</a>.</p>
-        <p data-account-error hidden class="mt-5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm leading-[1.5] p-4"></p>
+        <p class="mt-5 text-sm text-text-2 leading-[1.5]"><span data-i18n="login.noAccount">No account yet?</span> <a href="/request-pro" class="text-stentor underline underline-offset-4 hover:text-stentor" data-i18n="login.requestBeta">Request free beta access</a>.</p>
+        <p data-account-error hidden class="mt-5 rounded-xl border border-stentor/30 bg-stentor/10 text-stentor text-sm leading-[1.5] p-4"></p>
       </section>
 
       <section data-account-app hidden class="grid gap-6">
         <div class="account-hero">
           <div class="relative z-10">
-            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-red-400 mb-4" data-i18n="accessCode">Access code</p>
+            <p class="font-mono text-[12px] uppercase tracking-[0.14em] text-stentor mb-4" data-i18n="accessCode">Access code</p>
             <h1 class="text-4xl md:text-6xl tracking-[-0.06em] leading-[0.98] font-semibold mb-5" data-i18n="app.title">Your Sténtor account.</h1>
-            <p class="text-white/64 text-lg leading-[1.6] max-w-[760px]" data-i18n="app.subtitle">This area shows your Sténtor access code, enabled platforms, available downloads and the projects synced to the cloud.</p>
+            <p class="text-text-2 text-lg leading-[1.6] max-w-[760px]" data-i18n="app.subtitle">This area shows your Sténtor access code, enabled platforms, available downloads and the projects synced to the cloud.</p>
           </div>
           <div class="account-hero-mark" aria-hidden="true"><span>S</span></div>
         </div>
@@ -52,38 +52,38 @@ import Layout from "../layouts/Layout.astro";
           <section class="account-panel">
             <div class="flex items-start justify-between gap-4 mb-6">
               <div>
-                <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-white/45 mb-2" data-i18n="section.access">Access</p>
+                <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-2 mb-2" data-i18n="section.access">Access</p>
                 <h2 class="text-[28px] leading-tight font-semibold tracking-[-0.045em]" data-i18n="accessCodes.title">Access codes</h2>
-                <p class="text-white/56 leading-[1.55] mt-2" data-i18n="accessCodes.subtitle">Manage your access codes and monitor active devices.</p>
+                <p class="text-text-2 leading-[1.55] mt-2" data-i18n="accessCodes.subtitle">Manage your access codes and monitor active devices.</p>
               </div>
-              <button data-account-refresh class="h-10 px-4 rounded-xl border border-white/12 text-sm text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors" data-i18n="action.refresh">Refresh</button>
+              <button data-account-refresh class="h-10 px-4 rounded-xl border border-hairline-strong text-sm text-text-2 hover:text-text hover:bg-surface-2 transition-colors" data-i18n="action.refresh">Refresh</button>
             </div>
-            <div data-account-licenses class="grid gap-3"><p class="text-white/52" data-i18n="loading.accessCode">Loading access code...</p></div>
+            <div data-account-licenses class="grid gap-3"><p class="text-text-2" data-i18n="loading.accessCode">Loading access code...</p></div>
           </section>
 
           <aside class="grid gap-4">
             <section class="account-panel account-panel-compact">
-              <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-white/45 mb-2" data-i18n="summary.eyebrow">Summary</p>
+              <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-2 mb-2" data-i18n="summary.eyebrow">Summary</p>
               <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-4" data-i18n="summary.title">Account status</h2>
               <div data-account-summary class="account-summary-list"><span data-i18n="loading.accountSummary">Loading account summary...</span></div>
             </section>
 
             <section class="account-panel account-panel-compact">
-              <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-white/45 mb-2" data-i18n="section.downloads">Downloads</p>
+              <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-2 mb-2" data-i18n="section.downloads">Downloads</p>
               <h2 class="text-2xl font-semibold tracking-[-0.04em] mb-3" data-i18n="downloads.title">Available builds</h2>
-              <p class="text-white/58 leading-[1.6] mb-5" data-i18n="downloads.subtitle">Downloads appear here when a Sténtor build is available for your account.</p>
+              <p class="text-text-2 leading-[1.6] mb-5" data-i18n="downloads.subtitle">Downloads appear here when a Sténtor build is available for your account.</p>
               <div data-account-downloads class="grid gap-2"><span class="download-chip" data-i18n="loading.downloads">Loading downloads...</span></div>
             </section>
 
             <section class="account-panel account-panel-compact">
               <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                 <div>
-                  <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-white/45 mb-2" data-i18n="section.cloud">Cloud</p>
+                  <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-text-2 mb-2" data-i18n="section.cloud">Cloud</p>
                   <h2 class="text-2xl font-semibold tracking-[-0.04em]" data-i18n="cloud.title">Cloud projects</h2>
                 </div>
                 <div data-account-cloud-summary class="cloud-summary"><span data-i18n="loading.cloudSummary">Loading cloud summary...</span></div>
               </div>
-              <div data-account-cloud-projects class="grid gap-3"><p class="text-white/52" data-i18n="loading.cloudProjects">Loading cloud projects...</p></div>
+              <div data-account-cloud-projects class="grid gap-3"><p class="text-text-2" data-i18n="loading.cloudProjects">Loading cloud projects...</p></div>
             </section>
           </aside>
         </div>
@@ -351,7 +351,6 @@ import Layout from "../layouts/Layout.astro";
   function platformLabel(platform) {
     if (platform === 'macos') return 'macOS';
     if (platform === 'windows') return 'Windows';
-    if (platform === 'linux') return 'Linux';
     return platform || '—';
   }
 
@@ -374,7 +373,7 @@ import Layout from "../layouts/Layout.astro";
     accountSummaryTarget.innerHTML = `
       <div class="summary-row"><span>${t('summary.activeAccesses')}</span><strong>${activeLicenses}</strong></div>
       <div class="summary-row"><span>${t('summary.platforms')}</span><strong>${escapeHtml(platforms)}</strong></div>
-      <div class="summary-row"><span>${t('summary.cloud')}</span><strong class="${hasCloud ? 'text-green-200' : 'text-red-200'}">${hasCloud ? t('summary.cloudActive') : t('summary.cloudInactive')}</strong></div>
+      <div class="summary-row"><span>${t('summary.cloud')}</span><strong class="${hasCloud ? 'text-green-200' : 'text-stentor'}">${hasCloud ? t('summary.cloudActive') : t('summary.cloudInactive')}</strong></div>
       <div class="summary-row"><span>${t('summary.builds')}</span><strong>${escapeHtml(buildValue)}</strong></div>
     `;
   }
@@ -382,7 +381,7 @@ import Layout from "../layouts/Layout.astro";
   function renderLicenses(licenses) {
     if (!licensesTarget) return;
     if (!licenses.length) {
-      licensesTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('license.noneTitle')}</h3><p class="text-white/58 leading-[1.65]">${t('license.noneBody')}</p><a href="/account" class="inline-flex mt-5 h-11 px-4 rounded-xl bg-red-500 text-black font-semibold items-center justify-center hover:bg-red-400 transition-colors">${t('license.refreshAccount')}</a></div>`;
+      licensesTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('license.noneTitle')}</h3><p class="text-text-2 leading-[1.65]">${t('license.noneBody')}</p><a href="/account" class="inline-flex mt-5 h-11 px-4 rounded-xl bg-stentor text-white font-semibold items-center justify-center hover:bg-stentor-dark transition-colors">${t('license.refreshAccount')}</a></div>`;
       return;
     }
 
@@ -436,13 +435,13 @@ import Layout from "../layouts/Layout.astro";
 
     if (unavailable) {
       cloudSummaryTarget.innerHTML = `<span>${t('cloud.notConfigured')}</span>`;
-      cloudProjectsTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('cloud.unavailableTitle')}</h3><p class="text-white/58 leading-[1.65]">${t('cloud.unavailableBody')}</p></div>`;
+      cloudProjectsTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('cloud.unavailableTitle')}</h3><p class="text-text-2 leading-[1.65]">${t('cloud.unavailableBody')}</p></div>`;
       return;
     }
 
     if (!projects.length) {
       cloudSummaryTarget.innerHTML = `<span>0 ${t('cloud.projects')}</span>`;
-      cloudProjectsTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('cloud.noneTitle')}</h3><p class="text-white/58 leading-[1.65]">${t('cloud.noneBody')}</p></div>`;
+      cloudProjectsTarget.innerHTML = `<div class="account-card"><h3 class="text-xl font-semibold tracking-[-0.03em] mb-2">${t('cloud.noneTitle')}</h3><p class="text-text-2 leading-[1.65]">${t('cloud.noneBody')}</p></div>`;
       return;
     }
 
@@ -454,7 +453,7 @@ import Layout from "../layouts/Layout.astro";
       <span><strong>${projects.length}</strong> ${t('cloud.projects')}</span>
       <span><strong>${formatBytes(totalBytes)}</strong> ${t('cloud.used')}</span>
       <span><strong>${syncedCount}</strong> ${t('cloud.synced')}</span>
-      ${conflictCount ? `<span class="text-red-200"><strong>${conflictCount}</strong> ${t('cloud.conflicts')}</span>` : ''}
+      ${conflictCount ? `<span class="text-stentor"><strong>${conflictCount}</strong> ${t('cloud.conflicts')}</span>` : ''}
     `;
 
     cloudProjectsTarget.innerHTML = projects.map((project) => {
@@ -470,11 +469,11 @@ import Layout from "../layouts/Layout.astro";
               <h3 class="text-xl font-semibold tracking-[-0.035em] truncate">${escapeHtml(project.name || t('cloud.untitled'))}</h3>
               <span class="${syncStatusClass(project.sync_status)}">${escapeHtml(syncStatusLabel(project.sync_status))}</span>
             </div>
-            <p class="text-white/48 text-sm">${escapeHtml(project.organization_name || t('cloud.noOrganization'))} · ${escapeHtml(project.provider || t('cloud.providerFallback'))}</p>
+            <p class="text-text-2 text-sm">${escapeHtml(project.organization_name || t('cloud.noOrganization'))} · ${escapeHtml(project.provider || t('cloud.providerFallback'))}</p>
           </div>
           <div class="text-left lg:text-right">
             <span class="account-label">${t('label.lastSync')}</span>
-            <div class="text-white/78 text-sm">${formatDate(project.last_synced_at || project.updated_at)}</div>
+            <div class="text-text-2 text-sm">${formatDate(project.last_synced_at || project.updated_at)}</div>
           </div>
         </div>
         <div class="cloud-project-meta">
@@ -598,45 +597,45 @@ import Layout from "../layouts/Layout.astro";
 
 <style is:global>
   @reference "../styles/global.css";
-  .account-hero { @apply relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.045] backdrop-blur-sm p-7 md:p-10; }
-  .account-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 84% 24%, rgba(239,68,68,0.20), transparent 30%), linear-gradient(110deg, transparent 0%, transparent 58%, rgba(239,68,68,0.08) 100%); pointer-events: none; }
-  .account-hero-mark { position: absolute; right: 42px; top: 50%; width: 124px; height: 124px; transform: translateY(-50%); border-radius: 28px; border: 1px solid rgba(255,255,255,0.12); background: linear-gradient(145deg, rgba(255,255,255,0.10), rgba(0,0,0,0.45)); box-shadow: 0 28px 90px rgba(239,68,68,0.26), inset 0 0 0 1px rgba(255,255,255,0.06); display: none; align-items: center; justify-content: center; color: rgba(248,113,113,0.92); font-size: 64px; font-weight: 700; letter-spacing: -0.08em; }
+  .account-hero { @apply relative overflow-hidden rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-7 md:p-10; }
+  .account-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 84% 24%, rgba(24, 88, 200,0.20), transparent 30%), linear-gradient(110deg, transparent 0%, transparent 58%, rgba(24, 88, 200,0.08) 100%); pointer-events: none; }
+  .account-hero-mark { position: absolute; right: 42px; top: 50%; width: 124px; height: 124px; transform: translateY(-50%); border-radius: 28px; border: 1px solid rgba(255,255,255,0.12); background: linear-gradient(145deg, rgba(255,255,255,0.10), rgba(0,0,0,0.45)); box-shadow: 0 28px 90px rgba(24, 88, 200,0.26), inset 0 0 0 1px rgba(255,255,255,0.06); display: none; align-items: center; justify-content: center; color: rgba(248,113,113,0.92); font-size: 64px; font-weight: 700; letter-spacing: -0.08em; }
   @media (min-width: 900px) { .account-hero-mark { display: flex; } }
-  .account-panel { @apply rounded-2xl border border-white/12 bg-white/[0.045] backdrop-blur-sm p-6 md:p-7; }
+  .account-panel { @apply rounded-2xl border border-hairline-strong bg-surface-2 backdrop-blur-sm p-6 md:p-7; }
   .account-panel-compact { @apply p-5 md:p-6; }
-  .account-provider { @apply h-12 rounded-xl border border-white/10 bg-white/[0.045] hover:bg-white/[0.075] hover:border-white/20 transition-colors inline-flex items-center justify-center gap-3 text-[15px] font-medium text-white/90; }
+  .account-provider { @apply h-12 rounded-xl border border-hairline-strong bg-surface-2 hover:bg-surface-2 hover:border-hairline-strong transition-colors inline-flex items-center justify-center gap-3 text-[15px] font-medium text-text-2; }
   .provider-logo { width: 20px; height: 20px; flex: none; display: block; }
   .provider-logo-apple { font-size: 20px; line-height: 1; text-align: center; }
-  .account-input { @apply w-full h-12 rounded-xl border border-white/10 bg-black/30 text-white outline-none transition-all text-[15px]; padding: 0 16px; }
-  .account-input:focus { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
-  .account-input::placeholder { color: rgba(255,255,255,0.42); }
-  .account-card { @apply rounded-xl border border-white/12 bg-black/25 p-5; }
-  .access-card { @apply hover:border-white/18 transition-colors; }
-  .account-label { @apply block text-[11px] font-mono uppercase tracking-[0.10em] text-white/48 mb-1.5; }
-  .account-access-code { @apply font-mono text-[16px] text-white/88 break-all; }
-  .account-value { @apply text-[15px] text-white/82; }
-  .account-data-grid { @apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-x-4 gap-y-4 border-t border-white/10 pt-4; }
-  .account-copy { @apply h-9 px-3 rounded-lg border border-white/12 bg-white/[0.04] text-white/72 hover:text-white hover:bg-white/[0.08] cursor-pointer text-sm transition-colors; }
+  .account-input { @apply w-full h-12 rounded-xl border border-hairline-strong bg-sunken text-text outline-none transition-all text-[15px]; padding: 0 16px; }
+  .account-input:focus { border-color: rgba(24, 88, 200, 0.55); box-shadow: 0 0 0 3px rgba(24, 88, 200, 0.12); }
+  .account-input::placeholder { color: #98a2b1; }
+  .account-card { @apply rounded-xl border border-hairline-strong bg-sunken p-5; }
+  .access-card { @apply hover:border-hairline-strong transition-colors; }
+  .account-label { @apply block text-[11px] font-mono uppercase tracking-[0.10em] text-text-2 mb-1.5; }
+  .account-access-code { @apply font-mono text-[16px] text-text-2 break-all; }
+  .account-value { @apply text-[15px] text-text-2; }
+  .account-data-grid { @apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-x-4 gap-y-4 border-t border-hairline-strong pt-4; }
+  .account-copy { @apply h-9 px-3 rounded-lg border border-hairline-strong bg-surface-2 text-text-2 hover:text-text hover:bg-surface-2 cursor-pointer text-sm transition-colors; }
   .account-status-active { @apply inline-flex px-2.5 py-1 rounded-full bg-green-400/12 border border-green-400/25 text-green-200 text-xs font-medium; }
-  .account-status-revoked { @apply inline-flex px-2.5 py-1 rounded-full bg-red-400/12 border border-red-400/25 text-red-200 text-xs font-medium; }
+  .account-status-revoked { @apply inline-flex px-2.5 py-1 rounded-full bg-stentor/12 border border-stentor/25 text-stentor text-xs font-medium; }
   .account-status-pending { @apply inline-flex px-2.5 py-1 rounded-full bg-amber-400/12 border border-amber-400/25 text-amber-200 text-xs font-medium; }
-  .account-summary-list { @apply grid gap-0 rounded-xl border border-white/10 bg-black/20 overflow-hidden text-[15px] text-white/72; }
-  .summary-row { @apply flex items-center justify-between gap-4 px-4 py-3 border-b border-white/8; }
+  .account-summary-list { @apply grid gap-0 rounded-xl border border-hairline-strong bg-sunken overflow-hidden text-[15px] text-text-2; }
+  .summary-row { @apply flex items-center justify-between gap-4 px-4 py-3 border-b border-hairline-strong; }
   .summary-row:last-child { border-bottom: 0; }
-  .summary-row strong { @apply text-white/90 font-medium text-right; }
-  .download-card { @apply rounded-xl border border-white/12 bg-black/25 p-4 flex items-center justify-between gap-4 text-white/62 text-sm; }
-  .download-card strong { @apply text-white/82 font-medium; }
-  .download-card span { @apply text-white/48 text-xs; }
-  .download-card em { @apply not-italic text-white/52 text-xs; }
-  .download-card-active { @apply hover:bg-white/[0.06] hover:border-white/20 transition-colors cursor-pointer; }
-  .download-card-active em { @apply text-red-300; }
-  .cloud-summary { @apply flex flex-wrap gap-2 text-xs text-white/55; }
-  .cloud-summary span { @apply rounded-full border border-white/12 bg-black/20 px-3 py-1.5; }
-  .cloud-summary strong { @apply text-white/86 font-medium; }
-  .cloud-project-card { @apply rounded-xl border border-white/12 bg-black/25 p-5; }
-  .cloud-project-meta { @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-3 mt-5 text-sm text-white/78; }
+  .summary-row strong { @apply text-text-2 font-medium text-right; }
+  .download-card { @apply rounded-xl border border-hairline-strong bg-sunken p-4 flex items-center justify-between gap-4 text-text-2 text-sm; }
+  .download-card strong { @apply text-text-2 font-medium; }
+  .download-card span { @apply text-text-2 text-xs; }
+  .download-card em { @apply not-italic text-text-2 text-xs; }
+  .download-card-active { @apply hover:bg-surface-2 hover:border-hairline-strong transition-colors cursor-pointer; }
+  .download-card-active em { @apply text-stentor; }
+  .cloud-summary { @apply flex flex-wrap gap-2 text-xs text-text-2; }
+  .cloud-summary span { @apply rounded-full border border-hairline-strong bg-sunken px-3 py-1.5; }
+  .cloud-summary strong { @apply text-text-2 font-medium; }
+  .cloud-project-card { @apply rounded-xl border border-hairline-strong bg-sunken p-5; }
+  .cloud-project-meta { @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-3 mt-5 text-sm text-text-2; }
   .cloud-status-synced { @apply inline-flex px-2.5 py-1 rounded-full bg-green-400/12 border border-green-400/25 text-green-200 text-[10px] font-mono uppercase tracking-[0.08em]; }
   .cloud-status-pending { @apply inline-flex px-2.5 py-1 rounded-full bg-amber-400/12 border border-amber-400/25 text-amber-200 text-[10px] font-mono uppercase tracking-[0.08em]; }
-  .cloud-status-conflict { @apply inline-flex px-2.5 py-1 rounded-full bg-red-400/12 border border-red-400/25 text-red-200 text-[10px] font-mono uppercase tracking-[0.08em]; }
-  .cloud-status-muted { @apply inline-flex px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-white/52 text-[10px] font-mono uppercase tracking-[0.08em]; }
+  .cloud-status-conflict { @apply inline-flex px-2.5 py-1 rounded-full bg-stentor/12 border border-stentor/25 text-stentor text-[10px] font-mono uppercase tracking-[0.08em]; }
+  .cloud-status-muted { @apply inline-flex px-2.5 py-1 rounded-full bg-surface-2 border border-hairline-strong text-text-2 text-[10px] font-mono uppercase tracking-[0.08em]; }
 </style>
