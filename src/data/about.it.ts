@@ -6,7 +6,7 @@ const eticaProjectLink = `<a href="${eticaProjectUrl}" target="_blank" rel="noop
 
 export const about = {
   hero: {
-    eyebrow: "About Sténtor",
+    eyebrow: "",
     title:
       'La scena dal vivo ha bisogno di <em class="not-italic text-stentor">parole vive</em>.<br/>Per ogni pubblico.',
     description:
