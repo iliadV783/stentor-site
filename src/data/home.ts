@@ -5,7 +5,7 @@
  */
 
 export const hero = {
-  eyebrow: "Free desktop app · No subscription required",
+  eyebrow: "v0.2 · Beta release for internal testers",
   title:
     'Free live-text software <em class="not-italic text-stentor font-medium">for performance.</em><br class="hidden sm:inline" />',
   description:
