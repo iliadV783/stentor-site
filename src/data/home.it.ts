@@ -108,9 +108,9 @@ export const finalCta = {
   variant: "borderY" as const,
   paddingY: "py-24 md:py-[120px]",
   gap: "gap-6",
-  eyebrow: "Sténtor Lite · Sténtor",
+  eyebrow: "",
   title: "Scarica liberamente. Attiva gratuitamente.",
-  body: "Sténtor resta gratuito per tutte e tutti. L’attivazione gratuita ci aiuta a seguire l’uso reale, dare supporto e continuare lo sviluppo.",
+  body: "Sténtor è un software gratuito, distribuito con licenza. L’attivazione gratuita ci aiuta a seguire l’uso reale, fornire supporto e continuare lo sviluppo.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
     { href: "/it/richiedi-prova", label: "Attiva gratuitamente", variant: "ghost" as const },
