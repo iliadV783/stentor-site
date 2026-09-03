@@ -20,7 +20,6 @@ export const about = {
     paragraphs: [
       "Sténtor nasce da un'esigenza pratica: gestire più livelli di testo nello spettacolo dal vivo. Una produzione può richiedere sopratitoli, traduzioni, note di audiodescrizione, note per la regia e per gli operatori, schermi in sala e dispositivi del pubblico — tutto mentre lo spettacolo accade in tempo reale.",
       "Il nome rimanda a Stentore nella mitologia greca, figura ricordata da Omero per la sua “voce di bronzo”. Sténtor trasforma quell’immagine in uno strumento teatrale: non come un suono più forte, ma come una trasmissione più chiara, su più livelli, di parole, lingue e audiodescrizioni.",
-      `Il software è sviluppato e mantenuto da ${leonardoProfileLink} (Università di Torino) nell’ambito del progetto di public engagement ${eticaProjectLink}.`,
       "Attualmente disponibile per macOS e Windows, Sténtor è distribuito gratuitamente. Chi lo utilizza è invitato a contribuire al suo sviluppo e alla ricerca attraverso feedback, note d’uso e dati di ricerca, così da continuare a migliorare e far crescere il progetto.",
     ],
     pullQuote: {
