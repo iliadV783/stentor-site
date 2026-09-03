@@ -15,12 +15,13 @@ export const about = {
       `Creato e sviluppato da ${leonardoProfileLink} (Università di Torino), nell’ambito del progetto di public engagement ${eticaProjectLink}.`,
   },
   story: {
-    eyebrow: "Origine",
-    title: "Perché esiste Sténtor",
+    eyebrow: "Motivo e finalità del progetto",
+    title: "Perché Sténtor",
     paragraphs: [
-      "Sténtor nasce da un problema pratico: lo spettacolo dal vivo ha spesso bisogno di più livelli di testo. Una produzione può richiedere sopratitoli, traduzioni, note di audiodescrizione, cue per l’operatore, schermi in sala e telefoni del pubblico — tutto mentre lo spettacolo accade in tempo reale.",
-      "Il nome rimanda a Stentore nella mitologia greca: non come immagine di combattimento, ma come figura ricordata per una voce di bronzo. Sténtor trasforma quell’immagine in uno strumento teatrale: non un suono più forte, ma una trasmissione più chiara di parole, lingue e descrizioni.",
-      `Il progetto è sviluppato da ${leonardoProfileLink} (Università di Torino) nell’ambito del progetto di public engagement ${eticaProjectLink}, come software di ricerca per lo spettacolo dal vivo. Mantiene accessibili gli strumenti essenziali e invita chi lo usa a contribuire con feedback, note d’uso, risposte del pubblico e dati di ricerca che possano far crescere il software attraverso spettacoli reali.`,
+      "Sténtor nasce da un'esigenza pratica: gestire più livelli di testo nello spettacolo dal vivo. Una produzione può richiedere sopratitoli, traduzioni, note di audiodescrizione, note per la regia e per gli operatori, schermi in sala e dispositivi del pubblico — tutto mentre lo spettacolo accade in tempo reale.",
+      "Il nome rimanda a Stentore nella mitologia greca, figura ricordata da Omero per la sua “voce di bronzo”. Sténtor trasforma quell’immagine in uno strumento teatrale: non come un suono più forte, ma come una trasmissione più chiara, su più livelli, di parole, lingue e audiodescrizioni.",
+      `Il software è sviluppato e mantenuto da ${leonardoProfileLink} (Università di Torino) nell’ambito del progetto di public engagement ${eticaProjectLink}.`,
+      "Attualmente disponibile per macOS e Windows, Sténtor è distribuito gratuitamente. Chi lo utilizza è invitato a contribuire al suo sviluppo e alla ricerca attraverso feedback, note d’uso e dati di ricerca, così da continuare a migliorare e far crescere il progetto.",
     ],
     pullQuote: {
       text: "Il testo dello spettacolo dal vivo dovrebbe viaggiare con chiarezza: dal copione all’operatore, dalla scena agli schermi, dalla sala a ogni dispositivo del pubblico.",
