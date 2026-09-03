@@ -1,6 +1,5 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import Eyebrow from "../../../components/Eyebrow.astro";
 import { about as page } from "../../../data/about.it";
 ---
 <Layout
@@ -12,8 +11,7 @@ import { about as page } from "../../../data/about.it";
     <div class="absolute inset-0 [background-image:radial-gradient(rgba(24, 88, 200,0.35)_1px,transparent_1px)] [background-size:28px_28px] [-webkit-mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] [mask-image:linear-gradient(to_top_left,#000_5%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
     <div class="relative max-w-[1280px] mx-auto px-4 md:px-8">
       <div class="max-w-[820px]">
-        <Eyebrow><span class="font-mono">{page.hero.eyebrow}</span></Eyebrow>
-        <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mt-5 mb-5" set:html={page.hero.title}></h1>
+        <h1 class="text-4xl sm:text-5xl lg:text-[64px] leading-[1.02] tracking-[-0.04em] font-semibold mb-5" set:html={page.hero.title}></h1>
         <p class="text-lg leading-[1.55] text-text-2 max-w-[600px] m-0" set:html={page.hero.description}></p>
         <p class="text-[15px] leading-[1.65] text-text-3 max-w-[620px] mt-7 mb-0" set:html={page.hero.credit}></p>
       </div>
@@ -21,11 +19,11 @@ import { about as page } from "../../../data/about.it";
   </section>
 
   <section class="py-20 lg:py-24 border-b border-hairline">
-    <div class="max-w-[1280px] mx-auto px-4 md:px-8 grid gap-10 lg:[grid-template-columns:minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
+    <div class="max-w-[980px] mx-auto px-4 md:px-8">
       <div>
         <p class="font-mono text-[11px] tracking-[0.08em] uppercase text-stentor mb-4">{page.story.eyebrow}</p>
         <h2 class="text-3xl md:text-4xl tracking-[-0.03em] font-semibold leading-[1.1] mb-6">{page.story.title}</h2>
-        <div class="grid gap-5 text-[15.5px] leading-[1.7] text-text-2 max-w-[640px]">
+        <div class="grid gap-5 text-[15.5px] leading-[1.7] text-text-2 max-w-[820px]">
           {page.story.paragraphs.map((p) => <p set:html={p}></p>)}
           <aside class="mt-1 rounded-xl border border-hairline bg-surface/60 p-5 text-[14px] leading-[1.7] text-text-2">
             <p class="m-0">Calcofono: χαλκεόφωνος, da χαλκός: bronzo + φωνή: voce.</p>
@@ -41,24 +39,7 @@ import { about as page } from "../../../data/about.it";
           </aside>
         </div>
       </div>
-      <aside class="lg:sticky lg:top-32 self-start">
-        <figure class="border border-hairline rounded-xl bg-surface p-7 lg:p-8 relative overflow-hidden">
-          <div class="absolute -top-8 -right-8 -translate-y-10 translate-x-10 w-40 h-40 pointer-events-none" style="background: radial-gradient(50% 50% at 50% 50%, rgba(24, 88, 200,0.16), transparent 70%);" aria-hidden="true"></div>
-          <img src="/favicon.svg" alt="" class="w-11 h-11 rounded-full border border-hairline-strong bg-gradient-to-br from-raised to-sunken p-1.5 select-none" aria-hidden="true" />
-          <blockquote class="text-[18px] leading-[1.5] tracking-[-0.01em] text-text-2 mt-5">
-            {page.story.pullQuote.text}
-          </blockquote>
-          <figcaption class="flex items-center gap-3 mt-6 pt-5 border-t border-dashed border-hairline">
-            <div class="w-9 h-9 rounded-full grid place-items-center font-mono text-xs text-text border border-hairline-strong bg-gradient-to-br from-raised to-sunken">
-              {page.story.pullQuote.author.split(" ").map((n) => n[0]).join("")}
-            </div>
-            <div class="text-[13px]">
-              <b class="block font-medium">{page.story.pullQuote.author}</b>
-              <span class="text-text-3">{page.story.pullQuote.role}</span>
-            </div>
-          </figcaption>
-        </figure>
-      </aside>
+
     </div>
   </section>
 
