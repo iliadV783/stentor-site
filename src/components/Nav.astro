@@ -17,31 +17,31 @@ const isEs = Astro.url.pathname.startsWith("/es");
 const isDe = Astro.url.pathname.startsWith("/de");
 const navItems = isFr
   ? [
-      { href: "/fr/features", label: "Fonctionnalités", id: "features" as const },
-      { href: "/fr/docs", label: "Parcours", id: "docs" as const },
-      { href: "/fr/for-theatres", label: "Pour les théâtres", id: "customers" as const },
       { href: "/fr/about", label: "Projet", id: "about" as const },
+      { href: "/fr/features", label: "Fonctionnalités", id: "features" as const },
+      { href: "/fr/docs", label: "Documentation", id: "docs" as const },
+      { href: "/fr/for-theatres", label: "Pour les théâtres", id: "customers" as const },
     ]
   : isIt
     ? [
-        { href: "/it/features", label: "Funzioni", id: "features" as const },
-        { href: "/it/docs", label: "Guida", id: "docs" as const },
-        { href: "/it/for-theatres", label: "Per i teatri", id: "customers" as const },
         { href: "/it/about", label: "Progetto", id: "about" as const },
+        { href: "/it/features", label: "Funzioni", id: "features" as const },
+        { href: "/it/docs", label: "Documentazione", id: "docs" as const },
+        { href: "/it/for-theatres", label: "Per i teatri", id: "customers" as const },
       ]
     : isEs
       ? [
-          { href: "/es/features", label: "Funciones", id: "features" as const },
-          { href: "/es/docs", label: "Guía", id: "docs" as const },
-          { href: "/es/for-theatres", label: "Para teatros", id: "customers" as const },
           { href: "/es/about", label: "Proyecto", id: "about" as const },
+          { href: "/es/features", label: "Funciones", id: "features" as const },
+          { href: "/es/docs", label: "Documentación", id: "docs" as const },
+          { href: "/es/for-theatres", label: "Para teatros", id: "customers" as const },
         ]
       : isDe
         ? [
-            { href: "/de/features", label: "Funktionen", id: "features" as const },
-            { href: "/de/docs", label: "Leitfaden", id: "docs" as const },
-            { href: "/de/for-theatres", label: "Für Theater", id: "customers" as const },
             { href: "/de/about", label: "Projekt", id: "about" as const },
+            { href: "/de/features", label: "Funktionen", id: "features" as const },
+            { href: "/de/docs", label: "Dokumentation", id: "docs" as const },
+            { href: "/de/for-theatres", label: "Für Theater", id: "customers" as const },
           ]
         : nav;
 const cta = isFr
@@ -75,23 +75,23 @@ const cta = isFr
   x-data="{ open: false }"
   x-init="$watch('open', v => { document.documentElement.style.overflow = v ? 'hidden' : ''; document.body.style.overflow = v ? 'hidden' : ''; })"
   x-on:keydown.escape.window="open = false"
-  x-on:resize.window.debounce.150ms="if (window.innerWidth >= 768) open = false"
+  x-on:resize.window.debounce.150ms="if (window.innerWidth >= 1024) open = false"
 >
 <header
   x-bind:class="open ? 'bg-white' : 'bg-white/90'"
   class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl backdrop-saturate-150 border-b border-hairline transition-colors"
 >
-  <div class="relative max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between h-16">
-    <div class="flex items-center gap-2 min-w-0">
+  <div class="relative max-w-[1440px] mx-auto px-4 md:px-6 xl:px-8 flex items-center justify-between h-16">
+    <div class="flex items-center min-w-0">
       <Logo />
     </div>
 
-    <nav aria-label="Navigazione principale" class="hidden md:flex gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <nav aria-label="Navigazione principale" class="hidden lg:flex items-center gap-0 xl:gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       {navItems.map((l) => (
         <a
           href={l.href}
           class:list={[
-            "px-3 py-2 text-sm rounded-md transition-colors hover:bg-surface-2 whitespace-nowrap",
+            "px-2.5 xl:px-3 py-2 text-sm rounded-md transition-colors hover:bg-surface-2 whitespace-nowrap",
             active === l.id ? "text-text" : "text-text-2 hover:text-text",
           ]}
         >
@@ -100,20 +100,20 @@ const cta = isFr
       ))}
     </nav>
 
-    <div class="flex items-center gap-1 ml-auto">
-      <div class="hidden md:block">
+    <div class="flex items-center gap-1.5 ml-auto">
+      <div class="hidden lg:block">
         <LanguageSwitcher />
       </div>
 
       <a
         href={cta.secondary.href}
-        class="hidden md:inline-flex items-center justify-center h-10 px-4 rounded-lg text-sm font-medium text-text-2 hover:text-text transition-colors"
+        class="hidden lg:inline-flex items-center justify-center h-10 px-3 xl:px-4 rounded-lg text-sm font-medium text-text-2 hover:text-text transition-colors"
       >
         {cta.secondary.label}
       </a>
       <a
         href={cta.primary.href}
-        class="hidden md:inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-sm font-medium bg-stentor text-white hover:bg-stentor-dark transition-colors shadow-[0_8px_22px_-12px_rgba(24,88,200,0.55)] whitespace-nowrap"
+        class="hidden lg:inline-flex items-center justify-center gap-2 h-10 px-3 xl:px-4 rounded-lg text-sm font-medium bg-stentor text-white hover:bg-stentor-dark transition-colors shadow-[0_8px_22px_-12px_rgba(24,88,200,0.55)] whitespace-nowrap"
       >
         {cta.primary.label} <span aria-hidden="true">→</span>
       </a>
@@ -124,7 +124,7 @@ const cta = isFr
         x-bind:aria-expanded="open.toString()"
         aria-controls="mobile-nav"
         aria-label="Apri o chiudi il menu"
-        class="md:hidden ml-1 inline-flex items-center justify-center w-10 h-10 rounded-md text-text-2 hover:text-text hover:bg-surface-2 transition-colors"
+        class="lg:hidden ml-1 inline-flex items-center justify-center w-10 h-10 rounded-md text-text-2 hover:text-text hover:bg-surface-2 transition-colors"
       >
         <IconMenu class="w-5 h-5 stroke-2" x-show="!open" />
         <IconX class="w-5 h-5 stroke-2" x-show="open" x-cloak />
@@ -145,7 +145,7 @@ const cta = isFr
   x-transition:leave="transition ease-in duration-150"
   x-transition:leave-start="opacity-100 translate-y-0 scale-100"
   x-transition:leave-end="opacity-0 -translate-y-2 scale-[0.97]"
-  class="md:hidden fixed left-3 right-3 top-[70px] z-50 origin-top rounded-2xl border border-hairline-strong bg-white/95 backdrop-blur-xl shadow-[0_20px_60px_-28px_rgba(37,61,96,0.35)]"
+  class="lg:hidden fixed left-3 right-3 top-[70px] z-50 origin-top rounded-2xl border border-hairline-strong bg-white/95 backdrop-blur-xl shadow-[0_20px_60px_-28px_rgba(37,61,96,0.35)]"
   role="dialog"
   aria-label="Menu di navigazione"
 >
@@ -218,6 +218,6 @@ const cta = isFr
   x-transition:leave-start="opacity-100"
   x-transition:leave-end="opacity-0"
   aria-hidden="true"
-  class="md:hidden fixed inset-0 top-16 z-40 bg-slate-900/15 backdrop-blur-sm"
+  class="lg:hidden fixed inset-0 top-16 z-40 bg-slate-900/15 backdrop-blur-sm"
 ></div>
 </div>

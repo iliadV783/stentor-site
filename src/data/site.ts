@@ -27,10 +27,10 @@ export const site = {
 export type NavId = "features" | "docs" | "customers" | "changelog" | "about";
 
 export const nav: { href: string; label: string; id: NavId }[] = [
+  { href: "/about", label: "Project", id: "about" },
   { href: "/features", label: "Features", id: "features" },
-  { href: "/docs", label: "Workflow", id: "docs" },
+  { href: "/docs", label: "Documentation", id: "docs" },
   { href: "/for-theatres", label: "For Theatres", id: "customers" },
-  { href: "/about", label: "About", id: "about" },
 ];
 
 export const navCta = {

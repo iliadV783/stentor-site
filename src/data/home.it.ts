@@ -3,11 +3,11 @@
  */
 
 export const hero = {
-  eyebrow: "Aggiornamento v0.1.75 · Audiodescrizione dal vivo e prima infrastruttura cloud reale",
+  eyebrow: "v0.2 · Beta release for internal testers",
   title:
     'Soprattitoli, traduzione <em class="not-italic text-stentor font-medium">e audiodescrizioni.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
-    "Un ambiente di regia per preparare i testi, coordinare lingue e audiodescrizioni, sincronizzare schermi e dispositivi del pubblico, raccogliere questionari e lavorare in cloud durante prove e spettacoli.",
+    "Un ambiente di regia per preparare testi e sopratitoli, coordinare lingue e audiodescrizioni, sincronizzare schermi e dispositivi del pubblico, raccogliere questionari e lavorare durante prove e spettacoli.",
   ctas: [
     { href: "/it/download", label: "Scarica Sténtor", variant: "primary" as const },
     { href: "/it/richiedi-prova", label: "Attiva gratuitamente", variant: "ghost" as const, icon: "play" as const },
