@@ -8,6 +8,7 @@ const { locale = "it" } = Astro.props;
 const copy = {
   it: {
     kicker: "Dentro Sténtor",
+    stageLine: "Domani, e domani, e domani,",
     title: "Dal copione alla sala,<br/>nello stesso ambiente.",
     intro: "Prepara il testo, vai in scena e porta sottotitoli, traduzioni e accessibilità fino al pubblico.",
     explore: "Esplora tutte le funzioni",
@@ -36,6 +37,7 @@ const copy = {
   },
   en: {
     kicker: "Inside Sténtor",
+    stageLine: "Tomorrow, and tomorrow, and tomorrow,",
     title: "From script to stage,<br/>in one environment.",
     intro: "Prepare the text, go live and bring surtitles, translations and accessibility all the way to the audience.",
     explore: "Explore all features",
@@ -64,6 +66,7 @@ const copy = {
   },
   fr: {
     kicker: "Dans Sténtor",
+    stageLine: "Demain, et demain, et demain,",
     title: "Du texte à la scène,<br/>dans un même environnement.",
     intro: "Préparez le texte, passez en régie et diffusez surtitres, traductions et accessibilité jusqu’au public.",
     explore: "Découvrir toutes les fonctions",
@@ -92,6 +95,7 @@ const copy = {
   },
   es: {
     kicker: "Dentro de Sténtor",
+    stageLine: "Mañana, y mañana, y mañana,",
     title: "Del texto al escenario,<br/>en un mismo entorno.",
     intro: "Prepara el texto, pasa a escena y lleva sobretítulos, traducciones y accesibilidad hasta el público.",
     explore: "Explorar todas las funciones",
@@ -120,6 +124,7 @@ const copy = {
   },
   de: {
     kicker: "In Sténtor",
+    stageLine: "Morgen, und morgen, und morgen,",
     title: "Vom Text auf die Bühne,<br/>in einer Umgebung.",
     intro: "Bereite den Text vor, gehe live und bringe Übertitel, Übersetzungen und Barrierefreiheit bis zum Publikum.",
     explore: "Alle Funktionen entdecken",
@@ -200,7 +205,7 @@ const copy = {
 
           <div class="active">
             <span>023</span>
-            <b>LADY MACBETH</b>
+            <b>MACBETH</b>
           </div>
 
           <div>
@@ -230,13 +235,10 @@ const copy = {
           </div>
 
           <div class="stage-copy">
-            <small>LADY MACBETH</small>
-            <h3>Il silenzio è caduto sulla sala.</h3>
+            <small>MACBETH</small>
+            <h3>{copy.stageLine}</h3>
 
-            <div class="translation">
-              <span>EN</span>
-              <p>Silence has fallen over the hall.</p>
-            </div>
+
           </div>
 
           <div class="stage-bottom">
@@ -259,8 +261,8 @@ const copy = {
             </div>
 
             <strong>
-              Silence has fallen<br/>
-              over the hall.
+              Tomorrow, and tomorrow,<br/>
+              and tomorrow,
             </strong>
 
             <span>Cue 023</span>
