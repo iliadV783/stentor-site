@@ -1,152 +1,646 @@
 ---
-import IconCode from "../../../assets/icons/code.svg";
-import IconShieldCheck from "../../../assets/icons/shield-check.svg";
-import IconLightning from "../../../assets/icons/lightning.svg";
-import IconRefreshCcw from "../../../assets/icons/refresh-ccw.svg";
-import IconClock from "../../../assets/icons/clock.svg";
-import { bento as defaultBento } from "../../../data/home";
-import { bento as frBento } from "../../../data/home.fr";
-
-interface Props {
-  bento?: typeof defaultBento;
-}
-
-const { bento: propBento } = Astro.props;
-const bento = propBento ?? (Astro.url.pathname.startsWith("/fr") ? frBento : defaultBento);
-const c = bento.cards;
-const isFr = Astro.url.pathname.startsWith("/fr");
 const locale = Astro.url.pathname.split("/").filter(Boolean)[0] || "en";
-const featureCopy = {
-  en: { title: "Three essential workflows.", body: "From the first line to the live cue: the tools that keep text, timing and accessibility together." },
-  it: { title: "Tre flussi essenziali.", body: "Dalla prima battuta al cue dal vivo: gli strumenti che tengono insieme testo, tempo e accessibilità." },
-  fr: { title: "Trois flux essentiels.", body: "De la première réplique au cue en direct : les outils qui réunissent texte, rythme et accessibilité." },
-  es: { title: "Tres flujos esenciales.", body: "Desde la primera línea hasta el cue en vivo: las herramientas que reúnen texto, ritmo y accesibilidad." },
-  de: { title: "Drei wesentliche Abläufe.", body: "Von der ersten Zeile bis zum Live-Cue: Werkzeuge, die Text, Timing und Barrierefreiheit verbinden." },
-} as const;
-const features = featureCopy[locale as keyof typeof featureCopy] ?? featureCopy.en;
 ---
 
-<section class="py-20 lg:py-24" id="modes">
+{locale === "it" && (
+<section class="product-story" id="inside-stentor">
   <div class="max-w-[1280px] mx-auto px-4 md:px-8">
-    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6">
-      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] font-semibold" set:html={bento.title}></h2>
-      <p class="text-text-2 max-w-[420px]">{bento.description}</p>
+
+    <header class="product-story__intro">
+      <div>
+        <p class="product-kicker">Dentro Sténtor</p>
+        <h2>Dalla prima battuta<br/>allo spettacolo dal vivo.</h2>
+      </div>
+
+      <p>
+        Testo, traduzioni, accessibilità, schermi, pubblico e regia
+        restano nello stesso ambiente di lavoro.
+      </p>
+    </header>
+
+
+    <!-- =========================================================
+         TESTO
+    ========================================================== -->
+    <article class="story-step story-step--hero">
+      <div class="story-copy">
+        <span class="story-number">01</span>
+        <p class="story-label">Testo</p>
+        <h3>Prepara il copione.</h3>
+        <p>
+          Organizza le battute, assegna personaggi e tipi di riga,
+          prepara traduzioni e contenuti che accompagneranno lo spettacolo.
+        </p>
+      </div>
+
+      <div class="app-window app-window--text">
+        <div class="app-titlebar">
+          <div class="app-dots"><i></i><i></i><i></i></div>
+          <span>Sténtor</span>
+          <strong>Testo</strong>
+          <em>Macbett.stn</em>
+        </div>
+
+        <div class="text-app">
+          <aside class="app-sidebar">
+            <div class="sidebar-heading">BATTUTE</div>
+
+            <div class="sidebar-row">
+              <span>020</span>
+              <b>DUNCAN</b>
+            </div>
+
+            <div class="sidebar-row">
+              <span>021</span>
+              <b>MACBETT</b>
+            </div>
+
+            <div class="sidebar-row sidebar-row--active">
+              <span>022</span>
+              <b>LADY MACBETT</b>
+            </div>
+
+            <div class="sidebar-row">
+              <span>023</span>
+              <b>MACBETT</b>
+            </div>
+
+            <div class="sidebar-row">
+              <span>024</span>
+              <b>GUARDIA</b>
+            </div>
+
+            <div class="sidebar-row">
+              <span>025</span>
+              <b>BANCO</b>
+            </div>
+          </aside>
+
+          <main class="text-editor">
+            <div class="editor-toolbar">
+              <span>Numero <b>022</b></span>
+              <span>Tipo riga <b>Battuta</b></span>
+              <span>Stato <b class="toolbar-ready">● Pronta</b></span>
+            </div>
+
+            <div class="editor-person">
+              LADY MACBETT
+            </div>
+
+            <div class="editor-line">
+              Il silenzio è caduto sulla sala.
+            </div>
+
+            <div class="language-lines">
+              <div>
+                <span>EN</span>
+                <p>Silence has fallen over the hall.</p>
+              </div>
+
+              <div>
+                <span>FR</span>
+                <p>Le silence est tombé sur la salle.</p>
+              </div>
+
+              <div>
+                <span>DE</span>
+                <p>Stille hat sich über den Saal gelegt.</p>
+              </div>
+            </div>
+          </main>
+
+          <aside class="text-inspector">
+            <div class="inspector-title">DETTAGLI</div>
+
+            <div class="inspector-field">
+              <span>Personaggio</span>
+              <b>Lady Macbett</b>
+            </div>
+
+            <div class="inspector-field">
+              <span>Lingua</span>
+              <b>Italiano</b>
+            </div>
+
+            <div class="inspector-field">
+              <span>Cue</span>
+              <b>022</b>
+            </div>
+
+            <div class="inspector-field">
+              <span>Schermo</span>
+              <b>Sala</b>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- =========================================================
+         SCHERMI + PUBBLICO
+    ========================================================== -->
+    <div class="story-pair">
+
+      <article class="story-step">
+        <div class="story-copy story-copy--compact">
+          <span class="story-number">02</span>
+          <p class="story-label">Schermi</p>
+          <h3>Porta il testo in sala.</h3>
+          <p>
+            Configura uscite e lingue e controlla ciò che verrà mostrato
+            sui display durante lo spettacolo.
+          </p>
+        </div>
+
+        <div class="app-window">
+          <div class="app-titlebar">
+            <div class="app-dots"><i></i><i></i><i></i></div>
+            <span>Sténtor</span>
+            <strong>Schermi</strong>
+          </div>
+
+          <div class="screens-app">
+            <div class="screen-row screen-row--active">
+              <div>
+                <span class="screen-icon"></span>
+                <p>Schermo sala</p>
+              </div>
+              <em>Connesso</em>
+            </div>
+
+            <div class="screen-row">
+              <div>
+                <span class="screen-icon"></span>
+                <p>Schermo foyer</p>
+              </div>
+              <em>Connesso</em>
+            </div>
+
+            <div class="screen-config">
+              <div>
+                <span>Lingua</span>
+                <b>English</b>
+              </div>
+              <div>
+                <span>Modalità</span>
+                <b>Soprattitoli</b>
+              </div>
+              <div>
+                <span>Uscita</span>
+                <b>1920 × 1080</b>
+              </div>
+            </div>
+
+            <div class="screen-monitor">
+              <div class="screen-monitor__meta">
+                <span>ANTEPRIMA</span>
+                <em>EN · cue 022</em>
+              </div>
+              <strong>
+                Silence has fallen<br/>
+                over the hall.
+              </strong>
+              <small>Schermo sala · pronto</small>
+            </div>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="story-step">
+        <div class="story-copy story-copy--compact">
+          <span class="story-number">03</span>
+          <p class="story-label">Pubblico</p>
+          <h3>Raggiungi ogni spettatore.</h3>
+          <p>
+            Telefoni personali possono ricevere soprattitoli,
+            traduzioni e contenuti accessibili sincronizzati con la regia.
+          </p>
+        </div>
+
+        <div class="app-window">
+          <div class="app-titlebar">
+            <div class="app-dots"><i></i><i></i><i></i></div>
+            <span>Sténtor</span>
+            <strong>Pubblico</strong>
+          </div>
+
+          <div class="audience-app">
+            <div class="audience-left">
+              <div class="audience-stat">
+                <span>Dispositivi connessi</span>
+                <b>18</b>
+              </div>
+
+              <div class="audience-stat">
+                <span>Sottotitoli</span>
+                <b>12</b>
+              </div>
+
+              <div class="audience-stat">
+                <span>Audiodescrizione</span>
+                <b>6</b>
+              </div>
+
+              <div class="audience-access">
+                <span>ACCESSO PUBBLICO</span>
+                <b>stentor.local</b>
+                <small>QR e rete locale pronti</small>
+              </div>
+
+              <div class="network-ok">
+                <i></i>
+                Rete locale attiva
+              </div>
+            </div>
+
+            <div class="audience-phone audience-phone--welcome">
+              <div class="phone-speaker"></div>
+
+              <span class="welcome-brand">STÉNTOR</span>
+
+              <div class="welcome-copy">
+                <strong>Benvenuto in Sténtor</strong>
+                <p>Segui lo spettacolo sul tuo dispositivo.</p>
+              </div>
+
+              <div class="welcome-options">
+                <button class="is-selected">
+                  <span>CC</span>
+                  <b>Sottotitoli</b>
+                </button>
+
+                <button>
+                  <span>文</span>
+                  <b>Traduzione</b>
+                </button>
+
+                <button>
+                  <span>AD</span>
+                  <b>Audiodescrizione</b>
+                </button>
+              </div>
+
+              <div class="welcome-language">
+                <span>Lingua</span>
+                <b>Italiano⌄</b>
+              </div>
+
+              <button class="welcome-enter">
+                Entra nello spettacolo
+              </button>
+
+              <small class="welcome-network">
+                ● Connesso alla rete del teatro
+              </small>
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div>
 
-    <div class="grid gap-5 lg:grid-cols-2">
-        <article class="bento">
-          <div class="bento__head">
-            <div class="bento__icon"><IconCode class="w-4 h-4" /></div>
-            <div>
-              <div class="bento__title">{c.types.title}</div>
-              <div class="bento__desc">{c.types.desc}</div>
-            </div>
-          </div>
-          <div class="script-preview" aria-hidden="true">
-            <div class="script-preview__page">
-              <div class="script-preview__line script-preview__line--wide"></div>
-              <div class="script-preview__line"></div>
-              <div class="script-preview__line script-preview__line--accent"></div>
-              <div class="script-preview__line script-preview__line--short"></div>
-            </div>
-            <div class="translation-stack">
-              <div><span>{isFr ? "source" : "source"}</span><b>Macbett</b></div>
-              <div><span>{isFr ? "surtitres" : "surtitles"}</span><b>EN</b></div>
-              <div><span>{isFr ? "traduction" : "translation"}</span><b>IT</b></div>
-            </div>
-          </div>
-        </article>
 
-        <article class="bento">
-          <div class="bento__head">
-            <div class="bento__icon"><IconClock class="w-4 h-4" /></div>
-            <div>
-              <div class="bento__title">{c.p95.title}</div>
-              <div class="bento__desc">{c.p95.desc}</div>
+    <!-- =========================================================
+         REGIA INTERATTIVA
+    ========================================================== -->
+    <article class="story-step story-step--regia">
+      <div class="story-copy story-copy--regia">
+        <span class="story-number">04</span>
+        <p class="story-label">Regia</p>
+        <h3>Vai in scena.</h3>
+        <p>
+          Durante lo spettacolo la regia mantiene il cue corrente,
+          quello successivo, gli schermi e il pubblico nello stesso flusso.
+        </p>
+
+        <div class="live-hint">
+          <i></i>
+          Prova la simulazione
+        </div>
+      </div>
+
+      <div class="regia-demo" data-regia-demo>
+
+        <div class="app-titlebar app-titlebar--dark">
+          <div class="app-dots"><i></i><i></i><i></i></div>
+          <span>Sténtor</span>
+          <strong>Regia</strong>
+          <em class="live-pill">LIVE</em>
+        </div>
+
+        <div class="regia-statusbar">
+          <div><span>SPETTACOLO</span><b>Macbett</b></div>
+          <div><span>STATO</span><b class="regia-live-status">● In scena</b></div>
+          <div><span>SCHERMI</span><b>2 pronti</b></div>
+          <div><span>PUBBLICO</span><b>18 connessi</b></div>
+        </div>
+
+        <div class="regia-workspace">
+
+          <aside class="regia-cues">
+            <div class="regia-cues__title">CUES</div>
+
+            <button data-cue-select="0">
+              <span>021</span>
+              <b>Duncan</b>
+            </button>
+
+            <button class="is-current" data-cue-select="1">
+              <span>022</span>
+              <b>Lady Macbett</b>
+            </button>
+
+            <button data-cue-select="2">
+              <span>023</span>
+              <b>Macbett</b>
+            </button>
+
+            <button data-cue-select="3">
+              <span>024</span>
+              <b>Guardia</b>
+            </button>
+          </aside>
+
+
+          <main class="regia-main">
+            <div class="regia-current-label">
+              CUE CORRENTE
+            </div>
+
+            <div class="regia-current-number" data-current-number>
+              022
+            </div>
+
+            <div class="regia-speaker" data-current-speaker>
+              LADY MACBETT
+            </div>
+
+            <div class="regia-line" data-current-line>
+              Il silenzio è caduto sulla sala.
+            </div>
+
+            <div class="regia-next">
+              <span>SUCCESSIVO</span>
+              <b data-next-cue>023 · Macbett</b>
+            </div>
+
+            <div class="regia-progress">
+              <div>
+                <span>23 / 86 cue</span>
+                <em>27%</em>
+              </div>
+              <i><b></b></i>
+            </div>
+
+            <div class="regia-controls">
+              <button data-regia-prev>← Indietro</button>
+              <button class="regia-forward" data-regia-next>Avanti →</button>
+            </div>
+          </main>
+
+
+          <aside class="regia-output">
+
+            <div class="output-card">
+              <div class="output-card__head">
+                <span>Schermo sala</span>
+                <em>ON</em>
+              </div>
+
+              <div class="output-screen">
+                <strong data-screen-line>
+                  Silence has fallen<br/>over the hall.
+                </strong>
+              </div>
+            </div>
+
+
+            <div class="output-card">
+              <div class="output-card__head">
+                <span>Pubblico</span>
+                <em>18</em>
+              </div>
+
+              <div class="output-phone-mini">
+                <span>EN</span>
+                <strong data-phone-line>
+                  Silence has fallen over the hall.
+                </strong>
+              </div>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </article>
+
+
+    <!-- =========================================================
+         ACCESSIBILITÀ + FEEDBACK
+    ========================================================== -->
+    <div class="story-pair story-pair--last">
+
+      <article class="story-step">
+        <div class="story-copy story-copy--compact">
+          <span class="story-number">05</span>
+          <p class="story-label">Audiodescrizione</p>
+          <h3>Prepara l’accessibilità accanto al testo.</h3>
+          <p>
+            Le note restano associate ai punti del copione e possono
+            seguire lo stesso tempo vivo dello spettacolo.
+          </p>
+        </div>
+
+        <div class="app-window">
+          <div class="app-titlebar">
+            <div class="app-dots"><i></i><i></i><i></i></div>
+            <span>Sténtor</span>
+            <strong>Audiodescrizione</strong>
+          </div>
+
+          <div class="ad-app">
+            <div class="ad-script">
+              <span>022 · LADY MACBETT</span>
+              <p>Il silenzio è caduto sulla sala.</p>
+            </div>
+
+            <div class="ad-note">
+              <div>
+                <span>NOTA AD · 022</span>
+                <em>Pronta</em>
+              </div>
+
+              <p>
+                La scena resta buia. Lady Macbett avanza lentamente
+                verso il centro.
+              </p>
+            </div>
+
+            <div class="ad-note ad-note--muted">
+              <div>
+                <span>NOTA AD · 023</span>
+                <em>Successiva</em>
+              </div>
+
+              <p>Macbett si volta verso il fondo della scena.</p>
             </div>
           </div>
-          <div class="live-card" aria-hidden="true">
-            <div class="live-card__screen">
-              <span>{isFr ? "cue actuel" : "current cue"}</span>
-              <strong>024</strong>
-              <em>{isFr ? "en direct" : "live"}</em>
-            </div>
-            <div class="cue-timeline">
-              <i style="width: 62%;"></i>
-              <span style="left: 18%;"></span>
-              <span style="left: 45%;"></span>
-              <span style="left: 72%;"></span>
+        </div>
+      </article>
+
+
+      <article class="story-step">
+        <div class="story-copy story-copy--compact">
+          <span class="story-number">06</span>
+          <p class="story-label">Feedback</p>
+          <h3>Ascolta ciò che succede dopo.</h3>
+          <p>
+            Questionari e risposte aiutano a capire l’esperienza
+            del pubblico e a migliorare il progetto.
+          </p>
+        </div>
+
+        <div class="app-window">
+          <div class="app-titlebar">
+            <div class="app-dots"><i></i><i></i><i></i></div>
+            <span>Sténtor</span>
+            <strong>Feedback</strong>
+          </div>
+
+          <div class="feedback-app feedback-app--split">
+            <aside class="feedback-nav">
+              <span>QUESTIONARIO</span>
+              <button class="is-active">01 · Utilità</button>
+              <button>02 · Chiarezza</button>
+              <button>03 · Accessibilità</button>
+              <button>04 · Commenti</button>
+            </aside>
+
+            <div class="feedback-results">
+              <div class="feedback-total">
+                <span>RISPOSTE</span>
+                <b>42</b>
+              </div>
+
+              <p class="feedback-question">
+                Quanto ti è stato utile il servizio?
+              </p>
+
+              <div class="feedback-row">
+                <span>Molto</span>
+                <div><i style="width:76%"></i></div>
+                <b>76%</b>
+              </div>
+
+              <div class="feedback-row">
+                <span>Abbastanza</span>
+                <div><i style="width:18%"></i></div>
+                <b>18%</b>
+              </div>
+
+              <div class="feedback-row">
+                <span>Poco</span>
+                <div><i style="width:6%"></i></div>
+                <b>6%</b>
+              </div>
+
+              <blockquote>
+                “Ho seguito lo spettacolo senza perdere una battuta.”
+              </blockquote>
             </div>
           </div>
-          <div class="grid gap-1.5 w-full font-mono text-xs mt-auto">
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 100ms"><span>{isFr ? "telephones" : "phones"}</span><b class="text-text font-medium">18</b><span class="text-text-3">{isFr ? "connectes" : "connected"}</span></div>
-            <div class="row-list-item" data-animate="fade" style="transition-delay: 200ms"><span>{isFr ? "ecrans" : "screens"}</span><b class="text-text font-medium">2</b><span class="text-text-3">{isFr ? "prets" : "ready"}</span></div>
-          </div>
-        </article>
+        </div>
+      </article>
+
     </div>
+
   </div>
 </section>
+)}
 
-<section class="pb-20 lg:pb-24" id="features">
-  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
-      <h2 class="text-3xl md:text-4xl tracking-[-0.035em] max-w-[640px] font-semibold">{features.title}</h2>
-      <p class="text-text-2 max-w-[460px]">{features.body}</p>
-    </div>
+<script is:inline>
+  (() => {
+    const demos = document.querySelectorAll("[data-regia-demo]");
 
-    <div class="grid gap-5 lg:grid-cols-3">
-        <article class="bento">
-          <div class="bento__head">
-            <div class="bento__icon"><IconLightning class="w-4 h-4" /></div>
-            <div>
-              <div class="bento__title">{c.edge.title}</div>
-              <div class="bento__desc">{c.edge.desc}</div>
-            </div>
-          </div>
-          <div class="phone-preview" aria-hidden="true">
-            <div class="phone-card"><span>EN</span><b>O my country, poor country!</b></div>
-            <div class="phone-card"><span>IT</span><b>O mio paese, povero paese!</b></div>
-            <div class="phone-card"><span>AD</span><b>Dark stage. A pause before the line.</b></div>
-          </div>
-        </article>
+    const cues = [
+      {
+        number: "021",
+        speaker: "DUNCAN",
+        line: "È tempo di entrare.",
+        next: "022 · Lady Macbett",
+        screen: "It is time to enter."
+      },
+      {
+        number: "022",
+        speaker: "LADY MACBETT",
+        line: "Il silenzio è caduto sulla sala.",
+        next: "023 · Macbett",
+        screen: "Silence has fallen over the hall."
+      },
+      {
+        number: "023",
+        speaker: "MACBETT",
+        line: "Non resta che attraversare la notte.",
+        next: "024 · Guardia",
+        screen: "We need only cross the night."
+      },
+      {
+        number: "024",
+        speaker: "GUARDIA",
+        line: "Qualcuno si avvicina.",
+        next: "Fine sequenza",
+        screen: "Someone is approaching."
+      }
+    ];
 
-        <article class="bento">
-          <div class="bento__head">
-            <div class="bento__icon"><IconRefreshCcw class="w-4 h-4" /></div>
-            <div>
-              <div class="bento__title">{c.migrations.title}</div>
-              <div class="bento__desc">{c.migrations.desc}</div>
-            </div>
-          </div>
-          <div class="operator-mini" aria-hidden="true">
-            <div class="operator-mini__cue"><span>{isFr ? "actuel" : "current"}</span><b>cue 024</b><em>live</em></div>
-            <div class="operator-mini__cue"><span>{isFr ? "suivant" : "next"}</span><b>cue 025</b><em>ready</em></div>
-            <div class="operator-mini__text">“O my country, poor country!”</div>
-            <div class="cue-timeline cue-timeline--small"><i style="width: 62%;"></i><span style="left: 62%;"></span></div>
-          </div>
-        </article>
+    demos.forEach((demo) => {
+      let index = 1;
 
-        <article class="bento">
-          <div class="bento__head">
-            <div class="bento__icon"><IconShieldCheck class="w-4 h-4" /></div>
-            <div>
-              <div class="bento__title">{c.auth.title}</div>
-              <div class="bento__desc">{c.auth.desc}</div>
-            </div>
-          </div>
-          <div class="project-board" aria-hidden="true">
-            <div class="project-board__bar"><span>Macbett</span><span class="tag tag--green">live</span></div>
-            <div class="project-board__grid">
-              <div><span>Script</span><b>Italian source</b></div>
-              <div><span>Surtitles</span><b>English</b></div>
-              <div><span>Audio description</span><b>35 notes</b></div>
-              <div><span>Access</span><b>synced</b></div>
-            </div>
-          </div>
-        </article>
-    </div>
-  </div>
-</section>
+      const number = demo.querySelector("[data-current-number]");
+      const speaker = demo.querySelector("[data-current-speaker]");
+      const line = demo.querySelector("[data-current-line]");
+      const nextCue = demo.querySelector("[data-next-cue]");
+      const screenLine = demo.querySelector("[data-screen-line]");
+      const phoneLine = demo.querySelector("[data-phone-line]");
+      const buttons = demo.querySelectorAll("[data-cue-select]");
+
+      const render = () => {
+        const cue = cues[index];
+
+        number.textContent = cue.number;
+        speaker.textContent = cue.speaker;
+        line.textContent = cue.line;
+        nextCue.textContent = cue.next;
+        screenLine.textContent = cue.screen;
+        phoneLine.textContent = cue.screen;
+
+        buttons.forEach((btn, buttonIndex) => {
+          btn.classList.toggle("is-current", buttonIndex === index);
+        });
+      };
+
+      demo.querySelector("[data-regia-prev]")?.addEventListener("click", () => {
+        index = Math.max(0, index - 1);
+        render();
+      });
+
+      demo.querySelector("[data-regia-next]")?.addEventListener("click", () => {
+        index = Math.min(cues.length - 1, index + 1);
+        render();
+      });
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          index = Number(btn.dataset.cueSelect);
+          render();
+        });
+      });
+    });
+  })();
+</script>
 
 <style>
   @reference "../../../styles/global.css";
@@ -206,4 +700,824 @@ const features = featureCopy[locale as keyof typeof featureCopy] ?? featureCopy.
   .account-preview__code b { @apply text-text font-mono text-sm break-all; }
   .account-preview__row { @apply grid grid-cols-[90px_1fr] gap-3 items-center rounded-md border border-hairline bg-surface-2 px-3 py-2; }
   .account-preview__row b { @apply text-text font-medium text-sm; }
+
+
+  /* ============================================================
+     DENTRO STÉNTOR — PRODUCT STORY
+  ============================================================ */
+
+  .product-story {
+    @apply py-20 lg:py-28 border-t border-hairline;
+  }
+
+  .product-story__intro {
+    @apply flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14 lg:mb-20;
+  }
+
+  .product-story__intro h2 {
+    @apply text-4xl md:text-5xl lg:text-[58px] leading-[0.98] tracking-[-0.055em] font-semibold;
+  }
+
+  .product-story__intro > p {
+    @apply text-text-2 max-w-[470px] text-base md:text-lg leading-relaxed;
+  }
+
+  .product-kicker {
+    @apply font-mono text-[11px] tracking-[0.1em] uppercase text-stentor mb-4;
+  }
+
+  .story-step {
+    @apply grid gap-7 lg:gap-10 mb-16 lg:mb-24;
+  }
+
+  .story-step--hero {
+    @apply lg:grid-cols-[300px_1fr] lg:items-start;
+  }
+
+  .story-copy {
+    @apply max-w-[430px];
+  }
+
+  .story-copy--compact {
+    @apply mb-1;
+  }
+
+  .story-number {
+    @apply block font-mono text-[11px] text-text-3 mb-3;
+  }
+
+  .story-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.08em] text-stentor mb-3;
+  }
+
+  .story-copy h3 {
+    @apply text-3xl md:text-4xl tracking-[-0.04em] font-semibold mb-4;
+  }
+
+  .story-copy > p:last-child {
+    @apply text-text-2 leading-relaxed;
+  }
+
+  .story-pair {
+    @apply grid lg:grid-cols-2 gap-8 lg:gap-10 mb-16 lg:mb-24;
+  }
+
+  .story-pair .story-step {
+    @apply mb-0;
+  }
+
+  .story-pair--last {
+    @apply mb-0;
+  }
+
+
+  /* APP WINDOW */
+
+  .app-window {
+    @apply overflow-hidden bg-surface border border-hairline rounded-[14px] shadow-[0_30px_75px_-55px_rgba(19,45,82,.55)];
+  }
+
+  .app-window--text {
+    min-height: 470px;
+  }
+
+  .app-titlebar {
+    @apply h-11 px-4 flex items-center gap-3 border-b border-hairline bg-bg font-mono text-[10px] text-text-3;
+  }
+
+  .app-titlebar span {
+    @apply text-text-3;
+  }
+
+  .app-titlebar strong {
+    @apply text-text font-medium;
+  }
+
+  .app-titlebar em {
+    @apply ml-auto not-italic text-text-3;
+  }
+
+  .app-dots {
+    @apply flex gap-1.5 mr-1;
+  }
+
+  .app-dots i {
+    @apply block w-2.5 h-2.5 rounded-full bg-chrome;
+  }
+
+
+  /* TESTO */
+
+  .text-app {
+    @apply grid lg:grid-cols-[180px_1fr_180px];
+    min-height: 425px;
+  }
+
+  .app-sidebar {
+    @apply bg-bg border-r border-hairline p-3;
+  }
+
+  .sidebar-heading,
+  .inspector-title {
+    @apply font-mono text-[9px] tracking-[0.1em] text-text-3 px-2 py-2 mb-1;
+  }
+
+  .sidebar-row {
+    @apply grid grid-cols-[38px_1fr] gap-2 items-center px-2.5 py-2.5 rounded-md text-[11px];
+  }
+
+  .sidebar-row span {
+    @apply font-mono text-text-3;
+  }
+
+  .sidebar-row b {
+    @apply font-medium;
+  }
+
+  .sidebar-row--active {
+    @apply bg-stentor text-white;
+  }
+
+  .sidebar-row--active span {
+    @apply text-white/70;
+  }
+
+  .text-editor {
+    @apply p-5 md:p-7;
+  }
+
+  .editor-toolbar {
+    @apply flex flex-wrap gap-x-5 gap-y-2 pb-4 border-b border-hairline font-mono text-[9px] text-text-3;
+  }
+
+  .editor-toolbar b {
+    @apply font-medium text-text;
+  }
+
+  .editor-person {
+    @apply mt-8 font-mono text-[10px] tracking-[.08em] text-stentor;
+  }
+
+  .editor-line {
+    @apply text-2xl md:text-3xl lg:text-[34px] leading-[1.12] tracking-[-.04em] font-semibold mt-3 mb-8;
+  }
+
+  .language-lines {
+    @apply border-t border-hairline;
+  }
+
+  .language-lines > div {
+    @apply grid grid-cols-[36px_1fr] gap-3 py-3.5 border-b border-hairline;
+  }
+
+  .language-lines span {
+    @apply font-mono text-[10px] text-stentor;
+  }
+
+  .language-lines p {
+    @apply text-sm text-text-2;
+  }
+
+  .text-inspector {
+    @apply border-l border-hairline bg-bg p-3;
+  }
+
+  .inspector-field {
+    @apply px-2 py-3 border-b border-hairline;
+  }
+
+  .inspector-field span {
+    @apply block font-mono text-[9px] text-text-3 mb-1;
+  }
+
+  .inspector-field b {
+    @apply text-xs font-medium;
+  }
+
+
+  /* SCHERMI */
+
+  .screens-app {
+    @apply p-4 md:p-5;
+  }
+
+  .screen-row {
+    @apply flex items-center justify-between border border-hairline rounded-md px-3 py-2.5 mb-2 bg-bg;
+  }
+
+  .screen-row > div {
+    @apply flex items-center gap-2;
+  }
+
+  .screen-row p {
+    @apply text-xs font-medium;
+  }
+
+  .screen-row em {
+    @apply not-italic font-mono text-[9px] text-green-500;
+  }
+
+  .screen-row--active {
+    @apply border-stentor/30 bg-stentor/[.04];
+  }
+
+  .screen-icon {
+    @apply block w-5 h-3.5 border border-text-3 rounded-sm;
+  }
+
+  .screen-monitor {
+    @apply mt-4 min-h-[210px] rounded-lg bg-[#0c1320] text-white p-5 flex flex-col justify-between;
+  }
+
+  .screen-monitor span,
+  .screen-monitor small {
+    @apply font-mono text-[9px] text-slate-400;
+  }
+
+  .screen-monitor strong {
+    @apply text-xl md:text-2xl tracking-[-.035em] font-medium leading-snug;
+  }
+
+
+  /* PUBBLICO */
+
+  .audience-app {
+    @apply grid sm:grid-cols-[1fr_180px] gap-5 p-5 items-center;
+  }
+
+  .audience-left {
+    @apply grid gap-2;
+  }
+
+  .audience-stat {
+    @apply flex items-center justify-between border border-hairline bg-bg rounded-md px-3 py-3;
+  }
+
+  .audience-stat span {
+    @apply text-xs text-text-2;
+  }
+
+  .audience-stat b {
+    @apply text-lg;
+  }
+
+  .network-ok {
+    @apply flex items-center gap-2 mt-2 font-mono text-[9px] text-green-500;
+  }
+
+  .network-ok i,
+  .live-hint i {
+    @apply block w-2 h-2 rounded-full bg-green-500;
+  }
+
+  .audience-phone {
+    @apply relative mx-auto w-[160px] min-h-[270px] rounded-[28px] border-[5px] border-[#172033] bg-[#0c1320] text-white px-4 py-8 flex flex-col justify-center;
+  }
+
+  .phone-speaker {
+    @apply absolute top-3 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full bg-slate-700;
+  }
+
+  .audience-phone > span {
+    @apply font-mono text-[8px] text-blue-300 mb-8;
+  }
+
+  .audience-phone strong {
+    @apply text-[15px] leading-snug font-medium;
+  }
+
+  .audience-phone small {
+    @apply mt-8 font-mono text-[8px] text-slate-400;
+  }
+
+
+  /* REGIA */
+
+  .story-step--regia {
+    @apply lg:grid-cols-[270px_1fr] lg:items-start mb-20 lg:mb-28;
+  }
+
+  .story-copy--regia {
+    @apply lg:pt-5;
+  }
+
+  .live-hint {
+    @apply flex items-center gap-2 mt-7 font-mono text-[10px] text-text-3;
+  }
+
+  .regia-demo {
+    @apply overflow-hidden rounded-[14px] border border-slate-700 bg-[#0a101b] shadow-[0_35px_90px_-55px_rgba(0,0,0,.9)];
+  }
+
+  .app-titlebar--dark {
+    @apply border-slate-800 bg-[#111827] text-slate-400;
+  }
+
+  .app-titlebar--dark strong {
+    @apply text-white;
+  }
+
+  .live-pill {
+    @apply ml-auto not-italic text-green-400;
+  }
+
+  .regia-workspace {
+    @apply grid lg:grid-cols-[150px_1fr_215px] min-h-[470px];
+  }
+
+  .regia-cues {
+    @apply border-r border-slate-800 bg-[#0d1421] p-3;
+  }
+
+  .regia-cues__title {
+    @apply font-mono text-[9px] tracking-[.1em] text-slate-500 px-2 py-2 mb-1;
+  }
+
+  .regia-cues button {
+    @apply w-full grid grid-cols-[36px_1fr] gap-2 text-left px-2.5 py-3 rounded-md text-[10px] text-slate-400;
+  }
+
+  .regia-cues button span {
+    @apply font-mono text-slate-500;
+  }
+
+  .regia-cues button b {
+    @apply font-medium;
+  }
+
+  .regia-cues button.is-current {
+    @apply bg-stentor text-white;
+  }
+
+  .regia-cues button.is-current span {
+    @apply text-white/70;
+  }
+
+  .regia-main {
+    @apply p-5 md:p-7 text-white flex flex-col;
+  }
+
+  .regia-current-label {
+    @apply font-mono text-[9px] tracking-[.1em] text-slate-500;
+  }
+
+  .regia-current-number {
+    @apply text-6xl md:text-7xl leading-none tracking-[-.07em] font-semibold mt-3;
+  }
+
+  .regia-speaker {
+    @apply font-mono text-[9px] tracking-[.1em] text-blue-300 mt-7;
+  }
+
+  .regia-line {
+    @apply text-xl md:text-2xl lg:text-[28px] leading-tight tracking-[-.035em] font-medium mt-2;
+  }
+
+  .regia-next {
+    @apply mt-auto pt-8 pb-4 border-t border-slate-800;
+  }
+
+  .regia-next span {
+    @apply block font-mono text-[8px] text-slate-500 mb-1;
+  }
+
+  .regia-next b {
+    @apply text-xs text-slate-300 font-medium;
+  }
+
+  .regia-controls {
+    @apply grid grid-cols-2 gap-2;
+  }
+
+  .regia-controls button {
+    @apply rounded-md border border-slate-700 bg-slate-900 text-slate-300 px-3 py-3 text-xs;
+  }
+
+  .regia-controls .regia-forward {
+    @apply bg-stentor border-stentor text-white;
+  }
+
+  .regia-output {
+    @apply border-l border-slate-800 bg-[#0d1421] p-3 grid content-start gap-3;
+  }
+
+  .output-card {
+    @apply border border-slate-800 rounded-lg overflow-hidden bg-[#111827];
+  }
+
+  .output-card__head {
+    @apply flex items-center justify-between px-3 py-2 border-b border-slate-800 font-mono text-[8px] text-slate-400;
+  }
+
+  .output-card__head em {
+    @apply not-italic text-green-400;
+  }
+
+  .output-screen {
+    @apply min-h-[115px] p-4 flex items-center bg-black text-white;
+  }
+
+  .output-screen strong {
+    @apply text-sm leading-snug font-medium;
+  }
+
+  .output-phone-mini {
+    @apply m-3 min-h-[115px] rounded-xl border-2 border-slate-700 bg-[#0a101b] p-3 text-white;
+  }
+
+  .output-phone-mini span {
+    @apply block font-mono text-[8px] text-blue-300 mb-7;
+  }
+
+  .output-phone-mini strong {
+    @apply text-xs leading-snug font-medium;
+  }
+
+
+  /* AUDIODESCRIZIONE */
+
+  .ad-app {
+    @apply p-5;
+  }
+
+  .ad-script {
+    @apply pb-5 mb-3 border-b border-hairline;
+  }
+
+  .ad-script span {
+    @apply font-mono text-[9px] text-text-3;
+  }
+
+  .ad-script p {
+    @apply text-xl tracking-[-.025em] font-medium mt-2;
+  }
+
+  .ad-note {
+    @apply rounded-lg border border-stentor/20 bg-stentor/[.04] p-4 mb-2;
+  }
+
+  .ad-note > div {
+    @apply flex justify-between gap-3 mb-3;
+  }
+
+  .ad-note span {
+    @apply font-mono text-[9px] text-stentor;
+  }
+
+  .ad-note em {
+    @apply not-italic font-mono text-[9px] text-green-500;
+  }
+
+  .ad-note p {
+    @apply text-sm text-text-2 leading-relaxed;
+  }
+
+  .ad-note--muted {
+    @apply bg-bg border-hairline;
+  }
+
+
+  /* FEEDBACK */
+
+  .feedback-app {
+    @apply p-5;
+  }
+
+  .feedback-total {
+    @apply flex items-end justify-between pb-4 mb-4 border-b border-hairline;
+  }
+
+  .feedback-total span {
+    @apply font-mono text-[9px] text-text-3;
+  }
+
+  .feedback-total b {
+    @apply text-3xl tracking-[-.05em];
+  }
+
+  .feedback-question {
+    @apply text-sm font-semibold mb-5;
+  }
+
+  .feedback-row {
+    @apply grid grid-cols-[76px_1fr_35px] gap-3 items-center mb-3;
+  }
+
+  .feedback-row span,
+  .feedback-row b {
+    @apply text-[10px];
+  }
+
+  .feedback-row b {
+    @apply font-mono text-right font-normal;
+  }
+
+  .feedback-row > div {
+    @apply h-1.5 bg-chrome rounded-full overflow-hidden;
+  }
+
+  .feedback-row i {
+    @apply block h-full bg-stentor rounded-full;
+  }
+
+  .feedback-app blockquote {
+    @apply mt-7 p-4 border border-hairline rounded-lg bg-bg text-sm italic text-text-2;
+  }
+
+
+  /* RESPONSIVE */
+
+  @media (max-width: 1023px) {
+    .text-app {
+      grid-template-columns: 150px 1fr;
+    }
+
+    .text-inspector {
+      display: none;
+    }
+
+    .regia-workspace {
+      grid-template-columns: 130px 1fr;
+    }
+
+    .regia-output {
+      display: none;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .text-app {
+      grid-template-columns: 1fr;
+    }
+
+    .app-sidebar {
+      display: none;
+    }
+
+    .audience-app {
+      grid-template-columns: 1fr;
+    }
+
+    .regia-workspace {
+      grid-template-columns: 1fr;
+    }
+
+    .regia-cues {
+      display: none;
+    }
+
+    .product-story__intro h2 {
+      @apply text-[38px];
+    }
+  }
+
+
+
+  /* SECOND POLISH PASS */
+
+  .toolbar-ready {
+    @apply text-green-500;
+  }
+
+  .screen-config {
+    @apply grid grid-cols-3 gap-2 mt-4;
+  }
+
+  .screen-config > div {
+    @apply border border-hairline rounded-md bg-bg px-3 py-2;
+  }
+
+  .screen-config span {
+    @apply block font-mono text-[8px] text-text-3 mb-1;
+  }
+
+  .screen-config b {
+    @apply text-[10px] font-medium;
+  }
+
+  .screen-monitor__meta {
+    @apply flex items-center justify-between;
+  }
+
+  .screen-monitor__meta em {
+    @apply not-italic font-mono text-[9px] text-slate-500;
+  }
+
+  .audience-access {
+    @apply mt-2 border border-stentor/20 bg-stentor/[.04] rounded-md px-3 py-3;
+  }
+
+  .audience-access span {
+    @apply block font-mono text-[8px] tracking-[.08em] text-stentor mb-1;
+  }
+
+  .audience-access b {
+    @apply block text-xs font-mono font-medium;
+  }
+
+  .audience-access small {
+    @apply block mt-1 text-[9px] text-text-3;
+  }
+
+  .regia-statusbar {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-px border-b border-slate-800 bg-slate-800;
+  }
+
+  .regia-statusbar > div {
+    @apply bg-[#0d1421] px-4 py-3;
+  }
+
+  .regia-statusbar span {
+    @apply block font-mono text-[8px] tracking-[.08em] text-slate-500 mb-1;
+  }
+
+  .regia-statusbar b {
+    @apply text-[10px] text-slate-300 font-medium;
+  }
+
+  .regia-live-status {
+    @apply text-green-400;
+  }
+
+  .regia-progress {
+    @apply mt-5 mb-4;
+  }
+
+  .regia-progress > div {
+    @apply flex items-center justify-between font-mono text-[8px] text-slate-500 mb-2;
+  }
+
+  .regia-progress > div em {
+    @apply not-italic;
+  }
+
+  .regia-progress > i {
+    @apply block relative h-1.5 rounded-full bg-slate-800 overflow-hidden;
+  }
+
+  .regia-progress > i > b {
+    @apply absolute inset-y-0 left-0 rounded-full bg-stentor;
+    width: 27%;
+  }
+
+  .feedback-app--split {
+    @apply grid sm:grid-cols-[125px_1fr] p-0;
+  }
+
+  .feedback-nav {
+    @apply bg-bg border-r border-hairline p-3;
+  }
+
+  .feedback-nav > span {
+    @apply block font-mono text-[8px] tracking-[.08em] text-text-3 px-2 py-2 mb-2;
+  }
+
+  .feedback-nav button {
+    @apply block w-full text-left rounded-md px-2 py-2.5 text-[10px] text-text-2 mb-1;
+  }
+
+  .feedback-nav button.is-active {
+    @apply bg-stentor text-white;
+  }
+
+  .feedback-results {
+    @apply p-5;
+  }
+
+  @media (max-width: 639px) {
+    .screen-config {
+      grid-template-columns: 1fr;
+    }
+
+    .feedback-app--split {
+      grid-template-columns: 1fr;
+    }
+
+    .feedback-nav {
+      display: none;
+    }
+  }
+
+
+
+  .audience-phone--welcome {
+    @apply justify-start gap-0 px-4 py-8;
+  }
+
+  .welcome-brand {
+    @apply font-mono text-[8px] text-blue-300 mb-6;
+  }
+
+  .welcome-copy strong {
+    @apply block text-[15px] leading-tight font-semibold mb-1;
+  }
+
+  .welcome-copy p {
+    @apply text-[10px] leading-snug text-slate-400;
+  }
+
+  .welcome-options {
+    @apply grid gap-2 mt-5;
+  }
+
+  .welcome-options button {
+    @apply grid grid-cols-[26px_1fr] items-center gap-2 rounded-lg border border-slate-700 bg-[#111827] px-2.5 py-2.5 text-left;
+  }
+
+  .welcome-options button > span {
+    @apply grid place-items-center w-6 h-6 rounded-md border border-slate-600 font-mono text-[8px] text-blue-300;
+  }
+
+  .welcome-options button b {
+    @apply text-[10px] font-medium text-slate-200;
+  }
+
+  .welcome-options button.is-selected {
+    @apply border-stentor bg-stentor/10;
+  }
+
+  .welcome-language {
+    @apply flex items-center justify-between border-t border-slate-800 mt-5 pt-4;
+  }
+
+  .welcome-language span {
+    @apply font-mono text-[8px] text-slate-500;
+  }
+
+  .welcome-language b {
+    @apply text-[9px] font-medium text-slate-200;
+  }
+
+  .welcome-enter {
+    @apply w-full rounded-lg bg-stentor text-white text-[10px] font-medium px-3 py-2.5 mt-4;
+  }
+
+  .welcome-network {
+    @apply block mt-4 font-mono text-[7px] text-green-400;
+  }
+
+
+
+  /* COMPACT IPHONE MOCKUP — PUBBLICO */
+
+  .audience-phone--welcome {
+    width: 172px;
+    min-height: 0;
+    aspect-ratio: 9 / 19.5;
+    overflow: hidden;
+    @apply px-3.5 pt-7 pb-4;
+  }
+
+  .audience-phone--welcome .phone-speaker {
+    @apply top-3 w-9;
+  }
+
+  .welcome-brand {
+    @apply mb-4 text-[7px];
+  }
+
+  .welcome-copy strong {
+    @apply text-[13px] leading-[1.08] mb-1;
+  }
+
+  .welcome-copy p {
+    @apply text-[8px] leading-[1.3];
+  }
+
+  .welcome-options {
+    @apply gap-1.5 mt-3.5;
+  }
+
+  .welcome-options button {
+    @apply grid-cols-[22px_1fr] gap-2 rounded-md px-2 py-1.5;
+  }
+
+  .welcome-options button > span {
+    @apply w-5 h-5 rounded text-[7px];
+  }
+
+  .welcome-options button b {
+    @apply text-[8px];
+  }
+
+  .welcome-language {
+    @apply mt-3 pt-2.5;
+  }
+
+  .welcome-language span {
+    @apply text-[7px];
+  }
+
+  .welcome-language b {
+    @apply text-[8px];
+  }
+
+  .welcome-enter {
+    @apply mt-3 px-2 py-2 rounded-md text-[8px] leading-tight;
+  }
+
+  .welcome-network {
+    @apply mt-3 text-[6px] leading-tight;
+  }
+
 </style>
