@@ -1,34 +1,870 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import Eyebrow from "../../../components/Eyebrow.astro";
 import Btn from "../../../components/Btn.astro";
-import FinalCta from "../../../components/FinalCta.astro";
-import Hero from "../../../components/sections/features/Hero.astro";
-import Showcase from "../../../components/sections/features/Showcase.astro";
-import SecondaryBento from "../../../components/sections/features/SecondaryBento.astro";
-import CodeTabs from "../../../components/sections/features/CodeTabs.astro";
-import { hero, showcase, secondaryBento, codeTabs, finalCta } from "../../../data/features.it";
 ---
+
 <Layout
   title="Sténtor – Funzioni"
-  description="Funzioni per preparare, pilotare e condividere sopratitoli, traduzioni e audio descrizioni nello spettacolo dal vivo."
+  description="Scopri come Sténtor organizza testo, lingue, audiodescrizione, schermi, pubblico, regia e feedback nello spettacolo dal vivo."
   active="features"
 >
-  <Hero hero={hero} />
-  <Showcase showcase={showcase} />
-  <SecondaryBento secondaryBento={secondaryBento} />
-  <CodeTabs codeTabs={codeTabs} />
 
-  <FinalCta>
-    <Eyebrow><span class="font-mono">{finalCta.eyebrow}</span></Eyebrow>
-    <h2 class="text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-[-0.04em] font-semibold max-w-[820px]" set:html={finalCta.title}></h2>
-    <p class="text-lg leading-[1.55] text-text-2 max-w-[640px]" set:html={finalCta.body}></p>
-    <div class="flex flex-wrap gap-3 justify-center">
-      {finalCta.ctas.map((cta, i) => (
-        <Btn href={cta.href} variant={cta.variant} size="lg">
-          {cta.label}{i === 0 && <span aria-hidden="true">→</span>}
-        </Btn>
-      ))}
+  <section class="features-hero">
+    <div class="max-w-[1180px] mx-auto px-4 md:px-8">
+      <p class="features-kicker">Funzioni</p>
+
+      <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-8 lg:gap-16 items-end">
+        <div>
+          <h1>Tutto ciò che serve<br/>per portare il testo in scena.</h1>
+        </div>
+
+        <p>
+          Sténtor riunisce preparazione, traduzione, accessibilità,
+          schermi, pubblico e regia live in un unico ambiente di lavoro
+          per lo spettacolo dal vivo.
+        </p>
+      </div>
+
+      <div class="features-flow">
+        <span>Testo</span>
+        <i>→</i>
+        <span>Lingue</span>
+        <i>→</i>
+        <span>Audiodescrizione</span>
+        <i>→</i>
+        <span>Schermi</span>
+        <i>→</i>
+        <span>Pubblico</span>
+        <i>→</i>
+        <span>Regia</span>
+        <i>→</i>
+        <span>Feedback</span>
+      </div>
     </div>
-  </FinalCta>
+  </section>
+
+
+  <section class="feature-section">
+    <div class="feature-grid">
+      <div class="feature-copy">
+        <span>01</span>
+        <p>TESTO</p>
+        <h2>Prepara il copione.</h2>
+        <div class="feature-body">
+          Organizza le battute, assegna personaggi, tipi di riga e stati,
+          e costruisci il materiale che accompagnerà tutto il resto del progetto.
+        </div>
+
+        <ul>
+          <li>Numero, personaggio e tipo di riga</li>
+          <li>Testo sorgente e note</li>
+          <li>Importazione da Word, TXT, SRT, WebVTT, CSV e JSON</li>
+          <li>Modifica continua durante prove e preparazione</li>
+        </ul>
+      </div>
+
+      <div class="feature-window">
+        <div class="window-top"><b>Sténtor</b><span>Testo</span><em>Macbett.stn</em></div>
+
+        <div class="text-demo">
+          <aside>
+            <small>BATTUTE</small>
+            <div>021 <b>DUNCAN</b></div>
+            <div>022 <b>MACBETT</b></div>
+            <div class="active">023 <b>LADY MACBETT</b></div>
+            <div>024 <b>MACBETT</b></div>
+            <div>025 <b>GUARDIA</b></div>
+          </aside>
+
+          <main>
+            <div class="meta-row">
+              <span>Numero <b>023</b></span>
+              <span>Tipo riga <b>Battuta</b></span>
+              <span>Stato <b>Pronta</b></span>
+            </div>
+
+            <small>LADY MACBETT</small>
+            <h3>Il silenzio è caduto sulla sala.</h3>
+
+            <div class="demo-row"><span>EN</span><p>Silence has fallen over the hall.</p></div>
+            <div class="demo-row"><span>FR</span><p>Le silence est tombé sur la salle.</p></div>
+            <div class="demo-row"><span>DE</span><p>Stille hat sich über den Saal gelegt.</p></div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-section feature-section--alt">
+    <div class="feature-grid feature-grid--reverse">
+      <div class="feature-copy">
+        <span>02</span>
+        <p>LINGUE</p>
+        <h2>Lavora con più lingue nello stesso progetto.</h2>
+        <div class="feature-body">
+          Le traduzioni restano associate alle battute e possono essere riutilizzate
+          su schermi, dispositivi del pubblico e altri output.
+        </div>
+
+        <ul>
+          <li>Originale e traduzioni nello stesso flusso</li>
+          <li>Lingue riutilizzabili in tutto il progetto</li>
+          <li>Soprattitoli e traduzioni sincronizzati</li>
+          <li>Preparazione indipendente dalla messa in scena</li>
+        </ul>
+      </div>
+
+      <div class="feature-window">
+        <div class="window-top"><b>Sténtor</b><span>Lingue</span></div>
+
+        <div class="languages-demo">
+          <div class="language-col">
+            <small>ORIGINALE · IT</small>
+            <b>Il silenzio è caduto sulla sala.</b>
+          </div>
+          <div class="language-col">
+            <small>EN</small>
+            <b>Silence has fallen over the hall.</b>
+          </div>
+          <div class="language-col">
+            <small>FR</small>
+            <b>Le silence est tombé sur la salle.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-section">
+    <div class="feature-grid">
+      <div class="feature-copy">
+        <span>03</span>
+        <p>AUDIODESCRIZIONE</p>
+        <h2>Prepara l’accessibilità accanto al testo.</h2>
+        <div class="feature-body">
+          Le note di audiodescrizione restano vicine al copione,
+          associate ai cue e pronte per essere usate durante lo spettacolo.
+        </div>
+
+        <ul>
+          <li>Note collegate alle battute</li>
+          <li>Stato pronta / successiva</li>
+          <li>Sincronizzazione con il flusso live</li>
+          <li>Preparazione e revisione durante le prove</li>
+        </ul>
+      </div>
+
+      <div class="feature-window">
+        <div class="window-top"><b>Sténtor</b><span>Audiodescrizione</span></div>
+
+        <div class="ad-demo">
+          <div>
+            <small>023 · LADY MACBETT</small>
+            <h3>Il silenzio è caduto sulla sala.</h3>
+          </div>
+
+          <article class="active">
+            <small>NOTA AD · 023</small>
+            <em>Pronta</em>
+            <p>La scena resta buia. Lady Macbett avanza lentamente verso il centro.</p>
+          </article>
+
+          <article>
+            <small>NOTA AD · 024</small>
+            <em>Successiva</em>
+            <p>Macbett si volta verso il fondo della scena.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-section feature-section--alt">
+    <div class="feature-grid feature-grid--reverse">
+      <div class="feature-copy">
+        <span>04</span>
+        <p>SCHERMI</p>
+        <h2>Configura ciò che viene mostrato in sala.</h2>
+        <div class="feature-body">
+          Ogni uscita può avere lingua, modalità e stato propri,
+          con una preview chiara prima e durante lo spettacolo.
+        </div>
+
+        <ul>
+          <li>Più schermi contemporaneamente</li>
+          <li>Lingua assegnata per uscita</li>
+          <li>Anteprima del contenuto</li>
+          <li>Stato di connessione e prontezza</li>
+        </ul>
+      </div>
+
+      <div class="feature-window feature-window--dark">
+        <div class="window-top window-top--dark"><b>Sténtor</b><span>Schermi</span></div>
+
+        <div class="screens-demo">
+          <div class="screen-list">
+            <div class="active"><span>Schermo sala</span><em>Connesso</em></div>
+            <div><span>Schermo foyer</span><em>Connesso</em></div>
+          </div>
+
+          <div class="screen-preview">
+            <small>ANTEPRIMA · EN</small>
+            <strong>Silence has fallen<br/>over the hall.</strong>
+            <em>Cue 023</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-section">
+    <div class="feature-grid">
+      <div class="feature-copy">
+        <span>05</span>
+        <p>PUBBLICO</p>
+        <h2>Porta Sténtor sui dispositivi degli spettatori.</h2>
+        <div class="feature-body">
+          Gli spettatori possono accedere dal proprio telefono e scegliere
+          il servizio più utile per seguire lo spettacolo.
+        </div>
+
+        <ul>
+          <li>Sottotitoli</li>
+          <li>Traduzione</li>
+          <li>Audiodescrizione</li>
+          <li>Accesso su rete locale</li>
+        </ul>
+      </div>
+
+      <div class="feature-window">
+        <div class="window-top"><b>Sténtor</b><span>Pubblico</span></div>
+
+        <div class="audience-demo">
+          <div class="audience-stats">
+            <div><span>Dispositivi connessi</span><b>18</b></div>
+            <div><span>Sottotitoli</span><b>12</b></div>
+            <div><span>Audiodescrizione</span><b>6</b></div>
+            <div class="audience-access"><small>ACCESSO PUBBLICO</small><b>stentor.local</b></div>
+          </div>
+
+          <div class="phone-demo">
+            <small>STÉNTOR</small>
+            <h3>Macbeth</h3>
+            <p>Segui lo spettacolo sul tuo dispositivo.</p>
+
+            <button>Sottotitoli</button>
+            <button>Traduzione</button>
+            <button>Audiodescrizione</button>
+
+            <div><span>Lingua</span><b>Italiano</b></div>
+            <strong>Entra nello spettacolo</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-section feature-section--regia">
+    <div class="feature-grid">
+      <div class="feature-copy feature-copy--dark">
+        <span>06</span>
+        <p>REGIA</p>
+        <h2>Conduci lo spettacolo dal vivo.</h2>
+        <div class="feature-body">
+          La vista Regia concentra cue corrente, cue successivo,
+          schermi e pubblico nello stesso ambiente operativo.
+        </div>
+
+        <ul>
+          <li>Avanti e indietro tra i cue</li>
+          <li>Cue corrente e successivo sempre visibili</li>
+          <li>Stato schermi e dispositivi del pubblico</li>
+          <li>Controllo manuale durante il vivo</li>
+        </ul>
+      </div>
+
+      <div class="feature-window feature-window--black">
+        <div class="window-top window-top--black"><b>Sténtor</b><span>Regia</span><em>LIVE</em></div>
+
+        <div class="regia-status">
+          <div><span>SPETTACOLO</span><b>Macbeth</b></div>
+          <div><span>SCHERMI</span><b>2 pronti</b></div>
+          <div><span>PUBBLICO</span><b>18 connessi</b></div>
+          <div><span>STATO</span><b class="live">● In scena</b></div>
+        </div>
+
+        <div class="regia-demo">
+          <aside>
+            <small>CUES</small>
+            <div>021 Duncan</div>
+            <div>022 Lady Macbett</div>
+            <div class="active">023 Macbett</div>
+            <div>024 Guardia</div>
+          </aside>
+
+          <main>
+            <small>CUE CORRENTE</small>
+            <strong>023</strong>
+            <em>MACBETT</em>
+            <h3>Non resta che attraversare la notte.</h3>
+
+            <div class="regia-next"><span>SUCCESSIVO</span><b>024 · Guardia</b></div>
+
+            <div class="regia-buttons">
+              <button>← Indietro</button>
+              <button>Avanti →</button>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-section">
+    <div class="feature-grid feature-grid--reverse">
+      <div class="feature-copy">
+        <span>07</span>
+        <p>FEEDBACK</p>
+        <h2>Raccogli ciò che succede dopo.</h2>
+        <div class="feature-body">
+          Questionari e risposte aiutano a capire l’esperienza del pubblico
+          e a migliorare il progetto.
+        </div>
+
+        <ul>
+          <li>Questionari personalizzabili</li>
+          <li>Risposte aggregate</li>
+          <li>Commenti del pubblico</li>
+          <li>Dati utili per ricerca e sviluppo</li>
+        </ul>
+      </div>
+
+      <div class="feature-window">
+        <div class="window-top"><b>Sténtor</b><span>Feedback</span></div>
+
+        <div class="feedback-demo">
+          <div class="feedback-total"><span>RISPOSTE</span><b>42</b></div>
+
+          <h3>Quanto ti è stato utile il servizio?</h3>
+
+          <div><span>Molto</span><i><b style="width:76%"></b></i><em>76%</em></div>
+          <div><span>Abbastanza</span><i><b style="width:18%"></b></i><em>18%</em></div>
+          <div><span>Poco</span><i><b style="width:6%"></b></i><em>6%</em></div>
+
+          <blockquote>“Ho seguito lo spettacolo senza perdere una battuta.”</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature-extras">
+    <div class="max-w-[1180px] mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-5">
+
+        <article>
+          <p>IMPORT / EXPORT</p>
+          <h2>Porta dentro i materiali.<br/>Portali fuori quando vuoi.</h2>
+          <div class="format-list">
+            <span>Word</span>
+            <span>TXT</span>
+            <span>SRT</span>
+            <span>WebVTT</span>
+            <span>CSV</span>
+            <span>JSON</span>
+          </div>
+        </article>
+
+        <article>
+          <p>PROGETTO</p>
+          <h2>Tutto resta nello stesso progetto Sténtor.</h2>
+          <div class="project-list">
+            <span>Testo</span>
+            <span>Lingue</span>
+            <span>Cue</span>
+            <span>Audiodescrizione</span>
+            <span>Schermi</span>
+            <span>Configurazioni</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="features-final">
+    <div class="max-w-[1180px] mx-auto px-4 md:px-8 text-center">
+      <p class="features-kicker">Sténtor</p>
+      <h2>Un solo ambiente.<br/>Dalla preparazione alla scena.</h2>
+      <p>
+        Sténtor è gratuito e disponibile per macOS, Windows e Linux.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3 mt-8">
+        <Btn href="/it/download" variant="primary" size="lg">Scarica <span aria-hidden="true">→</span></Btn>
+        <Btn href="/it/docs" variant="ghost" size="lg">Documentazione</Btn>
+      </div>
+    </div>
+  </section>
+
 </Layout>
+
+<style>
+  @reference "../../../styles/global.css";
+
+  .features-hero { @apply pt-24 lg:pt-32 pb-14; }
+  .features-kicker { @apply font-mono text-[11px] tracking-[.11em] uppercase text-stentor mb-5; }
+  .features-hero h1 { @apply text-5xl md:text-6xl lg:text-[72px] leading-[.98] tracking-[-.055em] font-semibold; }
+  .features-hero .grid > p { @apply text-lg text-text-2 leading-relaxed; }
+
+  .features-flow { @apply flex flex-wrap items-center gap-3 mt-12 pt-6 border-t border-hairline font-mono text-xs text-text-2; }
+  .features-flow i { @apply not-italic text-text-3; }
+
+  .feature-section { @apply py-20 lg:py-28 border-t border-hairline; }
+  .feature-section--alt { @apply bg-bg; }
+
+  .feature-grid { @apply max-w-[1180px] mx-auto px-4 md:px-8 grid lg:grid-cols-[300px_1fr] gap-10 lg:gap-16 items-start; }
+  .feature-grid--reverse { @apply lg:grid-cols-[1fr_300px]; }
+  .feature-grid--reverse .feature-copy { @apply lg:order-2; }
+  .feature-grid--reverse .feature-window { @apply lg:order-1; }
+
+  .feature-copy > span { @apply block font-mono text-[11px] text-text-3 mb-3; }
+  .feature-copy > p { @apply font-mono text-[11px] uppercase tracking-[.1em] text-stentor mb-3; }
+  .feature-copy h2 { @apply text-3xl md:text-4xl tracking-[-.04em] font-semibold mb-4; }
+  .feature-body { @apply text-text-2 leading-relaxed; }
+
+  .feature-copy ul { @apply mt-6 grid gap-2 text-sm text-text-2; }
+  .feature-copy li { @apply relative pl-5; }
+  .feature-copy li::before { content: "✓"; @apply absolute left-0 text-stentor; }
+
+  .feature-window { @apply overflow-hidden rounded-2xl border border-hairline bg-surface shadow-[0_30px_80px_-60px_rgba(37,61,96,.5)]; }
+  .window-top { @apply h-11 px-4 flex items-center gap-3 border-b border-hairline bg-bg font-mono text-[10px] text-text-3; }
+  .window-top b { @apply text-text font-medium; }
+  .window-top em { @apply ml-auto not-italic; }
+
+  .text-demo { @apply grid md:grid-cols-[170px_1fr] min-h-[390px]; }
+  .text-demo aside { @apply bg-bg border-r border-hairline p-3; }
+  .text-demo aside small { @apply block font-mono text-[9px] text-text-3 p-2 mb-1; }
+  .text-demo aside div { @apply px-2 py-2.5 rounded-md text-[11px] text-text-2; }
+  .text-demo aside div b { @apply ml-2 font-medium text-text; }
+  .text-demo aside .active { @apply bg-stentor text-white; }
+  .text-demo aside .active b { @apply text-white; }
+
+  .text-demo main { @apply p-6; }
+  .meta-row { @apply flex flex-wrap gap-4 border-b border-hairline pb-4 font-mono text-[9px] text-text-3; }
+  .meta-row b { @apply text-text font-medium; }
+  .text-demo main > small { @apply block mt-8 font-mono text-[9px] text-stentor; }
+  .text-demo main h3 { @apply text-3xl tracking-[-.04em] font-semibold mt-2 mb-7; }
+  .demo-row { @apply grid grid-cols-[36px_1fr] gap-3 py-3 border-t border-hairline text-sm; }
+  .demo-row span { @apply font-mono text-stentor text-[10px]; }
+  .demo-row p { @apply text-text-2; }
+
+  .languages-demo { @apply grid md:grid-cols-3 gap-px bg-hairline min-h-[320px]; }
+  .language-col { @apply bg-surface p-6 flex flex-col justify-center; }
+  .language-col small { @apply font-mono text-[9px] text-stentor mb-4; }
+  .language-col b { @apply text-xl leading-snug font-medium; }
+
+  .ad-demo { @apply p-6 grid gap-3; }
+  .ad-demo > div { @apply pb-5 border-b border-hairline; }
+  .ad-demo > div small { @apply font-mono text-[9px] text-text-3; }
+  .ad-demo > div h3 { @apply text-2xl font-medium mt-2; }
+  .ad-demo article { @apply relative rounded-lg border border-hairline bg-bg p-4; }
+  .ad-demo article.active { @apply border-stentor/30 bg-stentor/[.04]; }
+  .ad-demo article small { @apply font-mono text-[9px] text-stentor; }
+  .ad-demo article em { @apply absolute right-4 top-4 not-italic font-mono text-[9px] text-green-500; }
+  .ad-demo article p { @apply text-sm text-text-2 mt-3 leading-relaxed; }
+
+  .feature-window--dark { @apply bg-[#0c1320] border-slate-700; }
+  .window-top--dark { @apply bg-[#111827] border-slate-800 text-slate-400; }
+  .screens-demo { @apply p-5; }
+  .screen-list { @apply grid gap-2; }
+  .screen-list div { @apply flex justify-between rounded-md border border-slate-700 bg-[#111827] px-3 py-2.5 text-xs text-slate-300; }
+  .screen-list div.active { @apply border-stentor; }
+  .screen-list em { @apply not-italic font-mono text-[9px] text-green-400; }
+  .screen-preview { @apply min-h-[220px] mt-4 rounded-lg bg-black text-white p-5 flex flex-col justify-between; }
+  .screen-preview small,.screen-preview em { @apply font-mono text-[9px] text-slate-500 not-italic; }
+  .screen-preview strong { @apply text-2xl font-medium leading-snug; }
+
+  .audience-demo { @apply grid sm:grid-cols-[1fr_190px] gap-6 p-6 items-center; }
+  .audience-stats { @apply grid gap-2; }
+  .audience-stats > div { @apply flex justify-between rounded-md border border-hairline bg-bg px-3 py-3; }
+  .audience-stats span { @apply text-sm text-text-2; }
+  .audience-stats b { @apply text-lg; }
+  .audience-stats .audience-access { @apply block border-stentor/20 bg-stentor/[.04]; }
+  .audience-access small { @apply block font-mono text-[8px] text-stentor mb-1; }
+  .audience-access b { @apply font-mono text-sm font-medium; }
+
+  .phone-demo { @apply rounded-[28px] border-[5px] border-[#172033] bg-[#0c1320] text-white p-5 min-h-[330px] flex flex-col; }
+  .phone-demo > small { @apply font-mono text-[8px] text-blue-300 mb-6; }
+  .phone-demo h3 { @apply text-xl font-semibold; }
+  .phone-demo p { @apply text-[10px] text-slate-400 mt-1 mb-5; }
+  .phone-demo button { @apply rounded-md border border-slate-700 bg-[#111827] text-left text-[9px] px-3 py-2 mb-2; }
+  .phone-demo > div { @apply flex justify-between border-t border-slate-800 pt-3 mt-3 text-[8px]; }
+  .phone-demo > strong { @apply mt-4 bg-stentor rounded-md text-center text-[9px] py-2.5; }
+
+  .feature-section--regia { @apply bg-[#09111e] text-white border-slate-800; }
+  .feature-copy--dark > span { @apply text-slate-500; }
+  .feature-copy--dark > p { @apply text-blue-300; }
+  .feature-copy--dark .feature-body,
+  .feature-copy--dark ul { @apply text-slate-400; }
+
+  .feature-window--black { @apply bg-[#0a101b] border-slate-700; }
+  .window-top--black { @apply bg-[#111827] border-slate-800 text-slate-400; }
+  .window-top--black b { @apply text-white; }
+  .window-top--black em { @apply text-green-400; }
+
+  .regia-demo { @apply grid md:grid-cols-[150px_1fr] min-h-[420px]; }
+  .regia-demo aside { @apply bg-[#0d1421] border-r border-slate-800 p-3; }
+  .regia-demo aside small { @apply block font-mono text-[9px] text-slate-500 p-2; }
+  .regia-demo aside div { @apply text-[10px] text-slate-400 rounded-md px-2 py-3; }
+  .regia-demo aside .active { @apply bg-stentor text-white; }
+
+  .regia-demo main { @apply p-6 flex flex-col; }
+  .regia-demo main > small { @apply font-mono text-[9px] text-slate-500; }
+  .regia-demo main > strong { @apply text-7xl leading-none tracking-[-.07em] mt-3; }
+  .regia-demo main > em { @apply not-italic font-mono text-[9px] text-blue-300 mt-6; }
+  .regia-demo main h3 { @apply text-2xl font-medium mt-2; }
+  .regia-next { @apply mt-auto border-t border-slate-800 pt-6 pb-4; }
+  .regia-next span { @apply block font-mono text-[8px] text-slate-500; }
+  .regia-next b { @apply text-xs text-slate-300 font-medium; }
+  .regia-buttons { @apply grid grid-cols-2 gap-2; }
+  .regia-buttons button { @apply rounded-md border border-slate-700 bg-[#111827] text-xs py-3; }
+  .regia-buttons button:last-child { @apply bg-stentor border-stentor; }
+
+  .feedback-demo { @apply p-6; }
+  .feedback-total { @apply flex justify-between items-end border-b border-hairline pb-4 mb-5; }
+  .feedback-total span { @apply font-mono text-[9px] text-text-3; }
+  .feedback-total b { @apply text-3xl; }
+  .feedback-demo h3 { @apply text-sm font-semibold mb-5; }
+  .feedback-demo > div:not(.feedback-total) { @apply grid grid-cols-[80px_1fr_38px] gap-3 items-center mb-3 text-[10px]; }
+  .feedback-demo i { @apply block h-1.5 rounded-full bg-chrome overflow-hidden; }
+  .feedback-demo i b { @apply block h-full bg-stentor; }
+  .feedback-demo em { @apply not-italic font-mono text-right; }
+  .feedback-demo blockquote { @apply mt-6 rounded-lg border border-hairline bg-bg p-4 text-sm italic text-text-2; }
+
+  .feature-extras { @apply py-20 lg:py-28 border-t border-hairline; }
+  .feature-extras article { @apply rounded-2xl border border-hairline bg-surface p-7 md:p-9; }
+  .feature-extras article > p { @apply font-mono text-[10px] text-stentor tracking-[.1em] mb-4; }
+  .feature-extras h2 { @apply text-3xl tracking-[-.04em] font-semibold; }
+
+  .format-list,.project-list { @apply flex flex-wrap gap-2 mt-8; }
+  .format-list span,.project-list span { @apply rounded-md border border-hairline bg-bg px-3 py-2 font-mono text-xs; }
+
+  .features-final { @apply py-24 lg:py-32 border-t border-hairline; }
+  .features-final h2 { @apply text-4xl md:text-5xl lg:text-[56px] leading-[1.02] tracking-[-.045em] font-semibold; }
+  .features-final > div > p:not(.features-kicker) { @apply mt-5 text-lg text-text-2; }
+
+  @media (max-width: 1023px) {
+    .feature-grid--reverse .feature-copy,
+    .feature-grid--reverse .feature-window { order: initial; }
+  }
+
+
+  /* =========================================================
+     POLISH PASS
+  ========================================================== */
+
+  .features-hero {
+    @apply overflow-hidden;
+  }
+
+  .features-hero .max-w-\[1180px\] {
+    position: relative;
+  }
+
+  .features-hero .max-w-\[1180px\]::after {
+    content: "";
+    position: absolute;
+    width: 620px;
+    height: 260px;
+    right: -180px;
+    top: 20px;
+    pointer-events: none;
+    background: radial-gradient(ellipse, rgba(24,88,200,.08), transparent 70%);
+    filter: blur(20px);
+  }
+
+  .features-flow {
+    @apply relative z-[1] py-4;
+  }
+
+  .features-flow span {
+    @apply rounded-full border border-hairline bg-surface px-3 py-1.5;
+  }
+
+  .features-flow i {
+    @apply text-stentor/50;
+  }
+
+  .feature-section {
+    @apply relative;
+  }
+
+  .feature-grid {
+    @apply items-center;
+  }
+
+  .feature-copy {
+    @apply relative;
+  }
+
+  .feature-copy > span {
+    @apply text-[12px];
+  }
+
+  .feature-copy h2 {
+    @apply leading-[1.04];
+  }
+
+  .feature-copy ul {
+    @apply pt-1;
+  }
+
+  .feature-copy li {
+    @apply leading-[1.5];
+  }
+
+  .feature-window {
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+
+  @media (hover:hover) {
+    .feature-window:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 34px 90px -62px rgba(37,61,96,.62);
+    }
+  }
+
+  .window-top {
+    @apply min-h-11;
+  }
+
+  .window-top::before {
+    content: "";
+    width: 26px;
+    height: 8px;
+    flex: 0 0 auto;
+    background:
+      radial-gradient(circle at 4px 4px, #dbe3ee 0 3px, transparent 3.5px),
+      radial-gradient(circle at 13px 4px, #dbe3ee 0 3px, transparent 3.5px),
+      radial-gradient(circle at 22px 4px, #dbe3ee 0 3px, transparent 3.5px);
+  }
+
+  .window-top--black::before,
+  .window-top--dark::before {
+    background:
+      radial-gradient(circle at 4px 4px, #64748b 0 3px, transparent 3.5px),
+      radial-gradient(circle at 13px 4px, #64748b 0 3px, transparent 3.5px),
+      radial-gradient(circle at 22px 4px, #64748b 0 3px, transparent 3.5px);
+  }
+
+  .text-demo,
+  .languages-demo,
+  .ad-demo,
+  .screens-demo,
+  .audience-demo,
+  .feedback-demo {
+    min-height: 360px;
+  }
+
+  .languages-demo {
+    min-height: 360px;
+  }
+
+  .language-col {
+    @apply relative;
+  }
+
+  .language-col + .language-col::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18%;
+    bottom: 18%;
+    width: 1px;
+    background: var(--color-hairline);
+  }
+
+  .audience-demo {
+    @apply sm:grid-cols-[1fr_175px];
+  }
+
+  .phone-demo {
+    min-height: 315px;
+    @apply p-4;
+  }
+
+  .phone-demo h3 {
+    @apply text-lg;
+  }
+
+  .phone-demo button {
+    @apply py-1.5;
+  }
+
+  .regia-status {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-800 border-b border-slate-800;
+  }
+
+  .regia-status > div {
+    @apply bg-[#0d1421] px-4 py-3;
+  }
+
+  .regia-status span {
+    @apply block font-mono text-[8px] tracking-[.08em] text-slate-500 mb-1;
+  }
+
+  .regia-status b {
+    @apply text-[10px] text-slate-300 font-medium;
+  }
+
+  .regia-status b.live {
+    @apply text-green-400;
+  }
+
+  .feature-section--regia {
+    @apply py-24 lg:py-32;
+  }
+
+  .feature-section--regia .feature-grid {
+    @apply lg:grid-cols-[280px_1fr];
+  }
+
+  .feature-section--regia .feature-window {
+    box-shadow: 0 45px 110px -65px rgba(0,0,0,.95);
+  }
+
+  .regia-demo {
+    min-height: 460px;
+  }
+
+  .regia-demo main > strong {
+    @apply md:text-[84px];
+  }
+
+  .regia-demo main h3 {
+    @apply md:text-[28px] leading-tight;
+  }
+
+  .feedback-demo {
+    @apply flex flex-col justify-center;
+  }
+
+  .feature-extras article {
+    @apply min-h-[290px] flex flex-col;
+  }
+
+  .format-list,
+  .project-list {
+    @apply mt-auto pt-8;
+  }
+
+  .features-final {
+    background:
+      radial-gradient(ellipse 55% 45% at 50% 100%, rgba(24,88,200,.09), transparent 70%);
+  }
+
+  @media (max-width: 1023px) {
+    .feature-section {
+      @apply py-16;
+    }
+
+    .feature-grid {
+      @apply gap-8;
+    }
+
+    .feature-copy {
+      max-width: 620px;
+    }
+
+    .feature-section--regia {
+      @apply py-20;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .features-hero {
+      @apply pt-20 pb-10;
+    }
+
+    .features-hero h1 {
+      @apply text-[46px];
+    }
+
+    .features-flow {
+      @apply gap-2;
+    }
+
+    .features-flow i {
+      display: none;
+    }
+
+    .features-flow span {
+      @apply text-[10px];
+    }
+
+    .feature-window {
+      border-radius: 12px;
+    }
+
+    .text-demo {
+      grid-template-columns: 1fr;
+    }
+
+    .text-demo aside {
+      display: none;
+    }
+
+    .languages-demo {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .language-col {
+      min-height: 150px;
+    }
+
+    .language-col + .language-col::before {
+      display: none;
+    }
+
+    .audience-demo {
+      grid-template-columns: 1fr;
+    }
+
+    .phone-demo {
+      width: 170px;
+      min-height: 300px;
+      margin: 0 auto;
+    }
+
+    .regia-demo {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .regia-demo aside {
+      display: none;
+    }
+
+    .regia-demo main {
+      min-height: 390px;
+    }
+
+    .regia-status {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .feedback-demo > div:not(.feedback-total) {
+      grid-template-columns: 70px 1fr 34px;
+    }
+  }
+
+</style>
