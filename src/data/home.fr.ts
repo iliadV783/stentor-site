@@ -3,19 +3,19 @@
  */
 
 export const hero = {
-  eyebrow: "Mise a jour v0.1.74 · Audiodescription en direct",
+  eyebrow: 'v0.2 · Bêta',
   title:
-    'Surtitres, traduction <em class="not-italic text-stentor font-medium">et audiodescription.</em><br class="hidden sm:inline" /> En direct.',
+    'Le texte live <em class="not-italic text-stentor font-medium">pour le spectacle.</em><br class="hidden sm:inline" />',
   description:
-    "Un environnement de regie pour preparer les textes, coordonner langues et audiodescriptions, synchroniser ecrans et dispositifs du public, recueillir des questionnaires et travailler dans le cloud pendant repetitions et spectacles.",
+    'Préparez, traduisez et pilotez surtitres et audiodescription depuis une seule application desktop native, des répétitions au spectacle.',
   ctas: [
-    { href: "/fr/download", label: "Telecharger Stentor", variant: "primary" as const },
-    { href: "/fr/demander-essai", label: "Acceder a la beta Pro", variant: "ghost" as const, icon: "play" as const },
+    { href: '/fr/download', label: 'Télécharger Sténtor', variant: "primary" as const },
+    { href: '/fr/features', label: 'Découvrir les fonctions', variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Lite : app gratuite multiplateforme", live: true },
-    { label: "Pro : app professionnelle pour macOS et Windows" },
-    { label: "Surtitres · traduction · audiodescription · public" },
+    { label: 'Gratuit', live: true },
+    { label: 'Natif pour macOS, Windows et Linux' },
+    { label: 'Surtitres · traduction · audiodescription · public' },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Repetition live · reseau local" },

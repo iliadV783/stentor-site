@@ -1,4 +1,152 @@
 ---
+interface Props {
+  locale?: "it" | "en" | "fr" | "es" | "de";
+}
+
+const { locale = "it" } = Astro.props;
+
+const copy = {
+  it: {
+    kicker: "Dentro Sténtor",
+    title: "Dal copione alla sala,<br/>nello stesso ambiente.",
+    intro: "Prepara il testo, vai in scena e porta sottotitoli, traduzioni e accessibilità fino al pubblico.",
+    explore: "Esplora tutte le funzioni",
+    features: "/it/features/",
+    live: "In scena",
+    text: "TESTO",
+    currentCue: "CUE CORRENTE",
+    screens: "SCHERMI",
+    screensReady: "2 pronti",
+    audience: "PUBBLICO",
+    audienceConnected: "18 connessi",
+    next: "SUCCESSIVO",
+    forward: "Avanti",
+    screen: "SCHERMO",
+    phoneIntro: "Segui lo spettacolo sul tuo dispositivo.",
+    subtitles: "Sottotitoli",
+    translation: "Traduzione",
+    ad: "Audiodescrizione",
+    enter: "Entra nello spettacolo",
+    prepare: "PREPARA",
+    prepareText: "Testo, lingue e audiodescrizione.",
+    liveStep: "VAI IN SCENA",
+    liveText: "Regia, cue e schermi.",
+    reach: "RAGGIUNGI IL PUBBLICO",
+    reachText: "Telefoni, accessibilità e feedback.",
+  },
+  en: {
+    kicker: "Inside Sténtor",
+    title: "From script to stage,<br/>in one environment.",
+    intro: "Prepare the text, go live and bring surtitles, translations and accessibility all the way to the audience.",
+    explore: "Explore all features",
+    features: "/features/",
+    live: "Live",
+    text: "TEXT",
+    currentCue: "CURRENT CUE",
+    screens: "SCREENS",
+    screensReady: "2 ready",
+    audience: "AUDIENCE",
+    audienceConnected: "18 connected",
+    next: "NEXT",
+    forward: "Forward",
+    screen: "SCREEN",
+    phoneIntro: "Follow the performance on your device.",
+    subtitles: "Surtitles",
+    translation: "Translation",
+    ad: "Audio description",
+    enter: "Enter performance",
+    prepare: "PREPARE",
+    prepareText: "Text, languages and audio description.",
+    liveStep: "GO LIVE",
+    liveText: "Stage desk, cues and screens.",
+    reach: "REACH THE AUDIENCE",
+    reachText: "Phones, accessibility and feedback.",
+  },
+  fr: {
+    kicker: "Dans Sténtor",
+    title: "Du texte à la scène,<br/>dans un même environnement.",
+    intro: "Préparez le texte, passez en régie et diffusez surtitres, traductions et accessibilité jusqu’au public.",
+    explore: "Découvrir toutes les fonctions",
+    features: "/fr/features/",
+    live: "En scène",
+    text: "TEXTE",
+    currentCue: "CUE ACTUEL",
+    screens: "ÉCRANS",
+    screensReady: "2 prêts",
+    audience: "PUBLIC",
+    audienceConnected: "18 connectés",
+    next: "SUIVANT",
+    forward: "Avancer",
+    screen: "ÉCRAN",
+    phoneIntro: "Suivez le spectacle sur votre appareil.",
+    subtitles: "Surtitres",
+    translation: "Traduction",
+    ad: "Audiodescription",
+    enter: "Entrer dans le spectacle",
+    prepare: "PRÉPARER",
+    prepareText: "Texte, langues et audiodescription.",
+    liveStep: "PASSER EN SCÈNE",
+    liveText: "Régie, cues et écrans.",
+    reach: "REJOINDRE LE PUBLIC",
+    reachText: "Téléphones, accessibilité et retours.",
+  },
+  es: {
+    kicker: "Dentro de Sténtor",
+    title: "Del texto al escenario,<br/>en un mismo entorno.",
+    intro: "Prepara el texto, pasa a escena y lleva sobretítulos, traducciones y accesibilidad hasta el público.",
+    explore: "Explorar todas las funciones",
+    features: "/es/features/",
+    live: "En escena",
+    text: "TEXTO",
+    currentCue: "CUE ACTUAL",
+    screens: "PANTALLAS",
+    screensReady: "2 listas",
+    audience: "PÚBLICO",
+    audienceConnected: "18 conectados",
+    next: "SIGUIENTE",
+    forward: "Avanzar",
+    screen: "PANTALLA",
+    phoneIntro: "Sigue el espectáculo en tu dispositivo.",
+    subtitles: "Sobretítulos",
+    translation: "Traducción",
+    ad: "Audiodescripción",
+    enter: "Entrar al espectáculo",
+    prepare: "PREPARA",
+    prepareText: "Texto, idiomas y audiodescripción.",
+    liveStep: "PASA A ESCENA",
+    liveText: "Regía, cues y pantallas.",
+    reach: "LLEGA AL PÚBLICO",
+    reachText: "Teléfonos, accesibilidad y feedback.",
+  },
+  de: {
+    kicker: "In Sténtor",
+    title: "Vom Text auf die Bühne,<br/>in einer Umgebung.",
+    intro: "Bereite den Text vor, gehe live und bringe Übertitel, Übersetzungen und Barrierefreiheit bis zum Publikum.",
+    explore: "Alle Funktionen entdecken",
+    features: "/de/features/",
+    live: "Live",
+    text: "TEXT",
+    currentCue: "AKTUELLER CUE",
+    screens: "BILDSCHIRME",
+    screensReady: "2 bereit",
+    audience: "PUBLIKUM",
+    audienceConnected: "18 verbunden",
+    next: "NÄCHSTER",
+    forward: "Weiter",
+    screen: "BILDSCHIRM",
+    phoneIntro: "Verfolge die Aufführung auf deinem Gerät.",
+    subtitles: "Übertitel",
+    translation: "Übersetzung",
+    ad: "Audiodeskription",
+    enter: "Zur Aufführung",
+    prepare: "VORBEREITEN",
+    prepareText: "Text, Sprachen und Audiodeskription.",
+    liveStep: "LIVE GEHEN",
+    liveText: "Regie, Cues und Bildschirme.",
+    reach: "PUBLIKUM ERREICHEN",
+    reachText: "Telefone, Barrierefreiheit und Feedback.",
+  },
+}[locale];
 ---
 
 <section class="home-summary">
@@ -6,18 +154,15 @@
 
     <div class="summary-heading">
       <div>
-        <p class="summary-kicker">Dentro Sténtor</p>
-        <h2>Dal copione alla sala,<br/>nello stesso ambiente.</h2>
+        <p class="summary-kicker">{copy.kicker}</p>
+        <h2 set:html={copy.title}></h2>
       </div>
 
       <div class="summary-intro">
-        <p>
-          Prepara il testo, vai in scena e porta sottotitoli,
-          traduzioni e accessibilità fino al pubblico.
-        </p>
+        <p>{copy.intro}</p>
 
-        <a href="/it/features/" class="summary-link">
-          Esplora tutte le funzioni <span aria-hidden="true">→</span>
+        <a href={copy.features} class="summary-link">
+          {copy.explore} <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
@@ -33,7 +178,7 @@
 
         <div class="scene-live">
           <i></i>
-          In scena
+          {copy.live}
         </div>
       </div>
 
@@ -41,7 +186,7 @@
 
         <!-- TESTO -->
         <aside class="scene-cues">
-          <small>TESTO</small>
+          <small>{copy.text}</small>
 
           <div>
             <span>021</span>
@@ -69,18 +214,18 @@
         <main class="scene-stage">
           <div class="stage-status">
             <span>
-              <small>CUE CORRENTE</small>
+              <small>{copy.currentCue}</small>
               <b>023</b>
             </span>
 
             <span>
-              <small>SCHERMI</small>
-              <b>2 pronti</b>
+              <small>{copy.screens}</small>
+              <b>{copy.screensReady}</b>
             </span>
 
             <span>
-              <small>PUBBLICO</small>
-              <b>18 connessi</b>
+              <small>{copy.audience}</small>
+              <b>{copy.audienceConnected}</b>
             </span>
           </div>
 
@@ -96,11 +241,11 @@
 
           <div class="stage-bottom">
             <span>
-              <small>SUCCESSIVO</small>
+              <small>{copy.next}</small>
               <b>024 · Macbeth</b>
             </span>
 
-            <button>Avanti →</button>
+            <button>{copy.forward} →</button>
           </div>
         </main>
 
@@ -110,7 +255,7 @@
 
           <div class="mini-screen">
             <div>
-              <small>SCHERMO · EN</small>
+              <small>{copy.screen} · EN</small>
             </div>
 
             <strong>
@@ -125,13 +270,13 @@
           <div class="mini-phone">
             <small>STÉNTOR</small>
             <h4>Macbeth</h4>
-            <p>Segui lo spettacolo sul tuo dispositivo.</p>
+            <p>{copy.phoneIntro}</p>
 
-            <span>Sottotitoli</span>
-            <span>Traduzione</span>
-            <span>Audiodescrizione</span>
+            <span>{copy.subtitles}</span>
+            <span>{copy.translation}</span>
+            <span>{copy.ad}</span>
 
-            <b>Entra nello spettacolo</b>
+            <b>{copy.enter}</b>
           </div>
 
         </aside>
@@ -146,24 +291,24 @@
       <article>
         <span>01</span>
         <div>
-          <p>PREPARA</p>
-          <h3>Testo, lingue e audiodescrizione.</h3>
+          <p>{copy.prepare}</p>
+          <h3>{copy.prepareText}</h3>
         </div>
       </article>
 
       <article>
         <span>02</span>
         <div>
-          <p>VAI IN SCENA</p>
-          <h3>Regia, cue e schermi.</h3>
+          <p>{copy.liveStep}</p>
+          <h3>{copy.liveText}</h3>
         </div>
       </article>
 
       <article>
         <span>03</span>
         <div>
-          <p>RAGGIUNGI IL PUBBLICO</p>
-          <h3>Telefoni, accessibilità e feedback.</h3>
+          <p>{copy.reach}</p>
+          <h3>{copy.reachText}</h3>
         </div>
       </article>
 

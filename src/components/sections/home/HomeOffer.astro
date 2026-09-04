@@ -1,0 +1,222 @@
+---
+import Btn from "../../Btn.astro";
+
+interface Props {
+  locale?: "it" | "en" | "fr" | "es" | "de";
+}
+
+const { locale = "it" } = Astro.props;
+
+const c = {
+  it: {
+    free: "Sténtor è gratuito.",
+    intro: "Un’unica app completa, sviluppata nativamente per macOS, Windows e Linux, per preparare e condurre lo spettacolo dal vivo.",
+    silicon: "Silicon e Intel",
+    features: ["Testo e lingue", "Audiodescrizione", "Schermi", "Pubblico", "Regia live"],
+    download: "Scarica",
+    downloadHref: "/it/download",
+    institutions: "Teatri, compagnie e istituzioni",
+    project: "Raccontaci il tuo progetto",
+    projectText: "Possiamo fornire supporto a teatri, festival, scuole, tournée e organizzazioni che vogliono usare Sténtor su più postazioni o preparare configurazioni dedicate:",
+    support: ["Più postazioni", "Supporto durante test e prove", "Configurazione in sala", "Uso in festival e tournée"],
+    contact: "Scrivici",
+    contactHref: "/it/contact",
+    note: "L’attivazione gratuita ci aiuta a seguire l’uso reale di Sténtor, fornire supporto e continuare lo sviluppo.",
+  },
+  en: {
+    free: "Sténtor is free.",
+    intro: "One complete native app for macOS, Windows and Linux, designed to prepare and run live performance.",
+    silicon: "Silicon and Intel",
+    features: ["Text and languages", "Audio description", "Screens", "Audience", "Live stage desk"],
+    download: "Download",
+    downloadHref: "/download",
+    institutions: "Theatres, companies and institutions",
+    project: "Tell us about your project",
+    projectText: "We can support theatres, festivals, schools, touring productions and organisations using Sténtor across multiple workstations or preparing dedicated setups:",
+    support: ["Multiple workstations", "Support during tests and rehearsals", "In-venue configuration", "Festival and touring use"],
+    contact: "Contact us",
+    contactHref: "/contact",
+    note: "Free activation helps us understand real-world use of Sténtor, provide support and continue development.",
+  },
+  fr: {
+    free: "Sténtor est gratuit.",
+    intro: "Une seule application complète, développée nativement pour macOS, Windows et Linux, pour préparer et conduire le spectacle vivant.",
+    silicon: "Silicon et Intel",
+    features: ["Texte et langues", "Audiodescription", "Écrans", "Public", "Régie live"],
+    download: "Télécharger",
+    downloadHref: "/fr/download",
+    institutions: "Théâtres, compagnies et institutions",
+    project: "Parlez-nous de votre projet",
+    projectText: "Nous pouvons accompagner théâtres, festivals, écoles, tournées et organisations qui souhaitent utiliser Sténtor sur plusieurs postes ou préparer des configurations dédiées :",
+    support: ["Plusieurs postes", "Support pendant les tests et répétitions", "Configuration en salle", "Utilisation en festival et en tournée"],
+    contact: "Nous écrire",
+    contactHref: "/fr/contact",
+    note: "L’activation gratuite nous aide à suivre l’usage réel de Sténtor, à fournir du support et à poursuivre son développement.",
+  },
+  es: {
+    free: "Sténtor es gratuito.",
+    intro: "Una única aplicación completa, desarrollada de forma nativa para macOS, Windows y Linux, para preparar y conducir el espectáculo en vivo.",
+    silicon: "Silicon e Intel",
+    features: ["Texto e idiomas", "Audiodescripción", "Pantallas", "Público", "Regía en vivo"],
+    download: "Descargar",
+    downloadHref: "/es/download",
+    institutions: "Teatros, compañías e instituciones",
+    project: "Cuéntanos tu proyecto",
+    projectText: "Podemos ofrecer apoyo a teatros, festivales, escuelas, giras y organizaciones que quieran utilizar Sténtor en varios puestos o preparar configuraciones específicas:",
+    support: ["Varios puestos", "Soporte durante pruebas y ensayos", "Configuración en sala", "Uso en festivales y giras"],
+    contact: "Escríbenos",
+    contactHref: "/es/contact",
+    note: "La activación gratuita nos ayuda a conocer el uso real de Sténtor, ofrecer soporte y continuar su desarrollo.",
+  },
+  de: {
+    free: "Sténtor ist kostenlos.",
+    intro: "Eine vollständige native App für macOS, Windows und Linux zur Vorbereitung und Durchführung von Live-Aufführungen.",
+    silicon: "Silicon und Intel",
+    features: ["Text und Sprachen", "Audiodeskription", "Bildschirme", "Publikum", "Live-Regie"],
+    download: "Herunterladen",
+    downloadHref: "/de/download",
+    institutions: "Theater, Kompanien und Institutionen",
+    project: "Erzähl uns von deinem Projekt",
+    projectText: "Wir unterstützen Theater, Festivals, Schulen, Tourneeproduktionen und Organisationen, die Sténtor an mehreren Arbeitsplätzen einsetzen oder spezielle Konfigurationen vorbereiten möchten:",
+    support: ["Mehrere Arbeitsplätze", "Support bei Tests und Proben", "Konfiguration im Veranstaltungsort", "Einsatz bei Festivals und Tourneen"],
+    contact: "Kontakt",
+    contactHref: "/de/contact",
+    note: "Die kostenlose Aktivierung hilft uns, den realen Einsatz von Sténtor zu verstehen, Support zu leisten und die Entwicklung fortzusetzen.",
+  },
+}[locale];
+---
+
+<section class="py-20 lg:py-28 border-t border-hairline">
+  <div class="max-w-[1180px] mx-auto px-4 md:px-8">
+    <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-6">
+
+      <article class="rounded-2xl border border-hairline bg-surface overflow-hidden shadow-[0_24px_70px_-55px_rgba(37,61,96,.45)]">
+        <div class="p-7 md:p-9 lg:p-11">
+          <p class="font-mono text-[11px] tracking-[0.1em] uppercase text-stentor mb-4">Sténtor</p>
+
+          <h2 class="text-4xl md:text-5xl lg:text-[56px] leading-[0.98] tracking-[-0.055em] font-semibold max-w-[620px]">
+            {c.free}
+          </h2>
+
+          <p class="mt-5 text-lg text-text-2 leading-relaxed max-w-[650px]">
+            {c.intro}
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-3 mt-9">
+
+            <div class="rounded-xl border border-hairline bg-bg p-4">
+              <div class="flex items-center gap-3">
+                <div class="platform-icon platform-icon--apple" aria-hidden="true"></div>
+                <div>
+                  <span class="block font-mono text-[9px] uppercase tracking-[.08em] text-text-3">macOS</span>
+                  <b class="text-sm font-medium whitespace-nowrap">{c.silicon}</b>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-hairline bg-bg p-4">
+              <div class="flex items-center gap-3">
+                <div class="platform-icon platform-icon--windows" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="presentation">
+                    <path d="M3 4.5 10.5 3v8H3V4.5Zm8.5-1.7L21 1v10h-9.5V2.8ZM3 12.2h7.5v8L3 18.8v-6.6Zm8.5 0H21v10l-9.5-1.8v-8.2Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="block font-mono text-[9px] uppercase tracking-[.08em] text-text-3">Windows</span>
+                  <b class="text-sm font-medium whitespace-nowrap">x64 + ARM64</b>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-hairline bg-bg p-4">
+              <div class="flex items-center gap-3">
+                <div class="platform-icon platform-icon--linux" aria-hidden="true">
+                  <img src="/icons/linux.svg" alt="" />
+                </div>
+                <div>
+                  <span class="block font-mono text-[9px] uppercase tracking-[.08em] text-text-3">Linux</span>
+                  <b class="text-sm font-medium whitespace-nowrap">x64 + ARM64</b>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex flex-wrap gap-x-5 gap-y-2 mt-7 text-sm text-text-2">
+            {c.features.map((item) => <span>✓ {item}</span>)}
+          </div>
+
+          <div class="mt-9">
+            <Btn href={c.downloadHref} variant="primary" size="lg">
+              {c.download} <span aria-hidden="true">→</span>
+            </Btn>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="rounded-2xl border border-hairline bg-bg p-7 md:p-9 lg:p-10 flex flex-col">
+        <p class="font-mono text-[11px] tracking-[0.1em] uppercase text-text-3 mb-4">
+          {c.institutions}
+        </p>
+
+        <h3 class="text-3xl md:text-[38px] leading-[1.02] tracking-[-0.045em] font-semibold">
+          {c.project}
+        </h3>
+
+        <p class="mt-5 text-text-2 leading-relaxed">
+          {c.projectText}
+        </p>
+
+        <div class="mt-8 grid gap-3 text-sm">
+          {c.support.map((item) => (
+            <div class="flex gap-3">
+              <span class="text-stentor">✓</span>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-auto pt-10">
+          <Btn href={c.contactHref} variant="ghost" size="lg">{c.contact}</Btn>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="mt-5 text-xs text-text-3 max-w-[700px]">{c.note}</p>
+  </div>
+</section>
+
+<style>
+  .platform-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+    display: grid;
+    place-items: center;
+    color: var(--color-stentor);
+    flex: 0 0 auto;
+  }
+
+  .platform-icon--apple {
+    font-size: 1.45rem;
+    line-height: 1;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  }
+
+  .platform-icon--windows svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  .platform-icon--linux img {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+</style>

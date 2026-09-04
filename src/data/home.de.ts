@@ -3,19 +3,19 @@
  */
 
 export const hero = {
-  eyebrow: "Update v0.1.74 · Live-Audiodeskription",
+  eyebrow: 'v0.2 · Beta',
   title:
-    'Übertitel, Übersetzung <em class="not-italic text-stentor font-medium">und Audiodeskriptionen.</em><br class="hidden sm:inline" /> Live.',
+    'Live-Text <em class="not-italic text-stentor font-medium">für Aufführungen.</em><br class="hidden sm:inline" />',
   description:
-    "Eine Regieumgebung zum Vorbereiten von Texten, Koordinieren von Sprachen und Audiodeskriptionen, Synchronisieren von Bildschirmen und Publikumsgeräten, Sammeln von Fragebögen und Arbeiten in der Cloud während Proben und Aufführungen.",
+    'Bereite Übertitel, Übersetzungen und Audiodeskription in einer nativen Desktop-App vor und steuere sie von der Probe bis zur Aufführung.',
   ctas: [
-    { href: "/de/download", label: "Sténtor herunterladen", variant: "primary" as const },
-    { href: "/de/testzugang", label: "Pro-Beta öffnen", variant: "ghost" as const, icon: "play" as const },
+    { href: '/de/download', label: 'Sténtor herunterladen', variant: "primary" as const },
+    { href: '/de/features', label: 'Funktionen entdecken', variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Lite: kostenlose plattformübergreifende App", live: true },
-    { label: "Pro: professionelle App für macOS und Windows" },
-    { label: "Übertitel · Übersetzung · Audiodeskription · Publikum" },
+    { label: 'Kostenlos', live: true },
+    { label: 'Nativ für macOS, Windows und Linux' },
+    { label: 'Übertitel · Übersetzung · Audiodeskription · Publikum' },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Live-Probe · lokales Netzwerk" },

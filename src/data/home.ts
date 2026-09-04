@@ -5,19 +5,19 @@
  */
 
 export const hero = {
-  eyebrow: "v0.2 · Beta release for internal testers",
+  eyebrow: 'v0.2 · Beta',
   title:
     'Free live-text software <em class="not-italic text-stentor font-medium">for performance.</em><br class="hidden sm:inline" />',
   description:
-    "Prepare, translate and cue surtitles, captions, audio description and audience-phone text from one native desktop app for rehearsals and live performance.",
+    'Prepare, translate and cue surtitles, captions and audio description from one native desktop app for rehearsals and live performance.',
   ctas: [
-    { href: "/download", label: "Download Sténtor", variant: "primary" as const },
-    { href: "/account", label: "Account", variant: "ghost" as const, icon: "play" as const },
+    { href: '/download', label: 'Download Sténtor', variant: "primary" as const },
+    { href: '/features', label: 'Explore features', variant: "ghost" as const, icon: "play" as const },
   ],
   trust: [
-    { label: "Free to use", live: true },
-    { label: "Native desktop app for macOS and Windows" },
-    { label: "Surtitles · translations · audio description · audience phones" },
+    { label: 'Free to use', live: true },
+    { label: 'Native for macOS, Windows and Linux' },
+    { label: 'Surtitles · translation · audio description · audience' },
   ],
   mock: {
     workspace: { name: "Macbett", env: "Live rehearsal · local network" },

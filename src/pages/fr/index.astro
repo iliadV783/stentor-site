@@ -1,34 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Eyebrow from "../../components/Eyebrow.astro";
-import Btn from "../../components/Btn.astro";
-import FinalCta from "../../components/FinalCta.astro";
 import Hero from "../../components/sections/home/Hero.astro";
-import Metrics from "../../components/sections/home/Metrics.astro";
-import Bento from "../../components/sections/home/Bento.astro";
-import PricingPreview from "../../components/sections/home/PricingPreview.astro";
-import { hero, metrics, bento, pricingPreview, finalCta } from "../../data/home.fr";
+import HomeSummary from "../../components/sections/home/HomeSummary.astro";
+import HomeOffer from "../../components/sections/home/HomeOffer.astro";
+import { hero } from "../../data/home.fr";
 ---
+
 <Layout
   title="Sténtor — Surtitres, traduction et audiodescription"
-  description="Sténtor réunit surtitres, traduction et audiodescription dans un même workflow local-first pour le spectacle vivant."
+  description="Sténtor réunit surtitres, traduction et audiodescription dans un environnement natif pour le spectacle vivant."
   active={null}
 >
   <Hero hero={hero} />
-  <Metrics metrics={metrics} />
-  <Bento bento={bento} />
-  <PricingPreview pricingPreview={pricingPreview} />
-
-  <FinalCta variant={finalCta.variant} paddingY="py-16 md:py-20" gap="gap-4">
-    <Eyebrow><span class="font-mono">{finalCta.eyebrow}</span></Eyebrow>
-    <h2 class="text-3xl sm:text-4xl lg:text-[46px] leading-[1.02] tracking-[-0.04em] font-semibold max-w-[880px]" set:html={finalCta.title}></h2>
-    <p class="text-base leading-[1.55] text-text-2 max-w-[600px]" set:html={finalCta.body}></p>
-    <div class="flex flex-wrap gap-3 justify-center mt-2">
-      {finalCta.ctas.map((cta, i) => (
-        <Btn href={cta.href} variant={cta.variant} size="lg">
-          {cta.label}{i === 0 && <span aria-hidden="true">→</span>}
-        </Btn>
-      ))}
-    </div>
-  </FinalCta>
+  <HomeSummary locale="fr" />
+  <HomeOffer locale="fr" />
 </Layout>

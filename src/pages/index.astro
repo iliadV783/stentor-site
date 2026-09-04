@@ -1,66 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Eyebrow from "../components/Eyebrow.astro";
-import Btn from "../components/Btn.astro";
-import FinalCta from "../components/FinalCta.astro";
 import Hero from "../components/sections/home/Hero.astro";
-import Metrics from "../components/sections/home/Metrics.astro";
-import Bento from "../components/sections/home/Bento.astro";
-import PricingPreview from "../components/sections/home/PricingPreview.astro";
-import { finalCta } from "../data/home";
+import HomeSummary from "../components/sections/home/HomeSummary.astro";
+import HomeOffer from "../components/sections/home/HomeOffer.astro";
+import { hero } from "../data/home";
 ---
-<Layout active={null}>
-  <script is:inline>
-    (() => {
-      if (window.location.pathname !== "/") return;
 
-      const localizedHome = {
-        it: "/it/",
-        fr: "/fr/",
-        es: "/es/",
-        de: "/de/",
-      };
-
-      try {
-        const explicitChoice = window.localStorage.getItem("stentor-lang-choice");
-        if (explicitChoice === "en") return;
-        if (Object.prototype.hasOwnProperty.call(localizedHome, explicitChoice)) {
-          window.location.replace(localizedHome[explicitChoice]);
-          return;
-        }
-      } catch (_) {
-        // localStorage can be unavailable in private or restricted browsing.
-      }
-
-      const languages = Array.isArray(navigator.languages) && navigator.languages.length
-        ? navigator.languages
-        : [navigator.language];
-
-      const preferred = languages
-        .map((lang) => String(lang || "").toLowerCase().split("-")[0])
-        .find((lang) => Object.prototype.hasOwnProperty.call(localizedHome, lang));
-
-      if (preferred) {
-        window.location.replace(localizedHome[preferred]);
-      }
-    })();
-  </script>
-
-  <Hero />
-  <Metrics />
-  <Bento />
-  <PricingPreview />
-
-  <FinalCta variant={finalCta.variant} paddingY="py-16 md:py-20" gap="gap-4">
-    <Eyebrow><span class="font-mono">{finalCta.eyebrow}</span></Eyebrow>
-    <h2 class="text-3xl sm:text-4xl lg:text-[46px] leading-[1.02] tracking-[-0.04em] font-semibold max-w-[880px]" set:html={finalCta.title}></h2>
-    <p class="text-base leading-[1.55] text-text-2 max-w-[600px]" set:html={finalCta.body}></p>
-    <div class="flex flex-wrap gap-3 justify-center mt-2">
-      {finalCta.ctas.map((cta, i) => (
-        <Btn href={cta.href} variant={cta.variant} size="lg">
-          {cta.label}{i === 0 && <span aria-hidden="true">→</span>}
-        </Btn>
-      ))}
-    </div>
-  </FinalCta>
+<Layout
+  title="Sténtor — Live text for performance"
+  description="Sténtor brings surtitles, translation and audio description into one native workflow for live performance."
+  active={null}
+>
+  <Hero hero={hero} />
+  <HomeSummary locale="en" />
+  <HomeOffer locale="en" />
 </Layout>
