@@ -3,7 +3,7 @@
  */
 
 export const hero = {
-  eyebrow: "v0.2 · Beta disponibile per i tester interni",
+  eyebrow: "v0.2 · Beta",
   title:
     'Soprattitoli, traduzione <em class="not-italic text-stentor font-medium">e audiodescrizioni.</em><br class="hidden sm:inline" /> Dal vivo.',
   description:
